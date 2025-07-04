@@ -39,7 +39,7 @@ const config = {
       zh: {
         label: '简体中文',
       },
-      zh-hant: {
+      "zh-hant": {
         label: '繁体中文',
       },      
     },
