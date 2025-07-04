@@ -5,16 +5,14 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "npx npm-run-all --serial build-locale:en build-locale:zh-hant",
+    "build": "cross-env DOCUSAURUS_IGNORE_SSG_WARNINGS=true docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "prepare": "husky",
-    "build-locale:en": "docusaurus build --locale en",
-    "build-locale:zh-hant": "DOCUSAURUS_LOCALE=/zh-hant/ docusaurus build --locale zh-hant"
+    "prepare": "husky"
   },
   "dependencies": {
     "@docusaurus/core": "3.8.1",
