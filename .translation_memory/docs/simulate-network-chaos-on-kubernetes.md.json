@@ -1,0 +1,698 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/simulate-network-chaos-on-kubernetes.md",
+  "source_file_content_hash": "00e0b0d3da1abbd6e6c83765735ecaa5700a02c530f2ee635ce5fcd23f37ae9f",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate Network Faults\n---",
+      "source_content_hash": "30fa39ebb5879952d3a52d52c2d3b12ac2510586e3bd1d3b1ee2505f1193ff2f",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document describes how to simulate network faults using NetworkChaos in Chaos Mesh.",
+      "source_content_hash": "8d090efffdb06b044506ef00926bd960d13e61ad077db9af6607cc356ee924f6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文檔說明如何使用 Chaos Mesh 中的 NetworkChaos 模擬網路故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## NetworkChaos introduction",
+      "source_content_hash": "26ef958e02d74f1d4d6851f87a6013f9841ac55f88ab1aaeb2c3ef0ca84d2be0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## NetworkChaos 簡介"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "NetworkChaos is a fault type in Chaos Mesh. By creating a NetworkChaos experiment, you can simulate a network fault scenario for a cluster. Currently, NetworkChaos supports the following fault types:",
+      "source_content_hash": "04ce9b39e0c3ee0751f91b10543f0b1a866a59d04e8e6336fe68cbef2f1fc580",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "NetworkChaos 是 Chaos Mesh 中的一種故障類型。透過建立 NetworkChaos 實驗，您可以模擬叢集中的網路故障場景。目前 NetworkChaos 支援以下故障類型："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "760d111a",
+      "source_content": "- **Partition**: network disconnection and partition.",
+      "source_content_hash": "15027d8ae3361c65c4bde5f852048d022c159c70e1bf69344cae2174b1d08907",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **Partition**：網路中斷與分割。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ee0c6cb",
+      "source_content": "- **Net Emulation**: poor network conditions, such as high delays, high packet loss rate, packet reordering, and so on.",
+      "source_content_hash": "83d7891cba9562d760d5faa87ca3b1d4d43502180fd7a14811effbf2a64d21f4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **Net Emulation**：不良網路條件，例如高延遲、高封包遺失率、封包重新排序等。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2b4a9900",
+      "source_content": "- **Bandwidth**: limit the communication bandwidth between nodes.",
+      "source_content_hash": "08164a0c9039f9934d025237bc41986517ae169fd1d0d2447ee4a4a2aec8880f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **Bandwidth**：限制節點間的通信頻寬。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e14c9928",
+      "source_content": "## Notes",
+      "source_content_hash": "63e13e87b378d1e85f838ead267db9020c1457b1118a37e0af9fb5f976144f4b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 注意事項"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "Before creating NetworkChaos experiments, ensure the following:",
+      "source_content_hash": "abb84674596ff083c0feaf36f73cd09f1e1bc2b4e3f7b387d2ffccc3d423bb57",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "建立 NetworkChaos 實驗前，請確保以下事項："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "632fee71",
+      "source_content": "1. During the network injection process, make sure that the connection between Controller Manager and Chaos Daemon works, otherwise the NetworkChaos cannot be restored anymore.",
+      "source_content_hash": "745531babb710ca51db97a0d8bf116a0bb4a7dc73d555d653a63045c4d24a904",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 在網路注入過程中，確保 Controller Manager 與 Chaos Daemon 之間的連接正常運作，否則 NetworkChaos 將無法恢復。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dc10b09",
+      "source_content": "2. If you want to simulate Net Emulation fault, make sure the NET_SCH_NETEM module is installed in the Linux kernel. If you are using CentOS, you can install the module through the kernel-modules-extra package. Most other Linux distributions have installed the module already by default.",
+      "source_content_hash": "d7a540c792569b078b23539ea35033cd1f5d42f1a15b3adf82b8f50845f503b3",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 若需模擬 Net Emulation 故障，請確認 Linux 核心已安裝 NET_SCH_NETEM 模組。若使用 CentOS，可透過 kernel-modules-extra 套件安裝。多數其他 Linux 發行版預設已安裝此模組。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "63622bf0",
+      "source_content": "## Create experiments using Chaos Dashboard",
+      "source_content_hash": "0e6c13931d3c46c241532f93bf2c43261695607133973a006c15d6651045ed71",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Chaos Dashboard 建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d7f0c63d",
+      "source_content": "1. Open Chaos Dashboard, and click **NEW EXPERIMENT** on the page to create a new experiment:\n\n   ![Create Experiment](./img/create-new-exp.png)",
+      "source_content_hash": "4d52ded8c7bd143e02d0fd53b29549e698fa43aeefd1df79cd9afa7ed344201f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 開啟 Chaos Dashboard，點選頁面中的 **NEW EXPERIMENT** 建立新實驗：\n\n   ![Create Experiment](./img/create-new-exp.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "882f8186",
+      "source_content": "2. In the **Choose a Target** area, choose **NETWORK ATTACK** and select a specific behavior, such as **LOSS**. Then fill out specific configuration.\n\n   ![NetworkChaos Experiments](./img/networkchaos-exp.png)\n\n   For details of specific configuration fields, refer to [Field description](#field-description).",
+      "source_content_hash": "d1b19d03960bab7b5437f9b91568decc616fed0e44c429a2b05f1305c8277edb",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 在 **Choose a Target** 區域選擇 **NETWORK ATTACK** 並選取特定行為（例如 **LOSS**），然後填寫具體配置。\n\n   ![NetworkChaos Experiments](./img/networkchaos-exp.png)\n\n   具體配置欄位詳情請參閱[欄位說明](#field-description)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c0463e48",
+      "source_content": "3. Fill out the experiment information, and specify the experiment scope and the scheduled experiment duration.\n\n   ![Experiment Information](./img/exp-info.png)",
+      "source_content_hash": "f597255327746137c9ccdc362eee66b20f627572c6631ece543654362c78343d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 填寫實驗資訊，並指定實驗範圍與排定實驗持續時間。\n\n   ![Experiment Information](./img/exp-info.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ec638a20",
+      "source_content": "4. Submit the experiment information.",
+      "source_content_hash": "d43f9894c758dcc87cfc64b219f833d55e60a63f3367195f2557b06b88c799f0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 提交實驗資訊。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "782c902a",
+      "source_content": "## Create experiments using the YAML files",
+      "source_content_hash": "b28651d6feb8cbe0279d0621bb5559ff4dc33f1eb16ffa643cf71d9a907b48f0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 YAML 檔案建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8d04259b",
+      "source_content": "### Delay example",
+      "source_content_hash": "4e73d3e79831ae3c9f4c59cc0446b746f1ea5a9953078b144e82da0816160979",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 延遲範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6c00797f",
+      "source_content": "1. Write the experiment configuration to the `network-delay.yaml` file, as shown below:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: NetworkChaos\n   metadata:\n     name: delay\n   spec:\n     action: delay\n     mode: one\n     selector:\n       namespaces:\n         - default\n       labelSelectors:\n         'app': 'web-show'\n     delay:\n       latency: '10ms'\n       correlation: '100'\n       jitter: '0ms'\n   ```\n\n   This configuration causes a latency of 10 milliseconds in the network connections of the target Pods. In addition to latency injection, Chaos Mesh supports packet loss and packet reordering injection. For details, see [field description](#field-description).",
+      "source_content_hash": "ba4b9c7e551a8b1033a50599c118e0cf11ad6a6b0f922958a6a3906f23329cf6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將實驗配置寫入 `network-delay.yaml` 檔案，如下所示：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: NetworkChaos\n   metadata:\n     name: delay\n   spec:\n     action: delay\n     mode: one\n     selector:\n       namespaces:\n         - default\n       labelSelectors:\n         'app': 'web-show'\n     delay:\n       latency: '10ms'\n       correlation: '100'\n       jitter: '0ms'\n   ```\n\n   此配置將使目標 Pod 的網路連接產生 10 毫秒延遲。除延遲注入外，Chaos Mesh 亦支援封包遺失與重新排序注入，詳見[欄位說明](#field-description)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "795a1b7f",
+      "source_content": "2. After the configuration file is prepared, use `kubectl` to create an experiment:\n\n   ```bash\n   kubectl apply -f ./network-delay.yaml\n   ```",
+      "source_content_hash": "6c60f990d59a1287ee1205eb2b7a854f0cbd83bc0b8fcf118b284e815beb2e76",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 準備好配置檔案後，使用 `kubectl` 建立實驗：\n\n   ```bash\n   kubectl apply -f ./network-delay.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d422fb13",
+      "source_content": "### Partition example",
+      "source_content_hash": "59adc9fb2da41565b61cc793dac5744199c0f7b435d5e981117e681a828b3cd1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 分割範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ae11e253",
+      "source_content": "1. Write the experiment configuration to the `network-partition.yaml` file, as shown below:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: NetworkChaos\n   metadata:\n     name: partition\n   spec:\n     action: partition\n     mode: all\n     selector:\n       namespaces:\n         - default\n       labelSelectors:\n         'app': 'app1'\n     direction: to\n     target:\n       mode: all\n       selector:\n         namespaces:\n           - default\n         labelSelectors:\n           'app': 'app2'\n   ```\n\n   This configuration blocks the connection created from `app1` to `app2`. The value for the `direction` field can be `to`, `from` or `both`. For details, refer to [Field description](#field-description).",
+      "source_content_hash": "7b06d06ddf1cb818e8aa8ef016c31dbc68d2fbe9b07078d0be925796ded557cb",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將實驗配置寫入 `network-partition.yaml` 檔案，如下所示：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: NetworkChaos\n   metadata:\n     name: partition\n   spec:\n     action: partition\n     mode: all\n     selector:\n       namespaces:\n         - default\n       labelSelectors:\n         'app': 'app1'\n     direction: to\n     target:\n       mode: all\n       selector:\n         namespaces:\n           - default\n         labelSelectors:\n           'app': 'app2'\n   ```\n\n   此配置將阻斷從 `app1` 到 `app2` 的連接。`direction` 欄位值可為 `to`、`from` 或 `both`，詳見[欄位說明](#field-description)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1f5a88fc",
+      "source_content": "2. After the configuration file is prepared, use `kubectl` to create the experiment:\n\n   ```bash\n   kubectl apply -f ./network-partition.yaml\n   ```",
+      "source_content_hash": "a84448c9e2c38d3c72b3cfbaf2659c8f8eae2164965b82b72d88457964349243",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 準備好配置檔案後，使用 `kubectl` 建立實驗：\n\n   ```bash\n   kubectl apply -f ./network-partition.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1f4b3b94",
+      "source_content": "### Bandwidth example",
+      "source_content_hash": "e5014fd7520fed2a2ebb167b614562b6913f9773bb385a2574909fdc91098d9a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 頻寬範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8c973e92",
+      "source_content": "1. Write the experiment configuration to the `network-bandwidth.yaml` file, as shown below:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: NetworkChaos\n   metadata:\n     name: bandwidth\n   spec:\n     action: bandwidth\n     mode: all\n     selector:\n       namespaces:\n         - default\n       labelSelectors:\n         'app': 'app1'\n     bandwidth:\n       rate: '1mbps'\n       limit: 20971520\n       buffer: 10000\n   ```\n\n   This configuration limits the bandwidth of `app1` to 1 mbps.",
+      "source_content_hash": "6c729d462f7015747684b46d3c96a5501d213a11b73bbe250165073ac2b354fb",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將實驗配置寫入 `network-bandwidth.yaml` 檔案，如下所示：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: NetworkChaos\n   metadata:\n     name: bandwidth\n   spec:\n     action: bandwidth\n     mode: all\n     selector:\n       namespaces:\n         - default\n       labelSelectors:\n         'app': 'app1'\n     bandwidth:\n       rate: '1mbps'\n       limit: 20971520\n       buffer: 10000\n   ```\n\n   此配置將 `app1` 的頻寬限制為 1 mbps。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0db1813d",
+      "source_content": "2. After the configuration file is prepared, use `kubectl` to create the experiment:\n\n   ```bash\n   kubectl apply -f ./network-bandwidth.yaml\n   ```",
+      "source_content_hash": "7cbc1608ad7ddd1fae35fd8eddcc50053ad832319db84cd6a33704486127866d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 準備好配置檔案後，使用 `kubectl` 建立實驗：\n\n   ```bash\n   kubectl apply -f ./network-bandwidth.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c6868a9f",
+      "source_content": "### Network Emulation example",
+      "source_content_hash": "c035aa2d205cec16f9c264694ba89eefb0cedc75cc22d935d3cf98837d8856bf",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 網路模擬範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5c966431",
+      "source_content": "1. Write the experiment configuration to the `netem.yaml` file, as shown below:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: NetworkChaos\n   metadata:\n     name: network-emulation\n   spec:\n     action: netem\n     mode: all\n     selector:\n       namespaces:\n         - default\n       labelSelectors:\n         'app': 'web-show'\n     delay:\n       latency: '10ms'\n       correlation: '100'\n       jitter: '0ms'\n     rate:\n       rate: '10mbps'\n   ```\n\n   This configuration causes a latency of 10 milliseconds and a bandwidth limit of 10mbps in the network connections of the target Pods. In addition to latency and rate, the `netem` action also supports packet loss, reorder and corruption.",
+      "source_content_hash": "9aa9d145be70350065f074c1e2d4ab5539ec1f39b3fc9a880a5eefe99855f0ed",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將實驗配置寫入 `netem.yaml` 檔案，如下所示：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: NetworkChaos\n   metadata:\n     name: network-emulation\n   spec:\n     action: netem\n     mode: all\n     selector:\n       namespaces:\n         - default\n       labelSelectors:\n         'app': 'web-show'\n     delay:\n       latency: '10ms'\n       correlation: '100'\n       jitter: '0ms'\n     rate:\n       rate: '10mbps'\n   ```\n\n   此配置在目標 Pod 的網路連線中造成 10 毫秒延遲及 10mbps 頻寬限制。除延遲和頻寬限制外，`netem` 操作還支援封包遺失、重新排序和損壞。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d511fc6d",
+      "source_content": "2. After the configuration file is prepared, use `kubectl` to create an experiment:\n\n   ```bash\n   kubectl apply -f ./netem.yaml\n   ```",
+      "source_content_hash": "1ac255f2a8338c398586765422e903efc37651caa2facedab5912d773aca29f2",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 準備好配置檔案後，使用 `kubectl` 建立實驗：\n\n   ```bash\n   kubectl apply -f ./netem.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "89b740fe",
+      "source_content": "## Field description",
+      "source_content_hash": "afef87832591f63e7a3c9579f8a2492cf81afc3e8b0d02296e334646ad82d4f6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28fc1cfd",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| action | string | Indicates the specific fault type. Available types include: `netem`, `delay` (network delay), `loss` (packet loss), `duplicate` (packet duplicating), `corrupt` (packet corrupt), `partition` (network partition), and `bandwidth` (network bandwidth limit). After you specify `action` field, refer to [Description for `action`-related fields](#description-for-action-related-fields) for other necessary field configuration. | None | Yes | Partition |\n| target | Selector | Used in combination with direction, making Chaos only effective for some packets. | None | No |  |\n| direction | enum | Indicates the direction of `target` packets. Available values include `from` (the packets from `target`), `to` (the packets to `target`), and `both` ( the packets from or to `target`). This parameter makes Chaos only take effect for a specific direction of packets. | to | No | both |\n| mode | string | Specifies the mode of the experiment. The mode options include `one` (selecting a random Pod), `all` (selecting all eligible Pods), `fixed` (selecting a specified number of eligible Pods), `fixed-percent` (selecting a specified percentage of Pods from the eligible Pods), and `random-max-percent` (selecting the maximum percentage of Pods from the eligible Pods). | None | Yes | `one` |\n| value | string | Provides a parameter for the `mode` configuration, depending on `mode`. For example, when `mode` is set to `fixed-percent`, `value` specifies the percentage of Pods. | None | No | 1 |\n| selector | struct | Specifies the target Pod. For details, refer to [Define the experiment scope](./define-chaos-experiment-scope.md). | None | Yes |  |\n| externalTargets | []string | Indicates the network targets except for Kubernetes, which can be IPv4 addresses or domains. This parameter only works with `direction: to`. | None | No | 1.1.1.1, google.com |\n| device | string | Specifies the affected network interface | None | No | \"eth0\" |",
+      "source_content_hash": "1e77d30e5d9d6d9315bbc870a271e6fdd51703e864dc75be1feeb2d5a2e46bd4",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_28fc1cfd"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "61282bab",
+      "source_content": "## Description for `action`-related fields",
+      "source_content_hash": "1ec6d2be1ea31c0778c82523b238d6c45683dbc5873e23b684e8a0bfabf3d5f4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## `action` 相關欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4e2e17c5",
+      "source_content": "For the Net Emulation and Bandwidth fault types, you can further configure the `action` related parameters according to the following description.",
+      "source_content_hash": "c6d38313a83815f32d7762c2fadc6c0da81627f30d1babb310087f49e07e87a5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "針對網路模擬與頻寬故障類型，您可以根據以下說明進一步配置 `action` 相關參數。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "177d0c0e",
+      "source_content": "- Net Emulation type: `delay`, `loss`, `duplicated`, `corrupt`, `rate`",
+      "source_content_hash": "9f95094eced59d01a56a92acdf658fbff2a4af71145de1d0244df02c4068817d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 網路模擬類型：`delay`, `loss`, `duplicated`, `corrupt`, `rate`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c210041",
+      "source_content": "- Bandwidth type: `bandwidth`",
+      "source_content_hash": "bf6ee83b9610502876eb45de06bf3d371b1e129de8bdb73a6143aa25654255bd",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 頻寬類型：`bandwidth`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "be4b1cbf",
+      "source_content": "### delay",
+      "source_content_hash": "ed5aec5a59290a7cd0e9760871c482af79ae681c88da0fd85041fca3e85dadf2",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### delay"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b27c61de",
+      "source_content": "Setting `action` to `delay` means simulating network delay fault. You can also configure the following parameters.",
+      "source_content_hash": "2b8fcaada8d0cdc2bc55aedb93e26cb2f1054a7c542fc9afbd83ba0b161f7c1d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "將 `action` 設為 `delay` 表示模擬網路延遲故障。您亦可配置以下參數。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "304aa33b",
+      "source_content": "| Parameter | Type | Description | Required | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| latency | string | Indicates the network latency | No | No | 2ms |\n| correlation | string | Indicates the correlation between the current latency and the previous one. Range of value: [0, 100] | No | No | 50 |\n| jitter | string | Indicates the range of the network latency | No | No | 1ms |\n| reorder | Reorder(#Reorder) | Indicates the status of network packet reordering |  | No |  |",
+      "source_content_hash": "3d6b6a867a72de5acdd25d745b26e93cad0aaac34efe5c22003ca40d419faa33",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_304aa33b"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "38f964f1",
+      "source_content": "The computational model for `correlation` is as follows:",
+      "source_content_hash": "2bc83d6142c5693a8c78c4c210ea66ade7e30d1e37d9e8d6708be236b66c5e0a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "`correlation` 的計算模型如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c3190d40",
+      "source_content": "1. Generate a random number whose distribution is related to the previous value:\n\n   ```c\n   rnd = value * (1-corr) + last_rnd * corr\n   ```\n\n   `rnd` is the random number. `corr` is the `correlation` you fill out before.",
+      "source_content_hash": "5c9971bec4789271a9cae61bbc3e0c5e6e48b5ed349e91291d5de01b471d80a0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 生成與前值相關的隨機數：\n\n   ```c\n   rnd = value * (1-corr) + last_rnd * corr\n   ```\n\n   `rnd` 為隨機數，`corr` 即您先前填入的 `correlation` 值。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "120d9ae1",
+      "source_content": "2. Use this random number to determine the delay of the current packet:\n\n   ```c\n   ((rnd % (2 * sigma)) + mu) - sigma\n   ```\n\n   In the above command, `sigma` is `jitter` and `mu` is `latency`.",
+      "source_content_hash": "ddcc27db91dea84dca87e737f74082555f633aebaad91dc1e3719cf7c9c335b4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 使用此隨機數決定當前封包延遲：\n\n   ```c\n   ((rnd % (2 * sigma)) + mu) - sigma\n   ```\n\n   上述命令中，`sigma` 為 `jitter`，`mu` 為 `latency`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3079a4d2",
+      "source_content": "### reorder",
+      "source_content_hash": "86c04c85a202002a5913775434b9b21cd1595f7c83442b202876b0773720b1e6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### reorder"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e4945edb",
+      "source_content": "Setting `action` to `reorder` means simulating network packet reordering fault. You can also configure the following parameters.",
+      "source_content_hash": "bfce1780c09403bb7858487d58619abfa179331458db6515a37586c784a244e0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "將 `action` 設為 `reorder` 表示模擬網路封包重新排序故障。您亦可配置以下參數。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0576ca11",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| reorder | string | Indicates the probability to reorder | 0 | No | 0.5 |\n| correlation | string | Indicates the correlation between this time's length of delay time and the previous time's length of delay time. Range of value: [0, 100] | 0 | No | 50 |\n| gap | int | Indicates the gap before and after packet reordering | 0 | No | 5 |",
+      "source_content_hash": "83a186ebe760237f75ea57cc8f517d1fac4d3bf8e2c778821572edc9bdc84420",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_0576ca11"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "200685d4",
+      "source_content": "### loss",
+      "source_content_hash": "3c8d9ded425172a3ea077f3125d6dd86212a848fb909074f0bfc4e6f95b4c6fe",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### loss"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "09d52457",
+      "source_content": "Setting `action` to `loss` means simulating packet loss fault. You can also configure the following parameters.",
+      "source_content_hash": "b52bcb797ba8f6eac93208dac6c2b4e1c6c9ff3824630b74b61f80ea8ad3fd75",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "將 `action` 設為 `loss` 表示模擬封包遺失故障。您亦可配置以下參數。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "759a3d15",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| loss | string | Indicates the probability of packet loss. Range of value: [0, 100] | 0 | No | 50 |\n| correlation | string | Indicates the correlation between the probability of current packet loss and the previous time's packet loss. Range of value: [0, 100] | 0 | No | 50 |",
+      "source_content_hash": "f4186cfa71ab532f685ba164d9cfa0f8e14333b553d393ce336c8b3d546379ae",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_759a3d15"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ad8a5f54",
+      "source_content": "### duplicate",
+      "source_content_hash": "3a24f9d52beca909088208d87b2146e9c3a4f9fa830f85ed8cdf2c633a16ce48",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### duplicate"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4033c370",
+      "source_content": "Set `action` to `duplicate`, meaning simulating package duplication. At this point, you can also set the following parameters.",
+      "source_content_hash": "f9554c05566819fe4edbed16719d7238b7be0ebc8b1255bbc8f87c0b433b1bd3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "將 `action` 設為 `duplicate` 表示模擬封包重複。此時您亦可設定以下參數。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6c82acb3",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| duplicate | string | Indicates the probability of packet duplicating. Range of value: [0, 100] | 0 | No | 50 |\n| correlation | string | Indicates the correlation between the probability of current packet duplicating and the previous time's packet duplicating. Range of value: [0, 100] | 0 | No | 50 |",
+      "source_content_hash": "930a1fe699da1a424a471bfdf844176b9a7d8a5caedc5bb4043c798466162677",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6c82acb3"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "52dd49af",
+      "source_content": "### corrupt",
+      "source_content_hash": "20d26b7a484909408b522d3b5d4e4856d0f1d2dbde4b116c8b7821e005cb0c29",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### corrupt"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ceb4fd26",
+      "source_content": "Setting `action` to `corrupt` means simulating package corruption fault. You can also configure the following parameters.",
+      "source_content_hash": "2a13bf08ce1cdc685822de6376308ad774fb320771f79384e628468273a613ed",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "將 `action` 設為 `corrupt` 表示模擬封包損壞故障。您亦可配置以下參數。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cd7684b7",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| corrupt | string | Indicates the probability of packet corruption. Range of value: [0, 100] | 0 | No | 50 |\n| correlation | string | Indicates the correlation between the probability of current packet corruption and the previous time's packet corruption. Range of value: [0, 100] | 0 | No | 50 |",
+      "source_content_hash": "e15b59e00cac4ba5dceb1f0fb261ab81e39127f010f9926b93c8a76821b3dd37",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_cd7684b7"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5d3138c7",
+      "source_content": "For occasional events such as `reorder`, `loss`, `duplicate`, and `corrupt`, the `correlation` is more complicated. For specific model description, refer to [NetemCLG](http://web.archive.org/web/20200120162102/http://netgroup.uniroma2.it/twiki/bin/view.cgi/Main/NetemCLG).",
+      "source_content_hash": "a520e131870d2ff0fc1bdbd2c855e482eb991c5aba860a4a00c409265b181e72",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "對於偶發事件如 `reorder`、`loss`、`duplicate` 和 `corrupt`，`correlation` 的計算較為複雜。具體模型描述請參考 [NetemCLG](http://web.archive.org/web/20200120162102/http://netgroup.uniroma2.it/twiki/bin/view.cgi/Main/NetemCLG)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cb2e9dbf",
+      "source_content": "### rate",
+      "source_content_hash": "9f28aa1e780b5e0b78f18781555f44112d6fe8792742f349f0f6d3ece77d8e87",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### rate"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c70c953",
+      "source_content": "Setting `action` to `rate` means simulating bandwidth rate fault. This action is similar to [bandwidth/rate](#bandwidth) below, however, **the key distinction is that this action can combine with other `netem` actions listed above**. However, if you require more control over the bandwidth simulation such as limiting the buffer size, check the [bandwidth](#bandwidth) action.",
+      "source_content_hash": "67c4137f7ac9ff73bf7528e43eae97d9e1774b56be2d7f6d558e5fc8633e8d7a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "將 `action` 設定為 `rate` 表示模擬頻寬速率故障。此操作與下方的 [bandwidth/rate](#bandwidth) 類似，然而**關鍵區別在於此操作可與上述其他 `netem` 操作組合使用**。但若需對頻寬模擬進行更精細控制（如限制緩衝區大小），請改用 [bandwidth](#bandwidth) 操作。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "745b9b1e",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| rate | string | Indicates the rate of bandwidth limit. Allows bit, kbit, mbit, gbit, tbit, bps, kbps, mbps, gbps, tbps unit. bps means bytes per second |  | Yes | 1mbps |",
+      "source_content_hash": "254e62c2224f4cdf10a5a88a6230d502486046b65e686690163685a814c0c9b7",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_745b9b1e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b1889ce8",
+      "source_content": "### bandwidth",
+      "source_content_hash": "c05739bb6049dc65cb224d3e714ce2426a782fd9f5ec092f90ec58f11cf9589b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### bandwidth"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "30aa9816",
+      "source_content": "Setting `action` to `bandwidth` means simulating bandwidth limit fault. You also need to configure the following parameters.",
+      "source_content_hash": "cbea1c7f4184db1308b7b050aab0abf95622ce45ec925aac4e4aa27c69e0632d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "將 `action` 設定為 `bandwidth` 表示模擬頻寬限制故障。您還需配置以下參數。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8d11bbb6",
+      "source_content": ":::info\n\nThis action is mutually exclusive with any `netem` action defined above. If you need to inject bandwidth rate along with other network failures such as corruption, use the [rate](#rate) action instead.\n\n:::",
+      "source_content_hash": "05ad2817e09bd10ac6e4813c64272e423a5a8196a8c08750dcbfd84d6690bf56",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::info\n\n此操作與上述任何 `netem` 操作互斥。若需同時注入頻寬速率及其他網路故障（如封包損壞），請改用 [rate](#rate) 操作。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53f1f452",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| rate | string | Indicates the rate of bandwidth limit. Allows bit, kbit, mbit, gbit, tbit, bps, kbps, mbps, gbps, tbps unit. bps means bytes per second |  | Yes | 1mbps |\n| limit | uint32 | Indicates the number of bytes waiting in queue |  | Yes | 1 |\n| buffer | uint32 | Indicates the maximum number of bytes that can be sent instantaneously |  | Yes | 1 |\n| peakrate | uint64 | Indicates the maximum consumption of `bucket` (usually not set) |  | No | 1 |\n| minburst | uint32 | Indicates the size of `peakrate bucket` (usually not set) |  | No | 1 |",
+      "source_content_hash": "4d1575f317f78d313a12bc430ad5083d5f2132561ebec11d16c1a70d43c789f1",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_53f1f452"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "46e586a3",
+      "source_content": "For more details of these fields, you can refer to [tc-tbf document](https://man7.org/linux/man-pages/man8/tc-tbf.8.html). The limit is suggested to set to at least `2 * rate * latency`, where the `latency` is the estimated latency between source and target, and it can be estimated through `ping` command. Too small `limit` can cause high loss rate and impact the throughput of the tcp connection.",
+      "source_content_hash": "10860cc73407e949988fd7f98d2ee42ba21f1eaa6e9679ad6f6248a3f1e19119",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "更多欄位細節可參考 [tc-tbf 文件](https://man7.org/linux/man-pages/man8/tc-tbf.8.html)。建議將 `limit` 設定為至少 `2 * rate * latency`，其中 `latency` 為源與目標間的預估延遲，可透過 `ping` 指令估算。`limit` 過小會導致高丟包率並影響 TCP 連線吞吐量。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 5, translation has 6.",
+          "timestamp": "2025-07-04T06:49:59.296965+00:00"
+        }
+      }
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/simulate-network-chaos-on-kubernetes.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.297000+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "00e0b0d3da1abbd6e6c83765735ecaa5700a02c530f2ee635ce5fcd23f37ae9f"
+  }
+}

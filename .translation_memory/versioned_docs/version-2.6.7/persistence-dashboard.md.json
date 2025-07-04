@@ -1,0 +1,199 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/persistence-dashboard.md",
+  "source_file_content_hash": "1545a385e7cc6631716d3d3ddd95c41f4df8f641271721feaa2af3b145828b97",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Persistence Chaos Dashboard\n---",
+      "source_content_hash": "ea2e874a8ad3bfe3ff0966448ae0a333b3ae04d7232f2ac637a6a2c11d3aecda",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7335511f",
+      "source_content": "import PickHelmVersion from '@site/src/components/PickHelmVersion'",
+      "source_content_hash": "753aee644dbd2a4b70a118018b50ec80427523e751a14d470e7956678fd8cb94",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7335511f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "This document describes how to make Chaos Dashboard persistence.",
+      "source_content_hash": "223980bba92b19e3fc80501337ece31373df20b1ceed737124f5cecbcc4db795",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文描述如何實現 Chaos Dashboard 的持久化儲存。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "Chaos Dashboard support `SQLite`, `MySQL` and `PostgreSQL` as database backends for persistence.",
+      "source_content_hash": "84c72619b408455e9fad138aa0d3ea5c735ab9a7c36fcbb34c3fa93dd2ce6499",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Dashboard 支援使用 `SQLite`、`MySQL` 和 `PostgreSQL` 作為持久化儲存的資料庫後端。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8a5f6a7b",
+      "source_content": "## SQLite (default)",
+      "source_content_hash": "b81c5cfb48ec74eca665b3aa5e1e864dc95266010c95852dd6a9b447727e351c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## SQLite (預設)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "180bddb1",
+      "source_content": "Chaos Dashboard uses `SQLite` as the default database engine, and it is recommended to enable [PV (Persistent Volumes)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/). To enable PV, set `dashboard.persistentVolume.enabled` to `true`. You can find related configurations on [`value.yaml`](https://github.com/chaos-mesh/chaos-mesh/blob/master/helm/chaos-mesh/values.yaml#L255-L282) as follows:",
+      "source_content_hash": "f1567bbbd9a2c88f5d4a15b0ba09aa125276ef28d9fb99d75d46c8fb564a661f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Dashboard 預設使用 `SQLite` 作為資料庫引擎，建議啟用 [PV (持久化儲存卷)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)。要啟用 PV，請將 `dashboard.persistentVolume.enabled` 設為 `true`。您可在 [`value.yaml`](https://github.com/chaos-mesh/chaos-mesh/blob/master/helm/chaos-mesh/values.yaml#L255-L282) 中找到相關配置，如下所示："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b395385",
+      "source_content": "```yaml\ndashboard:\n  ...\n  persistentVolume:\n    # If you are using SQLite as your DB for Chaos Dashboard, it is recommended to enable persistence.\n    # If enable, the chart will create a PersistenceVolumeClaim to store its state in. If you are\n    # using a DB other than SQLite, set this to false to avoid allocating unused storage.\n    # If set to false, Chaos Mesh will use an emptyDir instead, which is ephemeral.\n    enabled: true\n\n    # If you'd like to bring your own PVC for persisting chaos event, pass the name of the\n    # created + ready PVC here. If set, this Chart will not create the default PVC.\n    # Requires server.persistentVolume.enabled: true\n    existingClaim: \"\"\n\n    # Chaos Dashboard data Persistent Volume size.\n    size: 8Gi\n\n    # Chaos Dashboard data Persistent Volume Storage Class.\n    # If defined, storageClassName: <storageClass>\n    storageClassName: standard\n\n    # Chaos Dashboard data Persistent Volume mount root path\n    mountPath: /data\n\n    # Subdirectory of Chaos Dashboard data Persistent Volume to mount\n    # Useful if the volume's root directory is not empty\n    subPath: \"\"\n```",
+      "source_content_hash": "732f472c52b69fb7c5165acaec547fb8db5e2060ee7ee5ccb144d4ca9aebdafe",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4b395385"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6b421e57",
+      "source_content": ":::warning\n\nIf Chaos Dashboard component restarts without PV, the data of Chaos Dashboard will be lost and can't be retrieved.\n\n:::",
+      "source_content_hash": "1eb897952335215b5568157c8548b075f9efdbc3ad6ea916501d19cef626a4b7",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::warning\n\n若 Chaos Dashboard 元件在未啟用 PV 的情況下重啟，Chaos Dashboard 的資料將會遺失且無法復原。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "11c76fcc",
+      "source_content": "## MySQL",
+      "source_content_hash": "1ec9f6e37759f55ca931b799dc6fe78e506af77dc24b8eb5ce72c2e483b66e48",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## MySQL"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "98d26038",
+      "source_content": "Chaos Dashboard supports MySQL 5.6 and higher versions as the database engine. The below example demonstrates MySQL database configuration. For details about connection string configuration, refer to the [MySQL-Driver for Go](https://github.com/go-sql-driver/mysql#dsn-data-source-name).",
+      "source_content_hash": "e344b2b65bb3915aa91b5ce6aef70cd864e51e2832aee81b750d6966e01397fb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Dashboard 支援 MySQL 5.6 及更高版本作為資料庫引擎。以下範例展示 MySQL 資料庫配置。關於連接字串設定的詳細資訊，請參閱 [Go 語言 MySQL 驅動程式](https://github.com/go-sql-driver/mysql#dsn-data-source-name)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bc38848e",
+      "source_content": "<PickHelmVersion>\n{`helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --version latest --set dashboard.env.DATABASE_DRIVER=mysql --set dashboard.env.DATABASE_DATASOURCE=root:password@tcp(1.2.3.4:3306)/chaos-mesh?parseTime=true`}\n</PickHelmVersion>",
+      "source_content_hash": "08deac52e771b5494923c6eb30a18476bed7f0fe7edbbab8c7e5050f3610b94c",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_bc38848e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7283cdac",
+      "source_content": "## PostgreSQL",
+      "source_content_hash": "ba087c2f360a4df6294d560481cf569a74dd78cfa74fd0f98180f27ccba698e9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## PostgreSQL"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1131ef75",
+      "source_content": "Chaos Dashboard supports PostgreSQL 9.6 and higher versions as the database engine. The below example demonstrates PostgreSQL database configuration. For details about connection string configuration, refer to [libpq connect](https://www.postgresql.org/docs/current/static/libpq-connect.html#LIBPQ-CONNSTRING).",
+      "source_content_hash": "abcb7ce73c0107561841a02e90b9cc59cc42f17a42eacea5e8ba9f6b24dd5505",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Dashboard 支援 PostgreSQL 9.6 及更高版本作為資料庫引擎。以下範例展示 PostgreSQL 資料庫配置。關於連接字串設定的詳細資訊，請參閱 [libpq 連接函式庫](https://www.postgresql.org/docs/current/static/libpq-connect.html#LIBPQ-CONNSTRING)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "abc45ff5",
+      "source_content": "<PickHelmVersion>\n{`helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --version latest --set dashboard.env.DATABASE_DRIVER=postgres --set dashboard.env.DATABASE_DATASOURCE=postgres://root:password@1.2.3.4:5432/postgres?sslmode=disable`}\n</PickHelmVersion>",
+      "source_content_hash": "4cb721e592f4290b720bb53e9499a32bb071b165d7e9515d1c6edd6b734b1b1d",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_abc45ff5"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a5a4323e",
+      "source_content": "## Set TTL (Time To Live) for Chaos Dashboard data",
+      "source_content_hash": "cce8f7cfa8be5f61ff190fa3b7b9c9242b898605b5e3b9f5d6f11c84e4a807f6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 設定 Chaos Dashboard 資料的 TTL (存活時間)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "657c2b20",
+      "source_content": "Chaos Dashboard supports setting the expiration time of Chaos Dashboard data. The default `Event` related data expires by `168h`, and the `Experiment` related data defaults to `336h`. If you need to modify it, you can set `dashboard.env.TTL_EVENT` and `dashboard.env.TTL_EXPERIMENT` parameters, like:",
+      "source_content_hash": "ab19048d48740c77276c21a1b06768243fc46c8663dc28106085fe0cbc9010f3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Dashboard 支援設定資料的過期時間。預設情況下，`Event` 相關資料的過期時間為 `168h`，`Experiment` 相關資料則預設為 `336h`。若需修改，可設定 `dashboard.env.TTL_EVENT` 和 `dashboard.env.TTL_EXPERIMENT` 參數，例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b067dc3",
+      "source_content": "<PickHelmVersion>\n{`helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --version latest --set dashboard.env.TTL_EVENT=168h --set dashboard.env.TTL_EXPERIMENT=336h`}\n</PickHelmVersion>",
+      "source_content_hash": "a8423a566f5329fa9a9bd869bbf96055c5103cff912919bc526f8610813ca7a0",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4b067dc3"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/persistence-dashboard.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.070813+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "1545a385e7cc6631716d3d3ddd95c41f4df8f641271721feaa2af3b145828b97"
+  }
+}

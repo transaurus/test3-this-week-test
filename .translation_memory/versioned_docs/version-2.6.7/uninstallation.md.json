@@ -1,0 +1,666 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/uninstallation.md",
+  "source_file_content_hash": "c39009ad9115aebf633a88c9b30889e4a4c72912c0060a953f3b908866ad2575",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Uninstall Chaos Mesh\n---",
+      "source_content_hash": "bc4278711027ed84b5883e1dcb4ec2f37e2242f93446f0f2f58ba626b6e0a018",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document introduces how to uninstall Chaos Mesh, including uninstall Chaos Mesh with Helm and uninstall Chaos Mesh manually. It's also very helpful to manually purge Chaos Mesh installation from Kubernetes cluster if you have to do.",
+      "source_content_hash": "c849a356cfeaa807fa1ec4d03acb24cb0dec846bd174430ee70a5dafc274db7f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文介紹如何解除安裝 Chaos Mesh，包括使用 Helm 解除安裝 Chaos Mesh 和手動解除安裝 Chaos Mesh。若您需要手動清除 Kubernetes 叢集中的 Chaos Mesh 安裝，這也相當有幫助。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## Uninstall Chaos Mesh with Helm",
+      "source_content_hash": "bca9eb9e7d8a0ae156861fa41398136c7d6f5f717b15a0cbf76055b98273405f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Helm 解除安裝 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d912d376",
+      "source_content": "### Step 1: Clean Up Chaos Experiments",
+      "source_content_hash": "f622dbd423f4f1d03f3aa9e449f4a39982f1ccc16ab426b07099905d6d6aeb78",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 1：清理混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "Before uninstall Chaos Mesh, please make sure that all the chaos experiments are deleted. You could list chaos related objects by executing:",
+      "source_content_hash": "505ab8aec403e357743839e53b04c47f8d576212d1cae02f4c55cd0d85ac4077",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在解除安裝 Chaos Mesh 之前，請確保所有混沌實驗已被刪除。您可以透過執行以下命令列出混沌相關物件："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9c7a144",
+      "source_content": "```shell\nfor i in $(kubectl api-resources | grep chaos-mesh | awk '{print $1}'); do kubectl get $i -A; done\n```",
+      "source_content_hash": "8aa4acef140d0fb56f17e116e90eeb9552643a220389ade74f8694b43296748c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b9c7a144"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "Once you make sure that all the chaos experiments are deleted, you can uninstall Chaos Mesh.",
+      "source_content_hash": "fb9ee44da6177a4539fa1852bc9c8b970fb283cdd1e8fe739be1f1b6ee8b0bd3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "一旦確認所有混沌實驗都已刪除，您即可解除安裝 Chaos Mesh。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee0e40d",
+      "source_content": "### Step 2: List Helm Releases",
+      "source_content_hash": "d380d6ded886234488b73fe3aba3c33977e7ed60eab3922319cb6ad912b33e1c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 2：列出 Helm Release"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "You could list the installed helm release by executing:",
+      "source_content_hash": "cc668fe91281823855dd9400847040977377dae6333815f6e2c3f9f5a848e8e5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可以透過執行以下命令列出已安裝的 Helm Release："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "41a8ae85",
+      "source_content": "```shell\nhelm list -A\n```",
+      "source_content_hash": "93662314a14b50887331bea03034c01fc2e1fb5cda2fe5c09a4a431118a137c8",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_41a8ae85"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a76548f8",
+      "source_content": "The output should look like:",
+      "source_content_hash": "9ab2ac9349283348e01855a8ad7a315dcb88f7ccb8cae505c69fae837c6e7749",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出應類似於："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0c911872",
+      "source_content": "```text\nNAME                    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                   APP VERSION\nchaos-mesh-playground   chaos-mesh      1               2021-12-01 22:58:18.037052401 +0800 CST deployed        chaos-mesh-2.1.0        2.1.0\n```",
+      "source_content_hash": "3efed6d26b6612650f190019e28e7e314cd6ed0db83a74b21dc65f17c7aec40d",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_0c911872"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7499a4e7",
+      "source_content": "It means that Chaos Mesh has been installed as a helm release named `chaos-mesh-playground` in namespace `chaos-mesh`. So here is the target release to uninstall.",
+      "source_content_hash": "1d461461dfd109e35cab87be77245a8e1722a417459e220a818d93c39866020b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "這表示 Chaos Mesh 已作為 Helm Release 命名為 `chaos-mesh-playground` 安裝在命名空間 `chaos-mesh` 中。因此這就是需要解除安裝的目標 Release。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "109ace10",
+      "source_content": "### Step 3: Delete Helm Releases",
+      "source_content_hash": "0bc8131bc21cce67eccffd82b4e82a8336ababb3355142eff8f4b24e790fcd89",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 3：刪除 Helm Release"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "135468ee",
+      "source_content": "After determine the target Helm Release, you could delete the Helm Release by executing:",
+      "source_content_hash": "acbf4fa71345553b035534a4a2f69f3b43630a20324375c035138790d6abcca8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "確定目標 Helm Release 後，您可以透過執行以下命令刪除 Helm Release："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a11df754",
+      "source_content": "```shell\nhelm uninstall chaos-mesh-playground -n chaos-mesh\n```",
+      "source_content_hash": "7ec5281534e83bb8e34c4af1add26000794bbba100b23e8da38285bfa3574357",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a11df754"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "54268405",
+      "source_content": "### Step 4: Remove CRDs",
+      "source_content_hash": "06fd341b2be16248c35a1fc5f423e20394bbfd74f0c52a8d2d92ae4fea5695b2",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 4：移除 CRD"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8af76f3d",
+      "source_content": "`helm uninstall` would not remove the CRDs, so you could remove them manually by executing:",
+      "source_content_hash": "1a37e3a55b6e31ed00f9b0ccd3388ff899772266fd7d048aebd2e661df3da596",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "`helm uninstall` 不會移除 CRD，因此您可手動執行以下命令移除它們："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "48ec8149",
+      "source_content": "```shell\nkubectl delete crd $(kubectl get crd | grep 'chaos-mesh.org' | awk '{print $1}')\n```",
+      "source_content_hash": "394be798a892d8640f0c177c54c17e514068dfe374b8857141ddc6430fe51952",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_48ec8149"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cb5b269c",
+      "source_content": "## Uninstall Chaos Mesh Manually",
+      "source_content_hash": "178b4fa0e52bdd77c3446e1993495655ee247d4c957b04eba281a6e630623f5f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 手動解除安裝 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b36c6338",
+      "source_content": "If you installed Chaos Mesh by script `install.sh`, or you modified some configurations and components after Chaos Mesh installed, or you meet some troubles when uninstalling Chaos Mesh, here are some steps could help you to uninstall Chaos Mesh manually.",
+      "source_content_hash": "85aae1cd42522191f4b47d66a91e7bb48a1092d94f4f5773aae97c624a0f0238",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若您透過指令碼 `install.sh` 安裝 Chaos Mesh，或在安裝後修改了配置與元件，或在解除安裝時遇到問題，以下步驟可協助您手動解除安裝 Chaos Mesh。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2c1b51df",
+      "source_content": "### Step 1: Clean Up Chaos Experiments",
+      "source_content_hash": "f622dbd423f4f1d03f3aa9e449f4a39982f1ccc16ab426b07099905d6d6aeb78",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 1：清理混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e536ea0d",
+      "source_content": "Before uninstall Chaos Mesh, please make sure that all the chaos experiments are deleted. You could list chaos related objects by executing:",
+      "source_content_hash": "505ab8aec403e357743839e53b04c47f8d576212d1cae02f4c55cd0d85ac4077",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在解除安裝 Chaos Mesh 之前，請確保所有混沌實驗已被刪除。您可以透過執行以下命令列出混沌相關物件："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3c08ed05",
+      "source_content": "```shell\nfor i in $(kubectl api-resources | grep chaos-mesh | awk '{print $1}'); do kubectl get $i -A; done\n```",
+      "source_content_hash": "8aa4acef140d0fb56f17e116e90eeb9552643a220389ade74f8694b43296748c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3c08ed05"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "79ad944d",
+      "source_content": "Once you make sure that all the chaos experiments are deleted, you can uninstall Chaos Mesh.",
+      "source_content_hash": "fb9ee44da6177a4539fa1852bc9c8b970fb283cdd1e8fe739be1f1b6ee8b0bd3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "一旦確認所有混沌實驗都已刪除，您即可解除安裝 Chaos Mesh。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8c6d7ee7",
+      "source_content": "### Step 2: Remove Chaos Mesh Workloads",
+      "source_content_hash": "530280c6c7f3916adee3a93e11db93c1c38777a0178cc3afd6ab86e3bb135e64",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 2：移除 Chaos Mesh 工作負載"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "06e24cc0",
+      "source_content": "There are usually several kind of components as Chaos Mesh installed:",
+      "source_content_hash": "4efb2d3d5db43afcf0ab4df41792ab0cfdab6d493c095d37f0ec259618b0e30f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "安裝 Chaos Mesh 後通常存在以下幾類元件："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f67b99e4",
+      "source_content": "- A `Deployment` called `chaos-controller-manager`, it is the controller/reconciler for Chaos Mesh.",
+      "source_content_hash": "d46dd4e4243ff6c9495f314c1c11a0d9db8c4e6d07eebf0d120a0b5d6181d68e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- 名為 `chaos-controller-manager` 的 `Deployment`，這是 Chaos Mesh 的控制器/協調器。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`Deployment`', Translation: '`chaos-controller-manager`'.",
+          "timestamp": "2025-07-04T06:49:59.343853+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "429e7afa",
+      "source_content": "- A `DaemonSet` called `chaos-daemon`, it is the agent for Chaos Mesh on each Kubernetes worker node.",
+      "source_content_hash": "dfac3d10e3eb575eca16f483a16f04dd21e7cf0954b2878d3ee123b8fc495d66",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- 名為 `chaos-daemon` 的 `DaemonSet`，這是 Chaos Mesh 在每個 Kubernetes 工作節點上的代理。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`DaemonSet`', Translation: '`chaos-daemon`'.",
+          "timestamp": "2025-07-04T06:49:59.343879+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "3ed00714",
+      "source_content": "- A `Deployment` called `chaos-dashboard`, the WebUI for Chaos Mesh.",
+      "source_content_hash": "21415b271b68002a482c993ba9ed5f468ffe077c89efc8a64468951e740d1bbe",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- 名為 `chaos-dashboard` 的 `Deployment`，這是 Chaos Mesh 的 WebUI。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`Deployment`', Translation: '`chaos-dashboard`'.",
+          "timestamp": "2025-07-04T06:49:59.343900+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "4e8535b2",
+      "source_content": "- A `Deployment` called `chaos-dns-server`, it is the DNS proxy server, only occurs with you enable the DNSChaos feature.",
+      "source_content_hash": "c05f20123459f305818d576a118391ded4e4b3841416f4fa007f16313e7b832d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- 名為 `chaos-dns-server` 的 `Deployment`，這是 DNS 代理伺服器，僅在啟用 DNSChaos 功能時出現。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`Deployment`', Translation: '`chaos-dns-server`'.",
+          "timestamp": "2025-07-04T06:49:59.343950+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "f01228d3",
+      "source_content": "You should remove these workload objects.",
+      "source_content_hash": "4226428dbfaf9d2e095ef857323061fe1d451ceec52ab641aec8e0973ce1e39d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您應該移除這些工作負載物件。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "afa378f7",
+      "source_content": "Then delete their corresponding `Service`s:",
+      "source_content_hash": "3febfdfe9b9b5d9cf95864d2bd3f8cc9b22ce49aae70d2a27784d12120e5aaa4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "接著刪除它們對應的 `Service`："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9dd207ef",
+      "source_content": "- chaos-daemon",
+      "source_content_hash": "e88b035fc7b66035de3866728c7af9baed3693f68655c478e7b104c13c14e6ec",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- chaos-daemon"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dff3cae1",
+      "source_content": "- chaos-dashboard",
+      "source_content_hash": "36bd83f8b04b52bba1b7b806a0ba0c8f934de5f75a9d9203d9ed05df46f79d49",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- chaos-dashboard"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f96bec5f",
+      "source_content": "- chaos-mesh-controller-manager",
+      "source_content_hash": "f3b489ff77e9358f000cce2c78d7297038663439eef351166f4f14f649a0a385",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- chaos-mesh-controller-manager"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "659c6b3e",
+      "source_content": "- chaos-mesh-dns-server",
+      "source_content_hash": "76911d064b5fb68d4b5a0f5b5b7b32fbac509ab37dd687649c4d738a4018394c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- chaos-mesh-dns-server"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a4bf4268",
+      "source_content": "### Step 3: Remove Chaos Mesh RBAC Objects",
+      "source_content_hash": "a2cc74b3f41ab418a468ac361d11bd46eb519750a3ee6980f3eafbe030f6fd32",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 3：移除 Chaos Mesh RBAC 物件"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ec619944",
+      "source_content": "There are several RBAC objects as Chaos Mesh installed:",
+      "source_content_hash": "e99a8bfb03d076bf2763d3ae13e0206909530d930a89ea3c0ef282617ab8934a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "安裝 Chaos Mesh 後存在以下 RBAC 物件："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e2c83a13",
+      "source_content": "- ClusterRoleBinding\n  - chaos-mesh-playground-chaos-controller-manager-cluster-level\n  - chaos-mesh-playground-chaos-controller-manager-target-namespace\n  - chaos-mesh-playground-chaos-dns-server-cluster-level\n  - chaos-mesh-playground-chaos-dns-server-target-namespace",
+      "source_content_hash": "7dc7b875a46ead1afe3488e105452c144b037a18c2e5f108e4e88e37546474a0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- ClusterRoleBinding\n  - chaos-mesh-playground-chaos-controller-manager-cluster-level\n  - chaos-mesh-playground-chaos-controller-manager-target-namespace\n  - chaos-mesh-playground-chaos-dns-server-cluster-level\n  - chaos-mesh-playground-chaos-dns-server-target-namespace"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dc60c76a",
+      "source_content": "- ClusterRole\n  - chaos-mesh-playground-chaos-controller-manager-cluster-level\n  - chaos-mesh-playground-chaos-controller-manager-target-namespace\n  - chaos-mesh-playground-chaos-dns-server\n  - chaos-mesh-playground-chaos-dns-server-cluster-level",
+      "source_content_hash": "9b235fddc512fb6dae5d735cc9c6524818afb459c50281e2072bb625a30d4189",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- ClusterRole\n  - chaos-mesh-playground-chaos-controller-manager-cluster-level\n  - chaos-mesh-playground-chaos-controller-manager-target-namespace\n  - chaos-mesh-playground-chaos-dns-server\n  - chaos-mesh-playground-chaos-dns-server-cluster-level"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "506bd6d4",
+      "source_content": "- RoleBinding\n  - chaos-mesh-playground-chaos-controller-manager-control-plane\n  - chaos-mesh-playground-chaos-dns-server-control-plane",
+      "source_content_hash": "6124a4f6e6240ffc2537c63ed58af7e67b7cd3bb2b01260c3f7713ae49774ee8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- RoleBinding\n  - chaos-mesh-playground-chaos-controller-manager-control-plane\n  - chaos-mesh-playground-chaos-dns-server-control-plane"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bee1eb3b",
+      "source_content": "- Role\n  - chaos-mesh-playground-chaos-controller-manager-control-plane\n  - chaos-mesh-playground-chaos-dns-server-control-plane",
+      "source_content_hash": "475ad387407ec0b98fa7852e9c90efc9956d38c264dc6538a1e74bf37699554d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- Role\n  - chaos-mesh-playground-chaos-controller-manager-control-plane\n  - chaos-mesh-playground-chaos-dns-server-control-plane"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "764373a2",
+      "source_content": "- ServiceAccount\n  - chaos-controller-manager\n  - chaos-daemon\n  - chaos-dns-server",
+      "source_content_hash": "74e954ce70f6363f5513335d4becbf20d8a0dbd6b9f712d9f96b43b90e8e04ad",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- ServiceAccount\n  - chaos-controller-manager\n  - chaos-daemon\n  - chaos-dns-server"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0e80209e",
+      "source_content": "You should remove these RBAC objects.",
+      "source_content_hash": "adc32d651c5cd8b4c91533c0811a383469b96111f974ed7f4034da6d9784e153",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您應移除這些 RBAC 物件。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d1f76d04",
+      "source_content": "### Step 4: Remove ConfigMaps And Secrets",
+      "source_content_hash": "de031df9a8229fe04baac640a6bf43e01f5fc20ce2535b1cd66dd8b415c47c32",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 4：移除 ConfigMap 和 Secret"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6693c38c",
+      "source_content": "There are several ConfigMaps and Secrets as Chaos Mesh installed:",
+      "source_content_hash": "4c747b600c2719f7404e5a4bf7798795b6cbf35c29c9a5d935465529d3e50296",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 安裝了以下幾種 ConfigMap 和 Secret："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "885ad07b",
+      "source_content": "- ConfigMap\n  - chaos-mesh\n  - dns-server-config",
+      "source_content_hash": "621943fea50ac8958e8cc674fab469d68f387f5f56e489f5ebf46996cea4e8d1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- ConfigMap\n  - chaos-mesh\n  - dns-server-config"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fb4a71c",
+      "source_content": "- Secret\n  - chaos-mesh-webhook-certs",
+      "source_content_hash": "1c4c5e0270f815f0682172aa5bd380651af17044e8f221ae6892a55df55ce7ff",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- Secret\n  - chaos-mesh-webhook-certs"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a8610918",
+      "source_content": "You should remove these ConfigMaps And Secrets objects.",
+      "source_content_hash": "c8293efe18ddf0152036a0d79ac30d69488f37b39c1d2d3d30979fbf14455b7a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您應移除這些 ConfigMap 和 Secret 物件。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9b8694c",
+      "source_content": "### Step 5: Remove Webhook",
+      "source_content_hash": "f40aab903449ba2283e4509c5624057b26df3d0f3551d1050000dba495b671f6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 5：移除 Webhook"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b6152880",
+      "source_content": "There are several Webhooks as Chaos Mesh installed:",
+      "source_content_hash": "23a0db5641021c877eb45ddfd1db4fcff299c3e8089ec1a6a8b1aa05f878480f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 安裝了以下幾種 Webhook："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "94153371",
+      "source_content": "- ValidatingWebhookConfigurations\n  - chaos-mesh-validation\n  - chaos-mesh-validate-auth",
+      "source_content_hash": "199fa82de54cfcec7522d38ca805f1f12cc043eb880fe125755ad0d249bb2ca6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- ValidatingWebhookConfigurations\n  - chaos-mesh-validation\n  - chaos-mesh-validate-auth"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1cf42f92",
+      "source_content": "- MutatingWebhookConfigurations\n  - chaos-mesh-mutation",
+      "source_content_hash": "cf4fd1f840a2ed5fa4ed1b1e904fb97734330f9c30c5e504a60adb973596a37e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- MutatingWebhookConfigurations\n  - chaos-mesh-mutation"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c9e2b64",
+      "source_content": "You should remove these webhooks.",
+      "source_content_hash": "35ce077bdb17b2e2ea1c2c44f4f67f4287082945bf60a5ae484a8a3b40b5df63",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您應移除這些 Webhook。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d53c8ed4",
+      "source_content": "### Step 6: Remove CRDs",
+      "source_content_hash": "a0b78655500fea353c68334b69c9db6ccc9ae406708a989a52bfc56170c31ac5",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 6：移除 CRD"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ecf0882",
+      "source_content": "At last, you could remove CRds by executing:",
+      "source_content_hash": "ef7717580a74fea3acd9dace120764161b290a18cc68b3d917948d1d37548b03",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "最後，您可以執行以下指令來移除 CRds："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4c6754b2",
+      "source_content": "```shell\nkubectl delete crd $(kubectl get crd | grep 'chaos-mesh.org' | awk '{print $1}')\n```",
+      "source_content_hash": "394be798a892d8640f0c177c54c17e514068dfe374b8857141ddc6430fe51952",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4c6754b2"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/uninstallation.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.343983+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "c39009ad9115aebf633a88c9b30889e4a4c72912c0060a953f3b908866ad2575"
+  }
+}

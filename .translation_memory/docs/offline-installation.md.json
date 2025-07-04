@@ -1,0 +1,617 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/offline-installation.md",
+  "source_file_content_hash": "021be3427835f68a00ec3fbd4c28a8a970f59f665d72d0365701ca1bb10c96f9",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Install Chaos Mesh Offline\n---",
+      "source_content_hash": "3c004a11ca123d49f80c4110f3a8f11f6f50748183274036ab3a3fe3dc786b1b",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7335511f",
+      "source_content": "import PickVersion from '@site/src/components/PickVersion'",
+      "source_content_hash": "ca7269780bfa6037f17f284ffc268b62f4da5d348125e9f85064a4fe1f2214ef",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7335511f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "10c4cb47",
+      "source_content": "import PickHelmVersion from '@site/src/components/PickHelmVersion'",
+      "source_content_hash": "753aee644dbd2a4b70a118018b50ec80427523e751a14d470e7956678fd8cb94",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_10c4cb47"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "623f74e7",
+      "source_content": "import VerifyInstallation from './common/\\_verify-installation.md'",
+      "source_content_hash": "3c86e852bc2036b9490fb7547723d440cc096b89eff8c4f05ea4f33f75f05b60",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_623f74e7"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b608d7f0",
+      "source_content": "import QuickRun from './common/\\_quick-run.md'",
+      "source_content_hash": "4cb6d0f068aa48b54d7a66bfc31448ba6bc9a5f8a90793a946cd894fa1e5dfa5",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b608d7f0"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "180bddb1",
+      "source_content": "This document describes how to install Chaos Mesh offline.",
+      "source_content_hash": "b5a1b46e97e5f6149a117a2b1b2ed2624991bb92efe1560f6c5ef077c7fbfc41",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文說明如何離線安裝 Chaos Mesh。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e14c9928",
+      "source_content": "## Prerequisites",
+      "source_content_hash": "bbd3d4949a6f237efd8d4ff5c7c5f30d968e7a989ad12f3d7dcef69c98053912",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 先決條件"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "Before installing Chaos Mesh, make sure that Docker is installed and the Kubernetes cluster is deployed in the offline environment. If the environment is not prepared, refer to the following documents to install Docker and deploy the Kubernetes cluster:",
+      "source_content_hash": "a59e924b8d4d9dd8243bb87a8d3ebaff4138a69089acd5cc82e2f2af5b4a5b53",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "安裝 Chaos Mesh 前，請確保離線環境中已安裝 Docker 並部署 Kubernetes 叢集。若環境尚未準備完成，請參考以下文件安裝 Docker 並部署 Kubernetes 叢集："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "632fee71",
+      "source_content": "- [Docker](https://www.docker.com/get-started)",
+      "source_content_hash": "8fa435294b834a9aefe5e3239460900d0d254618521482c4deb95acb1d0e07c3",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [Docker](https://www.docker.com/get-started)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dc10b09",
+      "source_content": "- [Kubernetes](https://kubernetes.io/docs/setup/)",
+      "source_content_hash": "f52cc59a84fd1098aafa419b6730acd852706b58d32ec95cd3ff592f177fd6be",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [Kubernetes](https://kubernetes.io/docs/setup/)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "63622bf0",
+      "source_content": "## Prepare installation files",
+      "source_content_hash": "fe755ae1e43d4d33a13168e0c9cb14de8544f93e0188eb0ce7fc475af48b0da4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 準備安裝檔案"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "98cfbd53",
+      "source_content": "Before you install Chaos Mesh offline, you need to download all Chaos Mesh images and repository compression packages from the machines with external network connection, and then copy the downloaded files into your offline environment.",
+      "source_content_hash": "0d9c3304456f05dc6cd7bc8151f36bb781c6105054f4f8757679b26d3cdb31f6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "進行離線安裝前，需從具備外網連線的機器下載所有 Chaos Mesh 映像檔及儲存庫壓縮包，再將下載的檔案複製到離線環境。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "79b2d0b9",
+      "source_content": "### Specify version number",
+      "source_content_hash": "57a39c9b798abf80333eeec9d3407926688ead452a5f00dc4832283ed4e1176c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 指定版本號"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d9172fa4",
+      "source_content": "Set the version number of Chaos Mesh as the environment variable on the machine with external network connection:",
+      "source_content_hash": "3b50170926d54de6c69a9dd7cb2c1cac4f9dcc0ef4b8a54683ea1b5fd59c4979",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在外網連線的機器上，將 Chaos Mesh 版本號設定為環境變數："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "599822a5",
+      "source_content": "<PickVersion>\n{`export CHAOS_MESH_VERSION=latest`}\n</PickVersion>",
+      "source_content_hash": "32ce6f1b51230a2d34fae987dfb680fdc80b8f98d5231e046907bfd41120a2dc",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_599822a5"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a1b3d8cb",
+      "source_content": "### Download Chaos Mesh images",
+      "source_content_hash": "08889886966300869a0ce7d6ac5c5fa7d40cb1366e091e8ab3cbef8194fdc13d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 下載 Chaos Mesh 映像檔"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "517051a7",
+      "source_content": "On the machine connected to external network, pull images using the version number that has been set:",
+      "source_content_hash": "9b55f6a885ffc989fb62f4934a114083dc1dd5a2e2409ee8dc47f70bff267aea",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在具備外網連線的機器上，使用已設定的版本號拉取映像檔："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4dd51304",
+      "source_content": "```bash\ndocker pull ghcr.io/chaos-mesh/chaos-mesh:${CHAOS_MESH_VERSION}\ndocker pull ghcr.io/chaos-mesh/chaos-daemon:${CHAOS_MESH_VERSION}\ndocker pull ghcr.io/chaos-mesh/chaos-dashboard:${CHAOS_MESH_VERSION}\n```",
+      "source_content_hash": "4af07d76e3700e97be1b76de3eeceaaa203e181a41659cf77eeacdb8b3515290",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4dd51304"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "95e9ba12",
+      "source_content": "Save images as the tar packages:",
+      "source_content_hash": "dc2307eef3a42eb49cfcc5280453b9a0fee7c61dfa8fb702a8b086d3f71d67d2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "將映像檔儲存為 tar 封裝檔："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4ec2920d",
+      "source_content": "```bash\ndocker save ghcr.io/chaos-mesh/chaos-mesh:${CHAOS_MESH_VERSION} > image-chaos-mesh.tar\ndocker save ghcr.io/chaos-mesh/chaos-daemon:${CHAOS_MESH_VERSION} > image-chaos-daemon.tar\ndocker save ghcr.io/chaos-mesh/chaos-dashboard:${CHAOS_MESH_VERSION} > image-chaos-dashboard.tar\n```",
+      "source_content_hash": "978700ec167aaec2cfcc16db2eef03433cef79e4d741df35513d6d46d32d5005",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4ec2920d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a646eac9",
+      "source_content": ":::note\n\nTo simulate a DNS fault (for example, make the DNS responses return a random wrong IP address), you need to pull the additional [`pingcap/coredns`](https://hub.docker.com/r/pingcap/coredns) images.\n\n:::",
+      "source_content_hash": "ed3a011568399b8f57bdee2b7a61192906f4b11adddbd0b5dd12459390118bdb",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n若要模擬 DNS 故障（例如使 DNS 回應隨機返回錯誤 IP 位址），需額外拉取 [`pingcap/coredns`](https://hub.docker.com/r/pingcap/coredns) 映像檔。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1a316f80",
+      "source_content": "### Download the repository compression package of Chaos Mesh",
+      "source_content_hash": "f45f38ce8091ced6fc4e5d57984d4dda614b3d7f923cc176d8a9b2fb68d77c71",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 下載 Chaos Mesh 儲存庫壓縮包"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "40158b4b",
+      "source_content": "On the machine connected to the external network, download the zip package of Chaos Mesh:",
+      "source_content_hash": "a800c6c83b79263c067ad502aedf3f19a631c461c442976bdd835ce40113336a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在具備外網連線的機器上，下載 Chaos Mesh 的 zip 壓縮包："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "96e9ed17",
+      "source_content": "<PickVersion isArchive replaced=\"refs/heads/master\">\n{`curl -fsSL -o chaos-mesh.zip https://github.com/chaos-mesh/chaos-mesh/archive/refs/heads/master.zip`}\n</PickVersion>",
+      "source_content_hash": "5fe965843f1dcdd52c1d716aafb0adde6a97320102149204f252d38a27c2828c",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_96e9ed17"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8c6d7ee7",
+      "source_content": "### Copy files",
+      "source_content_hash": "d1d6dd29295bdb92f311bbfb8645ba702931daaaede2135d5594bbd62f1997df",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 複製檔案"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "06e24cc0",
+      "source_content": "After downloading all the files required for installation, you need to copy these files to the offline environment:",
+      "source_content_hash": "e6c9fa24e992969ca3a945d359d7a44317a1e487f264ec362ce7c9bdb69f0058",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "下載完成所有安裝所需檔案後，需將這些檔案複製到離線環境："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f67b99e4",
+      "source_content": "- `image-chaos-mesh.tar`",
+      "source_content_hash": "0c1628bd6e0c0ccb58291599840aad6ac3ccedab7fea8011df4373476857c2f0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `image-chaos-mesh.tar`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "429e7afa",
+      "source_content": "- `image-chaos-daemon.tar`",
+      "source_content_hash": "f7983549fcdc4da1607379c94d79001edfdebce6c4b90497e6bee698c590edda",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `image-chaos-daemon.tar`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3ed00714",
+      "source_content": "- `image-chaos-dashboard.tar`",
+      "source_content_hash": "97fe0f1fa1b8da1ef6a2bac69e5ffaef6d6416d5522cda0ba9a5d3acac48eb77",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `image-chaos-dashboard.tar`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4e8535b2",
+      "source_content": "- `chaos-mesh.zip`",
+      "source_content_hash": "8728968526f2a0ab0543da186a100167394547e0280e4c0fd2d7c586f0a5b520",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `chaos-mesh.zip`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b1cbdb65",
+      "source_content": "## Install Chaos Mesh",
+      "source_content_hash": "3275d814b12db393cd17ad1239e7f35704a5e497c925f7c7b27e05c3c9f6920e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 安裝 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "afa378f7",
+      "source_content": "After copying the tar package of the Chaos Mesh images and the zip package of the repository to the offline environment, take the following steps to install Chaos Mesh.",
+      "source_content_hash": "caa73ed691fdb6b383109e367e4a9c7176f0f1b4342497ba1f8d440a5163de98",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "將 Chaos Mesh 映像檔 tar 封裝檔及儲存庫 zip 壓縮包複製到離線環境後，請依下列步驟安裝 Chaos Mesh。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "58ed925f",
+      "source_content": "### Step 1. Load Chaos Mesh images",
+      "source_content_hash": "5453fb05e45c4f08917b9402c411fd0d2fcb66e949ba7fe61848ef352476c78c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 1. 載入 Chaos Mesh 映像檔"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "463ed165",
+      "source_content": "Load images from the tar package:",
+      "source_content_hash": "cb9ffda60f6039025c7f9105ae1dd2019f6d072c551a0cb01763fa2196ae9fe4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "從 tar 封裝檔載入映像檔："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "092b29bb",
+      "source_content": "```bash\ndocker load < image-chaos-mesh.tar\ndocker load < image-chaos-daemon.tar\ndocker load < image-chaos-dashboard.tar\n```",
+      "source_content_hash": "c245a71a3ac94f8c07eb3a288c7adc284c3628f73a4a04ec2d0ba666b11a982f",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_092b29bb"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3a8d2b95",
+      "source_content": "### Step 2. Push images to Registry",
+      "source_content_hash": "548f84612330ec1d1034940ee02963e0cd6cd8739e420913a223584f32aea96a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 2. 推送映像檔至 Registry"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "61dc1473",
+      "source_content": ":::note\n\nBefore pushing images to Registry, make sure that Registry has been deployed in the offline environment. If Registry is not deployed, refer to [Docker Registry](https://docs.docker.com/registry/) for the deployment method.\n\n:::",
+      "source_content_hash": "db370f09ba5885b1fe5eef2eab13c21bbdf1f9be49c3adb9946f9d4a7f251866",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n推送映像檔至 Registry 前，請確保離線環境中已部署 Registry。若未部署，請參閱 [Docker Registry](https://docs.docker.com/registry/) 的部署方法。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "82e90254",
+      "source_content": "Set the Chaos Mesh version and the Registry address as the environment variable:",
+      "source_content_hash": "185383ada5c9e37e0b91e4ffbdc71553b7a9fafd8bde419b2ae5486a87e7d1b4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "將 Chaos Mesh 版本號及 Registry 位址設定為環境變數："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c2059547",
+      "source_content": "<PickVersion>\n{`export CHAOS_MESH_VERSION=latest; export DOCKER_REGISTRY=localhost:5000`}\n</PickVersion>",
+      "source_content_hash": "8f259f90aab90073b99ee52cc46a4a7c2e97e0d6eab8dbe3b0d6a01bed2c754e",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_c2059547"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d79a4831",
+      "source_content": "Mark the images so that the images point to the Registry:",
+      "source_content_hash": "88aaa691baccdf0d90565969fa2a859ec8097743f366ffa9cef374de80064477",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "標記映像檔使其指向 Registry："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "64071bcc",
+      "source_content": "```bash\nexport CHAOS_MESH_IMAGE=$DOCKER_REGISTRY/chaos-mesh/chaos-mesh:${CHAOS_MESH_VERSION}\nexport CHAOS_DAEMON_IMAGE=$DOCKER_REGISTRY/chaos-mesh/chaos-daemon:${CHAOS_MESH_VERSION}\nexport CHAOS_DASHBOARD_IMAGE=$DOCKER_REGISTRY/chaos-mesh/chaos-dashboard:${CHAOS_MESH_VERSION}\ndocker image tag ghcr.io/chaos-mesh/chaos-mesh:${CHAOS_MESH_VERSION} $CHAOS_MESH_IMAGE\ndocker image tag ghcr.io/chaos-mesh/chaos-daemon:${CHAOS_MESH_VERSION} $CHAOS_DAEMON_IMAGE\ndocker image tag ghcr.io/chaos-mesh/chaos-dashboard:${CHAOS_MESH_VERSION} $CHAOS_DASHBOARD_IMAGE\n```",
+      "source_content_hash": "ce94d9ece596325174f21da1f60ffb6fdab926056c3c154c92559d36fcf37a4a",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_64071bcc"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3c19e221",
+      "source_content": "Push images to Registry:",
+      "source_content_hash": "cf890d5ab98797847881211d051ffbc89399731f575941b8e085f4878b4f60af",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "推送映像檔至 Registry："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f155ef1e",
+      "source_content": "```bash\ndocker push $CHAOS_MESH_IMAGE\ndocker push $CHAOS_DAEMON_IMAGE\ndocker push $CHAOS_DASHBOARD_IMAGE\n```",
+      "source_content_hash": "9f723fafb41f74ecd2099e14653f4afa7fdb6035acb6cc1cd383edfa00325272",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_f155ef1e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cbd60296",
+      "source_content": "### Step 3. Install Chaos Mesh using Helm",
+      "source_content_hash": "81821f88a1b6b58c1783724cc13038c3e56af525371e57773152f9b5ab512735",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 3. 使用 Helm 安裝 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f38d1cb0",
+      "source_content": "Unpack the zip package of Chaos Mesh:",
+      "source_content_hash": "54bffc4a447650046ccabd0b7042c494818102c9c7b47187a54c63ad77944edd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "解壓 Chaos Mesh 的 zip 壓縮包："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e2c67c87",
+      "source_content": "```bash\nunzip chaos-mesh.zip -d chaos-mesh && cd chaos-mesh\n```",
+      "source_content_hash": "13db60d4063e15347f56c725756eb893b2f21fa866b66783ca68f32361b8af2c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_e2c67c87"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6b90258a",
+      "source_content": ":::note\n\nWhen installing Chaos Mesh on Kubernetes v1.15(or an earlier version), you need to manually install CRD first by using `kubectl create -f manifests/crd-v1beta1.yaml`. For more information, see [FAQ](./faqs.md#failed-to-install-chaos-mesh-with-the-message-no-matches-for-kind-customresourcedefinition-in-version-apiextensionsk8siov1).\n\n:::",
+      "source_content_hash": "96ef96898861938292e9b3908394e630d07c287aa10d76ac92f1199bf58fd402",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n在 Kubernetes v1.15（或更早版本）上安裝 Chaos Mesh 時，需手動使用 `kubectl create -f manifests/crd-v1beta1.yaml` 先行安裝 CRD。詳情請參閱 [常見問題](./faqs.md#failed-to-install-chaos-mesh-with-the-message-no-matches-for-kind-customresourcedefinition-in-version-apiextensionsk8siov1)。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "383fbdd2",
+      "source_content": "Create the namespace:",
+      "source_content_hash": "bcc74a88aa31751182814d6e8bd576ce881cd11bc7985b37c65702754974bce3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "建立命名空間："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8d1b00fd",
+      "source_content": "```bash\nkubectl create ns chaos-mesh\n```",
+      "source_content_hash": "a57682b778e35736bf2ce8fabff9635365aed85070b18ead7eab0f0686ded0fd",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_8d1b00fd"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "534ac82e",
+      "source_content": "Execute the installation command. When executing the installation command, you need to specify the namespace of Chaos Mesh and the image value of each component:",
+      "source_content_hash": "26b8f8f9740b5cf1821490e6ffe14dc865c4d19de166668687f0dac6e3c419e2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行安裝指令。執行安裝指令時，您需要指定 Chaos Mesh 的命名空間以及每個元件的映像檔值："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "01a167f4",
+      "source_content": "```bash\nhelm install chaos-mesh helm/chaos-mesh -n=chaos-mesh --set images.registry=$DOCKER_REGISTRY\n```",
+      "source_content_hash": "1369ab746c743be715d1302f8c481479ecd8398f46c0a5086077cf2954e7b5fc",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_01a167f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dd4905a4",
+      "source_content": "## Verify the installation",
+      "source_content_hash": "0d2ed30d9f4336dd5ab339cd313dd26e5461d2a21711f677bc0840bc5fa6dbbe",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 驗證安裝"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b0cf7ea6",
+      "source_content": "<VerifyInstallation />",
+      "source_content_hash": "f4281d3be47e560c31b96d45cf57751dc4aa12be8104a8eb2cc4ef27046bead4",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b0cf7ea6"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ab1b234",
+      "source_content": "## Run Chaos experiments",
+      "source_content_hash": "0eb74e2b0136974b1afaddf125d2258ca783f01c81654608726279a87f3b096a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 執行混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "584be70f",
+      "source_content": "<QuickRun />",
+      "source_content_hash": "c8366f6b814a147c7134b91ca99b14da6c72fa93b10d995f922b9148b63cd13f",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_584be70f"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/offline-installation.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.064568+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "021be3427835f68a00ec3fbd4c28a8a970f59f665d72d0365701ca1bb10c96f9"
+  }
+}

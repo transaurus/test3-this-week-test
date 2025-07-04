@@ -1,0 +1,1574 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/simulate-jvm-application-chaos-in-physical-nodes.md",
+  "source_file_content_hash": "976c066b815badedcb887d2ee0a68202eb6157ccb88936e5649197e602781aa6",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate JVM Application Faults\n---",
+      "source_content_hash": "7b0a5ccc05ac137b8e75422434af8373636172c3516204e79402151e65416e21",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "Chaosd simulates the faults of JVM application through [Byteman](https://github.com/chaos-mesh/byteman). The supported fault types are as follows:",
+      "source_content_hash": "15d9843e8fa925fe5ded0110f3d18ddc18f9acb73cf8aa1503cd45db81bb9cb8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaosd 透過 [Byteman](https://github.com/chaos-mesh/byteman) 模擬 JVM 應用程式的故障，支援的故障類型如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "237365ee",
+      "source_content": "- Throw custom exceptions",
+      "source_content_hash": "864fd8ff34e3e814f12e90f469a3c78494d209f830bf2b40bad2815c69dcbaa6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 拋出自訂例外"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2516e62c",
+      "source_content": "- Trigger garbage collection",
+      "source_content_hash": "1e3d4d81cd58bb6bcd4378468eeec4c6fc6af42e648984a37e70135b67e520fc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 觸發垃圾回收"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1a7466c7",
+      "source_content": "- Increase method latency",
+      "source_content_hash": "d4c3b3f661262ee0e749b53a32cb14b24a902889dd496209c0aba489d891ae46",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 增加方法延遲"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7c4bd672",
+      "source_content": "- Modify return values of a method",
+      "source_content_hash": "87dbf60697b96be65cefd25d728e5a945e66cdca991340c9d230b3a7d457abd1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 修改方法返回值"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "760d111a",
+      "source_content": "- Trigger faults by setting Byteman configuration files",
+      "source_content_hash": "978ff073a7e9adcc1e891f30f3e283d19089ee2eb6a51cd34041711158443aa1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 透過設定 Byteman 配置檔案觸發故障"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ee0c6cb",
+      "source_content": "- Increase JVM pressure",
+      "source_content_hash": "66e0d82fb237145f2d04ba5eb030efacef3e673addadee4cda0b8e0ac9b372ae",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 增加 JVM 壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ad8fd492",
+      "source_content": "This document describes how to use Chaosd to create the above fault types of JVM experiments.",
+      "source_content_hash": "96becc888ec93fafd0fb1fa019d94549c851eab59cb48a8f64a12d0d2d9265c1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文說明如何使用 Chaosd 建立上述 JVM 實驗故障類型。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cbe57f9d",
+      "source_content": "## Create experiments using the command-line mode",
+      "source_content_hash": "1f3fe4b5166e719cfc4bb6d25f1edc906258751c11d775ab0f82d0e32437a92b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用命令列模式建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39b3772c",
+      "source_content": "This section introduces how to create the experiments of JVM application faults using the command-line mode.",
+      "source_content_hash": "7b8b7c07fe3b71ab90b0123c053de8b0abd3a3afad763aa21d76c4b16bbe2bde",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本節介紹如何使用命令列模式建立 JVM 應用程式故障實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1acb9a05",
+      "source_content": "Before creating the experiment, you can run the following command line to see the types of JVM application faults supported by Chaosd:",
+      "source_content_hash": "a95ad0c6833eed89236bca3077fd730ac354ae631e84cd56341bf971d4bddb54",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "建立實驗前，可執行以下命令查看 Chaosd 支援的 JVM 應用程式故障類型："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9eee5787",
+      "source_content": "```bash\nchaosd attack jvm -h\n```",
+      "source_content_hash": "007d2c37458ce4744139720c8810fd27973581652c243a2c2a84932e7e034081",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9eee5787"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ccc88b4c",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "15a1fd96",
+      "source_content": "```bash\nJVM attack related commands\n\nUsage:\n  chaosd attack jvm [command]\n\nAvailable Commands:\n  exception   throw specified exception for specified method\n  gc          trigger GC for JVM\n  latency     inject latency to specified method\n  return      return specified value for specified method\n  rule-file   inject fault with configured byteman rule file\n  stress      inject stress to JVM\n\nFlags:\n  -h, --help       help for jvm\n      --pid int    the pid of Java process which needs to attach\n      --port int   the port of agent server (default 9288)\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --uid string         the experiment ID\n\nUse \"chaosd attack jvm [command] --help\" for more information about a command.\n```",
+      "source_content_hash": "45f5e66327a322a8db712c5c8f4ff34befaf04bd89becffbff5a04d5bd2421dd",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_15a1fd96"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "60410af6",
+      "source_content": "### Throw custom exceptions using the command-line mode",
+      "source_content_hash": "6f2342167abb9fbecca35e9d98764710cd4f73cedb7720f36e58783681a80d6d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式拋出自訂例外"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2c1b51df",
+      "source_content": "#### Commands for throwing custom exceptions",
+      "source_content_hash": "23ae27f1db83d345451784caf268f82bc80e3d90c10e37e830c31fba9ec77280",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 拋出自訂例外的命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e536ea0d",
+      "source_content": "To see the usage and configuration items of the command that throws custom exceptions, run the following command:",
+      "source_content_hash": "cf07eff81ee351e8a4c0c624182a7e6c2554156aae1429e136d9d8e1f44950db",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "查看拋出自訂例外命令的使用方式及配置項："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3c08ed05",
+      "source_content": "```bash\nchaosd attack jvm exception --help\n```",
+      "source_content_hash": "6e4e3aef73713b2df2a8c24edcf6580313a2871a962cdace26b7749366361a2f",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3c08ed05"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "79ad944d",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5d4925eb",
+      "source_content": "```bash\nthrow specified exception for specified method\n\nUsage:\n  chaosd attack jvm exception [options] [flags]\n\nFlags:\n  -c, --class string       Java class name\n      --exception string   the exception which needs to throw for action 'exception'\n  -h, --help               help for exception\n  -m, --method string      the method name in Java class\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --pid int            the pid of Java process which needs to attach\n      --port int           the port of agent server (default 9288)\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "6eff8a83b8084a64b760219576884b0c4649dc7ba5410f1534a10796af9d3579",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_5d4925eb"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0a103a02",
+      "source_content": "#### Configuration description for throwing custom exceptions",
+      "source_content_hash": "23abd20901c1efdefadeed24c321ffef33bc9f2370ba1d73b9c7dbc3c190b420",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 拋出自訂例外的配置說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fd194d57",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| `class` | `c` | The name of the Java class | string type, required |\n| `exception` | None | The thrown custom exception | string type, required |\n| `method` | `m` | The name of the method | string type, required to be configured |\n| `pid` | None | The Java process ID where the fault is to be injected | int type, required |\n| `port` | None | The port number attached to the Java process agent. The fault is injected into the Java process through this port number. | int type. The default value is `9288`. |\n| `uid` | None | The experiment ID | string type. This item is not required to be configured, because Chaosd randomly creates one. |",
+      "source_content_hash": "ba6836c280d00aa915cedaceb163a119376abff46dbf9fdc79fa32bb845ba98e",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_fd194d57"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5baf88e2",
+      "source_content": "#### Example for throwing custom exceptions",
+      "source_content_hash": "16dc0c414cd9c028af2a86ab6634d7fd823890407aa1230118bfc8e2689a27be",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 拋出自訂例外範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7fa46732",
+      "source_content": "```bash\nchaosd attack jvm exception -c Main -m sayhello --exception 'java.io.IOException(\"BOOM\")' --pid 30045\n```",
+      "source_content_hash": "7241754b284cde1ab83fb5c67b696134d8d4afd5a88c7e1ae7dab3a566e1fb12",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7fa46732"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ca4479f",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1cf51900",
+      "source_content": "```bash\n[2021/08/05 02:39:39.106 +00:00] [INFO] [jvm.go:208] [\"byteman rule\"] [rule=\"\\nRULE Main-sayhello-exception-q6nd0\\nCLASS Main\\nMETHOD sayhello\\nAT ENTRY\\nIF true\\nDO \\n\\tthrow new java.io.IOException(\\\"BOOM\\\");\\nENDRULE\\n\"] [file=/tmp/rule.btm296930759]\nAttack jvm successfully, uid: 26a45ae2-d395-46f5-a126-2b2c6c85ae9d\n```",
+      "source_content_hash": "2817625d170825dd598a7f9f9773c688ef9646c64b0435d24624a8c9647d0989",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1cf51900"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f947c8e4",
+      "source_content": "### Trigger garbage collection using the command-line mode",
+      "source_content_hash": "2eadad7422e9b1dda71f2f33b2b1d91359ecd8d503d46b959b2aefd572e24c0c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式觸發垃圾回收"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d1f76d04",
+      "source_content": "#### Commands for triggering garbage collection",
+      "source_content_hash": "d7dd55c92255f4b2ba8fd4d3418d38d185a1cae9f1ccb904e0425e5206417fc4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 觸發垃圾回收的命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6693c38c",
+      "source_content": "To see the usage and configuration items of the command that triggers garbage collection, run the following command:",
+      "source_content_hash": "f99bf4843828407a4cfc395c923b73a2eb0e336284f5053c1f8481f3db8d920a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "查看觸發垃圾回收命令的使用方式及配置項："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "83537d8d",
+      "source_content": "```bash\nchaosd attack jvm gc --help\n```",
+      "source_content_hash": "d66946351e32a5b6bfb43eae6987a87852e46d0c11864701d5b55d969c1ea417",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_83537d8d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "36ae9dc7",
+      "source_content": "```bash\ntrigger GC for JVM\n\nUsage:\n  chaosd attack jvm gc [flags]\n\nFlags:\n  -h, --help   help for gc\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --pid int            the pid of Java process which needs to attach\n      --port int           the port of agent server (default 9288)\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "d41a64c3f54b981930d1543046826c945f30cbd1f777d9c7f3004d1b6ec12692",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_36ae9dc7"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d53c8ed4",
+      "source_content": "#### Configuration description for triggering garbage collection",
+      "source_content_hash": "a48c4130300a33bd4b22074d1062e6dfba64b78144db86ab551b360baa2bdea7",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 觸發垃圾回收的配置說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "06ca6f15",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| `pid` | None | The Java process ID where the fault is to be injected | int type, required |\n| `port` | None | The port number attached to the Java process agent. The fault is injected into the Java process through this port number. | int type. The default value is `9288`. |\n| `uid` | None | The experiment ID | string type. This item is not required to be configured, because Chaosd randomly creates one. |",
+      "source_content_hash": "f28e64c79ce30ec47f6464158573a245042f2cf7c0f049db3d134da17422878a",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_06ca6f15"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "734d40d8",
+      "source_content": "#### Example for triggering garbage collection",
+      "source_content_hash": "f5dc994b907100aced1f19e2d6b3ca4c2c4c543fbf4655ca0f63b6b6486c50fc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 觸發垃圾回收範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a6c3f55f",
+      "source_content": "```bash\nchaosd attack jvm gc --pid 89345\n```",
+      "source_content_hash": "53f8713f8205a39a02cdcff85ee93a32bf77c8253c3ce5e8e12c6c7e05c1fdc6",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a6c3f55f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "be17ccc3",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7d56fc4b",
+      "source_content": "```bash\n[2021/08/05 02:49:47.850 +00:00] [INFO] [jvm.go:208] [\"byteman rule\"] [rule=\"\\nRULE --gc-u0mlf\\nGC\\nENDRULE\\n\"] [file=/tmp/rule.btm012481052]\nAttack jvm successfully, uid: f360e70a-5359-49b6-8526-d7e0a3c6f696\n```",
+      "source_content_hash": "aa3afaa64fe05b429b423d4e7d25c0d781061bde1857319fb2afcd0b73e86a78",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7d56fc4b"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "619c3209",
+      "source_content": "Triggering garbage collection is a one-time operation, and the experiment does not require recovery.",
+      "source_content_hash": "7d1255ba6e6250cf857cdb7d7fb47f8251d00967ce31a8465638c759c3a34e46",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "觸發垃圾回收為一次性操作，實驗無需復原。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "97afbaf0",
+      "source_content": "### Increase method latency using the command-line mode",
+      "source_content_hash": "53882d3a65ae37d905fbb1f54331d63919a4192f06a4e149193bb434aee8b93b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式增加方法延遲"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "531ec0bb",
+      "source_content": "#### Commands for increasing method latency",
+      "source_content_hash": "65792adce7b13e53a8a66ea56f11977c60234d6137059b8d9a41113b87f76c1a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 增加方法延遲的命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d2a3d4c7",
+      "source_content": "To see the usage and configuration items of the command that increases method latency, run the following command:",
+      "source_content_hash": "8a37290b0e12eefb1c691a169eaca03d1b374566eee23f0d6486eb54b7fe4fa4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "查看增加方法延遲命令的使用方式及配置項："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "75daf40d",
+      "source_content": "```bash\nchaosd attack jvm latency --help\n```",
+      "source_content_hash": "1ab3c50b315ad66618147eb90650673f5f45f447ac288c46793a2f14b30901cc",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_75daf40d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fd7ed056",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dddc2d3c",
+      "source_content": "```bash\ninject latency to specified method\n\nUsage:\n  chaosd attack jvm latency [options] [flags]\n\nFlags:\n  -c, --class string    Java class name\n  -h, --help            help for latency\n      --latency int     the latency duration, unit ms\n  -m, --method string   the method name in Java class\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --pid int            the pid of Java process which needs to attach\n      --port int           the port of agent server (default 9288)\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "04edffe532c477e8c2726131eec5a923bcd20f5933c5e8290b37f96907840399",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_dddc2d3c"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cce332f2",
+      "source_content": "#### Configuration description for increasing method latency",
+      "source_content_hash": "0969e48f4a08aa5106f3a78219108a479226f3d8e9e104ba6c35328336416fa8",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 增加方法延遲的配置說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "401a7c7a",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| `class` | `c` | The name of the Java class | string type, required |\n| `latency` | None | The duration of increasing method latency | int type, required. The unit is millisecond. |\n| `method` | `m` | The name of the method | string type, required |\n| `pid` | None | The Java process ID where the fault is to be injected | int type, required |\n| `port` | None | The port number attached to the Java process agent. The fault is injected into the Java process through this port number. | int type. The default value is `9288`. |\n| `uid` | None | The experiment ID | string type. This item is not required to be configured, because Chaosd randomly creates one. |",
+      "source_content_hash": "9c9408924e3133c36737107fb489cca1edd203fb10ec811713e1c7699d9d86c7",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_401a7c7a"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8159e12a",
+      "source_content": "#### Example for increasing method latency",
+      "source_content_hash": "03b8fa83da01bee48426b29424cd9c609c29a1555ea4d15d70a993b87ca53a0b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 增加方法延遲範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bb86adcb",
+      "source_content": "```bash\nchaosd attack jvm latency --class Main --method sayhello --latency 5000 --pid 100840\n```",
+      "source_content_hash": "f0a14f5f3e6c353087bf77f53e7b701a926cea18792923132667c19b397b1b65",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_bb86adcb"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ebfad7e4",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a4a54521",
+      "source_content": "```bash\n[2021/08/05 03:08:50.716 +00:00] [INFO] [jvm.go:208] [\"byteman rule\"] [rule=\"\\nRULE Main-sayhello-latency-hlib2\\nCLASS Main\\nMETHOD sayhello\\nAT ENTRY\\nIF true\\nDO \\n\\tThread.sleep(5000);\\nENDRULE\\n\"] [file=/tmp/rule.btm359997255]\n[2021/08/05 03:08:51.155 +00:00] [INFO] [jvm.go:94] [\"submit rules\"] [output=\"install rule Main-sayhello-latency-hlib2\\n\\n\"]\nAttack jvm successfully, uid: bbe00c57-ac9d-4113-bf0c-2a6f184be261\n```",
+      "source_content_hash": "0429b9b194fdc10ee5ea91fffa5223900dea6c541c7d4663a503f57fa87cb2fb",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a4a54521"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dd21637d",
+      "source_content": "### Modify return values of a method using the command-line mode",
+      "source_content_hash": "fa5757f7e41a32ae7fcdf04a559fdd06a4ce93e28be38e496a0ddd6425ea4b35",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式修改方法返回值"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "49007f24",
+      "source_content": "#### Commands for modifying return values of a method",
+      "source_content_hash": "4b942ec869d0218c41d79116a9a48b67fb71448a37acc679ed1964b7419d2f55",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 修改方法返回值的命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "be0f7233",
+      "source_content": "To see the usage and configuration items of the command that modifies return values of a method, run the following command:",
+      "source_content_hash": "5b35630ed02cc45420b426484922b1fb34ad249bb3bcf8010f434e46068e2316",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "查看修改方法返回值命令的使用方式及配置項："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "eff3427d",
+      "source_content": "```bash\nchaosd attack jvm return --help\n```",
+      "source_content_hash": "2d34736d759319c9af56f8c1aef49dfa4a7236317da287397da37af74c6150cf",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_eff3427d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3d4d9546",
+      "source_content": "```bash\nreturn specified value for specified method\n\nUsage:\n  chaosd attack jvm return [options] [flags]\n\nFlags:\n  -c, --class string    Java class name\n  -h, --help            help for return\n  -m, --method string   the method name in Java class\n      --value string    the return value for action 'return'. Only supports number and string types.\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --pid int            the pid of Java process which needs to attach\n      --port int           the port of agent server (default 9288)\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "73dd7979e805fc7b0367dc26f289893ea25836422bf0738e15655377811cb604",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3d4d9546"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "61d0a6d1",
+      "source_content": "#### Configuration description for modifying return values of a method",
+      "source_content_hash": "367cc25a8a210a0533f2926269fac1a13b131507580ba96219ac0557a714cb6a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 修改方法返回值的配置說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0d6dd125",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| class | c | The name of the Java class | string type, required to be configured |\n| method | `m` | The name of the method | string type, required to be configured |\n| value | None | Specifies the return value of the method | string type, required to be configured. Currently, the item can be numeric and string types. If the item (return value) is string, double quotes are required, like \"chaos\". |\n| pid | None | The Java process ID where the fault is needed to be injected | int type, required to be configured |\n| port | None | The port number attached to the Java process agent. The faults is injected into the Java process through this port number. | int type. The default value is `9288`. |\n| `uid` | None | The experiment ID | string type. This item is not required to be configured, because Chaosd randomly creates one. |",
+      "source_content_hash": "b47ea57c8fa03ab9ab54d4127a7546e2d6ecbb43be1286b2e520ceb8cafdd39e",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_0d6dd125"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f7d4d765",
+      "source_content": "#### Example for simulating the scenario of modifying return values of a method",
+      "source_content_hash": "98af41741d11cb3371178d6247ab1edcbd1a29d4579ee5d1c9aec335039f3895",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬修改方法返回值場景範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e53354a",
+      "source_content": "```bash\nchaosd attack jvm return --class Main --method getnum --value 999 --pid 112694\n```",
+      "source_content_hash": "2946b7ec24c794868f6e268f83325ce3fba8e84f1bc03b99369a57329867aaec",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e53354a"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6e7e6a7",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ee98bc6",
+      "source_content": "```bash\n[2021/08/05 03:35:10.603 +00:00] [INFO] [jvm.go:208] [\"byteman rule\"] [rule=\"\\nRULE Main-getnum-return-i6gb7\\nCLASS Main\\nMETHOD getnum\\nAT ENTRY\\nIF true\\nDO \\n\\treturn 999;\\nENDRULE\\n\"] [file=/tmp/rule.btm051982059]\n[2021/08/05 03:35:10.820 +00:00] [INFO] [jvm.go:94] [\"submit rules\"] [output=\"install rule Main-getnum-return-i6gb7\\n\\n\"]\nAttack jvm successfully, uid: e2f204f6-4bed-4d92-aade-2b4a47b02e5d\n```",
+      "source_content_hash": "f65adf1e3f37d429c04980aa9d835c9a15e61632a6696eade558577e175ceeac",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1ee98bc6"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b1889ce8",
+      "source_content": "### Trigger faults by setting Byteman configuration files using the command-line mode",
+      "source_content_hash": "55e66d5991480e1e9148359693ca575a3159b720c3573f83d2e3c2779f896cb6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式設定 Byteman 組態檔觸發故障"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "30aa9816",
+      "source_content": "You can set the fault rules in the Byteman rule configuration file, and then inject the faults by specifying the path of the configuration file using Chaosd. Regarding the Byteman rule configuration, refer to [byteman-rule-language](https://downloads.jboss.org/byteman/4.0.16/byteman-programmers-guide.html#the-byteman-rule-language).",
+      "source_content_hash": "9fd82ca018a030b2b054700f601af839923d37dc737bc131d7139db380e83760",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可以在 Byteman 規則組態檔中設定故障規則，然後透過 Chaosd 指定組態檔路徑來注入故障。關於 Byteman 規則組態，請參閱 [byteman-rule-language](https://downloads.jboss.org/byteman/4.0.16/byteman-programmers-guide.html#the-byteman-rule-language)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "36d4802a",
+      "source_content": "#### Commands for triggering faults by setting Byteman configuration files",
+      "source_content_hash": "a5a4d950fa1a113647340ca8efe95613dbb0cca7758e77af95e53b399844a8d7",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 設定 Byteman 組態檔觸發故障的命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "216a8ee1",
+      "source_content": "To see the usage and configuration items of the command that triggers faults by setting Byteman configuration files, run the following command:",
+      "source_content_hash": "b248d7f308c60e60a9d2ac061ec9e6fba271db0f21c75a810fc24451e2c66b0c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要查看設定 Byteman 組態檔觸發故障命令的用法與組態項，請執行以下命令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b7c66f56",
+      "source_content": "```bash\nchaosd attack jvm rule-file --help\n```",
+      "source_content_hash": "ab813c19bde27f5c0d3a7d2200efeee617a9a6cd1af8504ce9d38955398e46e1",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b7c66f56"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2f8456b2",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "37cbaa50",
+      "source_content": "```bash\ninject fault with configured byteman rule file\n\nUsage:\n  chaosd attack jvm rule-file [options] [flags]\n\nFlags:\n  -h, --help          help for rule-file\n  -p, --path string   the path of configured byteman rule file\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n      --pid int            the pid of Java process which needs to attach\n      --port int           the port of agent server (default 9288)\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "b2615e2b57117edb45b3fb9a8d30724255c5883fecc0cfa36244c17234c2bfb7",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_37cbaa50"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "295e85da",
+      "source_content": "#### Configuration description for triggering faults by setting Byteman configuration files",
+      "source_content_hash": "df5e8b5a4607bc20bd73373f343d630bce9c2e913d1f49e1d64f90e707d0755f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 設定 Byteman 組態檔觸發故障的組態說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "562528a3",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| `path` | None | Specifies the path of the Byteman configuration file | string type, required |\n| `pid` | None | The Java process ID where the fault is to be injected | int type, required |\n| `port` | None | The port number attached to the Java process agent. The fault is injected into the Java process through this port number. | int type. The default value is `9288`. |\n| `uid` | None | The experiment ID | string type. This item is not required to be configured, because Chaosd randomly creates one. |",
+      "source_content_hash": "73263893edb6ec8d9c41c596d1ec94cc493e521778d5c9b63f52faf90d5af688",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_562528a3"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b8925cfb",
+      "source_content": "#### Example for triggering faults by setting Byteman configuration files",
+      "source_content_hash": "815904807c6705086c1eb02f6a8d51ba8045076178455427c596fc42d24aa5bf",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 設定 Byteman 組態檔觸發故障的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "95b3e282",
+      "source_content": "First, based on the specific Java program and referring to [the Byteman rule language](https://downloads.jboss.org/byteman/4.0.16/byteman-programmers-guide.html#the-byteman-rule-language), write a rule configuration file. For example:",
+      "source_content_hash": "48f23f9ece0c8b40843b2006577692c961e711cf2724a7a99e5f0a4e120ffc77",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "首先，根據具體的 Java 程序並參考 [Byteman 規則語言](https://downloads.jboss.org/byteman/4.0.16/byteman-programmers-guide.html#the-byteman-rule-language)，編寫規則組態檔。例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "97766080",
+      "source_content": "```txt\nRULE modify return value\nCLASS Main\nMETHOD getnum\nAT ENTRY\nIF true\nDO\n    return 9999\nENDRULE\n```",
+      "source_content_hash": "4dbcd21ead3708322943d58ee6eeabe25769bff2bc6d74c6ffe7303b44aaa40c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_97766080"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1dffcdf5",
+      "source_content": "Then, save the configuration file to the `return.btm` file. After that, run the following command to inject faults.",
+      "source_content_hash": "c41147192ef6597b2912cf36c0322c4fe5b476f5c31d82d44d9415569df42863",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "接著，將組態檔儲存為 `return.btm` 檔案。之後執行以下命令注入故障："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "548d1943",
+      "source_content": "```bash\nchaosd attack jvm rule-file -p ./return.btm --pid 112694\n```",
+      "source_content_hash": "a7ac18f945a2f949b910f26183e752d2fe7288eea62009ddceaedfbb0c3f71da",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_548d1943"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b682f1ac",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bad1188f",
+      "source_content": "```bash\n[2021/08/05 03:45:40.757 +00:00] [INFO] [jvm.go:152] [\"rule file data:RULE modify return value\\nCLASS Main\\nMETHOD getnum\\nAT ENTRY\\nIF true\\nDO\\n    return 9999\\nENDRULE\\n\"]\n[2021/08/05 03:45:41.011 +00:00] [INFO] [jvm.go:94] [\"submit rules\"] [output=\"install rule modify return value\\n\\n\"]\nAttack jvm successfully, uid: 5ca2e06d-a7c6-421d-bb67-0c9908bac17a\n```",
+      "source_content_hash": "9c9c8fffcad3fbcdb0465cb73d8957b32b3687d72e4f0d84f365718710ade949",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_bad1188f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6c2c7917",
+      "source_content": "### Increase JVM stress using the command-line mode",
+      "source_content_hash": "29ee641063489ccc38613835815f22ae4a51c8734aa142e536fa7ac3e8eff493",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式增加 JVM 壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42a9e250",
+      "source_content": "#### Commands for increasing JVM stress",
+      "source_content_hash": "7769a46a43c8526252b26f8c158b8e75e0d66f6a08db9b421a0446b1bb36223e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 增加 JVM 壓力的命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e4ab192a",
+      "source_content": "To see the usage and configuration items of the command that increases JVM stress, run the following command:",
+      "source_content_hash": "ee87280c4ab1677237af238f88f04d4753f1162ce8839a27709a3cadf93b6058",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要查看增加 JVM 壓力命令的用法與組態項，請執行以下命令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3dc11e28",
+      "source_content": "```bash\nchaosd attack jvm stress --help\n```",
+      "source_content_hash": "9c73acf48aeac255e593531889e3eb2aaf80df5654793e30ced92e9cccf6e349",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3dc11e28"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9cbb5424",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9f0775df",
+      "source_content": "```bash\ninject stress to JVM\n\nUsage:\n  chaosd attack jvm stress [options] [flags]\n\nFlags:\n      --cpu-count int   the CPU core number\n  -h, --help            help for stress\n      --mem-type int    the memory type to be allocated. The value can be 'stack' or 'heap'.\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --pid int            the pid of Java process which needs to attach\n      --port int           the port of agent server (default 9288)\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "72cf12ef4f64baccfc96f1e6cd21bbbae50e71a65d55cfcafe057beb32e70881",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9f0775df"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ccc4a3de",
+      "source_content": "#### Configuration description for increasing JVM stress",
+      "source_content_hash": "a533bebc6e85525f6ec7cf627f361b6125ae6b4cfa7cc29bb1d9f7f8f9ec1b4d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 增加 JVM 壓力的組態說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2ea79e57",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| `cpu-count` | None | The number of CPU cores used for increasing JVM stress | int type. You must configure one item between `cpu-count` and `mem-type`. |\n| `mem-type` | None | The type of OOM | string type. Currently, both 'stack' and 'heap' OOM types are supported. You must configure one item between `cpu-count` and `mem-type`. |\n| `pid` | None | The Java process ID where the fault is to be injected | int type, required |\n| `port` | None | The port number attached to the Java process agent. The fault is injected into the Java process through this port number. | int type. The default value is `9288`. |\n| `uid` | None | The experiment ID | string type. This item is not required to be configured, because Chaosd randomly creates one. |",
+      "source_content_hash": "3d385167dfe97ec294fb7bf77f802bd7c543cdb9e45eaaeb3170ad02fd30454e",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_2ea79e57"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cdf3379b",
+      "source_content": "#### Example for increasing JVM stress",
+      "source_content_hash": "ca05981e7be43b1329941535bc43f7598c81922f12ccd866eda20811df7bba7e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 增加 JVM 壓力的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d965316f",
+      "source_content": "```bash\nchaosd attack jvm stress --cpu-count 2 --pid 123546\n```",
+      "source_content_hash": "021b96ca34718421e940a116a3b45d59d73f43accb806b0d90ba501b8e446693",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d965316f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "475959f2",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "99727f95",
+      "source_content": "```bash\n[2021/08/05 03:59:51.256 +00:00] [INFO] [jvm.go:208] [\"byteman rule\"] [rule=\"\\nRULE --stress-jfeiu\\nSTRESS CPU\\nCPUCOUNT 2\\nENDRULE\\n\"] [file=/tmp/rule.btm773062009]\n[2021/08/05 03:59:51.613 +00:00] [INFO] [jvm.go:94] [\"submit rules\"] [output=\"install rule --stress-jfeiu\\n\\n\"]\nAttack jvm successfully, uid: b9b997b5-0a0d-4f1f-9081-d52a32318b84\n```",
+      "source_content_hash": "f636e98931048856480fc85a36a0558ca63c5a71d282f9bbb5d8fbad290d632a",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_99727f95"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "22c5ecf3",
+      "source_content": "## Create experiments using the service mode",
+      "source_content_hash": "21a61e134aac80e8a1532695033d8e1444724683a2402c92b4a349f553eec87b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用服務模式建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "991164fd",
+      "source_content": "You can follow the instructions below to create experiments using the service mode.",
+      "source_content_hash": "246db9b7ab047e15b2c838a4c38fd45c08313568bafbc5dfd07bde33a73ad31f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可以依照以下指示使用服務模式建立實驗："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "99e321e2",
+      "source_content": "1. Execute Chaosd in service mode:\n\n   ```bash\n   chaosd server --port 31767\n   ```",
+      "source_content_hash": "6bc1ae77e76ed8eb5dfddef970e630088d316174f8586e1e63aece4e4e94fddf",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 在服務模式下執行 Chaosd：\n\n   ```bash\n   chaosd server --port 31767\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2c664d68",
+      "source_content": "2. Send HTTP POST request to the `/api/attack/{uid}` path of Chaosd service.\n\n   ```bash\n   curl -X POST 172.16.112.130:31767/api/attack/jvm -H \"Content-Type:application/json\" -d '{fault-configuration}'\n   ```\n\n   For the `fault-configuration` part in the above command, you need to configure it according to the fault types. For the corresponding parameters, refer to the parameters and examples of each fault type in the following sections.",
+      "source_content_hash": "93de3a66d03a2652df1033fc5edf5cb2efd40b031f67d8e314fc41f35afba16c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 向 Chaosd 服務的 `/api/attack/{uid}` 路徑發送 HTTP POST 請求：\n\n   ```bash\n   curl -X POST 172.16.112.130:31767/api/attack/jvm -H \"Content-Type:application/json\" -d '{fault-configuration}'\n   ```\n\n   上述命令中的 `fault-configuration` 部分，需根據故障類型進行組態。對應參數請參閱後續各故障類型中的參數與範例。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8536fc61",
+      "source_content": ":::note\n\nWhen running an experiment, remember to save the UID information of the experiment. When you want to end the experiment corresponding to the UID, you need to send an HTTP DELETE request to the `/api/attack/{uid}` path of Chaosd service.\n\n:::",
+      "source_content_hash": "6426ad9be20a761f54c746bd602ee3e4f1f622f65ccde86a6f374f35a19a9521",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n執行實驗時，請務必保存實驗的 UID 資訊。當需要結束對應 UID 的實驗時，需向 Chaosd 服務的 `/api/attack/{uid}` 路徑發送 HTTP DELETE 請求。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "babe18c8",
+      "source_content": "### Throw custom exceptions using the service mode",
+      "source_content_hash": "71508262e4ea18e10a9e1cadc03d2d3a6cecb2fc79566501535b921b945189a6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式拋出自訂例外"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53edfb3e",
+      "source_content": "#### Parameters for throwing custom exceptions",
+      "source_content_hash": "a2abc31dec73bf47a12c36990d545a70e32c213dfe5f3e9ef4e16d3cfb194100",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 拋出自訂例外的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ec4b11d1",
+      "source_content": "| Parameter | Description | Value |\n| :-- | :-- | :-- |\n| `action` | The action of the experiment | Set to \"exception\" |\n| `class` | The name of the Java class | string type, required |\n| `exception` | The thrown custom exception | string type, required |\n| `method` | The name of the method | string type, required |\n| `pid` | The Java process ID where the fault is to be injected | int type, required |\n| `port` | The port number attached to the Java process agent. The faults is injected into the Java process through this port number. | int type. The default value is `9288`. |\n| `uid` | The experiment ID | string type. This item is not required to be configured, because Chaosd randomly creates one. |",
+      "source_content_hash": "f540e802b24d0c7b53f2aabdde8bff2f175fb1446fb95153376265e642949163",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ec4b11d1"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "21a8e7f8",
+      "source_content": "#### Example for throwing custom exceptions using the service mode",
+      "source_content_hash": "f914e6eec02392e1b8c86bc41e02235ca0ce3ce39f64fabba8fd2a8e580548bb",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式拋出自訂例外的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c34e4bdd",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/jvm -H \"Content-Type:application/json\" -d '{\"action\":\"exception\",\"class\":\"Main\",\"method\":\"sayhello\",\"exception\":\"java.io.IOException(\\\"BOOM\\\")\",\"pid\":1828622}'\n```",
+      "source_content_hash": "3812d9000612170bb5215801daa90aaf1fc60302c5ae2420b4b967527e5ce7c3",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_c34e4bdd"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b79c3482",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b91570a6",
+      "source_content": "```bash\n{\"status\":200,\"message\":\"attack successfully\",\"uid\":\"c3c519bf-819a-4a7b-97fb-e3d0814481fa\"}\n```",
+      "source_content_hash": "4054117a6c9620bc4fc46e75f1e17eab8c3a1bfcfaddd6b31ed37fd491139cb6",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b91570a6"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ccaaddaa",
+      "source_content": "### Trigger garbage collection using service mode",
+      "source_content_hash": "63b6f5e54064e4b5bfe5eb5083528a312fe5a423c446ab558e6f23665083eb2a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式觸發垃圾回收"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "625dc480",
+      "source_content": "#### Parameters for triggering garbage collection",
+      "source_content_hash": "cb6bd93613ebcf5d2660c7067bb3d9c6c3b3db4e7d79a4960a9868e93a82a0e9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 觸發垃圾回收的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "78e1b364",
+      "source_content": "| Parameter | Description | Value |\n| :-- | :-- | :-- |\n| `action` | The action of the experiment | Set to \"gc\" |\n| `pid` | The Java process ID where the fault is to be injected | int type, required |\n| `port` | The port number attached to the Java process agent. The fault is injected into the Java process through this port number. | int type. The default value is `9288`. |\n| `uid` | The experiment ID | string type. This item is not required to be configured, because Chaosd randomly creates one. |",
+      "source_content_hash": "f62f82604ab722f12860078c0f652611c2767b9fdf28f3d2d92253d9c9356ab2",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_78e1b364"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7d7166d8",
+      "source_content": "#### Example for triggering garbage collection using the service mode",
+      "source_content_hash": "da6958626c6ca1f5514c3d065a669d0709b77730553bebd2371598fa32876575",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式觸發垃圾回收的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2e0cda6",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/jvm -H \"Content-Type:application/json\" -d '{\"action\":\"gc\",\"pid\":1828622}'\n```",
+      "source_content_hash": "8279a8998b8c3b509e11e45c9d6108a5a05d1615bd0b73a2d5fd25fbfb041544",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_f2e0cda6"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "db871df4",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a320d8a8",
+      "source_content": "```bash\n{\"status\":200,\"message\":\"attack successfully\",\"uid\":\"c3c519bf-819a-4a7b-97fb-e3d0814481fa\"}\n```",
+      "source_content_hash": "4054117a6c9620bc4fc46e75f1e17eab8c3a1bfcfaddd6b31ed37fd491139cb6",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a320d8a8"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "76356197",
+      "source_content": "Triggering garbage collection is a one-time operation. The experiment does not require recovery.",
+      "source_content_hash": "b5b68dbed94de3a635386f959d2b28dfe53825c9a0cc381a466b376dbbd71cca",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "觸發垃圾回收是一次性操作，該實驗不需要恢復。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c655c05b",
+      "source_content": "### Increase method latency using service mode",
+      "source_content_hash": "b4feaf8b7e01b982afef47733cdbac518d833c6fd605ada62d941a0d3cf8fc0a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式增加方法延遲"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "86bedbf7",
+      "source_content": "#### Parameters for increasing method latency",
+      "source_content_hash": "948b9ce7109a333b10b4e5a603e475f55fe7530b750149467e13d32f5143116b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 增加方法延遲的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dd9a86e6",
+      "source_content": "| Parameter | Description | Value |\n| :-- | :-- | :-- |\n| `action` | The action of the experiment | Set to \"latency\" |\n| `class` | The name of the Java class | string type, required |\n| `latency` | The duration of increasing method latency | int type, required. The unit is millisecond. |\n| `method` | The name of the method | string type, required |\n| `pid` | The Java process ID where the fault is to be injected | int type, required |\n| `port` | The Java process ID where the fault is needed to be injected | int type, required |\n| `uid` | The experiment ID | string type. This item is not required to be configured, because Chaosd randomly creates one. |",
+      "source_content_hash": "e63441cd0e7316be705f843b641bd6b6c478d025dea150807f89101a635fba1b",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_dd9a86e6"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7ea10fdf",
+      "source_content": "#### Example for increasing method latency using the service mode",
+      "source_content_hash": "7b93fcb0f12b4f4ab26364b4a71b2e07757945d8b9769f985fe38c7e1c7bbf61",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式增加方法延遲的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3cdd0a68",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/jvm -H \"Content-Type:application/json\" -d '{\"action\":\"latency\",\"class\":\"Main\",\"method\":\"sayhello\",\"latency\":5000,\"pid\":1828622}'\n```",
+      "source_content_hash": "df7f1505f01af3afa9e873da3f150cf4f1db51506e04c3612edc03ec47bc3850",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3cdd0a68"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6d93952b",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2105ab0d",
+      "source_content": "```bash\n{\"status\":200,\"message\":\"attack successfully\",\"uid\":\"a551206c-960d-4ac5-9056-518e512d4d0d\"}\n```",
+      "source_content_hash": "680ba5db225e6af39867ff818ae19e849c7f9d5ad5e21d681075515a3676ac55",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_2105ab0d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "421a9608",
+      "source_content": "### Modify return values of a method using service mode",
+      "source_content_hash": "31e9c59e64f8dca680a5a02ba70110d5745eed36d456028f02748424d6435516",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式修改方法的返回值"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "152bce91",
+      "source_content": "#### Parameters for modifying return values of a method",
+      "source_content_hash": "135fee049dd0fe0ed45324ed964457ec902f0597701357338a6e4f030e8804e0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 修改方法返回值的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1b8df448",
+      "source_content": "| Parameter | Description | Value |\n| :-- | :-- | :-- |\n| `action` | The action of the experiment | Set to \"return\" |\n| `class` | The name of the Java class | string type, required |\n| `method` | The name of the method | string type, required |\n| `value` | Specifies the return value of the method | string type, required. Currently, the item can be numeric and string types. If the item (return value) is string, double quotes are required, like \"chaos\". |\n| `pid` | The Java process ID where the fault is to be injected | int type, required |\n| `port` | The port number attached to the Java process agent. The fault is injected into the Java process through this port number. | int type. The default value is `9288`. |\n| `uid` | The experiment ID | string type. This item is not required to be configured, because Chaosd randomly creates one. |",
+      "source_content_hash": "ea49cd8f193fbfe6043a0501bde2f68332b036624e13b8686226d4f227335618",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1b8df448"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7f3056d6",
+      "source_content": "#### Example for modifying return values of a method using the service mode",
+      "source_content_hash": "da3421d928537cd17b36cb2308b24d07c11a34bdbf00fd7ee913f6b3b0676b7b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式修改方法返回值的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "647125dc",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/jvm -H \"Content-Type:application/json\" -d '{\"action\":\"return\",\"class\":\"Main\",\"method\":\"getnum\",\"value\":\"999\",\"pid\":1828622}'\n```",
+      "source_content_hash": "7bc171b997e1e6f86b4f3b9e45abc78c324f5b09ffeefb6902b187df96f5dc9a",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_647125dc"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "48089f3d",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "85b64897",
+      "source_content": "```bash\n{\"status\":200,\"message\":\"attack successfully\",\"uid\":\"a551206c-960d-4ac5-9056-518e512d4d0d\"}\n```",
+      "source_content_hash": "680ba5db225e6af39867ff818ae19e849c7f9d5ad5e21d681075515a3676ac55",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_85b64897"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b7ec4fb1",
+      "source_content": "### Trigger faults by setting Byteman configuration files using service mode",
+      "source_content_hash": "c1ac10d42c3ceea28256ccb424fb3ecb5d930b2b4bc0a57208f9cdbf9011145c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式透過設定 Byteman 組態檔觸發故障"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6dbe7a7e",
+      "source_content": "You can set the fault rules according to the Byteman rule configuration. For more information about the Byteman rule configuration, refer to [byteman-rule-language](https://downloads.jboss.org/byteman/4.0.16/byteman-programmers-guide.html#the-byteman-rule-language).",
+      "source_content_hash": "b8d89f203e84130cb23e35f8bb7505fb1ecb14dbade9be15290d8593fb3d4dd9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可以根據 Byteman 規則組態設定故障規則。有關 Byteman 規則組態的更多資訊，請參閱 [byteman-rule-language](https://downloads.jboss.org/byteman/4.0.16/byteman-programmers-guide.html#the-byteman-rule-language)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1e8fadaf",
+      "source_content": "#### Parameters for triggering faults by setting Byteman configuration files",
+      "source_content_hash": "6950c8a7b73cb7f5b501627e7316051867b77e9bc366f07c248cc96c591336ea",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 透過設定 Byteman 組態檔觸發故障的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "21f80155",
+      "source_content": "| Parameter | Description | Value |\n| :-- | :-- | :-- |\n| `action` | The action of the experiment | Set to \"rule-data\" |\n| `rule-data` | Specifies the Byteman configuration data | string type, required |\n| `pid` | The Java process ID where the fault is to be injected | int type, required |\n| `port` | The port number attached to the Java process agent. The fault is injected into the Java process through this port number. | int type. The default value is `9288`. |\n| `uid` | The experiment ID | string type. This item is not required to be configured, because Chaosd randomly creates one. |",
+      "source_content_hash": "e566c58abb075e9eae38f2c0996e492ee7675198f7b96135f1329c30fd6ab27c",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_21f80155"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "41e20c06",
+      "source_content": "#### Example for triggering faults by setting Byteman configuration files using the service mode",
+      "source_content_hash": "100fefaddaef3a42e125756360bc1b2cc93d0913af559d7b944cdb318561ceb4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式透過設定 Byteman 組態檔觸發故障的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "decf378b",
+      "source_content": "First, based on the specific Java program and referring to [the Byteman rule language](https://downloads.jboss.org/byteman/4.0.16/byteman-programmers-guide.html#the-byteman-rule-language), write a rule configuration file. For example:",
+      "source_content_hash": "48f23f9ece0c8b40843b2006577692c961e711cf2724a7a99e5f0a4e120ffc77",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "首先，基於特定的 Java 程式並參考 [Byteman 規則語言](https://downloads.jboss.org/byteman/4.0.16/byteman-programmers-guide.html#the-byteman-rule-language)，編寫一個規則組態檔。例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8694b3a0",
+      "source_content": "```txt\nRULE modify return value\nCLASS Main\nMETHOD getnum\nAT ENTRY\nIF true\nDO\n    return 9999\nENDRULE\n```",
+      "source_content_hash": "4dbcd21ead3708322943d58ee6eeabe25769bff2bc6d74c6ffe7303b44aaa40c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_8694b3a0"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8f554a02",
+      "source_content": "Then, escape the line breaks in the configuration file to the newline character \"\\n\", and use the escaped text as the value of \"rule-data\". Run the following command:",
+      "source_content_hash": "1370ae1252f48aac3e988d306cdaaea3dfb17e4009e4eba35f4110f5a128fece",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "然後，將組態檔中的換行符轉義為換行字符 \"\\n\"，並使用轉義後的文字作為 \"rule-data\" 的值。執行以下命令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3fa4b9c5",
+      "source_content": "```bash\ncurl -X POST 127.0.0.1:31767/api/attack/jvm -H \"Content-Type:application/json\" -d '{\"action\":\"rule-data\",\"pid\":30045,\"rule-data\":\"\\nRULE modify return value\\nCLASS Main\\nMETHOD getnum\\nAT ENTRY\\nIF true\\nDO return 9999\\nENDRULE\\n\"}'\n```",
+      "source_content_hash": "7de9235f53fddc2504aeb4b4e8a846f27a82d0f3f5daf86a814646ecaff46ad4",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3fa4b9c5"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "17b95bd5",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c4172b2b",
+      "source_content": "```bash\n{\"status\":200,\"message\":\"attack successfully\",\"uid\":\"a551206c-960d-4ac5-9056-518e512d4d0d\"}\n```",
+      "source_content_hash": "680ba5db225e6af39867ff818ae19e849c7f9d5ad5e21d681075515a3676ac55",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_c4172b2b"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "56163162",
+      "source_content": "### Increase JVM stress using the service mode",
+      "source_content_hash": "5d11859d21730a78d5d53083eb44080c7a35820c6751182eafb6cf33f421d801",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式增加 JVM 壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7fe44f5b",
+      "source_content": "#### Parameters for increasing JVM stress",
+      "source_content_hash": "4f082f18768ccae40157618d2147214bc68960b317f3d48e97055fbad63adf75",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 增加 JVM 壓力的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1b8b3b24",
+      "source_content": "| Parameter | Description | Value |\n| :-- | :-- | :-- | --- |\n| `action` | The action of the experiment | Set to \"stress\" |\n| `cpu-count` | The number of CPU cores used for increasing CPU stress | int type. You must configure one item between `cpu-count` and `mem-type`. |\n| `mem-type` | The type of OOM | string type. Currently, both 'stack' and 'heap' OOM types are supported. You must configure one item between `cpu-count` and `mem-type`. |\n| `pid` | None | The Java process ID where the fault is to be injected | int type, required |\n| `port` | None | The port number attached to the Java process agent. The fault is injected into the Java process through this port number. | int type. The default value is `9288`. |\n| `uid` | None | The experiment ID | string type. This item is not required to be configured, because Chaosd randomly creates one. |",
+      "source_content_hash": "f45c4d941f236a102f9e7f0d3a8c688eb9bf2ef559f654dc4e1c9119dd6c8de3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "| Parameter | Description | Value |\n| :-- | :-- | :-- | --- |\n| `action` | 實驗的操作 | 設定為 \"stress\" |\n| `cpu-count` | 用於增加 CPU 壓力的 CPU 核心數量 | 整數類型。您必須在 `cpu-count` 和 `mem-type` 之間設定其中一項 |\n| `mem-type` | OOM 的類型 | 字串類型。目前支援 'stack' 和 'heap' 兩種 OOM 類型。您必須在 `cpu-count` 和 `mem-type` 之間設定其中一項 |\n| `pid` | 無 | 要注入故障的 Java 程序 ID | 整數類型，必填 |\n| `port` | 無 | 附加到 Java 程序代理的連接埠號碼。故障透過此連接埠號碼注入到 Java 程序中 | 整數類型，預設值為 `9288` |\n| `uid` | 無 | 實驗 ID | 字串類型。此項無需配置，因為 Chaosd 會隨機建立一個 |"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2e4f8998",
+      "source_content": "#### Example for increasing JVM stress using the service mode",
+      "source_content_hash": "a28915c382ec5faf9f4ea54dc14922f78a03b265c29f744d9075c8b33bdfe3ce",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式增加 JVM 壓力的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a8deb597",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/jvm -H \"Content-Type:application/json\" -d '{\"action\":\"stress\",\"cpu-count\":1,\"pid\":1828622}'\n```",
+      "source_content_hash": "838a7bd13741428b0df957a85a5d5acd75dd47408d3153776dde017461b8d048",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a8deb597"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ab9fb328",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e0c47761",
+      "source_content": "```bash\n{\"status\":200,\"message\":\"attack successfully\",\"uid\":\"a551206c-960d-4ac5-9056-518e512d4d0d\"}\n```",
+      "source_content_hash": "680ba5db225e6af39867ff818ae19e849c7f9d5ad5e21d681075515a3676ac55",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_e0c47761"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/simulate-jvm-application-chaos-in-physical-nodes.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.061792+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "976c066b815badedcb887d2ee0a68202eb6157ccb88936e5649197e602781aa6"
+  }
+}

@@ -1,0 +1,511 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/run-a-chaos-experiment.md",
+  "source_file_content_hash": "24c4e3ee7dc6fa98edcd2c2353f3fb8946aaafadc3f3ad1553a62776ca342718",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Run a Chaos Experiment\n---",
+      "source_content_hash": "1299f11219633926c0f0a97959a2e5029407c8ebcbae3ef2f46a99838de92873",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document describes how to create, run, view, pause, update, and delete Chaos experiments in Chaos Mesh.",
+      "source_content_hash": "c917ab4bf2af757763410d5a23b78ce1f4e9e7d2666510b7f62dddefdd2c185d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件說明如何在 Chaos Mesh 中建立、執行、檢視、暫停、更新和刪除混沌實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## Create Chaos experiments",
+      "source_content_hash": "66d399ea588e7ba4799c1530fb645af0254c7a87ac256cd5ba12f55117718b70",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 建立混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "You can create the following types of Chaos experiments in Chaos Mesh:",
+      "source_content_hash": "1b1f9b3695511774a29978d321621441786b117b54476ec301e29037fcf1d296",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可以在 Chaos Mesh 中建立以下類型的混沌實驗："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "760d111a",
+      "source_content": "- One-time Chaos experiments: The smallest instance of Chaos experiments. Once a one-time experiment is created, Chaos Mesh immediately injects faults into the target test machine according to the experiment configurations. If the `duration` parameter is configured, injected faults will be restored automatically after a period of time specified by `duration`. When the Chaos experiment is paused or deleted, injected faults will be restored immediately.",
+      "source_content_hash": "f2c8a791e04a7b9694d9ba6a6e0d5bda5e7ea7de88b853f7fd68263b8c82f6ad",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 一次性混沌實驗：混沌實驗的最小實例。一旦一次性實驗建立，Chaos Mesh 會立即根據實驗配置將故障注入目標測試機器。如果配置了 `duration` 參數，注入的故障會在 `duration` 指定的時間後自動恢復。當混沌實驗被暫停或刪除時，注入的故障會立即恢復。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ee0c6cb",
+      "source_content": "- Scheduled or cyclic Chaos experiments: Chaos experiments that can be run at a regular interval or cyclically. You need to define the scheduling rules for the experiment when creating this type of Chaos experiment.",
+      "source_content_hash": "be5ba3bcedfb0f770f2e01a04e4953d966cd8c25ecdd7d14dabe98aea7fae977",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 排程或循環混沌實驗：可以定期或循環執行的混沌實驗。在建立此類混沌實驗時，您需要定義實驗的排程規則。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "70153c6e",
+      "source_content": "### One-time Chaos experiments",
+      "source_content_hash": "861f1ebc7edaa898f3ceea6aa1b8f1f1bcbd4b835910d5fc8bcaae9d462a4810",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 一次性混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "86b54d44",
+      "source_content": "To create a one-time Chaos experiment, you can use one of the following methods:",
+      "source_content_hash": "6f3724d02597922be265f9e8d1395c6c6f5e2c7a9012c412b69949aafa262dc8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要建立一次性混沌實驗，您可以使用以下方法之一："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d9981ab1",
+      "source_content": "- Use Chaos Dashboard to create a new Chaos experiment, then click **Submit** to run the experiment. For more details, refer to the documentation of each specific Chaos experiment type.",
+      "source_content_hash": "2a126788675744fdb4b62c78c6bcbb060f44d5f0cff802b8b1e5c7b018735f26",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 使用 Chaos Dashboard 建立新的混沌實驗，然後點擊 **提交** 以執行實驗。詳細資訊，請參考每種特定混沌實驗類型的文件。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "632fee71",
+      "source_content": "- Use a YAML file to define the Chaos experiment, then create and run the experiment using `kubectl`. If you want to create and run a Chaos experiment in this way, take the following steps:",
+      "source_content_hash": "45a76bcef92d1768b6b79309b615dec9e20c0b26a0bdf69565570aae3c3a8411",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 使用 YAML 檔案定義混沌實驗，然後使用 `kubectl` 建立並執行實驗。若要以這種方式建立並執行混沌實驗，請執行以下步驟："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28563fec",
+      "source_content": "1. Create a new YAML file to define a Chaos experiment. Add configuration parameters in the file based on the type of Chaos experiment you want to create.\n\n   Take a NetworkChaos experiment as an example. Save the following YAML text as `network-delay.yaml`.\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: NetworkChaos\n   metadata:\n     name: network-delay\n   spec:\n     action: delay # the specific chaos action to inject\n     mode: one # the mode to run chaos action; supported modes are one/all/fixed/fixed-percent/random-max-percent\n     selector: # pods where to inject chaos actions\n       namespaces:\n         - default\n       labelSelectors:\n         'app': 'web-show' # the label of the pod for chaos injection\n     delay:\n       latency: '10ms'\n     duration: '12s'\n   ```\n\n   The above YAML example defines a network latency fault lasting for `12 seconds`, targeting applications with the `\"app\": \"web-show\"` tag under the `default` namespace. For more configuration information about the NetworkChaos experiment, refer to [Simulate network chaos](simulate-network-chaos-on-kubernetes.md).",
+      "source_content_hash": "b53b22fafb98da23a171724e3fbeeaf39888102949c603c8bd802ec61981225f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "1. 建立一個新的 YAML 檔案來定義混沌實驗。根據您要建立的混沌實驗類型，在檔案中加入配置參數。\n\n   以 NetworkChaos 實驗為例。將以下 YAML 文字儲存為 `network-delay.yaml`。\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: NetworkChaos\n   metadata:\n     name: network-delay\n   spec:\n     action: delay # 要注入的具體混沌行為\n     mode: one # 執行混沌行為的模式；支援模式包括 one/all/fixed/fixed-percent/random-max-percent\n     selector: # 要注入混沌行為的 Pod\n       namespaces:\n         - default\n       labelSelectors:\n         'app': 'web-show' # 要注入混沌的 Pod 標籤\n     delay:\n       latency: '10ms'\n     duration: '12s'\n   ```\n\n   上述 YAML 範例定義了一個持續 `12 秒` 的網路延遲故障，目標是 `default` 命名空間下標籤為 `\"app\": \"web-show\"` 的應用程式。有關 NetworkChaos 實驗的更多配置資訊，請參閱[模擬網路混沌](simulate-network-chaos-on-kubernetes.md)。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`12 seconds`', Translation: '`12 秒`'.",
+          "timestamp": "2025-07-04T06:49:59.342826+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "aee9c310",
+      "source_content": "2. Execute the following command to create and run this Chaos experiment.\n\n   ```sh\n   kubectl apply -f network-delay.yaml\n   ```",
+      "source_content_hash": "2e84658bd75c449523333fab0820334b937f54c40a65abdae6c278cb2a292b7c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 執行以下指令以建立並執行此混沌實驗。\n\n   ```sh\n   kubectl apply -f network-delay.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a2d18d88",
+      "source_content": "3. To view the running status of the Chaos experiment after it begins, use the following `kubectl describe` command to check the `status` or `event` of this experiment object.\n\n   ```sh\n   kubectl describe networkchaos network-delay\n   ```\n\n   For detailed steps to check the result of the Chaos experiment, refer to [Inspect Chaos experiments](inspect-chaos-experiments.md).",
+      "source_content_hash": "0f6f035065dc1a1207f8d0ca8dff970a7958e439e9f231899b067a8e8680291b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 若要檢視混沌實驗開始執行後的運行狀態，請使用以下 `kubectl describe` 指令檢查此實驗物件的 `status` 或 `event`。\n\n   ```sh\n   kubectl describe networkchaos network-delay\n   ```\n\n   有關檢查混沌實驗結果的詳細步驟，請參閱[檢查混沌實驗](inspect-chaos-experiments.md)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7283cdac",
+      "source_content": "### Scheduled or cyclic Chaos experiments",
+      "source_content_hash": "963ffd793bdac90341bab937e2c14927fec1ad6823463ab926135710dcf6e5cf",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 排程或循環混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1131ef75",
+      "source_content": "Chaos Mesh offers the `Schedule` object to create scheduled Chaos experiments and cyclic Chaos experiments.",
+      "source_content_hash": "4a3f4b3b0ced70328d32fc6ac2f3d9d795ef2b12455b1b2e8c3673bb270783de",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 提供 `Schedule` 物件來建立排程混沌實驗和循環混沌實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b2a52b1",
+      "source_content": "To create this type of Chaos experiments, take the following steps:",
+      "source_content_hash": "3356d36a647474e6be30f6e034ce1ada857bccc80aa945d624076762fc19cac5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要建立此類混沌實驗，請執行以下步驟："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3de828dc",
+      "source_content": "1. Create a new YAML file to define a Chaos experiment. You need to configure the `Schedule` parameter in the YAML file to define specific schedule rules for the experiment, and then configure other parameters according to the type of Chaos experiments you want to create.\n\n   Take a scheduled NetworkChaos experiment as an example. Save the following YAML text as `schedule-delay-example.yaml`.\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: Schedule\n   metadata:\n     name: schedule-delay-example\n   spec:\n     schedule: '5 * * * *'\n     historyLimit: 2\n     concurrencyPolicy: 'Allow'\n     type: 'NetworkChaos'\n     networkChaos:\n       action: delay\n       mode: one\n       selector:\n         namespaces:\n           - default\n         labelSelectors:\n           'app': 'web-show'\n       delay:\n         latency: '10ms'\n       duration: '12s'\n   ```\n\n   The above YAML example defines a network latency fault that can be automatically triggered at the fifth minute of each hour.For detailed introduction of scheduling rules, refer to [Define scheduling rules](define-scheduling-rules.md).\n\n   :::note\n\n   If you do not set the `duration` parameter, the fault behavior keeps taking effect until you pause or delete the Chaos experiment.\n\n   :::",
+      "source_content_hash": "ee79d7857d88b92fadfd638edc67f9e867c1b11376c1e3ac1f40f342de98a403",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 建立一個新的 YAML 檔案來定義混沌實驗。您需要在 YAML 檔案中配置 `Schedule` 參數來定義實驗的具體排程規則，然後根據您要建立的混沌實驗類型配置其他參數。\n\n   以排程式 NetworkChaos 實驗為例，將以下 YAML 文字儲存為 `schedule-delay-example.yaml`。\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: Schedule\n   metadata:\n     name: schedule-delay-example\n   spec:\n     schedule: '5 * * * *'\n     historyLimit: 2\n     concurrencyPolicy: 'Allow'\n     type: 'NetworkChaos'\n     networkChaos:\n       action: delay\n       mode: one\n       selector:\n         namespaces:\n           - default\n         labelSelectors:\n           'app': 'web-show'\n       delay:\n         latency: '10ms'\n       duration: '12s'\n   ```\n\n   上述 YAML 範例定義了一個在每小時第五分鐘自動觸發的網路延遲故障。關於排程規則的詳細介紹，請參閱[定義排程規則](define-scheduling-rules.md)。\n\n   :::note\n\n   若未設定 `duration` 參數，故障行為將持續生效直到您暫停或刪除混沌實驗。\n\n   :::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0d3f19f5",
+      "source_content": "2. Execute the following command to create and run this Chaos experiment.\n\n   ```sh\n   kubectl apply -f schedule-delay-example.yaml\n   ```",
+      "source_content_hash": "81dea427ef4d4c9bbcb71c7647c5c9274e2c7427baf3882f6142249c7a18863c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 執行以下指令來建立並運行此混沌實驗。\n\n   ```sh\n   kubectl apply -f schedule-delay-example.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b25fcdf7",
+      "source_content": "3. To view the running status of the Chaos experiment after it begins, use the following `kubectl describe` command to check the `status` or `event` of this experiment object.\n\n   ```sh\n   kubectl describe networkchaos schedule-delay-example\n   ```\n\n   For detailed steps to check the result of the Chaos experiment, refer to [Inspect Chaos experiments](inspect-chaos-experiments.md).",
+      "source_content_hash": "f8ddb6c1818a6c8a560179656d916b16d945bf316f198eb52c12554a003b9676",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 實驗開始後，要查看混沌實驗的運行狀態，可使用以下 `kubectl describe` 指令檢查實驗物件的 `status` 或 `event`。\n\n   ```sh\n   kubectl describe networkchaos schedule-delay-example\n   ```\n\n   查看混沌實驗結果的詳細步驟，請參閱[檢查混沌實驗](inspect-chaos-experiments.md)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ab39e8a7",
+      "source_content": "## Pause Chaos experiments",
+      "source_content_hash": "e840c4b05db6a93b591e5b5c2481bf653021db27ed2207b7be9cae34ff673fdc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 暫停混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7974af84",
+      "source_content": "### Pause or resume Chaos experiments using commands",
+      "source_content_hash": "c034ab84916eaedff34de22364a8816a181869965a081d7cf86b9891f586682b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用指令暫停或恢復混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "44aaa880",
+      "source_content": "For a running Chaos experiment, you can pause the experiment by setting a pause annotation to it using commands.",
+      "source_content_hash": "b8a542d6ef548ede1555bccfb2d521e05fe8417a03257eff2320b7afe0c37be2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "對於運行中的混沌實驗，您可以透過指令設定暫停註解來暫停實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "396efb28",
+      "source_content": "For example, you can use the following command to pause a Chaos experiment named `network-delay` in the default namespace:",
+      "source_content_hash": "14aee71096ed220fa65d8511be6f958d23e1593240069ee6f463d6d150d4fda4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "例如，您可以使用以下指令暫停預設命名空間中名為 `network-delay` 的混沌實驗："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b27056c4",
+      "source_content": "```sh\nkubectl annotate networkchaos network-delay experiment.chaos-mesh.org/pause=true\n```",
+      "source_content_hash": "a9b3088ce47e313028eae9d3a87b3e810cf227e4732f17959992a8587c85468d",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b27056c4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5f82a1e9",
+      "source_content": "After this command is executed, Chaos Mesh restores the injected faults immediately. If you want to resume this Chaos experiment from the pause state to the normal running state, use the following command:",
+      "source_content_hash": "eea3e390e315184e6327d19997e6d26079255ceee4d948d099d4d9f580b15e17",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此指令執行後，Chaos Mesh 會立即恢復已注入的故障。若要將混沌實驗從暫停狀態恢復至正常運行狀態，請使用以下指令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ae0b80d",
+      "source_content": "```sh\nkubectl annotate networkchaos network-delay experiment.chaos-mesh.org/pause-\n```",
+      "source_content_hash": "e033437a963674795cb11c985759e3c08fc2c6ae49a439bd75e5d3f5a91aa67c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1ae0b80d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "47cd8dd6",
+      "source_content": "### Pause or resume Chaos experiments using Chaos Dashboard",
+      "source_content_hash": "777f93b8e1b4a75b54f1163787dfea9f3eacb01d76d7d01653a7c5c8044a2eec",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用 Chaos Dashboard 暫停或恢復混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "692c6053",
+      "source_content": "If you want to pause or resume a Chaos experiment using Chaos Dashboard, find the Chaos experiment you want on the Dashboard and click the **Pause** button or the **Start** button.",
+      "source_content_hash": "ec88a21cb34b29ce7cc94d0cbc6f09ac873bac94f6ce88c75ca79225a2f0805a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若需透過 Chaos Dashboard 暫停或恢復混沌實驗，請在儀表板上找到目標實驗，點擊 **Pause** 按鈕或 **Start** 按鈕。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "383fbdd2",
+      "source_content": "![Pause experiment](img/pause.png)",
+      "source_content_hash": "eda4c9d233b5954e07613a79aab90e8f11a16e3f1cadae652a0f44a7a3e01ee4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![暫停實驗](img/pause.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "14bc6b75",
+      "source_content": "![Restart experiment](img/restart.png)",
+      "source_content_hash": "51d4f3cd43dd310ab259f59fca470f9a09520185b3ce6578f49f89d1f0002be9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![重啟實驗](img/restart.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5dba1427",
+      "source_content": "## Update Chaos experiments",
+      "source_content_hash": "9a0e03ba521640fef6db75b42650deeb8a0c0987a0d538d891d33d008250f499",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 更新混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c2ab4c8",
+      "source_content": "### Update Chaos experiments using commands",
+      "source_content_hash": "68b4aa4ccefddc4c79bf73a4e770518f54d44698f64cca5d2a4db883be69e147",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用指令更新混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a9c2a503",
+      "source_content": "The `Spec` field of Chaos experiment is currently not allowed to be updated.",
+      "source_content_hash": "03045a6a83bfcb02bfe6d3fc66ea6fa3bab8a9e09b6abdb24c32749213a44d2f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "混沌實驗的 `Spec` 欄位目前不允許更新。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cfeb9eb1",
+      "source_content": "For more details, refer to the related [GitHub issue](https://github.com/chaos-mesh/chaos-mesh/issues/2227).",
+      "source_content_hash": "ba91bf9e7195b5d029f7b7966210461ad8f7244a649980af4c194ce6806a33fe",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "詳情請參閱相關的 [GitHub issue](https://github.com/chaos-mesh/chaos-mesh/issues/2227)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dd4905a4",
+      "source_content": "### Update Chaos experiments using Chaos Dashboard",
+      "source_content_hash": "52d77e77e1fc691433194a4f38cb32d3b299afc6bc4f8307c166abe7541e6ba4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用 Chaos Dashboard 更新混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "17b50e81",
+      "source_content": "The Chaos Dashboard doesn't support updating Chaos experiments at this time because the `Spec` field of Chaos experiments is not allowed to be updated.",
+      "source_content_hash": "1401c6b5d8a9040db4407542dce6f6f29ce0b6894fc8f3be6f8d54bb15d77c50",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "由於混沌實驗的 `Spec` 欄位不允許更新，Chaos Dashboard 目前不支援更新混沌實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ab1b234",
+      "source_content": "## Delete Chaos experiments",
+      "source_content_hash": "543fef45dd85f7df3501651b2a0da306f9ca56934b8ca3311cd5c550e89edf05",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 刪除混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b77e7669",
+      "source_content": "### Delete Chaos experiments using commands",
+      "source_content_hash": "169c3676b062d59f59cc7f9a67ff9f79c9b2f1cf11f32a4de588ab7308a2efac",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用指令刪除混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "619c3209",
+      "source_content": "After a Chaos experiment finishes, you can delete the experiment using the following `kubectl delete` command. Once you delete the Chaos experiment, the injected fault will be restored immediately:",
+      "source_content_hash": "98b6ee9f1675c427cba432747035a3d225464317f2f6144b0b05ce49c83cf84e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "混沌實驗結束後，您可以使用以下 `kubectl delete` 指令刪除實驗。刪除混沌實驗後，已注入的故障會立即恢復："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9129c0c5",
+      "source_content": "```sh\nkubectl delete -f network-delay.yaml\n# or delete the chaos object directly\nkubectl delete networkchaos network-delay\n```",
+      "source_content_hash": "723b08aa7097dfeb7ded46b985d0e8420242606148ca2a316cb5341d141bccde",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9129c0c5"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "008183b0",
+      "source_content": "If the delete operation is blocked, this means that some fault behaviors of the target object cannot be restored. You can check the Chaos Mesh logs for troubleshooting or directly create a [GitHub issue](https://github.com/pingcap/chaos-mesh/issues) to report this problem to the Chaos Mesh team. Besides, you can forcibly delete the Chaos experiment with the following command:",
+      "source_content_hash": "26ed1955312f5718693d99232ff59d51dcb0274bce89650b5db04b62cbb31799",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若刪除操作受阻，表示目標物件的部分故障行為無法恢復。您可檢查 Chaos Mesh 日誌進行排查，或直接建立 [GitHub issue](https://github.com/pingcap/chaos-mesh/issues) 向 Chaos Mesh 團隊回報此問題。此外，您可透過以下指令強制刪除混沌實驗："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "71779666",
+      "source_content": "```sh\nkubectl annotate networkchaos web-show-network-delay chaos-mesh.chaos-mesh.org/cleanFinalizer=forced\n```",
+      "source_content_hash": "4e0d6fd311f9cfab57b936c6cd454f5fbcab1e3d1cb8b0e2187e272b8862ddde",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_71779666"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "58f98d22",
+      "source_content": "### Delete Chaos experiments using Chaos Dashboard",
+      "source_content_hash": "9e3df164869cb96171ee9d7ea6f7f2cbe2d40b7ee7c7cc69e7262fdabda548a5",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用 Chaos Dashboard 刪除混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d636abf8",
+      "source_content": "If you want to delete a Chaos experiment on Chaos Dashboard and archive it to the experiment history, you can click the corresponding **Archive** button of the Chaos experiment.",
+      "source_content_hash": "077cd2551f93de63b602faefe8517820f307cae7737ca7ef784b2adac9ddd791",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要在 Chaos Dashboard 上刪除混沌實驗並將其歸檔至實驗歷史，您可以點擊該混沌實驗對應的 **歸檔** 按鈕。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "99840f13",
+      "source_content": "![Archive experiment](img/archive.png)",
+      "source_content_hash": "e52d71ddce19a51d9cc6e31f71f7555d26280a854d6ca2974a2aae81e1773c13",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![歸檔實驗](img/archive.png)"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/run-a-chaos-experiment.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.342912+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "24c4e3ee7dc6fa98edcd2c2353f3fb8946aaafadc3f3ad1553a62776ca342718"
+  }
+}

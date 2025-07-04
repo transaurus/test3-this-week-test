@@ -1,0 +1,342 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/upgrade-to-2.0.md",
+  "source_file_content_hash": "9a2068f55108fd404770fd80415c8074c77a5ff398465c4062a21a2aeaeb8e4c",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Upgrade to Chaos Mesh 2.0\n---",
+      "source_content_hash": "cf7af42c43e0807b5dbebea4635f1cff0396f238ac97386129af73f70ffe4310",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document provides detailed instruction for upgrading Chaos Mesh from 1.x to 2.0. Chaos Mesh 2.0 introduced some new features and fixed many issues. Because in Chaos Mesh 2.0, some code has been rebuilt, you need to perform extra actions for the upgrade.",
+      "source_content_hash": "c4cdd36ac3c8303e31012b4393bcba9ffab334ff9fdb00bf3f61d0f259a29650",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件提供從 Chaos Mesh 1.x 升級至 2.0 的詳細指引。Chaos Mesh 2.0 引入了新功能並修復多項問題。由於 Chaos Mesh 2.0 部分程式碼已重建，升級時需執行額外操作。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## Upgrade tools",
+      "source_content_hash": "c00c7927741fa42c22417d6659d8111be18d64b6fe63d8137b74092a9c515eb7",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 升級工具"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "Because CRD has changed in Chaos Mesh 2.0, the YAML files for experiments from an earlier version of Chaos Mesh cannot be run on Chaos Mesh 2.0. If you want to continue using these YAML files, you need to export and update the YAML files and re-import them after upgrading Chaos Mesh.",
+      "source_content_hash": "7e8fb6aa225726d97d76b999ea46ecbb62f8753c043c56dd327e94eb5ab4b4e7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 2.0 的 CRD 已變更，舊版 Chaos Mesh 的實驗 YAML 檔案無法在 2.0 版執行。若需沿用這些 YAML 檔案，必須先匯出並更新檔案，待升級完成後重新匯入。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "To simplify the upgrade process, Chaos Mesh 2.0 provides the following upgrade tools:",
+      "source_content_hash": "2b040b74e20e981d898e77ebd76a6258a00c970be0858ed6b475a60a7fcd7cd6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "為簡化升級流程，Chaos Mesh 2.0 提供以下升級工具："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2b4a9900",
+      "source_content": "- `migrate.sh`: used to automatically export and upgrade the YAML files, upgrade CRD, import upgraded YAML files.",
+      "source_content_hash": "dbfd7cfdb62204d8c458f776e772eaf38b596f8053ddf7f282aa4c4b4a4ebe9e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `migrate.sh`：用於自動匯出與升級 YAML 檔案、升級 CRD、匯入升級後的 YAML 檔案。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9a03a62b",
+      "source_content": "- `schedule-migration`: used to update the earlier YAML files to the latest YAML files.",
+      "source_content_hash": "b5b19f052c9280824e8893100b583b03c17d6b710daa04feccbde1003b8d21e1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `schedule-migration`：用於將舊版 YAML 檔案更新至最新格式。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "86b54d44",
+      "source_content": "To get the upgrade tools, it is recommended to clone the Chaos Mesh project to your local repository and then execute the command `make schedule-migration.tar.gz`. Or you can download the project from [https://mirrors.chaos-mesh.org/v2.0.0/schedule-migration.tar.gz](https://mirrors.chaos-mesh.org/v2.0.0/schedule-migration.tar.gz). After the `tar.gz` package is downloaded, execute the following command and you can get the above two upgrade tools:",
+      "source_content_hash": "e3197c6cd83070319fc6c8cec8fd603a252c598f6bbec83405a89a8027f30f6b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "取得升級工具建議將 Chaos Mesh 專案克隆至本地儲存庫後執行 `make schedule-migration.tar.gz` 命令。或從 [https://mirrors.chaos-mesh.org/v2.0.0/schedule-migration.tar.gz](https://mirrors.chaos-mesh.org/v2.0.0/schedule-migration.tar.gz) 下載專案。下載 `tar.gz` 封裝檔後執行以下命令即可取得上述兩項工具："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6e5ba8fb",
+      "source_content": "```bash\ntar xvf ./schedule-migration.tar.gz\n```",
+      "source_content_hash": "1851eab743229284e91cc2cc4cad5488e873646a8ebf529bf21566011e45e424",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6e5ba8fb"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2df4f75f",
+      "source_content": "The `schedule-migration` tool in this package applies only to the Linux x86_64 platform. If you are using other operating systems or architectures, you need to compile the code by yourselves.",
+      "source_content_hash": "78464449a687a4f492f0f2bbcc542a3ff71b809483b9029e839cd0fd61f41219",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此套件中的 `schedule-migration` 工具僅適用於 Linux x86_64 平台。若使用其他作業系統或架構，需自行編譯程式碼。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "95b38f97",
+      "source_content": "## Step 1: Export and upgrade an experiment",
+      "source_content_hash": "734d419b6c2a8651b940773b38ef1f2c71a8aae977f988a22bda7224bfbe7f87",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 步驟 1：匯出並升級實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ccc88b4c",
+      "source_content": "You can use the upgrade tool `migrate.sh` to automatically export and upgrade the experiment. Before running, make sure you have enough permissions to access the cluster.",
+      "source_content_hash": "68775a427364dd736bd02d2bdf9b898b349e09af898e1c5371c887eefd288dd4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可使用升級工具 `migrate.sh` 自動匯出並升級實驗。執行前請確保具備足夠權限存取叢集。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d9172fa4",
+      "source_content": "If `migrate.sh` is in the current directory, place the `schedule-migration` tool in this directory. Then execute the following command to export and upgrade the experiment:",
+      "source_content_hash": "77bd2fa26a005738ca32366be5714e93315817bd06753de725dfc18410ee1729",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若 `migrate.sh` 位於當前目錄，請將 `schedule-migration` 工具置於同目錄。執行以下命令以匯出並升級實驗："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b7c3dbd1",
+      "source_content": "```bash\nbash migrate.sh -e\n```",
+      "source_content_hash": "d90b46e87c49a57d1814c9f5fe25c29f3eab2160040d434dd144a4221815d219",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b7c3dbd1"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7499a4e7",
+      "source_content": "Then many YAML files are generated in the current directory. These are the exported files of the experiments. The exported experiment files are automatically upgraded.",
+      "source_content_hash": "f0bc87a16681cad4984ad35833c073e641a7e74a8021fdc18ae265c94e202246",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "隨後當前目錄將產生多個 YAML 檔案，此為實驗的匯出檔案，且已自動升級。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "517051a7",
+      "source_content": "In addition, you can use the `schedule-migration` tool to upgrade the specified old version of YAML files:",
+      "source_content_hash": "bdaf982b5b009c01c0815a71a47c0143e8ddaf297ffe2fcbec2a6d7d2abbada6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此外，可使用 `schedule-migration` 工具升級指定的舊版 YAML 檔案："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4dd51304",
+      "source_content": "```bash\n./schedule-migration <path-to-old-yaml> <path-to-new-yaml>\n```",
+      "source_content_hash": "0cdc666c8d88c9a254820eb377c8df22d307ef0cb06905982aa57fd0dd2188ea",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4dd51304"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "50746522",
+      "source_content": "In the YAML file path you have specified, you can get upgraded YAML files. After deleting the old resources, reapply the new YAML files to complete the update process.",
+      "source_content_hash": "b2bed7c80c46e52c0f8585f63da9b4d405cf0c78360caa3dcce37f5cbffe2d27",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在指定 YAML 檔案路徑中可取得升級後的 YAML 檔案。刪除舊資源後重新套用新 YAML 檔案即可完成更新。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "54268405",
+      "source_content": "## Step 2: Upgrade CRD",
+      "source_content_hash": "d91cded544d052b17c734f3be2d30016517c4732b4870a2a1ab35bb654c18bdb",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 步驟 2：升級 CRD"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8af76f3d",
+      "source_content": "Before upgrading Chaos Mesh using Helm, to increase the success rate of the upgrade, execute the following command to manually upgrade CRD:",
+      "source_content_hash": "074411e087aeab1da8685dbcb456ed3dd004989f742739c55a89d11d02dae69a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "使用 Helm 升級 Chaos Mesh 前，為提高升級成功率，請執行以下命令手動升級 CRD："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "48ec8149",
+      "source_content": "```bash\nbash migrate.sh -c\n```",
+      "source_content_hash": "93bcceec5c383b8f74a9bc712f5d66b11df032db9dc5867fdb4bd81212823820",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_48ec8149"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f7ef78f9",
+      "source_content": "You can see that CRD is deleted and re-added.",
+      "source_content_hash": "653e2565621f82a8319607fa9a66347d8a0522ed1209fd12d9a0e396bf376ab5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可觀察到 CRD 被刪除後重新新增。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "60410af6",
+      "source_content": "## Step 3: Upgrade Chaos Mesh",
+      "source_content_hash": "56cce342c70b7ad59a3f8076d20c4c945f3118d1efd846906a78f41693c67f61",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 步驟 3：升級 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9aaa519",
+      "source_content": "Because Chaos Mesh 2.0 contains many changes made from 1.x, it is recommended to uninstall 1.x first and then install 2.0. For specific installation steps, refer to [Install using Helm (production environment recommended)](production-installation-using-helm.md).",
+      "source_content_hash": "f92fb4f962e9f31630e6b683f71b90b2a1bf2d16eb2e0cce05b3f5caf4853c6a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "因 Chaos Mesh 2.0 相較 1.x 版有大量變更，建議先解除安裝 1.x 版再安裝 2.0 版。具體安裝步驟請參閱[使用 Helm 安裝（推薦生產環境）](production-installation-using-helm.md)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1a316f80",
+      "source_content": "## Step 4: Import an experiment",
+      "source_content_hash": "33198a09aded2645db3e428373ce423e268def399db69f85fe3d017cc4ccaa33",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 步驟 4：匯入實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "40158b4b",
+      "source_content": "Chaos Mesh 2.0 has made some changes on the experiment definition. Before you continue using it, you need to upgrade the experiment files of an earlier version.",
+      "source_content_hash": "127596afe29be6e28c2b7a0bef8f98fae1b84e8180c84eda9273e936f2781fb4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 2.0 對實驗定義有所調整，沿用前需先升級舊版實驗檔案。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ea4c715",
+      "source_content": "In the same directory of exported experiment files, execute the following command to import the experiment:",
+      "source_content_hash": "2665ab5136385bbf1ce253cd5284fdfe4908fe09b5ca36f8b5cb4c45adbd3a43",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "於匯出實驗檔案的相同目錄下，執行以下命令以匯入實驗："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5a41b4fb",
+      "source_content": "```bash\nbash migrate.sh -i\n```",
+      "source_content_hash": "7875f4c1d8d1d4709df26e50053e28cb0e15c4ab7453ee956a25813d305d3049",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_5a41b4fb"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bd92edfc",
+      "source_content": "## Report issues",
+      "source_content_hash": "df705b5ea92089038b86c1d5f3bcf570740c37d8ad407fbcef300fdf29148223",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 回報問題"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7f71ff2a",
+      "source_content": "If you encounter any problems in the upgrade process, submit the output of your command to [slack](https://cloud-native.slack.com/archives/C0193VAV272) or create an [issue](https://github.com/pingcap/chaos-mesh/issues) on Github. Thanks for your feedback, and the Chaos Mesh team is happy to resolve your problems.",
+      "source_content_hash": "819c957fd643a0c803cd1332ec27ead236a3fa17f0695221b366b6775bc222f7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若在升級過程中遇到任何問題，請將指令輸出提交至 [slack](https://cloud-native.slack.com/archives/C0193VAV272) 或在 Github 上建立 [issue](https://github.com/pingcap/chaos-mesh/issues)。感謝您的回饋，Chaos Mesh 團隊樂意協助解決問題。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/upgrade-to-2.0.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.115403+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "9a2068f55108fd404770fd80415c8074c77a5ff398465c4062a21a2aeaeb8e4c"
+  }
+}

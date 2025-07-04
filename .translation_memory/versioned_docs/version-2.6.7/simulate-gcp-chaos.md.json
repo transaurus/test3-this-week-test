@@ -1,0 +1,375 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/simulate-gcp-chaos.md",
+  "source_file_content_hash": "10e102b0e89ebd833d277966dbb6ed08e6dee46d02e3c0095d572ea70663f1c4",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate GCP Faults\n---",
+      "source_content_hash": "5ce81359d496e6319590e01232b27de4e0a921278c73619e1283cafd9003779b",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document describes how to use Chaos Mesh to inject faults into GCP Pod. Chaos Dashboard and YAML files are provided to create GCPChaos experiments.",
+      "source_content_hash": "d3cd0af90297fe94d947755cc18c3afb2a780d4aeae5b68b635c4ec4b96cd847",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件說明如何使用 Chaos Mesh 向 GCP Pod 注入故障。提供 Chaos Dashboard 和 YAML 文件來創建 GCPChaos 實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## GCPChaos introduction",
+      "source_content_hash": "0514bc41f2710c425a58e5e662042339d097ab411c8e841d5cd4287222a09610",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## GCPChaos 介紹"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "GCPChaos is a fault type in Chaos Mesh. By creating a GCPChaos experiment, you can simulate fault scenarios of the specified GCP instance. Currently, GCPChaos supports the following fault types:",
+      "source_content_hash": "11677c60b0a8cd52536fd9b10ac1e86b4039627c0e2aadcb8f843b0432749d34",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "GCPChaos 是 Chaos Mesh 中的故障類型。通過創建 GCPChaos 實驗，您可以模擬指定 GCP 實例的故障場景。目前 GCPChaos 支援以下故障類型："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "760d111a",
+      "source_content": "- **Node Stop**: stops the specified GCP instance.",
+      "source_content_hash": "476e001e339bcf1cc6353f0ada4dd7b922544eb74d3b90ccee2b717c24bc4662",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **節點停止**：停止指定的 GCP 實例。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ee0c6cb",
+      "source_content": "- **Node Reset**: reboots the specified GCP instance.",
+      "source_content_hash": "0d31f1509e32a8ae49d556670f925f4d86dabcb3a9f8ef7c1c41e0a090cadb2e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **節點重置**：重新啟動指定的 GCP 實例。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2b4a9900",
+      "source_content": "- **Disk Loss**: uninstalls the storage volume from the specified GCP instance.",
+      "source_content_hash": "e2566964e6b169b300f2ef9d03dee66e7240334b26d5f1f77daf754b661587f1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **磁碟丟失**：從指定 GCP 實例卸載存儲卷。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e14c9928",
+      "source_content": "## `Secret` file",
+      "source_content_hash": "40818e83e0d5e10acd521ba6bc524c2ec02c01da7c0f26ef764979b4810fd37c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## `Secret` 文件"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "To easily connect to the GCP cluster, you can create a Kubernetes `Secret` file to store the authentication information in advance.",
+      "source_content_hash": "91a4dbf8be0f1c570d3bb716684edb3905e5fa1b522f350ab4ce0500796f938a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "為方便連接 GCP 集群，可預先創建 Kubernetes `Secret` 文件存儲身份驗證資訊。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "Below is a sample `secret` file:",
+      "source_content_hash": "a8b231eedb33fcae6d6e5ae4b8c405ee35f1b170a003dbd7148eee447584f6fd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下是 `secret` 文件範例："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cbbebf8e",
+      "source_content": "```yaml\napiVersion: v1\nkind: Secret\nmetadata:\n  name: cloud-key-secret\n  namespace: chaos-mesh\ntype: Opaque\nstringData:\n  service_account: your-gcp-service-account-base64-encode\n```",
+      "source_content_hash": "1c9cfcd4124c054d04aaccdfa9216bca2e700f71b2e1b503b50554ea5844e35d",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_cbbebf8e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "56d666fe",
+      "source_content": "- **name** defines the name of kubernetes secret.",
+      "source_content_hash": "fbd6f0da568646cdb4e9015f5c5a5fe19c8a4607fd3dce8fe66faadf13698589",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **name** 定義 Kubernetes secret 的名稱。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "212333a8",
+      "source_content": "- **namespace** defines the namespace of kubernetes secret.",
+      "source_content_hash": "5863062e481bcd2dee495c52640db7014d2bcfab560ac4c666176a8798d1fbb6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **namespace** 定義 Kubernetes secret 的命名空間。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c0463e48",
+      "source_content": "- **service_account** stores the service account key of your GCP cluster. Remember to complete [Base64](https://zh.wikipedia.org/wiki/Base64) encoding for your GCP service account key. To learn more about service account key, see [Creating and managing service account keys](https://cloud.google.com/iam/docs/creating-managing-service-account-keys).",
+      "source_content_hash": "8e6118df8b5da8ef1928d4d83dacaee5369fc99c0b929199742be3b197c92fa9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **service_account** 存儲 GCP 集群的服務帳戶金鑰。請確保對 GCP 服務帳戶金鑰進行 [Base64](https://zh.wikipedia.org/wiki/Base64) 編碼。有關服務帳戶金鑰詳情，請參閱[創建和管理服務帳戶金鑰](https://cloud.google.com/iam/docs/creating-managing-service-account-keys)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "109ace10",
+      "source_content": "## Create experiments using Chaos Dashboard",
+      "source_content_hash": "0e6c13931d3c46c241532f93bf2c43261695607133973a006c15d6651045ed71",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Chaos Dashboard 創建實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "214ab298",
+      "source_content": ":::note\n\nBefore you create an experiment using Chaos Dashboard, make sure the following requirements are met:\n\n1. Chaos Dashboard is installed.\n2. Chaos Dashboard can be accessed using `kubectl port-forward` command:\n\n   ```bash\n   kubectl port-forward -n chaos-mesh svc/chaos-dashboard 2333:2333\n   ```\n\n   Then you can access the dashboard via [`http://localhost:2333`](http://localhost:2333) in your browser.\n\n:::",
+      "source_content_hash": "08d7cb6b688e43e970aac113975cd56ddfde892d7067523622b45ea04da4c336",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n使用 Chaos Dashboard 創建實驗前，請確保滿足以下要求：\n\n1. 已安裝 Chaos Dashboard。\n2. 可通過 `kubectl port-forward` 命令訪問 Chaos Dashboard：\n\n   ```bash\n   kubectl port-forward -n chaos-mesh svc/chaos-dashboard 2333:2333\n   ```\n\n   然後即可在瀏覽器中通過 [`http://localhost:2333`](http://localhost:2333) 訪問儀表板。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "002560c3",
+      "source_content": "1. Open Chaos Dashboard, and click **NEW EXPERIMENT** on the page to create a new experiment:\n\n   ![img](img/create-pod-chaos-on-dashboard-1.png)",
+      "source_content_hash": "b3c7cbf6f820d1ad25751a423cfdd6e45818c6e7a63213e831fe7a1728cf5832",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 打開 Chaos Dashboard，點擊頁面中的 **NEW EXPERIMENT** 創建新實驗：\n\n   ![img](img/create-pod-chaos-on-dashboard-1.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "20dde05e",
+      "source_content": "2. In the **Choose a Target** area, choose **GCP fault** and select a specific behavior, such as **STOP NODE**:\n\n   ![img](img/create-gcp-chaos-on-dashboard-2.png)",
+      "source_content_hash": "77c9a108c991db61eba6f06061e9de278a9c6e1369c839bf8942a9abb7e489fc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 在 **Choose a Target** 區域選擇 **GCP fault**，並選取特定行為如 **STOP NODE**：\n\n   ![img](img/create-gcp-chaos-on-dashboard-2.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5257fefd",
+      "source_content": "3. Fill out the experiment information, and specify the experiment scope and the scheduled experiment duration:\n\n   ![img](img/create-gcp-chaos-on-dashboard-3.png)\n\n   ![img](img/create-gcp-chaos-on-dashboard-4.png)",
+      "source_content_hash": "92471774d0e84d97a1d18efcd2e44a2a60abee934038f732db9a032d078f8aca",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 填寫實驗資訊，指定實驗範圍和計劃持續時間：\n\n   ![img](img/create-gcp-chaos-on-dashboard-3.png)\n\n   ![img](img/create-gcp-chaos-on-dashboard-4.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "795a1b7f",
+      "source_content": "4. Submit the experiment information.",
+      "source_content_hash": "d43f9894c758dcc87cfc64b219f833d55e60a63f3367195f2557b06b88c799f0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 提交實驗資訊。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3ef18741",
+      "source_content": "## Create experiments using YAML file",
+      "source_content_hash": "08b6467338265a9464161826425ad847478a81661f23ac2f4fb2f871e7833946",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 YAML 文件創建實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "52388877",
+      "source_content": "### A `node-stop` configuration example",
+      "source_content_hash": "74bcb806f831bd06ec506c2fbee1e5ae6cb2e980def646c72032210095a24016",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### `node-stop` 配置範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4e8535b2",
+      "source_content": "1. Write the experiment configuration to the `gcpchaos-node-stop.yaml`， as shown below:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: GCPChaos\n   metadata:\n     name: node-stop-example\n     namespace: chaos-mesh\n   spec:\n     action: node-stop\n     secretName: 'cloud-key-secret'\n     project: 'your-project-id'\n     zone: 'your-zone'\n     instance: 'your-instance-name'\n     duration: '5m'\n   ```\n\n   Based on this configuration example, Chaos Mesh will inject the `node-stop` fault into the specified GCP instance so that the GCP instance will be unavailable in 5 minutes.\n\n   For more information about stopping GCP instances, refer to [Stop GCP instance](https://cloud.google.com/compute/docs/instances/stop-start-instance).",
+      "source_content_hash": "6010d45bd1966b486174e7c6d8f18271eb6aecd05a451424ba03e0c6c24e4503",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將實驗配置寫入 `gcpchaos-node-stop.yaml`，如下所示：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: GCPChaos\n   metadata:\n     name: node-stop-example\n     namespace: chaos-mesh\n   spec:\n     action: node-stop\n     secretName: 'cloud-key-secret'\n     project: 'your-project-id'\n     zone: 'your-zone'\n     instance: 'your-instance-name'\n     duration: '5m'\n   ```\n\n   根據此配置範例，Chaos Mesh 將向指定 GCP 實例注入 `node-stop` 故障，使該實例在 5 分鐘內不可用。\n\n   有關停止 GCP 實例的更多資訊，請參閱[停止 GCP 實例](https://cloud.google.com/compute/docs/instances/stop-start-instance)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4405f913",
+      "source_content": "2. After the configuration file is prepared, use `kubectl` to create an experiment:\n\n   ```bash\n   kubectl apply -f gcpchaos-node-stop.yaml\n   ```",
+      "source_content_hash": "0358480ab237b547fa3e78087300b0fded3fc94f7c31add462092f055ce9601e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 準備好配置文件後，使用 `kubectl` 創建實驗：\n\n   ```bash\n   kubectl apply -f gcpchaos-node-stop.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c19de48a",
+      "source_content": "### A `node-reset` configuration example",
+      "source_content_hash": "2b3f6833448ccfa4b32b2791beb533446873d20c06eef6ad1fe5a49d4527cc53",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### `node-reset` 配置範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1f5a88fc",
+      "source_content": "1. Write the experiment configuration to the `gcpchaos-node-reset.yaml`, as shown below:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: GCPChaos\n   metadata:\n     name: node-reset-example\n     namespace: chaos-mesh\n   spec:\n     action: node-reset\n     secretName: 'cloud-key-secret'\n     project: 'your-project-id'\n     zone: 'your-zone'\n     instance: 'your-instance-name'\n     duration: '5m'\n   ```\n\n   Based on this configuration example, Chaos Mesh will inject `node-reset` fault into the specified GCP instance so that the GCP instance will be reset.\n\n   For more information about resetting GCP instances, refer to [Resetting a GCP instance](https://cloud.google.com/compute/docs/instances/stop-start-instance#resetting_an_instance).",
+      "source_content_hash": "6902883a27a8e3cb95040676b391c92e52113e418fbb74f4cef7c6ff4de6296a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將實驗配置寫入 `gcpchaos-node-reset.yaml`，如下所示：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: GCPChaos\n   metadata:\n     name: node-reset-example\n     namespace: chaos-mesh\n   spec:\n     action: node-reset\n     secretName: 'cloud-key-secret'\n     project: 'your-project-id'\n     zone: 'your-zone'\n     instance: 'your-instance-name'\n     duration: '5m'\n   ```\n\n   根據此配置範例，Chaos Mesh 將對指定的 GCP 實例注入 `node-reset` 故障，使該 GCP 實例被重置。\n\n   有關重置 GCP 實例的更多資訊，請參閱 [重置 GCP 實例](https://cloud.google.com/compute/docs/instances/stop-start-instance#resetting_an_instance)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "091c952d",
+      "source_content": "2. After the configuration file is prepared, use `kubectl` to create an experiment:\n\n   ```bash\n   kubectl apply -f gcpchaos-node-reset.yaml\n   ```",
+      "source_content_hash": "6c0318e848a795102f5c461b3bf3776404cc6dad52491cd26d3234335819659a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 配置檔案準備好後，使用 `kubectl` 建立實驗：\n\n   ```bash\n   kubectl apply -f gcpchaos-node-reset.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2bb63d77",
+      "source_content": "### A `disk-loss` configuration example",
+      "source_content_hash": "9ec48562cb9e087b14635f5f8f2dc0fb059d3c1459df4ec7f899f6f9ed414060",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### `disk-loss` 配置範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b1d2b7df",
+      "source_content": "1. Write the experiment configuration to the `gcpchaos-disk-loss.yaml`, as shown below:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: GCPChaos\n   metadata:\n     name: disk-loss-example\n     namespace: chaos-mesh\n   spec:\n     action: disk-loss\n     secretName: 'cloud-key-secret'\n     project: 'your-project-id'\n     zone: 'your-zone'\n     instance: 'your-instance-name'\n     deviceNames: ['disk-name']\n     duration: '5m'\n   ```\n\n   Based on this configuration example, Chaos Mesh will inject a `disk-loss` fault into the specified GCP instance so that the GCP instance is detached from the specified storage volume within 5 minutes.\n\n   For more information about detaching GCP instances, refer to [Detach GCP storage](https://cloud.google.com/compute/docs/reference/rest/v1/instances/detachDisk).",
+      "source_content_hash": "b72de16efe3a7343a0e569759a4c5e5472fc4e7991666f2f2ad17a5f1731dad6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將實驗配置寫入 `gcpchaos-disk-loss.yaml`，如下所示：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: GCPChaos\n   metadata:\n     name: disk-loss-example\n     namespace: chaos-mesh\n   spec:\n     action: disk-loss\n     secretName: 'cloud-key-secret'\n     project: 'your-project-id'\n     zone: 'your-zone'\n     instance: 'your-instance-name'\n     deviceNames: ['disk-name']\n     duration: '5m'\n   ```\n\n   根據此配置範例，Chaos Mesh 將對指定的 GCP 實例注入 `disk-loss` 故障，使該 GCP 實例在 5 分鐘內與指定的儲存卷分離。\n\n   有關分離 GCP 儲存的更多資訊，請參閱 [分離 GCP 儲存](https://cloud.google.com/compute/docs/reference/rest/v1/instances/detachDisk)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "48988a0f",
+      "source_content": "2. After the configuration file is prepared, use `kubectl` to create an experiment:\n\n   ```bash\n   kubectl apply -f gcpchaos-disk-loss.yaml\n   ```",
+      "source_content_hash": "0e51d90097c3b7a4f3812fa98a34512a309f68a3cdd2ea209c667d8cfa1ef96f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 配置檔案準備好後，使用 `kubectl` 建立實驗：\n\n   ```bash\n   kubectl apply -f gcpchaos-disk-loss.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c6b2ca77",
+      "source_content": "### Field description",
+      "source_content_hash": "65096914168d6220ba2cc9e38088ff322d829e39af74e98d0df5f5b3cb7a27de",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dce16ab4",
+      "source_content": "The following table shows the fields in the YAML configuration file.",
+      "source_content_hash": "395fcf169ece18108fecbff8546ec6ba376662a308444a8419d19d241f03a56c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "下表顯示了 YAML 配置檔案中的欄位。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "03a09291",
+      "source_content": "| Parameter | Type | Descpription | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| action | string | Indicates the specific type of faults. The available fault types include node-stop, node-reset, and disk-loss. | node-stop | Yes | node-stop |\n| mode | string | Indicates the mode of the experiment. The mode options include `one` (selecting a Pod at random), `all` (selecting all eligible Pods), `fixed` (selecting a specified number of eligible Pods), `fixed-percent` (selecting a specified percentage of the eligible Pods), and `random-max-percent` (selecting the maximum percentage of the eligible Pods). | None | Yes | `one` |\n| value | string | Provides parameters for the `mode` configuration, depending on `mode`. For example, when `mode` is set to `fixed-percent`, `value` specifies the percentage of pods. | None | No | 1 |\n| secretName | string | Indicates the name of the Kubernetes secret that stores the GCP authentication information. | None | No | cloud-key-secret |\n| project | string | Indicates the ID of GCP project. | None | Yes | real-testing-project |\n| zone | string | Indicates the region of GCP instance. | None | Yes | us-central1-a |\n| instance | string | Indicates the name of GCP instance. | None | Yes | gke-xxx-cluster--default-pool-xxx-yyy |\n| deviceNames | []string | This is a required field when the `action` is `disk-loss`. This field specifies the machine disk ID. | None | no | [\"your-disk-id\"] |\n| duration | string | Indicates the duration of the experiment. | None | Yes | 30s |",
+      "source_content_hash": "5c675f33e67ba16fc4024d75234e3e8f5101e996a306a6167efa0d3006948a2c",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_03a09291"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/simulate-gcp-chaos.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.061086+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "10e102b0e89ebd833d277966dbb6ed08e6dee46d02e3c0095d572ea70663f1c4"
+  }
+}

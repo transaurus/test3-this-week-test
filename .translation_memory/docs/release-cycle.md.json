@@ -1,0 +1,705 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/release-cycle.md",
+  "source_file_content_hash": "9d92e7a604df805744f0788fe3beb2deb33827a5109bd49dac27d03a43d16746",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Chaos Mesh Release Cycle\n---",
+      "source_content_hash": "50ee6d7992b862c2adffed161257131e233682b0ef851c182e220fa6d80dfb87",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document is focused on Chaos Mesh developers and contributors who need to create an enhancement, issue, or pull request which targets a specific release milestone.",
+      "source_content_hash": "02ef52680e25145835dea4755190b85198c760e9a8e5bff3b8effe96f83fa509",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件主要針對需要創建針對特定發佈里程碑的增強功能、議題或拉取請求的 Chaos Mesh 開發者與貢獻者。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## Roles",
+      "source_content_hash": "0119af1db59c8e66643e70c3a687926478085db6b66e92c869e026e537168cd7",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 角色職責"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d912d376",
+      "source_content": "### Contributors/Developers",
+      "source_content_hash": "85a0cfbd2505d1795f1c7924c40dd07ec09a0ae5975e8fd810827e36d682faed",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 貢獻者/開發者"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "Contributors are expected to participate in the release cycle with the following forms:",
+      "source_content_hash": "cd68f4972c35433cb7c43cf123468d4907a44f7de5e6f78db686da70d18934d2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "貢獻者應以下列形式參與發佈週期："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2b4a9900",
+      "source_content": "- participant discussions of new features/enhancements collection",
+      "source_content_hash": "9aef22a72084efccc01854b5863ac9ba0cd13c5ce7070eafe07c1cf0dcc4e69d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 參與新功能/增強功能的收集討論"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9a03a62b",
+      "source_content": "- contribute with codes/docs for Chaos Mesh",
+      "source_content_hash": "7da773e861a272d8007616f37f3d47f4f11593a18f5dc6329696ec949b742f02",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 貢獻 Chaos Mesh 的程式碼/文件"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "586b24f7",
+      "source_content": "- help to prune feature if required",
+      "source_content_hash": "54ed7dafd713e4c6fb3560ed0d3a55f3b138b9444b98537490c7e36542a30ffa",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 必要時協助修剪功能"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "As a contributor, the only 2 things you need to notice are:",
+      "source_content_hash": "6bf3b13a2998a3dc89cfac73fd7508bbc0e5ab2284ff0b953f511b38955d4a03",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "身為貢獻者，僅需注意兩點："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "632fee71",
+      "source_content": "- you might be asked to complete your uncompleted work, or prune them from the release branch.",
+      "source_content_hash": "83503b3a9f87117fe37232da241166c58bead3c1dd80008614ebc885f52daeb4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 您可能會被要求完成未完成的工作，或從發佈分支中修剪這些內容"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dc10b09",
+      "source_content": "- your PR might not be merged into master quickly during \"Code Freeze\"",
+      "source_content_hash": "7225bab62c50c040f7333f0444fa624529d216285f00792c91cbaba267194089",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 在「程式碼凍結」期間，您的拉取請求可能無法快速合併至主分支"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "63622bf0",
+      "source_content": "### Release Manager",
+      "source_content_hash": "4cbf89fde91bceac3f3c65c63d6f8e99594ae552d748792a69fc41b846d0ae24",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 發佈經理"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "98cfbd53",
+      "source_content": "\"Release Managers\" is an umbrella term that encompasses the set of Chaos Mesh contributors responsible for maintaining release branches, tagging releases, and building/packaging Chaos Mesh.",
+      "source_content_hash": "aac159da77bff7b047ca3e3209ada97b71fe4825126acbcfd4a403091e59ee92",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "「發佈經理」是統稱，涵蓋負責維護發佈分支、標記版本以及建構/打包 Chaos Mesh 的貢獻者群體。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ccc88b4c",
+      "source_content": "Release Manager are expected to:",
+      "source_content_hash": "48ac728a22416ff9096aa05b64d67b24f48fb795b9adea877b9bbebd33d045f8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "發佈經理應負責："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "882f8186",
+      "source_content": "- collect \"new features/enhancements\" as a GitHub Issue",
+      "source_content_hash": "880512e0ce000a01f7e539bf32982348123caf17fd22f04e02b89af938a638dc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 將「新功能/增強功能」收集為 GitHub 議題"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2523feeb",
+      "source_content": "- create and maintain `vX.Y.0` GitHub Milestone",
+      "source_content_hash": "96146e164d87a373df0be512fa709a712548813e9e389ad049e751d190f37ada",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 建立並維護 `vX.Y.0` GitHub 里程碑"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5df3dd43",
+      "source_content": "- schedule and hold the required meeting",
+      "source_content_hash": "99c05cb514948f734030e1cd595f208671750ee82daa31d2e7844b2d181f6fc4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 安排並主持必要會議"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "346d5f8d",
+      "source_content": "- keep maintaining the tracking documentation for next coming release",
+      "source_content_hash": "d8553df327dd4c32b513d87807b5166a895cc07c60dee54c844d869b6acf9651",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 持續維護下次發佈的追蹤文件"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "56d666fe",
+      "source_content": "- communicate with contributors asking for help to complete/prune the unfinished features/docs; Or prune them by yourself if we lost the communication with contributors.",
+      "source_content_hash": "4d8d85959339eb5331f142d838cb275762032403b2bbcece9102886f22e6fcfa",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 與貢獻者溝通，請求協助完成/修剪未完成的功能或文件；若與貢獻者失聯則自行修剪"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "212333a8",
+      "source_content": "- cut the release branch",
+      "source_content_hash": "7e881e1b9313502d8f66e82c92955abc43e753ae91e2ebcef83bb177fed6f4b3",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 切割發佈分支"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c0463e48",
+      "source_content": "- draft the Release Notes for the minor version",
+      "source_content_hash": "d66a3b68111813ca03fe219421eca780c379ff395e0d8cc9eb75fd351209343b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 撰寫次要版本的發行說明草案"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2d89eb89",
+      "source_content": "- release the alpha, beta, minor versions",
+      "source_content_hash": "e3a15e4dc5186bd46ef9445c21e3cedf98c9c6e5b7d00b612edf2dbfe3c10110",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 發佈 alpha、beta 及正式版本"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cc5346ac",
+      "source_content": "- keeping enriching release-related documents",
+      "source_content_hash": "b77a979c4c5b9b5d5c918d65e747c0738d02701b1c5af782c9c954da79b6fff0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 持續完善發佈相關文件"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "80d9e13c",
+      "source_content": "### Becoming Release Manager?",
+      "source_content_hash": "93e170dcc0b775b32229f84cb99a7b713c09b0ce0635ca309c01602e12a9c57c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 如何成為發佈經理？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "33331f27",
+      "source_content": "Chaos Mesh committers and maintainers would nominate new release managers at about the 1st week of the new release cycle, the nomination should be published in slack channel #chaos-mesh-maintainers. And they would be selected if there are no more than half the number of oppositions. At last, we would announce the release managers on the document website and slack channel [#project-chaos-mesh](https://cloud-native.slack.com/archives/C0193VAV272).",
+      "source_content_hash": "e5ea8e9ea98a6fec3f01f7f4d58b8df5e6cb64e31ef0cfa982bd866018598679",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 的提交者與維護者將在新發佈週期的第1週左右提名新發佈經理，提名應發布於 Slack 頻道 #chaos-mesh-maintainers。若反對票未超過半數則當選，最終我們會在文件網站及 Slack 頻道 [#project-chaos-mesh](https://cloud-native.slack.com/archives/C0193VAV272) 公告發佈經理名單。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8d04259b",
+      "source_content": "## Versioning Scheme and Timeline",
+      "source_content_hash": "d215df441b7acf8f206c23c18bd9bdfffc39f24f3f7a0be21e33652b6c7d2489",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 版本方案與時程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6c00797f",
+      "source_content": "- Chaos Mesh would release a minor version `vX.Y.0` every 8 weeks.",
+      "source_content_hash": "2c02a6d4d691f3db3d79ae8fd2c7ad16068f16d51686a5322e5486587d678c81",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- Chaos Mesh 每8週發佈一個次要版本 `vX.Y.0`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee9c310",
+      "source_content": "- Chaos Mesh would release a preview version(`vX.Y.0.alpha/beta-W`, W>=0) every at least 2 weeks.",
+      "source_content_hash": "b8498415c517f85f8bcd0745e571b6bd6664bbfdbd20c879cc783f964dd80660",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 至少每2週發佈一個預覽版本 (`vX.Y.0.alpha/beta-W`, W>=0)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "394e77a6",
+      "source_content": "- Chaos Mesh would release a bugfix/patch (`vX.Y.Z`, Z>0) version as required.",
+      "source_content_hash": "4a44179baf82b2f8f860e9ed0d07ea3ec4412d6844988d6611ea5e978d11a7b9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 必要時發佈錯誤修復/補丁版本 (`vX.Y.Z`, Z>0)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c674e260",
+      "source_content": "## Release Phases",
+      "source_content_hash": "7d41cd78d2d4122aa6551282497acee88e4fc2651a9211e3e739b217bff050fa",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 發佈階段"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a44047a5",
+      "source_content": "There would be 3 phases in a cycle of release:",
+      "source_content_hash": "53e6d59b0bbdb559aa1145a8185798dfe3a450dc87c9f45b28a0e924f53dbbdc",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "每個發佈週期包含三個階段："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "11f54993",
+      "source_content": "- Normal Dev (Week 1-5)",
+      "source_content_hash": "448e96ea9710721943beca33419138c1fec138d76fa7dfc8039b386955a7450f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 常規開發期 (第1-5週)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "002560c3",
+      "source_content": "- Code Freeze (Week 6-7)",
+      "source_content_hash": "e7f8c586bfc0db2bee14a96c0b23fc81a50f17edf73bf330638bd44e958a9b7b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 程式碼凍結期 (第6-7週)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0fcf7990",
+      "source_content": "- Release Week (Week 8)",
+      "source_content_hash": "9ed1ef3620ef43b43f19eddf7319a538561929cf96cb2e71b6682d76345bcfb6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 發佈週 (第8週)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2c1b51df",
+      "source_content": "### Normal Dev",
+      "source_content_hash": "208d8212f10cb0708259ce3dacc6e878b0625474770fa298da5837578220b596",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 常規開發期"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e536ea0d",
+      "source_content": "Things happened during \"Normal Dev\":",
+      "source_content_hash": "abae7416cef286032729a3c09a3b9a967bfaf37eb34006d1c1f5b9f4bc630c3e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此階段進行事項："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "36e1c593",
+      "source_content": "- selecting new Release Managers",
+      "source_content_hash": "d91d1ef51a91fc98d2eae4b5e78302399dee57e8859817f00c658a9141076634",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 遴選新發佈經理"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5257fefd",
+      "source_content": "- collecting \"new features/enhancements\" would be carried with the next release",
+      "source_content_hash": "373412744fe90cb34d0d6e9347692dc5f25f8423c66bd925485b9a7d56c74440",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 收集將納入下次發佈的「新功能/增強功能」"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7e8033c1",
+      "source_content": "- create the `vX.Y.0` milestone if not existed",
+      "source_content_hash": "671763fe939ef329482b094a156586a0f6ae6830bbfba45251cd158e1b391081",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 若尚未建立則創建 `vX.Y.0` 里程碑"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "21d3e688",
+      "source_content": "- coding and documenting",
+      "source_content_hash": "836dfa31c6a812176e3473b0c93cd210a06b37960f798eca491f5b64fe584b0a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 編碼與文件撰寫"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "276be359",
+      "source_content": "- releasing alpha versions every 2 weeks",
+      "source_content_hash": "a2a2cac331360d6d0372c9faef690093c60dc563c097e0da5473cd84cb4dd64b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 每2週發佈 alpha 版本"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8c6d7ee7",
+      "source_content": "### Code Freeze",
+      "source_content_hash": "600508f49761fa0422b6e79d39840e67bba394149a1858d0f59d54b457dd4c20",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 程式碼凍結期"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "06e24cc0",
+      "source_content": "Things happened during \"Code Freeze\":",
+      "source_content_hash": "f8817d37704bb832996ee18e7f74af4aee27ffd830284ec03ec0f994a032582d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此階段進行事項："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f67b99e4",
+      "source_content": "- blocking the merging of all unrelated PRs",
+      "source_content_hash": "d93a45e9bd83aafee5c9c565b5c6e323268065b81a6282052bd4dcc2692e33fa",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 阻擋所有不相關拉取請求的合併"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "429e7afa",
+      "source_content": "- reviewing \"new features/enhancements\" would be carried with the next release\n  - finish or prune the unfinished features\n  - the documents are ready, at least have a related open issue on chaos-mesh/website",
+      "source_content_hash": "76c76b494671bb519d6140eaf525839984f20e4190ff0899ad6c9bd7bdbcdb97",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 審查將納入下一版本發行的「新功能/增強功能」\n  - 完成或修剪未完成的功能\n  - 文件已就緒，至少在 chaos-mesh/website 上有相關的 open issue"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "032a5911",
+      "source_content": "- cutting branch `release-X.Y`",
+      "source_content_hash": "7686891d7d901124273f69edeafc4820399fb9072a2094b30a835853fb23504c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 創建分支 `release-X.Y`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ae11e253",
+      "source_content": "- releasing beta versions",
+      "source_content_hash": "a190a05048da9a66843ce963a278e7927a69fe8c173533cb7dbad8653d94ce51",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 發布 beta 版本"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0b47d7b6",
+      "source_content": "- preparing the Release Notes",
+      "source_content_hash": "3abe2733078db617314310634cd27faef9f0cc4e6fb254883f6707becd779960",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 準備發行說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cfb8e6f9",
+      "source_content": "- create the `vX.Y+1.0` milestone",
+      "source_content_hash": "d9f90da61daf4bcdd84fd13e41802235d54fef300deb5a6b3dd6326e152f8a89",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 創建 `vX.Y+1.0` 里程碑"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f59fdf04",
+      "source_content": "- merging bugfix if required",
+      "source_content_hash": "8a6cb3728d0caa0c787dbcf6b1f27f9ddffc98f0ec13e2033f667b0745443515",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 必要時合併錯誤修復"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9dd207ef",
+      "source_content": "- documenting about the new release",
+      "source_content_hash": "49ed399f708e07665eb9a74d335af633beb0db27b95634c70d9ff5ea2dbcc61e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 編寫新版本相關文件"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "463ed165",
+      "source_content": "Phase \"Code Freeze\" would start at Week 6, and finish at branch `release-X.Y` created.",
+      "source_content_hash": "0461114beafb723c14ee32c08e43042f8ca5385701e8e53e32d63b972595acc8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "「程式碼凍結」階段將於第 6 週開始，並在創建 `release-X.Y` 分支時結束。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a5c5772a",
+      "source_content": "When we are in \"Code Freeze\", PRs which are not related to the coming minor release would be prevented from merging into master. Only PRs related to the coming release could be merged into the master branch.",
+      "source_content_hash": "8d7cc496c8cc577e8c27122ddb823370982a5099604013b559e4d8e7aaf8b6df",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當處於「程式碼凍結」期間，與即將發布的次要版本無關的 PR 將被禁止合併至 master 分支。僅與即將發布版本相關的 PR 可合併至 master 分支。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fbc2db85",
+      "source_content": "Release Managers would communicate with contributors to ask them for finishing or pruning the unfinished features. Sometimes Release Managers would prune them by themselves if we lost the communication with the contributors.",
+      "source_content_hash": "bdf774886f0519c5e4bbae8a39a07b7ad66de27a1b10d2bd6037c36d0e7bc829",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "發行經理將與貢獻者溝通，要求他們完成或修剪未完成的功能。若與貢獻者失去聯繫，發行經理有時會自行修剪這些功能。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8126f763",
+      "source_content": "Once all the unfinished features are completed or marked as \"need prune\", the release manager would cut the `release-X.Y` branch. The merging process for all PRs back to normal.",
+      "source_content_hash": "f068d63ffab5d3147389ed514dab7dbaa1c51d2394b6e8bfcf18492ca5acf4ba",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "一旦所有未完成功能被完成或標記為「需修剪」，發行經理將創建 `release-X.Y` 分支，所有 PR 的合併流程即恢復正常。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "74dd7937",
+      "source_content": "Once uncompleted features are pruned, Release Manager would release the first beta version. After that, only bug fixes would be cherry-picked into the release branch. Release Manager could release more beta versions if we have updates on the release branch.",
+      "source_content_hash": "974c4683ce1d96b3406712da2b4184c7d13a80040888ac2a62e3a8ea02f6b804",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "未完成功能被修剪後，發行經理將發布首個 beta 版本。此後僅錯誤修復會被揀選至發行分支。若發行分支有更新，發行經理可發布更多 beta 版本。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5803caac",
+      "source_content": "Release Manager should start to prepare Release Notes after the beta version is released.",
+      "source_content_hash": "e750fd70ff10789cfc881fe37748b8f04d417bfcf5c718f57a5a9be10c38c3ed",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "beta 版本發布後，發行經理應開始準備發行說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39db08de",
+      "source_content": "### Release Week",
+      "source_content_hash": "f07dbfa1064335ca12152af0afe0e1fdbf5d64fd019f21c09a967f370c1c009b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 發布週"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "785750ac",
+      "source_content": "Things happened during \"Release Week\":",
+      "source_content_hash": "35f15d81f16cc0326fcb131d79cee4b1480b8023fa61affa00442a41b8d88d52",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "「發布週」期間發生的事項："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0fb9184a",
+      "source_content": "- merging emergency bugfix or vulnerabilities fix if required",
+      "source_content_hash": "26dcbaae96ad912c90b6c0cad4b6a6bb0822d08c28a4b9aac7a306b743af686e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 必要時合併緊急錯誤修復或漏洞修補"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "506bd6d4",
+      "source_content": "- releasing the minor version artifacts (helm charts, container images, and others)",
+      "source_content_hash": "b83615e89eacd1d7c29c29454f96f13d755129387a4752ac3b4254dd2b501c93",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 發布次要版本工件（Helm charts、容器映像檔等）"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5e27ec1e",
+      "source_content": "- releasing the minor version documentation",
+      "source_content_hash": "ef3b7ac49d874239afe7cb14dbd42c3bddab87433396432e8322f529a1d878f0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 發布次要版本文件"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "25212439",
+      "source_content": "Release Manager would release the `vX.Y.0` in this week.",
+      "source_content_hash": "31437a45511d2c41d0c617339f97e2a5cdcd01ab0014d4fe3cffc11a958cf959",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "發行經理將於本週發布 `vX.Y.0` 版本。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/release-cycle.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.068342+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "9d92e7a604df805744f0788fe3beb2deb33827a5109bd49dac27d03a43d16746"
+  }
+}

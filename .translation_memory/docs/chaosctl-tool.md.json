@@ -1,0 +1,445 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/chaosctl-tool.md",
+  "source_file_content_hash": "56260eb4ee5572cbc5bdca7480994da6e8bd0001ff7cc8c0a666dcfe4653ece0",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Chaosctl\n---",
+      "source_content_hash": "2e40a0e418bc99aa7cf43fd8baff74faa098a9ca419cd36e01930bd114b4123e",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "Chaosctl is a tool to assist in debugging Chaos Mesh. With Chaosctl, you can simplify the process of developing and debugging new chaos types, and provide references for other developers when raising an issue.",
+      "source_content_hash": "91642fdf15a25cff7d0a5cac577c3c9d885c49943d190c8a067294bf562c3239",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaosctl 是一款輔助調試 Chaos Mesh 的工具。透過 Chaosctl，您可以簡化開發和調試新混沌類型的流程，並在提交問題時為其他開發者提供參考依據。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## Get Chaosctl",
+      "source_content_hash": "0375ce32047bf51727e20f82be293cc5d63723bebd09fa21e4ec8c710f08e504",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 取得 Chaosctl"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "For Linux users, you can directly download the executable file for Chaosctl.",
+      "source_content_hash": "5fa64bb19a02d8605703cff0a045e12e9d983e7d491b2256b1e135e906861dca",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Linux 使用者可直接下載 Chaosctl 的可執行檔。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "43a8bc7e",
+      "source_content": "```bash\ncurl -sSL https://mirrors.chaos-mesh.org/latest/chaosctl -O\n```",
+      "source_content_hash": "eba0bc255009da483ef29028733d3587d202582cf31d6505510c59469752fbb7",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_43a8bc7e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "For Windows or macOS users, you can compile it from the source code. Go v1.15 or above is recommended for compiling. Perform the following steps:",
+      "source_content_hash": "efaf4639c4cafff8747fbc5d65ab17b78f614df5afe21eeccfd9bcfeb342b177",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Windows 或 macOS 使用者需從原始碼編譯，建議使用 Go v1.15 或更高版本進行編譯。請執行以下步驟："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0eb403ec",
+      "source_content": "1. Clone the Chaos Mesh repository to your local machine.\n\n   ```bash\n   git clone https://github.com/chaos-mesh/chaos-mesh.git\n   ```",
+      "source_content_hash": "90dad0713702272a12332ab18ef9e9ec40960ca212bc46927cceda3f78b44d6e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將 Chaos Mesh 儲存庫克隆至本機。\n\n   ```bash\n   git clone https://github.com/chaos-mesh/chaos-mesh.git\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b31a2bd",
+      "source_content": "2. Switch to the Chaos Mesh directory.",
+      "source_content_hash": "c5dec5808b07d89162012a62f46b4d178b1f358d2e180dc104e2ec40f50fdbf4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 切換至 Chaos Mesh 目錄。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ff75e5d8",
+      "source_content": "3. Execute the following command:\n\n   ```bash\n   make chaosctl\n   ```\n\n   The compiled executable file is at `bin/chaosctl`.",
+      "source_content_hash": "c988012d723f486273bd3545819003dda2c12e4b4c6a31b63551020ce4ef8ff1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 執行以下指令：\n\n   ```bash\n   make chaosctl\n   ```\n\n   編譯後的可執行檔位於 `bin/chaosctl`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0037ff70",
+      "source_content": "## Features",
+      "source_content_hash": "9eb55e137a031f4b4d166f425f9b2d9183ca01a0ab9de3d390966dacb1e6a038",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 功能特性"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bdc231b1",
+      "source_content": "Currently, Chaosctl supports printing logs and debugging information for Chaos experiments.",
+      "source_content_hash": "3849c5cadf22b65fb67479413dcfc4be9f47e6a70e48cb656d39ce6325077479",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前 Chaosctl 支援輸出混沌實驗的日誌與調試資訊。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3b7478ea",
+      "source_content": "### Printing logs",
+      "source_content_hash": "8b605cea4918d985de067167f234ac47e7db88885dd9cee2b9de988bc0594fc4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 輸出日誌"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c3a738de",
+      "source_content": "To print the logs from all Chaos Mesh components, use the `chaosctl logs` command. To check the help information and examples of this feature, use the `chaosctl logs -h` command. An example command is as follows:",
+      "source_content_hash": "a67df85036ed3e336ca316d152ed783f6cd1d362f22246f49aeadab36c59ac27",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要輸出所有 Chaos Mesh 元件的日誌，請使用 `chaosctl logs` 指令。查閱此功能的說明與範例請執行 `chaosctl logs -h`。範例指令如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bca33820",
+      "source_content": "```bash\nchaosctl logs -t 100 # Print the last 100 lines of logs from all components\n```",
+      "source_content_hash": "83703aa74341bbcdbc204e23a48b0b3446ecaaa65b728b0f49c37eef920d7e49",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_bca33820"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "35a77014",
+      "source_content": "### Printing debugging information",
+      "source_content_hash": "ac3df41545fb95f2c46842e00aef3d42efa9da3c4b81f4f57292ad68e66586b7",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 輸出調試資訊"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "13d9cd70",
+      "source_content": "To print debugging information, use the `chaosctl debug` command. To check the help information and examples of this feature, use the `chaosctl debug -h` command. When you are debugging, you need to make sure Chaosctl is connected to the corresponding `chaos-daemon`. If you disable TLS (enabled by default) when deploying Chaos Mesh, add the `-i` option to tell Chaosctl that TLS is not used. An example command is as follows:",
+      "source_content_hash": "6f83c43cca6c6a782be50833d5dc0269920fd9fa760472e318262ed4ce4c91b2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出調試資訊請使用 `chaosctl debug` 指令。查閱此功能的說明與範例請執行 `chaosctl debug -h`。調試時需確保 Chaosctl 已連接對應的 `chaos-daemon`。若部署 Chaos Mesh 時禁用 TLS（預設啟用），需添加 `-i` 參數告知 Chaosctl 未使用 TLS。範例指令如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "229d6705",
+      "source_content": "```bash\n./chaosctl debug -i networkchaos web-show-network-delay\n```",
+      "source_content_hash": "738baeab95c020d4d1593a3055228d60eaede308926ef610ed68bb8e8c5acca9",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_229d6705"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "98d26038",
+      "source_content": "Currently, Chaosctl only supports the debugging of IOChaos, NetworkChaos, and StressChaos.",
+      "source_content_hash": "f678d2c991d6e576e5fbb145e4f420e404414e1cd31a3f0d4330b0882aa8f5b9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前 Chaosctl 僅支援調試 IOChaos、NetworkChaos 與 StressChaos。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "af52d59d",
+      "source_content": "### Generate TLS certificates for Chaosd",
+      "source_content_hash": "ba035414f4f9fe665d851183cdc5c2982503bbbf829e308d4739a9fb3529fdb6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 為 Chaosd 生成 TLS 憑證"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4d52a261",
+      "source_content": "When a request is initiated between Chaosd and Chaos Mesh, to ensure communications security between Chaosd and Chaos-controller-manager services, Chaos Mesh recommends enabling mTLS (Mutual Transport Layer Security) mode.",
+      "source_content_hash": "f73ca18de6eba7f7d842b916c24b3c041ff9b233aad1d7e99301d8ea26eda97f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當 Chaosd 與 Chaos Mesh 之間發起請求時，為確保 Chaosd 與 Chaos-controller-manager 服務間的通信安全，Chaos Mesh 建議啟用 mTLS（雙向傳輸層安全）模式。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "23dfb152",
+      "source_content": "To enable mTLS mode, the TLS certificate parameters should be configured in Chaosd and Chaos mesh. Therefore, make sure that Chaosd and Chaos Mesh have generated TLS certificates, then start Chaosd and Chaos Mesh with the TLS certificate as parameters.",
+      "source_content_hash": "5e87a3c8b29dc1da23d3291d5e2df9f9e21e849d4cf1b83d0ea9da592387ae1e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "啟用 mTLS 模式需在 Chaosd 與 Chaos Mesh 中配置 TLS 憑證參數。因此請確保 Chaosd 與 Chaos Mesh 已生成 TLS 憑證，再以 TLS 憑證作為參數啟動服務。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5257fefd",
+      "source_content": "- Chaosd: You can start Chaosd before **or** after configuring TLS certificate parameters. For clusters security, it is recommended to configure TLS certificate parameters first, and then start Chaosd. For details, see [Deploy Chaosd server](simulate-physical-machine-chaos.md#deploy-chaosd-server).",
+      "source_content_hash": "ffbfe9ba6305905dd8dadcaf03e4559bb411047ac87b8f5a4e3966df0e4c72e5",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- Chaosd：您可在配置 TLS 憑證參數**之前或之後**啟動 Chaosd。為確保叢集安全，建議先配置 TLS 憑證參數再啟動 Chaosd。詳情參見[部署 Chaosd 伺服器](simulate-physical-machine-chaos.md#deploy-chaosd-server)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7e8033c1",
+      "source_content": "- Chaos Mesh: If you deployed Chaos Mesh using Helm, TLS certificate parameters are configured by default.",
+      "source_content_hash": "c21084dc98d4f5c9e033958e9021e32ad5a3d6b3e3cf00e0ec0465a93f4a0afc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- Chaos Mesh：若使用 Helm 部署 Chaos Mesh，TLS 憑證參數預設已配置。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "79ad944d",
+      "source_content": "If your Chaosd does not generate a TLS certificate, you can use Chaosctl to easily generate the certificate through the command lines. In the following use cases, Chaosctl runs commands through different schemes.",
+      "source_content_hash": "c43d54510c7a3bc5c5f8db2d2142e65a1d5761983425f026d6d9d86f34abbeb3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若您的 Chaosd 未生成 TLS 憑證，可使用 Chaosctl 透過指令快速生成。以下使用案例展示 Chaosctl 透過不同方案執行指令。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "531437ca",
+      "source_content": "**Case 1**: The nodes where Chaosctl runs can access Kubernetes clusters and connect to a physical machine using SSH tools.",
+      "source_content_hash": "919aac73e79dd90dfda11115bee1b4624af8ea758c8a7cfac58682b62a82d98b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**案例 1**：執行 Chaosctl 的節點可訪問 Kubernetes 叢集，且能透過 SSH 工具連接實體機器。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "06e24cc0",
+      "source_content": "Run the following commands to complete the operations:",
+      "source_content_hash": "dfed11fc421582c7008a7e62c203a56560a492052f9c7dc3efe2975485391535",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "請執行以下指令完成操作："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f67b99e4",
+      "source_content": "- Command: Use `chaosctl pm init` command:\n\n  ```bash\n  ./chaosctl pm init pm-name --ip=123.123.123.123 -l arch=amd64,anotherkey=value\n  ```",
+      "source_content_hash": "972ad62f2ed14070e4c9e324bd2f92e63b5c2c3f92ec50299ea985348888c74a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 指令：使用 `chaosctl pm init` 指令：\n\n  ```bash\n  ./chaosctl pm init pm-name --ip=123.123.123.123 -l arch=amd64,anotherkey=value\n  ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0b47d7b6",
+      "source_content": "- Operation: The command performs the following operations.\n  - Generate the required certificate for Chaosd simply, and save the certificate to the corresponding physical machine.\n  - Create the corresponding `PhysicalMachine` resource in Kubernetes clusters.",
+      "source_content_hash": "3d008ad61473d51cd74fe225234cc4042974905ee4b60a0181f5406c1065c21e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 操作：該指令將執行以下操作。\n  - 簡化生成 Chaosd 所需憑證，並將憑證儲存至對應實體機器。\n  - 在 Kubernetes 叢集中創建對應的 `PhysicalMachine` 資源。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7736989b",
+      "source_content": "For further information and examples of this feature, refer to `chaosctl pm init -h`.",
+      "source_content_hash": "3fdfdf79308a6396da3153e09b68a8f65248d32286d3763f99368cd0fbdafd07",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "查閱此功能的進階說明與範例請執行 `chaosctl pm init -h`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6270d577",
+      "source_content": "**Case 2**: The nodes where Chaosctl runs can access Kubernetes clusters, but they cannot connect to a physical machine using SSH tools.",
+      "source_content_hash": "9e52bab31cbd7910a39697b0a2baaf4377794cac0b45183bb75c49db0e3ff4db",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**案例二**：Chaosctl 運行的節點可存取 Kubernetes 叢集，但無法透過 SSH 工具連接物理機器。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a1fa5396",
+      "source_content": "Run the following commands to complete the operations:",
+      "source_content_hash": "dfed11fc421582c7008a7e62c203a56560a492052f9c7dc3efe2975485391535",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下指令完成操作："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa64d5a9",
+      "source_content": "1. Before executing the command, you need to manually get a CA certificate from Kubernetes clusters through commands. For example:\n\n   ```bash\n   kubectl get secret chaos-mesh-chaosd-client-certs -n chaos-mesh -o \"jsonpath={.data['ca\\.crt']}\" | base64 -d > ca.crt\n\n   kubectl get secret chaos-mesh-chaosd-client-certs -n chaos-mesh -o \"jsonpath={.data['ca\\.key']}\" | base64 -d> ca.key\n   ```",
+      "source_content_hash": "fd898e6f325b92b03c6547c16bbbcde69672740e26f72a11455ca40ee189f875",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 執行指令前，需手動從 Kubernetes 叢集取得 CA 憑證。例如：\n\n   ```bash\n   kubectl get secret chaos-mesh-chaosd-client-certs -n chaos-mesh -o \"jsonpath={.data['ca\\.crt']}\" | base64 -d > ca.crt\n\n   kubectl get secret chaos-mesh-chaosd-client-certs -n chaos-mesh -o \"jsonpath={.data['ca\\.key']}\" | base64 -d> ca.key\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4405f913",
+      "source_content": "2. Copy the `ca.crt` and `ca.key` files to **the corresponding physical machine**. For example, copy the files to the `/etc/chaosd/pki` directory.",
+      "source_content_hash": "3f27e3cd781a7cfb3f0203bfc755feff714d3b10557968e1ead6ceb217f22cab",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 將 `ca.crt` 和 `ca.key` 檔案複製到**對應的物理機器**。例如將檔案複製至 `/etc/chaosd/pki` 目錄。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b40bd2d6",
+      "source_content": "3. Use the `chaosctl pm generate` command to generate TLS certificates (save to `/etc/chaosd/pki by default) on **the physical machine**. For example:\n\n   ```bash\n   ./chaosctl pm generate --cacert=/etc/chaosd/pki/ca.crt --cakey=/etc/chaosd/pki/ca.key\n   ```\n\n   For further information and examples of this feature, refer to `chaosctl pm generate -h`.",
+      "source_content_hash": "17c0f6a213e2c16caecc2d7160ceb07b83f0aa9255cd791bdda24afcf1415121",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "3. 在**物理機器上**使用 `chaosctl pm generate` 指令產生 TLS 憑證（預設儲存至 `/etc/chaosd/pki`）。例如：\n\n   ```bash\n   ./chaosctl pm generate --cacert=/etc/chaosd/pki/ca.crt --cakey=/etc/chaosd/pki/ca.key\n   ```\n\n   此功能的詳細說明與範例請參閱 `chaosctl pm generate -h`。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 2, translation has 3.",
+          "timestamp": "2025-07-04T06:49:59.300863+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "7a4ba486",
+      "source_content": "4. Use the `chaosctl pm create` command to create a `PhysicalMachine` resource in Kubernetes clusters on the machine that has access to Kubernetes clusters. For example:\n\n   ```bash\n   ./chaosctl pm create pm-name --ip=123.123.123.123 -l arch=amd64\n   ```\n\n   For further information and examples of this feature, refer to `chaosctl pm create -h`.",
+      "source_content_hash": "0321b7916758f21ff25f3ebb3c80acf006817051bdf6aa812a4d478baaf74e92",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 在可存取 Kubernetes 叢集的機器上，使用 `chaosctl pm create` 指令在 Kubernetes 叢集中建立 `PhysicalMachine` 資源。例如：\n\n   ```bash\n   ./chaosctl pm create pm-name --ip=123.123.123.123 -l arch=amd64\n   ```\n\n   此功能的詳細說明與範例請參閱 `chaosctl pm create -h`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d1f76d04",
+      "source_content": "## Questions and feedback",
+      "source_content_hash": "3c2022148ba07f7e3c89985d4baf2f4330bbf506bfba24e1c8b2ad8fc5aee68f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 問題與回饋"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6693c38c",
+      "source_content": "The code of Chaosctl is currently hosted in the Chaos Mesh project. For details, refer to [chaos-mesh/pkg/chaosctl](https://github.com/chaos-mesh/chaos-mesh/tree/master/pkg/chaosctl).",
+      "source_content_hash": "f73cfb440eebbfb85f55670a0606d4b80c7887d5c6e51ad62f7d8aaac42849ec",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaosctl 原始碼目前託管於 Chaos Mesh 專案中，詳情參閱 [chaos-mesh/pkg/chaosctl](https://github.com/chaos-mesh/chaos-mesh/tree/master/pkg/chaosctl)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e9313fef",
+      "source_content": "If you encounter problems during performing operations, or you are interested in helping us improve this tool, you are welcome to contact the Chaos Mesh team through [CNCF Slack](https://cloud-native.slack.com/archives/C0193VAV272), or create an [GitHub issue](https://github.com/chaos-mesh/chaos-mesh/issues).",
+      "source_content_hash": "fe54b4240161faf6da5f18fa1d290293ad876eb3f0dc384a981ba28380a83d33",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若操作過程中遇到問題，或有興趣協助改進此工具，歡迎透過 [CNCF Slack](https://cloud-native.slack.com/archives/C0193VAV272) 聯繫 Chaos Mesh 團隊，或建立 [GitHub issue](https://github.com/chaos-mesh/chaos-mesh/issues)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1b4de6df",
+      "source_content": "When describing your issues, it would be helpful to attach related logs and Chaos information. To provide reference material for developers, you are encouraged to attach the results of `chaosctl logs` to your questions. Besides, if your question is related to iochaos, networkchaos, stresschaos, the `chaosctl debug` related information also helps to diagnose the problem.",
+      "source_content_hash": "443faeea0fe2340efc2d3e86c7f2b3372716455cc8c7d3ef32678069dfa5a9f5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "描述問題時，建議附上相關日誌與混沌工程資訊。為提供開發者參考依據，鼓勵在提問時附上 `chaosctl logs` 的執行結果。此外，若問題與 iochaos、networkchaos 或 stresschaos 相關，`chaosctl debug` 的相關資訊亦有助於診斷問題。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/chaosctl-tool.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.300901+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "56260eb4ee5572cbc5bdca7480994da6e8bd0001ff7cc8c0a666dcfe4653ece0"
+  }
+}

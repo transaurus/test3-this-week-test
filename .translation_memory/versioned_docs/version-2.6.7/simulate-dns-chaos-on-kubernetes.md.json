@@ -1,0 +1,284 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/simulate-dns-chaos-on-kubernetes.md",
+  "source_file_content_hash": "51596012257f124b087c49337decc2bac64f4264cb7fbe3936f39c0d1fac15a7",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate DNS Faults\n---",
+      "source_content_hash": "c06cb7b9018028f82e16f0765210865b962baff20df0d05fdc6068d77d7910ed",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7335511f",
+      "source_content": "import PickHelmVersion from '@site/src/components/PickHelmVersion'",
+      "source_content_hash": "753aee644dbd2a4b70a118018b50ec80427523e751a14d470e7956678fd8cb94",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7335511f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "This document describes how to create DNSChaos experiments in Chaos Mesh to simulate DNS faults.",
+      "source_content_hash": "d4412a51b434a192b4df9aad0e8e7afdbd355d82f4f353ad7bae11e72428fc81",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件說明如何在 Chaos Mesh 中建立 DNSChaos 實驗以模擬 DNS 故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0d5e1c45",
+      "source_content": ":::info\n\nTo simulate DNS faults, you need to deploy a special DNS service called Chaos DNS Server.\n\nAfter `v2.6`, Chaos Mesh will deploy Chaos DNS Server by default. If you don't need to simulate DNS faults, you can set `dnsServer.create` to `false` when installing Chaos Mesh:\n\n<PickHelmVersion>{`helm install chaos-mesh chaos-mesh/chaos-mesh --namespace=chaos-mesh --version latest --set dnsServer.create=false`}</PickHelmVersion>\n\n:::",
+      "source_content_hash": "f8d2f2ab5f646217090bb0d0ac2f2e4b2cbee7c7b74b2005bd7ec745646aa698",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::info\n\n要模擬 DNS 故障，您需要部署一個名為 Chaos DNS Server 的特殊 DNS 服務。\n\n在 `v2.6` 之後，Chaos Mesh 預設會部署 Chaos DNS Server。如果您不需要模擬 DNS 故障，可以在安裝 Chaos Mesh 時將 `dnsServer.create` 設定為 `false`：\n\n<PickHelmVersion>{`helm install chaos-mesh chaos-mesh/chaos-mesh --namespace=chaos-mesh --version latest --set dnsServer.create=false`}</PickHelmVersion>\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee0e40d",
+      "source_content": "## DNSChaos Introduction",
+      "source_content_hash": "4a99a04a9ed6e10c019242b02df19e78fa5231a6eadb8872fb8d9bd7df1bd6b1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## DNSChaos 介紹"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "DNSChaos is used to simulate wrong DNS responses. For example, DNSChaos can return an error or return a random IP address when receiving a DNS request.",
+      "source_content_hash": "4c42081aeeeda109b88a434aed8355d668c216b5d6e66dbec9df5d6bbe6dfd95",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "DNSChaos 用於模擬錯誤的 DNS 回應。例如，DNSChaos 可以在收到 DNS 請求時返回錯誤或隨機 IP 位址。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "40f9552a",
+      "source_content": "## Check if Chaos DNS Server is deployed",
+      "source_content_hash": "eb14a592adb9dbb84ed8b4c00be4b500e3cb2b7e77243b954409410ccc0188f1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 檢查 Chaos DNS Server 是否已部署"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c2bdd0",
+      "source_content": "Check if Chaos DNS Server is deployed by running the following command:",
+      "source_content_hash": "a484029b1628875d73661e5bee3a57ea5db5d052c40a7434d34664f90246edbe",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下指令檢查 Chaos DNS Server 是否已部署："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "08021a08",
+      "source_content": "```bash\nkubectl get pods -n chaos-mesh -l app.kubernetes.io/component=chaos-dns-server\n```",
+      "source_content_hash": "f01fce31feb8e8de2d32ef92920baef54a7c9aa99f124131c20520f07ef768d4",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_08021a08"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfe931a2",
+      "source_content": "Make sure that the Pod status is `Running`.",
+      "source_content_hash": "393b1e22a8e8ce0e5b0db1efcf7e33a31ecc71985967b77d687083f093949a21",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "請確認 Pod 狀態為 `Running`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0037ff70",
+      "source_content": "## Notes",
+      "source_content_hash": "63e13e87b378d1e85f838ead267db9020c1457b1118a37e0af9fb5f976144f4b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 注意事項"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2d89eb89",
+      "source_content": "1. Currently, DNSChaos only supports record types `A` and `AAAA`.",
+      "source_content_hash": "5f1634765595d07720eff3f7716e599f2ddb7efa72f774c8a15b951c07856496",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 目前，DNSChaos 僅支援記錄類型 `A` 和 `AAAA`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa355dc5",
+      "source_content": "2. The chaos DNS service runs CoreDNS with the [k8s_dns_chaos](https://github.com/chaos-mesh/k8s_dns_chaos) plugin. If the CoreDNS service in your Kubernetes cluster contains some special configurations, you can edit configMap `dns-server-config` to make the configuration of the chaos DNS service consistent with that of the K8s CoreDNS service using the following command:\n\n   ```bash\n   kubectl edit configmap dns-server-config -n chaos-mesh\n   ```",
+      "source_content_hash": "f151d70a48c19bae8429f65e47c1f8871f0d81f0b758b217183c8695d97f0967",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. Chaos DNS 服務使用 [k8s_dns_chaos](https://github.com/chaos-mesh/k8s_dns_chaos) 外掛執行 CoreDNS。如果您的 Kubernetes 叢集中的 CoreDNS 服務包含一些特殊設定，您可以使用以下指令編輯 configMap `dns-server-config`，以使 Chaos DNS 服務的設定與 K8s CoreDNS 服務一致：\n\n   ```bash\n   kubectl edit configmap dns-server-config -n chaos-mesh\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "06c0f776",
+      "source_content": "## Create experiments using Chaos Dashboard",
+      "source_content_hash": "0e6c13931d3c46c241532f93bf2c43261695607133973a006c15d6651045ed71",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Chaos Dashboard 建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee9c310",
+      "source_content": "1. Open Chaos Dashboard, and click **NEW EXPERIMENT** on the page to create a new experiment:\n\n   ![Create Experiment](./img/create-new-exp.png)",
+      "source_content_hash": "4d52ded8c7bd143e02d0fd53b29549e698fa43aeefd1df79cd9afa7ed344201f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 開啟 Chaos Dashboard，在頁面上點擊 **NEW EXPERIMENT** 以建立新實驗：\n\n   ![建立實驗](./img/create-new-exp.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ba6feeca",
+      "source_content": "2. In the **Choose a Target** area, choose **DNS FAULT** and select a specific behavior, such as **ERROR**. Then fill out the matching rules.\n\n   ![DNSChaos Experiment](./img/dnschaos-exp.png)\n\n   According to the matching rules configured in the screenshot, the DNS FAULT takes effect for domains including `google.com`, `chaos-mesh.org`, and `github.com`, which means that an error will be returned when a DNS request is sent to these three domains. For details of specific matching rules, refer to the description of the `patterns` field in [Configuration Description](#configuration-description).",
+      "source_content_hash": "9bf0489779333594511288f58e57ee0dc04dfda7595db2a6b930b4d1a0a34e7e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "2. 在 **Choose a Target** 區域中，選擇 **DNS FAULT** 並選擇特定行為，例如 **ERROR**。然後填寫匹配規則。\n\n   ![DNSChaos 實驗](./img/dnschaos-exp.png)\n\n   根據螢幕截圖中設定的匹配規則，DNS 故障會對包括 `google.com`、`chaos-mesh.org` 和 `github.com` 的網域生效，這表示向這三個網域發送 DNS 請求時將返回錯誤。有關具體匹配規則的詳細資訊，請參閱[設定說明](#configuration-description)中的 `patterns` 欄位描述。",
+          "reason": "Type mismatch for special element #5: source is 'inlineCode', translation is 'link'.",
+          "timestamp": "2025-07-04T06:49:59.340384+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "f60f155a",
+      "source_content": "3. Fill out the experiment information, and specify the experiment scope and the scheduled experiment duration:\n\n   ![Experiment Information](./img/exp-info.png)",
+      "source_content_hash": "851cba4f70c58e7a20fb86a0059d1e7186e4c932416897dc26b914e9e77e5629",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 填寫實驗資訊，並指定實驗範圍和排程的實驗持續時間：\n\n   ![實驗資訊](./img/exp-info.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2be69f97",
+      "source_content": "4. Submit the experiment information.",
+      "source_content_hash": "d43f9894c758dcc87cfc64b219f833d55e60a63f3367195f2557b06b88c799f0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 提交實驗資訊。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e912d935",
+      "source_content": "## Create experiments using the YAML file",
+      "source_content_hash": "faa2dfd18ffbf305fc181947e20275b109e0d8b3b79c0d1ec685d272ffea7041",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 YAML 檔案建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "21d3e688",
+      "source_content": "1. Write the experiment configuration to the `dnschaos.yaml` file:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: DNSChaos\n   metadata:\n     name: dns-chaos-example\n     namespace: chaos-mesh\n   spec:\n     action: random\n     mode: all\n     patterns:\n       - google.com\n       - chaos-mesh.*\n       - github.?om\n     selector:\n       namespaces:\n         - busybox\n   ```\n\n   This configuration can take effect for domains including `google.com`, `chaos-mesh.org`, and `github.com`, which means that an IP address will be returned when a DNS request is sent to these three domains. For specific matching rules, refer to the `patterns` description in [Configuration Description](#configuration-description).",
+      "source_content_hash": "0f6b2e3c672cc0a67478917a8404222afaca818af5fd434ff7d8710991a782b3",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "1. 將實驗設定寫入 `dnschaos.yaml` 檔案：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: DNSChaos\n   metadata:\n     name: dns-chaos-example\n     namespace: chaos-mesh\n   spec:\n     action: random\n     mode: all\n     patterns:\n       - google.com\n       - chaos-mesh.*\n       - github.?om\n     selector:\n       namespaces:\n         - busybox\n   ```\n\n   此設定可對包括 `google.com`、`chaos-mesh.org` 和 `github.com` 的網域生效，這表示向這三個網域發送 DNS 請求時將返回一個 IP 位址。有關具體匹配規則，請參閱[設定說明](#configuration-description)中的 `patterns` 描述。",
+          "reason": "Type mismatch for special element #5: source is 'inlineCode', translation is 'link'.",
+          "timestamp": "2025-07-04T06:49:59.340406+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "c76e6a32",
+      "source_content": "2. After the configuration file is prepared, use `kubectl` to create an experiment:\n\n   ```bash\n   kubectl apply -f dnschaos.yaml\n   ```",
+      "source_content_hash": "7fd5761baeb25be45bfdfe811fdd230460c85cb74c06b9bc98c7e594fd01469d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 準備好設定檔後，使用 `kubectl` 建立實驗：\n\n   ```bash\n   kubectl apply -f dnschaos.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ec8ed2a1",
+      "source_content": "### Configuration Description",
+      "source_content_hash": "6cad7cd3374f57e00d9cbcebc7f015b5cb1ba15380262183c302174498948f03",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 設定說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5f4dd7e7",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| :-- | :-- | :-- | :-- | :-- | :-- |\n| `action` | string | Defines the behavior of DNS fault. Optional values: `random` or `error`. When the value is `random`, DNS service returns a random IP address; when the value is `error`, DNS service returns an error. | None | Yes | `random` or `error` |\n| `patterns` | String array | Selects a domain template that matches faults. Placeholder `?` and wildcard are supported. `*` | [] | No | `google.com`, `chaos-mesh.org`, `github.com` |\n| `mode` | string | Specifies the mode of the experiment. The mode options include `one` (selecting a random Pod), `all` (selecting all eligible Pods), `fixed` (selecting a specified number of eligible Pods), `fixed-percent` (selecting a specified percentage of Pods from the eligible Pods), and `random-max-percent` (selecting the maximum percentage of Pods from the eligible Pods). | None | Yes | `one` |\n| `value` | string | Provides parameters for the `mode` configuration, depending on `mode`. For example, when `mode` is set to `fixed-percent`, `value` specifies the percentage of Pods. | None | No | `1` |\n| `selector` | struct | Specifies the target Pod. For details, refer to [Define the Scope of Chaos Experiments](./define-chaos-experiment-scope.md). | None | Yes |  |",
+      "source_content_hash": "8901d6781248853d58a1855cd860da2e971b3acc2d7bf69b24a043282b7eab5e",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_5f4dd7e7"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "13f26ba5",
+      "source_content": ":::note\n\n- The wildcard in `patterns` configuration must be at the end of string. For example, `chaos-mes*.org.` is an invalid configuration.\n\n- When `patterns` is not configured, faults are injected for all domains.\n\n:::",
+      "source_content_hash": "9b4448da7eca3b8bc8b7809d354dab81a79371b6ee4e5e03e4f3b9a73ddf3d7a",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n- 在 `patterns` 設定中，萬用字元必須位於字串的結尾。例如，`chaos-mes*.org.` 是無效的設定。\n\n- 當未設定 `patterns` 時，故障會注入所有網域。\n\n:::"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/simulate-dns-chaos-on-kubernetes.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.340435+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "51596012257f124b087c49337decc2bac64f4264cb7fbe3936f39c0d1fac15a7"
+  }
+}

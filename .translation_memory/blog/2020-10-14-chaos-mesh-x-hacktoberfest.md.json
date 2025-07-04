@@ -1,0 +1,232 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2020-10-14-chaos-mesh-x-hacktoberfest.md",
+  "source_file_content_hash": "f42366e1816cf29fd7da2d05c57c7017b70518a811548865e41a0ce3d6fff405",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /chaos-mesh-x-hacktoberfest-2020\ntitle: Chaos Mesh X Hacktoberfest 2020 - An Invitation to Open Source\nauthors: chaos-mesh\nimage: /img/blog/chaos-mesh-x-hacktoberfest.jpg\ntags: [Chaos Mesh, Chaos Engineering, Open Source]\n---",
+      "source_content_hash": "67166442c22787e0b9e92bc2d4c42c42ce2da0e715fd097009c5aae3b190c996",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Chaos-Mesh-X-Hacktoberfest-An-Invitation-to-Open-Source](/img/blog/chaos-mesh-x-hacktoberfest.jpg)",
+      "source_content_hash": "aa1658fcf9226a4cf8c88a667fddd2c8ed036a8ac8793f0ad99b50d37cfc5fcf",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos-Mesh-X-Hacktoberfest-開源邀請](/img/blog/chaos-mesh-x-hacktoberfest.jpg)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) is proud to be in [Hacktoberfest 2020](https://hacktoberfest.digitalocean.com/)!",
+      "source_content_hash": "b44a81d712e7c70ec676d9b55c2c07c9444ae2bd1cf4a3e40fe1c1cace0e3e4f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) 很榮幸參與 [Hacktoberfest 2020](https://hacktoberfest.digitalocean.com/)！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "180bddb1",
+      "source_content": "Hosted by DigitalOcean, Intel and DEV, Hacktoberfest is an open source celebration open to everyone in our global community. This month-long (Oct 1 - Oct 31) event encourages everyone to help drive the growth of open source and make positive contributions to an ever-growing community, whether you’re an experienced developer or open-source newbie learning to code. As long as you submit 4 PRs before Oct 31, you are eligible to claim a limit edition T-shirt (70000 in total on a first-come-first-served basis)!",
+      "source_content_hash": "66ed69296f558f0deae6936cc793368b42e6a86a3473c58c68e1f6b2d47cb69d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "由 DigitalOcean、Intel 和 DEV 主辦的 Hacktoberfest 是一場開源慶典，向全球社群的每個人開放。這個為期一個月（10 月 1 日至 10 月 31 日）的活動鼓勵每個人協助推動開源發展，為持續成長的社群做出積極貢獻，無論您是經驗豐富的開發者還是正在學習編程的開源新手。只要您在 10 月 31 日前提交 4 個 PR，即有資格領取限量版 T 恤（總共 70000 件，先到先得）！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28a64196",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_28a64196"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "![Hacktoberfest T-shirt](/img/blog/hacktoberfest-shirt.png)",
+      "source_content_hash": "3e64d4449c11f268479087baca98bf4448940dce3faf88082239f0ea04cd5bf3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Hacktoberfest T恤](/img/blog/hacktoberfest-shirt.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee0e40d",
+      "source_content": "## Open source is the spirit",
+      "source_content_hash": "9f64004504ce6d079f2cdb5da3abc00052f5dfe7b0ae8c9da168406db45e07a1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 開源即精神"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "Chaos Mesh has always been a dedicated and firm advocate of open source from day 1. Within only 10 months since it was open-sourced on December 31st, 2019, Chaos Mesh has received around 2.5k GitHub stars, with 59 contributors from multiple organizations. And it was accepted as a [CNCF sandbox project](https://www.cncf.io/sandbox-projects/) in July 2020. The amazing growth of the project as well as the community could not have been possible without our shared commitment to the open-source community and spirit.",
+      "source_content_hash": "3abdf1412cd3f5b15202a65725f7b7cbd4beb895b73e3ded2d824af978db885e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 從第一天開始就堅定不移地倡導開源精神。自 2019 年 12 月 31 日開源以來，短短 10 個月內，Chaos Mesh 已獲得約 2.5k GitHub 星星，並有來自多個組織的 59 位貢獻者。更於 2020 年 7 月獲接納為 [CNCF 沙盒專案](https://www.cncf.io/sandbox-projects/)。專案與社群的驚人成長，皆源於我們對開源社群與精神的共同承諾。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "We hereby invite you to be part of us, starting from our handpicked issues with proper mentoring and assistance along your journey, which we hope you will find rewarding, inspiring, and most of all, fun.",
+      "source_content_hash": "8c3818f8c97350a89629d0bb86f5e25c120679e8668f202b1ab22e69d57e58bd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們誠摯邀請您加入我們的行列，從精選議題開始，在您的貢獻旅程中提供完善的指導與協助，期盼您能收穫滿滿、深受啟發，最重要的是享受其中樂趣。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ed7dde9c",
+      "source_content": "## How can you participate",
+      "source_content_hash": "a86e9d6750c5b5a23a79e686ca6548028d4d2f6e00da92eabf37b9dde310ee96",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 如何參與"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a76548f8",
+      "source_content": "So we are all set up for you in Hacktoberfest - labeled [suitable issues](https://github.com/chaos-mesh/chaos-mesh/issues?q=is%3Aissue+is%3Aopen+label%3AHacktoberfest) with “Hacktoberfest”, and updated the [Contributing Guide](https://github.com/chaos-mesh/chaos-mesh/blob/master/CONTRIBUTING.md).",
+      "source_content_hash": "f620fa5008942468009d9ef697266cc690d13add07008fb5e02f059d4516a8a1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們已為您在 Hacktoberfest 準備妥當：標記了帶有「Hacktoberfest」標籤的[合適議題](https://github.com/chaos-mesh/chaos-mesh/issues?q=is%3Aissue+is%3Aopen+label%3AHacktoberfest)，並更新了[貢獻指南](https://github.com/chaos-mesh/chaos-mesh/blob/master/CONTRIBUTING.md)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b1d2d7d",
+      "source_content": "How can you participate? It could not be easier with the following steps:",
+      "source_content_hash": "4e237ba5fcbc5f3f1eabc3d2018b59954acf1eb8a538aaad1d24ee52a98f8930",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如何參與？只需遵循以下簡單步驟："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "346d5f8d",
+      "source_content": "1. Sign up for [Hacktoberfest](https://hacktoberfest.digitalocean.com/login) using your GitHub account between Oct 1 and Oct 31.",
+      "source_content_hash": "7d0adef59fc5cd14e12399d2039b952f510159d61cd179552aa7b9503feae663",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 在 10 月 1 日至 10 月 31 日期間，使用您的 GitHub 帳戶註冊 [Hacktoberfest](https://hacktoberfest.digitalocean.com/login)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "56d666fe",
+      "source_content": "2. Pick up an issue. Note that the issues are still being updated, but you don’t have to be limited to issues with the Hacktoberfest label, which only serve as a starting point.",
+      "source_content_hash": "b365947a57cae1ed2a43b75c991cfac3ba682cf6a459407a0c0ec99c0c547a8e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 挑選一個議題。請注意，議題會持續更新，您不必局限於帶有 Hacktoberfest 標籤的議題，這些僅是入門指引。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "212333a8",
+      "source_content": "3. Start coding and submit your PRs. Again the PR does not need to be corresponding to the labeled issue.",
+      "source_content_hash": "ab117e98520b87062564fcbba21e3dac8ebbbd69a39ebe08f2559c8df32b6ceb",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 開始編程並提交您的 PR。再次強調，PR 不需要對應標記的議題。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c0463e48",
+      "source_content": "4. Our maintainers review your PRs. Once you successfully merged, or have gained approval for 4 or more of them, the PRs will be automatically counted on the Hacktoberfest end, and you will be eligible to claim your SWAG.\n\n   ![PR count](/img/blog/PR-count.png)",
+      "source_content_hash": "448169cf47de19c709a35b7b59b0d2fabf44bfe804730ecd09540a7a8a5a8251",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 我們的維護者將審查您的 PR。一旦成功合併或獲得 4 個以上 PR 的核准，Hacktoberfest 系統將自動計數，您即有資格領取周邊商品。\n\n   ![PR 數量](/img/blog/PR-count.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "135468ee",
+      "source_content": "**Note:** If your PRs are merged or approved but you haven’t seen the number reflected on Hacktoberfest, comment under your PR.",
+      "source_content_hash": "1e5dd6b76610ae874fd5bda6cb4722153852433f51d554acb3af788ec376e9be",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**注意：** 若您的 PR 已合併或核准，但 Hacktoberfest 未顯示更新數量，請在您的 PR 下方留言。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "782c902a",
+      "source_content": "## Strive for quality, learning, and no spammy",
+      "source_content_hash": "5d7ae8c9b835568a3640434aa70510796c737eeb2c9a54155f42a62f3dc05107",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 追求品質、學習，杜絕濫發"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "50746522",
+      "source_content": "In the spirit of open source and Hacktoberfest, we welcome all contributions and honor only valid PRs. However, we would not encourage or tolerate spammy contributions, which would not only cause waste to our maintainer’s time but also hurt the feelings and the integrity of the entire open source community. Spammy PRs will be labeled as \"invalid\" or \"spam\", and will be closed as invalid.",
+      "source_content_hash": "9818b21a168755c8af25c0dd9688a7d6e0f048029e2f10a942d9e5205a066ecb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本著開源與 Hacktoberfest 精神，我們歡迎所有貢獻，但僅認可有效的 PR。我們不鼓勵亦不容忍濫發貢獻，這不僅浪費維護者時間，更傷害整個開源社群的情感與誠信。濫發的 PR 將被標記為「無效」或「垃圾」，並以無效狀態關閉。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "95e9ba12",
+      "source_content": "Happy hacking! But don’t hack alone. Join #project-chaos-mesh in the [CNCF Slack](https://slack.cncf.io/) to share your experience, provide your feedback on your experience, or let us help with any problem you have.",
+      "source_content_hash": "20b3287b6ec60c345855f5acc4fc8d02a14da55f3a42d8cc1c5925e36f055c06",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "祝您駭客愉快！但請不要獨自進行。加入 [CNCF Slack](https://slack.cncf.io/) 的 #project-chaos-mesh 頻道，分享您的經驗、提供意見回饋，或讓我們協助解決您遇到的任何問題。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2020-10-14-chaos-mesh-x-hacktoberfest.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.021449+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "f42366e1816cf29fd7da2d05c57c7017b70518a811548865e41a0ce3d6fff405"
+  }
+}

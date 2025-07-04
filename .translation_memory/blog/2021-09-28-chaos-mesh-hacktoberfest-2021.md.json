@@ -1,0 +1,221 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2021-09-28-chaos-mesh-hacktoberfest-2021.md",
+  "source_file_content_hash": "aada7a1d366fb9ad17757d94fb1acd43164c8d4faa80b5df7259d881b407c5bf",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /chaos-mesh-hacktoberfest-2021\ntitle: 'Hacktoberfest 2021: hack with Chaos Mesh!'\nauthors: chaos-mesh\nimage: /img/blog/chaos-mesh-hacktoberfest-2021.png\ntags: [Chaos Mesh, Chaos Engineering, Open Source]\n---",
+      "source_content_hash": "15054fe4bc3864ea4c84a74b1b82f4bc028ae50e74998eabf8796c8d6cb9f77f",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Chaos Mesh x Hacktoberfest 2021](/img/blog/chaos-mesh-hacktoberfest-2021.png)",
+      "source_content_hash": "b6c1a9ba47e9e3a877587a1a431b2af2b49a636cb88fc4903eab03195fae5c81",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Mesh 參與 Hacktoberfest 2021](/img/blog/chaos-mesh-hacktoberfest-2021.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "Happy [Hacktoberfest](https://hacktoberfest.digitalocean.com/) 2021! We are excited to announce that [Chaos Mesh](https://github.com/chaos-mesh) will be participating in the 8th annual Hacktoberfest hosted by DigitalOcean. During the month of October, anyone is welcome to join in on this global celebration of open-source by contributing changes, and earn one of 55,000 custom-made Hacktoberfest T-shirts!",
+      "source_content_hash": "4144e4783ccdea6d04e1da08cd78538dca1b3391064663fdeab3956357020f4e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2021 年 [Hacktoberfest](https://hacktoberfest.digitalocean.com/) 快樂！我們很高興地宣布 [Chaos Mesh](https://github.com/chaos-mesh) 將參與由 DigitalOcean 主辦的第八屆年度 Hacktoberfest。在整個十月期間，任何人都可以透過貢獻變更加入這場開源全球盛會，並贏取 55,000 件特製 Hacktoberfest T 恤中的一件！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e14c9928",
+      "source_content": "## What is Chaos Mesh?",
+      "source_content_hash": "926dfcc54cec6a576820bafe371a0ad92b5337e95b9a9b84512b75f9f946f605",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 什麼是 Chaos Mesh？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "Chaos Mesh is a cloud-native Chaos Engineering platform that orchestrates chaos in Kubernetes environments. With Chaos Mesh, you can test your system's resilience and robustness on Kubernetes by injecting all types of faults into Pods, network, file system, and even the kernel. Chaos Mesh is currently a CNCF Sandbox project.",
+      "source_content_hash": "37709b8ae2034bb4b8256fd721796bde09c53603ca9a05b8e15bf2cd585695ea",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 是一個雲原生的混沌工程平台，可在 Kubernetes 環境中編排混亂。透過 Chaos Mesh，您可以透過向 Pod、網路、檔案系統甚至核心注入各類故障，來測試系統在 Kubernetes 上的韌性與穩健性。Chaos Mesh 目前是 CNCF 沙盒專案。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "More importantly, Chaos Mesh fully embraces open source: ever since open sourced 1.5 years ago, the project has gained more than 4k stars with over 1.2k commits from 140+ contributors all over the world. It is through the open-source world that we are able to collaborate with an amazing community. Simply put, Chaos Mesh grew alongside its community and would not be where it is today without the dedication and commitment to open source, which is why we are more than proud to be back again in Hacktoberfest!",
+      "source_content_hash": "b5de36a40ba323099315ca0bde91e0ae8cac7f97b8cac1c1cc80486402b2b792",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "更重要的是，Chaos Mesh 完全擁抱開源：自 1.5 年前開源以來，該專案已獲得超過 4k 星標，並有來自全球 140 多位貢獻者的 1.2k 多次提交。正是透過開源世界，我們才能與卓越的社群協作。簡而言之，Chaos Mesh 與其社群共同成長，若沒有對開源的奉獻與承諾，就不會有今日的成就，這也是我們非常自豪能再次參與 Hacktoberfest 的原因！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "418617bd",
+      "source_content": "## Why Hacktoberfest?",
+      "source_content_hash": "4f4993b6fdbb31e4d0195f38d5df37e9e4baea10ee1365dd4d626c5c4d6578ba",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 為什麼要參與 Hacktoberfest？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "If you are interested in chaos engineering, open-source, trying to come up with a project for school, or looking into a potential career path as an SRE/DevOps engineer, then this is your golden opportunity: throughout Hacktoberfest, anyone, regardless of background and experience, can join and contribute changes - big or small. So grab the chance and learn about how to make a system more resilient! The Chaos Mesh community welcomes you with open arms and is more than willing to work and share feedback with you. Your contributions can make a big difference!",
+      "source_content_hash": "4e0106474987b00c647b454b41b7ed6b7f94417c7555a4f4b42a4ea07e4af9e3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如果您對混沌工程、開源感興趣，正在嘗試構思學校專案，或探索 SRE/DevOps 工程師的潛在職涯道路，那麼這是您的黃金機會：在整個 Hacktoberfest 期間，任何人無論背景與經驗皆可加入並貢獻變更——無論大小。請把握機會學習如何提升系統韌性！Chaos Mesh 社群張開雙臂歡迎您，並非常樂意與您協作及分享回饋。您的貢獻將帶來重大影響！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ed7dde9c",
+      "source_content": "## Quick start",
+      "source_content_hash": "9535b10be9abb7a87788c3f5107c21822734a4507aeb464f8710fb8c4866b965",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 快速開始"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a76548f8",
+      "source_content": "Here’s a quick run-through of how to be part of Hacktoberfest 2021, and you can check out a detailed how to be part of Hacktoberfest on the [official website](https://hacktoberfest.digitalocean.com/participation):",
+      "source_content_hash": "4644a6cc3b0228746ed26a2ce790f86f36758a6c9a7a6a0b2d0065aa0c6bcf52",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下是參與 Hacktoberfest 2021 的快速指南，詳細參與方式請參閱[官方網站](https://hacktoberfest.digitalocean.com/participation)："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2523feeb",
+      "source_content": "1. Sign up for [Hacktoberfest](https://hacktoberfest.digitalocean.com/) anytime between Oct 1 and Oct 31.",
+      "source_content_hash": "988b86ffcb0ffc5bc3df953157b2c959c31f6555055ba223d966341562793754",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 在 10 月 1 日至 10 月 31 日間隨時報名參加 [Hacktoberfest](https://hacktoberfest.digitalocean.com/)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5df3dd43",
+      "source_content": "2. Join the #project-chaos-mesh channel under [CNCF Slack](https://slack.cncf.io/), just in case you have any questions, or need help.",
+      "source_content_hash": "d2e6b5717eb4fccad7deff2aec70359bc44ab3f8a4f1f02259f9d4fe57f8bb86",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 加入 [CNCF Slack](https://slack.cncf.io/) 中的 #project-chaos-mesh 頻道，以便在有疑問或需要協助時使用。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "346d5f8d",
+      "source_content": "3. Start creating and submitting your PRs! Here are some top tips:\n   1. Check out the [Chaos Mesh Contribution guide](https://github.com/chaos-mesh/chaos-mesh/blob/master/CONTRIBUTING.md) before making contributions.\n   2. Have a go at any [issue](https://github.com/chaos-mesh/chaos-mesh/issues) labeled with \"Hacktoberfest\", note that these are the ones that we think might be good for those new to open source or Chaos Mesh, so it only serves as a starting point!",
+      "source_content_hash": "bee279191e74a4138a2ce1cc81be4c23e1b296f4635407d380fd104ac485fd06",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 開始建立並提交您的 PR！以下是一些重要提示：\n   1. 貢獻前請查閱 [Chaos Mesh 貢獻指南](https://github.com/chaos-mesh/chaos-mesh/blob/master/CONTRIBUTING.md)。\n   2. 嘗試解決任何標記 \"Hacktoberfest\" 的[議題](https://github.com/chaos-mesh/chaos-mesh/issues)，請注意這些是我們認為適合開源或 Chaos Mesh 新手的起點！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f422383e",
+      "source_content": "## Some notes",
+      "source_content_hash": "26add2dfed3365d1dcd3115414b3c8f212005475fdaff663005ee5c9dbe47e3a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 注意事項"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa355dc5",
+      "source_content": "- To get a shirt, you must make 4 approved PRs on opted-in projects between October 1-31 in any time zone. If a repository has no “Hacktoberfest” topic set, please reach out to us or mention Hacktoberfest in your PR so we can set repository topics.",
+      "source_content_hash": "034aeaa6410762845a9932dacbf64219e406782ffb2c30a1c7200ecc3d3dbde3",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 要獲得 T 恤，您必須在 10 月 1 日至 31 日（任何時區）期間於參與專案上提交 4 個已核准的 PR。若儲存庫未設定 \"Hacktoberfest\" 主題，請聯絡我們或在 PR 中提及 Hacktoberfest，以便我們設定儲存庫主題。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ec638a20",
+      "source_content": "- No spams please (e.g. creating a PR just for the sake of it and not adding any value in any way)! Our maintainer will mark a PR as invalid if it’s determined to be spam, which does NOT count towards your PR total.",
+      "source_content_hash": "e65b5616a3dea73df5b7845252bccf7533c3212241e0dabbed66f367b315e9b4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 請勿提交垃圾內容（例如僅為湊數且未提供任何價值的 PR）！若維護者判定 PR 為垃圾內容，將標記為無效且不計入 PR 總數。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b49764d4",
+      "source_content": "- Note that if our maintainer reports behavior that’s not in line with the [code of conduct](https://github.com/chaos-mesh/chaos-mesh/blob/master/CODE_OF_CONDUCT.md), you will be ineligible to participate.",
+      "source_content_hash": "b5c8f503b1823a34be2d9f74113a05a836d36a44d15a3485264acd95b9f62c2a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 請注意，若維護者回報的行為違反[行為準則](https://github.com/chaos-mesh/chaos-mesh/blob/master/CODE_OF_CONDUCT.md)，您將失去參與資格。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3cfe6286",
+      "source_content": "Lastly, good luck, on your marks, get set, and hack away!",
+      "source_content_hash": "3bc46b1615c125638cc62ce2d7647ad941742c1f2565a4a15df2c6b1b16c7183",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "最後，祝你好運，各就各位，預備，開始貢獻吧！"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2021-09-28-chaos-mesh-hacktoberfest-2021.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.059187+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "aada7a1d366fb9ad17757d94fb1acd43164c8d4faa80b5df7259d881b407c5bf"
+  }
+}

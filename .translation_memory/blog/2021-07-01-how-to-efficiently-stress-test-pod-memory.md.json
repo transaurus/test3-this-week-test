@@ -1,0 +1,717 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2021-07-01-how-to-efficiently-stress-test-pod-memory.md",
+  "source_file_content_hash": "790a43c62cc52937dd15776119690e81d10b16dd50939e8caaa8aaf00c7e3d9f",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /how-to-efficiently-stress-test-pod-memory\ntitle: 'How to efficiently stress test Pod memory'\nauthors: yinghaowang\nimage: /img/blog/how-to-efficiently-stress-test-pod-memory-banner.jpg\ntags: [Chaos Mesh, Chaos Engineering, StressChaos, Stress Testing]\n---",
+      "source_content_hash": "b0526959a9cfb044d7215815eeda7d5d8e998f8b315bdc528fc340c28886dafa",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![banner](/img/blog/how-to-efficiently-stress-test-pod-memory-banner.jpg)",
+      "source_content_hash": "1bddfad5e4a25a10067b3bf9f4a30361f08cbc778cdf940d0270da3c68efc389",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![橫幅圖片](/img/blog/how-to-efficiently-stress-test-pod-memory-banner.jpg)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) includes the StressChaos tool, which allows you to inject CPU and memory stress into your Pod. This tool can be very useful when you test or benchmark a CPU-sensitive or memory-sensitive program and want to know its behavior under pressure.",
+      "source_content_hash": "8ce9a5e5b1190221d127e0e5fe25719672fe278a4d5cf914e3aedebe9849a207",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) 內含 StressChaos 工具，可將 CPU 與記憶體壓力注入您的 Pod。當您測試或評估對 CPU/記憶體敏感的程式，並想了解其在壓力下的行為時，此工具非常實用。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "180bddb1",
+      "source_content": "However, as we tested and used StressChaos, we found some issues with usability and performance. For example, why does StressChaos use far less memory than we configured? To correct these issues, we developed a new set of tests. In this article, I'll describe how we troubleshooted these issues and corrected them. This information will enable you to get the most out of StressChaos.",
+      "source_content_hash": "3de780be73cb84aaec1f1325418991ab5946872822691c83b041ac3ef5b2be4d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "然而在測試與使用 StressChaos 過程中，我們發現一些可用性與效能問題。例如：為何 StressChaos 消耗的記憶體遠低於設定值？為修正這些問題，我們開發了新測試方案。本文將說明如何排查這些問題並修正，助您充分發揮 StressChaos 效能。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28a64196",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_28a64196"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "Before you continue, you need to install Chaos Mesh in your cluster. You can find detailed instructions on our [website](https://chaos-mesh.org/docs/quick-start).",
+      "source_content_hash": "a7c0cdb6c4b18b4c2c99b48e1e795fe267d689a73ab7a00ad85c2af635bb3069",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "繼續前，請先在叢集中安裝 Chaos Mesh，詳細步驟請參閱我們的[官網文件](https://chaos-mesh.org/docs/quick-start)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee0e40d",
+      "source_content": "## Injecting stress into a target",
+      "source_content_hash": "b2283b5fccad793173129d9b2bd15838ee385e0c11134b71b9c6da5f7e5a7d2c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 對目標注入壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "I’d like to demonstrate how to inject StressChaos into a target. In this example, I’ll use [`hello-kubernetes`](https://github.com/paulbouwer/hello-kubernetes), which is managed by [helm charts](https://helm.sh/). The first step is to clone the [`hello-kubernetes`](https://github.com/paulbouwer/hello-kubernetes) repo and modify the chart to give it a resource limit.",
+      "source_content_hash": "26d0e3e939132d50eee4248c7c79dfe05631d9c096a0ad39bf23022747343937",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "我將示範如何對目標注入 StressChaos。本範例使用透過 [helm charts](https://helm.sh/) 管理的 [`hello-kubernetes`](https://github.com/paulbouwer/hello-kubernetes)。第一步是克隆 [`hello-kubernetes`](https://github.com/paulbouwer/hello-kubernetes) 專案，並修改其 chart 設定資源限制。",
+          "reason": "URL for a 'link' was changed from 'https://github.com/paulbouwer/hello-kubernetes' to 'https://helm.sh/'.",
+          "timestamp": "2025-07-04T06:49:59.315110+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "41a8ae85",
+      "source_content": "```bash\ngit clone https://github.com/paulbouwer/hello-kubernetes.git\ncode deploy/helm/hello-kubernetes/values.yaml # or whichever editor you prefer\n```",
+      "source_content_hash": "68bdc810271c5d9a32adf99dfd9c96a35843733108e1e5da54dcd2c95607fc7d",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_41a8ae85"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d9172fa4",
+      "source_content": "Find the resources line, and change it into:",
+      "source_content_hash": "bc1011c9171142ca4f579b403a47b5a3b1c50f78a4d2823866e733e3d56e0a20",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "找到 resources 設定行，修改為："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b7c3dbd1",
+      "source_content": "```yaml\nresources:\n  requests:\n    memory: '200Mi'\n  limits:\n    memory: '500Mi'\n```",
+      "source_content_hash": "13708d747842da1e0c08e787bf7bc551980281f3545ad9d72b534377efb4b2f4",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b7c3dbd1"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "135468ee",
+      "source_content": "However, before we inject anything, let's see how much memory the target is consuming. Go into the Pod and start a shell. Enter the following, substituting the name of your Pod for the one in the example:",
+      "source_content_hash": "c600f2b65a1c1a66c40c71e53493ca9c860afd595776b248b009c9eb315e7abf",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "但在注入壓力前，先觀察目標的記憶體消耗量。進入 Pod 並啟動 shell（請替換範例中的 Pod 名稱）："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a11df754",
+      "source_content": "```bash\nkubectl exec -it -n hello-kubernetes hello-kubernetes-hello-world-b55bfcf68-8mln6 -- /bin/sh\n```",
+      "source_content_hash": "3359e4599f06dfcc6ed688716517469b673dea23f36a395b7b8f558e3794fc28",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a11df754"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "95e9ba12",
+      "source_content": "Display a summary of memory usage. Enter:",
+      "source_content_hash": "afdb70c03d685ad851d392eb2051b6570e02cb250cde87c9ad13545e61957b05",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "顯示記憶體使用摘要，輸入："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4ec2920d",
+      "source_content": "```sh\n/usr/src/app $ free -m\n/usr/src/app $ top\n```",
+      "source_content_hash": "7f07bbcbdb314a3ef28c75635c050bff2edf5b603145aa98810a124361fc4ec0",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4ec2920d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c504c207",
+      "source_content": "As you can see from the output below, the Pod is consuming 4,269 MB of memory.",
+      "source_content_hash": "2bc01df6e309bf0b77d74eca8f612bfdd3219845ec1acc7745ddda4009be03a2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如下方輸出所示，該 Pod 消耗了 4,269 MB 記憶體。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ac961110",
+      "source_content": "```sh\n/usr/src/app $ free -m\n              used\nMem:          4269\nSwap:            0\n\n/usr/src/app $ top\nMem: 12742432K used\n  PID  PPID USER     STAT   VSZ %VSZ CPU %CPU COMMAND\n    1     0 node     S     285m   2%   0   0% npm start\n   18     1 node     S     284m   2%   3   0% node server.js\n   29     0 node     S     1636   0%   2   0% /bin/sh\n   36    29 node     R     1568   0%   3   0% top\n```",
+      "source_content_hash": "0ac69f379de7ea42ece8d7367b56753571df3d151591576d1608220a450734c8",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ac961110"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "06e24cc0",
+      "source_content": "That doesn’t seem right. We’ve limited its memory usage to 500 MiBs, and now the Pod seems to be using several GBs of memory. If we total the amount of process memory being used, it doesn’t equal 500 MiB. However, top and free at least give similar answers.",
+      "source_content_hash": "c9627cf12600b40e8f6473dc13fe0c75129d0583b83c761235d91cca5bc85a7b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "這顯然有誤——我們已將記憶體限制設為 500 MiB，但 Pod 卻顯示消耗數 GB。即便加總所有行程記憶體用量，也未達 500 MiB。不過 top 與 free 指令的結果至少相近。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7f71ff2a",
+      "source_content": "We will run a StressChaos on the Pod and see what happens. Here's the yaml we’ll use:",
+      "source_content_hash": "4df14119f5c1e2b6e1fd7a4b00607e29b67367a58d3891e1acc27473750652c1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們將對 Pod 執行 StressChaos 並觀察變化。使用的 yaml 如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4fb3ded8",
+      "source_content": "```yaml\napiVersion: chaos-mesh.org/v1alpha1\nkind: StressChaos\nmetadata:\n  name: mem-stress\n  namespace: chaos-mesh\nspec:\n  mode: all\n  selector:\n    namespaces:\n      - hello-kubernetes\n  stressors:\n    memory:\n      workers: 4\n      size: 50MiB\n      options: ['']\n  duration: '1h'\n```",
+      "source_content_hash": "77f38594f835360df1b73b654b9f246e1c7e5c104df2c9f660309a73ef7093f0",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4fb3ded8"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5803caac",
+      "source_content": "Save the yaml to a file. I named it `memory.yaml`. To apply the chaos, run",
+      "source_content_hash": "de3a39060b02f5e2ac03e365361847e0c23b56a2bbc3eaedf58cd2520283b138",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "將 yaml 存檔（我命名為 `memory.yaml`），執行以下指令應用混沌實驗："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5782e280",
+      "source_content": "```bash\n~ kubectl apply -f memory.yaml\nstresschaos.chaos-mesh.org/mem-stress created\n```",
+      "source_content_hash": "f9ddc1ef5312f6f65d42cb713954aed6c7767bc0c7341f1795161fd73135d538",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_5782e280"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "eb51d107",
+      "source_content": "Now, let's check the memory usage again.",
+      "source_content_hash": "b2dabbd49de8ff812e67059c4f25b1566e7b348882e6092537b62bb6f3d22a97",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "現在再次檢查記憶體使用量："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dc73c0d2",
+      "source_content": "```sh\n              used\nMem:          4332\nSwap:            0\n\nMem: 12805568K used\n  PID  PPID USER     STAT   VSZ %VSZ CPU %CPU COMMAND\n   54    50 root     R    53252   0%   1  24% {stress-ng-vm} stress-ng --vm 4 --vm-keep --vm-bytes 50000000\n   57    52 root     R    53252   0%   0  22% {stress-ng-vm} stress-ng --vm 4 --vm-keep --vm-bytes 50000000\n   55    53 root     R    53252   0%   2  21% {stress-ng-vm} stress-ng --vm 4 --vm-keep --vm-bytes 50000000\n   56    51 root     R    53252   0%   3  21% {stress-ng-vm} stress-ng --vm 4 --vm-keep --vm-bytes 50000000\n   18     1 node     S     289m   2%   2   0% node server.js\n    1     0 node     S     285m   2%   0   0% npm start\n   51    49 root     S    41048   0%   0   0% {stress-ng-vm} stress-ng --vm 4 --vm-keep --vm-bytes 50000000\n   50    49 root     S    41048   0%   2   0% {stress-ng-vm} stress-ng --vm 4 --vm-keep --vm-bytes 50000000\n   52    49 root     S    41048   0%   0   0% {stress-ng-vm} stress-ng --vm 4 --vm-keep --vm-bytes 50000000\n   53    49 root     S    41048   0%   3   0% {stress-ng-vm} stress-ng --vm 4 --vm-keep --vm-bytes 50000000\n   49     0 root     S    41044   0%   0   0% stress-ng --vm 4 --vm-keep --vm-bytes 50000000\n   29     0 node     S     1636   0%   3   0% /bin/sh\n   48    29 node     R     1568   0%   1   0% top\n```",
+      "source_content_hash": "854d1566a8c349716778e81dabd931bac2683c20175e023d6713d41a45156932",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_dc73c0d2"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "558df877",
+      "source_content": "You can see that stress-ng instances are being injected into the Pod. There is a 60 MiB rise in the Pod, which we didn’t expect. The [documentation](https://manpages.ubuntu.com/manpages/focal/en/man1/stress-ng.1.html) indicates that the increase should 200 MiB (4 \\* 50 MiB).",
+      "source_content_hash": "dc0c128f2933c3f6c6659bc737622aa960f2d214854186302d90d8ba52669bb0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可見 stress-ng 實例已被注入 Pod，記憶體增加 60 MiB，這與預期不符。[文件](https://manpages.ubuntu.com/manpages/focal/en/man1/stress-ng.1.html)顯示應增加 200 MiB（4 * 50 MiB）。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f38d1cb0",
+      "source_content": "Let's increase the stress by changing the memory stress from 50 MiB to 3,000 MiB. This should break the Pod’s memory limit. I’ll delete the chaos, modify the size, and reapply it.",
+      "source_content_hash": "b5268b450058ffe2fa15e0d92c57c50cab1bf6e7fbfa503022aaddda62c83e06",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們將壓力從 50 MiB 提升至 3,000 MiB，這應會突破 Pod 的記憶體限制。先刪除混沌實驗，修改大小後重新套用。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5f82a1e9",
+      "source_content": "And then, boom! The shell exits with code 137. A moment later, I reconnect to the container, and the memory usage returns to normal. No stress-ng instances are found! What happened?",
+      "source_content_hash": "b3fef476068971f2a7998bd72ef212eebece740af60bdf2a63fc5f07104074b8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "接著——砰！shell 以代碼 137 退出。稍後重新連接容器時，記憶體用量恢復正常，且找不到任何 stress-ng 實例！發生了什麼？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "36d6c3de",
+      "source_content": "## Why does StressChaos disappear?",
+      "source_content_hash": "d6a2b19f71a50ddf46893bb88028a105300373fc679effe265ba04b4fe2208ae",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 為何 StressChaos 會消失？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c364340c",
+      "source_content": "Kubernetes limits your container memory usage through a mechanism named [cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html). To see the 500 MiB limit in our Pod, go to the container and enter:",
+      "source_content_hash": "d3194396dd31b3f21f4ea9d1f77102f106af628fc96b1512060223fbbd74230a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Kubernetes 透過 [cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) 機制限制容器記憶體用量。要查看 Pod 的 500 MiB 限制，請進入容器並輸入："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b474abd5",
+      "source_content": "```bash\n/usr/src/app $ cat /sys/fs/cgroup/memory/memory.limit_in_bytes\n524288000\n```",
+      "source_content_hash": "a6fe7c29a3dac364b1cc3919c9990e63e27954992eccf10d95311955347648c2",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b474abd5"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ecf0882",
+      "source_content": "The output is displayed in bytes and translates to `500 * 1024 * 1024`.",
+      "source_content_hash": "c9fc15414be8c634aec7ab36ffb7abcbf07cbf597ad20154e5bc72c29a463770",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出以位元組顯示，換算為 `500 * 1024 * 1024`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e77cf7c6",
+      "source_content": "Requests are used only for scheduling where to place the Pod. The Pod does not have a memory limit or request, but it can be seen as the sum of all its containers.",
+      "source_content_hash": "cdf84fa0c8037f13dc795b7bcbe1a8f5a0f484a42a80e01ee719d096633c4151",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Requests 僅用於調度 Pod 的部署位置。該 Pod 沒有記憶體限制或請求，但可視為其所有容器需求的總和。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bb1346b6",
+      "source_content": "We've been making a mistake since the very beginning. free and top are not \"cgrouped.\" They rely on `/proc/meminfo` (procfs) for data. Unfortunately, `/proc/meminfo` is old, so old it predates cgroup. It will provide you with **host** memory information instead of your container. Let's start from the beginning and see what memory usage we get this time.",
+      "source_content_hash": "b7e8da6c573d02abed138fff0bc3a31cc84bcb22a821fbe92daac4627c1c79c1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們從一開始就犯了錯誤。free 和 top 指令並非「cgroup 感知」工具，它們依賴 `/proc/meminfo` (procfs) 獲取數據。遺憾的是，`/proc/meminfo` 過於陳舊，早於 cgroup 技術出現。它提供的是**主機**記憶體資訊而非容器內的狀況。讓我們從頭開始，重新檢視記憶體使用量。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8664ed0b",
+      "source_content": "To get the cgrouped memory usage, enter:",
+      "source_content_hash": "86769a0eccf7e20ca6c06d87920e82e978fe5468b98c37291dd3e2eebfa75d10",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要獲取 cgroup 記憶體使用量，請輸入："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a6c3f55f",
+      "source_content": "```sh\n/usr/src/app $ cat /sys/fs/cgroup/memory/memory.usage_in_bytes\n39821312\n```",
+      "source_content_hash": "541c7b08d2ca1583768065e36f173713b8ce72f553aa642c3809bf9f3a3d774c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a6c3f55f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "17b50e81",
+      "source_content": "Applying the 50 MiB StressChaos, yields the following:",
+      "source_content_hash": "5ae76658319cc5288b3afb87a6b5f18562b3a825f54f5b884474fdb8d75690d2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "施加 50 MiB 的 StressChaos 後，結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3ad9440a",
+      "source_content": "```sh\n/usr/src/app $ cat /sys/fs/cgroup/memory/memory.usage_in_bytes\n93577216\n```",
+      "source_content_hash": "7bb4dd874521f008dcb46a017d1dbbd831cf183414fd7acd85064514874833a2",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3ad9440a"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "63565425",
+      "source_content": "That is about 51 MiB more memory usage than without StressChaos.",
+      "source_content_hash": "31e42b360aceaf375263926a2d755dfd8a758368d2bf581cfff39d82a42e135e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "這比未施加 StressChaos 時增加了約 51 MiB 記憶體使用量。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1496ef51",
+      "source_content": "Next, why did our shell exit? Exit code 137 indicates \"failure as container received SIGKILL.\" That leads us to check the Pod. Pay attention to the Pod state and events.",
+      "source_content_hash": "1725a6acf07e3144fae1b41d0c2c8147f5dfccf40657855582ffe2d3e6b424bb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "接著，為何 shell 會退出？退出碼 137 表示「容器收到 SIGKILL 訊號而失敗」。這引導我們檢查 Pod 狀態，需特別關注 Pod 狀態和事件："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b68d496b",
+      "source_content": "```bash\n~ kubectl describe pods -n hello-kubernetes\n......\n    Last State:     Terminated\n      Reason:       Error\n      Exit Code:    1\n......\nEvents:\n  Type     Reason     Age                  From               Message\n  ----     ------     ----                 ----               -------\n......\n  Warning  Unhealthy  10m (x4 over 16m)    kubelet            Readiness probe failed: Get \"http://10.244.1.19:8080/\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n  Normal   Killing    10m (x2 over 16m)    kubelet            Container hello-kubernetes failed liveness probe, will be restarted\n......\n```",
+      "source_content_hash": "ddf21aaa4fd8fbca57edb56d861a76c8adea4b61ba1f571c266a3d3f7d5e47b2",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b68d496b"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "808b0414",
+      "source_content": "The events tell us why the shell crashed. `hello-kubernetes` has a liveness probe, and when the container memory is reaching the limit, the application starts to fail, and Kubernetes decides to terminate and restart it. When the Pod restarts, StressChaos stops. In that case, you can say that the chaos works fine. It finds vulnerability in your Pod. You could now fix it, and reapply the chaos. Everything seems perfect now—except for one thing. Why do four 50 MiB vm workers result in 51 MiB in total? The answer will not reveal itself unless we go into the stress-ng source code [here](https://github.com/ColinIanKing/stress-ng/blob/819f7966666dafea5264cf1a2a0939fd344fcf08/stress-vm.c#L2074) :",
+      "source_content_hash": "c4a39f6b683c7cee3fe505a08bd6d31c426e6b941020048654b2a680346708e6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "事件記錄揭示了 shell 崩潰原因。`hello-kubernetes` 設有存活探針(liveness probe)，當容器記憶體逼近限制值時，應用程式開始故障，Kubernetes 決定終止並重啟容器。Pod 重啟時 StressChaos 即停止運行。此時可說混沌測試成功發揮作用——它暴露了 Pod 的脆弱性。您可修復問題後重新施加混沌測試。看似完美，但尚存疑問：為何四個 50 MiB 的 vm worker 進程總共只佔用 51 MiB？答案需檢視 stress-ng 源碼[此處](https://github.com/ColinIanKing/stress-ng/blob/819f7966666dafea5264cf1a2a0939fd344fcf08/stress-vm.c#L2074)："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "028bef0a",
+      "source_content": "```c\nvm_bytes /= args->num_instances;\n```",
+      "source_content_hash": "c614f2f2ec5024766f34813ee8bc7bb46c508c58035566465fc223076bd34af6",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_028bef0a"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e29bd639",
+      "source_content": "Oops! So the document is wrong. The multiple vm workers will take up the total size specified, rather than `mmap` that much memory per worker. Now, finally, we get an answer for everything. In the following sections, we’ll discuss some other situations involving memory stress.",
+      "source_content_hash": "db5c40885cca3b26a064f3c3752e84131d5bcb520ecc8197bb13c651ad7db1b9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "原來如此！文件說明有誤。多個 vm worker 會分攤指定的總記憶體量，而非每個 worker 獨立佔用 `mmap` 映射的全額空間。至此所有疑問終獲解答。後續章節將討論其他記憶體壓力情境。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "61282bab",
+      "source_content": "## What if there was no liveness probe?",
+      "source_content_hash": "345e9d2e0a43b13e4a4c02c6e196a0d598cb4e38ca842236e7f34eea44357f7c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 若未設置存活探針會如何？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4e2e17c5",
+      "source_content": "Let's delete the probes and try again. Find the following lines in `deploy/helm/hello-kubernetes/templates/deployment.yaml` and delete them.",
+      "source_content_hash": "a10d11f0ecbd24ad4fcad6d760ef18b417099f21ec60a15d220ae3b341e6dc09",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "讓我們刪除探針設定後重試。找到 `deploy/helm/hello-kubernetes/templates/deployment.yaml` 中的以下行並刪除："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bea1601a",
+      "source_content": "```yaml\nlivenessProbe:\n  httpGet:\n    path: /\n    port: http\nreadinessProbe:\n  httpGet:\n    path: /\n    port: http\n```",
+      "source_content_hash": "7078091ae5565190051d3f57f02cb6e377b1f466157f6e79c2124aea54b2ac21",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_bea1601a"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "015c0c6e",
+      "source_content": "After that, upgrade the deployment.",
+      "source_content_hash": "d5d6de5ca379765b57996fba057009d985a58cdceb5e920f2a59bf9966a3ebae",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "隨後升級部署："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6e5d54a8",
+      "source_content": "What is interesting in this scenario is that the memory usage goes up continuously, and then drops sharply; it goes back and forth. What is happening now? Let's check the kernel log. Pay attention to the last two lines.",
+      "source_content_hash": "d00b43ab4143abfae0e4ae93c3981321c302233d5af4bb19132aa14f693efb95",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此情境有趣之處在於：記憶體使用量持續上升後驟降，呈現反覆震盪。究竟發生何事？讓我們檢查核心日誌，請注意最後兩行："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bf3146e1",
+      "source_content": "```sh\n/usr/src/app $ dmesg\n......\n[189937.362908] [ pid ]   uid  tgid total_vm      rss nr_ptes swapents oom_score_adj name\n[189937.363092] [441060]  1000 441060    63955     3791      80     3030           988 node\n[189937.363110] [441688]     0 441688   193367     2136     372   181097          1000 stress-ng-vm\n......\n[189937.363148] Memory cgroup out of memory: Kill process 443160 (stress-ng-vm) score 1272 or sacrifice child\n[189937.363186] Killed process 443160 (stress-ng-vm), UID 0, total-vm:773468kB, anon-rss:152704kB, file-rss:164kB, shmem-rss:0kB\n```",
+      "source_content_hash": "8107d5d271b3f7978285ac8d1f03d88662688960b769647e7b717cdd3c325970",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_bf3146e1"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "af834e0d",
+      "source_content": "It’s clear from the output that the `stress-ng-vm` processes are being killed because there are out of memory (OOM) errors.",
+      "source_content_hash": "e29f55a6d3ce22f3ada544cc08f1ec56b5f8867af89f9b7dff6acd414f46d9bd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出明確顯示 `stress-ng-vm` 進程因記憶體不足(OOM)錯誤而被終止。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d75361e3",
+      "source_content": "If processes can’t get the memory they want, things get tricky. They are very likely to fail. Rather than wait for processes to crash, it’s better if you kill some of them to get more memory. The OOM killer stops processes by an order and tries to recover the most memory while causing the least trouble. For detailed information on this process, see [this introduction](https://lwn.net/Articles/391222/) to OOM killer.",
+      "source_content_hash": "8c9a94c35ca737c3c0fc8632d24a007fe02c0189bc137ecbd8de59acf0202da3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當進程無法獲取所需記憶體時，情況將變得棘手。進程極可能故障，與其等待崩潰，不如終止部分進程以釋放記憶體。OOM killer 按特定順序終止進程，力求在造成最小干擾下回收最多記憶體。詳細運作機制請參閱[此介紹](https://lwn.net/Articles/391222/)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c277c3c0",
+      "source_content": "Looking at the output above, you can see that `node`, which is our application process that should never be terminated, has an `oom_score_adj` of 988. That is quite dangerous since it is the process with the highest score to get killed. But there is a simple way to stop the OOM killer from killing a specific process. When you create a Pod, it is assigned a Quality of Service (QoS) class. For detailed information, see [Configure Quality of Service for Pods](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/).",
+      "source_content_hash": "16d812a9f4c8f7c92c2e92cc985323f604dab3ece25b33ef4958491154a76380",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "觀察上述輸出，您會發現名為 `node` 的應用程序進程（本應永不終止）的 `oom_score_adj` 值為 988。這相當危險，因為它是被殺優先級最高的進程。但有一個簡單方法可阻止 OOM Killer 殺死特定進程：當您創建 Pod 時，它會被分配一個服務質量（QoS）等級。詳細資訊請參閱[配置 Pod 的服務質量](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5eedf0a1",
+      "source_content": "Generally, if you create a Pod with precisely-specified resource requests, it is classified as a `Guaranteed` Pod. OOM killers do not kill containers in a `Guaranteed` Pod if there are other things to kill. These entities include non-`Guaranteed` Pods and stress-ng workers. A Pod with no resource requests is marked as `BestEffort`, and the OOM killer stops it first.",
+      "source_content_hash": "180ee05dd8743e5c619f79da2278c1c1b6dce7925ac0b29ceb672f9521f839e8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "通常情況下，若創建 Pod 時精確指定了資源請求量，該 Pod 會被歸類為 `Guaranteed` 等級。當存在其他可殺對象時，OOM Killer 不會殺死 `Guaranteed` Pod 中的容器。這些可殺對象包括非 `Guaranteed` Pod 和 stress-ng 工作進程。未指定資源請求量的 Pod 會被標記為 `BestEffort` 等級，OOM Killer 將優先終止此類 Pod。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e4945edb",
+      "source_content": "So that's all for the tour. Our suggestion is that `free` and `top` should not be used to assess memory in containers. Be careful when you assign resource limits to your Pod and select the right QoS. In the future, we’ll create a more detailed StressChaos document.",
+      "source_content_hash": "4b204c52b5011edc26dcb16355a184bc669e30bd0b4f5c784258f71682b12cce",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本次探索至此結束。我們建議不應使用 `free` 和 `top` 評估容器內存狀況。為 Pod 分配資源限制時需謹慎，並選擇合適的 QoS 等級。後續我們將編寫更詳細的 StressChaos 文檔。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "950e5c6c",
+      "source_content": "## Deeper dive into Kubernetes memory management",
+      "source_content_hash": "b71ada9f10a81d9b300f7e0cde4859fb47f6e79859f309d769c292f37d5d6d59",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 深入探索 Kubernetes 內存管理機制"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "49be422b",
+      "source_content": "Kubernetes tries to evict Pods that use too much memory (but not more memory than their limits). Kubernetes gets your Pod memory usage from `/sys/fs/cgroup/memory/memory.usage_in_bytes` and subtracts it by the `total_inactive_file` line in `memory.stat`.",
+      "source_content_hash": "d3b6cf9d6858150552d82c3e134773877c6f72ef36551018c16d21605e7ea4a5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "Kubernetes 會嘗試驅逐使用過多內存（但未超出限制值）的 Pod。其從 `/sys/fs/cgroup/memory/memory.usage_in_bytes` 獲取 Pod 內存用量，並減去 `memory.stat` 中的 `total_inactive_file` 數值。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`total_inactive_file`', Translation: '`memory.stat`'.",
+          "timestamp": "2025-07-04T06:49:59.315159+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "01902900",
+      "source_content": "Keep in mind that Kuberenetes **does not** support swap. Even if you have a node with swap enabled, Kubernetes creates containers with `swappiness=0`, which means swap is eventually disabled. That is mainly for performance concerns.",
+      "source_content_hash": "e95d3233bea878c7df2d7fa100980aafd83e2871eeb391bd3ab01ff87c4409ae",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "請注意 Kubernetes **不支援**交換空間（swap）。即使節點啟用了交換空間，Kubernetes 創建容器時也會設置 `swappiness=0`，這意味著交換空間實際上被禁用，此設計主要出於性能考量。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dbeb30c1",
+      "source_content": "`memory.usage_in_bytes` equals `resident set` plus `cache`, and `total_inactive_file` is memory in cache that the OS can retrieve if the memory is running out. `memory.usage_in_bytes - total_inactive_file` is called `working_set`. You will get this `working_set` value by `kubectl top pod <your pod> --containers`. Kubernetes uses this value to decide whether or not to evict your Pods.",
+      "source_content_hash": "27abc0ef12f3870d93f430551ce5d5ab5e20a4d27e8c6a2b6244599e9eac5020",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "`memory.usage_in_bytes` 等於 `resident set`（常駐內存）加上 `cache`（緩存），而 `total_inactive_file` 是操作系統在內存不足時可回收的緩存內存。`memory.usage_in_bytes - total_inactive_file` 稱為 `working_set`（工作集）。執行 `kubectl top pod <your pod> --containers` 獲取的即為此 `working_set` 值，Kubernetes 根據此值決定是否驅逐您的 Pod。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`working_set`', Translation: '`kubectl top pod <your pod> --containers`'.",
+          "timestamp": "2025-07-04T06:49:59.315194+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "09d52457",
+      "source_content": "Kubernetes periodically inspects memory usage. If a container's memory usage increases too quickly or the container cannot be evicted, the OOM killer is invoked. Kubernetes has its way of protecting its own process, so it always picks the container. When a container is killed, it may or may not be restarted, depending on your restart policy. If it is killed, when you execute `kubectl describe pod <your pod>` you will see it is restarted and the reason is `OOMKilled`.",
+      "source_content_hash": "83e368cff9b1945a9c2a2eab595e84cae3e9a0f73ac128b3575f8fd2bd5ff8bc",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Kubernetes 定期檢查內存使用情況。若容器內存用量增長過快或無法被驅逐，則觸發 OOM Killer。Kubernetes 有保護自身進程的機制，因此總是選擇終止容器。容器被殺後是否重啟取決於您的重啟策略。若容器因內存不足被殺，執行 `kubectl describe pod <your pod>` 時會看到重啟原因標記為 `OOMKilled`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d73903fc",
+      "source_content": "Another thing worth mentioning is the kernel memory. Since `v1.9`, Kubernetes’ kernel memory support is enabled by default. It is also a feature of cgroup memory subsystems. You can limit container kernel memory usage. Unfortunately, this causes a cgroup leak on kernel versions up to `v4.2`. You can either upgrade your kernel to `v4.3` or disable it.",
+      "source_content_hash": "4bf1ae7285c57884773b4f492f0d30ef34469057c9c8f24f41c5941bbaeb95c5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "另一值得提及的是內核內存。自 `v1.9` 起，Kubernetes 默認啟用內核內存支持功能（cgroup 內存子系統特性）。您可以限制容器內核內存用量，但遺憾的是在 `v4.2` 及更早內核版本中會導致 cgroup 洩漏。解決方案是升級內核至 `v4.3` 或禁用此功能。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "263073b1",
+      "source_content": "## How we implement StressChaos",
+      "source_content_hash": "983fbc20dc4f04c04a48ad60651ece62bf2bc432231f96b0ed4fe6be9f8cfba2",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## StressChaos 的實現原理"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d119b75c",
+      "source_content": "StressChaos is a simple way to test your container's behavior when it is low on memory. StressChaos utilizes a powerful tool named `stress-ng` to allocate memory and continue writing to the allocated memory. Because containers have memory limits and container limits are bound to a cgroup, we must find a way to run `stress-ng` in a specific cgroup. Luckily, this part is easy. With enough privileges, we can assign any process to any cgroup by writing to files in `/sys/fs/cgroup/`.",
+      "source_content_hash": "2381e979cd329706dec40fe745079044926d43638f4ef4bd0592c35f81fcfb1f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "StressChaos 是測試容器在低內存環境下行為的簡便方法。其利用名為 `stress-ng` 的強大工具分配內存並持續寫入。由於容器有內存限制且限制綁定於 cgroup，我們需找到在特定 cgroup 中運行 `stress-ng` 的方法。幸運的是，此部分較易實現：通過向 `/sys/fs/cgroup/` 中的文件寫入數據，在擁有足夠權限時可將任意進程分配至任意 cgroup。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8f4e752e",
+      "source_content": "If you are interested in Chaos Mesh and would like to help us improve it, you're welcome to join our [Slack channel](https://slack.cncf.io/) (#project-chaos-mesh)! Or submit your pull requests or issues to our [GitHub repository](https://github.com/chaos-mesh/chaos-mesh).",
+      "source_content_hash": "292ec121e174eb24d0ed5df288223eae895744a9f1ae5229cec545fd86383db2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若您對 Chaos Mesh 感興趣並願意協助改進，歡迎加入我們的 [Slack 頻道](https://slack.cncf.io/) (#project-chaos-mesh)！或向 [GitHub 代碼庫](https://github.com/chaos-mesh/chaos-mesh)提交 Pull Request 與 Issues。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2021-07-01-how-to-efficiently-stress-test-pod-memory.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.315229+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "790a43c62cc52937dd15776119690e81d10b16dd50939e8caaa8aaf00c7e3d9f"
+  }
+}

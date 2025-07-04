@@ -1,0 +1,379 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2021-12-22-deploy-chaos-mesh-on-kubesphere.md",
+  "source_file_content_hash": "7fcb0fb0f3d40390fb8ed77437b3e80b49af165bf50bfce5805ccf3f4fdc25a7",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /deploy-chaos-mesh-on-kubesphere\ntitle: 'Deploy Chaos Mesh on KubeSphere'\nauthors: cwen\nimage: /img/blog/chaos-mesh-kubesphere-banner.png\ntags: [Chaos Mesh, Chaos Engineering, Community]\n---",
+      "source_content_hash": "2261e0dcf48cb96afc8ede54b8098ff43f13a9c150d74d2cb022df43997e3072",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Deploy Chaos Mesh on KubeSphere](/img/blog/chaos-mesh-kubesphere-banner.png)",
+      "source_content_hash": "88e7e7348910148ab3c8e2020649e954ef2acde7ea2d03865b1c643b642ce395",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![在 KubeSphere 上部署 Chaos Mesh](/img/blog/chaos-mesh-kubesphere-banner.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) is a cloud-native Chaos Engineering platform that orchestrates chaos in Kubernetes environments. With Chaos Mesh, you can test your system's resilience and robustness on Kubernetes by injecting various types of faults into Pods, network, file system, and even the kernel.",
+      "source_content_hash": "bac4017055292398bb68feef21cfd0699f4e0352e147d94a84e2273c46614bb5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) 是一個雲原生的混沌工程平台，可在 Kubernetes 環境中編排混亂實驗。透過 Chaos Mesh，您能夠向 Pod、網路、檔案系統甚至核心注入各類故障，藉此測試 Kubernetes 系統的韌性與健壯性。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "![Chaos Mesh architecture](/img/blog/chaos-mesh-architecture-2.0.png)",
+      "source_content_hash": "ff3d63e1258e38517711d25385044633f2d0965658f8c72190b750dcd528edb3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Mesh 架構圖](/img/blog/chaos-mesh-architecture-2.0.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3daf1b88",
+      "source_content": "## What’s KubeSphere",
+      "source_content_hash": "82b21dc697b490b1be8c04c3de1a906f6f1e74b3272eb80991767ebeacd6fa2b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 什麼是 KubeSphere"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "[KubeSphere](https://kubesphere.io/) is a distributed operating system for cloud-native application management, using Kubernetes as its kernel. It provides a plug-and-play architecture, allowing third-party applications to be seamlessly integrated into its ecosystem.",
+      "source_content_hash": "baad4b1b85223e1be2b867e6110219f3ebcb51e990f8bdbb4330da1d1172e0b2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[KubeSphere](https://kubesphere.io/) 是以 Kubernetes 為核心的分散式雲原生應用管理作業系統，採用即插即用架構，允許第三方應用無縫整合至其生態系統。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "KubeSphere 3.2.0 adds the feature of dynamically loading community-developed Helm charts into the [KubeSphere App Store](https://kubesphere.io/docs/pluggable-components/app-store/). Thanks to this new feature, Chaos Mesh is now available on KubeSphere. In this tutorial, you will learn how to deploy Chaos Mesh on KubeSphere to conduct chaos experiments.",
+      "source_content_hash": "fb5e18f7937fefa0d353dfa13c1ed89431e248bc3ce349398dc6787f674e6383",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "KubeSphere 3.2.0 新增了將社群開發的 Helm chart 動態載入至 [KubeSphere 應用商店](https://kubesphere.io/docs/pluggable-components/app-store/)的功能。得益於此新特性，Chaos Mesh 現已登陸 KubeSphere。本教程將指導您在 KubeSphere 上部署 Chaos Mesh 以執行混沌實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "40f9552a",
+      "source_content": "## Enable App Store on KubeSphere",
+      "source_content_hash": "11bdcfef4d84a8bd0eb9c0a83f3cb30f8d6f0adb0e76335f1d004d83a007c95d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 啟用 KubeSphere 應用商店"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ff75e5d8",
+      "source_content": "1. Make sure you have installed and enabled the [KubeSphere App Store](https://kubesphere.io/docs/pluggable-components/app-store/).",
+      "source_content_hash": "a7f110b4b4d286948e1ec775d98b82d45bba2190fe69b41c7f762ceb24583ddf",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 確保您已安裝並啟用 [KubeSphere 應用商店](https://kubesphere.io/docs/pluggable-components/app-store/)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b08b37ac",
+      "source_content": "2. You need to create a workspace, a project, and a user account (project-regular) for this tutorial. The account needs to be a platform regular user and to be invited as the project operator with the operator role. For more information, see [Create Workspaces, Projects, Users and Roles](https://kubesphere.io/docs/quick-start/create-workspace-and-project/).",
+      "source_content_hash": "e89de352b3f514ec43721aa04ba4f1e0c93b6feb54c88d0b20f3e4d19fd74346",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 您需要為本教程建立工作區、專案和使用者帳戶 (project-regular)。該帳戶需為平台普通使用者，並需被邀請為具備操作員角色的專案操作員。詳細資訊請參閱[建立工作區、專案、使用者和角色](https://kubesphere.io/docs/quick-start/create-workspace-and-project/)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2f30ae8",
+      "source_content": "## Chaos experiments with Chaos Mesh",
+      "source_content_hash": "8c40a8b991ab68f3ba4508e424ab484a020fbc2164a88f32394b91fd4a1c0001",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Chaos Mesh 進行混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "48847fd4",
+      "source_content": "### Step 1: Deploy Chaos Mesh",
+      "source_content_hash": "f12870542e1c39dcaf43e8ca7d2d041f4aaa9d911524a2de087c4eb62e06f626",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 1：部署 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "212333a8",
+      "source_content": "1. Login KubeSphere as `project-regular`, search for **chaos-mesh** in the **App Store**, and click on the search result to enter the app.\n\n   ![Chaos Mesh app](/img/blog/chaos-mesh-app.png)",
+      "source_content_hash": "b38e03ff6d657732acf87817a8d10231fde2ff6b3a8143e492905c88899bbc6d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 以 `project-regular` 身份登入 KubeSphere，於**應用商店**中搜尋 **chaos-mesh**，點擊搜尋結果進入應用。\n\n   ![Chaos Mesh 應用](/img/blog/chaos-mesh-app.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa355dc5",
+      "source_content": "2. In the **App Information** page, click **Install** on the upper right corner.\n\n   ![Install Chaos Mesh](/img/blog/install-chaos-mesh.png)",
+      "source_content_hash": "f5aab5c134e945d0303b70909bdb33bfdc973e285fae7380a5c0d82858836b7b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 在**應用資訊**頁面中，點擊右上角的**安裝**按鈕。\n\n   ![安裝 Chaos Mesh](/img/blog/install-chaos-mesh.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c4706327",
+      "source_content": "3. In the **App Settings** page, set the application **Name,** **Location** (as your Namespace), and **App Version**, and then click **Next** on the upper right corner.\n\n   ![Chaos Mesh basic information](/img/blog/chaos-mesh-basic-info.png)",
+      "source_content_hash": "95fbaf8fc8d5cace50e9624bd9e1805e7fad6e9c39edaf44c83accba15c97221",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 於**應用設定**頁面，設定應用的**名稱**、**位置**（即您的命名空間）與**應用版本**，接著點擊右上角的**下一步**。\n\n   ![Chaos Mesh 基本資訊](/img/blog/chaos-mesh-basic-info.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee9c310",
+      "source_content": "4. Configure the `values.yaml` file as needed, or click **Install** to use the default configuration.\n\n   ![Chaos Mesh configurations](/img/blog/chaos-mesh-config.png)",
+      "source_content_hash": "82c010617550c3eaf6b7a41ea671d705d49fff8fe89dc68b0a21fff569aec835",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 按需配置 `values.yaml` 檔案，或點擊**安裝**使用預設配置。\n\n   ![Chaos Mesh 配置項](/img/blog/chaos-mesh-config.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ba6feeca",
+      "source_content": "5. Wait for the deployment to be finished. Upon completion, Chaos Mesh will be shown as **Running** in KubeSphere.\n\n   ![Chaos Mesh deployed](/img/blog/chaos-mesh-deployed.png)",
+      "source_content_hash": "331af6d0912e2d305b5bdd6881bcb0696088241f22297ae108036fb11a08a4e6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "5. 等待部署完成。部署完成後，Chaos Mesh 在 KubeSphere 中將顯示為**運行中**狀態。\n\n   ![已部署 Chaos Mesh](/img/blog/chaos-mesh-deployed.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c6cc90a0",
+      "source_content": "### Step 2: Visit Chaos Dashboard",
+      "source_content_hash": "68e8bb4b05e8130710aa8119e2c6c57ae2b3acb0572036692b3d5ef218ee3eb7",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 2：訪問 Chaos Dashboard"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f60f155a",
+      "source_content": "1. In the **Resource Status** page, copy the **NodePort **of `chaos-dashboard`.\n\n   ![Chaos Mesh NodePort](/img/blog/chaos-mesh-nodeport.png)",
+      "source_content_hash": "6a25182d71524dc8301c25a334fa2a6a58fb595896cecc6fccf81b4081262212",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 在**資源狀態**頁面，複製 `chaos-dashboard` 的 **NodePort** 值。\n\n   ![Chaos Mesh NodePort](/img/blog/chaos-mesh-nodeport.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2be69f97",
+      "source_content": "2. Access the Chaos Dashboard by entering `${NodeIP}:${NODEPORT}` in your browser. Refer to [Manage User Permissions](https://chaos-mesh.org/docs/manage-user-permissions/) to generate a Token and log into Chaos Dashboard.\n\n   ![Login to Chaos Dashboard](/img/blog/login-to-dashboard.png)",
+      "source_content_hash": "1d20fac753a18773a2e52dfdbf94f9efae8a979269191285083e3ccb78f42fa1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 在瀏覽器中輸入 `${NodeIP}:${NODEPORT}` 訪問 Chaos Dashboard。請參閱[管理使用者權限](https://chaos-mesh.org/docs/manage-user-permissions/)生成 Token 並登入 Chaos Dashboard。\n\n   ![登入 Chaos Dashboard](/img/blog/login-to-dashboard.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9e95fc4a",
+      "source_content": "### Step 3: Create a chaos experiment",
+      "source_content_hash": "62d814335d8d219eb80b1ea7051a08b0791cafc66b3567eb06c69a7789f7c7c0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 3：建立混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5dae11e3",
+      "source_content": "Before creating a chaos experiment, you should identify and deploy your experiment target, for example, to test how an application works under network latency. Here, we use a demo application `web-show` as the target application to be tested, and the test goal is to observe the system network latency. You can deploy a demo application `web-show` with the following command: `web-show`.",
+      "source_content_hash": "46c70f7bec07cc10829344796a1ba10ecb2d7c94d551bfbed9e5052bfd8ebc91",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "在建立混沌實驗之前，您應先識別並部署實驗目標，例如測試應用程式在網路延遲下的運作情形。此處我們使用示範應用程式 `web-show` 作為待測目標應用程式，測試目標是觀察系統網路延遲。您可透過以下指令部署示範應用程式：`web-show`。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 3, translation has 2.",
+          "timestamp": "2025-07-04T06:49:59.311733+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "1d510af2",
+      "source_content": "```bash\ncurl -sSL https://mirrors.chaos-mesh.org/latest/web-show/deploy.sh | bash\n```",
+      "source_content_hash": "81649bfe7b3ac6ebc49714ea596190492cd6ce36ef93b998f0e7ab389a6ebf38",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1d510af2"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ac426fbd",
+      "source_content": "> Note: The network latency of the Pod can be observed directly from the web-show application pad to the kube-system pod.",
+      "source_content_hash": "e50be3094f8390cafe12210d6a4dc8e35f9685804506df3a28c5d606737d816e",
+      "node_type": "blockquote",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "> 注意：Pod 的網路延遲可直接從 web-show 應用程式面板觀察至 kube-system pod。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4e8535b2",
+      "source_content": "1. From your web browser, visit `${NodeIP}:8081` to access the **Web Show** application.\n\n   ![Chaos Mesh web show app](/img/blog/web-show-app.png)",
+      "source_content_hash": "4aa5d474b823fd58793d37db7accab10e76c8a9d899038b99bc4d347cb5a73f0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 在網頁瀏覽器中訪問 `${NodeIP}:8081` 以存取 **Web Show** 應用程式。\n\n   ![Chaos Mesh web show app](/img/blog/web-show-app.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cfb8e6f9",
+      "source_content": "2. Log in to Chaos Dashboard to create a chaos experiment. To observe the effect of network latency on the application, we set the **Target **as \"Network Attack\" to simulate a network delay scenario.\n\n   ![Chaos Dashboard](/img/blog/chaos-dashboard-networkchaos.png)\n\n   The **Scope** of the experiment is set to `app: web-show`.\n\n   ![Chaos Experiment scope](/img/blog/chaos-experiment-scope.png)",
+      "source_content_hash": "b4ed58b0c5b09c35d9cea163d5249f8d3ba72b83d8a77dcbe5081c85142219d8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 登入 Chaos Dashboard 建立混沌實驗。為觀察網路延遲對應用程式的影響，我們將**目標**設為「Network Attack」以模擬網路延遲情境。\n\n   ![Chaos Dashboard](/img/blog/chaos-dashboard-networkchaos.png)\n\n   實驗**範圍**設定為 `app: web-show`。\n\n   ![Chaos Experiment scope](/img/blog/chaos-experiment-scope.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c76e6a32",
+      "source_content": "3. Start the chaos experiment by submitting it.\n\n   ![Submit Chaos Experiment](/img/blog/start-chaos-experiment.png)",
+      "source_content_hash": "5da0970bf8bf961e13ae46c40f11af871103cf6ed30f194f99e4a06892216dd3",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 透過提交啟動混沌實驗。\n\n   ![Submit Chaos Experiment](/img/blog/start-chaos-experiment.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "74dd7937",
+      "source_content": "Now, you should be able to visit **Web Show** to observe experiment results:",
+      "source_content_hash": "1de86b5f8defa2dd4a88c79bec750a4648480f816e90fe8369818de9ed1cfb3f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "現在您可訪問 **Web Show** 觀察實驗結果："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5803caac",
+      "source_content": "![Chaos Experiment result](/img/blog/experiment-result.png)",
+      "source_content_hash": "0b0cf476ddfb541f3404ea7a973454478c510b1b90d266be1824cda1da7b83c9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Experiment result](/img/blog/experiment-result.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39db08de",
+      "source_content": "## To summarize",
+      "source_content_hash": "19f0434a0755cbc2a136737478411a452d321d9736649aad4fb9b2f833e678cb",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 總結"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "785750ac",
+      "source_content": "KubeSphere makes cloud-native application deployments and maintenance easy. Thanks to the App Store, users can easily deploy Chaos Mesh on KubeSphere with just a few clicks, enabling you to quickly start your own chaos experiments.",
+      "source_content_hash": "49ca43d8e565aab513e36f994f22d94ac7932c070ebdb6db30881599d3484b43",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "KubeSphere 讓雲原生應用程式的部署與維護更加簡易。得益於應用商店，使用者僅需點擊幾下即可在 KubeSphere 上部署 Chaos Mesh，讓您能快速展開混沌實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "82e90254",
+      "source_content": "To learn more about Chaos Mesh, refer to the [Chaos Mesh docs](https://chaos-mesh.org/docs/) or join the community Slack ([CNCF](https://slack.cncf.io/)/#project-chaos-mesh).",
+      "source_content_hash": "b56d8461128ab4808c1bf80a3073a8c7a59c81d916629edb97ffd6d40ae93470",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "欲深入了解 Chaos Mesh，請參閱 [Chaos Mesh 文件](https://chaos-mesh.org/docs/) 或加入社群 Slack ([CNCF](https://slack.cncf.io/)/#project-chaos-mesh)。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2021-12-22-deploy-chaos-mesh-on-kubesphere.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.311767+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "7fcb0fb0f3d40390fb8ed77437b3e80b49af165bf50bfce5805ccf3f4fdc25a7"
+  }
+}

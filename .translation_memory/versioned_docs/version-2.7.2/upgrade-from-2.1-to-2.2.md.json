@@ -1,0 +1,320 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/upgrade-from-2.1-to-2.2.md",
+  "source_file_content_hash": "d2520369c618a08aeb46499526488b258ea82636c3344dc01e93965d2295368f",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Upgrade from 2.1 to 2.2\n---",
+      "source_content_hash": "7efe388c47e05cb97c01001329b5a155a796b39f667b2b711e0dec96c9728c54",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "There are several changes in Helm Charts 2.2.0 release. This documentation introduces how to migrate from 2.1.x to 2.2.0.",
+      "source_content_hash": "46e17671b4a4f598444f8b82b92e19cc5b3133d1cec18b9e1d8340da35389780",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Helm Charts 2.2.0 版本中有多項變更。本文檔介紹如何從 2.1.x 遷移到 2.2.0。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## Upgrade with Helm",
+      "source_content_hash": "87c9863f4abcf24fd6b43fedfe457eac31e28081e7fbeab09ee74baea8b29163",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Helm 升級"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d912d376",
+      "source_content": "### Step 1: Add/Update Chaos Mesh Helm repository",
+      "source_content_hash": "341a21f2bb7eb018b4046fdb0e174d10b208e30e540cc3d33fd5691c50e36503",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 1：新增/更新 Chaos Mesh Helm 儲存庫"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "Add the Chaos Mesh repository to the Helm repository and update it:",
+      "source_content_hash": "83081ff362db489d7e428e2928a6c229d97e304e668945e5e84f437534ca34fd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "將 Chaos Mesh 儲存庫新增至 Helm 儲存庫並更新："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9c7a144",
+      "source_content": "```bash\nhelm repo add chaos-mesh https://charts.chaos-mesh.org\nhelm repo update\n```",
+      "source_content_hash": "337feb1175d85344542b00ce766bc7527ccd591faf05bd9d4d16a7f61efff962",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b9c7a144"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d350c018",
+      "source_content": "### Step 2: Migrate the `values.yaml` file",
+      "source_content_hash": "ee6de5f55a82927f6e6f9a7c6849cf1c430b81c5fa524d40c3f8b8b9481bdb90",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 2：遷移 `values.yaml` 文件"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1acb9a05",
+      "source_content": "If you installed Chaos Mesh with a certain `values.yaml`, it is recommended to apply your customized configuration to the `values.yaml` of Chaos Mesh 2.2.0.",
+      "source_content_hash": "f0baff4db68712d105fc525f6b401c79b62d39a1086b04afbc5e30a18ddec42d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若您先前使用特定 `values.yaml` 安裝 Chaos Mesh，建議將自訂配置套用至 Chaos Mesh 2.2.0 的 `values.yaml`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2df4f75f",
+      "source_content": "You can fetch the default `values.yaml` by the following command:",
+      "source_content_hash": "a08118a7357ee6192d449b1abb269f60702bf44b9215ac0cd7f7da4877d90139",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可透過以下命令取得預設 `values.yaml`："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2b711c6",
+      "source_content": "```bash\nhelm show values chaos-mesh/chaos-mesh --version 2.2.0 > values.yaml\n```",
+      "source_content_hash": "959bfb041cd3654d0f1f32ff8b20853ed41e8259150f6cb6ef770cd06c591277",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_f2b711c6"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d9172fa4",
+      "source_content": "If you do not recognize the changed configurations, you might not rely on that specific feature, it is usually safe to ignore them.",
+      "source_content_hash": "e8a2755767fc6ced4d2f425b363451d8f74ead6a7d7e729d7481ac6eb07b8be9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若您不熟悉變更的配置項，可能表示未依賴該功能，通常可安全忽略這些變更。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "26524352",
+      "source_content": "Here is a list of Helm Chart changes:",
+      "source_content_hash": "24e95291f8db7bdcc294fff7eb41ee209c8c8dece2f92de7b34e80c3d431c1f8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下是 Helm Chart 的變更清單："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "56d666fe",
+      "source_content": "- new configuration: `chaosDaemon.mtls.enabled` represents using mtls bwteen chaos-controller-manager and chaos-daemon.",
+      "source_content_hash": "2adc7d37b1b833e0d17ba92c760c48b38ce69a7d4414b4e191b013b4a162aad7",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 新增配置：`chaosDaemon.mtls.enabled` 表示在 chaos-controller-manager 與 chaos-daemon 間啟用 mtls"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "212333a8",
+      "source_content": "- new configuration: `webhook.caBundlePEM` represents the CA bundle used to serve the webhook server.",
+      "source_content_hash": "4f294d1d2c4d71a9a563b6bd515276421102c7b233cfa48fcf80227dfbacb4c4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 新增配置：`webhook.caBundlePEM` 表示用於 webhook 伺服器的 CA 憑證包"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c0463e48",
+      "source_content": "- value changed: `dashboard.serviceAccount` changed from `chaos-controller-manager` to `chaos-dashboard`",
+      "source_content_hash": "57f678e3ce8388399c5ac7b8177cc6cdde7e537e4bb41d0c0e854d273cc769f4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 值變更：`dashboard.serviceAccount` 從 `chaos-controller-manager` 改為 `chaos-dashboard`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2d89eb89",
+      "source_content": "- value changed: `webhook.FailurePolicy` changed from `Ignore` to `Fail`",
+      "source_content_hash": "26e88fb149fd427252f8952faeefd8bc885bc65c0e98746cbd7077f5dfbb9d68",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 值變更：`webhook.FailurePolicy` 從 `Ignore` 改為 `Fail`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "26794fc5",
+      "source_content": ":::note\n\nFor more information about the detailed description, see [README](https://github.com/chaos-mesh/chaos-mesh/blob/v2.2.0/helm/chaos-mesh/README.md).\n\n:::",
+      "source_content_hash": "ce5c3fed31565277939e323fe54dd0d37086b447fa1770f8db4d7a3e238e9c7d",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n詳細說明請參閱 [README](https://github.com/chaos-mesh/chaos-mesh/blob/v2.2.0/helm/chaos-mesh/README.md)。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "06c0f776",
+      "source_content": "### Step 3: Update the CRD",
+      "source_content_hash": "02755df697877038495d74bfb783fb0e36c992b66d21727c39132359f00edb6f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 3：更新 CRD"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa1e7006",
+      "source_content": "For `Kubernetes >= 1.16`, you can apply the latest CRD by executing the following command:",
+      "source_content_hash": "0a6f1836dccac671c03942de543cf2715d45284a207fc0e2d3ceda46717ea2c5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若 `Kubernetes >= 1.16`，請執行以下命令套用最新 CRD："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b75ddc12",
+      "source_content": "```bash\nkubectl replace -f https://mirrors.chaos-mesh.org/v2.2.0/crd.yaml\n```",
+      "source_content_hash": "5e1cd7fa648bea5f5b409cefef58163a408b26bd80bd78c6f9b178238bc26c07",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b75ddc12"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c504c207",
+      "source_content": "For `Kubernetes <= 1.15`, you can apply the latest CRD by executing the following command:",
+      "source_content_hash": "83f5641e79e593edc8ef7ce6d2d2fbf060d3c83251d250d8bd98bfd4a37aeac4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若 `Kubernetes <= 1.15`，請執行以下命令套用最新 CRD："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ac961110",
+      "source_content": "```bash\nkubectl replace -f https://mirrors.chaos-mesh.org/v2.2.0/crd-v1beta1.yaml\n```",
+      "source_content_hash": "b37ecc0c25ccde03deb623b98a676df116656a5fc9e9acd287beb983dd3e5f6e",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ac961110"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0bfbe139",
+      "source_content": ":::caution\n\nChaos Mesh 2.2.x would be the last series of releases that support Kubernetes < 1.19.\n\n:::",
+      "source_content_hash": "0a4db719c47fe3b105953efa7140cb1b80cda04adcf77ae7a0b0e42f553e1579",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::caution\n\nChaos Mesh 2.2.x 將是最後支援 Kubernetes < 1.19 的版本系列。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9e95fc4a",
+      "source_content": "### Step 4: Upgrade Chaos Mesh by `helm upgrade`",
+      "source_content_hash": "10a8d8f53d3c8222fbe412677a38a8d0c7854063118a1b9c5d4de660eac9bb0d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 4：透過 `helm upgrade` 升級 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5dae11e3",
+      "source_content": "Then you can execute the following command to upgrade Chaos Mesh to the 2.2.0:",
+      "source_content_hash": "2e7aaba408630284eff649e6b993fab82e0f78d2328e75446f327b5874d3f6c1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下命令將 Chaos Mesh 升級至 2.2.0："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1d510af2",
+      "source_content": "```bash\nhelm upgrade <release-name> chaos-mesh/chaos-mesh --namespace=<namespace> --version=2.2.0 <--other-required-flags>\n```",
+      "source_content_hash": "1dade760ee1e3ab2b759ae6002884412cf46aa10dacee51c68b515614de453da",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1d510af2"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "52388877",
+      "source_content": "## Ask the Community",
+      "source_content_hash": "68790a28430038ef21194d04ec50cd9581074ff875c9ac0bc85d40841b9afbc1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 詢問社群"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "eab056be",
+      "source_content": "If you have any questions about upgrading Chaos Mesh, feel free to contact us at [Slack Channel](https://cloud-native.slack.com/archives/C0193VAV272), GitHub [Issues](https://github.com/chaos-mesh/chaos-mesh/issues/new?assignees=&labels=&template=question.md) and [Discussions](https://github.com/chaos-mesh/chaos-mesh/discussions/new).",
+      "source_content_hash": "2ccd9598bd2a5ccc45d551c9666b403eb6c017863c40904af1f2341f52cb82b6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如有任何升級問題，歡迎透過 [Slack 頻道](https://cloud-native.slack.com/archives/C0193VAV272)、GitHub [議題](https://github.com/chaos-mesh/chaos-mesh/issues/new?assignees=&labels=&template=question.md) 或 [討論區](https://github.com/chaos-mesh/chaos-mesh/discussions/new) 聯繫我們。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/upgrade-from-2.1-to-2.2.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.122849+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "d2520369c618a08aeb46499526488b258ea82636c3344dc01e93965d2295368f"
+  }
+}

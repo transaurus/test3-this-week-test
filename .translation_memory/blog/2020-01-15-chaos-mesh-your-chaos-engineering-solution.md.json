@@ -1,0 +1,1050 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2020-01-15-chaos-mesh-your-chaos-engineering-solution.md",
+  "source_file_content_hash": "0a9817d9b6739dc1a07338160f37b1793438e909d6230c92185d2543cb08fc43",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /chaos_mesh_your_chaos_engineering_solution\ntitle: Chaos Mesh - Your Chaos Engineering Solution for System Resiliency on Kubernetes\nauthors: cwen\nimage: /img/blog/chaos-engineering.png\ntags: [Chaos Mesh, Chaos Engineering, Kubernetes]\n---",
+      "source_content_hash": "b4642fd9c45de9f27b89dd9a8a80946445501966b09c071ba8082ce9e2af59d5",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Chaos Engineering](/img/blog/chaos-engineering.png)",
+      "source_content_hash": "32817e6675184fbd6988007cd8effb3bf7360fba000f320c5283ccb6fb2113ee",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![混沌工程](/img/blog/chaos-engineering.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8a5f6a7b",
+      "source_content": "## Why Chaos Mesh?",
+      "source_content_hash": "da1dad2ae4e2a78c06654ae2e667377985e4d070d37a07740b3ca35339c5ac37",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 為什麼選擇 Chaos Mesh？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "180bddb1",
+      "source_content": "In the world of distributed computing, faults can happen to your clusters unpredictably any time, anywhere. Traditionally we have unit tests and integration tests that guarantee a system is production ready, but these cover just the tip of the iceberg as clusters scale, complexities amount, and data volumes increase by PB levels. To better identify system vulnerabilities and improve resilience, Netflix invented [Chaos Monkey](https://netflix.github.io/chaosmonkey/) and injects various types of faults into the infrastructure and business systems. This is how Chaos Engineering was originated.",
+      "source_content_hash": "8754a4634349ac150e8ab40d28f2f1f92fe690a7aec1fb816f156bf56de8f871",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在分散式運算領域，故障可能隨時隨地不可預測地發生在您的集群中。傳統上我們透過單元測試和整合測試確保系統具備生產環境準備度，但隨著集群規模擴大、複雜性增加以及資料量攀升至 PB 等級，這些測試僅涵蓋冰山一角。為了更有效識別系統脆弱性並提升韌性，Netflix 開發了 [Chaos Monkey](https://netflix.github.io/chaosmonkey/)，將各類故障注入基礎設施和業務系統，混沌工程由此誕生。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28a64196",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_28a64196"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "At [PingCAP](https://chaos-mesh.org/), we are facing the same problem while building [TiDB](https://github.com/pingcap/tidb), an open source distributed NewSQL database. To be fault tolerant, or resilient holds especially true to us, because the most important asset for any database users, the data itself, is at stake. To ensure resilience, we started [practicing Chaos Engineering](https://pingcap.com/blog/chaos-practice-in-tidb/) internally in our testing framework from a very early stage. However, as TiDB grew, so did the testing requirements. We realized that we needed a universal chaos testing platform, not just for TiDB, but also for other distributed systems.",
+      "source_content_hash": "6d92d1a3447ececc94af297238eee1e91d9627400a7e3dc7c4900f52a00d129a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在 [PingCAP](https://chaos-mesh.org/) 構建開源分散式 NewSQL 資料庫 [TiDB](https://github.com/pingcap/tidb) 時，我們面臨同樣挑戰。對資料庫而言，韌性至關重要——因為用戶最重要的資產「資料」正處於風險中。為確保韌性，我們[在測試框架中實踐混沌工程](https://pingcap.com/blog/chaos-practice-in-tidb/)。隨著 TiDB 發展，測試需求日益增長，我們意識到需要一個通用混沌測試平台，不僅服務 TiDB，也適用於其他分散式系統。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "Therefore, we present to you Chaos Mesh, a cloud-native Chaos Engineering platform that orchestrates chaos experiments on Kubernetes environments. It's an open source project available at [https://github.com/chaos-mesh/chaos-mesh](https://github.com/chaos-mesh/chaos-mesh).",
+      "source_content_hash": "068f76ad7318ffe31c2d6eb251a8984aed9d46578f7eaab1a55566161eb070cd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "因此我們推出 Chaos Mesh——專為 Kubernetes 環境設計的雲原生混沌工程平台，可於 [https://github.com/chaos-mesh/chaos-mesh](https://github.com/chaos-mesh/chaos-mesh) 開源取得。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "In the following sections, I will share with you what Chaos Mesh is, how we design and implement it, and finally I will show you how you can use it in your environment.",
+      "source_content_hash": "fc2d99cad46200ad980f85fdc8ef72fe1058c533741a28a078d787aa4bc04cde",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下我將分享 Chaos Mesh 的核心概念、設計實現原理，並展示如何在您的環境中使用。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "40f9552a",
+      "source_content": "## What can Chaos Mesh do?",
+      "source_content_hash": "8a8e416aec724b1c1dbb79897ec4cd2a693faf16b653cd9851351e6dd18a7602",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## Chaos Mesh 能做什麼？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c2bdd0",
+      "source_content": "Chaos Mesh is a versatile Chaos Engineering platform that features all-around fault injection methods for complex systems on Kubernetes, covering faults in Pod, network, file system, and even the kernel.",
+      "source_content_hash": "0286d9a8ebbdc33942cb077f980d70f684f9d636a69b17e99f6b53e6e520e3cb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 是功能全面的混沌工程平台，提供涵蓋 Kubernetes 上複雜系統的全方位故障注入方法，包括 Pod、網路、檔案系統乃至核心層級的故障模擬。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a76548f8",
+      "source_content": "Here is an example of how we use Chaos Mesh to locate a TiDB system bug. In this example, we simulate Pod downtime with our distributed storage engine ([TiKV](https://docs.pingcap.com/tidb/stable/tidb-architecture#tikv-server)) and observe changes in queries per second (QPS). Regularly, if one TiKV node is down, the QPS may experience a transient jitter before it returns to the level before the failure. This is how we guarantee high availability.",
+      "source_content_hash": "d8e4655c36e37225bccf3a66418f5831fcbe444656ba4efb49943562a789d1fa",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此案例展示我們如何透過 Chaos Mesh 定位 TiDB 系統錯誤：模擬分散式儲存引擎 ([TiKV](https://docs.pingcap.com/tidb/stable/tidb-architecture#tikv-server)) 的 Pod 停機，並觀察每秒查詢率 (QPS) 變化。正常情況下，當一個 TiKV 節點停機時，QPS 會經歷短暫波動後恢復至故障前水平，此即高可用性的保障機制。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b1d2d7d",
+      "source_content": "![Chaos Mesh discovers downtime recovery exceptions in TiKV](/img/blog/chaos-mesh-discovers-downtime-recovery-exceptions-in-tikv.png)",
+      "source_content_hash": "c189687ef510250f52d5a86edc93a5b41faf7808bb6da4226b88a01e4b23be09",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Mesh 發現 TiKV 停機恢復異常](/img/blog/chaos-mesh-discovers-downtime-recovery-exceptions-in-tikv.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfe931a2",
+      "source_content": "As you can see from the dashboard:",
+      "source_content_hash": "8c97cb43d4c59405a39cd51d7bd8d2cc3e559078e0119dc9631a0a6d91cfaa91",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "儀表板顯示："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "212333a8",
+      "source_content": "- During the first two downtimes, the QPS returns to normal after about 1 minute.",
+      "source_content_hash": "69c7f2d708d93802c3881e867a808825e47b9455e78b11dbb1ed504a27edaef3",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 前兩次停機後，QPS 約 1 分鐘恢復正常"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c0463e48",
+      "source_content": "- After the third downtime, however, the QPS takes much longer to recover—about 9 minutes. Such a long downtime is unexpected, and it would definitely impact online services.",
+      "source_content_hash": "32ebac9edb15a58a025376b5fb95b5efc98e50e786f734e37c22cbc273d198fd",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 第三次停機後，QPS 恢復耗時約 9 分鐘。此異常延遲將嚴重影響線上服務"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "517051a7",
+      "source_content": "After some diagnosis, we found the TiDB cluster version under test (V3.0.1) had some tricky issues when handling TiKV downtimes. We resolved these issues in later versions.",
+      "source_content_hash": "0cdbe193129c13bce468e14ec02fd4e3e019cb67c6fef35a6fc9b3f593684c2f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "經診斷發現，受測 TiDB 集群版本 (V3.0.1) 處理 TiKV 停機時存在棘手問題，後續版本已修復此缺陷。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "135468ee",
+      "source_content": "But Chaos Mesh can do a lot more than just simulate downtime. It also includes these fault injection methods:",
+      "source_content_hash": "b3a8771af8f9d41afce168078b8408310dd6b1cf2ca931d9597ca862dd936f15",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 的功能遠不止模擬停機，還包含以下故障注入方法："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4a0e7cce",
+      "source_content": "- **pod-kill:** Simulates Kubernetes Pods being killed",
+      "source_content_hash": "cbce60dd86764e0861b98b87eba52c00855de91759a544327091bbe7a45a6643",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **pod-kill:** 模擬 Kubernetes Pod 被終止"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c4706327",
+      "source_content": "- **pod-failure:** Simulates Kubernetes Pods being continuously unavailable",
+      "source_content_hash": "6d998cd9a2812ecbdda7664bd4b08cf408e17f791814f126a6733a9f993adaf5",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **pod-failure:** 模擬 Kubernetes Pod 持續不可用"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e78e6061",
+      "source_content": "- **network-delay:** Simulates network delay",
+      "source_content_hash": "30a921cbb64afeecae244cbb6a9a5fc34278f23bc6c7b6c4d5a5a097bda9086f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **network-delay:** 模擬網路延遲"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c6e6fb16",
+      "source_content": "- **network-loss:** Simulates network packet loss",
+      "source_content_hash": "0a6ce82cce16f3a03d833c01e94e2252b92230a6ca6986bffd58cbc2f85d52dd",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **network-loss:** 模擬網路封包遺失"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6c00797f",
+      "source_content": "- **network-duplication:** Simulates network packet duplication",
+      "source_content_hash": "285de38f3227ce8b0ed217357a3c8108b705857cb83f2caf5dbd7fcee7932d7e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **network-duplication:** 模擬網路封包重複"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee9c310",
+      "source_content": "- **network-corrupt:** Simulates network packet corruption",
+      "source_content_hash": "5aa2e626352f0691a60ee94ff75a7ef6cd7888a83fac0663b5bc7d9ba658d95f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **network-corrupt:** 模擬網路封包損壞"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "394e77a6",
+      "source_content": "- **network-partition:** Simulates network partition",
+      "source_content_hash": "1d9f5c7989a12b6b0a8b12d4a058df60271bd39d134eaf9bee52b2196d2959e4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **network-partition:** 模擬網路分區"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c710067",
+      "source_content": "- **I/O delay:** Simulates file system I/O delay",
+      "source_content_hash": "1ff25d3665fc63b0cd0b8352454fb17d62c5d0599aa9efb4ac5114329f9914a7",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **I/O 延遲:** 模擬檔案系統的 I/O 延遲"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "def098da",
+      "source_content": "- **I/O errno:** Simulates file system I/O errors",
+      "source_content_hash": "b0d3269c0013bac07f3234713cce07c0c6ff9a3f91c98286c1f1b418a9b8b883",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **I/O 錯誤碼:** 模擬檔案系統的 I/O 錯誤"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6d28a77c",
+      "source_content": "## Design principles",
+      "source_content_hash": "79717ddc9d714ad9e0ed76e61a3a742b87d5132f42334df9de252c1c3829cea1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 設計原則"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f7ef78f9",
+      "source_content": "We designed Chaos Mesh to be easy to use, scalable, and designed for Kubernetes.",
+      "source_content_hash": "96fd60e10aec50f68e659b572fdfc1b2e2ca82414eb487c1fc21fe9802ea7dcb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們將 Chaos Mesh 設計為易於使用、具備擴展性，並專為 Kubernetes 打造。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "60410af6",
+      "source_content": "### Easy to use",
+      "source_content_hash": "4ebadf072ab99ef6568aa81016a81c13c2a4fc54848a1a6d618b58371642fcb6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 易於使用"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9aaa519",
+      "source_content": "To be easy to use, Chaos Mesh must:",
+      "source_content_hash": "d9d046725814bc4cad6eadfc5e22322b3063d0c6060f9bc2b0cb41de7eb3dac3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "為實現易用性，Chaos Mesh 必須："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "333176e5",
+      "source_content": "- Require no special dependencies, so that it can be deployed directly on Kubernetes clusters, including [Minikube](https://github.com/kubernetes/minikube).",
+      "source_content_hash": "6789142b9f6ebae5abb515726d373060e8bd410949b464924d7a0d47fcff2c6f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 無需特殊依賴，可直接部署於 Kubernetes 叢集（包括 [Minikube](https://github.com/kubernetes/minikube)）。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2be69f97",
+      "source_content": "- Require no modification to the deployment logic of the system under test (SUT), so that chaos experiments can be performed in a production environment.",
+      "source_content_hash": "ab0f979dbfe279ececd329054229d07d92b518c3785e17cb527b5af53c1c0842",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 無需修改受測系統（SUT）的部署邏輯，即可在生產環境執行混沌實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "36e1c593",
+      "source_content": "- Easily orchestrate fault injection behaviors in chaos experiments, and easily view experiment status and results. You should also be able to quickly rollback injected failures.",
+      "source_content_hash": "eb6df77bc5a5b1af646af9fe7632637052d2e902c6893b98ee29df951d312e66",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 輕鬆編排混沌實驗中的故障注入行為，便捷查看實驗狀態與結果，並能快速回滾注入的故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5257fefd",
+      "source_content": "- Hide underlying implementation details so that users can focus on orchestrating the chaos experiments.",
+      "source_content_hash": "d8b0a491222fd008b8db8904cdfb6fff90d66db1123d599a6e826adb1e8130d5",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 隱藏底層實作細節，讓使用者專注於混沌實驗編排。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9e95fc4a",
+      "source_content": "### Scalable",
+      "source_content_hash": "f91d9cef6d99ff4f84661c0074b9dd1ab7ca5f501b14f16016d6ebb03ea284ae",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 擴展性"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5dae11e3",
+      "source_content": "Chaos Mesh should be scalable, so that we can \"plug\" new requirements into it conveniently without reinventing the wheel. Specifically, Chaos Mesh must:",
+      "source_content_hash": "0c84a94098883ad6abcccfe276e58c1132221f4693e844e9c16e7aa8a19ef27d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 應具備擴展性，以便靈活\"插入\"新需求而無需重複造輪子。具體而言："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "795a1b7f",
+      "source_content": "- Leverage existing implementations so that fault injection methods can be easily scaled.",
+      "source_content_hash": "016194d65b79397a7de9a0fcfb2cdf72171a95e2345080f4233fee4ea51eff3b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 複用現有實作，使故障注入方法可輕鬆擴展。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c91200ba",
+      "source_content": "- Easily integrate with other testing frameworks.",
+      "source_content_hash": "e223a7f5ac8941bcca5b513e0079743d6f5282785ebf30163e79b2a4450e3c2b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 易於與其他測試框架整合。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ee8401db",
+      "source_content": "### Designed for Kubernetes",
+      "source_content_hash": "26dfe7725fcf0cbd09cc45da1d9d659da6a91f3e3177119b54e74187334740a3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 專為 Kubernetes 設計"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "147e8550",
+      "source_content": "In the container world, Kubernetes is the absolute leader. Its growth rate of adoption is far beyond everybody's expectations, and it has won the war of containerized orchestration. In essence, Kubernetes is an operating system for the cloud.",
+      "source_content_hash": "954508f7b95b9fad97c43d359b5ae492ee0fffc88a6bb5d8dcb0f2a5eb7ffa33",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在容器領域，Kubernetes 已成為絕對領導者，其採用增速遠超預期並贏得容器編排之爭。本質上，Kubernetes 是雲端的作業系統。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "883231d4",
+      "source_content": "TiDB is a cloud-native distributed database. Our internal automated testing platform was built on Kubernetes from the beginning. We had hundreds of TiDB clusters running on Kubernetes every day for various experiments, including extensive chaos testing to simulate all kinds of failures or issues in a production environment. To support these chaos experiments, the combination of chaos and Kubernetes became a natural choice and principle for our implementation.",
+      "source_content_hash": "911ad87a5580dae963f229d91e12154e1a236160e1d5813ac7bb884b5f05ff6d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "TiDB 作為雲原生分散式資料庫，其內部自動化測試平台自始建於 Kubernetes。我們每日有數百個 TiDB 叢集在 Kubernetes 上運行，執行包含大規模混沌測試在內的各類實驗，以模擬生產環境故障。為支援此類實驗，混沌工程與 Kubernetes 的結合成為我們實作的自然選擇與核心原則。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b051b70c",
+      "source_content": "## CustomResourceDefinitions design",
+      "source_content_hash": "ece1d230e2e2eb6de8fccc503933a5e413451bfb118c686ac5c85d478955bfad",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## CustomResourceDefinitions 設計"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d0dd855b",
+      "source_content": "Chaos Mesh uses [CustomResourceDefinitions](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) (CRD) to define chaos objects. In the Kubernetes realm, CRD is a mature solution for implementing custom resources, with abundant implementation cases and toolsets available. Using CRD makes Chaos Mesh naturally integrate with the Kubernetes ecosystem.",
+      "source_content_hash": "6596cc737f4f4412e42ce5f49da89548137757323d526b3289b71e8986bd81bb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 採用 [CustomResourceDefinitions](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)（CRD）定義混沌物件。在 Kubernetes 生態中，CRD 是成熟的客製資源實作方案，具備豐富案例與工具鏈，使 Chaos Mesh 能無縫整合至 Kubernetes 生態系。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7736989b",
+      "source_content": "Instead of defining all types of fault injections in a unified CRD object, we allow flexible and separate CRD objects for different types of fault injection. If we add a fault injection method that conforms to an existing CRD object, we scale directly based on this object; if it is a completely new method, we create a new CRD object for it. With this design, chaos object definitions and the logic implementation are extracted from the top level, which makes the code structure clearer. This approach also reduces the degree of coupling and the probability of errors. In addition, Kubernetes' [controller-runtime](https://github.com/kubernetes-sigs/controller-runtime) is a great wrapper for implementing controllers. This saves us a lot of time because we don't have to repeatedly implement the same set of controllers for each CRD project.",
+      "source_content_hash": "e8dae94fc5a4e5ed6ae9ff203c3a67b9446098520040dda9c91055ab10703d1d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們未將所有故障注入類型統一於單個 CRD 物件，而是為不同故障類型設計靈活獨立的 CRD 物件。若新增故障注入方法符合現有 CRD 物件，則基於該物件直接擴展；若為全新方法，則為其創建新 CRD 物件。此設計將混沌物件定義與邏輯實作從頂層解耦，使程式結構更清晰，降低耦合度與錯誤率。此外，Kubernetes 的 [controller-runtime](https://github.com/kubernetes-sigs/controller-runtime) 提供優秀的控制器封裝，省去為每個 CRD 專案重複實作控制器的成本。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6270d577",
+      "source_content": "Chaos Mesh implements the PodChaos, NetworkChaos, and IOChaos objects. The names clearly identify the corresponding fault injection types.",
+      "source_content_hash": "dec875afbf280acafed752cffeb09409833ebe943c468e57a5fa98d1c4eedb30",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 實作了 PodChaos、NetworkChaos 與 IOChaos 物件，其名稱明確標示對應的故障注入類型。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a1fa5396",
+      "source_content": "For example, Pod crashing is a very common problem in a Kubernetes environment. Many native resource objects automatically handle such errors with typical actions such as creating a new Pod. But can our application really deal with such errors? What if the Pod won't start?",
+      "source_content_hash": "931b30f2d5c1e9c62ff2c52d1571becd29f0a1bdb7058734761c7e7d2c89fc3b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "例如，Pod 崩潰是 Kubernetes 環境的常見問題。許多原生資源物件會透過重建 Pod 等操作自動處理此類錯誤，但我們的應用能否真正應對此類故障？若 Pod 無法啟動又該如何？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ec619944",
+      "source_content": "With well-defined actions such as `pod-kill`, PodChaos can help us pinpoint these kinds of issues more effectively. The PodChaos object uses the following code:",
+      "source_content_hash": "4c86a95988b76137c5009c598e731c43056e543c4724fcfd74705e7aa2a4e35c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "透過明確定義如 `pod-kill` 等操作，PodChaos 能協助精準定位此類問題。PodChaos 物件使用以下程式碼："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "26f7c825",
+      "source_content": "```yml\nspec:\n action: pod-kill\n mode: one\n selector:\n   namespaces:\n     - tidb-cluster-demo\n   labelSelectors:\n     \"app.kubernetes.io/component\": \"tikv\"\n  scheduler:\n   cron: \"@every 2m\"\n```",
+      "source_content_hash": "d9a87593d185e0cbc529646fc1b83043333179b8f34c78c1c95203233b76c5e0",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_26f7c825"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "25212439",
+      "source_content": "This code does the following:",
+      "source_content_hash": "92dd7e9ecb0ec16d872297ba5246e1993ec99971c6fcf4911ea3321cf7e8cc2b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此程式碼執行以下操作："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7a4ba486",
+      "source_content": "- The `action` attribute defines the specific error type to be injected. In this case, `pod-kill` kills Pods randomly.",
+      "source_content_hash": "bc5cf4e9b61af0587eefeacc341f80434e02e6332a856c0974def8e9b97dea96",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `action` 屬性定義需注入的具體錯誤類型。本例中，`pod-kill` 將隨機殺死 Pod。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "764373a2",
+      "source_content": "- The `selector` attribute limits the scope of chaos experiment to a specific scope. In this case, the scope is TiKV Pods for the TiDB cluster with the `tidb-cluster-demo` namespace.",
+      "source_content_hash": "dc7bd19a2eef66ff24612f98a5e8ea57e7522d68b134e3e7baf3d0b2ffd8beee",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `selector` 屬性限制了混沌實驗的範圍至特定區域。此處的範圍是 `tidb-cluster-demo` 命名空間中 TiDB 叢集的 TiKV Pods。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2ca32339",
+      "source_content": "- The `scheduler` attribute defines the interval for each chaos fault action.",
+      "source_content_hash": "527f545465a3efd103b2bd70f2b632ce76b5f78c98d3dee577c3ed08f015383c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `scheduler` 屬性定義了每次混沌故障動作的觸發間隔。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4be28ed1",
+      "source_content": "For more details on CRD objects such as NetworkChaos and IOChaos, see the [Chaos-mesh documentation](https://github.com/chaos-mesh/chaos-mesh).",
+      "source_content_hash": "d0252b612d3bdac6bc68be0edcb6d8d92891e015afd90c8af17e88caddd3d942",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "有關 NetworkChaos 和 IOChaos 等 CRD 物件的詳細說明，請參閱 [Chaos-mesh 文件](https://github.com/chaos-mesh/chaos-mesh)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f947c8e4",
+      "source_content": "## How does Chaos Mesh work?",
+      "source_content_hash": "89fb1cde8776df7736106b9db479c35c2cb250f2564a4eba9237d3a8ceb95a68",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## Chaos Mesh 如何運作？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7bc8bb24",
+      "source_content": "With the CRD design settled, let's look at the big picture on how Chaos Mesh works. The following major components are involved:",
+      "source_content_hash": "9b4cf9bfe14315c51ed7be958c6c07753317b09b0230f2cd30d3124f06d79934",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "確立 CRD 設計後，我們來綜觀 Chaos Mesh 的運作機制。主要包含以下核心元件："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "301aefe8",
+      "source_content": "- **controller-manager**\n\n  Acts as the platform's \"brain.\" It manages the life cycle of CRD objects and schedules chaos experiments. It has object controllers for scheduling CRD object instances, and the [admission-webhooks](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/) controller dynamically injects sidecar containers into Pods.",
+      "source_content_hash": "61c91d8f24a14578e5266655e5a1c1020dee6f55dca4aacb3d01fd8a36d0964a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **controller-manager**\n\n  作為平台的「大腦」，管理 CRD 物件的生命週期並調度混沌實驗。其物件控制器負責調度 CRD 物件實例，[admission-webhooks](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/) 控制器則動態注入邊車容器至 Pods。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9e54c725",
+      "source_content": "- **chaos-daemon**\n\n  Runs as a privileged DaemonSet that can operate network devices on the node and Cgroup.",
+      "source_content_hash": "1ae388fc3ffe14540c9f5bd8589755ec34b9419f713ecb1c54200885e41ce261",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **chaos-daemon**\n\n  以特權 DaemonSet 形式運行，可操作節點的網路設備及 Cgroup。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c527cf10",
+      "source_content": "- **sidecar**\n\n  Runs as a special type of container that is dynamically injected into the target Pod by the admission-webhooks. For example, the `chaosfs` sidecar container runs a fuse-daemon to hijack the I/O operation of the application container.",
+      "source_content_hash": "c0251e174af3232c25ed886a61e1654958a510c39e408c822b96e19365280409",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **sidecar**\n\n  作為特殊容器類型，由 admission-webhooks 動態注入目標 Pod。例如 `chaosfs` 邊車容器運行 fuse-daemon 來劫持應用容器的 I/O 操作。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b6152880",
+      "source_content": "![Chaos Mesh workflow](/img/blog/chaos-mesh-workflow.png)",
+      "source_content_hash": "8dcb636a542c04e4a2607ba324477b44b3c32402490fef13ef96e72f6a4b6d78",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Mesh 工作流程](/img/blog/chaos-mesh-workflow.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9331170",
+      "source_content": "Here is how these components streamline a chaos experiment:",
+      "source_content_hash": "a9fe1282de2593bbacb27678abcf84d9b280729ba06b5ea2ec03bdfc3fac65e5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "這些元件協作執行混沌實驗的流程如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7387b539",
+      "source_content": "1. Using a YAML file or Kubernetes client, the user creates or updates chaos objects to the Kubernetes API server.",
+      "source_content_hash": "80de2fa0b2927eb000dd799af45421b5cf56aa422f07c13cf206a3e07e32fde0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 使用者透過 YAML 檔案或 Kubernetes 用戶端，建立或更新混沌物件至 Kubernetes API 伺服器。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1cf42f92",
+      "source_content": "2. Chaos Mesh uses the API server to watch the chaos objects and manages the lifecycle of chaos experiments through creating, updating, or deleting events. In this process, controller-manager, chaos-daemon, and sidecar containers work together to inject errors.",
+      "source_content_hash": "b6d5c460c0af553f76c50e0bf8ee401c308669e711acdb50cf8228678895bdbb",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. Chaos Mesh 監控 API 伺服器的混沌物件，透過建立/更新/刪除事件管理實驗生命週期。此過程中 controller-manager、chaos-daemon 和邊車容器協同注入故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b1d2b7df",
+      "source_content": "3. When admission-webhooks receives a Pod creation request, the Pod object to be created is dynamically updated; for example, it is injected into the sidecar container and the Pod.",
+      "source_content_hash": "c5178ce230e0f8c04d2f92c6f7db3ce3d2adc8d454b80375ec028cd9cb1e6b2c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 當 admission-webhooks 收到 Pod 建立請求時，動態更新即將建立的 Pod 物件（例如注入邊車容器）。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c766290e",
+      "source_content": "## Running chaos",
+      "source_content_hash": "61027b37f3e6a77170fe644f48fe07d6d59bbe48159d8be1fb7b4ce09552cb47",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 執行混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5c7d994c",
+      "source_content": "The above sections introduce how we design Chaos Mesh and how it works. Now let's get down to business and show you how to use Chaos Mesh. Note that the chaos testing time may vary depending on the complexity of the application to be tested and the test scheduling rules defined in the CRD.",
+      "source_content_hash": "c4b0c64de0a9eb513001943f7eaad7dee5217e3860f0433968812fd511dd301a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "前文已說明 Chaos Mesh 的設計與運作原理，現在我們將實際演示操作方式。請注意，測試時間會因應用複雜度及 CRD 中定義的調度規則而異。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a461a67b",
+      "source_content": "### Preparing the environment",
+      "source_content_hash": "aafea1e63cecdc103515d09392db6fd9ef7fe437969190e14f6b3cc85284fedb",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 準備環境"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e77cf7c6",
+      "source_content": "Chaos Mesh runs on Kubernetes v1.12 or later. Helm, a Kubernetes package management tool, deploys and manages Chaos Mesh. Before you run Chaos Mesh, make sure that Helm is properly installed in the Kubernetes cluster. To set up the environment, do the following:",
+      "source_content_hash": "4881b30694aabece01a4a5ad04e7e777ef219397c2af9a32df4d176fabadaf47",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 需運行於 Kubernetes v1.12 以上版本，並透過 Helm（Kubernetes 套件管理工具）部署管理。執行前請確保 Helm 已正確安裝於叢集中。環境設置步驟如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5c966431",
+      "source_content": "1. Make sure you have a Kubernetes cluster. If you do, skip to step 2; otherwise, start one locally using the script provided by Chaos Mesh:\n\n   ```bash\n   // install kind\n   curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.6.1/kind-$(uname)-amd64\n   chmod +x ./kind\n   mv ./kind /some-dir-in-your-PATH/kind\n\n   // get script\n   git clone https://github.com/chaos-mesh/chaos-mesh\n   cd chaos-mesh\n   // start cluster\n   hack/kind-cluster-build.sh\n   ```\n\n   **Note:** Starting Kubernetes clusters locally affects network-related fault injections.",
+      "source_content_hash": "8ee7cff31e5c0a5fcbeb33c0fc1a9679937d5b539a35cb4843e5cc72c8a30aae",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 確認已擁有 Kubernetes 叢集。若已具備則跳至步驟 2；否則使用 Chaos Mesh 提供的腳本在本機啟動叢集：\n\n   ```bash\n   // install kind\n   curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.6.1/kind-$(uname)-amd64\n   chmod +x ./kind\n   mv ./kind /some-dir-in-your-PATH/kind\n\n   // get script\n   git clone https://github.com/chaos-mesh/chaos-mesh\n   cd chaos-mesh\n   // start cluster\n   hack/kind-cluster-build.sh\n   ```\n\n   **注意：** 本機啟動 Kubernetes 叢集會影響網路相關故障注入。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "307769b3",
+      "source_content": "2. If the Kubernetes cluster is ready, use [Helm](https://helm.sh/) and [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) to deploy Chaos Mesh:\n\n   ```bash\n   git clone https://github.com/chaos-mesh/chaos-mesh.git\n   cd chaos-mesh\n   // create CRD resource\n   kubectl apply -f manifests/\n   // install chaos-mesh\n   helm install helm/chaos-mesh --name=chaos-mesh --namespace=chaos-mesh\n   ```\n\n   Wait until all components are installed, and check the installation status using:\n\n   ```bash\n   // check chaos-mesh status\n   kubectl get pods --namespace chaos-mesh -l app.kubernetes.io/instance=chaos-mesh\n   ```\n\n   If the installation is successful, you can see all pods up and running. Now, time to play.\n\n   You can run Chaos Mesh using a YAML definition or a Kubernetes API.",
+      "source_content_hash": "02b96e0393a37887f38e65596ae50400719aa0b1d25a21f41feb958f61e567ba",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 若 Kubernetes 集群已就緒，請使用 [Helm](https://helm.sh/) 和 [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) 部署 Chaos Mesh：\n\n   ```bash\n   git clone https://github.com/chaos-mesh/chaos-mesh.git\n   cd chaos-mesh\n   // 建立 CRD 資源\n   kubectl apply -f manifests/\n   // 安裝 chaos-mesh\n   helm install helm/chaos-mesh --name=chaos-mesh --namespace=chaos-mesh\n   ```\n\n   等待所有元件安裝完成，並使用以下指令檢查安裝狀態：\n\n   ```bash\n   // 檢查 chaos-mesh 狀態\n   kubectl get pods --namespace chaos-mesh -l app.kubernetes.io/instance=chaos-mesh\n   ```\n\n   若安裝成功，您將看到所有 Pod 都在運行中。現在，是時候開始了。\n\n   您可以使用 YAML 定義或 Kubernetes API 來運行 Chaos Mesh。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "445c72bd",
+      "source_content": "### Running chaos using a YAML file",
+      "source_content_hash": "3b36c963274e17ab314eb428938587318a21c160fb9255f025877b4c7e410599",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用 YAML 檔案運行混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9ef42155",
+      "source_content": "You can define your own chaos experiments through the YAML file method, which provides a fast, convenient way to conduct chaos experiments after you deploy the application. To run chaos using a YAML file, follow the steps below:",
+      "source_content_hash": "f4b6ecbcfe2a1a7a976f7ac23fbb624d1c253b5bdddc0bc2fa6372ec1d29e042",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可以通過 YAML 檔案方法定義自己的混沌實驗，這提供了一種在部署應用後快速、方便地進行混沌實驗的方式。要使用 YAML 檔案運行混沌實驗，請按照以下步驟操作："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fe25bd72",
+      "source_content": "**Note:** For illustration purposes, we use TiDB as our system under test. You can use a target system of your choice, and modify the YAML file accordingly.",
+      "source_content_hash": "0d982acdfe84f2507478505986382cf4d8b7521dc5a5621b0dbd83dae3af7dd1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**注意：** 為了說明，我們使用 TiDB 作為測試系統。您可以使用自己選擇的目標系統，並相應地修改 YAML 檔案。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "449e6e2f",
+      "source_content": "1. Deploy a TiDB cluster named `chaos-demo-1`. You can use [TiDB Operator](https://github.com/pingcap/tidb-operator) to deploy TiDB.",
+      "source_content_hash": "9b1ccfb19240288529ffc21d451e86d45fdff255885bc7f01dd75dcfc589da8f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 部署一個名為 `chaos-demo-1` 的 TiDB 集群。您可以使用 [TiDB Operator](https://github.com/pingcap/tidb-operator) 來部署 TiDB。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a99a25d3",
+      "source_content": "2. Create the YAML file named `kill-tikv.yaml` and add the following content:\n\n   ```yml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: PodChaos\n   metadata:\n     name: pod-kill-chaos-demo\n     namespace: chaos-mesh\n   spec:\n     action: pod-kill\n     mode: one\n     selector:\n       namespaces:\n         - chaos-demo-1\n       labelSelectors:\n         'app.kubernetes.io/component': 'tikv'\n     scheduler:\n       cron: '@every 1m'\n   ```",
+      "source_content_hash": "e10d18819b84469e9be6d07ec631ca39715df085d5c128551fc4d287f04d2fbc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 建立一個名為 `kill-tikv.yaml` 的 YAML 檔案，並加入以下內容：\n\n   ```yml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: PodChaos\n   metadata:\n     name: pod-kill-chaos-demo\n     namespace: chaos-mesh\n   spec:\n     action: pod-kill\n     mode: one\n     selector:\n       namespaces:\n         - chaos-demo-1\n       labelSelectors:\n         'app.kubernetes.io/component': 'tikv'\n     scheduler:\n       cron: '@every 1m'\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9f762577",
+      "source_content": "3. Save the file.",
+      "source_content_hash": "9608f461b0befdcf62173a5e816fefcc5dc162a4125472f178c6f971e19bca9f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 儲存檔案。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "84fa691d",
+      "source_content": "4. To start chaos, `kubectl apply -f kill-tikv.yaml`.",
+      "source_content_hash": "fb4e2c53785a7282e7caf4459359c3e9f8bf7007629481616e844efd7b54193d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 要啟動混沌實驗，執行 `kubectl apply -f kill-tikv.yaml`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "90c4b96b",
+      "source_content": "The following chaos experiment simulates the TiKV Pods being frequently killed in the `chaos-demo-1` cluster:",
+      "source_content_hash": "28de9e2dd9ee9f3d3b4a880b429c52de6c0776cb99401b36607520a628363b1b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下混沌實驗模擬了在 `chaos-demo-1` 集群中頻繁殺死 TiKV Pods 的情況："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1f9058cd",
+      "source_content": "![Chaos experiment running](/img/blog/chaos-experiment-running.gif)",
+      "source_content_hash": "edb1300b3761adf1c5eac5b9ea4d1e4d60d671a915827967990ace7a6229fb93",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![混沌實驗運行中](/img/blog/chaos-experiment-running.gif)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "09512450",
+      "source_content": "We use a sysbench program to monitor the real-time QPS changes in the TiDB cluster. When errors are injected into the cluster, the QPS show a drastic jitter, which means a specific TiKV Pod has been deleted, and Kubernetes then re-creates a new TiKV Pod.",
+      "source_content_hash": "e4562ab7488647f86fd521c4b0f32f8315984413f42f3723cf56e4fd9988aadb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們使用 sysbench 程式監控 TiDB 集群的即時 QPS 變化。當錯誤被注入集群時，QPS 會出現劇烈的抖動，這表示某個特定的 TiKV Pod 已被刪除，而 Kubernetes 隨後重新建立了一個新的 TiKV Pod。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "09f901c3",
+      "source_content": "For more YAML file examples, see https://github.com/chaos-mesh/chaos-mesh/tree/master/examples.",
+      "source_content_hash": "d8700ca1b74aa16ff54520c67dfc184cf2f506d2707cdead57f686bfdcddc067",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "更多 YAML 檔案範例，請參閱 https://github.com/chaos-mesh/chaos-mesh/tree/master/examples。",
+          "reason": "URL for a 'link' was changed from 'https://github.com/chaos-mesh/chaos-mesh/tree/master/examples' to 'https://github.com/chaos-mesh/chaos-mesh/tree/master/examples。'.",
+          "timestamp": "2025-07-04T06:49:59.313864+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "e594a4f9",
+      "source_content": "### Running chaos using the Kubernetes API",
+      "source_content_hash": "7b3aefa0dc910c44d5eea0ce51284698733c4f08ecff4d40881fb004e27e6c51",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用 Kubernetes API 運行混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d8c366cc",
+      "source_content": "Chaos Mesh uses CRD to define chaos objects, so you can manipulate CRD objects directly through the Kubernetes API. This way, it is very convenient to apply Chaos Mesh to your own applications with customized test scenarios and automated chaos experiments.",
+      "source_content_hash": "39739cfe3f402e7b4bf1e1b1a0cce1e26530e085e765159c6de4fe6dede67bae",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 使用 CRD 定義混沌物件，因此您可以直接透過 Kubernetes API 操作 CRD 物件。這種方式非常方便將 Chaos Mesh 應用於您自己的應用程式，並進行自訂測試場景和自動化混沌實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "833ce577",
+      "source_content": "In the [test-infra](https://github.com/pingcap/tipocket/tree/35206e8483b66f9728b7b14823a10b3e4114e0e3/test-infra) project, we simulate potential errors in [etcd](https://github.com/pingcap/tipocket/blob/35206e8483b66f9728b7b14823a10b3e4114e0e3/test-infra/tests/etcd/nemesis_test.go) clusters on Kubernetes, including nodes restarting, network failure, and file system failure.",
+      "source_content_hash": "eabbd78c52217650c3bece5a12d37b13e6458513258e8c157ddb7fce84bfb530",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在 [test-infra](https://github.com/pingcap/tipocket/tree/35206e8483b66f9728b7b14823a10b3e4114e0e3/test-infra) 專案中，我們模擬 Kubernetes 上 [etcd](https://github.com/pingcap/tipocket/blob/35206e8483b66f9728b7b14823a10b3e4114e0e3/test-infra/tests/etcd/nemesis_test.go) 集群的潛在錯誤，包括節點重啟、網路故障和檔案系統故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6479c91",
+      "source_content": "The following is a Chaos Mesh sample script using the Kubernetes API:",
+      "source_content_hash": "07190db81517398b95c43641740f072e581e121cb5a8e4b72ac2dca30c3fc2cb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下是一個使用 Kubernetes API 的 Chaos Mesh 範例腳本："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cc3842c3",
+      "source_content": "```go\nimport (\n  \"context\"\n\n  \"github.com/chaos-mesh/chaos-mesh/api/v1alpha1\"\n  \"sigs.k8s.io/controller-runtime/pkg/client\"\n)\n\nfunc main() {\n  // ...\n  delay := &chaosv1alpha1.NetworkChaos{\n    Spec: chaosv1alpha1.NetworkChaosSpec{\n      // ...\n    },\n  }\n  k8sClient := client.New(conf, client.Options{ Scheme: scheme.Scheme })\n  k8sClient.Create(context.TODO(), delay)\n  k8sClient.Delete(context.TODO(), delay)\n}\n```",
+      "source_content_hash": "6467d1eb66a1e605f0c94a0020d90e878f1f3a2b33726d88683c941032c008d2",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_cc3842c3"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "936707a1",
+      "source_content": "## What does the future hold?",
+      "source_content_hash": "00a02b54e2d9e0dedb23acfd861379b032c910b498caf6286a7f85d20c075eb6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 未來展望？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6dc3e423",
+      "source_content": "In this article, we introduced you to Chaos Mesh, our open source cloud-native Chaos Engineering platform. There are still many pieces in progress, with more details to unveil regarding the design, use cases, and development. Stay tuned.",
+      "source_content_hash": "b12badf7b965cbca4bfe1468af7bc1349c9cac8575bbddac3dff4675a84bc40a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在本文中，我們向您介紹了 Chaos Mesh，這是一個開源的雲原生混沌工程平台。目前仍有許多功能正在開發中，關於設計、使用案例和開發的更多細節將會陸續揭露。敬請期待。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ceb4fd26",
+      "source_content": "Open sourcing is just a starting point. In addition to the infrastructure-level chaos experiments introduced in previous sections, we are in the process of supporting a wider range of fault types of finer granularity, such as:",
+      "source_content_hash": "8a987ddb592b8dfbebc409e6fcc7def1dfb87ebbe78b3581d4a878a5902701d6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "開源只是一個起點。除了前文介紹的基礎設施層級的混沌實驗之外，我們正在支援更廣泛且更細粒度的故障類型，例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "58a3eed9",
+      "source_content": "- Injecting errors at the system call and kernel levels with the assistance of eBPF and other tools",
+      "source_content_hash": "6c24f773b03af6a7c202ff81c7bc70e680dbc4895dc49107585efa13faeb005f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 藉助 eBPF 等工具在系統呼叫和核心層級注入錯誤"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c6379f1b",
+      "source_content": "- Injecting specific error types into the application function and statement levels by integrating [failpoint](https://github.com/pingcap/failpoint), which will cover scenarios that are otherwise impossible with conventional injection methods",
+      "source_content_hash": "2e629d3e05d80da7f05712187f496a6b9cccabdd0041be34e7e3f0d5c3b72995",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 透過整合 [failpoint](https://github.com/pingcap/failpoint)，在應用程式函數和語句層級注入特定錯誤類型，這將涵蓋傳統注入方法無法實現的場景"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "13440cd7",
+      "source_content": "Moving forward, we will continuously improve the Chaos Mesh Dashboard, so that users can easily see if and how their online businesses are impacted by fault injections. In addition, our roadmap includes an easy-to-use fault orchestration interface. We're planning other cool features, such as Chaos Mesh Verifier and Chaos Mesh Cloud.",
+      "source_content_hash": "19cda89ac3c06f5163f58108c548a05a46faf7a132e7799e52ffe683a7146258",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "未來，我們將持續改進 Chaos Mesh 儀表板，讓使用者能夠輕鬆查看其線上業務是否受到故障注入的影響以及影響方式。此外，我們的發展藍圖還包括一個易於使用的故障編排介面。我們還計劃推出其他酷炫功能，例如 Chaos Mesh Verifier 和 Chaos Mesh Cloud。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5d3138c7",
+      "source_content": "If any of these sound interesting to you, join us in building a world class Chaos Engineering platform. May our applications dance in chaos on Kubernetes!",
+      "source_content_hash": "f9d190f367a54ddb1b93dcec25f231567b2f654c62f8c2400922c933a1ec1306",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如果您對這些內容感興趣，歡迎加入我們，共同打造世界級的混沌工程平台。願我們的應用在 Kubernetes 的混沌中舞動！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6e7e6a7",
+      "source_content": "If you find a bug or think something is missing, feel free to file an [issue](https://github.com/chaos-mesh/chaos-mesh/issues), open a PR, or message us in the #project-chaos-mesh channel in the [CNCF Slack](https://slack.cncf.io/) workspace.",
+      "source_content_hash": "50161d9ca834de4d362feb933e0298f1c0ecd0d4c607aa7ec614116e3036c25c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如果您發現錯誤或認為缺少某些內容，請隨時提交 [issue](https://github.com/chaos-mesh/chaos-mesh/issues)、開啟 PR，或在 [CNCF Slack](https://slack.cncf.io/) 工作區的 #project-chaos-mesh 頻道中留言給我們。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c70c953",
+      "source_content": "GitHub: [https://github.com/chaos-mesh/chaos-mesh](https://github.com/chaos-mesh/chaos-mesh)",
+      "source_content_hash": "b75733d09677e0aa0d576fc3d698c82f623a933dae94e1c93e29d422b66566b2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "GitHub: [https://github.com/chaos-mesh/chaos-mesh](https://github.com/chaos-mesh/chaos-mesh)"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2020-01-15-chaos-mesh-your-chaos-engineering-solution.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.313900+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "0a9817d9b6739dc1a07338160f37b1793438e909d6230c92185d2543cb08fc43"
+  }
+}

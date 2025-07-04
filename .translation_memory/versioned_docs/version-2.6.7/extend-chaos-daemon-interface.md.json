@@ -1,0 +1,372 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/extend-chaos-daemon-interface.md",
+  "source_file_content_hash": "bf21762ceb3b3a3e59e1aed7c8f05ebe3312bd1178ccd871b9382904f2ab5e1a",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Extend Chaos Daemon Interface\n---",
+      "source_content_hash": "9d4b0b753d2d2b00bfc1b2004ef43977f22a40575591ebb5f47a080f9d75b65f",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7335511f",
+      "source_content": "import PickHelmVersion from '@site/src/components/PickHelmVersion'",
+      "source_content_hash": "753aee644dbd2a4b70a118018b50ec80427523e751a14d470e7956678fd8cb94",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7335511f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "In [Add a new chaos experiment type](add-new-chaos-experiment-type.md), you have added `HelloWorldChaos`, which can print `Hello world!` in the logs of Chaos Controller Manager.",
+      "source_content_hash": "262d0a561fa46a9400063d93f274af31ab7bd29fdbd41388b31206fbed4450a1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在[新增混沌實驗類型](add-new-chaos-experiment-type.md)中，您已新增了 `HelloWorldChaos`，它可以在 Chaos Controller Manager 的日誌中列印 `Hello world!`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "To enable the `HelloWorldChaos` to inject some faults into the target Pod, you need to extend Chaos Daemon interface.",
+      "source_content_hash": "27f77ae975a481731a0dd7725d96422e08dde4fec066000e876f356360b6c799",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要讓 `HelloWorldChaos` 能夠向目標 Pod 注入一些故障，您需要擴充 Chaos Daemon 的介面。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bb849aa9",
+      "source_content": ":::tip\n\nIt's recommended to read [the architecture of Chaos Mesh](./overview.md#architecture-overview) before you go forward.\n\n:::",
+      "source_content_hash": "40861f2e81383776bfa5ea836ab250c3c8c605ea0ed87d2fe41b1ddfdfe7c162",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::tip\n\n建議在繼續之前閱讀 [Chaos Mesh 的架構](./overview.md#architecture-overview)。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "This document covers:",
+      "source_content_hash": "72c4d91fcd6c5c90140004d3850697a25742d596fb11e53cc12668000ac10ea5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件涵蓋："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "632fee71",
+      "source_content": "- [Selector](#selector)",
+      "source_content_hash": "244b7ae45464d3803f276799cff06a28c092771ff254f8839493a75fa8da3e84",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [Selector](#selector)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dc10b09",
+      "source_content": "- [Implement the gRPC interface](#implement-the-grpc-interface)",
+      "source_content_hash": "3f3f3fe17a392c7604fbbc7c9e5485d9495228d8dcfac251e5ff0301e05f055b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [實作 gRPC 介面](#implement-the-grpc-interface)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28563fec",
+      "source_content": "- [Verify the output of HelloWorldChaos](#verify-the-output-of-helloworldchaos)",
+      "source_content_hash": "7f86a7d059cfa57913fa0fc3081ccda8bd52479a79adec2b0b5d6e66abaced6a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [驗證 HelloWorldChaos 的輸出](#verify-the-output-of-helloworldchaos)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f998e7f9",
+      "source_content": "- [Next steps](#next-steps)",
+      "source_content_hash": "8a4e03269e96b39706614836c48718eb21332c1d45b8002f66630d8016ad30bc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [後續步驟](#next-steps)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "95b38f97",
+      "source_content": "## Selector",
+      "source_content_hash": "9b79392ecd8eede5e8d74e7392be1898e26289ca7647b166ec38b84f58520885",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## Selector"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ccc88b4c",
+      "source_content": "In `api/v1alpha1/helloworldchaos_type.go`, you have defined `HelloWorldSpec`, which includes `ContainerSelector`:",
+      "source_content_hash": "f873f8cb019ae70ac9c72b8147b448d2d171b6f7a92b24725faef2f5fb843ede",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在 `api/v1alpha1/helloworldchaos_type.go` 中，您已定義了 `HelloWorldSpec`，其中包含了 `ContainerSelector`："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "15a1fd96",
+      "source_content": "```go\n// HelloWorldChaosSpec defines the desired state of HelloWorldChaos\ntype HelloWorldChaosSpec struct {\n        // ContainerSelector specifies the target for injection\n        ContainerSelector `json:\",inline\"`\n\n        // Duration represents the duration of the chaos\n        // +optional\n        Duration *string `json:\"duration,omitempty\"`\n\n        // RemoteCluster represents the remote cluster where the chaos will be deployed\n        // +optional\n        RemoteCluster string `json:\"remoteCluster,omitempty\"`\n}\n\n//...\n\n// GetSelectorSpecs is a getter for selectors\nfunc (obj *HelloWorldChaos) GetSelectorSpecs() map[string]interface{} {\n        return map[string]interface{}{\n                \".\": &obj.Spec.ContainerSelector,\n        }\n}\n```",
+      "source_content_hash": "941dd0b5efed9369faae9b29d1578c97893de3391284eeebe312fba15252d036",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_15a1fd96"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "98d26038",
+      "source_content": "In Chaos Mesh, Selector is used to define the scope of a chaos experiment, the target namespace, the annotation, the label, etc.",
+      "source_content_hash": "9b7de9012fbe4090797b044285f26cd6390c04aca37e4c4f8d39b56fb03af619",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在 Chaos Mesh 中，Selector 用於定義混沌實驗的範圍、目標命名空間、註解、標籤等。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d3649a1e",
+      "source_content": "Selector can also be some more specific values (e.g. `AWSSelector` in `AWSChaos`). Normally each chaos experiment needs only one selector, with exceptions like `NetworkChaos` because it sometimes needs two selectors as two objects for network partitioning.",
+      "source_content_hash": "8010754271c32d78543b53f4ba5fcf2d2a35c2d3b58b27dc14f14529b78fecd8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "Selector 也可以是更具體的值（例如 `AWSChaos` 中的 `AWSSelector`）。通常每個混沌實驗只需要一個 selector，但像 `NetworkChaos` 這樣的例外情況，因為有時需要兩個 selector 作為兩個物件來進行網路分割。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`AWSSelector`', Translation: '`AWSChaos`'.",
+          "timestamp": "2025-07-04T06:49:59.339446+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "4d52a261",
+      "source_content": "You can refer to [Define the Scope of Chaos Experiments](./define-chaos-experiment-scope.md) for more information about Selector.",
+      "source_content_hash": "d8b1ce610661d8344e961cd052f2a934e4e9602ba7cb3c4bc302260b5a1a982f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可以參考[定義混沌實驗的範圍](./define-chaos-experiment-scope.md)以取得有關 Selector 的更多資訊。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7283cdac",
+      "source_content": "## Implement the gRPC interface",
+      "source_content_hash": "b4e217d7be83acfdc0d33eff291e16ca3270483e0e5c4b8badf9d675fc20f11e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 實作 gRPC 介面"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1131ef75",
+      "source_content": "To allow Chaos Daemon to accept the requests from Chaos Controller Manager, you need to implement a new gRPC interface.",
+      "source_content_hash": "914c8f46f97e31214a1e7af6c2c1bd78f536303582dda457ed3cf37959f18e04",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "為了讓 Chaos Daemon 能夠接受來自 Chaos Controller Manager 的請求，您需要實作一個新的 gRPC 介面。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "21d3e688",
+      "source_content": "1. Add the RPC in `pkg/chaosdaemon/pb/chaosdaemon.proto`:\n\n   ```proto\n   service ChaosDaemon {\n      ...\n\n      rpc ExecHelloWorldChaos(ExecHelloWorldRequest) returns (google.protobuf.Empty) {}\n   }\n\n   message ExecHelloWorldRequest {\n      string container_id = 1;\n   }\n   ```\n\n   Then you need to update the related `chaosdaemon.pb.go` file by running the following command:\n\n   ```bash\n   make proto\n   ```",
+      "source_content_hash": "0ab15cb6fefa41c736d7ad3bb33c1830850b3cda927aeeba5f0c32755a7055ad",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 在 `pkg/chaosdaemon/pb/chaosdaemon.proto` 中新增 RPC：\n\n   ```proto\n   service ChaosDaemon {\n      ...\n\n      rpc ExecHelloWorldChaos(ExecHelloWorldRequest) returns (google.protobuf.Empty) {}\n   }\n\n   message ExecHelloWorldRequest {\n      string container_id = 1;\n   }\n   ```\n\n   然後您需要執行以下命令來更新相關的 `chaosdaemon.pb.go` 檔案：\n\n   ```bash\n   make proto\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6220f8bc",
+      "source_content": "2. Implement gRPC services in Chaos Daemon.\n\n   In the `pkg/chaosdaemon` directory, create a file named `helloworld_server.go` with the following contents:\n\n   ```go\n   package chaosdaemon\n\n   import (\n           \"context\"\n\n           \"github.com/golang/protobuf/ptypes/empty\"\n\n           \"github.com/chaos-mesh/chaos-mesh/pkg/bpm\"\n           \"github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb\"\n   )\n\n   func (s *DaemonServer) ExecHelloWorldChaos(ctx context.Context, req *pb.ExecHelloWorldRequest) (*empty.Empty, error) {\n           log := s.getLoggerFromContext(ctx)\n           log.Info(\"ExecHelloWorldChaos\", \"request\", req)\n\n           pid, err := s.crClient.GetPidFromContainerID(ctx, req.ContainerId)\n           if err != nil {\n                   return nil, err\n           }\n\n           cmd := bpm.DefaultProcessBuilder(\"sh\", \"-c\", \"ps aux\").\n                   SetContext(ctx).\n                   SetNS(pid, bpm.MountNS).\n                   Build(ctx)\n           out, err := cmd.Output()\n           if err != nil {\n                   return nil, err\n           }\n           if len(out) != 0 {\n                   log.Info(\"cmd output\", \"output\", string(out))\n           }\n\n           return &empty.Empty{}, nil\n   }\n   ```\n\n   After `chaos-daemon` receives the `ExecHelloWorldChaos` request, you can see a list of processes in the current container.",
+      "source_content_hash": "b8b5ca9fd54ee6a31493d95b2084929fc613d8309e8b916994f216abbf7ad73c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 在 Chaos Daemon 中實作 gRPC 服務。\n\n   在 `pkg/chaosdaemon` 目錄中，建立一個名為 `helloworld_server.go` 的檔案，內容如下：\n\n   ```go\n   package chaosdaemon\n\n   import (\n           \"context\"\n\n           \"github.com/golang/protobuf/ptypes/empty\"\n\n           \"github.com/chaos-mesh/chaos-mesh/pkg/bpm\"\n           \"github.com/chaos-mesh/chaos-mesh/pkg/chaosdaemon/pb\"\n   )\n\n   func (s *DaemonServer) ExecHelloWorldChaos(ctx context.Context, req *pb.ExecHelloWorldRequest) (*empty.Empty, error) {\n           log := s.getLoggerFromContext(ctx)\n           log.Info(\"ExecHelloWorldChaos\", \"request\", req)\n\n           pid, err := s.crClient.GetPidFromContainerID(ctx, req.ContainerId)\n           if err != nil {\n                   return nil, err\n           }\n\n           cmd := bpm.DefaultProcessBuilder(\"sh\", \"-c\", \"ps aux\").\n                   SetContext(ctx).\n                   SetNS(pid, bpm.MountNS).\n                   Build(ctx)\n           out, err := cmd.Output()\n           if err != nil {\n                   return nil, err\n           }\n           if len(out) != 0 {\n                   log.Info(\"cmd output\", \"output\", string(out))\n           }\n\n           return &empty.Empty{}, nil\n   }\n   ```\n\n   當 `chaos-daemon` 收到 `ExecHelloWorldChaos` 請求後，您可以在當前容器中看到程序列表。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4cc73f5f",
+      "source_content": "3. Send a gRPC request when applying the chaos experiment.\n\n   Every chaos experiment has a life cycle: `apply` and then `recover`. However, there are some chaos experiments that cannot be recovered by default (for example, PodKill in PodChaos and HelloWorldChaos). These are called OneShot experiments. You can find `+chaos-mesh:oneshot=true`, which we have defined in the `HelloWorldChaos` schema.\n\n   The chaos controller manager needs to send a request to the chaos daemon when `HelloWorldChaos` is in the `apply` phase. This is done by updating `controllers/chaosimpl/helloworldchaos/types.go`:\n\n   ```go\n   func (impl *Impl) Apply(ctx context.Context, index int, records []*v1alpha1.Record, obj v1alpha1.InnerObject) (v1alpha1.Phase, error) {\n           impl.Log.Info(\"Apply helloworld chaos\")\n\n           decodedContainer, err := impl.decoder.DecodeContainerRecord(ctx, records[index], obj)\n           if err != nil {\n                   return v1alpha1.NotInjected, err\n           }\n\n           pbClient := decodedContainer.PbClient\n           containerId := decodedContainer.ContainerId\n\n           _, err = pbClient.ExecHelloWorldChaos(ctx, &pb.ExecHelloWorldRequest{\n                   ContainerId: containerId,\n           })\n           if err != nil {\n                   return v1alpha1.NotInjected, err\n           }\n\n           return v1alpha1.Injected, nil\n   }\n\n   func (impl *Impl) Recover(ctx context.Context, index int, records []*v1alpha1.Record, obj v1alpha1.InnerObject) (v1alpha1.Phase, error) {\n           impl.Log.Info(\"Recover helloworld chaos\")\n           return v1alpha1.NotInjected, nil\n   }\n   ```\n\n   :::info\n\n   There is no need to recover `HelloWorldChaos` because `HelloWorldChaos` is a **OneShot** experiment. For the type of chaos experiment you develop, you can implement the logic of the recovery function as needed.\n\n   :::",
+      "source_content_hash": "f18c3feb25bd643cb698b09a7cf62638926d5fa02c5ebd1d6cdbef12a619fdcb",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "3. 在應用混沌實驗時發送 gRPC 請求。\n\n   每個混沌實驗都有生命週期：先 `apply` 再 `recover`。但預設情況下某些混沌實驗無法恢復（例如 PodChaos 中的 PodKill 和 HelloWorldChaos），這類實驗稱為 OneShot 實驗。您可在 `HelloWorldChaos` 架構中看到我們定義的 `+chaos-mesh:oneshot=true` 標記。\n\n   當 `HelloWorldChaos` 處於 `apply` 階段時，混沌控制管理器需向混沌守護進程發送請求。這需更新 `controllers/chaosimpl/helloworldchaos/types.go`：\n\n   ```go\n   func (impl *Impl) Apply(ctx context.Context, index int, records []*v1alpha1.Record, obj v1alpha1.InnerObject) (v1alpha1.Phase, error) {\n           impl.Log.Info(\"Apply helloworld chaos\")\n\n           decodedContainer, err := impl.decoder.DecodeContainerRecord(ctx, records[index], obj)\n           if err != nil {\n                   return v1alpha1.NotInjected, err\n           }\n\n           pbClient := decodedContainer.PbClient\n           containerId := decodedContainer.ContainerId\n\n           _, err = pbClient.ExecHelloWorldChaos(ctx, &pb.ExecHelloWorldRequest{\n                   ContainerId: containerId,\n           })\n           if err != nil {\n                   return v1alpha1.NotInjected, err\n           }\n\n           return v1alpha1.Injected, nil\n   }\n\n   func (impl *Impl) Recover(ctx context.Context, index int, records []*v1alpha1.Record, obj v1alpha1.InnerObject) (v1alpha1.Phase, error) {\n           impl.Log.Info(\"Recover helloworld chaos\")\n           return v1alpha1.NotInjected, nil\n   }\n   ```\n\n   :::info\n\n   由於 `HelloWorldChaos` 是 **OneShot** 實驗，因此無需執行恢復操作。您可根據開發的混沌實驗類型，在恢復函數中實現所需邏輯。\n\n   :::",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 9, translation has 8.",
+          "timestamp": "2025-07-04T06:49:59.339475+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "a5905b07",
+      "source_content": "## Verify the output of HelloWorldChaos",
+      "source_content_hash": "3266ac5b09e727719c7df3119536c7880a44d4d2fa1ac072019ee61a2105d528",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 驗證 HelloWorldChaos 輸出"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fd7ed056",
+      "source_content": "Now you can verify the output of `HelloWorldChaos`:",
+      "source_content_hash": "b3b6698c6ac479746b66fd0f75305122f852b39505ec5866c6206ae13aa34be7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "現在可驗證 `HelloWorldChaos` 的輸出："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0de40322",
+      "source_content": "1. Build Docker images as we described in [Add a new chaos experiment type](add-new-chaos-experiment-type.md#step-4-build-docker-images), then load them into your cluster.\n\n   :::note\n\n   If you're using minikube, some versions of minikube cannot overwrite the existing images with the same tag. You may delete the existing images before loading the new ones.\n\n   :::",
+      "source_content_hash": "4b7499ec823318e5fb9908ef3a8b4bb3d86fe6f1717f9bb70369e927c16e195e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 依照[新增混沌實驗類型](add-new-chaos-experiment-type.md#step-4-build-docker-images)所述建置 Docker 映像檔，並載入至叢集。\n\n   :::note\n\n   若使用 minikube，請注意部分版本無法覆蓋相同標籤的現有映像檔，可先刪除舊映像檔再載入新檔。\n\n   :::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42b188bb",
+      "source_content": "2. Update Chaos Mesh:\n\n   <PickHelmVersion>{`helm upgrade chaos-mesh helm/chaos-mesh -n=chaos-mesh --set controllerManager.leaderElection.enabled=false,dashboard.securityMode=false`}</PickHelmVersion>",
+      "source_content_hash": "c5f4af7002297dcb65fd66ed5ac05c864721f20a932f1625f2d23e32ce31a068",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 更新 Chaos Mesh：\n\n   <PickHelmVersion>{`helm upgrade chaos-mesh helm/chaos-mesh -n=chaos-mesh --set controllerManager.leaderElection.enabled=false,dashboard.securityMode=false`}</PickHelmVersion>"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3ce05554",
+      "source_content": "3. Deploy a Pod for testing:\n\n   ```bash\n   kubectl apply -f https://raw.githubusercontent.com/chaos-mesh/apps/master/ping/busybox-statefulset.yaml\n   ```",
+      "source_content_hash": "b3b9e7b75f4f5bdcf55283b6eb0a205238954b5e15832136e4d0f76b940ad5a4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 部署測試用 Pod：\n\n   ```bash\n   kubectl apply -f https://raw.githubusercontent.com/chaos-mesh/apps/master/ping/busybox-statefulset.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "59697884",
+      "source_content": "4. Create a `hello-busybox.yaml` file with the following content:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: HelloWorldChaos\n   metadata:\n     name: hello-busybox\n     namespace: chaos-mesh\n   spec:\n     selector:\n       namespaces:\n         - busybox\n     mode: all\n     duration: 1h\n   ```",
+      "source_content_hash": "18f2642f0caae9d70b7f53d6c1c7d3b1965d86f4cb6492edbe048bc99906eb03",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 建立 `hello-busybox.yaml` 檔案，內容如下：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: HelloWorldChaos\n   metadata:\n     name: hello-busybox\n     namespace: chaos-mesh\n   spec:\n     selector:\n       namespaces:\n         - busybox\n     mode: all\n     duration: 1h\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "80666f20",
+      "source_content": "5. Run:\n\n   ```bash\n   kubectl apply -f hello-busybox.yaml\n   # helloworldchaos.chaos-mesh.org/hello-busybox created\n   ```\n\n   - Now you can check if `chaos-controller-manager` has `Apply helloworld chaos` in its logs:\n\n     ```bash\n     kubectl logs -n chaos-mesh chaos-controller-manager-xxx\n     ```\n\n     Example output:\n\n     ```log\n     2023-07-16T08:20:46.823Z INFO records records/controller.go:149 apply chaos {\"id\": \"busybox/busybox-0/busybox\"}\n     2023-07-16T08:20:46.823Z INFO helloworldchaos helloworldchaos/types.go:27 Apply helloworld chaos\n     ```\n\n   - Check the logs of Chaos Daemon:\n\n     ```bash\n     kubectl logs -n chaos-mesh chaos-daemon-xxx\n     ```\n\n     Example output:\n\n     ```log\n     2023-07-16T08:20:46.833Z INFO chaos-daemon.daemon-server chaosdaemon/server.go:187 ExecHelloWorldChaos {\"namespacedName\": \"chaos-mesh/hello-busybox\", \"request\": \"container_id:\\\"docker://5e01e76efdec6aa0934afc15bb80e121d58b43c529a6696a01a242f7ac68f201\\\"\"}\n     2023-07-16T08:20:46.834Z INFO chaos-daemon.daemon-server.background-process-manager.process-builder pb/chaosdaemon.pb.go:4568 build command {\"namespacedName\": \"chaos-mesh/hello-busybox\", \"command\": \"/usr/local/bin/nsexec -m /proc/104710/ns/mnt -- sh -c ps aux\"}\n     2023-07-16T08:20:46.841Z INFO chaos-daemon.daemon-server chaosdaemon/server.go:187 cmd output {\"namespacedName\": \"chaos-mesh/hello-busybox\", \"output\": \"PID   USER     TIME  COMMAND\\n    1 root      0:00 sh -c echo Container is Running ; sleep 3600\\n\"}\n     2023-07-16T08:20:46.856Z INFO chaos-daemon.daemon-server chaosdaemon/server.go:187 ExecHelloWorldChaos {\"namespacedName\": \"chaos-mesh/hello-busybox\", \"request\": \"container_id:\\\"docker://bab4f632a0358529f7d72d35e014b8c2ce57438102d99d6174dd9df52d093e99\\\"\"}\n     2023-07-16T08:20:46.864Z INFO chaos-daemon.daemon-server.background-process-manager.process-builder pb/chaosdaemon.pb.go:4568 build command {\"namespacedName\": \"chaos-mesh/hello-busybox\", \"command\": \"/usr/local/bin/nsexec -m /proc/104841/ns/mnt -- sh -c ps aux\"}\n     2023-07-16T08:20:46.867Z INFO chaos-daemon.daemon-server chaosdaemon/server.go:187 cmd output {\"namespacedName\": \"chaos-mesh/hello-busybox\", \"output\": \"PID   USER     TIME  COMMAND\\n    1 root      0:00 sh -c echo Container is Running ; sleep 3600\\n\"}\n     ```\n\n   You will see two separate lines of `ps aux`, which are corresponding to two different Pods.",
+      "source_content_hash": "61f275adb3ed34712d7e1deba6de187291f84cda1a0d9a4944a86e139514c0d0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "5. 執行：\n\n   ```bash\n   kubectl apply -f hello-busybox.yaml\n   # helloworldchaos.chaos-mesh.org/hello-busybox created\n   ```\n\n   - 現在可以檢查 `chaos-controller-manager` 日誌中是否有 `Apply helloworld chaos` 記錄：\n\n     ```bash\n     kubectl logs -n chaos-mesh chaos-controller-manager-xxx\n     ```\n\n     範例輸出：\n\n     ```log\n     2023-07-16T08:20:46.823Z INFO records records/controller.go:149 apply chaos {\"id\": \"busybox/busybox-0/busybox\"}\n     2023-07-16T08:20:46.823Z INFO helloworldchaos helloworldchaos/types.go:27 Apply helloworld chaos\n     ```\n\n   - 檢查 Chaos Daemon 的日誌：\n\n     ```bash\n     kubectl logs -n chaos-mesh chaos-daemon-xxx\n     ```\n\n     範例輸出：\n\n     ```log\n     2023-07-16T08:20:46.833Z INFO chaos-daemon.daemon-server chaosdaemon/server.go:187 ExecHelloWorldChaos {\"namespacedName\": \"chaos-mesh/hello-busybox\", \"request\": \"container_id:\\\"docker://5e01e76efdec6aa0934afc15bb80e121d58b43c529a6696a01a242f7ac68f201\\\"\"}\n     2023-07-16T08:20:46.834Z INFO chaos-daemon.daemon-server.background-process-manager.process-builder pb/chaosdaemon.pb.go:4568 build command {\"namespacedName\": \"chaos-mesh/hello-busybox\", \"command\": \"/usr/local/bin/nsexec -m /proc/104710/ns/mnt -- sh -c ps aux\"}\n     2023-07-16T08:20:46.841Z INFO chaos-daemon.daemon-server chaosdaemon/server.go:187 cmd output {\"namespacedName\": \"chaos-mesh/hello-busybox\", \"output\": \"PID   USER     TIME  COMMAND\\n    1 root      0:00 sh -c echo Container is Running ; sleep 3600\\n\"}\n     2023-07-16T08:20:46.856Z INFO chaos-daemon.daemon-server chaosdaemon/server.go:187 ExecHelloWorldChaos {\"namespacedName\": \"chaos-mesh/hello-busybox\", \"request\": \"container_id:\\\"docker://bab4f632a0358529f7d72d35e014b8c2ce57438102d99d6174dd9df52d093e99\\\"\"}\n     2023-07-16T08:20:46.864Z INFO chaos-daemon.daemon-server.background-process-manager.process-builder pb/chaosdaemon.pb.go:4568 build command {\"namespacedName\": \"chaos-mesh/hello-busybox\", \"command\": \"/usr/local/bin/nsexec -m /proc/104841/ns/mnt -- sh -c ps aux\"}\n     2023-07-16T08:20:46.867Z INFO chaos-daemon.daemon-server chaosdaemon/server.go:187 cmd output {\"namespacedName\": \"chaos-mesh/hello-busybox\", \"output\": \"PID   USER     TIME  COMMAND\\n    1 root      0:00 sh -c echo Container is Running ; sleep 3600\\n\"}\n     ```\n\n   您將會看到兩行獨立的 `ps aux` 輸出，分別對應兩個不同的 Pod。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "61d0a6d1",
+      "source_content": "## Next steps",
+      "source_content_hash": "3a5d9cbc49e6e5f0c98349dd1cd7cfe5713807fc5f02234240621031925d1f32",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 後續步驟"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "face5559",
+      "source_content": "If you encounter any problems during the process, create an [issue](https://github.com/chaos-mesh/chaos-mesh/issues) in the Chaos Mesh repository.",
+      "source_content_hash": "f6acb98708690c3189ab9c85e2aff31d9db14d952a136f57fd712562b8b778df",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若在此過程中遇到任何問題，請至 Chaos Mesh 儲存庫建立[議題](https://github.com/chaos-mesh/chaos-mesh/issues)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "43287462",
+      "source_content": "If you are curious about how all this works, you can read the [controllers/README.md](https://github.com/chaos-mesh/chaos-mesh/blob/master/controllers/README.md) and code for different controllers next.",
+      "source_content_hash": "2bf9a7c93600cf5704790196c9b4702161c786738d6d4c33f4df19b49da53351",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若想深入了解運作原理，可閱讀[controllers/README.md](https://github.com/chaos-mesh/chaos-mesh/blob/master/controllers/README.md)及各控制器的程式碼。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6dc3e423",
+      "source_content": "You are now ready to become a Chaos Mesh developer! Feel free to visit the [Chaos Mesh issues](https://github.com/chaos-mesh/chaos-mesh/issues) to find a [good first issue](https://github.com/chaos-mesh/chaos-mesh/labels/good%20first%20issue) and get started!",
+      "source_content_hash": "6e3f0232ff1c5af2f3680ad1f13a22ed921bb2e2b74ba4f5ddbadf8a1ac13da2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您現在已準備好成為 Chaos Mesh 開發者！歡迎造訪 [Chaos Mesh 議題](https://github.com/chaos-mesh/chaos-mesh/issues) 尋找[適合新手的議題](https://github.com/chaos-mesh/chaos-mesh/labels/good%20first%20issue)並開始貢獻！"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/extend-chaos-daemon-interface.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.339510+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "bf21762ceb3b3a3e59e1aed7c8f05ebe3312bd1178ccd871b9382904f2ab5e1a"
+  }
+}

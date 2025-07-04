@@ -1,0 +1,155 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/simulate-host-console-in-physical-nodes.md",
+  "source_file_content_hash": "f5c472ae6db94c86253283010801bd149b4c7875188a45ed205334cb131d880f",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate Host Faults\n---",
+      "source_content_hash": "94707a03d4541d6f3e6522d35974a35355113fcac9ac4269ae2ec4d449895c04",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document introduces how to simulate host shutdown faults using Chaosd.",
+      "source_content_hash": "6cc42c71ebff76d8c62f7583fdb3f588787f5378df037ca2e37e734da98a0819",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件介紹如何使用 Chaosd 模擬主機關機故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## View the help information of host shutdown experiments",
+      "source_content_hash": "f20b52871bb6b232d3589387369d0f2b36ab01b7cab7b645addb615c08ebfebe",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 查看主機關機實驗的幫助資訊"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "Before creating a fault experiment, you can run the following command to view the help information of host shutdown experiments:",
+      "source_content_hash": "5de405d39ccadb6a243e2af9d511aaea5be6a0b8558ad9c080f825e1e320d788",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在建立故障實驗前，您可以執行以下指令來查看主機關機實驗的幫助資訊："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "43a8bc7e",
+      "source_content": "```bash\nchaosd attack host shutdown -h\n```",
+      "source_content_hash": "4e6db373c1f0c6eff2a82e1264e23cb0d60dcc54b1605e10b89ef9e21ca07f0b",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_43a8bc7e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "The output is as follows:",
+      "source_content_hash": "e393a74ababf246af54d3aaa19b45a8f23cc8470c3659248fb33a6888578f447",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "93be3c14",
+      "source_content": "```bash\nshutdowns system, this action will trigger shutdown of the host machine\n\nUsage:\n  chaosd attack host shutdown [flags]\n\nFlags:\n  -h, --help   help for shutdown\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n```",
+      "source_content_hash": "a3ea6c5e601715b8c23c98ab0053e0fd00d8ba2f30ab4f5c7c31dcddec668b39",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_93be3c14"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d06306f7",
+      "source_content": "## Create a host shutdown experiment",
+      "source_content_hash": "9d9ba94b7b251a3d75ba18d726a83f773d0e1e6eb4560aa51355d7382b756180",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 建立主機關機實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "73ab96a3",
+      "source_content": "To create a host shutdown experiment, run the following command:",
+      "source_content_hash": "eac59f35f8cc6f51d00e65aae2a5a8d1d939df59608827e3b528fb239c1b0682",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要建立主機關機實驗，請執行以下指令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6543a19e",
+      "source_content": "```bash\nchaosd attack host shutdown\n```",
+      "source_content_hash": "938d815170ed4cd88afa7b2e14e8d744dff90fe180473fe2b2da9289da9eb98d",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6543a19e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "135468ee",
+      "source_content": "The example output is as follows:",
+      "source_content_hash": "f76c341c1e48dfe3c1855db286fbb0a7173ee15fb762305a859d263d10ac5814",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "範例輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a11df754",
+      "source_content": "```bash\nchaosd attack host shutdown\nShutdown successfully, uid: 4bc9b74a-5fe2-4038-b4f3-09ae95b57694\n```",
+      "source_content_hash": "e33d59f8650d9bb9503abcef14192c5aaecc91b1cbe0c415c7fde193cf04e1f2",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a11df754"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa1e7006",
+      "source_content": "After executing this command, your host will shut down after all processes are closed.",
+      "source_content_hash": "7158d632728c4c149d9523c5f7a72375c6a8cbe23f93622d6b7cdb084a965bd8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行此指令後，您的主機將在所有程序關閉後關機。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/simulate-host-console-in-physical-nodes.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.115208+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "f5c472ae6db94c86253283010801bd149b4c7875188a45ed205334cb131d880f"
+  }
+}

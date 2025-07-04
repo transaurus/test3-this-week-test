@@ -1,0 +1,636 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/simulate-heavy-stress-in-physical-nodes.md",
+  "source_file_content_hash": "5ff25e733f96bb7d556e382f19e4155a87e459ae1c358399a254f5abd018dea2",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate Stress Scenarios\n---",
+      "source_content_hash": "021a9d385a8d07e827e5838d4563082bd01e4bb99aaa843a827937b7dff664ea",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document describes how to use Chaosd to simulate stress scenarios. This feature generates CPU or memory stress on the host using [stress-ng](https://wiki.ubuntu.com/Kernel/Reference/stress-ng). You can create stress experiments either in command-line or service mode.",
+      "source_content_hash": "49fe9de677d51ceca1a1eba5b60f4c59e7f1208530e2465c0af06f1b8d7d2923",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件說明如何使用 Chaosd 模擬壓力場景。此功能透過 [stress-ng](https://wiki.ubuntu.com/Kernel/Reference/stress-ng) 在主機上產生 CPU 或記憶體壓力。您可透過命令列模式或服務模式建立壓力實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## Create stress experiments using the command-line mode",
+      "source_content_hash": "9884bcb440ff4dba56514c39d6a70bc5506e5e4896f4c8f17680872e7907ae1d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用命令列模式建立壓力實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "This section describes how to create stress experiments using the command-line mode.",
+      "source_content_hash": "201ae04cf39af541d21e9b0b812a3a1cbf0b94869d6efd976178183d56f4ef1b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本節說明如何使用命令列模式建立壓力實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "Before creating stress experiments, you can run the following command to view the stress experiment types supported by Chaosd:",
+      "source_content_hash": "20bc6c484d22b4f7555170f1555d95bf165fac41e3794e3f7904e996ba1d2cea",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "建立壓力實驗前，可執行以下命令查看 Chaosd 支援的壓力實驗類型："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9c7a144",
+      "source_content": "```bash\nchaosd attack stress --help\n```",
+      "source_content_hash": "705e9b8255f8b59f77375686fe6521bd4354b96a338a7b6474cd653c526d6da6",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b9c7a144"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "940e34e3",
+      "source_content": "```bash\nStress attack related commands\n\nUsage:\n  chaosd attack stress [command]\n\nAvailable Commands:\n  cpu         continuously stress CPU out\n  mem         continuously stress virtual memory out\n\nFlags:\n  -h, --help   help for stress\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n\nUse \"chaosd attack stress [command] --help\" for more information about a command.\n```",
+      "source_content_hash": "8448e5547e27c61d534ef6c5fed5838e7c3344758f25eba42fc22aaa9d288c39",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_940e34e3"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "135468ee",
+      "source_content": "Currently, Chaosd supports creating CPU stress experiments and memory stress experiments.",
+      "source_content_hash": "09f9911508daa738584b82a818113b5983cb0bbb6b20acdf7fe9698af9202343",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前 Chaosd 支援建立 CPU 壓力實驗與記憶體壓力實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "782c902a",
+      "source_content": "### Simulate CPU stress using the command-line mode",
+      "source_content_hash": "b4bc43bb4c64794f999ff6a17604e0ae01f1405611983c974577efe4064a71c8",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式模擬 CPU 壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8d04259b",
+      "source_content": "#### Command for simulating CPU stress",
+      "source_content_hash": "157a5c5f9cdac16b471083c39cf7bfd9aa64d9a1de399b7bd19379544b255dd2",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬 CPU 壓力的命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "95e9ba12",
+      "source_content": "To view the configuration items supported by the CPU stress simulation, run the following command:",
+      "source_content_hash": "9a9df3b9acfd1522ec3a8bc5a59d9efbeaef23258687ca84337c6578770c3de7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "欲查看 CPU 壓力模擬支援的設定項目，請執行以下命令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4ec2920d",
+      "source_content": "```bash\nchaosd attack stress cpu --help\n```",
+      "source_content_hash": "73c4a74079303c6c9f0d90d2e8e839d77fa2b6c67005c67b1c6af220dedde085",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4ec2920d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a44047a5",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "64b6f348",
+      "source_content": "```bash\ncontinuously stress CPU out\n\nUsage:\n  chaosd attack stress cpu [options] [flags]\n\nFlags:\n  -h, --help              help for cpu\n  -l, --load int          Load specifies P percent loading per CPU worker. 0 is effectively a sleep (no load) and 100 is full loading. (default 10)\n  -o, --options strings   extend stress-ng options.\n  -w, --workers int       Workers specifies N workers to apply the stressor. (default 1)\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n```",
+      "source_content_hash": "9727021d1c1ac07fb07ca9bc9e0dadca8909a61410e2b384cc4c86b2d47f860a",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_64b6f348"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bd92edfc",
+      "source_content": "#### Configuration description for simulating CPU stress",
+      "source_content_hash": "90920552b4dad137007b2726cdf1e780694836f74a7dcd592ede47c018241c3a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬 CPU 壓力的設定說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "24b230ee",
+      "source_content": "| Configuration item | Abbreviation | Description | Type | Value |\n| :-- | :-- | :-- | :-- | :-- |\n| `load` | l | Specifies the percentage of CPU load per CPU worker. `0` means no CPU utilization, and `100` means full CPU utilization. | int | Range: `0` to `100`; Default value: `10`. |\n| `workers` | w | Specifies the number of workers used to create CPU stress. | int | Default value: 1. |\n| `options` | o | The extended parameter of stress-ng, usually not configured. | string | Default value: \"\". |",
+      "source_content_hash": "1716c6c32a2cf604a4b0542bb7951f879f7b726a5e2a70a5131cb685f600b520",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_24b230ee"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b051b70c",
+      "source_content": "#### Example for simulating CPU stress",
+      "source_content_hash": "0aebfd072e25eb65d21f0bbe603e0334180c0e6aeb682a947ec4902c2fca63e0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬 CPU 壓力的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8a9e710a",
+      "source_content": "```bash\nchaosd attack stress cpu --workers 2 --load 10\n```",
+      "source_content_hash": "c67f36bac62474132aca4f807b190a3764f3707dad65dde7c319b0fdcf2dfe59",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_8a9e710a"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6270d577",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d8159289",
+      "source_content": "```bash\n[2021/05/12 03:38:33.698 +00:00] [INFO] [stress.go:66] [\"stressors normalize\"] [arguments=\" --cpu 2 --cpu-load 10\"]\n[2021/05/12 03:38:33.702 +00:00] [INFO] [stress.go:82] [\"Start stress-ng process successfully\"] [command=\"/usr/bin/stress-ng --cpu 2 --cpu-load 10\"] [Pid=27483]\nAttack stress cpu successfully, uid: 4f33b2d4-aee6-43ca-9c43-0f12867e5c9c\n```",
+      "source_content_hash": "8c28cd2b8573aa415c44ae620a5f9147267516ca2314e9d45ac0c3c1915874c9",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d8159289"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "90d35b51",
+      "source_content": "### Simulating memory stress using the command-line mode",
+      "source_content_hash": "001ab70fd3509919f41e4fa293632512e1e1bb0168bdf6a31dd73f2fd4832a3a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式模擬記憶體壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bd30d33e",
+      "source_content": "#### Command for simulating memory stress",
+      "source_content_hash": "601d57f4c52d881cca2c33af5474ee3808f67220032fbae97043db2c7c175315",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬記憶體壓力的命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6b77b644",
+      "source_content": "To view the configuration items supported by the memory stress simulation, run the following command:",
+      "source_content_hash": "1636c82f2f94a0e850997cf2a05650b2f6cb9fe3302408059966158c6d701229",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "欲查看記憶體壓力模擬支援的設定項目，請執行以下命令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "19913a56",
+      "source_content": "```bash\nchaosd attack stress mem --help\n```",
+      "source_content_hash": "cbb39054366ae7fc96306c9bc4b33a3cf0bfa1c784181c402f77e297e44ac1af",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_19913a56"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1862c5fe",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a476a172",
+      "source_content": "```bash\ncontinuously stress virtual memory out\n\nUsage:\n  chaosd attack stress mem [options] [flags]\n\nFlags:\n  -h, --help              help for mem\n  -o, --options strings   extend stress-ng options.\n  -s, --size string       Size specifies N bytes consumed per vm worker, default is the total available memory. One can specify the size as % of total available memory or in units of B, KB/KiB, MB/MiB, GB/GiB, TB/TiB..\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n```",
+      "source_content_hash": "0e4c556f3a39362a1aa473829927ab102deb82e3719d524a73766f1085b2c2bf",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a476a172"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "48155948",
+      "source_content": "#### Configuration description for simulating memory stress",
+      "source_content_hash": "21010f3925e7f5a520dcb3ed230eb37926a20c40064562e0b5b1cc6a70225918",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬記憶體壓力的設定說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "29b12c10",
+      "source_content": "| Configuration item | Abbreviation | Description | Type | Value |\n| :-- | :-- | :-- | :-- | :-- |\n| `size` | s | Specifies the size of memory per VM worker. | string | The memory size in B, KB/KiB, MB/MiB, GB/GiB, TB/TiB. If the size is not set, all available memory is used by default. |\n| `options` | o | The extended parameter of stress-ng, usually not configured. | string | Default value: \"\". |",
+      "source_content_hash": "9c037a096e873266c5eab32a8d0b82611bff810903d491b5f9e8a9b2c41adef9",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_29b12c10"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "64d57278",
+      "source_content": "#### Example for simulating memory stress",
+      "source_content_hash": "b32e04bcbd43b5f3795c0aa922840ba765ab2039684e12c8f129d837ffbaae7c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬記憶體壓力的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e2c67c87",
+      "source_content": "```bash\nchaosd attack stress mem --workers 2 --size 100M\n```",
+      "source_content_hash": "d182a8d111144352d310caf7fa4412308a00c9da08330c0a17e6c3225e8aa7a3",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_e2c67c87"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c364340c",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b474abd5",
+      "source_content": "```bash\n[2021/05/12 03:37:19.643 +00:00] [INFO] [stress.go:66] [\"stressors normalize\"] [arguments=\" --vm 2 --vm-keep --vm-bytes 100000000\"]\n[2021/05/12 03:37:19.654 +00:00] [INFO] [stress.go:82] [\"Start stress-ng process successfully\"] [command=\"/usr/bin/stress-ng --vm 2 --vm-keep --vm-bytes 100000000\"] [Pid=26799]\nAttack stress mem successfully, uid: c2bff2f5-3aac-4ace-b7a6-322946ae6f13\n```",
+      "source_content_hash": "ff9ab6b6a030cd323033de302e306494e4c88adbd2ad47d654960fd33c200f17",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b474abd5"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "14bc6b75",
+      "source_content": "When running the experiment, you need to save the uid information of the experiment. When a stress simulation is not needed, you can use `recover` to terminate the uid-related experiment::",
+      "source_content_hash": "6e1877e2125c4d96b58a29188539fd34418cf8165c4762e2931890665ca669a8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行實驗時，需保存實驗的 uid 資訊。當不需要壓力模擬時，可使用 `recover` 終止與該 uid 相關的實驗："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9ed0f908",
+      "source_content": "```bash\nchaosd recover c2bff2f5-3aac-4ace-b7a6-322946ae6f13\n```",
+      "source_content_hash": "892d6fd345c58dc8c8158887715419b02414749f12f7fb648f605954f9feb80c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9ed0f908"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a9c2a503",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4fe849d4",
+      "source_content": "```bash\nRecover c2bff2f5-3aac-4ace-b7a6-322946ae6f13 successfully\n```",
+      "source_content_hash": "da2b98e7c04911591a774569ba6e5592b8447a98d961c3ed038fbe0c4cf8fe57",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4fe849d4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "35353302",
+      "source_content": "## Create stress experiments using the service mode",
+      "source_content_hash": "3dcd90c2ce9bd0a6b771f68006f77e9bac36174709db31af9cefa84e9872cb34",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用服務模式建立壓力實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "719d3997",
+      "source_content": "To create experiments using the service mode, follow the instructions below:",
+      "source_content_hash": "730e9766ed6188cf20ad25677e3237e8c03f2b6f8b03ae8e712f0a97e475b6e4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "使用服務模式建立實驗，請依循以下指示："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f545c46e",
+      "source_content": "1. Run Chaosd in service mode:\n\n   ```bash\n   chaosd server --port 31767\n   ```",
+      "source_content_hash": "f58ae7d87e1539b1bcd0a06484728849274873746f8cc5896ec20e9879dc4d4d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 在服務模式下執行 Chaosd：\n\n   ```bash\n   chaosd server --port 31767\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "38c0ec8b",
+      "source_content": "2. Send a `POST` HTTP request to the `/api/attack/{uid}` path of Chaosd service.\n\n   ```bash\n   curl -X POST 172.16.112.130:31767/api/attack/jvm -H \"Content-Type:application/json\" -d '{fault-configuration}'\n   ```\n\n   For the `fault-configuration` part in the above command, you need to configure it according to the fault types. For the corresponding parameters, refer to the parameters and examples of each fault type in the following sections.",
+      "source_content_hash": "ee29de38521f125233b3ee97ab49b2ac7c026c21c44123ac121129ff6652cbd8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "2. 向 Chaosd 服務的 `/api/attack/{uid}` 路徑發送 `POST` HTTP 請求：\n\n   ```bash\n   curl -X POST 172.16.112.130:31767/api/attack/jvm -H \"Content-Type:application/json\" -d '{fault-configuration}'\n   ```\n\n   上述命令中的 `fault-configuration` 部分需根據故障類型進行設定。對應參數請參閱後續章節中各故障類型的參數與範例。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`POST`', Translation: '`/api/attack/{uid}`'.",
+          "timestamp": "2025-07-04T06:49:59.318221+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "50ecdbd8",
+      "source_content": ":::note\n\nWhen running an experiment, remember to save the UID information of the experiment. When you want to kill the experiment corresponding to the UID, you need to send a `DELETE` HTTP request to the `/api/attack/{uid}` path of Chaosd service.\n\n:::",
+      "source_content_hash": "1403a65072af2b493a8f123f998e90270d9b3498fb3f0d92ed758c55ec470eff",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::note\n\n執行實驗時，請務必保存實驗的 UID 資訊。當需終止該 UID 對應的實驗時，需向 Chaosd 服務的 `/api/attack/{uid}` 路徑發送 `DELETE` HTTP 請求。\n\n:::",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`DELETE`', Translation: '`/api/attack/{uid}`'.",
+          "timestamp": "2025-07-04T06:49:59.318267+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "191265da",
+      "source_content": "### Simulate CPU stress using the service mode",
+      "source_content_hash": "06434c1a2368da27ed7fd22f8368dc4844a4eaeed5ab3637ff66eb12c81d9c87",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬 CPU 壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a6b29dc7",
+      "source_content": "#### Parameters for simulating CPU stress",
+      "source_content_hash": "61de2802daaa1a2671a1af303fb7e43a8b037e797b42edafa3bf76b6d3adb5e2",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬 CPU 壓力的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bddedd57",
+      "source_content": "| Parameter | Description | Type | Value |\n| :-- | :-- | :-- | :-- |\n| `action` | Actions of the experiment |  | Set to \"cpu\" |\n| `load` | Specifies the percentage of CPU load per CPU worker. `0` means no CPU utilization, and `100` means full CPU utilization. | int | Range: `0` to `100`; Default value: `10` |\n| `workers` | Specifies the number of workers used to create CPU stress | int | Default value: `1` |\n| `options` | The extended parameter of stress-ng, usually not configured. | string | Default value: \"\" |",
+      "source_content_hash": "8e423196e8bff10604565aa01365d3f464b7810d94a9c4239ebd3e430aba006c",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_bddedd57"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "61282bab",
+      "source_content": "#### Example for simulating CPU stress using the service mode",
+      "source_content_hash": "77185e9853d97c75d68c1997414f7e0e653e6c3ce0d2562366dc16ad83747130",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬 CPU 壓力的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1cd1d315",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/stress -H \"Content-Type:application/json\" -d '{\"load\":10, \"action\":\"cpu\",\"workers\":1}'\n```",
+      "source_content_hash": "9730657bc9ab4c5fc8bef4c764203ab9ee18ce3507c35d5dce530a399a320453",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1cd1d315"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9ebd9d9b",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "54dd003b",
+      "source_content": "```bash\n{\"status\":200,\"message\":\"attack successfully\",\"uid\":\"c3c519bf-819a-4a7b-97fb-e3d0814481fa\"}\n```",
+      "source_content_hash": "4054117a6c9620bc4fc46e75f1e17eab8c3a1bfcfaddd6b31ed37fd491139cb6",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_54dd003b"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfa23ddf",
+      "source_content": "### Simulate memory stress using the service mode",
+      "source_content_hash": "c86acc004ccb32a016d439e62f9cf3da70fe87e14108a537040740b07f603ec8",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬記憶體壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "17fd5988",
+      "source_content": "#### Parameters for simulating memory stress",
+      "source_content_hash": "8caae8e963be43204613b39c12cb024bc7151d4d9de28dc6f7bd0d07d4ad4933",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬記憶體壓力的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "18e9d1c5",
+      "source_content": "| Parameter | Description | Type | Value |\n| :-- | :-- | :-- | :-- |\n| `action` | Actions of the experiment |  | Set to \"mem\" |\n| `size` | Specifies the size of memory per VM worker | string | the memory size in B, KB/KiB, MB/MiB, GB/GiB, TB/TiB. If the size is not set, all available memory is used by default. |\n| `options` | The extended parameter of stress-ng, usually not configured. | string | Default value: \"\" |",
+      "source_content_hash": "f2d7a391f088838dd6fffa6fb9bc3fc3ad16c38f8e51609f62c292bbfa26ee54",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_18e9d1c5"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "428f235a",
+      "source_content": "#### Example for simulating memory stress using the service mode",
+      "source_content_hash": "115570c137b2734c57cad369c1c86ca0ee504b7d930408fa7034fe2b3aeab02f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬記憶體壓力的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5b2e44c7",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/stress -H \"Content-Type:application/json\" -d '{\"size\":\"100M\", \"action\":\"mem\"}'\n```",
+      "source_content_hash": "73d277d7e495b4ba5af14dbecb2793562d5c502ac72d2b9a42529612825dfb94",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_5b2e44c7"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e4d8cd8a",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ff27b4c2",
+      "source_content": "```bash\n{\"status\":200,\"message\":\"attack successfully\",\"uid\":\"a551206c-960d-4ac5-9056-518e512d4d0d\"}\n```",
+      "source_content_hash": "680ba5db225e6af39867ff818ae19e849c7f9d5ad5e21d681075515a3676ac55",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ff27b4c2"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/simulate-heavy-stress-in-physical-nodes.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.318306+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "5ff25e733f96bb7d556e382f19e4155a87e459ae1c358399a254f5abd018dea2"
+  }
+}

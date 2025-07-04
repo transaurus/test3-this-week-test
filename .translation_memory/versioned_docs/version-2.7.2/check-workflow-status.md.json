@@ -1,0 +1,100 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/check-workflow-status.md",
+  "source_file_content_hash": "a47a2c6565314fef3d2c69e5c58d59dd3e56b15f0c2f69b776962a54b50aca56",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Check Workflow Status\n---",
+      "source_content_hash": "ce48ef2c68c0df1ebe43a8f5bab1ef515bb8ad793e9656e7000e70519f961239",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f85bbfb4",
+      "source_content": "## Check workflow status using Chaos Dashboard",
+      "source_content_hash": "27bb2a11a4fb0a33d0b6814c9f377c020067902aa4377d0bfb031b5966c6b28d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Chaos Dashboard 檢查工作流程狀態"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "237365ee",
+      "source_content": "1. List all workflows in Chaos Dashboard.\n\n   ![List Workflow On Dashboard](./img/list-workflow-on-dashboard.png)",
+      "source_content_hash": "52670662e02994827a72d16922fee2a329c21cd2e22665600b08d75c904d46d8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 在 Chaos Dashboard 中列出所有工作流程。\n\n   ![List Workflow On Dashboard](./img/list-workflow-on-dashboard.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "760d111a",
+      "source_content": "2. Select the workflow you want to check and see the details of the workflow.\n\n   ![Workflow Status On Dashboard](./img/workflow-status-on-dashboard.png)",
+      "source_content_hash": "9c326558024f1d9693fe2e25c495731fadb3eb11634c3e099a530cbfddb12779",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 選擇您要檢查的工作流程，查看該工作流程的詳細資訊。\n\n   ![Workflow Status On Dashboard](./img/workflow-status-on-dashboard.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e14c9928",
+      "source_content": "## Check workflow status using `kubectl` commands",
+      "source_content_hash": "c4e465429c78e907cc6467425ddfa3a8236b35a8fe8ddaca5ced32b07e885a7f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 `kubectl` 命令檢查工作流程狀態"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0eb403ec",
+      "source_content": "1. Execute the following command to list the current created workflows in the specified namespace:\n\n   ```shell\n   kubectl -n <namespace> get workflow\n   ```",
+      "source_content_hash": "e4feb6d2a8b3fe9aee1ec5015ad9cf9f735b07886e36829d56618345888d1e8b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 執行以下命令，在指定的命名空間中列出當前建立的工作流程：\n\n   ```shell\n   kubectl -n <namespace> get workflow\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b31a2bd",
+      "source_content": "2. Choose a workflow you want to check and specify the workflow name in the following command. Execute the command to get all workflow nodes of the workflow:\n\n   ```shell\n   kubectl -n <namespace> get workflownode --selector=\"chaos-mesh.org/workflow=<workflow-name>\"\n   ```\n\n   The steps of the workflow are represented by the names of these workflow nodes.",
+      "source_content_hash": "81e7bdb1eaa60c0194dda1ed895b6fd074548764d4252c3889a3400ceb8c1da9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 選擇您要檢查的工作流程，在以下命令中指定工作流程名稱，執行命令以取得該工作流程的所有工作流程節點：\n\n   ```shell\n   kubectl -n <namespace> get workflownode --selector=\"chaos-mesh.org/workflow=<workflow-name>\"\n   ```\n\n   工作流程的步驟由這些工作流程節點的名稱表示。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "346d5f8d",
+      "source_content": "3. Execute the following command to the get detailed status of the specified workflow node:\n\n   ```shell\n   kubectl -n <namespace> describe workflownode <workflow-node-name>\n   ```\n\n   The output includes whether the execution of the current node is completed, the execution status of its parallel or serial node, the corresponding Chaos experiment object of the current node, and so on.",
+      "source_content_hash": "1debf79c65559a8b6477cb8e7594fb781f2ae278bb69a6831e438c7d2a1e46a8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 執行以下命令以取得指定工作流程節點的詳細狀態：\n\n   ```shell\n   kubectl -n <namespace> describe workflownode <workflow-node-name>\n   ```\n\n   輸出內容包含：當前節點執行是否完成、其並行或串行節點的執行狀態、當前節點對應的 Chaos 實驗物件等資訊。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/check-workflow-status.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.083650+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "a47a2c6565314fef3d2c69e5c58d59dd3e56b15f0c2f69b776962a54b50aca56"
+  }
+}

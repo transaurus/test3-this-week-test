@@ -1,0 +1,254 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/simulate-heavy-stress-on-kubernetes.md",
+  "source_file_content_hash": "a964694f833d019f82abc92c04eef0b46887b3bf8a6ce5fa6ed7ebe5c0721f73",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate Stress Scenarios\n---",
+      "source_content_hash": "021a9d385a8d07e827e5838d4563082bd01e4bb99aaa843a827937b7dff664ea",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f85bbfb4",
+      "source_content": "## StressChaos Introduction",
+      "source_content_hash": "5ac145ed699d8c7391ad05222c5b83ec9a091eef950df7cbdcde09d84d8c9b25",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## StressChaos 介紹"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "Chaos Mesh provides StressChaos experiments to simulate stress scenarios inside containers. This document describes how to create StressChaos experiments and how to prepare the corresponding configuration file.",
+      "source_content_hash": "f7ef0b29b7ec25159b38c79806a0bb9abf7404c8d8d359415fbd00368b4545df",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 提供 StressChaos 實驗來模擬容器內的壓力情境。本文檔說明如何建立 StressChaos 實驗以及準備對應的設定檔案。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "You can create experiments using either Chaos Dashboard or the YAML configuration files.",
+      "source_content_hash": "7b7d7e9224905493be7e516260f81f4853fe124d2ccc7b8372fbd80a9054da96",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可以透過 Chaos Dashboard 或 YAML 設定檔案來建立實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8a5f6a7b",
+      "source_content": "## Create experiments using Chaos Dashboard",
+      "source_content_hash": "0e6c13931d3c46c241532f93bf2c43261695607133973a006c15d6651045ed71",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Chaos Dashboard 建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2b4a9900",
+      "source_content": "1. Open Chaos Dashboard, and click **NEW EXPERIMENT** on the page to create a new experiment:\n\n   ![Create Experiment](./img/create-new-exp.png)",
+      "source_content_hash": "4d52ded8c7bd143e02d0fd53b29549e698fa43aeefd1df79cd9afa7ed344201f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 開啟 Chaos Dashboard，點擊頁面上的 **NEW EXPERIMENT** 建立新實驗：\n\n   ![Create Experiment](./img/create-new-exp.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0eb403ec",
+      "source_content": "2. In the **Choose a Target** area, choose **STRESS TEST** and fill out the experiment information. For specific configuration fields, refer to the description in [Configuration Description](#fields description).\n\n   ![StressChaos Experiment](./img/stresschaos-exp.png)",
+      "source_content_hash": "c4a8d8ef3d405145f3c0049666cf14be73c834881dcc7481d0bae64d8551470f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 在 **Choose a Target** 區域選擇 **STRESS TEST** 並填寫實驗資訊。具體設定欄位請參閱[設定說明](#fields description)中的描述。\n\n   ![StressChaos Experiment](./img/stresschaos-exp.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28563fec",
+      "source_content": "3. Fill out the experiment information, and specify the experiment scope and the scheduled experiment duration:\n\n   ![Experiment Information](./img/exp-info.png)",
+      "source_content_hash": "851cba4f70c58e7a20fb86a0059d1e7186e4c932416897dc26b914e9e77e5629",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 填寫實驗資訊，並指定實驗範圍與排定的實驗持續時間：\n\n   ![Experiment Information](./img/exp-info.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ff75e5d8",
+      "source_content": "4. Submit the experiment information.",
+      "source_content_hash": "d43f9894c758dcc87cfc64b219f833d55e60a63f3367195f2557b06b88c799f0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 提交實驗資訊。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fa430ad4",
+      "source_content": "## Create experiments using the YAML file",
+      "source_content_hash": "faa2dfd18ffbf305fc181947e20275b109e0d8b3b79c0d1ec685d272ffea7041",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 YAML 檔案建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2523feeb",
+      "source_content": "1. Write the experiment configuration to the YAML configuration file. In the following example, the `memory-stress.yaml` file is used.\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: StressChaos\n   metadata:\n     name: memory-stress-example\n     namespace: chaos-mesh\n   spec:\n     mode: one\n     selector:\n       labelSelectors:\n         'app': 'app1'\n     stressors:\n       memory:\n         workers: 4\n         size: '256MB'\n   ```\n\n   This experiment configuration will create a process in the selected container, continuously allocate and read and write in memory, occupying up to 256MB of memory.",
+      "source_content_hash": "b7f328a79ab0153e652abbf0bcb35e716e8faee5921f2d22c7a4b51e11da1d85",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將實驗設定寫入 YAML 設定檔案。以下範例使用 `memory-stress.yaml` 檔案。\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: StressChaos\n   metadata:\n     name: memory-stress-example\n     namespace: chaos-mesh\n   spec:\n     mode: one\n     selector:\n       labelSelectors:\n         'app': 'app1'\n     stressors:\n       memory:\n         workers: 4\n         size: '256MB'\n   ```\n\n   此實驗設定將在選定的容器中建立進程，持續分配並讀寫記憶體，最多佔用 256MB 記憶體。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b1573599",
+      "source_content": "2. After the configuration file is prepared, use `kubectl` to create an experiment:\n\n   ```bash\n   kubectl apply -f memory-stress.yaml\n   ```",
+      "source_content_hash": "e691ad48944ecc28f2eee2174e19cb172d7cbfa5a744bd2a2009a5fc82581f15",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 準備好設定檔案後，使用 `kubectl` 建立實驗：\n\n   ```bash\n   kubectl apply -f memory-stress.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2c1b51df",
+      "source_content": "### Field description",
+      "source_content_hash": "65096914168d6220ba2cc9e38088ff322d829e39af74e98d0df5f5b3cb7a27de",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e536ea0d",
+      "source_content": "The fields in the YAML configuration file are described in the following table:",
+      "source_content_hash": "fa3892015f9668c8ee2dbae8e78ed9f9cebbd20143bb72a3e28f37e924ce1938",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "YAML 設定檔案中的欄位說明如下表所示："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b6aaba5e",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| duration | string | Specifies the duration of the experiment. | None | Yes | `30s` |\n| stressors | [Stressors](#stressors) | Specifies the stress of CPU or memory | None | No |  |\n| stressngStressors | string | Specifies the stres-ng parameter to reach richer stress injection | None | No | `--clone 2` |\n| mode | string | Specifies the mode of the experiment. The mode options include `one` (selecting a random Pod), `all` (selecting all eligible Pods), `fixed` (selecting a specified number of eligible Pods), `fixed-percent` (selecting a specified percentage of Pods from the eligible Pods), and `random-max-percent` (selecting the maximum percentage of Pods from the eligible Pods). | None | Yes | `one` |\n| value | string | Provides a parameter for the `mode` configuration, depending on `mode`.For example, when `mode` is set to `fixed-percent`, `value` specifies the percentage of Pods. | None | No | 1 |\n| containerNames | []string | Specifies the name of the container into which the fault is injected. | None | No | `[\"nginx\"]` |\n| selector | struct | Specifies the target Pod. For details, refer to [Define the Scope of Chaos Experiments](./define-chaos-experiment-scope.md). | None | Yes |  |",
+      "source_content_hash": "102127db993d09994ebddbd6ef8167fe951cc806a0e9baacdc51b239b0bbdbd4",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b6aaba5e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ee8401db",
+      "source_content": "#### Stressors",
+      "source_content_hash": "79453f371224161fb0c7d8eaf1f5e708a61382cc9e755f5526871b0dc3ca3136",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### Stressors"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e9081399",
+      "source_content": "| Parameter | Type                              | Description                 | Default value | Required | Example |\n| --------- | --------------------------------- | --------------------------- | ------------- | -------- | ------- |\n| memory    | [MemoryStressor](#memorystressor) | Specifies the memory stress | None          | No       |         |\n| cpu       | [CPUStressor](#cpustressor)       | Specifies the CPU stress    | None          | No       |         |",
+      "source_content_hash": "79e59039185086de779c8af5767559b8fab50991e15cdf92ccf6542a8b8fd0f8",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_e9081399"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "93028a4e",
+      "source_content": "##### MemoryStressor",
+      "source_content_hash": "5d87bf2258dadf7b77f72385d370ed8602781123b6faa0c0d535e581c64c45d3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "##### MemoryStressor"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "feacddee",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| workers | int | Specifies the number of threads that apply memory stress |  | No | `1` |\n| size | string | Specifies the memory size to be occupied or a percentage of the total memory size. The final sum of the occupied memory size is `size`. |  | No | `256MB / 25%` |\n| time | string | Specifies the time to reach the memory `size`. The growth model is a linear model. |  | No | `10min` |\n| oomScoreAdj | int | Specifies the [oom_score_adj](https://man7.org/linux/man-pages/man5/proc.5.html) of the stress process. |  | No | `-1000` |",
+      "source_content_hash": "8e026718a2c4d15e5d175bf03e9d9bc2c9db9afe6227108ae098a999fac34d72",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_feacddee"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "de7ed16f",
+      "source_content": ":::note\n\nTo avoid the high CPU load caused by the read and write pressure from `stress-ng`, Chaos Mesh uses [memStress](https://github.com/chaos-mesh/memStress) to simulate memory stress. This is because memStress simulates memory stress by consuming actual memory instead of applying the read and write pressure to memory.\n\n:::",
+      "source_content_hash": "590f31ac798d9d53062d6998c2e7434aa7689065b9459eb572980a1a15130c86",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n為避免 `stress-ng` 的記憶體讀寫壓力導致高 CPU 負載，Chaos Mesh 使用 [memStress](https://github.com/chaos-mesh/memStress) 模擬記憶體壓力。這是因為 memStress 透過實際消耗記憶體來模擬壓力，而非對記憶體施加讀寫負荷。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bd30d33e",
+      "source_content": "##### CPUStressor",
+      "source_content_hash": "30bbae0824105099fee2c2389d8029ec4794bc62377a742c96d788667c3ef356",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "##### CPUStressor"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5ceab032",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| workers | int | Specifies the number of threads that apply CPU stress |  | Yes | `1` |\n| load | int | Specifies the percentage of CPU occupied. `0` means that no additional CPU is added, and `100` refers to full load. The final sum of CPU load is `workers * load`. |  | No | `50` |",
+      "source_content_hash": "0e07a2e5c50e90c341edd5815e6386bcb07dd57415c5a99f2ec6a850812ee930",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_5ceab032"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/simulate-heavy-stress-on-kubernetes.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.115830+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "a964694f833d019f82abc92c04eef0b46887b3bf8a6ce5fa6ed7ebe5c0721f73"
+  }
+}

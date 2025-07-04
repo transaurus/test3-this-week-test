@@ -1,0 +1,298 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/chaosd-overview.md",
+  "source_file_content_hash": "5b447eddb64a502a827927fff0753a16db0ca232437cc0ff7e7042bf19f3f161",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Chaosd Introduction\n---",
+      "source_content_hash": "1726702cd296409bac65bf7556f9ca787b3806e854b57715bc315cd9d8db2779",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f85bbfb4",
+      "source_content": "## Chaosd introduction",
+      "source_content_hash": "8d36c5f538ce04c61d8fe86a766c6efa2804370a04775e67b4719bd08a5e0eab",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## Chaosd 簡介"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "[Chaosd](https://github.com/chaos-mesh/chaosd) is a Chaos Engineering testing tool provided by Chaos Mesh. You need to download and deploy it separately (see [Download and deploy](#download-and-deploy)). It is used to inject faults into physical machine environments and also recover faults.",
+      "source_content_hash": "5af33554ee3f9c8a6658a30025cb463525d24a5c7bfccfea20e208e642531e6e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Chaosd](https://github.com/chaos-mesh/chaosd) 是由 Chaos Mesh 提供的混沌工程測試工具，需獨立下載部署（參見[下載與部署](#download-and-deploy)），用於在實體機環境注入故障並進行恢復。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "Chaosd has the following core strengths:",
+      "source_content_hash": "991f3ee470a66a43392219998b0996d6b80cbcaf0478926ac001b904439d9ef2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaosd 具備以下核心優勢："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "760d111a",
+      "source_content": "- Easy-to-use: You only need to execute simple commands in Chaosd to create and manage Chaos experiments.",
+      "source_content_hash": "2c2dcae0841a74b234f8086de123b7017edfdb89c168da4a4becfedbf2f35686",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **易於使用**：只需在 Chaosd 中執行簡單命令即可創建和管理混沌實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ee0c6cb",
+      "source_content": "- Various fault types: Chaosd provides various fault types to be injected into physical machines at different levels, including process, network, pressure, disk, host, etc. More fault types are to be added.",
+      "source_content_hash": "26d5bc4945fb5e0f6244a07bc6960df6992e0bb2f4e5c3564a9e72ea612b0b7b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **多樣故障類型**：提供多層級的實體機故障注入能力，涵蓋進程、網絡、壓力、磁盤、主機等類型，未來將持續擴充。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2b4a9900",
+      "source_content": "- Multiple work modes: Chaosd can be used both as a command-line tool and as a service to meet the needs of different scenarios.",
+      "source_content_hash": "9954ecb74a9c6c5a2da14b242c5932f12919ff74b8d39f917499e669784645ae",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **多種工作模式**：可作為命令行工具或後台服務運行，滿足不同場景需求。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e14c9928",
+      "source_content": "### Supported fault types",
+      "source_content_hash": "89a89ff9208939fc801625657914883caa4196e477bd2a386a971d1d6169e9f0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 支援的故障類型"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "You can use Chaosd to simulate the following fault types:",
+      "source_content_hash": "4a3550179d863ee6142b8167f3e339513818d897d349f43ca264332986cd139a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaosd 可模擬以下故障類型："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "632fee71",
+      "source_content": "- Process: Injects faults into the processes. Operations such as killing the process or stopping the process are supported.",
+      "source_content_hash": "dc383e9b911346c3802d9c747d59f018c5f01c0ae972cec67cfc0efcd778c242",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **進程故障**：對進程注入故障，支援殺死進程、暫停進程等操作。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dc10b09",
+      "source_content": "- Network: Injects faults into the network of physical machines. Operations such as increasing network latency, losing packets, and corrupting packets are supported.",
+      "source_content_hash": "d363525df41888a6b7b16265bf2b4829a47c9a6339e80c40b19e48f490268037",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **網絡故障**：對實體機網絡注入故障，支援增加延遲、封包遺失、封包損壞等操作。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28563fec",
+      "source_content": "- Pressure: Injects pressure on the CPU or memory of the physical machines.",
+      "source_content_hash": "fb7f1974658e9ad1b33b6909f3d23635a0d92729da717f73fa750cdb9dbc5781",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **壓力故障**：對實體機 CPU 或記憶體施加壓力。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f998e7f9",
+      "source_content": "- Disk: Injects faults into disks of the physical machines. Operations such as increasing disk load of reads and writes, and filling disks are supported.",
+      "source_content_hash": "65e4a973c4b5665b1c2c363afe59bc9529c74c90389d0c8bd1ce15b6f1e6950d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **磁盤故障**：對磁盤注入故障，支援增加讀寫負載、填充磁盤等操作。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b31a2bd",
+      "source_content": "- Host: Injects faults into the physical machine. Operations such as shutdown the physical machine are supported.",
+      "source_content_hash": "2e0c14817995a9e22fe418666abd8f62aeb9ef173f8bf54c402c332e23ac29ff",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **主機故障**：對實體主機注入故障，支援關閉主機等操作。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c2bdd0",
+      "source_content": "For details about the introduction and usage of each fault type, refer to the related documentation.",
+      "source_content_hash": "89a1ae5a9ee57efea22344d71fd2241de4411b9af0afe5df7c32469c1cc042ce",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "各故障類型詳細說明與用法請參閱相關文檔。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fa430ad4",
+      "source_content": "### Operating environment",
+      "source_content_hash": "573e2eb368678797cbbd6d85dedf8740f30d9bf714b678b08fa4692b21191013",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 運行環境要求"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b1d2d7d",
+      "source_content": "Your glibc version must be v2.17 or later versions.",
+      "source_content_hash": "3fec9119a31ad84835c313a681e98161eb3f28629a82087b221919bffadac52e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "需使用 glibc v2.17 或更高版本。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "48847fd4",
+      "source_content": "### Download and deploy",
+      "source_content_hash": "291a1e963bfc442c1c7656b0d9cadd690e1b23e9cc052b1cf936dfd18b6b5607",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 下載與部署"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "212333a8",
+      "source_content": "1. Set the version of Chaosd to be downloaded as the environment variable. For example, v1.0.0:\n\n   ```bash\n   export CHAOSD_VERSION=v1.0.0\n   ```\n\n   To view all released versions of Chaosd, refer to [releases](https://github.com/chaos-mesh/chaosd/releases).\n\n   To download the latest version (not stable), use `latest`:\n\n   ```bash\n   export CHAOSD_VERSION=latest\n   ```",
+      "source_content_hash": "22647c8a11b3e216402bb3523aa72dd1933c2903c39f5aa348ba247855474d31",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 設定要下載的 Chaosd 版本環境變數（例如 v1.0.0）：\n\n   ```bash\n   export CHAOSD_VERSION=v1.0.0\n   ```\n\n   所有發行版本請參閱 [releases](https://github.com/chaos-mesh/chaosd/releases)。\n\n   若需下載最新版本（非穩定版），使用 `latest`：\n\n   ```bash\n   export CHAOSD_VERSION=latest\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c710067",
+      "source_content": "2. Download Chaosd:\n\n   ```bash\n   curl -fsSLO https://mirrors.chaos-mesh.org/chaosd-$CHAOSD_VERSION-linux-amd64.tar.gz\n   ```",
+      "source_content_hash": "d9804d248ff587bc642d63c766bc1d7a1014ed81ddf18cd3fcf6dd161f2b5204",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 下載 Chaosd：\n\n   ```bash\n   curl -fsSLO https://mirrors.chaos-mesh.org/chaosd-$CHAOSD_VERSION-linux-amd64.tar.gz\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "002560c3",
+      "source_content": "3. Unzip the Chaosd file and move it to the `/usr/local` directory:\n\n   ```bash\n   tar zxvf chaosd-$CHAOSD_VERSION-linux-amd64.tar.gz && sudo mv chaosd-$CHAOSD_VERSION-linux-amd64 /usr/local/\n   ```",
+      "source_content_hash": "54b76edd204a261a3410089c56f34d65bbb85d01f7177c2a7b14236554ed74ab",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 解壓縮檔案並移動至 `/usr/local` 目錄：\n\n   ```bash\n   tar zxvf chaosd-$CHAOSD_VERSION-linux-amd64.tar.gz && sudo mv chaosd-$CHAOSD_VERSION-linux-amd64 /usr/local/\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2be69f97",
+      "source_content": "4. Add the Chaosd directory to the `PATH` environment variable:\n\n   ```bash\n   export PATH=/usr/local/chaosd-$CHAOSD_VERSION-linux-amd64:$PATH\n   ```",
+      "source_content_hash": "0c0fd37674c25f9442bd1872d2b4f0feab03350d4130d79c29fa1a73cfcef59f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 將 Chaosd 目錄加入 `PATH` 環境變數：\n\n   ```bash\n   export PATH=/usr/local/chaosd-$CHAOSD_VERSION-linux-amd64:$PATH\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "126950d7",
+      "source_content": "### Work modes",
+      "source_content_hash": "c12be466861eaf8d46476e44c83c9fab56ba976cef11d3c962cc4d14f8a8619a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 工作模式"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0bb95128",
+      "source_content": "You can use Chaosd in the following modes:",
+      "source_content_hash": "4230c42c76ee708e890811ba7b8f6781943bd8aa370a589deedc7bf3d127fc63",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaosd 支援以下運行模式："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b27cda15",
+      "source_content": "- Command-line mode: Run Chaosd directly as a command-line tool to inject and recover faults.",
+      "source_content_hash": "f033233f9e5c1525e90c984baac07d64fb392df1f1307c36821796eb5a1ff176",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **命令行模式**：直接作為命令行工具執行，注入與恢復故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f67b99e4",
+      "source_content": "- Service mode: Run Chaosd as a service in the background, to inject and recover faults by sending HTTP requests.",
+      "source_content_hash": "158788867c9143cc4c95512e4ca9562f8197ac70beb55c401c9fc9f01a69ac2d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **服務模式**：以後台服務運行，透過發送 HTTP 請求注入與恢復故障。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/chaosd-overview.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.111412+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "5b447eddb64a502a827927fff0753a16db0ca232437cc0ff7e7042bf19f3f161"
+  }
+}

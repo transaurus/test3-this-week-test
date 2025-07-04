@@ -1,0 +1,178 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/remote-cluster-management.md",
+  "source_file_content_hash": "181310caa5701d057e1c3ddc5633a511d99651b6f776a7d739ae64f42b575c5f",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Remote Cluster Management\n---",
+      "source_content_hash": "890ed2839cddfe1aebcc2c82d2c2b3587e9146ec488da296119a87cbebd391ad",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f85bbfb4",
+      "source_content": "## Remote Cluster Introduction",
+      "source_content_hash": "81ec2009cc2ae464d26307c5c84a0aab4a8ea10f1e357df7105536c598a62bec",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 遠端叢集介紹"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "Chaos Mesh provides the cluster scoped `RemoteCluster` resource to help you manage and inject faults into remote Kubernetes clusters. This document describes how to create a `RemoteCluster` object and use it to inject faults.",
+      "source_content_hash": "fa3363e7fc5c2ba724ff82559ffec7dccca357ab01588641f12fad68c6893053",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 提供叢集層級的 `RemoteCluster` 資源，協助您管理遠端 Kubernetes 叢集並注入故障。本文檔說明如何建立 `RemoteCluster` 物件並用它來注入故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0d5e1c45",
+      "source_content": ":::note\n\n`RemoteCluster` is in an early stage. The configuration and function of it (for example, configuration migration, version management and authentication) will continue to improve. If you faced any problem, please open an issue in [chaos-mesh/chaos-mesh](https://github.com/chaos-mesh/chaos-mesh) to report.\n\n:::",
+      "source_content_hash": "e438d0ed13db8b96e982cffbb0dd6ece1de8764c18a998abf3304aea9a1ce158",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n`RemoteCluster` 目前處於早期階段。其配置與功能（例如配置遷移、版本管理和身份驗證）將持續改進。若遇到任何問題，請在 [chaos-mesh/chaos-mesh](https://github.com/chaos-mesh/chaos-mesh) 提交 issue 回報。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e14c9928",
+      "source_content": "## Register a remote cluster",
+      "source_content_hash": "9da101a32da918d833e8e7f7f3f6db3b6e6921ee21e429c33b425886f9d45d63",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 註冊遠端叢集"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "To register a remote cluster into the Chaos Mesh installed on the current cluster, you'll need to create a `RemoteCluster` resource. After creating such a resource, necessary components will be installed automatically in the remote cluster. The following is an example of a `RemoteCluster` resource:",
+      "source_content_hash": "85d9a86fa155f4fcafcb81454cf711c7e651e5f468dddd9e58f8dac5486917df",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要將遠端叢集註冊至當前叢集安裝的 Chaos Mesh 中，您需要建立 `RemoteCluster` 資源。建立此資源後，必要元件將自動安裝至遠端叢集。以下是 `RemoteCluster` 資源範例："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "940e34e3",
+      "source_content": "```yaml\napiVersion: chaos-mesh.org/v1alpha1\nkind: RemoteCluster\nmetadata:\n  name: cluster-xxx\nspec:\n  namespace: chaos-mesh\n  version: 2.6.2\n  kubeConfig:\n    secretRef:\n      name: remote-chaos-mesh.kubeconfig\n      namespace: chaos-mesh\n      key: kubeconfig\n  # configOverride:\n  #   dashboard:\n  #     create: true\n```",
+      "source_content_hash": "5cea2d7131cd9c173620fa0dcbd7ff58266ff34891a2b7a9d9dd2e79480c423e",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_940e34e3"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "97ae4a01",
+      "source_content": "It will install the `chaos-mesh` helm chart with the `KUBECONFIG` provided in the `.spec.kubeConfig` field in the specified namespace.",
+      "source_content_hash": "2c87f98bb66c0c6176d8960b749574dde6a631128d25694235889ce56f5d3dd5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "系統將使用 `.spec.kubeConfig` 欄位提供的 `KUBECONFIG`，在指定命名空間中安裝 `chaos-mesh` Helm chart。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`chaos-mesh`', Translation: '`.spec.kubeConfig`'.",
+          "timestamp": "2025-07-04T06:49:59.340686+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "62a6890b",
+      "source_content": "### Field description",
+      "source_content_hash": "65096914168d6220ba2cc9e38088ff322d829e39af74e98d0df5f5b3cb7a27de",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "388f52fd",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| namespace | string | Represent the namespace to install Chaos Mesh components in the remote cluster | None | Yes | chaos-mesh |\n| version | string | The version of Chaos Mesh to install in the remote cluster | None | Yes | 2.6.2 |\n| kubeConfig.secretRef.name | string | The name of the secret, which is used to store the kubeconfig of remote cluster. This kubeconfig will be used to install chaos-mesh components and inject errors | None | Yes | `remote-chaos-mesh.kubeconfig` |\n| kubeConfig.secretRef.namespace | string | The name of the namespace of the kubeconfig secret. | None | Yes | `default` |\n| kubeConfig.secretRef.key | string | The key of the kubeconfig in the secret. | None | Yes | `kubeconfig` |\n| configOverride | string | Passing helm values during install or upgrade | None | No | `{\"dashboard\":{\"create\":true}}` |",
+      "source_content_hash": "30f45784279ec8077455e89012404dd7e40e248adfaeb21b3767d6bdc581da53",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_388f52fd"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6d28a77c",
+      "source_content": "## Inject errors in the remote cluster",
+      "source_content_hash": "168509655f0744561309701d853ba19a9467984ae6bb87dd5a5e385d0e8f3f48",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 在遠端叢集中注入故障"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f7ef78f9",
+      "source_content": "To inject the errors to a remote cluster using the registered `RemoteCluster`, you could use the `remoteCluster` field in the `.spec` of every chaos types. For example:",
+      "source_content_hash": "e231acb1c551c5f1793f423612a0f740ebafae11124b286fc329cd0ab7088e7d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "要使用已註冊的 `RemoteCluster` 向遠端叢集注入故障，您可在各類混沌類型的 `.spec` 中使用 `remoteCluster` 欄位。例如：",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`remoteCluster`', Translation: '`.spec`'.",
+          "timestamp": "2025-07-04T06:49:59.340708+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "3ce8f045",
+      "source_content": "```yaml\napiVersion: chaos-mesh.org/v1alpha1\nkind: StressChaos\nmetadata:\n  name: burn-cpu\nspec:\n  remoteCluster: cluster-xxx\n  mode: one\n  selector:\n    labelSelectors:\n      'app.kubernetes.io/component': 'tikv'\n  stressors:\n    cpu:\n      workers: 1\n      load: 100\n      options: ['--cpu 2', '--timeout 600', '--hdd 1']\n  duration: '30s'\n```",
+      "source_content_hash": "cb521d172e63270164d25ef155d6f2cfe7b2811833ff113838ef1d962bf446e1",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3ce8f045"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "eab056be",
+      "source_content": "The Chaos Mesh will inject the errors to the remote cluster using the kubeconfig registered with the `RemoteCluster` named `cluster-xxx`. The corresponding `StressChaos` will be automatically created in the remote cluster, and the status is synchronized back to the current cluster, so that you can manage the chaos injection for multiple different clusters in a single kubernetes.",
+      "source_content_hash": "a75eccf62f35e1f4635ad5e65c33857983d0a90ce5b16829c5a820478aab81f0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "Chaos Mesh 將使用名為 `cluster-xxx` 的 `RemoteCluster` 所註冊的 kubeconfig，將故障注入遠端叢集。對應的 `StressChaos` 將自動在遠端叢集中建立，且狀態會同步回當前叢集，使您能在單一 Kubernetes 環境中管理多個不同叢集的混沌注入。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`RemoteCluster`', Translation: '`cluster-xxx`'.",
+          "timestamp": "2025-07-04T06:49:59.340727+00:00"
+        }
+      }
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/remote-cluster-management.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.340758+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "181310caa5701d057e1c3ddc5633a511d99651b6f776a7d739ae64f42b575c5f"
+  }
+}

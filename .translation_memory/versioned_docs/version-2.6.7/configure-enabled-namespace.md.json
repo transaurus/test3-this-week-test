@@ -1,0 +1,346 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/configure-enabled-namespace.md",
+  "source_file_content_hash": "275c3d79828bc0bf37d5cf93f61d5cc5d8b8dbde2027277894f94f058abc7530",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Configure namespace for Chaos experiments\n---",
+      "source_content_hash": "f52952b8bda9e72ed764f9659c319bba3648b659fcc444148040beaba79016b6",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7335511f",
+      "source_content": "import PickHelmVersion from '@site/src/components/PickHelmVersion'",
+      "source_content_hash": "753aee644dbd2a4b70a118018b50ec80427523e751a14d470e7956678fd8cb94",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7335511f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "This chapter walks you through how to configure Chaos experiments to only take effect in the specified namespace, and protect other unspecified namespaces against fault injection.",
+      "source_content_hash": "c12a3aae7ce9e6670257ba12861b18799d5d34007f9b77661a48b1fedb846ad8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本章將引導您設定混沌實驗，使其僅在指定的命名空間中生效，並保護其他未指定的命名空間免受故障注入影響。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d912d376",
+      "source_content": "## Control the scope where the Chaos experiment takes effect",
+      "source_content_hash": "8b8efcca8c5348c41e58177a849c67bcd46913b56319425d600de8a3e9f8d96e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 控制混沌實驗生效範圍"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "Chaos Mesh offers two ways to control the scope of the Chaos experiment to take effect:",
+      "source_content_hash": "c4d8d3829e940a356add975386b185a56f10fb9e9db739653b28e81224008a89",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 提供兩種方式控制混沌實驗生效範圍："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2b4a9900",
+      "source_content": "- To configure Chaos experiments to only take effect in the specified namespace, you need to enable the FilterNamespace feature (which is off by default). This feature takes effect on a global scope. After this feature is enabled, you can add annotations to the namespace in which Chaos experiments are allowed to take effect. Other namespaces without annotations are protected against fault injection.",
+      "source_content_hash": "02ec0a14eb066ac7294c2c8d74b45f3588f3892ebb540db4cf02af3a3e9e85a6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 若要設定混沌實驗僅在指定命名空間生效，需啟用 FilterNamespace 功能（預設關閉）。此功能具全局效力，啟用後需在允許混沌實驗的命名空間添加註解，未添加註解的命名空間將受到保護，免於故障注入。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9a03a62b",
+      "source_content": "- To specify the scope for a single Chaos experiment to take effect, refer to [Define the scope of a Chaos experiment](define-chaos-experiment-scope.md).",
+      "source_content_hash": "38bea5f308724ba36e998e71bf1879115b3026cb233f87884bbb58e744ee97e3",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 若要為單個混沌實驗指定生效範圍，請參閱[定義混沌實驗範圍](define-chaos-experiment-scope.md)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cbe57f9d",
+      "source_content": "## Enable FilterNamespace",
+      "source_content_hash": "e4ebd5f6d2a0e2a39bff7e699c1c8015dd1b0ecae19542a3b0b7f14329c168b7",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 啟用 FilterNamespace"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39b3772c",
+      "source_content": "If you have not installed Chaos Mesh yet, you can enable this feature during installation by adding `--set controllerManager.enableFilterNamespace=true` to the command when installing using Helm. The following is a command example in the Docker container:",
+      "source_content_hash": "525cf0a88a89043560f93806c966be9d13ba47a83a3d4fa28977aa20508d0883",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若尚未安裝 Chaos Mesh，可在 Helm 安裝時透過指令添加 `--set controllerManager.enableFilterNamespace=true` 啟用此功能。以下為 Docker 容器中的指令範例："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8f488ab5",
+      "source_content": "<PickHelmVersion>{`helm install chaos-mesh chaos-mesh/chaos-mesh -n chaos-mesh --set controllerManager.enableFilterNamespace=true --version latest`}</PickHelmVersion>",
+      "source_content_hash": "860b3e0ac9b11f2c09681746c53eda36e4e55919982094d945102cf5caed7355",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_8f488ab5"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8a545039",
+      "source_content": ":::note\n\nWhen you use Helm for installation, commands and parameters differ for different containers. Refer to [Install Chaos Mesh using Helm](production-installation-using-helm.md) for more information.\n\n:::",
+      "source_content_hash": "d482e28b8ff9b2e09ed12e28bc74b5c021a000aca7afb2dfd4e68e57f937d621",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n使用 Helm 安裝時，指令與參數因容器而異。詳見[使用 Helm 安裝 Chaos Mesh](production-installation-using-helm.md)。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d9172fa4",
+      "source_content": "If you have installed Chaos Mesh using Helm, you can enable this feature by upgrading the configuration with the `helm upgrade` command. For example:",
+      "source_content_hash": "497acf01dfd04833b8e1de0c8658182aee48aa795badc83199b6aa35689513b6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若已透過 Helm 安裝 Chaos Mesh，可透過 `helm upgrade` 指令升級設定啟用此功能。例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "599822a5",
+      "source_content": "<PickHelmVersion>{`helm upgrade chaos-mesh chaos-mesh/chaos-mesh -n chaos-mesh --version latest --set controllerManager.enableFilterNamespace=true`}</PickHelmVersion>",
+      "source_content_hash": "3569d027dde28086275a955716f63b5d69e5ea0d0c1079420875d2613ca922ea",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_599822a5"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "73ab96a3",
+      "source_content": "For `helm upgrade`, you can set multiple parameters by adding multiple `--set` in the command. Later settings override previous settings. For example, if you add `--set controllerManager.enableFilterNamespace=false -set controllerManager.enableFilterNamespace=true` in the command, it still enables this feature.",
+      "source_content_hash": "ba9d9f709d7b63bbeb05fbb092924bc06cde374220ac951f3638ecda68118a4d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "`helm upgrade` 可透過多次添加 `--set` 設定多參數，後續設定會覆蓋先前設定。例如若指令包含 `--set controllerManager.enableFilterNamespace=false -set controllerManager.enableFilterNamespace=true`，最終仍會啟用此功能。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7499a4e7",
+      "source_content": "You can also specify a YAML file using the `-f` parameter to describe the configuration. Refer to [Helm upgrade](https://helm.sh/zh/docs/helm/helm_upgrade/#%E7%AE%80%E4%BB%8B) for more information.",
+      "source_content_hash": "768391441142aa949d2dea04e89ccf82c024c02819aee57cb8c2668bc8cd190d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "亦可使用 `-f` 參數指定 YAML 檔案描述設定。詳見 [Helm upgrade](https://helm.sh/zh/docs/helm/helm_upgrade/#%E7%AE%80%E4%BB%8B)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "109ace10",
+      "source_content": "## Add annotations to namespaces for Chaos experiments",
+      "source_content_hash": "fd91b7c1dae06daf61b723ed74c0df301e4059ba5d0601cf2b065b745acae04b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 為命名空間添加混沌實驗註解"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "135468ee",
+      "source_content": "When FilterNamespace is enabled, Chaos Mesh only injects faults to namespaces containing the annotation `chaos-mesh.org/inject=enabled`. Therefore, before starting Chaos experiments, you need to add this annotation to the namespace in which Chaos experiments can take effect, while other namespaces are protected against fault injection.",
+      "source_content_hash": "1398d33d5e512926112299c2816f17e38f4f2f51cb59a3388741eb6b8a54d8f0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "啟用 FilterNamespace 後，Chaos Mesh 僅會將故障注入含註解 `chaos-mesh.org/inject=enabled` 的命名空間。因此開始混沌實驗前，需在允許實驗生效的命名空間添加此註解，其他命名空間將受保護免於故障注入。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "33331f27",
+      "source_content": "You can add the annotation for a `namespace` using the following `kubectl` command:",
+      "source_content_hash": "01127988cf5137689880d19a5284aa175839aa34ca4f5bd9fce32f8105b98602",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "可透過以下 `kubectl` 指令為命名空間添加註解：",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 2, translation has 1.",
+          "timestamp": "2025-07-04T06:49:59.344360+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "026f2f3e",
+      "source_content": "```bash\nkubectl annotate ns $NAMESPACE chaos-mesh.org/inject=enabled\n```",
+      "source_content_hash": "01ce96d19586f03e0a6e5fbbdbdf3780f8f60c4cc61807e83b4d30a6687a6b65",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_026f2f3e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8af76f3d",
+      "source_content": "In the above command, `$NAMESPACE` refers to the name of the namespace, for example, `default`. If the annotation is successfully added, the output is as follows:",
+      "source_content_hash": "c5812c1a4b7a9379aa7a8cee8eef6aacddd380b4de1e325e5a8f7ca030438886",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "上述指令中 `$NAMESPACE` 為命名空間名稱（如 `default`）。若註解添加成功，輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "48ec8149",
+      "source_content": "```bash\nnamespace/$NAMESPACE annotated\n```",
+      "source_content_hash": "45952be11933d4b34b5bed56903bf929092b258080fea614704b80d39403c842",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_48ec8149"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f7ef78f9",
+      "source_content": "If you want to delete this annotation, you can use the following command:",
+      "source_content_hash": "b6a91027ce886baa8463f37e9c722e9d922bbc50001afa700e2350f666d0d5de",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要刪除此註解，可使用以下指令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3ce8f045",
+      "source_content": "```bash\nkubectl annotate ns $NAMESPACE chaos-mesh.org/inject-\n```",
+      "source_content_hash": "af9d284578b7bf4319d69e853a062e5206e50f930ccee78c34e9a5e743528419",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3ce8f045"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e536ea0d",
+      "source_content": "If the annotation is successfully deleted, the output is as follows:",
+      "source_content_hash": "2ed5606891ea1273e6018d44539399ed93cfb489895efe441bd137cfa47abe7b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若註解成功刪除，輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3c08ed05",
+      "source_content": "```bash\nnamespace/$NAMESPACE annotated\n```",
+      "source_content_hash": "45952be11933d4b34b5bed56903bf929092b258080fea614704b80d39403c842",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3c08ed05"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c315c636",
+      "source_content": "## Check all namespaces where Chaos experiments take effect",
+      "source_content_hash": "2782204b2855be7fca94be65e17105f28ef813e0c998b51a3847b14b3ea4abfb",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 檢查混沌實驗生效的所有命名空間"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "531437ca",
+      "source_content": "You can list all the namespaces that allows Chaos experiments using the following command:",
+      "source_content_hash": "7d8df4beaf663061cd99bd27211bcf99d9245c225bb4e5e46875e95c57359a8e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可透過以下指令列出所有允許混沌實驗的命名空間："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "67b24fc5",
+      "source_content": "```bash\nkubectl get ns -o jsonpath='{.items[?(@.metadata.annotations.chaos-mesh\\.org/inject==\"enabled\")].metadata.name}'\n```",
+      "source_content_hash": "a80a6296b2c0a5d2e09d4fea8a605881d05a62a514f96badd501b320f85df073",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_67b24fc5"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "147e8550",
+      "source_content": "This command outputs all the namespaces with the `chaos-mesh.org/inject=enabled` annotation. For example:",
+      "source_content_hash": "a6c584e419bbc2584ecf0d03db5c748f9e1916bf6cf99a9517cdc833ea08219a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此指令將輸出所有含 `chaos-mesh.org/inject=enabled` 註解的命名空間。例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "af983f82",
+      "source_content": "```bash\ndefault\n```",
+      "source_content_hash": "09d4ffcd2b3384ac0fcf5a06421c4216a860d815eeaa02af2c35a16d4af2e792",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_af983f82"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/configure-enabled-namespace.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.344398+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "275c3d79828bc0bf37d5cf93f61d5cc5d8b8dbde2027277894f94f058abc7530"
+  }
+}

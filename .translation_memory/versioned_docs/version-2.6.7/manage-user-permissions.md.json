@@ -1,0 +1,544 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/manage-user-permissions.md",
+  "source_file_content_hash": "bccf242418eb9122f774536f569a57943be5527d60f095f7fe1b1726d60c5b7b",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Manage User Permissions\n---",
+      "source_content_hash": "3820dd560a57120dd381fe5adeb50f2e2bf932aa43cd74637385d72962d931ce",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7335511f",
+      "source_content": "import PickHelmVersion from '@site/src/components/PickHelmVersion'",
+      "source_content_hash": "753aee644dbd2a4b70a118018b50ec80427523e751a14d470e7956678fd8cb94",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7335511f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "This document describes how to manage user permissions in Chaos Mesh, including creating user accounts with different roles, binding permissions to user accounts, managing tokens, and enabling or disabling permission authentication.",
+      "source_content_hash": "088b6c5c4c9e692e0d2431ed28bf3e959139a944a2dbc24c49dc1d7b61542abc",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件說明如何在 Chaos Mesh 中管理使用者權限，包括建立具備不同角色的使用者帳戶、將權限綁定至使用者帳戶、管理權杖，以及啟用或停用權限驗證。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "Chaos Mesh uses [RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) to manage user permissions. To create, view and manage chaos experiments, users must have the appropriate permissions in the `apiGroups` of `chaos-mesh.org` to refer the resources of chaos experiments.",
+      "source_content_hash": "2fcea82b7050623c61f2adeae3aa3804b2f1c389fb6bf02aad93b1a876850ac8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "Chaos Mesh 使用 [RBAC 授權](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)管理使用者權限。若要建立、檢視及管理混沌實驗，使用者必須具備 `chaos-mesh.org` 的 `apiGroups` 中相應權限，才能引用混沌實驗的資源。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`apiGroups`', Translation: '`chaos-mesh.org`'.",
+          "timestamp": "2025-07-04T06:49:59.342343+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "bb849aa9",
+      "source_content": ":::caution\n\nChaos Mesh allows you to disable permission authentication, see [Enable or disable permission authentication](#enable-or-disable-permission-authentication) to learn how to disable it.\n\n**Note that we do not recommend disabling permission authentication in production environments.**\n\n:::",
+      "source_content_hash": "e2cfc0afcf99a66365c4948bc9a22ee16e81fc435ed79db85abab5091d71b486",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::caution\n\nChaos Mesh 允許您停用權限驗證，詳見[啟用或停用權限驗證](#enable-or-disable-permission-authentication)了解停用方式。\n\n**請注意，我們不建議在生產環境中停用權限驗證。**\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee0e40d",
+      "source_content": "## Create user accounts and bind permissions",
+      "source_content_hash": "93505a3ff5a8322468e7fc242709893f039d0c546753bcb7f817be05b864ee88",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 建立使用者帳戶並綁定權限"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "You can use the Chaos Dashboard to help you create user accounts and bind permissions. When you access the dashboard, a login window will appear. Click on the **Click here to generate** link:",
+      "source_content_hash": "23daec4096442da7a9e007cc9c9effbd1fa8640439615334c062fef340412459",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可使用 Chaos Dashboard 協助建立使用者帳戶並綁定權限。存取儀表板時會顯示登入視窗，點擊 **點擊此處產生** 連結："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "![Dashboard Token Login 1](img/dashboard_login1.png)",
+      "source_content_hash": "45cf14eb4246db6f59375d04797b24fb5c2b36ade2cc37ae47b3b446c6431edb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![儀表板權杖登入 1](img/dashboard_login1.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c2bdd0",
+      "source_content": "When you click on the link, a Token Generator will appear, as follows:",
+      "source_content_hash": "3aef785f56302c8e4a6a0bcb6349690a8c3cff9984864891525dbf56e0bf9421",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "點擊連結後將顯示權杖產生器，如下所示："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a76548f8",
+      "source_content": "![Dashboard Token Generator](img/token_helper.png)",
+      "source_content_hash": "4cd3b76b41a39d5eca75fdc7005e19780e40368a79cc84f78b9e9e50b41ac1e7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![儀表板權杖產生器](img/token_helper.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b1d2d7d",
+      "source_content": "The steps to create user accounts and bind permissions are as follows:",
+      "source_content_hash": "67c00dc1a5a67d36aa08da4773f689b0745b577fa55b5e51f5dbacf19d1053ec",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "建立使用者帳戶並綁定權限的步驟如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "48847fd4",
+      "source_content": "### Choose the scope of permissions",
+      "source_content_hash": "50089ba35290b97e2b0a6391c28e45572da1bdc8ceeb66041ec80b7f8b6bddd2",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 選擇權限範圍"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4daf5cdd",
+      "source_content": "If you want to give the account the appropriate permissions for all chaos experiments in the cluster, tick the **Cluster scoped** checkbox. If you specify a namespace in the **Namespace** dropdown, the account will only have permissions in the specified namespace.",
+      "source_content_hash": "4c0c0a57a5509811745850bf3e894c0ee0d6302a8a4e6b9597eb256e721a9280",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要賦予帳戶叢集內所有混沌實驗的相應權限，請勾選 **叢集範圍** 核取方塊。若在 **命名空間** 下拉選單指定命名空間，該帳戶僅具備指定命名空間中的權限。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bdc231b1",
+      "source_content": "In summary, there are two options to choose from:",
+      "source_content_hash": "0907f5d2662f0698b11cec4210bbc6f8e8be151151b0f4cc0c649991fef0ede8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "總括而言有兩種選項："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa355dc5",
+      "source_content": "- `Cluster scoped`: the account has permissions for all chaos experiments in cluster.",
+      "source_content_hash": "75f4d2b304f8f41a7d5c20558021c153910b1badb2a36f750b2eb0ce79a7bc0a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `Cluster scoped`：帳戶具備叢集內所有混沌實驗的權限。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ec638a20",
+      "source_content": "- `Namespace scoped`: the account has permissions for all chaos experiments in the specified namespace.",
+      "source_content_hash": "91a6ccde005e280d5dc0ff1f30a4b4b53ef89a6878e3ab8b92ff2876409d5b52",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `Namespace scoped`：帳戶具備指定命名空間中所有混沌實驗的權限。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "782c902a",
+      "source_content": "### Select the role of users",
+      "source_content_hash": "cddffacaf291459f4ef689443d77c0edebe33ab6db6f2beda34078b672cb5a3a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 選擇使用者角色"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "50746522",
+      "source_content": "Currently, Chaos Mesh provides the following user roles",
+      "source_content_hash": "be7b3ac506c8c8e2b17cd49936f3edcdbcb978aae245298c7e9282226737378a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前 Chaos Mesh 提供以下使用者角色："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6c00797f",
+      "source_content": "- `Manager`: who has all permissions to create, view, update and delete chaos experiments.",
+      "source_content_hash": "aea3dfb0ffd4898291a93b93f0846c4215fb0d0e0a32a641f8480b01d61645bc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `Manager`：具備建立、檢視、更新及刪除混沌實驗的全部權限。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee9c310",
+      "source_content": "- `Viewer`: who only has the right to view chaos experiments.",
+      "source_content_hash": "e2bd1b6eed9ce5869bb0f2bc11ef94442bf5b408410e3280669174fbaae9c7b8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `Viewer`：僅具備檢視混沌實驗的權限。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f44c1398",
+      "source_content": "### Generate the permission",
+      "source_content_hash": "660b2760c86f8a896ca1cd43dd0eb6b9f3a5a01b9f8d58afa414b0b14f64876f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 產生權限"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "29528c8d",
+      "source_content": "Once the permission scope and user role have been defined, the Dashboard will display the corresponding RBAC configuration in the Token Generator. For example, the permission for a manager with the `default` namespace will look like this:",
+      "source_content_hash": "1696e383262d476b97ebd1338efb529910567ccd5aacd619e663440368d9d93c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "定義權限範圍和使用者角色後，儀表板將在權杖產生器中顯示對應的 RBAC 設定。例如具備 `default` 命名空間的管理者權限設定如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4795a13d",
+      "source_content": "```yaml\nkind: ServiceAccount\napiVersion: v1\nmetadata:\n  namespace: default\n  name: account-default-manager-vfmot\n\n---\nkind: Role\napiVersion: rbac.authorization.k8s.io/v1\nmetadata:\n  namespace: default\n  name: role-default-manager-vfmot\nrules:\n  - apiGroups: ['']\n    resources: ['pods', 'namespaces']\n    verbs: ['get', 'watch', 'list']\n  - apiGroups:\n      - chaos-mesh.org\n    resources: ['*']\n    verbs: ['get', 'list', 'watch', 'create', 'delete', 'patch', 'update']\n\n---\napiVersion: rbac.authorization.k8s.io/v1\nkind: RoleBinding\nmetadata:\n  name: bind-default-manager-vfmot\n  namespace: default\nsubjects:\n  - kind: ServiceAccount\n    name: account-default-manager-vfmot\n    namespace: default\nroleRef:\n  kind: Role\n  name: role-default-manager-vfmot\n  apiGroup: rbac.authorization.k8s.io\n```",
+      "source_content_hash": "1b3a1a55e66f64d70bcfdb8f7aeb17a5e591395d9ac009452d715cddfc0c4925",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4795a13d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "74dd7937",
+      "source_content": "Click **COPY** in the top right corner of the configuration section to copy the RBAC configuration and then save the contents locally as `rbac.yaml`.",
+      "source_content_hash": "dff75e00318c12a051a550fb29b2579f01473a4df35a8a41e6b0812efca79c7c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "點擊設定區塊右上角的 **COPY** 複製 RBAC 設定，並將內容儲存為本機檔案 `rbac.yaml`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ec8ed2a1",
+      "source_content": "### Create the user account and bind permissions",
+      "source_content_hash": "db1e2b0f641d8636d2c518f096aa213f9159e4a10bd9479a730c22aab302eb96",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 建立使用者帳戶並綁定權限"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "51867d16",
+      "source_content": "Run the following command in your terminal:",
+      "source_content_hash": "ff15680cac45bd28f6275bd21da83c3792ad4e3e1a50179eedf13414877a5c0a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在終端機執行以下命令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "59f28e14",
+      "source_content": "```bash\nkubectl apply -f rbac.yaml\n```",
+      "source_content_hash": "561d2aa298bc3d42bece4f149153aad2ec084ed872549cf86e777932571b8524",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_59f28e14"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c85eea9",
+      "source_content": ":::note\n\nYou need to ensure that the local user running `kubectl` has permissions to the cluster so that they can create user accounts, bind permissions for other users and generate tokens.\n\n:::",
+      "source_content_hash": "97b6c2c7e525133786497ce3afe30ccc12206f3aca235fab93111751a232b2f3",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n您需確保執行 `kubectl` 的本機使用者具備叢集權限，才能為其他使用者建立帳戶、綁定權限及產生權杖。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "54bafb10",
+      "source_content": "### Get the token",
+      "source_content_hash": "a26a687659ff98f67ff8ff514aa1406d90151cacffa1706733a7e0635625eec2",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 取得權杖"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "467b2691",
+      "source_content": ":::info\n\nVersions of Kubernetes before v1.22 automatically created long term credentials for accessing the Kubernetes API. In recent versions of Kubernetes, you must manually create a service account token Secret.\n\nFor more details, see [Manually create an API token for a ServiceAccount](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#manually-create-an-api-token-for-a-serviceaccount).\n\n:::",
+      "source_content_hash": "84bdd9ed7f6793efdf526661c9b37afff4b25c0a3215ced564d052d9368b85bb",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::info\n\nKubernetes v1.22 之前版本會自動建立存取 Kubernetes API 的長期憑證。較新版本中，您必須手動建立服務帳戶權杖 Secret。\n\n詳見[手動為 ServiceAccount 建立 API 權杖](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#manually-create-an-api-token-for-a-serviceaccount)。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e9313fef",
+      "source_content": "Copy the command shown in the third step to the Token Generator and run it in your terminal. The following is a sample command:",
+      "source_content_hash": "1922807c1c771b854f48948bce42b8c27f593df816f1dd1c5709af33d40c5cb3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "複製權杖產生器中第三步顯示的命令，在終端機執行。以下為範例命令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "342e4d80",
+      "source_content": "```bash\nkubectl describe -n default secrets account-default-manager-vfmot\n```",
+      "source_content_hash": "a8c246e41fa81750e65b59fbbebb6b813c4b76e0b8fea03fae683cc422c26e50",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_342e4d80"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a8610918",
+      "source_content": "The output is as follows:",
+      "source_content_hash": "e393a74ababf246af54d3aaa19b45a8f23cc8470c3659248fb33a6888578f447",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7102653e",
+      "source_content": "```log\nName:         account-default-manager-vfmot-token-n4tg8\nNamespace:    default\nLabels:       <none>\nAnnotations:  kubernetes.io/service-account.name: account-default-manager-vfmot\n              kubernetes.io/service-account.uid: b71b3bf4-cd5e-4efb-8bf6-ff9a55fd7e07\n\nType:  kubernetes.io/service-account-token\n\nData\n====\nca.crt:     1111 bytes\nnamespace:  7 bytes\ntoken:      eyJhbG...\n```",
+      "source_content_hash": "38198a77662774fc4e8e0484aab28697cabec5dc2765bc511de16067bd1b56bb",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7102653e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e77cf7c6",
+      "source_content": "Copy the token at the bottom and use it in the next step to login.",
+      "source_content_hash": "4c582965875885e22ee2b89922a6daad778972eac27364cf8c7aa705715df522",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "複製底部的權杖，用於後續登入步驟。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fff17ff8",
+      "source_content": "## Log in to Chaos Dashboard with the user account you have created",
+      "source_content_hash": "4f1d1726b6d431c2fb3f81beec4f91566ffda2e1a305eccd1f8ab3aaff2dfddf",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用您建立的用戶帳號登入 Chaos Dashboard"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8664ed0b",
+      "source_content": "**Close** the Token Generator. In the **Token** field, enter the token you obtained in the previous step and in the **Name** field, enter a meaningful name for the token. It is recommended that you use a name that is a combination of the permission scope and the user role, e.g. `default-manager`. Once you have completed these two fields, click **Submit** to log in:",
+      "source_content_hash": "187cfcc8322e80012a3f356c13ea63830ae81d4dc140e43d340a8fe4ec0aa748",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**關閉** Token 產生器。在 **Token** 欄位中輸入您上一步取得的 token，並在 **Name** 欄位中輸入一個有意義的名稱。建議採用權限範圍和使用者角色的組合命名，例如 `default-manager`。完成這兩個欄位後，點擊 **Submit** 登入："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9e90a9b3",
+      "source_content": "![Dashboard Token Login 2](img/dashboard_login2.png)",
+      "source_content_hash": "15b0908cd2b02ec3128bf831137c0d719130cf575b418d010525d7073e6fe041",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Dashboard Token Login 2](img/dashboard_login2.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9a6ceddd",
+      "source_content": ":::info\n\nIf you have not deployed Chaos Dashboard, you can also generate RBAC configurations by yourself and then use `kubectl` to create user accounts and bind permissions.\n\n:::",
+      "source_content_hash": "229aa27b2665c9dd0b3754069585e3e0e2228a60de249d471b4cbbe6e0bbad08",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::info\n\n如果您尚未部署 Chaos Dashboard，也可以自行產生 RBAC 設定，然後使用 `kubectl` 建立使用者帳號並綁定權限。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "671cbf7c",
+      "source_content": "## Log out of Chaos Dashboard",
+      "source_content_hash": "67a8a946e4824f4ea91f933af1020d18782ffad1d5189832d7873f3d512f205d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 登出 Chaos Dashboard"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4c787c52",
+      "source_content": "If you need to replace the token with another one, click the **Settings** on the left side bar of the Dashboard:",
+      "source_content_hash": "db8a2f9d50eaeee7833374005baecafe5f57fde19ff9217ba5c676969a5e600f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如需更換 token，請點擊儀表板左側導覽列的 **Settings**："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "63565425",
+      "source_content": "![Dashboard Token Logout](img/token_logout.png)",
+      "source_content_hash": "128fcf4f60b7973043c274789de2b2b30695e2c3f4d40fa8a1a23ac5735fac75",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Dashboard Token Logout](img/token_logout.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1496ef51",
+      "source_content": "At the top of the page you will see the **Logout** button. Click it to log out the current account.",
+      "source_content_hash": "6d92abc8f5343b2cbe66d855f42062e8bdad206fec939b0be9c2530662ed4130",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在頁面頂部您會看到 **Logout** 按鈕，點擊即可登出目前帳號。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3c6dd548",
+      "source_content": "## FAQ",
+      "source_content_hash": "b07ed55203f0d88ebed77a69ea750333f4f62ec38193b32272aa2987376f7b86",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 常見問題"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7312e69e",
+      "source_content": "### Enable or disable permission authentication",
+      "source_content_hash": "0b664b82739ae3243635bfa57c7ae6d22b221d13ed27b3bb6e9eb6c637f81389",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 啟用或停用權限驗證"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dbfc5f7",
+      "source_content": "When Chaos Mesh is installed using Helm, Permission Authentication is enabled by default. For production environments and other high security scenarios, it is recommended to leave permission authentication enabled. If you are just trying out Chaos Mesh and want to quickly create chaos experiments, you can set `--set dashboard.securityMode=false` in a Helm command to disable authentication. The command looks like this:",
+      "source_content_hash": "db455c26d89e9083d594e52a83e803bdb5fc8d8005720d977f89bd5eb99e54ad",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "使用 Helm 安裝 Chaos Mesh 時，預設啟用權限驗證。對於生產環境等高安全性場景，建議保持啟用狀態。若僅需快速建立混沌實驗進行測試，可在 Helm 指令中設定 `--set dashboard.securityMode=false` 停用驗證，指令範例如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ba1ba39c",
+      "source_content": "<PickHelmVersion>\n{`helm upgrade chaos-mesh chaos-mesh/chaos-mesh --namespace=chaos-mesh --version latest --set dashboard.securityMode=false`}\n</PickHelmVersion>",
+      "source_content_hash": "b733a4928e90fe54e82c6f1ce28e0447118b99c84dcbad672eb49c5f3f872c15",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ba1ba39c"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "827eb9a3",
+      "source_content": "If you want to enable the permission authentication again, then reset `--set dashboard.securityMode=true` in a Helm command.",
+      "source_content_hash": "3872e40848d00134d5fa3dd7e2013db59a47460f5c391486cd50f6ff3a44d259",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如需重新啟用權限驗證，請在 Helm 指令中設定 `--set dashboard.securityMode=true`。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/manage-user-permissions.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.342374+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "bccf242418eb9122f774536f569a57943be5527d60f095f7fe1b1726d60c5b7b"
+  }
+}

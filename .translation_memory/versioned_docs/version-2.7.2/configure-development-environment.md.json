@@ -1,0 +1,445 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/configure-development-environment.md",
+  "source_file_content_hash": "fba42d6d34d5d8068bb9b7cb0816802e9abf3219ab63a720f9987ac3e3e9725e",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Configure the Development Environment\n---",
+      "source_content_hash": "7a99471f02d15e99e1b7fe1ba37fe48c8b1c081557cc8c5f822509d852acf814",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document describes how to configure a local development environment for Chaos Mesh.",
+      "source_content_hash": "e9962909e04d1ca98c374cc9a24b46660ea8d692c988085da4452641a473c0a6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件說明如何設定 Chaos Mesh 的本地開發環境。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "Most components of Chaos Mesh are **only designed for Linux**, so we suggest that you also configure your development environment to run on Linux. For example, use a virtual machine or WSL 2 and use VSCode Remote as your editor.",
+      "source_content_hash": "eccb488e4fedc541932694ee525da9e03e0ec8dd9cbaeda69d5238638a089e40",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 的大多數元件**僅設計用於 Linux**，因此建議您將開發環境配置在 Linux 上執行。例如使用虛擬機器、WSL 2 並搭配 VSCode Remote 作為編輯器。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "This document assumes that you are using Linux, without the limitations of specific Linux distributions. If you insist on using Windows/MacOS, you may need some tricks to make it work for you (For example, some make targets may fail depending on the environment).",
+      "source_content_hash": "d079986a8070d8f5570067e8616556a9aff1c92f9f1789f6fb91ccd04453c2de",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文假設您使用 Linux 環境，不限特定發行版。若堅持使用 Windows/MacOS，可能需要額外技巧才能正常運作（例如部分 make 目標可能因環境而失敗）。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8a5f6a7b",
+      "source_content": "## Configuration Requirements",
+      "source_content_hash": "9dab88ba6792bfd14f8f0410213486c692bd3dc8300c6d2e98a521def4337dd9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 配置需求"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "180bddb1",
+      "source_content": "Before configuring, it is recommended that you install the development tools listed below, most of them may already be installed in your environment:",
+      "source_content_hash": "cd0253aff4bc851804ca907ed504be5881452bb832bda0ed6493cc43439f9ba1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在配置前，建議安裝以下開發工具，其中多數可能已存在於您的環境："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "586b24f7",
+      "source_content": "- [make](https://www.gnu.org/software/make/)",
+      "source_content_hash": "3744e8ae23f1e951aa996ea43e003ea17611484548e36c85c1165ac817c8df6b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [make](https://www.gnu.org/software/make/)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "740fbfd7",
+      "source_content": "- [docker](https://docs.docker.com/install/)",
+      "source_content_hash": "a4c4e4431b6029c213cfbc637c500a985a7eea68bfeb64bb04a764c4b28b81ae",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [docker](https://docs.docker.com/install/)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0eb403ec",
+      "source_content": "- [golang](https://go.dev/doc/install), `v1.18` or later versions",
+      "source_content_hash": "746d0cb91ff2669baa0c0ec6233226f8f244e4ac82422786ab598d176dab1e01",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [golang](https://go.dev/doc/install)，`v1.18` 或更新版本"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d9981ab1",
+      "source_content": "- [gcc](https://gcc.gnu.org/)",
+      "source_content_hash": "c77e540b60160c1dd70b76f9a97662ef63a5c2f5502d472bf99d9908f48f5489",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [gcc](https://gcc.gnu.org/)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "632fee71",
+      "source_content": "- [helm](https://helm.sh/), `v3.9.0` or later versions",
+      "source_content_hash": "658f91d1729a37f3795903e54ae9ac34f8e95f3e65f1eebd5ac5744c4fc2a50c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [helm](https://helm.sh/)，`v3.9.0` 或更新版本"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dc10b09",
+      "source_content": "- [minikube](https://minikube.sigs.k8s.io/docs/start/)",
+      "source_content_hash": "d3c75a17dc3f69683019ef896ecfa5a92278e4a72aec5c94a16380f0e93b6b26",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [minikube](https://minikube.sigs.k8s.io/docs/start/)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2df4f75f",
+      "source_content": "Optional:",
+      "source_content_hash": "a7390ddedd8e895fcd14ba7325b7b4008cd613d4924dfa4bdd75355938ff4d78",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "選用工具："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d7f0c63d",
+      "source_content": "- [nodejs](https://nodejs.org/en/) and [pnpm](https://pnpm.io/), for developing Chaos Dashboard",
+      "source_content_hash": "b8e0c778ed3f265a285a0ef11869ec2968d1372582d89f57c8d215ae80cd0f1f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [nodejs](https://nodejs.org/en/) 與 [pnpm](https://pnpm.io/)，用於開發 Chaos Dashboard"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "79b2d0b9",
+      "source_content": "## Compiling Chaos Mesh",
+      "source_content_hash": "c6eda941106767e538f26d9dd9d066ba883ed9dfc558cf1740084aaabd5839fa",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 編譯 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d9172fa4",
+      "source_content": "After installing, follow the steps below to compile Chaos Mesh.",
+      "source_content_hash": "e0b4607b865b71f1ab730677f9f5ee7c54ec8a3b50a757bd258c62d1e1f9141e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "安裝完成後，請依以下步驟編譯 Chaos Mesh。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5df3dd43",
+      "source_content": "1. Clone the Chaos Mesh repository to your local server:\n\n   ```bash\n   git clone https://github.com/chaos-mesh/chaos-mesh.git\n   cd chaos-mesh\n   ```",
+      "source_content_hash": "09a67d2d3d8b98606bd6ddc37b2f24766614debf0df16763e10fcee4ce01d735",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將 Chaos Mesh 儲存庫複製到本地伺服器：\n\n   ```bash\n   git clone https://github.com/chaos-mesh/chaos-mesh.git\n   cd chaos-mesh\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa355dc5",
+      "source_content": "2. Make sure that [Docker](https://docs.docker.com/install/) is installed and running.\n\n   :::info\n\n   Chaos Mesh relies on Docker to build container images, this is for consistency with the production environment.\n\n   :::",
+      "source_content_hash": "4f0b83c9906ce6a774e12efc801b7e400ff88c66f3544a6fd405982ab389109d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 確認 [Docker](https://docs.docker.com/install/) 已安裝並運行中。\n\n   :::info\n\n   Chaos Mesh 依賴 Docker 建置容器映像，此設計是為了與生產環境保持一致。\n\n   :::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee9c310",
+      "source_content": "3. Compile Chaos Mesh:\n\n   ```bash\n   UI=1 make image\n   ```\n\n   :::tip\n\n   `UI=1` means that we will compile the user interface of Chaos Dashboard, if you don't need it, you can omit this env.\n\n   :::\n\n   :::tip\n\n   If you want to specify the tag of the image, you can use `UI=1 make IMAGE_TAG=dev image`.\n\n   :::\n\n   After compiling, you should get the following container images:\n\n   - `ghcr.io/chaos-mesh/chaos-dashboard:latest`\n   - `ghcr.io/chaos-mesh/chaos-mesh:latest`\n   - `ghcr.io/chaos-mesh/chaos-daemon:latest`",
+      "source_content_hash": "cef0ffa02efe8f4d32bceefb21662651fb8aa4087d61d683f2c2785a8205d6ed",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 編譯 Chaos Mesh：\n\n   ```bash\n   UI=1 make image\n   ```\n\n   :::tip\n\n   `UI=1` 表示將編譯 Chaos Dashboard 的使用者介面，若不需要可省略此環境變數。\n\n   :::\n\n   :::tip\n\n   若要指定映像標籤，可使用 `UI=1 make IMAGE_TAG=dev image`。\n\n   :::\n\n   編譯完成後，您應獲得以下容器映像：\n\n   - `ghcr.io/chaos-mesh/chaos-dashboard:latest`\n   - `ghcr.io/chaos-mesh/chaos-mesh:latest`\n   - `ghcr.io/chaos-mesh/chaos-daemon:latest`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3ef18741",
+      "source_content": "## Run Chaos Mesh in local minkube Kubernetes cluster",
+      "source_content_hash": "5517ff9610564ee3ed71e1f76f683c0382c52d64abc08f9efbace4de65927022",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 在本地 minikube Kubernetes 叢集中執行 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7772088",
+      "source_content": "Now you can run Chaos Mesh in a local Kubernetes cluster after compiling.",
+      "source_content_hash": "4c3989bf58e300a3cd080462b69a266f803494e1e9859231139991ce2b6346d8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "編譯完成後，您可以在本地 Kubernetes 叢集中執行 Chaos Mesh。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4e8535b2",
+      "source_content": "1. Start a local Kubernetes cluster with minkube:\n\n   ```bash\n   minikube start\n   ```",
+      "source_content_hash": "a450e45db9426c4ed879ac32e60429e32e71c900a7a6c1570d0674550b511ae9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 使用 minikube 啟動本地 Kubernetes 叢集：\n\n   ```bash\n   minikube start\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9dd207ef",
+      "source_content": "2. Load container images into minikube:\n\n   ```bash\n   minikube image load ghcr.io/chaos-mesh/chaos-dashboard:latest\n   minikube image load ghcr.io/chaos-mesh/chaos-mesh:latest\n   minikube image load ghcr.io/chaos-mesh/chaos-daemon:latest\n   ```",
+      "source_content_hash": "5ca6721c4186a30888b0cf710600fa75b1e59a97922f10e2f3d7624dc744dcd4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 將容器映像載入 minikube：\n\n   ```bash\n   minikube image load ghcr.io/chaos-mesh/chaos-dashboard:latest\n   minikube image load ghcr.io/chaos-mesh/chaos-mesh:latest\n   minikube image load ghcr.io/chaos-mesh/chaos-daemon:latest\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2c8c6fce",
+      "source_content": "3. Install Chaos Mesh by Helm:\n\n   ```bash\n   helm upgrade --install chaos-mesh-debug ./helm/chaos-mesh -n=chaos-mesh-debug --create-namespace\n   ```",
+      "source_content_hash": "98873984f74a800e28c4afb2837df1fd4d3a2c15531f29d945e9cf09661932c9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 透過 Helm 安裝 Chaos Mesh：\n\n   ```bash\n   helm upgrade --install chaos-mesh-debug ./helm/chaos-mesh -n=chaos-mesh-debug --create-namespace\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e2e299c8",
+      "source_content": ":::tip\n\n`minikube image load` would cost lots of time, so here is a trick to avoid load images again and again during development. Using docker from minikube node instead of host's docker:\n\n```bash\nminikube start --mount --mount-string \"$(pwd):$(pwd)\"\neval $(minikube -p minikube docker-env)\nUI=1 make image\n```\n\n:::",
+      "source_content_hash": "27d51ace607a86387529b10a225f32ae0a3c7841ffdf29feeb01c1bbb68710cc",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::tip\n\n`minikube image load` 會耗費大量時間，因此這裡提供一個技巧以避免在開發過程中反覆載入映像檔：使用 minikube 節點的 Docker 而非主機的 Docker：\n\n```bash\nminikube start --mount --mount-string \"$(pwd):$(pwd)\"\neval $(minikube -p minikube docker-env)\nUI=1 make image\n```\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "54bafb10",
+      "source_content": "## Debug Chaos Mesh in local environment",
+      "source_content_hash": "79d5bbd764cdcac61e201cb4d80990ff92100a41a527ab7e49b13539322daae1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 在本機環境中調試 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4be28ed1",
+      "source_content": "We could use [delve](https://github.com/go-delve/delve) with remote debugging to debug the Chaos Mesh in local environment.",
+      "source_content_hash": "2541d7189907c7a1a3dd8b48a8b370cf188f1e5ec8400043f11dd5b76427ddb5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們可以使用 [delve](https://github.com/go-delve/delve) 配合遠端調試功能在本機環境中調試 Chaos Mesh。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6a21ca8b",
+      "source_content": "1. Compile Chaos Mesh with `DEBUGGER=1`:\n\n   ```bash\n   UI=1 DEBUGGER=1 make image\n   ```",
+      "source_content_hash": "5fd4948b186670b53184c547a790b421d5e79bba1d99744ebe1bab966c5d1647",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 使用 `DEBUGGER=1` 編譯 Chaos Mesh：\n\n   ```bash\n   UI=1 DEBUGGER=1 make image\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "885ad07b",
+      "source_content": "2. Load container images into minikube:\n\n   ```bash\n   minikube image load ghcr.io/chaos-mesh/chaos-mesh:latest\n   minikube image load ghcr.io/chaos-mesh/chaos-daemon:latest\n   minikube image load ghcr.io/chaos-mesh/chaos-dashboard:latest\n   ```",
+      "source_content_hash": "f827edba63233491ae198e71da5ae72f45aefbfd23f32464208041cccbe175dc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 將容器映像檔載入 minikube：\n\n   ```bash\n   minikube image load ghcr.io/chaos-mesh/chaos-mesh:latest\n   minikube image load ghcr.io/chaos-mesh/chaos-daemon:latest\n   minikube image load ghcr.io/chaos-mesh/chaos-dashboard:latest\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "091c952d",
+      "source_content": "3. Install Chaos Mesh and enable Remote Debugging:\n\n   ```bash\n   helm upgrade --install chaos-mesh-debug ./helm/chaos-mesh -n=chaos-mesh-debug --create-namespace --set chaosDlv.enable=true --set controllerManager.leaderElection.enabled=false\n   ```\n\n   :::note\n\n   To ensure high availability, Chaos Mesh turns on `leader-election` feature by default and will create 3 replicas for `chaos-controller-manager`. We will use `controllerManager.leaderElection.enabled=false` to ensure that Chaos Mesh only creates 1 instance of `chaos-controller-manager` for easier debugging.\n\n   For more details, see [Install Chaos Mesh in different environments](production-installation-using-helm.md#step-4-install-chaos-mesh-in-different-environments).\n\n   :::",
+      "source_content_hash": "9e2db61ebd5d9bc43b9566d539ae2f1a6cc34105024495a98113a1f1f964d324",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 安裝 Chaos Mesh 並啟用遠端調試：\n\n   ```bash\n   helm upgrade --install chaos-mesh-debug ./helm/chaos-mesh -n=chaos-mesh-debug --create-namespace --set chaosDlv.enable=true --set controllerManager.leaderElection.enabled=false\n   ```\n\n   :::note\n\n   為確保高可用性，Chaos Mesh 預設啟用 `leader-election` 功能並會為 `chaos-controller-manager` 創建 3 個副本。我們將使用 `controllerManager.leaderElection.enabled=false` 確保 Chaos Mesh 僅創建單一實例的 `chaos-controller-manager` 以簡化調試流程。\n\n   更多細節請參閱[在不同環境中安裝 Chaos Mesh](production-installation-using-helm.md#step-4-install-chaos-mesh-in-different-environments)。\n\n   :::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bda86db3",
+      "source_content": "4. Setup Port-Forwarding and Configure IDE To Connect the Remote Debugger:\n\n   We could use `kubectl port-forward` to forward the delve debugging server to a local port.\n\n   For example, if we want to debug `chaos-controller-manger`, we could execute the following command:\n\n   ```bash\n   kubectl -n chaos-mesh-debug port-forward chaos-controller-manager-766dc8488d-7n5bq 58000:8000\n   ```\n\n   Then we could access the remote delve debugger server with `127.0.0.1:58000`.\n\n   :::info\n\n   We always use `8000` in the pod for serving the delve debug server, that's a convention. You could find that in helm templates files.\n\n   :::\n\n   Then we could configure our favorite IDE to connect to the remote debugger, below are some examples:\n\n   - For Goland, see [Attach to running Go processes with the debugger#Attach to a process on a remote machine](https://www.jetbrains.com/help/go/attach-to-running-go-processes-with-debugger.html#attach-to-a-process-on-a-remote-machine).\n\n   - For VSCode, see [vscode-go - Debugging#Remote Debugging](https://github.com/golang/vscode-go/blob/master/docs/debugging.md#remote-debugging).",
+      "source_content_hash": "026ce53a64b6a3c0fd0a3c80ce60972d25a2dfa1a22245a2b4b87a537bd33dbc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 設定端口轉發並配置 IDE 連接遠端調試器：\n\n   我們可使用 `kubectl port-forward` 將 delve 調試伺服器轉發至本機端口。\n\n   例如若要調試 `chaos-controller-manger`，可執行以下命令：\n\n   ```bash\n   kubectl -n chaos-mesh-debug port-forward chaos-controller-manager-766dc8488d-7n5bq 58000:8000\n   ```\n\n   隨後即可透過 `127.0.0.1:58000` 存取遠端 delve 調試伺服器。\n\n   :::info\n\n   我們在 Pod 中固定使用 `8000` 端口提供 delve 調試伺服器服務，此為慣例設定，您可在 helm 模板檔案中找到相關配置。\n\n   :::\n\n   接著可配置慣用 IDE 連接遠端調試器，以下提供範例：\n\n   - Goland 請參閱[附加調試器至運行中 Go 程序#附加至遠端機器程序](https://www.jetbrains.com/help/go/attach-to-running-go-processes-with-debugger.html#attach-to-a-process-on-a-remote-machine)。\n   - VSCode 請參閱[vscode-go - 調試#遠端調試](https://github.com/golang/vscode-go/blob/master/docs/debugging.md#remote-debugging)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dce16ab4",
+      "source_content": "For more detailed information, see [README.md for container image chaos-dlv](https://github.com/chaos-mesh/chaos-mesh/blob/master/images/chaos-dlv/README.md).",
+      "source_content_hash": "943c13c7920197674c2c63f8e67bc28d336a8db54d17db808f691c59e2960faa",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "更詳細資訊請參閱[容器映像檔 chaos-dlv 的 README.md](https://github.com/chaos-mesh/chaos-mesh/blob/master/images/chaos-dlv/README.md)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7312e69e",
+      "source_content": "## What's Next",
+      "source_content_hash": "7027d20df47e677159d4e3c8dbba8ebb639330853069eab74d83748ee5e5c49a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 後續步驟"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dbfc5f7",
+      "source_content": "After finishing the above preparation, you can try to [Add a New Chaos Experiment Type](add-new-chaos-experiment-type.md).",
+      "source_content_hash": "a83410a689b171aa2c26f15c726ac5ae86ba72a4d372a945da38729a7906c93a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "完成上述準備後，可嘗試[新增混沌實驗類型](add-new-chaos-experiment-type.md)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3f77c6a0",
+      "source_content": "## FAQ",
+      "source_content_hash": "b07ed55203f0d88ebed77a69ea750333f4f62ec38193b32272aa2987376f7b86",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 常見問題"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "657bde08",
+      "source_content": "### Run make fail with `error obtaining VCS status: exit status 128` in MacOS",
+      "source_content_hash": "02abe05e1e27e1703c705179bdaf8617d6d2dfa7b5b7f12602d2550f4abc339c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 在 MacOS 執行 make 失敗並出現 `error obtaining VCS status: exit status 128`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "827eb9a3",
+      "source_content": "The reason is related to https://github.blog/2022-04-12-git-security-vulnerability-announced/. It's recommended you to read it first.",
+      "source_content_hash": "3367e138bbac70b3adc7fb05175f58fad3256c68dbe748f9b61a74708f444851",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此問題與 https://github.blog/2022-04-12-git-security-vulnerability-announced/ 相關，建議先閱讀該公告。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "62d066b0",
+      "source_content": "Chaos Mesh will start the container (`dev-env` or `build-env`) with the current user (when you call `make`). You can find the appropriate `--user` flag in [get_env_shell.py#L81C10-L81C10](https://github.com/chaos-mesh/chaos-mesh/blob/813b650c02e0b065ae5c4707725c346929ab1847/build/get_env_shell.py#L81C10-L81C10). So when Git is looking for a top-level `.git` directory, it will stop if its directory traversal changes ownership from the current user.",
+      "source_content_hash": "45d65f82a2fefa2e10bcecdc05acd1372ab6450759ef0a0af94870fb351828c4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "Chaos Mesh 會以當前使用者身份（當您呼叫 `make` 時）啟動容器（`dev-env` 或 `build-env`）。您可以在 [get_env_shell.py#L81C10-L81C10](https://github.com/chaos-mesh/chaos-mesh/blob/813b650c02e0b065ae5c4707725c346929ab1847/build/get_env_shell.py#L81C10-L81C10) 中找到適當的 `--user` 標誌。因此當 Git 在尋找頂層的 `.git` 目錄時，如果其目錄遍歷過程中的擁有權從當前使用者發生變化，Git 將會停止操作。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`dev-env`', Translation: '`make`'.",
+          "timestamp": "2025-07-04T06:49:59.319256+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "89cf7bac",
+      "source_content": "A temporary solution for now is to comment out the line of `--user`.",
+      "source_content_hash": "368b14fd9b0d2b2b41f567b9ce77f59608335205ad87a9e04f7e27ac22f57394",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前的臨時解決方案是註解掉 `--user` 的那行程式碼。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/configure-development-environment.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.319299+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "fba42d6d34d5d8068bb9b7cb0816802e9abf3219ab63a720f9987ac3e3e9725e"
+  }
+}

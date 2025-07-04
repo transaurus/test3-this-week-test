@@ -1,0 +1,276 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2021-07-07-restrict-authorization.md",
+  "source_file_content_hash": "bde2cfaa4eafc0534466719acac6cbb9daa7e959ea5dd77a03318d7a450d8130",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /securing-tenant-namespaces-using-restrict-authorization-feature\ntitle: 'Securing tenant namespaces using restrict authorization feature in Chaos Mesh'\nauthors: anuragpaliwal\nimage: /img/blog/chaos-engineering-tools-as-a-service.jpeg\ntags: [Chaos Mesh, Chaos Engineering]\n---",
+      "source_content_hash": "74602df77aad8e2f173acf0e8b24bbd2a0506ee4a8e6e241c18866c3c4510c28",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Chaos engineering tools](/img/blog/chaos-mesh-restrict-authorization.jpeg)",
+      "source_content_hash": "6ad719476c15acd3a9529969ce34f57e9405f5b26d0080937ae3aded1dce84c6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![混沌工程工具](/img/blog/chaos-mesh-restrict-authorization.jpeg)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "A [multi-tenant](https://cloud.google.com/kubernetes-engine/docs/concepts/multitenancy-overview) cluster is shared by multiple users and/or workloads which are referred to as \"tenants\".The operators of multi-tenant clusters must isolate tenants from each other to minimize the damage that a compromised or malicious tenant can do to the cluster and other tenants.",
+      "source_content_hash": "762a44f812d5d7628074aeea216022af46f81b57fac4b0919c343aaad2b6236a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[多租戶](https://cloud.google.com/kubernetes-engine/docs/concepts/multitenancy-overview)叢集由多個用戶和/或工作負載（稱為「租戶」）共享。多租戶叢集的運營者必須隔離各租戶，以最小化受損或惡意租戶對叢集和其他租戶造成的損害。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e14c9928",
+      "source_content": "## Cluster multi-tenancy",
+      "source_content_hash": "4ee4305d4076712674fbf1156b69afdfc55e5eb7d8227b1213c528a338a2b6e4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 叢集多租戶架構"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "When you plan a multi-tenant architecture, you should consider the layers of resource isolation in Kubernetes: cluster, namespace, node, Pod, and container.",
+      "source_content_hash": "96cada419cdc797fdf619b139c9c715c931aa8b2efb788f5c4401c5b8a39ebec",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "規劃多租戶架構時，應考量 Kubernetes 中的資源隔離層級：叢集、命名空間、節點、Pod 和容器。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "Although Kubernetes cannot guarantee perfectly secure isolation between tenants, it does offer features that may be sufficient for specific use cases. You can separate each tenant and their Kubernetes resources into their own [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/). Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called namespaces. [Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) are intended for use in environments with many users spread across multiple teams, or projects.",
+      "source_content_hash": "4ed5460ceef09ded99342e8a26727fa3d0e3469ba43c07248cefeb5c335c5a6c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "儘管 Kubernetes 無法保證租戶間的完美安全隔離，但它提供了可能滿足特定用例的功能。您可以將每個租戶及其 Kubernetes 資源分離至各自的[命名空間](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)。Kubernetes 支援由同一實體叢集託管的多個虛擬叢集，這些虛擬叢集稱為命名空間。[命名空間](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)適用於多團隊或多專案環境中眾多用戶的使用場景。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "418617bd",
+      "source_content": "## Cluster having Chaos Mesh",
+      "source_content_hash": "7c2672b8dfb8424fd5701d33bccac6976a0bd4ece31ee31814e56ac57222e1bb",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 部署 Chaos Mesh 的叢集"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "You designed your Kubernetes cluster to have multiple tenant services. You followed the best security practices for Kubernetes: each tenant service is running in its own namespaces, users of these tenant services have appropriate access that also only for their respective namespaces, etc.",
+      "source_content_hash": "f20eb67a5bc0200f9172b20d7000567149b7b8ca5bea791923fce82886447287",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您設計的 Kubernetes 叢集包含多租戶服務，並遵循 Kubernetes 最佳安全實踐：每個租戶服務運行在專屬命名空間中，這些租戶服務的用戶僅擁有相應命名空間的適當存取權限等。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c0bf612b",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_c0bf612b"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a76548f8",
+      "source_content": "You enabled Chaos Mesh ([Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) is a cloud-native Chaos Engineering platform that orchestrates chaos on Kubernetes environments) on the cluster so that your tenant services can perform different chaos activities to make sure their application/system is resilient. You have also given Chaos Mesh specific rights to those tenant service users so that they can manage Chaos Mesh resources using [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).",
+      "source_content_hash": "9d667442621be2dbdcb94e416ede877949bb80ea04b59a5969d31a5ec448fc24",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您在叢集上啟用了 Chaos Mesh（[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) 是雲原生的混沌工程平台，可在 Kubernetes 環境中編排混沌實驗），使租戶服務能執行各類混沌活動以確保其應用/系統的韌性。同時，您已透過 [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) 授予租戶服務用戶管理 Chaos Mesh 資源的特定權限。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "48d98e25",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_48d98e25"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfe931a2",
+      "source_content": "Suppose one of the tenant users wants to perform pod kill operations in his/her namespace i.e. chaos-mesh. To achieve the same, the user created the below Chaos Mesh YAML file:",
+      "source_content_hash": "e8d191dcc2ca52ce219015dfe2488686fb2831d32bb1a63bc3845f1b5786dd9b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "假設某租戶用戶欲在其命名空間（例如 chaos-mesh）執行 Pod 終止操作，該用戶創建了以下 Chaos Mesh YAML 檔案："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a2110253",
+      "source_content": "```yml\napiVersion: chaos-mesh.org/v1alpha1\nkind: PodChaos\nmetadata:\n  name: pod-kill\n  namespace: chaos-mesh\nspec:\n  action: pod-kill\n  mode: one\n  selector:\n    namespaces:\n      - tidb-cluster-demo\n    labelSelectors:\n      'app.kubernetes.io/component': 'tikv'\n  scheduler:\n    cron: '@every 1m'\n```",
+      "source_content_hash": "3619f3554099f559ccb92261108a190554098666028bcb8b34268fa2f6e89042",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a2110253"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c504c207",
+      "source_content": "The user has required rights to namespace chaos-mesh, but does not have rights on tidb-cluster-demo namespace. When the user applies the above YAML file using kubectl, it will create the pod-kill Chaos Mesh resource in chaos-mesh namespace. As we can see in the selector section, the user has specified some other namespace (tidb-cluster-demo), which means the pods which will be selected for this chaos operation will be from tidb-cluster-demo namespace, and not from the one for which the user has access i.e. chaos-mesh. This means that this user is able to impact the other namespace for which (s)he does not have the rights. **Problem!!!**",
+      "source_content_hash": "77d2ede9a71109521bf5520b05c12c24106d3fb78565e94de0d51ba57eaa9b29",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "該用戶擁有 chaos-mesh 命名空間的必要權限，但對 tidb-cluster-demo 命名空間無權限。當用戶使用 kubectl 應用此 YAML 檔案時，將在 chaos-mesh 命名空間創建 pod-kill 混沌資源。如選擇器（selector）所示，用戶指定了其他命名空間（tidb-cluster-demo），意味著混沌操作將選取 tidb-cluster-demo 命名空間的 Pod，而非用戶有權存取的 chaos-mesh 命名空間。這表示該用戶能影響其無權存取的命名空間。**問題發生！**"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c9253e0a",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_c9253e0a"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d3649a1e",
+      "source_content": "Since the release of Chaos Mesh 1.1.3, this security issue has been fixed with a restricted authorization feature. Now when user applies the above YAML file, the system shows the error similar to:",
+      "source_content_hash": "72c3d503d8c2283cce7894fcea376d81f2a3c8d944943bb17834c27e21cf2097",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "自 Chaos Mesh 1.1.3 版本起，此安全問題已透過限制授權功能修復。現在當用戶應用上述 YAML 檔案時，系統將顯示類似錯誤："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c3955998",
+      "source_content": "```yml\nError when creating \"pod/pod-kill.yaml\": admission webhook \"vauth.kb.io\" denied the request: ... is forbidden on namespace\ntidb-cluster-demo\n```",
+      "source_content_hash": "d6bc63d9ddad766d7dabfe07f2a8bfc92c19a54def2c57a51470c5a7d7d22485",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_c3955998"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ea4c715",
+      "source_content": "**Problem solved!**",
+      "source_content_hash": "0c383d377d5acdcd7dd3849a98288cc3fe26536faaf28916a710a8373162ba8a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**問題已解決！**"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "79ad944d",
+      "source_content": "Please note, if the user has required rights on tidb-cluster-demo namespace as well, then there will be no such error.",
+      "source_content_hash": "584e80f2e7fbb7c7edc5bee0c1f314c22858365b17f3e6eb48d1a5942ae7c6f7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "請注意，若用戶同時擁有 tidb-cluster-demo 命名空間的必要權限，則不會出現此類錯誤。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8c6d7ee7",
+      "source_content": "## For more tutorials",
+      "source_content_hash": "668d14e3a472497cacbb5594744a0f9879f762e221ac570d7dfb7cda4b02478b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 更多教學資源"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "06e24cc0",
+      "source_content": "In case you want to enforce that no user should be allowed to create chaos across namespaces, you can check out my previous blog: [Securing tenant services while using chaos mesh using OPA](https://anuragpaliwal-93749.medium.com/securing-tenant-services-while-using-chaos-mesh-using-opa-3ae80c7f4b85).",
+      "source_content_hash": "85db7ee33dd8f1e29e39d92e7ab9b6517527d14ba30d0d2627ef6fb557adf5cd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若需強制禁止用戶跨命名空間創建混沌實驗，請參閱我的先前的部落格文章：[使用 OPA 在 Chaos Mesh 中保護租戶服務](https://anuragpaliwal-93749.medium.com/securing-tenant-services-while-using-chaos-mesh-using-opa-3ae80c7f4b85)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ee8401db",
+      "source_content": "## Last but not least",
+      "source_content_hash": "8841b38ed55ca46ee62e740ea30935f139219bd9208f6617feaf8243f23388cc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 最後重點提醒"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "147e8550",
+      "source_content": "If you are interested in Chaos Mesh and would like to learn more, you're welcome to join the [Slack channel](https://slack.cncf.io/) or submit your pull requests or issues to its [GitHub repository](https://github.com/chaos-mesh/chaos-mesh).",
+      "source_content_hash": "07908f515d055053e46a591465370e9c795dc83a98ceb454ae2af4030fb13c49",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如果您對 Chaos Mesh 感興趣並想了解更多，歡迎加入 [Slack 頻道](https://slack.cncf.io/) 或提交您的 pull requests 及問題到其 [GitHub 儲存庫](https://github.com/chaos-mesh/chaos-mesh)。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2021-07-07-restrict-authorization.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.068109+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "bde2cfaa4eafc0534466719acac6cbb9daa7e959ea5dd77a03318d7a450d8130"
+  }
+}

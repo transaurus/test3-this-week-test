@@ -1,0 +1,273 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/gcp-authentication.md",
+  "source_file_content_hash": "da0e33493d3da8cd5734d3237028c5df198c4d27cbad0e0b70b4914afe5dda5a",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: GCP OAuth Authentication\n---",
+      "source_content_hash": "c0cab84aaea9d8f63f3e1a0559dd928a534877f6e6ef302bf5f7d91e0aaa0d39",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "When Chaos Mesh is deployed on the Google Cloud Platform, you can log in to Chaos Dashboard through Google OAuth. This document describes how to enable and configure this function.",
+      "source_content_hash": "27081d5f117e645c8ba93fc7098cc5c7cacf92776979f1156e0c1a53c23b4dcc",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當 Chaos Mesh 部署在 Google Cloud Platform 時，您可透過 Google OAuth 登入 Chaos Dashboard。本文件說明如何啟用與設定此功能。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## Create OAuth Client",
+      "source_content_hash": "343b472535b9e5dfbee99b59595cada6091078e73a1b6880b03e1e6713c1b739",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 建立 OAuth 用戶端"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "Create GCP OAuth client and get the Client ID and Client Secret according to [Setting up OAuth 2.0](https://support.google.com/cloud/answer/6158849?hl=en).",
+      "source_content_hash": "d4c6cf8495b20cc91f661b89767bcf726e23c222873c4b1abe097c75be3d1b58",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "根據[設定 OAuth 2.0](https://support.google.com/cloud/answer/6158849?hl=en)建立 GCP OAuth 用戶端，並取得用戶端 ID 和用戶端密鑰。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "760d111a",
+      "source_content": "1. Go to the [Google Cloud Platform Console](https://console.cloud.google.com/).",
+      "source_content_hash": "f222d80a3d0845e3679b39a22784ef3694338816fcd535ec28c15a0a13daad0a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 前往 [Google Cloud Platform 控制台](https://console.cloud.google.com/)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ee0c6cb",
+      "source_content": "2. From the projects list, select a project or create a new one.",
+      "source_content_hash": "2fe095449a9aefadb190418fdb902dc421e266313ac0a5b7b285d09233d8af57",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 從專案清單中選取專案或建立新專案。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2b4a9900",
+      "source_content": "3. If the APIs & services page was not loaded automatically, open the console left side menu and select \"APIs & services\" manually.",
+      "source_content_hash": "86675b46d77601c8a29aa377a16dfb40f5c04dc9620c8d812832021e68cf0020",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 若未自動載入「API 和服務」頁面，請手動開啟控制台左側選單並選取「API 和服務」。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9a03a62b",
+      "source_content": "4. Click \"Credentials\" on the left.",
+      "source_content_hash": "193f3c5e76964909da1557e91facbf3bff13c75ded2dace88f2987d4d21552b1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 點擊左側的「憑證」。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "586b24f7",
+      "source_content": "5. Click \"Create Credentials\", then select \"OAuth client ID\".",
+      "source_content_hash": "89161a640b28a7899eab3dee91b8dd83d9e94b44a7b884ad37fa968010dd817b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "5. 點擊「建立憑證」，然後選擇「OAuth 用戶端 ID」。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "740fbfd7",
+      "source_content": "6. Select \"Web Application\" as the application type, and enter additional information and the redirect URL of Chaos dashboard, which is `ROOT_URL/api/auth/gcp/callback`. In this part, `ROOT_URL` is the root URL of Chaos dashboard, like `http://localhost:2333`. This URL can be set through the configuration item `dashboard.rootUrl` by `helm`.",
+      "source_content_hash": "d66892babce5717572538dceb19cb153ad0910751111bc15b3be72ae6d83d355",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "6. 選取「網路應用程式」作為應用程式類型，並輸入額外資訊與 Chaos Dashboard 的重新導向 URL，格式為 `ROOT_URL/api/auth/gcp/callback`。此處的 `ROOT_URL` 是 Chaos Dashboard 的根 URL，例如 `http://localhost:2333`。此 URL 可透過 `helm` 的設定項目 `dashboard.rootUrl` 設定。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`dashboard.rootUrl`', Translation: '`helm`'.",
+          "timestamp": "2025-07-04T06:49:59.306407+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "0eb403ec",
+      "source_content": "7. Click \"Create\".",
+      "source_content_hash": "b1a1e51a7a1bc16697e7e31a82b7ddcf6e94855c169720881439b5e94542b286",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "7. 點擊「建立」。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "After creating the client, remember to save the Client ID and Client Secret for the following steps.",
+      "source_content_hash": "89c6f2e2ae5df218cc70649188585f6a45dc611ed86c22a59332ba5aa5b6fbec",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "建立用戶端後，請務必儲存用戶端 ID 和用戶端密鑰供後續步驟使用。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "418617bd",
+      "source_content": "## Configure and Start Chaos Mesh",
+      "source_content_hash": "62587bb19abf1ea12260b4f53d5a1dec0d17ea7532ae17819b1321dc3bff24ec",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 設定並啟動 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9beb6e94",
+      "source_content": ":::info\n\nUpdate: Since `v2.7.0`, you can provide a **Secret** to store the Client ID and Client Secret. **We recommend you to use this method**.\n\nThis change is to avoid exposing the Client ID and Client Secret to the public. In the previous versions, the Client ID and Client Secret are specified in the values directly, which is not safe in general.\n\nFor more information, see https://github.com/chaos-mesh/chaos-mesh/issues/4206.\n\n:::",
+      "source_content_hash": "fd5d36d218ca7ba14b7783f504f2b45515441d00dbf2e2be47673eae5694c77c",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::info\n\n更新：自 `v2.7.0` 起，您可透過 **Secret** 儲存用戶端 ID 和用戶端密鑰。**建議採用此方法**。\n\n此變更旨在避免用戶端 ID 和用戶端密鑰公開暴露。舊版直接在設定值中指定這些資訊，通常存在安全風險。\n\n詳細資訊請參閱 https://github.com/chaos-mesh/chaos-mesh/issues/4206。\n\n:::",
+          "reason": "URL for a 'link' was changed from 'https://github.com/chaos-mesh/chaos-mesh/issues/4206' to 'https://github.com/chaos-mesh/chaos-mesh/issues/4206。'.",
+          "timestamp": "2025-07-04T06:49:59.306436+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "4daf5cdd",
+      "source_content": "To enable the function, you need to set the configuration items in helm charts as follows:",
+      "source_content_hash": "d2136b35a8a5eafab05a810951289a53a4dbb771199fe351d784d9ce2fa6ecd2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要啟用此功能，需在 helm charts 中設定以下項目："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ef6eebef",
+      "source_content": "```yaml\ndashboard:\n  rootUrl: http://localhost:2333\n  gcpSecurityMode:\n    enabled: true\n    # Old configuration items for compatibility.\n    clientId: ''\n    clientSecret: ''\n    # References existing Kubernetes secret containing `GCP_CLIENT_ID` and `GCP_CLIENT_SECRET`.\n    existingSecret: ''\n```",
+      "source_content_hash": "7e37ee5f73003b72e707011a4ad0b35c2f2b128b4a480b5759755c9f0346fb1f",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ef6eebef"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "13d9cd70",
+      "source_content": "If Chaos Mesh has been installed, you can update the configuration items through `helm upgrade`. If not, you can install Chaos Mesh through `helm install`.",
+      "source_content_hash": "828efb50aba70b4f54d5d99aaaa03bcc710b702adb657b554760ff8009f20628",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若已安裝 Chaos Mesh，可透過 `helm upgrade` 更新設定；若未安裝，則透過 `helm install` 進行安裝。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6f930b2f",
+      "source_content": "## Login with Google",
+      "source_content_hash": "3425874674cdb9a13abc1249a5c731817e8eb8ecca90bec0513589e656d5841f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Google 登入"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c504c207",
+      "source_content": "Open Chaos Dashboard, and click the Google icon under the authentication window.",
+      "source_content_hash": "5e3dc8830a7dbbdcd88044e51d797054344bea5f727bd074c3e5dcded0fb35cd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "開啟 Chaos Dashboard，在驗證視窗下方點擊 Google 圖示。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "98d26038",
+      "source_content": "![img](./img/google-auth.png)",
+      "source_content_hash": "ab6274dee0415eefce08e02d239e0be2447737bf57d4513cf719571ca12c901e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![img](./img/google-auth.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d3649a1e",
+      "source_content": "After logging in to the Google account and being granted permission to OAuth Client, the page automatically redirects to Chaos Dashboard with logged-in status. At this time, you have the same permissions as the google account in this cluster. If you need to add other permissions, you can edit the permission through the RBAC (Role-based access control). For example:",
+      "source_content_hash": "37d4526f7333856989b43271e7a4885e91a65d040e1b7f66f01b302173cf555b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "登入 Google 帳戶並授予 OAuth 用戶端權限後，頁面將自動重新導向至已登入狀態的 Chaos Dashboard。此時您的權限與叢集中的 Google 帳戶相同。如需新增權限，可透過 RBAC（基於角色的存取控制）編輯權限，例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c3955998",
+      "source_content": "```yaml\nkind: ClusterRole\napiVersion: rbac.authorization.k8s.io/v1\nmetadata:\n  name: chaos-mesh-cluster-manager\nrules:\n  - apiGroups:\n      - chaos-mesh.org\n    resources: ['*']\n    verbs: ['get', 'list', 'watch', 'create', 'delete', 'patch', 'update']\n---\nkind: ClusterRoleBinding\napiVersion: rbac.authorization.k8s.io/v1\nmetadata:\n  name: cluster-manager-binding\n  namespace: chaos-mesh\nsubjects:\n  - kind: User\n    name: example@gmail.com\nroleRef:\n  kind: ClusterRole\n  name: chaos-mesh-cluster-manager\n  apiGroup: rbac.authorization.k8s.io\n```",
+      "source_content_hash": "ee6c8bd01894a4bb4fdff0670e89c207c0130c2bcbb31d85a4f63ed49644865c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_c3955998"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6270d577",
+      "source_content": "By setting this configuration, the user `example@gmail.com` is enabled to see or create any chaos experiments.",
+      "source_content_hash": "2bf81c1ea5549e6aa9df8bcff2fc617101ec5a1655c233a9fb4f3e0bf14b4d91",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此設定將允許使用者 `example@gmail.com` 檢視或建立任何混沌實驗。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/gcp-authentication.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.306468+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "da0e33493d3da8cd5734d3237028c5df198c4d27cbad0e0b70b4914afe5dda5a"
+  }
+}

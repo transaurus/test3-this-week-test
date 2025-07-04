@@ -1,0 +1,922 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/define-chaos-experiment-scope.md",
+  "source_file_content_hash": "ffa8ac604f88576902badc9146a6bd789466e4caafe3f83d7112626cf796802b",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Define the Scope of Chaos Experiments\n---",
+      "source_content_hash": "0436e2945ec21eefbe99ebc625f0a85918c2af62d6f81ccbfd844b18d32660c6",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document describes how to define the scope of a single Chaos experiment, which helps you accurately control the fault's explosion radius.",
+      "source_content_hash": "63d01cc01309c03a2c1f4e6956f9da4378b5d6d95471824a4866a3eb43995b0a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件說明如何定義單一混沌實驗的範圍，協助您精準控制故障的影響半徑。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## An overview of experiment scopes",
+      "source_content_hash": "867077856d756c8def55ef3ad4a4b938906e13cdf8eb61c3d6134bf53a046ef4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 實驗範圍概覽"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "In Chaos Mesh, you can define the scope of a single Chaos experiment by specifying a selector.",
+      "source_content_hash": "ce9d33e4aee31ef27bb1d970a10724807e1aea81ef5b3f014e20c2dfb0d1be43",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在 Chaos Mesh 中，您可以透過指定選擇器（selector）來定義單一混沌實驗的範圍。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "Different types of selectors correspond to different filtering rules. You can specify one or more selectors in a Chaos experiment to define the scope of your experiment. If multiple selectors are specified at the same time, the current experiment target must meet the rules of all specified selectors at the same time.",
+      "source_content_hash": "3d55560e4315a1d87cf4014e7479f16ea43791b1af4ea0556036b163c3f85f35",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "不同類型的選擇器對應不同的過濾規則。您可以在混沌實驗中指定一個或多個選擇器來定義實驗範圍。若同時指定多個選擇器，則當前實驗目標必須同時滿足所有指定選擇器的規則。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "180bddb1",
+      "source_content": "When you create a Chaos experiment, Chaos Mesh supports the following ways to define the scope of an experiment. You can choose any one of the following ways as needed:",
+      "source_content_hash": "101e2b8455089c32fa55dd7437a9cf17d4cd4a2f4e34dd9d6cad3d8926cae05e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "建立混沌實驗時，Chaos Mesh 支援以下方式定義實驗範圍，可根據需求任選其一："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "586b24f7",
+      "source_content": "- Define the experiment scope in a YAML configuration file",
+      "source_content_hash": "958f4bfb50def55d042f22ea1645781a99149237c0d1356faafe5766c33e8b52",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 在 YAML 設定檔中定義實驗範圍"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "740fbfd7",
+      "source_content": "- Define the experiment scope on the Chaos Dashboard",
+      "source_content_hash": "df8f3f3998e3a8cef660a5faf59421add760e7a39e51bd2ca5cf8e2788d66420",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 在 Chaos Dashboard 上定義實驗範圍"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d350c018",
+      "source_content": "## Define the experiment scope in a YAML configuration file",
+      "source_content_hash": "70dbb414e9f4f592a5d2ef84f1b150903a4cb6e3b8f28cf0218a9c00879fca81",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 在 YAML 設定檔中定義實驗範圍"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1acb9a05",
+      "source_content": "This section introduces the meanings of different selector types and their usages, and provides the configuration examples in the YAML file. When defining the experiment scope in the YAML file, you can specify one or more selectors according to your need of scope filtering.",
+      "source_content_hash": "b597471590ba58b12c30b0d3084247193ef630c70e95b14fb4b45f7cc1babb95",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本節介紹不同選擇器類型的含義與用法，並提供 YAML 檔案的設定範例。在 YAML 檔案中定義實驗範圍時，可根據範圍過濾需求指定一個或多個選擇器。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "63622bf0",
+      "source_content": "### Namespace selectors",
+      "source_content_hash": "70918cbc39ffa1b09b3b643c1fcf0276ff38862fff17abeb1b36ffb88441ae92",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 命名空間選擇器（Namespace selectors）"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d7f0c63d",
+      "source_content": "- Specifies the namespace of the experiment's target Pod.",
+      "source_content_hash": "f8ef7600f9c734dbbdc642fb051d0aa8a297fe587e162c63df516e953753b98f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 指定實驗目標 Pod 所屬的命名空間。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ff75e5d8",
+      "source_content": "- Data type: string array type.",
+      "source_content_hash": "1250c5fcc197e565c630f8ee2ff7b3cc9cf5468ca434c7b535b6d47085de0f88",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 資料類型：字串陣列類型。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cec935ef",
+      "source_content": "- If this selector is empty or is not specified, Chaos Mesh will set it to the namespace of the current Chaos experiment.",
+      "source_content_hash": "2aed5f690dede9dc1dc84fc98cd32f59167630db8692b397f38e326089d270ce",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 若此選擇器為空或未指定，Chaos Mesh 會將其設定為當前混沌實驗的命名空間。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d9172fa4",
+      "source_content": "When creating the experiment using the YAML file, you need to configure selectors. For example:",
+      "source_content_hash": "690091c00fc1506f0cd00244385a451d5b62e673da16605d1bcb5a4ea3eabc3f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當使用 YAML 檔案建立實驗時，需設定選擇器，例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b7c3dbd1",
+      "source_content": "```yaml\nspec:\n  selector:\n    namespaces:\n      - 'app-ns'\n```",
+      "source_content_hash": "ae0e6ff7fc6ea4cfc782615b181141c36f7a8ccd9238bd873cde2051ffee1704",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b7c3dbd1"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3b7478ea",
+      "source_content": "### Label selectors",
+      "source_content_hash": "71a86d70a8a073fac3ccd587c37342118beebb6cab926196a18bd996bd51df46",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 標籤選擇器（Label selectors）"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b49764d4",
+      "source_content": "- Specifies the [labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) that the experiment's target Pod must have.",
+      "source_content_hash": "0d0807cedca597d00f1a6b207915e11ca42334b70000ca4e57790b9088b30d9b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 指定實驗目標 Pod 必須具備的[標籤](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4a0e7cce",
+      "source_content": "- Data type: key-value pairs.",
+      "source_content_hash": "66ce00767b4298dcc428e2c428b3b87143d9f49bc2a6a8b059ca0cf6f6c371e9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 資料類型：鍵值對（key-value pairs）。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c4706327",
+      "source_content": "- If multiple labels are specified, the experiment target must have all the labels specified by this selector.",
+      "source_content_hash": "bce717e63590dc6e758c088cfe3aab8b28e19ec89faef5af6e4e16503fca52f5",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 若指定多個標籤，則實驗目標必須具備此選擇器指定的所有標籤。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1042b50d",
+      "source_content": "When creating the experiment using the YAML file, you need to configure selectors. For example:",
+      "source_content_hash": "690091c00fc1506f0cd00244385a451d5b62e673da16605d1bcb5a4ea3eabc3f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當使用 YAML 檔案建立實驗時，需設定選擇器，例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6648a219",
+      "source_content": "```yaml\nspec:\n  selector:\n    labelSelectors:\n      'app.kubernetes.io/component': 'tikv'\n```",
+      "source_content_hash": "3e4c8ec747b7fedbe4dc208efa1856aeaf18620b28df34abe70acaf48bb528f4",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6648a219"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cb5b269c",
+      "source_content": "### Expression selectors",
+      "source_content_hash": "e240ebdeaabad7efd66226fb4b3bfb3a84ec4890dd028f5f1a3557de46f7ae1a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 表達式選擇器（Expression selectors）"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0fcf7990",
+      "source_content": "- Specifies a set of [expressions](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#resources-that-support-set-based-requirements) that define the label's rules to specify the experiment's target Pod.",
+      "source_content_hash": "696486f449676ad484541db6f59e5c75d7cf3acfca96a3623954d583da827b22",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 指定一組[表達式](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#resources-that-support-set-based-requirements)，用於定義標籤規則以指定實驗目標 Pod。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f60f155a",
+      "source_content": "- You can use this selector to set up the experiment's target Pod that does not meet some labels.",
+      "source_content_hash": "050b7082c41d01c85ca53f445b46791160642061b0fc3470e10c769e5ce80b16",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 可用此選擇器設定不符合特定標籤的實驗目標 Pod。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4d52a261",
+      "source_content": "When creating the experiment using the YAML file, you need to configure selectors. For example:",
+      "source_content_hash": "690091c00fc1506f0cd00244385a451d5b62e673da16605d1bcb5a4ea3eabc3f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當使用 YAML 檔案建立實驗時，需設定選擇器，例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6d254e09",
+      "source_content": "```yaml\nspec:\n  selector:\n    expressionSelectors:\n      - { key: tier, operator: In, values: [cache] }\n      - { key: environment, operator: NotIn, values: [dev] }\n```",
+      "source_content_hash": "2baff6707133e7c3eb8200db13df9c6490876c9ce93a2119624db84dffcc7007",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6d254e09"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a5a4323e",
+      "source_content": "### Annotation selectors",
+      "source_content_hash": "786e57a42e120ab44b5386b7898e0681c4208b9728b1d5259341a6c2433d6184",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 註解選擇器（Annotation selectors）"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b27cda15",
+      "source_content": "- Specifies the [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) that the experiment's target Pod must have.",
+      "source_content_hash": "b1dbc494f632bab56bfb131351c1668e655464ede9244952ab91f74333cb7133",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 指定實驗目標 Pod 必須具備的[註解](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f67b99e4",
+      "source_content": "- Data type: key-value pairs.",
+      "source_content_hash": "66ce00767b4298dcc428e2c428b3b87143d9f49bc2a6a8b059ca0cf6f6c371e9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 資料類型：鍵值對（key-value pairs）。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "429e7afa",
+      "source_content": "- If multiple annotations are specified, the experiment target must have all annotations specified by this selector.",
+      "source_content_hash": "3f002275677e89fe8b23397afae037dcfdca5f78b2b5cdc0933e2b1d51c95983",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 若指定多個註解，則實驗目標必須具備此選擇器指定的所有註解。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "eab056be",
+      "source_content": "When creating the experiment using the YAML file, you need to configure selectors. For example:",
+      "source_content_hash": "690091c00fc1506f0cd00244385a451d5b62e673da16605d1bcb5a4ea3eabc3f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當使用 YAML 檔案建立實驗時，需設定選擇器，例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9f3b4022",
+      "source_content": "```yaml\nspec:\n  selector:\n    annotationSelectors:\n      'example-annotation': 'group-a'\n```",
+      "source_content_hash": "1a4b716b8d120e60ad56348727e7950b067ef7e3aba96fa38748614727cb6238",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9f3b4022"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8a9b6c26",
+      "source_content": "### Field selectors",
+      "source_content_hash": "1634566a50e8a63d335ecc30e711825688f9a5e94d1da99aa484765675cc75f3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 欄位選擇器（Field selectors）"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "771cf34e",
+      "source_content": "- Specifies the [fields](https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/) of the experiment's target Pod.",
+      "source_content_hash": "0cc26d487d05a158d239127efc2c0e779412f6e7455c0eaa2d5ee51d2ae40e5f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 指定實驗目標 Pod 的[欄位](https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c76e6a32",
+      "source_content": "- Data type: key-value pairs.",
+      "source_content_hash": "66ce00767b4298dcc428e2c428b3b87143d9f49bc2a6a8b059ca0cf6f6c371e9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 資料類型：鍵值對（key-value pairs）。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa64d5a9",
+      "source_content": "- If multiple fields are specified, the experiment target must have all fields set by this selector.",
+      "source_content_hash": "371fd0aa09c78af492226d7376f7ee609eb48c22336b0d3c4c27c2644c68ec32",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 若指定多個欄位，則實驗目標必須具備此選擇器設定的所有欄位。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2547a6bb",
+      "source_content": "When creating the experiment using the YAML file, you need to configure selectors. For example:",
+      "source_content_hash": "690091c00fc1506f0cd00244385a451d5b62e673da16605d1bcb5a4ea3eabc3f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當使用 YAML 檔案建立實驗時，需設定選擇器，例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7d898a0e",
+      "source_content": "```yaml\nspec:\n  selector:\n    fieldSelectors:\n      'metadata.name': 'my-pod'\n```",
+      "source_content_hash": "d527422eb11f064f50feaadd59d7d15a53470b69411067934754f71ca905d8d5",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7d898a0e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b10963d7",
+      "source_content": "### PodPhase selectors",
+      "source_content_hash": "d288939746971e60ca30d1505d8dade7d557b1e3fa67b80dce0716cfb6da60f8",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### Pod 階段選擇器（PodPhase selectors）"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5e27ec1e",
+      "source_content": "- Specifies the phase of the experiment's target Pod.",
+      "source_content_hash": "c377e1c126343c677dd8af5e64bcafe1973ffbb146ac6d4f7df49a93f7c191a0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 指定實驗目標 Pod 所處的生命週期階段。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0d3f19f5",
+      "source_content": "- Data type: string array type.",
+      "source_content_hash": "1250c5fcc197e565c630f8ee2ff7b3cc9cf5468ca434c7b535b6d47085de0f88",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 資料類型：字串陣列類型。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bee1eb3b",
+      "source_content": "- Supported phases: `Pending`, `Running`, `Succeeded`, `Failed`, `Unknown`.",
+      "source_content_hash": "c73dd1c4a5759557b7b468a1e44d44653a19c9f17179144c3af4bec79dd51f5b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 支援的階段：`Pending`、`Running`、`Succeeded`、`Failed`、`Unknown`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1f5a88fc",
+      "source_content": "- This option is empty by default, which means that the target Pod's phase is not limited.",
+      "source_content_hash": "077ea27ae5059142e03015c26c704b2f5a28cd08db1022b408011ec07004c45e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 此選項預設為空，表示目標 Pod 的階段不受限制。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a2c0166e",
+      "source_content": "When creating the experiment using the YAML file, you need to configure selectors. For example:",
+      "source_content_hash": "690091c00fc1506f0cd00244385a451d5b62e673da16605d1bcb5a4ea3eabc3f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當使用 YAML 檔案建立實驗時，您需要配置選擇器。例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d44e4104",
+      "source_content": "```yaml\nspec:\n  selector:\n    podPhaseSelectors:\n      - 'Running'\n```",
+      "source_content_hash": "30a393a3238a5da1080d3232641848654e18cc68dd2a87abf40437c6d7c6f820",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d44e4104"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8574d51c",
+      "source_content": "### Node selectors",
+      "source_content_hash": "4c4770161e8100133ec15612cc35b4e7311e0a0fcb2f25b129cd9516976a9061",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 節點選擇器"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "885ad07b",
+      "source_content": "- Specifies the [node label](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes/) to which the experiment's target Pod belongs.",
+      "source_content_hash": "d5fe463719350cdab83060f170a6681f65e1f7b34dece95797786da352ff0c7b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 指定實驗目標 Pod 所屬節點的[節點標籤](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes/)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e268b758",
+      "source_content": "- Data type: key-value pairs.",
+      "source_content_hash": "66ce00767b4298dcc428e2c428b3b87143d9f49bc2a6a8b059ca0cf6f6c371e9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 資料類型：鍵值對形式。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9e54c725",
+      "source_content": "- If multiple node labels are specified, the node to which the experiment's target Pod belongs must have all labels specified by this selector.",
+      "source_content_hash": "1df8bbfe3bc66bfe6d89253a437eb92d1828e9574ee03a08e71d1e565d21fa91",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 若指定多個節點標籤，則實驗目標 Pod 所屬節點必須同時具有此選擇器指定的所有標籤。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1958bc43",
+      "source_content": "When creating the experiment using the YAML file, you need to configure selectors. For example:",
+      "source_content_hash": "690091c00fc1506f0cd00244385a451d5b62e673da16605d1bcb5a4ea3eabc3f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當使用 YAML 檔案建立實驗時，您需要配置選擇器。例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1a63b635",
+      "source_content": "```yaml\nspec:\n  selector:\n    nodeSelectors:\n      'node-label': 'label-one'\n```",
+      "source_content_hash": "54eeeac2ab8c82dd9b9b5efc1630fd03f83b1b815abff60be6b489564afebfd8",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1a63b635"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "36d6c3de",
+      "source_content": "### Node list selector",
+      "source_content_hash": "b490c4933233fa6a22d94864ed06ae11bf5895cb8c4ef69228adf38cd261dde1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 節點清單選擇器"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1cf42f92",
+      "source_content": "- Specifies the node to which the experiment's target Pod belongs.",
+      "source_content_hash": "acd82046595dae000b25755181611a6f7003360eb122d59a59ddc083fc8d3767",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 指定實驗目標 Pod 所屬的節點。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b1d2b7df",
+      "source_content": "- Data type: string array type.",
+      "source_content_hash": "1250c5fcc197e565c630f8ee2ff7b3cc9cf5468ca434c7b535b6d47085de0f88",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 資料類型：字串陣列類型。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39a5728a",
+      "source_content": "- The target Pod can only belong to one node in the configured node list.",
+      "source_content_hash": "a9f9fab8d5c46f1d8e3a14c52f5100d528ac7b8008dc0db86d9f4550e8ff1e97",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 目標 Pod 只能屬於配置節點清單中的一個節點。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "692c6053",
+      "source_content": "When creating the experiment using the YAML file, you need to configure selectors. For example:",
+      "source_content_hash": "690091c00fc1506f0cd00244385a451d5b62e673da16605d1bcb5a4ea3eabc3f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當使用 YAML 檔案建立實驗時，您需要配置選擇器。例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "601bdf38",
+      "source_content": "```yaml\nspec:\n  selector:\n    nodes:\n      - node1\n      - node2\n```",
+      "source_content_hash": "16dc414ec60adbb6deea02364a9a10fe981b47abad88e90c69804429b53f4731",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_601bdf38"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0d5321b7",
+      "source_content": "### Pod list selector",
+      "source_content_hash": "7a51e85aa3057d60be2b1470c10b2da46645bdfbfdfd0f9c7fbbf4d1d17f45e4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### Pod 清單選擇器"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d605d735",
+      "source_content": "- Specifies the namespaces and list of the experiment's target `Pods`.",
+      "source_content_hash": "51878826ce0dffc2bd697572f738a3d7e87cdbf8b85a1319685e85e9f4a3e63f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- 指定實驗目標 `Pod` 的命名空間與清單。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`Pods`', Translation: '`Pod`'.",
+          "timestamp": "2025-07-04T06:49:59.293440+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "df438a32",
+      "source_content": "- Type of data: key-value pairs. The \"keys\" are the namespaces of the target `Pod` and the \"values\" are the target `Pod` list.",
+      "source_content_hash": "6a19de3e0ebdd619c69738ca555b95497bb226e52364ed9a329cfac98e0e4671",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 資料類型：鍵值對形式。\"鍵\"為目標 `Pod` 的命名空間，\"值\"為目標 `Pod` 清單。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c82897fb",
+      "source_content": "- If you have specified this selector, Chaos Mesh **ignores** other configured selectors.",
+      "source_content_hash": "c984a2f9a437986a2275420de271d4505ad4fbb92210ae42edd3f313df0bd3a5",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 若指定此選擇器，Chaos Mesh **將忽略**其他已配置的選擇器。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "17b50e81",
+      "source_content": "When creating the experiment using the YAML file, you need to configure selectors. For example:",
+      "source_content_hash": "690091c00fc1506f0cd00244385a451d5b62e673da16605d1bcb5a4ea3eabc3f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當使用 YAML 檔案建立實驗時，您需要配置選擇器。例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3ad9440a",
+      "source_content": "```yaml\nspec:\n  selector:\n    pods:\n      tidb-cluster: # namespace of the target pods\n        - basic-tidb-0\n        - basic-pd-0\n        - basic-tikv-0\n        - basic-tikv-1\n```",
+      "source_content_hash": "30408567d1bfc00e8d4269d5daa838f8c9b2bc141c10a228061887c776d5896c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3ad9440a"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7312e69e",
+      "source_content": "### Physical machine list selector",
+      "source_content_hash": "f6b141fd489abfd0b3ca37a6050f46f4362bb259e45cbcefb4967d0d4237ad74",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 實體機清單選擇器"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "54175971",
+      "source_content": "- Specifies the namespaces and list of the experiment's target `PhysicalMachines`.",
+      "source_content_hash": "9b304a15542c8105d5a1d0427aa01495bd83f974800e58ad02d8c8c273023a8f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 指定實驗目標 `PhysicalMachines` 的命名空間與清單。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d511fc6d",
+      "source_content": "- Type of data: key-value pairs. The \"keys\" are the namespaces of the target `PhysicalMachine`, and the \"values\" are the target `PhysicalMachine` list.",
+      "source_content_hash": "999db66a7ba0d81e2c80dad381a105bf30054f9ff4150fdbf81033a2dde5be1e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 資料類型：鍵值對形式。\"鍵\"為目標 `PhysicalMachine` 的命名空間，\"值\"為目標 `PhysicalMachine` 清單。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e2bb80f",
+      "source_content": "- If you have specified this selector, Chaos Mesh **ignores** other configured selectors.",
+      "source_content_hash": "c984a2f9a437986a2275420de271d4505ad4fbb92210ae42edd3f313df0bd3a5",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 若指定此選擇器，Chaos Mesh **將忽略**其他已配置的選擇器。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b1fb63b3",
+      "source_content": ":::note\n\n`PhysicalMachine` is a CRD (CustomResourcesDefinition) that represents a physical machine. To create `PhysicalMachine`, Chaos Mesh uses [Chaosctl](chaosctl-tool.md#generate-tls-certificates-for-chaosd).\n\n:::",
+      "source_content_hash": "6efd2afda6435904c75d3e8fa06f26a78e5ef6a7a2c34ac69071fe9a31bdc508",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::note\n\n`PhysicalMachine` 是代表實體機器的 CRD (CustomResourcesDefinition)。Chaos Mesh 使用 [Chaosctl](chaosctl-tool.md#generate-tls-certificates-for-chaosd) 建立 `PhysicalMachine`。\n\n:::",
+          "reason": "Type mismatch for special element #2: source is 'inlineCode', translation is 'link'.",
+          "timestamp": "2025-07-04T06:49:59.293493+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "89cf7bac",
+      "source_content": "When creating the experiment using the YAML file, you need to configure selectors. For example:",
+      "source_content_hash": "690091c00fc1506f0cd00244385a451d5b62e673da16605d1bcb5a4ea3eabc3f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當使用 YAML 檔案建立實驗時，您需要配置選擇器。例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "31b98214",
+      "source_content": "```yaml\nspec:\n  selector:\n    physicalMachines:\n      default: # namespace of the target PhysicalMachines\n        - physical-machine-a\n        - physical-machine-b\n```",
+      "source_content_hash": "97d93587235440776ca81c7a1a7b0276700d1617a4b4e8cdd763a3090f5766d3",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_31b98214"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "188a0310",
+      "source_content": "## Define the experiment scope on Chaos Dashboard",
+      "source_content_hash": "b4e7059a9caafff74fad60f7fc4ebfad0446e2fb68502d6998a71f5c74210d15",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 在 Chaos Dashboard 上定義實驗範圍"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5cf1bce4",
+      "source_content": "If you use Chaos Dashboard to create a Chaos experiment, you can configure the Chaos experiment scope when filling out the experiment information.",
+      "source_content_hash": "c465aaff22c4a40809b179eb4f58189fc5360f58fa393b04651162adf5b49d4b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若使用 Chaos Dashboard 建立混沌實驗，您可在填寫實驗資訊時配置實驗範圍。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0427bb2b",
+      "source_content": "The following selectors are currently available on Chaos Dashboard. You can specify one or more selectors according to the filtering requirements of the experiment scope:",
+      "source_content_hash": "9e84d40e45f683958444341e9abd0afd82eaf84b0963eaf7638988b755987d3d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前 Chaos Dashboard 提供以下選擇器。您可根據實驗範圍的篩選需求指定一或多個選擇器："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "18ecad00",
+      "source_content": "- Namespace selectors",
+      "source_content_hash": "b6ecf01c0eae340b076ab68377999359e7a42a7bb19bc7c95e56f2b6313bef05",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 命名空間選擇器"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7dab6ff7",
+      "source_content": "- Label selectors",
+      "source_content_hash": "74495f257605da640c0e74f606c7e5e01c7558abbb93f8fe2d9f48aea90befb5",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 標籤選擇器"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bd60f16b",
+      "source_content": "- Annotation selectors",
+      "source_content_hash": "f9f3edca762a20cfc921d3fbe160a00617b763e961ba7131737b850cc07daf53",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 註解選擇器"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d1f892d3",
+      "source_content": "- Phase selectors",
+      "source_content_hash": "6cb8987f9db061a1209badcecdae8396067f212ba83977f858bb397f0bfe4345",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 階段選擇器"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c5e0bb3d",
+      "source_content": "While setting selectors, you can also view the actual scope of the experiment target in the Dashboard in real time and can directly modify the target Pod scope filtered by the selectors.",
+      "source_content_hash": "59e69d1de3c8568b940be8e88f9554ba5883d5cc5d285d9db6552878e85607e6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "設定選擇器時，您還可在儀表板上即時查看實驗目標的實際範圍，並可直接修改選擇器篩選出的目標 Pod 範圍。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c67ca5",
+      "source_content": "![Dashboard Selectors](img/dashboard_selectors_en.png)",
+      "source_content_hash": "6a1592eece6c45784ef9ac1b8d642aecc61b51233da272f3e7488d1ce8147b75",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![儀表板選擇器](img/dashboard_selectors_en.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4d7a4554",
+      "source_content": "## Compatibility matrix",
+      "source_content_hash": "589ccf870229c90d04c3014aa32634d2080d9c4aaea4b70432ef73523dd7a7e7",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 相容性矩陣"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "afa10cea",
+      "source_content": "| Type                           | Support Kubernetes | Support physical machine |\n| :----------------------------- | :----------------- | :----------------------- |\n| Namespace Selectors            | Yes                | Yes                      |\n| Label Selectors                | Yes                | Yes                      |\n| Expression Selectors           | Yes                | Yes                      |\n| Annotation Selectors           | Yes                | Yes                      |\n| Field Selectors                | Yes                | Yes                      |\n| PodPhase Selectors             | Yes                | No                       |\n| Node Selectors                 | Yes                | No                       |\n| Node List Selectors            | Yes                | No                       |\n| Pod List Selectors             | Yes                | No                       |\n| PhysicalMachine List Selectors | No                 | Yes                      |",
+      "source_content_hash": "e149ecf6e61d5f63d611769835b1a99187e85cfe62f5753942a55a3832cf9b46",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_afa10cea"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/define-chaos-experiment-scope.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.293539+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "ffa8ac604f88576902badc9146a6bd789466e4caafe3f83d7112626cf796802b"
+  }
+}

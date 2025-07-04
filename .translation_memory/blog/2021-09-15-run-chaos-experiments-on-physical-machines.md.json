@@ -1,0 +1,573 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2021-09-15-run-chaos-experiments-on-physical-machines.md",
+  "source_file_content_hash": "60a88662bf2098a5b48dd349b727fa62159e99258801a597d059abadbc8577d2",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /run-chaos-experiments-on-physical-machines\ntitle: 'How to run chaos experiments on your physical machine'\nauthors: xiangwang\nimage: /img/blog/chaosd-banner.png\ntags: [Chaos Mesh, Chaos Engineering, Chaosd]\n---",
+      "source_content_hash": "329952866f951ef61f3286af129e773f996dea09f27f421d028c986595b97142",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![How to run chaos experiments on your physical machine](/img/blog/chaosd-banner.png)",
+      "source_content_hash": "8b6f07c76534203f2c88e8e0b0bb3c51cc896d682c5ca0112a2598acd1f34e36",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![如何在實體機器上執行混亂實驗](/img/blog/chaosd-banner.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) is a cloud-native Chaos Engineering platform that orchestrates chaos in Kubernetes environments. With Chaos Mesh, you can simulate a variety of failures, and use Chaos Dashboard, a web UI, to manage chaos experiments directly. Since it was open-sourced, Chaos Mesh has been adopted by many companies to ensure their systems’ resilience and robustness. But over the past year, we have frequently heard requests from the community asking how to run chaos experiments when the services are not deployed on Kubernetes.",
+      "source_content_hash": "b8f09895e7ea957aa915604696f20003be564c47835559910e3bccea255a87c5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) 是一個雲原生的混沌工程平台，可在 Kubernetes 環境中編排混沌事件。透過 Chaos Mesh，您可以模擬各種故障，並使用網頁介面 Chaos Dashboard 直接管理混沌實驗。自開源以來，Chaos Mesh 已被眾多企業採用，以確保其系統的韌性與穩健性。但在過去一年中，我們頻繁收到社群詢問：當服務未部署於 Kubernetes 時該如何執行混沌實驗？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e14c9928",
+      "source_content": "## What is chaosd",
+      "source_content_hash": "928ead69322abea51b87c02189ab6ad3ac1ac35de8647df09d25e6a84f907378",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 什麼是 chaosd"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "To meet the growing needs of chaos testing on physical machines, we are excited to present an enhanced toolkit called chaosd. You might find the name familiar. That’s because it evolved from `chaos-daemon`, a key component in Chaos Mesh. At TiDB Hackathon 2020, we [refactored chaosd to make it more than a command-line tool](https://pingcap.com/blog/chaos-mesh-remake-one-step-closer-toward-chaos-as-a-service#refactor-chaosd). Now with [chaosd v1.0.1](https://github.com/chaos-mesh/chaosd/releases/tag/v1.0.1), you can simulate specific errors that target physical machines, and then, undo the chaos experiments like nothing had happened.",
+      "source_content_hash": "f078959209743227e60fc55d322d8fd643746258ff13ccc09c8b64976f49d904",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "為滿足實體機器混沌測試的增長需求，我們隆重推出強化工具包 chaosd。您可能對這個名稱感到熟悉，因為它是由 Chaos Mesh 的核心組件 `chaos-daemon` 演變而來。在 TiDB Hackathon 2020 中，我們[重構了 chaosd 使其超越命令列工具的範疇](https://pingcap.com/blog/chaos-mesh-remake-one-step-closer-toward-chaos-as-a-service#refactor-chaosd)。現在透過 [chaosd v1.0.1](https://github.com/chaos-mesh/chaosd/releases/tag/v1.0.1)，您能模擬針對實體機器的特定錯誤，並在實驗後完整恢復原狀。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee0e40d",
+      "source_content": "## Benefits of chaosd",
+      "source_content_hash": "8a0534ead6d63ee08269ef4ac4e4844eebf61ca2780e0b2c3ba0cea57ef47651",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## chaosd 的優勢"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "chaosd has the following advantages:",
+      "source_content_hash": "bc682479eb2541a529f42426780c9b6763c9aacba0a1a36629077b6366e923be",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "chaosd 具備以下優點："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b31a2bd",
+      "source_content": "- **Easy-to-use**: You can easily create and manage chaos experiments with chaosd commands.",
+      "source_content_hash": "32bd00f99295f7ff922d6038da33c65454fbd542cca3c61d7aeecd17d91df120",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **易於使用**：透過 chaosd 命令可輕鬆建立和管理混沌實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d7f0c63d",
+      "source_content": "- **Various fault types**: You can simulate faults to be injected on physical machines at different levels, including process faults, network faults, Java Virtual Machine (JVM) application faults, stress scenarios, disk faults, and host faults.",
+      "source_content_hash": "85c47fc59ca2b425c4e5da42c3e5e48bea0764f59c5282f1a23ff0a7a9c865b2",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **豐富的故障類型**：可在不同層級模擬實體機器故障，包括進程故障、網路故障、Java 虛擬機（JVM）應用故障、壓力場景、磁碟故障及主機故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ff75e5d8",
+      "source_content": "- **Multiple work modes**: You can use chaosd as a command-line tool or as a service.",
+      "source_content_hash": "b8a04f2589488aa221967c9a5f6bcf5e43f5cded0261c7dafeedce3c28685009",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **多種工作模式**：可作為命令列工具或服務運行。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a76548f8",
+      "source_content": "Without further ado, let’s give it a try.",
+      "source_content_hash": "41f63f036018206a29fc7e30433b7604bea00ed63e9239390718dd2c7a36e5d6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "事不宜遲，讓我們立即試用。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2f30ae8",
+      "source_content": "## How to use chaosd",
+      "source_content_hash": "c853f094d8ce32b96c8325537389fdd79aa55b7f4811eecb10c9292b4aeda4a3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 如何使用 chaosd"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfe931a2",
+      "source_content": "In this section, I will walk you through how to inject a network fault with chaosd. Your glibc version must be v2.17 or later versions.",
+      "source_content_hash": "00e9031880692fc788a00bb25f2a3ad14edee9186b096541e1d94b943390e6dc",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本節將逐步示範如何使用 chaosd 注入網路故障。您的 glibc 版本必須為 v2.17 或更高。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0037ff70",
+      "source_content": "### 1. Download and unzip chaosd",
+      "source_content_hash": "08606cc962083b7b0485764aecbab3f7ffdbebb2e844c3b3181eaf41a1f5e973",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 1. 下載並解壓 chaosd"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bdc231b1",
+      "source_content": "To download chaosd, run the following command:",
+      "source_content_hash": "af035b766062e6f2c1ae32dc72d2b5c19278f04cdd96758993797316756440f4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下命令下載 chaosd："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "be2d5397",
+      "source_content": "```bash\ncurl -fsSL -o chaosd-v1.0.1-linux-amd64.tar.gz https://mirrors.chaos-mesh.org/chaosd-v1.0.1-linux-amd64.tar.gz\n```",
+      "source_content_hash": "925eb1a114b7ed89f3026d4464decbaa28b1b50ca90b1e989e2fdbbdd9b93b7d",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_be2d5397"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3cfe6286",
+      "source_content": "Unzip the file. It contains two file folders:",
+      "source_content_hash": "174456267b8284441fcc14588ce4f05faf8c24b158c0f3b48203b67bf233d15e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "解壓縮檔案，其中包含兩個目錄："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c6e6fb16",
+      "source_content": "- `chaosd` contains the tool entry of chaosd.",
+      "source_content_hash": "b95ac564e5f52a5d97c33a6f9481d5602b35acb3a9725fac7f6d3e89a8753617",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `chaosd` 包含 chaosd 的執行入口。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6c00797f",
+      "source_content": "- `tools` contains the tools needed to perform the chaos experiment, including [stress-ng](https://wiki.ubuntu.com/Kernel/Reference/stress-ng) (to simulate stress scenarios), [Byteman](https://github.com/chaos-mesh/byteman) (to simulate JVM application faults), and PortOccupyTool (to simulate network faults).",
+      "source_content_hash": "42d4941610ba03499941149e59301519132eb0538ce044b7b0d62e49367bde4a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `tools` 包含執行混沌實驗所需的工具：[stress-ng](https://wiki.ubuntu.com/Kernel/Reference/stress-ng)（模擬壓力場景）、[Byteman](https://github.com/chaos-mesh/byteman)（模擬 JVM 應用故障）及 PortOccupyTool（模擬網路故障）。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8bddee80",
+      "source_content": "### 2. Create a chaos experiment",
+      "source_content_hash": "bd84302cc93d81f7a23eda590e7b93d5413f87da5bacc94b6a9ba38019d68619",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 2. 建立混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a9d49f92",
+      "source_content": "In this chaos experiment, the server will be unable to access chaos-mesh.org.",
+      "source_content_hash": "b49d1b05ac728266c969e54dcf34892f8f118603d899d2c169da6bf2c6dd08b2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本實驗將使伺服器無法存取 chaos-mesh.org。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a44047a5",
+      "source_content": "Run the following command:",
+      "source_content_hash": "f862cbcf2effa4fdc7a0e127b8226104aa5732e1678e51799688f2cd45b9efc9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下命令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "64b6f348",
+      "source_content": "```bash\nsudo ./chaosd attack network loss --percent 100 --hostname chaos-mesh.org --device ens33\n```",
+      "source_content_hash": "f813f3337932e2aeff9b7f647575fe24538c55681be6b2abb8e6806c4077a4c5",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_64b6f348"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9aaa519",
+      "source_content": "Example output:",
+      "source_content_hash": "5cd14a4bfcdbbc322d152d064ba25916845608f0a18a54a1d26ccdf679156032",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "範例輸出："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ef0d086d",
+      "source_content": "```bash\nAttack network successfully, uid: c55a84c5-c181-426b-ae31-99c8d4615dbe\n```",
+      "source_content_hash": "a63a590396f4991767d5f8373a81c5e95b34c960ae755d010b39e0e2a207e6ac",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ef0d086d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ea4c715",
+      "source_content": "In this simulation, the ens33 network interface card cannot send network packets to or receive packets from [chaos-mesh.org](http://chaos-mesh.org). The reason why you have to use `sudo` commands is that the chaos experiment modifies network rules, which require root privileges.",
+      "source_content_hash": "be5c253bf6544b444ff78219b5ab7991df720d9401050aaf8a49c12d920dddd8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此模擬使 ens33 網路介面卡無法傳送或接收 [chaos-mesh.org](http://chaos-mesh.org) 的網路封包。必須使用 `sudo` 命令的原因在於實驗需修改網路規則，這需要 root 權限。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "79ad944d",
+      "source_content": "Also, don’t forget to save the `uid` of the chaos experiment. You’ll be entering that later as part of the recovery process.",
+      "source_content_hash": "06f0aafd6cbb127acb99fc821affaf25c7ec6b4b38d48801c0e3c1d0157d2b7f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "請務必保存混沌實驗的 `uid`，後續恢復流程將使用此識別碼。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8c6d7ee7",
+      "source_content": "### 3. Verify the results",
+      "source_content_hash": "d6cd1c964b9c8a3c5e638a936a92f6f2ab8dc1331d34aefeb131deae198dba1c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 3. 驗證結果"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "06e24cc0",
+      "source_content": "Use the `ping` command to see if the server can access chaos-mesh.org:",
+      "source_content_hash": "4ac5e9f3ca365b8c51714fd2a1ee549f38fade28baad63c98170a87d8f3d6e08",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "使用 `ping` 命令測試伺服器能否存取 chaos-mesh.org："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7d13cf22",
+      "source_content": "```bash\nping chaos-mesh.org\nPING chaos-mesh.org (185.199.109.153) 56(84) bytes of data.\n```",
+      "source_content_hash": "e399f8ded600dbf6cb81b101433388fde0d1ce95d19938ed42f29eb5a92aabb3",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7d13cf22"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f01228d3",
+      "source_content": "When you execute the command, it’s very likely that the site won’t respond. Press `CTRL`+`C` to stop the ping process. You should be able to see the statistics of the `ping` command: `100% packet loss`.",
+      "source_content_hash": "8c3eb17a3e2e36ac193d99d4d01201d0a67375ead7fed406b0f714fc2178a488",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當你執行指令時，該網站很可能不會回應。按下 `CTRL`+`C` 來停止 ping 程序。你應該能看到 `ping` 指令的統計資料：`100% packet loss`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "afa378f7",
+      "source_content": "Example output:",
+      "source_content_hash": "5cd14a4bfcdbbc322d152d064ba25916845608f0a18a54a1d26ccdf679156032",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "範例輸出："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a89f84e1",
+      "source_content": "```bash\n2 packets transmitted, 0 received, 100% packet loss, time 1021ms\n```",
+      "source_content_hash": "092fdd0ea500482bec4fbae897ffce3f841fc0db769aea44953200f085d7d6fa",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a89f84e1"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "66819c78",
+      "source_content": "### 4. Recover the experiment",
+      "source_content_hash": "f98caedc3f303952eac0c90623d91720f4b7838de60a46149fc0d2cca195b6ec",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 4. 恢復實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fbc2db85",
+      "source_content": "To recover the experiment, run the following command:",
+      "source_content_hash": "c89515aced10516e8c1c38a6c198d8e92f0eb04456dd12102c194b4951ae0a49",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要恢復實驗，請執行以下指令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b73a4a7a",
+      "source_content": "```bash\nsudo ./chaosd recover c55a84c5-c181-426b-ae31-99c8d4615dbe\n```",
+      "source_content_hash": "60eb5e45bbf12e69b80f6c2012d9a8e114881470ad5013274fd88098b3a47535",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b73a4a7a"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5803caac",
+      "source_content": "Example output:",
+      "source_content_hash": "5cd14a4bfcdbbc322d152d064ba25916845608f0a18a54a1d26ccdf679156032",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "範例輸出："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5782e280",
+      "source_content": "```bash\nRecover c55a84c5-c181-426b-ae31-99c8d4615dbe successfully\n```",
+      "source_content_hash": "044297514523c930e1c2dbf7e68e47d760be2e565363cd3409a60dc4d7bc63d3",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_5782e280"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "82e90254",
+      "source_content": "In this step, you also need to use `sudo` commands because root privileges are required. When you finish recovering the experiment, try to ping chaos-mesh.org again to verify the connection.",
+      "source_content_hash": "c8ccd62cc9e1c0758e5af8766d2c703aa9c5841bfe75b38138bbc722fb33f466",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在此步驟中，你同樣需要使用 `sudo` 指令，因為需要 root 權限。當你完成恢復實驗後，請再次嘗試 ping chaos-mesh.org 來驗證連線。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e06c002e",
+      "source_content": "## Next steps",
+      "source_content_hash": "3a5d9cbc49e6e5f0c98349dd1cd7cfe5713807fc5f02234240621031925d1f32",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 後續步驟"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "99d0dd9b",
+      "source_content": "### Support dashboard web",
+      "source_content_hash": "4111e4a6e0422828286744947272d4f282788fa1d687eaaf144400831676c2b6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 支援儀表板網頁"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d79a4831",
+      "source_content": "As you can see, chaosd is fairly easy to use. But we can make it easier—a dashboard web for chaosd is currently under extensive development.",
+      "source_content_hash": "90cfff7bec1dfe2ca7edd51b2d76808d081b4a585f7c563437ccd885b0ea8630",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如你所見，chaosd 相當易於使用。但我們可以讓它更簡單——chaosd 的儀表板網頁目前正在積極開發中。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2838eb68",
+      "source_content": "We will continue to enhance its usability and implement more functionalities such as managing chaos experiments run with chaosd as well as those run with Chaos Mesh. This will provide a consistent and unified user experience for chaos testing on Kubernetes and physical machines. The architecture below is just a simple example:",
+      "source_content_hash": "fc3c98e28f68063870648f75dbd3196193f322d756c9b3163dbc19b62c4e9c02",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們將持續提升其易用性並實作更多功能，例如管理透過 chaosd 執行的混沌實驗，以及透過 Chaos Mesh 執行的實驗。這將為 Kubernetes 和實體機器上的混沌測試提供一致且統一的用戶體驗。以下架構僅為簡單範例："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4be28ed1",
+      "source_content": "![Chaos Mesh's optimized architecture](/img/blog/chaos-mesh-optimized-architecture.png)",
+      "source_content_hash": "33e2952600ca3592121bcd483044809efe1ce8a3f531caf4c02969fbe9614d40",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Mesh 的優化架構](/img/blog/chaos-mesh-optimized-architecture.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0e80209e",
+      "source_content": "For more, check out [Chaos Mesh's optimized architecture](https://pingcap.com/blog/chaos-mesh-remake-one-step-closer-toward-chaos-as-a-service#developing-chaos-mesh-towards-caas).",
+      "source_content_hash": "bbd8cf7c0b68b70812d7ea536f856f6bd1a38450554bd8dfaf6b812a36db74e8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "欲了解更多，請查看 [Chaos Mesh 的優化架構](https://pingcap.com/blog/chaos-mesh-remake-one-step-closer-toward-chaos-as-a-service#developing-chaos-mesh-towards-caas)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d1f76d04",
+      "source_content": "### Add more fault injection types",
+      "source_content_hash": "35c8af2c163d3c2dfc7ead70d78b049081be632571ed44bcf83259fc0ae310bb",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 新增更多故障注入類型"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6693c38c",
+      "source_content": "Currently, chaosd provides six fault injection types. We plan to develop more types that have been supported by Chaos Mesh, including HTTPChaos and IOChaos.",
+      "source_content_hash": "9bfb1334f34f2ded9aa708cba96a3fa076cc32dcd8657cc4796dd4a78b3c009c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前，chaosd 提供六種故障注入類型。我們計劃開發更多 Chaos Mesh 已支援的類型，包括 HTTPChaos 和 IOChaos。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e9313fef",
+      "source_content": "If you are interested in helping us improve chaosd, you are welcome to [pick an issue](https://github.com/chaos-mesh/chaosd/labels/help%20wanted) and get started!",
+      "source_content_hash": "c636d580cd32da0c08d088ee3d3f875d3936861318228650ec530e298e0436ee",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如果你有興趣協助我們改善 chaosd，歡迎[挑選一個議題](https://github.com/chaos-mesh/chaosd/labels/help%20wanted)並開始貢獻！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "48155948",
+      "source_content": "## Try it out!",
+      "source_content_hash": "41387c021013aa12b6d53975bc1b73d3d43a8e32cd418e423fd2e88f5e34072e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 立即嘗試！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1958bc43",
+      "source_content": "If you are interested in using chaosd and want to explore more, check out the [documentation](https://chaos-mesh.org/docs/chaosd-overview). If you come across an issue when you run chaosd, or if you have a feature request, feel free to [create an issue](https://github.com/chaos-mesh/chaosd/issues). We would love to hear your voice!",
+      "source_content_hash": "ab115ca65e2a4f60cb32a6ae2b3f07670f68b8381801c070835d1ccfef9bd04c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如果你有興趣使用 chaosd 並想進一步探索，請查看[文件](https://chaos-mesh.org/docs/chaosd-overview)。如果在執行 chaosd 時遇到問題，或者有功能請求，歡迎隨時[建立議題](https://github.com/chaos-mesh/chaosd/issues)。我們很樂意聽到你的聲音！"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2021-09-15-run-chaos-experiments-on-physical-machines.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.047645+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "60a88662bf2098a5b48dd349b727fa62159e99258801a597d059abadbc8577d2"
+  }
+}

@@ -1,0 +1,639 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/simulate-physical-machine-chaos.md",
+  "source_file_content_hash": "145a4129dd24001b09585dc2829f436c27062adfd3164fddee559cb7b3da50fd",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate Faults on Physical Machines\n---",
+      "source_content_hash": "59ff7b0cf267cd13c6dd3b87161655f8f52b14fa1085c4cd4f20ab202db49f45",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document describes how to create PhysicalMachineChaos (physical machine chaos) experiments in Chaos Mesh to simulate the faults of network, disk, pressure, JVM, time, and others in physical or virtual machines.",
+      "source_content_hash": "6e99fb5aa632990a940a9ffb14b149a4a2b4afeadd2068016fa47a4016a109bf",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件說明如何在 Chaos Mesh 中建立 PhysicalMachineChaos（實體機器混沌）實驗，以模擬實體或虛擬機器中的網路、磁碟、壓力、JVM、時間及其他故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## Introduction to PhysicalMachineChaos",
+      "source_content_hash": "5da17a59ff68eb515ee5732d4ddf07e1954fa7a18b44ee41f164e86b2ca16c30",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## PhysicalMachineChaos 簡介"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "You can use PhysicalMachineChaos to simulate the faults of network, disk, pressure, JVM, time, and others in physical or virtual machines. Before using PhysicalMachineChaos provided by Chaos Mesh, you need to deploy Chaosd in your physical or virtual machines. The version mapping between Chaos Mesh and Chaosd is as follows:",
+      "source_content_hash": "c5a67dc48b9c6c6931cce7dcc29b97b4f209a44eb7977165c1b52aec00177adc",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可以使用 PhysicalMachineChaos 來模擬實體或虛擬機器中的網路、磁碟、壓力、JVM、時間及其他故障。在使用 Chaos Mesh 提供的 PhysicalMachineChaos 之前，您需要在實體或虛擬機器中部署 Chaosd。Chaos Mesh 和 Chaosd 的版本對應關係如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b6894d1e",
+      "source_content": "| Chaos Mesh version | Chaosd version |\n| :----------------- | :------------- |\n| v2.1.x             | v1.1.x         |\n| v2.2.x             | v1.2.x         |",
+      "source_content_hash": "02971234bc8417e5de2b1be12a691f8ef04b18da2b2b81e15728198b63cd3808",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b6894d1e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cbe57f9d",
+      "source_content": "## Deploy Chaosd server",
+      "source_content_hash": "b75ef08b08ccb59be47a8da657196d03dd0afed49f6315d2b1dff43f8e561f8c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 部署 Chaosd 伺服器"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39b3772c",
+      "source_content": "Before creating PhysicalMachineChaos experiments using Chaos Mesh, you need to deploy Chaosd in service mode to all physical or virtual machines that are going to be injected with faults. After deploying Chaosd, run Chaosd server as follows:",
+      "source_content_hash": "ae0c8c3e2a11cfb7837446d3ac11fb21bf7e354c41da994555beddb44f268835",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在使用 Chaos Mesh 建立 PhysicalMachineChaos 實驗之前，您需要以服務模式在所有將被注入故障的實體或虛擬機器中部署 Chaosd。部署 Chaosd 後，請按照以下方式執行 Chaosd 伺服器："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dc10b09",
+      "source_content": "1. Deploy Chaosd, generate a TLS certificate, and create `PhysicalMachine`:\n\n   - For the deployment method of Chaosd, refer to [Download and deploy Chaosd](chaosd-overview.md#download-and-deploy).\n   - After deploying Chaosd, **before** starting Chaosd server, you need to generate a TLS certificate and create a `PhysicalMachine` in Kubernetes clusters. For more information on how to generate TLS certificates, refer to [Generate TLS certificates for Chaosd](chaosctl-tool.md#generate-tls-certificates-for-chaosd).",
+      "source_content_hash": "164a660241fd2179ebcc3ca28291a3613002dd52fd4c2ee57d9b056eace43684",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 部署 Chaosd、產生 TLS 憑證並建立 `PhysicalMachine`：\n   \n   - 有關 Chaosd 的部署方法，請參閱[下載並部署 Chaosd](chaosd-overview.md#download-and-deploy)。\n   - 部署 Chaosd 後，在啟動 Chaosd 伺服器**之前**，您需要產生 TLS 憑證並在 Kubernetes 叢集中建立 `PhysicalMachine`。有關如何產生 TLS 憑證的更多資訊，請參閱[為 Chaosd 產生 TLS 憑證](chaosctl-tool.md#generate-tls-certificates-for-chaosd)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ff75e5d8",
+      "source_content": "2. Start Chaosd server:\n\n   - After generating the TLS certificate through Chaosctl, run the following command to start Chaosd in service mode:\n\n     ```bash\n     chaosd server --https-port 31768 --CA=/etc/chaosd/pki/ca.crt --cert=/etc/chaosd/pki/chaosd.crt --key=/etc/chaosd/pki/chaosd.key\n     ```\n\n     :::note\n\n     The TLS certificates are saved to the default output directory of Chaosctl. If you manually specified another directory when generating certificates, replace the directory in the command line with the corresponding one.\n\n     :::",
+      "source_content_hash": "fb1c094708997ad85146b49f1c90b3a952f97354131435f6bb36f6eda3d86e94",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 啟動 Chaosd 伺服器：\n   \n   - 透過 Chaosctl 產生 TLS 憑證後，執行以下指令以服務模式啟動 Chaosd：\n   \n     ```bash\n     chaosd server --https-port 31768 --CA=/etc/chaosd/pki/ca.crt --cert=/etc/chaosd/pki/chaosd.crt --key=/etc/chaosd/pki/chaosd.key\n     ```\n     \n     :::note\n     \n     TLS 憑證儲存於 Chaosctl 的預設輸出目錄。若您在產生憑證時手動指定了其他目錄，請將指令行中的目錄替換為相應的目錄。\n     \n     :::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b49764d4",
+      "source_content": "- If the TLS certificate is not generated through Chaosctl, you can run the following command to start Chaosd in service mode. However, for the security of your clusters, this is **not** recommended.\n\n  ```bash\n  chaosd server --port 31767\n  ```",
+      "source_content_hash": "fcb3ddc0102d32125c672566e78c9a79f39917178ccca5f837eba71c4634b863",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 若未透過 Chaosctl 產生 TLS 憑證，您可以執行以下指令以服務模式啟動 Chaosd。但基於叢集安全考量，此方式**不建議**使用：\n  \n  ```bash\n  chaosd server --port 31767\n  ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "35a77014",
+      "source_content": "## Create experiments using Chaos Dashboard",
+      "source_content_hash": "0e6c13931d3c46c241532f93bf2c43261695607133973a006c15d6651045ed71",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Chaos Dashboard 建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c710067",
+      "source_content": "1. Open Chaos Dashboard, and click **NEW EXPERIMENT** on the page to create a new experiment:\n\n   ![create a new experiment](./img/create-new-exp.png)",
+      "source_content_hash": "8fc19b405051ae3b6a8fdbccb7aa01baf6732152418ca0365bfab6540036bc9c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 開啟 Chaos Dashboard，在頁面上點擊 **NEW EXPERIMENT** 以建立新實驗：\n   \n   ![create a new experiment](./img/create-new-exp.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a2d18d88",
+      "source_content": "2. Click **PHYSIC** in **Experiment Type** and choose a specific type of the experiment, such as **NETWORK ATTACK**. Then, choose a specific behavior and fill out the corresponding configurations:\n\n   ![PhysicalMachineChaos experiment](./img/physicalmachinechaos-exp.png)",
+      "source_content_hash": "f5a3fac4931def477f0265d6f0f477e11adc31c35abed010254eb71a177e45d7",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 在 **Experiment Type** 中點擊 **PHYSIC**，並選擇實驗的特定類型，例如 **NETWORK ATTACK**。然後，選擇特定行為並填寫相應的配置：\n   \n   ![PhysicalMachineChaos experiment](./img/physicalmachinechaos-exp.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f60f155a",
+      "source_content": "3. Fill out the experiment information to specify the range and the planned duration of the experiment:\n\n   ![PhysicalMachineChaos experiment information](./img/physicalmachinechaos-exp-info.png)",
+      "source_content_hash": "fb9b516c69096059445568111e9a91c3da5c38c315fd60e7c867801061c543b6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 填寫實驗資訊以指定實驗的範圍和計劃持續時間：\n   \n   ![PhysicalMachineChaos experiment information](./img/physicalmachinechaos-exp-info.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2be69f97",
+      "source_content": "4. Submit the experiment.",
+      "source_content_hash": "c32ff26f41426a16522a93bbf144af237eddda515bd301dd48a256c378be7d91",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 提交實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e912d935",
+      "source_content": "## Create experiments using an YAML file",
+      "source_content_hash": "27139b4f5faef2e8474aff42049452c905f5ebe6b061e7fe206d6ee061f5d61b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 YAML 檔案建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "21d3e688",
+      "source_content": "1. Write the experimental configurations to the \"physicalmachine.yaml\" file. For example:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: PhysicalMachineChaos\n   metadata:\n     name: physical-network-delay\n     namespace: chaos-mesh\n   spec:\n     action: network-delay\n     mode: one\n     selector:\n       namespaces:\n         - default\n       labelSelectors:\n         'arch': 'amd64'\n     network-delay:\n       device: ens33\n       ip-address: 140.82.112.3\n       latency: 1000ms\n     duration: '10m'\n   ```\n\n   The experimental configurations above send HTTP requests to Chaosd service in the specified physical machines or virtual machines to trigger network latency experiments.",
+      "source_content_hash": "ec71c9a0e77864ceba6af7b492888edff9dd2025001d64299b971ccfd8d0b0b8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將實驗配置寫入 \"physicalmachine.yaml\" 檔案。例如：\n   \n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: PhysicalMachineChaos\n   metadata:\n     name: physical-network-delay\n     namespace: chaos-mesh\n   spec:\n     action: network-delay\n     mode: one\n     selector:\n       namespaces:\n         - default\n       labelSelectors:\n         'arch': 'amd64'\n     network-delay:\n       device: ens33\n       ip-address: 140.82.112.3\n       latency: 1000ms\n     duration: '10m'\n   ```\n   \n   上述實驗配置向指定實體或虛擬機器中的 Chaosd 服務發送 HTTP 請求，以觸發網路延遲實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e2c83a13",
+      "source_content": "2. Create the experiment using `kubectl`. The command is as follows:\n\n   ```bash\n   kubectl apply -f physicalmachine.yaml\n   ```",
+      "source_content_hash": "7f296093f905fd041c812b1a2e363c85f1bd4dcb8aaadeae751e66d8d845423b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 使用 `kubectl` 建立實驗。指令如下：\n   \n   ```bash\n   kubectl apply -f physicalmachine.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6b04a59",
+      "source_content": "### Configuration description",
+      "source_content_hash": "7a2e385b64648ac8aed2dc3d2bd7bca84e0044fd7e136363e23294289d53bc64",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 配置說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ae037701",
+      "source_content": "| Configuration item | Type | Description | Default value | Required | Example |\n| :-- | :-- | :-- | :-- | :-- | :-- |\n| `action` | string | Defines the actions of physical machines faults, optional values are as follows: `stress-cpu`, `stress-mem`, `disk-read-payload`, `disk-write-payload`, `disk-fill`, `network-corrupt`, `network-duplicate`, `network-loss`, `network-delay`, `network-partition`, `network-dns`, `process`, `jvm-exception`, `jvm-gc`, `jvm-latency`, `jvm-return`, `jvm-stress`, `jvm-rule-data`, `clock` | None | Yes | `stress-cpu` |\n| `address` | string array | Selects the `address` of Chaosd service to inject faults, only one of `address` or `selector` could be specified | [] | Yes | [\"192.168.0.10:31767\"] |\n| `selector` | struct | Specifies the target PhysicalMachine. For details, refer to [Define the experiment scope](define-chaos-experiment-scope.md), only one of `address` or `selector` could be specified | None | No |  |\n| `mode` | string | Specifies the mode of the experiment. The mode options include `one` (selecting a random PhysicalMachine), `all` (selecting all eligible PhysicalMachines), `fixed` (selecting a specified number of eligible PhysicalMachines), `fixed-percent` (selecting a specified percentage of PhysicalMachines from the eligible PhysicalMachines), and `random-max-percent` (selecting the maximum percentage of PhysicalMachines from the eligible PhysicalMachines). | None | Yes | `one` |\n| `value` | string | Provides a parameter for the `mode` configuration, depending on `mode`. For example, when `mode` is set to `fixed-percent`, `value` specifies the percentage of PhysicalMachines. | None | No | `1` |\n| `duration` | string | Specifies the duration of experiments | None | Yes | `30s` |",
+      "source_content_hash": "cca06de8517c12fb248db88f6a0a2b84f52c69d7faaa5d5c60237449a0d2e906",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ae037701"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2838eb68",
+      "source_content": "Each fault action has its own specific configurations. The following section introduces various fault types and their corresponding configuration methods.",
+      "source_content_hash": "7aa11d74e4cf9edd48e79cac01cf3e968f6b109d1c926d200747fb86f7c5f3c8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "每個故障動作都有其特定的配置參數。以下章節將介紹各類故障類型及其對應的配置方法。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42a5832e",
+      "source_content": "#### CPU stress",
+      "source_content_hash": "c2123954788b2b642a9980fa7b70144d32b33429ffbf6d6c03031ebcd99fc475",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### CPU 壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0e80209e",
+      "source_content": "To simulate a CPU stress scenario, you need to set the action to \"stress-cpu\". For the corresponding configurations, refer to Parameters of simulating CPU stress.",
+      "source_content_hash": "73d85e22d121bad1165fb79c0a83fc2e3dc846b26feca109961cd6ff789400f2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬 CPU 壓力場景，需將動作設定為 \"stress-cpu\"。對應配置請參閱模擬 CPU 壓力的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d1f76d04",
+      "source_content": "#### Memory stress",
+      "source_content_hash": "2eb42aa9e1ea2c095e0b73558b29963938508df581d356ef262872bdaac19563",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 記憶體壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6693c38c",
+      "source_content": "To simulate a memory stress scenario, you need to set the action to \"stress-mem\". For the corresponding configurations, refer to Parameters of simulating memory stress.",
+      "source_content_hash": "4384ae4a7901cc014a33cd6dae80d1b5f67016946a628e0d0e4b6ea31dbc5fc7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬記憶體壓力場景，需將動作設定為 \"stress-mem\"。對應配置請參閱模擬記憶體壓力的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8172a0a5",
+      "source_content": "#### Disk read load",
+      "source_content_hash": "d34b56d9f6b356889e5f4808f82d0f6661d54420ea7c3b3d5ed045edb8ab32a1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 磁碟讀取負載"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1b4de6df",
+      "source_content": "To simulate a disk read load scenario, you need to set the action to \"disk-read-payload\". For the corresponding configurations, refer to Parameters of simulating disk read load.",
+      "source_content_hash": "d7f15002c3b796ece676316f75c6bcf20711535e285146f439ceecfe66985f8f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬磁碟讀取負載場景，需將動作設定為 \"disk-read-payload\"。對應配置請參閱模擬磁碟讀取負載的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "37fca32e",
+      "source_content": "#### Disk write load",
+      "source_content_hash": "bc2c64237e5a8568bdf07952ec7f783890d5a71e1ce9946cce0333e1dd3e860f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 磁碟寫入負載"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a8610918",
+      "source_content": "To simulate a disk write load scenario, you need to set the action to \"disk-write-payload\". For the corresponding configurations, refer to Parameters of simulating disk write load.",
+      "source_content_hash": "b7f11d8ac79bef01f751b838f86b79d9bfb8fa452e94bb9dbe5ea2e92d5ff697",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬磁碟寫入負載場景，需將動作設定為 \"disk-write-payload\"。對應配置請參閱模擬磁碟寫入負載的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9b8694c",
+      "source_content": "#### Disk fill",
+      "source_content_hash": "3ff066182dbf7b1a87ed1d44d53d7a43a80f98116cf11d36658e53ca35ef6b23",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 磁碟填充"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b6152880",
+      "source_content": "To simulate a disk fill scenario, you need to set the action to \"disk-fill\". For the corresponding configurations, refer to Parameters of simulating disk fill.",
+      "source_content_hash": "30ec9406de6e65d984b99a5cbd5b6b28baf7c4be00ebb8e731430be60c72baec",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬磁碟填充場景，需將動作設定為 \"disk-fill\"。對應配置請參閱模擬磁碟填充的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "23b96cc0",
+      "source_content": "#### Network corruption",
+      "source_content_hash": "833619e3ed5be93a1caf0242bf0a74a4a0a3237f0603bf127a22c5e929526d18",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路封包損壞"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8fcdd6d4",
+      "source_content": "To simulate a network corruption scenario, you need to set the action to \"network-corrupt\". For the corresponding configurations, refer to Parameters of simulating network corruption.",
+      "source_content_hash": "2b9447bbd7b0c538f2627c5ef3dac34af041c36b43eca2b6b3a66f78b75979b0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬網路封包損壞場景，需將動作設定為 \"network-corrupt\"。對應配置請參閱模擬網路封包損壞的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c35e5786",
+      "source_content": "#### Network latency",
+      "source_content_hash": "20f6893e5d09414b20aacb4dc97c07d6f1e71bf13ad8f9646c93c2dc0b7d6af3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路延遲"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c9e2b64",
+      "source_content": "To simulate a network latency scenario, you need to set the action to \"network-delay\". For the corresponding configurations, refer to Parameters of simulating network latency.",
+      "source_content_hash": "6880a4966966061f06612f5be8926ab79a6276aa41b52c52cd9d1fc8e14e9118",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬網路延遲場景，需將動作設定為 \"network-delay\"。對應配置請參閱模擬網路延遲的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d53c8ed4",
+      "source_content": "#### Network duplication",
+      "source_content_hash": "8e0ba2113b395dab322a6ccb6f7de45119c6b8c073243b82647b6a950542d395",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路封包重複"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ecf0882",
+      "source_content": "To simulate a network duplication scenario, you need to set the action to \"network-duplicate\". For the corresponding configurations, refer to Parameters of simulating network duplication.",
+      "source_content_hash": "bdd1234c2b4061915f5169e4d51f0a2dd573dfd06c98f6f9f2db2682a6d46810",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬網路封包重複場景，需將動作設定為 \"network-duplicate\"。對應配置請參閱模擬網路封包重複的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c6868a9f",
+      "source_content": "#### Network loss",
+      "source_content_hash": "2b41a098513afc197921e4401325d53ace31e092c601ec9d0c8ba893924beef7",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路封包遺失"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bb1346b6",
+      "source_content": "To simulate a network loss scenario, you need to set the action to \"network-loss\". For the corresponding configurations, refer to Parameters of simulating network loss.",
+      "source_content_hash": "ba8fa262761d7718aada66dcf10d991d649919bd1b41d49e984515a11769299e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬網路封包遺失場景，需將動作設定為 \"network-loss\"。對應配置請參閱模擬網路封包遺失的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "734d40d8",
+      "source_content": "#### Network partition",
+      "source_content_hash": "5a868db31c91ef9db5d12131ec2e43a15de7b090ed8bde09b7270e33b0bb8982",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路分割"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9e90a9b3",
+      "source_content": "To simulate a network partition scenario, you need to set the action to \"network-partition\". For the corresponding configurations, refer to Parameters of simulating network partition.",
+      "source_content_hash": "3ff2ab059f7538f6fb866d34752dcc03ba292c5f7f3589b72ff000179396a3f4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬網路分割場景，需將動作設定為 \"network-partition\"。對應配置請參閱模擬網路分割的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a0d0e29e",
+      "source_content": "#### DNS fault",
+      "source_content_hash": "498585052d2fa8fee932a87aeaa197380fb051292a70f826b8f18fd5077212bc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### DNS 故障"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "be17ccc3",
+      "source_content": "To simulate a DNS fault scenario, you need to set the action to \"network-dns\". For the corresponding configurations, refer to Parameters of simulating DNS fault.",
+      "source_content_hash": "8630579d5d82d9c1ba44d8dc6514e14137ea6a30bd87e094aad23c4a9e45d3fa",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬 DNS 故障場景，需將動作設定為 \"network-dns\"。對應配置請參閱模擬 DNS 故障的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3cd8185f",
+      "source_content": "#### Process fault",
+      "source_content_hash": "0ba5b118be87fc41ac509adae430521ecfc3317ce17e1f6840b55f59e9a63bca",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 進程故障"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e8f45da",
+      "source_content": "To simulate a process fault scenario, you need to set the action to \"process\". For the corresponding configurations, refer to Parameters of simulating process fault.",
+      "source_content_hash": "fd242fedf923fa098475d8f5d8206dd465b75c99284f1ce731aecbf449231983",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬進程故障場景，需將動作設定為 \"process\"。對應配置請參閱模擬進程故障的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "55dc794c",
+      "source_content": "#### Throw custom exceptions for JVM applications",
+      "source_content_hash": "f939090e4b5dca5c3a7512f02834e79a8e41b810fc40611e6da5ee8d5862c2bb",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 觸發 JVM 應用程式自訂例外"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "63565425",
+      "source_content": "To simulate a scenario that JVM applications throw custom exceptions, you need to set the action to \"jvm-exception\". For the corresponding configurations, refer to Parameters for throwing custom exceptions.",
+      "source_content_hash": "1ead0e6dd1e72c55b3a2ba643b78e2b76f6211699d42cd4f98423b8afa73a165",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬 JVM 應用程式拋出自訂例外場景，需將動作設定為 \"jvm-exception\"。對應配置請參閱拋出自訂例外的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c6b2ca77",
+      "source_content": "#### Increase method latency for JVM applications",
+      "source_content_hash": "0be21293157df71e877e9fb4b76c9d7616098b9f5602b23129315f5b69649656",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 增加 JVM 應用程式方法延遲"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dce16ab4",
+      "source_content": "To simulate a scenario that JVM applications increase method latency, you need to set the action to \"jvm-latency\". For the corresponding configurations, refer to Parameters for increasing method latency.",
+      "source_content_hash": "692a1c9d21cb86b32f7189869131d0311b213c6d05cf629c3b82bea6336508a6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬 JVM 應用程式增加方法延遲場景，需將動作設定為 \"jvm-latency\"。對應配置請參閱增加方法延遲的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7312e69e",
+      "source_content": "#### Modify return values of methods for JVM applications",
+      "source_content_hash": "88ae710bec4ff2b7ac5c9b9c90eeaa26c919e8586f2215d3f4e18edf3fa8e49b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 修改 JVM 應用程式方法返回值"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dbfc5f7",
+      "source_content": "To simulate a scenario that JVM applications modify return values of methods, you need to set the action to \"jvm-return\". For the corresponding configurations, refer to Parameters for modifying return values of a method.",
+      "source_content_hash": "b5dca275ad27248d05d58c449892e26451a18b9c000b18e94db8af8f18fc632a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬 JVM 應用程式修改方法返回值場景，需將動作設定為 \"jvm-return\"。對應配置請參閱修改方法返回值的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3f77c6a0",
+      "source_content": "#### Trigger garbage collection for JVM applications",
+      "source_content_hash": "1dd183d2ef8df7ab0a01d33bce74ab39652542158a9d562f5c1831e78de9ba2b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 觸發 JVM 應用程式垃圾回收"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39f476dc",
+      "source_content": "To simulate a scenario that JVM applications trigger garbage collection, you need to set the action to \"jvm-gc\". For the corresponding configurations, refer to Parameters for triggering garbage collection.",
+      "source_content_hash": "259903649d86f1f89582fabd2c92ceeba6af96bc6994edc794a3dada376ad5b2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要模擬 JVM 應用程式觸發垃圾回收場景，需將動作設定為 \"jvm-gc\"。對應配置請參閱觸發垃圾回收的參數說明。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "16ae54ea",
+      "source_content": "#### Trigger faults using Byteman configuration files for JVM applications",
+      "source_content_hash": "78e64655592cfb79853e865b16f996dcce8ec504df5a60ad89119de151d48d17",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 透過 Byteman 配置檔案觸發 JVM 應用程式故障"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "62d066b0",
+      "source_content": "To simulate a scenario that JVM applications trigger faults using Byteman configuration files, you need to set the action to \"jvm-rule-data\". For the corresponding configurations, refer to Parameters for triggering faults by setting Byteman configuration files.",
+      "source_content_hash": "642c37ec23d1cddbc25d6590872a36c47ba0a5e789e016dc748ab778be5dbb91",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要模擬 JVM 應用程式使用 Byteman 設定檔觸發故障的情境，您需要將 action 設定為 \"jvm-rule-data\"。對應的配置，請參考設定 Byteman 設定檔觸發故障的參數。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a49ac2ed",
+      "source_content": "#### Time offset",
+      "source_content_hash": "6874ee2bdb6e8e360df4d1026fe94a3faa4ad93295c6b95897504c141822c948",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 時間偏移"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "808b0414",
+      "source_content": "To simulate a time offset scenario, you need to set the action to \"clock\". For the corresponding configurations, refer to Parameters of simulating time offset.",
+      "source_content_hash": "734199096c2fe0838b8d5552cbbf903abd97b8f4202225c2af2476031f3115ad",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要模擬時間偏移的情境，您需要將 action 設定為 \"clock\"。對應的配置，請參考模擬時間偏移的參數。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/simulate-physical-machine-chaos.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.117690+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "145a4129dd24001b09585dc2829f436c27062adfd3164fddee559cb7b3da50fd"
+  }
+}

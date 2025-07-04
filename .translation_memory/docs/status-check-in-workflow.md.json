@@ -1,0 +1,668 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/status-check-in-workflow.md",
+  "source_file_content_hash": "93500eeafaeeafc37e45686312f95609a24abdc8a93a15761c81806c29eb6c65",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Status Check in Workflow\n---",
+      "source_content_hash": "a15ef057ca2d158ab25a9a8d5c0fc3b0fea511fed47b6afc1b0097bf8e559866",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "In Workflow, the status check could execute specified operations on external systems, such as application systems and monitoring systems, to obtain their statuses, and automatically abort the Workflow when it finds the system is unhealthy. The concept is similar to `Container Probes` in Kubernetes. This article describes how to execute status checks in Workflow using YAML files.",
+      "source_content_hash": "9fb65404d0c0d0f7057be25bd3b11801a88051a2e576498a56b50b4de6935271",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "在工作流程中，狀態檢查可對外部系統（如應用系統和監控系統）執行指定操作以獲取其狀態，並在發現系統不健康時自動中止工作流程。此概念類似於 Kubernetes 中的「容器探針」。本文說明如何透過 YAML 檔案在工作流程中執行狀態檢查。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 1, translation has 0.",
+          "timestamp": "2025-07-04T06:49:59.295999+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "8c98994c",
+      "source_content": ":::note\n\nChaos Mesh does not yet support creating `StatusCheck` nodes on Chaos Dashboard, so you could only create `StatusCheck` nodes using YAML for now.\n\n:::",
+      "source_content_hash": "b80a9f7039b0331f4a9f86bdce73cb0052ad831a43a193b837e4eb6613e170b1",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\nChaos Mesh 目前尚不支援在 Chaos Dashboard 上建立 `StatusCheck` 節點，因此您目前只能使用 YAML 建立 `StatusCheck` 節點。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ba4f48ff",
+      "source_content": "## Status Check type",
+      "source_content_hash": "fe73b77293381e08291dd063bde99dd8f39e9482ff70880c4cb3dc9d8fc74c39",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 狀態檢查類型"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "Chaos Mesh only support the `HTTP` type to execute a status check.",
+      "source_content_hash": "a6912cb17bd3827d8c615eb64ee2d861fb4235f509603ef70d9ec6facc854396",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 僅支援透過 `HTTP` 類型執行狀態檢查。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3daf1b88",
+      "source_content": "### Define a `HTTP` `StatusCheck` node",
+      "source_content_hash": "bf6bdaecfcb71f6afc22d99e49c8ce8b28002dfb0055959d42464044ec3a267f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 定義 `HTTP` 類型的 `StatusCheck` 節點"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "A `StatusCheck` node sends `GET` or `POST` HTTP requests to the specific URL, with custom headers and body, and then determines the result of the request by the conditions in the `criteria` field.",
+      "source_content_hash": "f06c7b619fb82b608d272f199aa6fb36d42aea93bb39ff340068d2434d2018b7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "`StatusCheck` 節點會向特定 URL 發送 `GET` 或 `POST` HTTP 請求，並使用自訂標頭和主體，然後透過 `criteria` 欄位中的條件判斷請求結果。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cbbebf8e",
+      "source_content": "```yaml\n- name: workflow-status-check\n  templateType: StatusCheck\n  deadline: 20s\n  statusCheck:\n    mode: Continuous\n    type: HTTP\n    intervalSeconds: 1\n    timeoutSeconds: 1\n    http:\n      url: http://123.123.123.123\n      method: GET\n      criteria:\n        statusCode: '200'\n```",
+      "source_content_hash": "e09c11c5d6e8f2f1a11a52e09759385f96ef347654d38d5b754b1c2d72e915fe",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_cbbebf8e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "97ae4a01",
+      "source_content": "In the configuration, you can see a `StatusCheck` node with `HTTP` type. The `deadline` field specifies that this node could be executed for a maximum of 20 seconds. The `mode` field specifies that this node will execute status checks continuously. The `intervalSeconds` field specifies a repetition interval of 1 second. The `timeoutSeconds` field specifies the timeout for each execution.",
+      "source_content_hash": "fcf7468724b1034f010385cfb42bce92f970a0f0eb039c1f3249da701d3b4ba1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "在此配置中，您可看到一個 `HTTP` 類型的 `StatusCheck` 節點。`deadline` 欄位指定此節點最多可執行 20 秒。`mode` 欄位指定此節點將持續執行狀態檢查。`intervalSeconds` 欄位設定每秒重複執行一次。`timeoutSeconds` 欄位指定每次執行的逾時時間。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`StatusCheck`', Translation: '`HTTP`'.",
+          "timestamp": "2025-07-04T06:49:59.296024+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "c3a738de",
+      "source_content": "When Workflow runs to this `StatusCheck` node, the specified status check would be executed every second. The status check uses the `GET` method to send an HTTP request to the URL `http://123.123.123.123`. If the response is returned within 1 second and the status code is `200`, this execution succeeds, otherwise it fails.",
+      "source_content_hash": "7dbb738ce21a36b7d5de5c2a8424c4aa1bfd88ff2b05c5a19fba479fe8fe04fa",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當工作流程執行到此 `StatusCheck` 節點時，每秒會執行指定的狀態檢查。該檢查使用 `GET` 方法向 URL `http://123.123.123.123` 發送 HTTP 請求。若在 1 秒內收到回應且狀態碼為 `200`，則此次執行成功，否則視為失敗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9f9e64f5",
+      "source_content": "## Status Check results",
+      "source_content_hash": "42ca32b5b5d5849f5493546fcb2e4f90d828d5c2128206372d622ecb8d367eb1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 狀態檢查結果"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1042b50d",
+      "source_content": "Each execution of the status check will get an `execution result`, either `Success` or `Failure`. Because a single `execution result` may not reflect the real situation of the system, due to fluctuations in certain conditions, the final `status check result` is not determined based on a single `execution result`.",
+      "source_content_hash": "162ed39272fe57910469d93e0dbbde07eb3f922b69a1a05434e90cdb85c3f987",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "每次狀態檢查執行會獲得一個「執行結果」（`Success` 或 `Failure`）。由於單次「執行結果」可能因特定條件波動而無法反映系統真實狀態，最終「狀態檢查結果」並非基於單次執行結果判定。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 6, translation has 2.",
+          "timestamp": "2025-07-04T06:49:59.296050+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "aa1e7006",
+      "source_content": "The `StatusCheck` node has `failureThreshold` and `successThreshold` two fields:",
+      "source_content_hash": "bc1c4c80c17da6210d177358ad03ce478bb5ee4ac8771087eb16f35658836e84",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "`StatusCheck` 節點具有 `failureThreshold` 和 `successThreshold` 兩個欄位："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c710067",
+      "source_content": "- When the number of consecutive failed `execution results` exceeds the `failureThreshold`, the `status check result` is considered to be a `Failure`.",
+      "source_content_hash": "a122233aaea25747325c935a8903b087ca55b44e30bdd752d66ee0dcfb6e1af6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- 當連續失敗的「執行結果」次數超過 `failureThreshold` 時，「狀態檢查結果」視為 `Failure`。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 4, translation has 2.",
+          "timestamp": "2025-07-04T06:49:59.296071+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "def098da",
+      "source_content": "- When the number of consecutive successful `execution results` exceeds the `successThreshold`, the `status check result` is considered to be a `Success`.",
+      "source_content_hash": "32e4407988d2db6340f5f272becdac16208f8011b8ad41ff7fd57519622853cc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- 當連續成功的「執行結果」次數超過 `successThreshold` 時，「狀態檢查結果」視為 `Success`。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 4, translation has 2.",
+          "timestamp": "2025-07-04T06:49:59.296090+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "95318d95",
+      "source_content": "```yaml\n- name: workflow-status-check\n  templateType: StatusCheck\n  deadline: 20s\n  statusCheck:\n    mode: Continuous\n    type: HTTP\n    successThreshold: 1\n    failureThreshold: 3\n    http:\n      url: http://123.123.123.123\n      method: GET\n      criteria:\n        statusCode: '200'\n```",
+      "source_content_hash": "792a163e4689616b5c1a45b12ae9fa2abe424c0ac0d1cd4edd55d3f389c75819",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_95318d95"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "531437ca",
+      "source_content": "In the configuration, the `StatusCheck` node will execute status checks continuously:",
+      "source_content_hash": "c0a84d8288e90fb2855b82536260eab4f47de22e6c95905085a5dbdec0e76f94",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在此配置中，`StatusCheck` 節點將持續執行狀態檢查："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c91200ba",
+      "source_content": "- When the `execution result` is `Success` for 1 or more consecutive times, the `status check result` is considered to be a `Success`.",
+      "source_content_hash": "45f339d83158e36eb5460e25acb97ab65272cef93a493a3d9249488d2d725399",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- 當連續 1 次或以上「執行結果」為 `Success` 時，「狀態檢查結果」視為 `Success`。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 4, translation has 2.",
+          "timestamp": "2025-07-04T06:49:59.296115+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "b27cda15",
+      "source_content": "- When the `execution result` is `Failure` for 3 or more consecutive times, the `status check result` is considered to be a `Failure`.",
+      "source_content_hash": "17f025ab2c9bd3749769ae3e8aecea66952d12956bf26e5188bec8c3c33dd85c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- 當連續 3 次或以上「執行結果」為 `Failure` 時，「狀態檢查結果」視為 `Failure`。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 4, translation has 2.",
+          "timestamp": "2025-07-04T06:49:59.296135+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "724adee0",
+      "source_content": ":::note\n\nIn the following sections, `status check fails` refers to that `status check result` is `Failure`, rather than a single `execution result` is `Failure`.\n\n:::",
+      "source_content_hash": "7a424211a124762b4ab849f73ab20a4bc531824d4f213109ca56f9c4c694b49e",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::note\n\n後續章節中，「狀態檢查失敗」指的是「狀態檢查結果」為 `Failure`，而非單次「執行結果」失敗。\n\n:::",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 5, translation has 1.",
+          "timestamp": "2025-07-04T06:49:59.296154+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "93028a4e",
+      "source_content": "### When the Status Check is unsuccessful, abort the Workflow",
+      "source_content_hash": "662414751edcc2ff7116520b40193de73529eb3f702318d095d0f8b5a6dd7b83",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 當狀態檢查未成功時中止工作流程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "084f365a",
+      "source_content": ":::note\n\nThe `StatusCheck` node only supports aborting the workflow automatically when the status check is unsuccessful. It could not pause or resume the workflow.\n\n:::",
+      "source_content_hash": "f3eed0c51a69993e1014c00f0db54a46b7e4637a12ba53cf3feee6a8d66f33ee",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n`StatusCheck` 節點僅支援在狀態檢查未成功時自動中止工作流程，無法暫停或恢復工作流程。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fbc2db85",
+      "source_content": "When executing chaos experiments, the application system might become `unhealthy`, this function can be used to restore the application system by quickly ending chaos experiments. To enable the workflow to abort automatically when the status check fails, you can set the `abortWithStatusCheck` field to `true` on the `StatusCheck` node.",
+      "source_content_hash": "79fbe48c34c6c169afe037fa02da2e287a68d2f2040d095f6e9502d3ec99ae9f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "執行混沌實驗時，應用系統可能變得「不健康」，此功能可透過快速結束混沌實驗來恢復應用系統。若要啟用狀態檢查失敗時自動中止工作流程，可在 `StatusCheck` 節點上將 `abortWithStatusCheck` 欄位設為 `true`。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 4, translation has 3.",
+          "timestamp": "2025-07-04T06:49:59.296176+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "b73a4a7a",
+      "source_content": "```yaml\n- name: workflow-status-check\n  templateType: StatusCheck\n  deadline: 20s\n  abortWithStatusCheck: true\n  statusCheck:\n    mode: Continuous\n    type: HTTP\n    http:\n      url: http://123.123.123.123\n      method: GET\n      criteria:\n        statusCode: '200'\n```",
+      "source_content_hash": "ce455b4875be496e50385a3244f3f2b85cf7c4b4e1d8facba4f12a316b62f617",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b73a4a7a"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ca4479f",
+      "source_content": "The status check is considered unsuccessful when any of the following conditions are met:",
+      "source_content_hash": "2c723b898ed23db2e29577250881ec1eefe8f7416ae9caa769cebf72ecf897af",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當滿足以下任一條件時，狀態檢查視為未成功："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "764373a2",
+      "source_content": "- The status check fails.",
+      "source_content_hash": "066c24bc8f976b7f97f79b1a8a3ad7ac50650617329ac7dd38a51b065eb585a2",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 狀態檢查失敗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2ca32339",
+      "source_content": "- When the `StatusCheck` node timeout is exceeded, and the `status check result` is not successful. For example, `successThreshold` is 1, `failureThreshold` is 3, and when the timeout is exceeded, there are 2 consecutive failures and 0 successes. Although it does not meet the condition for \"status check fails\", it is also considered to be unsuccessful in this case.",
+      "source_content_hash": "0cfb743caa6cf6e26fdd7a0a12941cfac4ff3c4f5cd1bfba2a95a7275355d6d8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- 當 `StatusCheck` 節點逾時且狀態檢查結果不成功時。例如，`successThreshold` 設為 1、`failureThreshold` 設為 3，當逾時發生時，連續失敗次數為 2 次且成功次數為 0。雖然這不符合「狀態檢查失敗」的條件，但在此情況下仍被視為不成功。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 4, translation has 3.",
+          "timestamp": "2025-07-04T06:49:59.296201+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "42a5832e",
+      "source_content": "## Status Check mode",
+      "source_content_hash": "07ba39bb378ea7fc71e98e0bf99f68032df7dde49f2d849a8bee538f1935bb64",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 狀態檢查模式"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f947c8e4",
+      "source_content": "### Continuous Status Check",
+      "source_content_hash": "9ade87932e17a036ab31e00ce588551fc0fc91048f8d8c2a33c8eeb863a63428",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 連續狀態檢查"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7bc8bb24",
+      "source_content": "When the `mode` field is `Continuous`, it means this `StatusCheck` node will execute status checks continuously until the node times out or the status check fails.",
+      "source_content_hash": "0b1f0ab986e2ab74b1039b590a360dc7835d1477da7b956b6cb63f2d9ff1305e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當 `mode` 欄位設為 `Continuous` 時，表示此 `StatusCheck` 節點將持續執行狀態檢查，直到節點逾時或狀態檢查失敗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f39e109c",
+      "source_content": "```yaml\n- name: workflow-status-check\n  templateType: StatusCheck\n  deadline: 20s\n  statusCheck:\n    mode: Continuous\n    type: HTTP\n    intervalSeconds: 1\n    successThreshold: 1\n    failureThreshold: 3\n    http:\n      url: http://123.123.123.123\n      method: GET\n      criteria:\n        statusCode: '200'\n```",
+      "source_content_hash": "09ec3ff5a57c980f739c7d8a2864c930ecf9acd28c1130910381a0e536822774",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_f39e109c"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c364340c",
+      "source_content": "In the configuration, the `StatusCheck` node will execute status checks every second, and exit when any of the following conditions are met:",
+      "source_content_hash": "87808d0caad9ff22f31b532d563fb0c233811b5a0635d7d028f07814bddc770d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在配置中，`StatusCheck` 節點將每秒執行一次狀態檢查，並在滿足以下任一條件時退出："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39a5728a",
+      "source_content": "- The status check fails, i.e. 3 or more consecutive failed `execution results`",
+      "source_content_hash": "e30a45f676500f2961fc332c4d9a0f0b3157f618b30f013900ebcda1d12bda3b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 狀態檢查失敗，即連續 3 次或更多次 `execution results` 失敗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0db1813d",
+      "source_content": "- Trigger the node timeout after 20 seconds",
+      "source_content_hash": "843027d19b62e9915753a0db16a5081eb40136d9b0ed741dbfe060b516ef8401",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 在 20 秒後觸發節點逾時"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d53c8ed4",
+      "source_content": "### One time Status Check",
+      "source_content_hash": "0475d6ce0ceccc09656bc823de99489667885f3d4ff8797443201b5c8feb8596",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 一次性狀態檢查"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ecf0882",
+      "source_content": "When the `mode` field is `Synchronous`, it means that this `StatusCheck` node will exit immediately when the `status check result` is clear, or when the node times out.",
+      "source_content_hash": "a71ce81b0bfa7c4f29a171e8cb3f0eb75bddb3b92524a890d6642e457e5772fc",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當 `mode` 欄位設為 `Synchronous` 時，表示此 `StatusCheck` 節點將在 `status check result` 明確或節點逾時時立即退出。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4c6754b2",
+      "source_content": "```yaml\n- name: workflow-status-check\n  templateType: StatusCheck\n  deadline: 20s\n  statusCheck:\n    mode: Synchronous\n    type: HTTP\n    intervalSeconds: 1\n    successThreshold: 1\n    failureThreshold: 3\n    http:\n      url: http://123.123.123.123\n      method: GET\n      criteria:\n        statusCode: '200'\n```",
+      "source_content_hash": "c8b7c790ebfa0246a1e485d411b247d524249cff9c996264e114e6e4c7e1efc1",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4c6754b2"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "619c3209",
+      "source_content": "In the configuration, the `StatusCheck` node will execute status checks every second, and exit when any of the following conditions are met:",
+      "source_content_hash": "87808d0caad9ff22f31b532d563fb0c233811b5a0635d7d028f07814bddc770d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在配置中，`StatusCheck` 節點將每秒執行一次狀態檢查，並在滿足以下任一條件時退出："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "307769b3",
+      "source_content": "- The status check succeeds, i.e. 1 or more consecutive successful `execution results`",
+      "source_content_hash": "24a944d2523b5f1fbb66f70ee67ddab5570be23b2c266d7671b7af4820324140",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 狀態檢查成功，即連續 1 次或更多次 `execution results` 成功"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5409c59d",
+      "source_content": "- The status check fails, i.e. 3 or more consecutive failed `execution results`",
+      "source_content_hash": "e30a45f676500f2961fc332c4d9a0f0b3157f618b30f013900ebcda1d12bda3b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 狀態檢查失敗，即連續 3 次或更多次 `execution results` 失敗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "38c0ec8b",
+      "source_content": "- Trigger the node timeout after 20 seconds",
+      "source_content_hash": "843027d19b62e9915753a0db16a5081eb40136d9b0ed741dbfe060b516ef8401",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 在 20 秒後觸發節點逾時"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ee213c98",
+      "source_content": "## StatusCheck vs HTTP Request Task",
+      "source_content_hash": "32cf9dcf7e1e8f625d25b86da2db35c35c587c8788f02803ad91589ffa42f5c8",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## StatusCheck 與 HTTP Request Task 的比較"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "008183b0",
+      "source_content": "Similarities:",
+      "source_content_hash": "6a188315b0a37ffec81da53189097a86a67f5126c10185d6ead4dd25f912a159",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "相同點："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d511fc6d",
+      "source_content": "- The `StatusCheck` node and the `HTTP Request Task` node (the `Task` node that executes HTTP requests) are a node type of Workflow.",
+      "source_content_hash": "6b61de5e094b7fb8823049ddfe6aaa7101617a16dcfbe116e64a1ecee7a2f968",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `StatusCheck` 節點與 `HTTP Request Task` 節點（執行 HTTP 請求的 `Task` 節點）都是 Workflow 的節點類型"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e2bb80f",
+      "source_content": "- The `StatusCheck` node and the `HTTP Request Task` node can obtain information about external systems through HTTP requests.",
+      "source_content_hash": "6313b019c11fe4ed0b94850e7006f2f0e8e86884180eeaed6989dd5b1460a225",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `StatusCheck` 節點與 `HTTP Request Task` 節點都可以透過 HTTP 請求取得外部系統的資訊"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39f476dc",
+      "source_content": "Differences:",
+      "source_content_hash": "2b4200bbc7a65770f341019e07e7118dc0cdebea830c3b051702a7794085b507",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "不同點："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c019ffe4",
+      "source_content": "- The `HTTP Request Task` node could only send an HTTP once, and cannot send HTTP requests continuously.",
+      "source_content_hash": "1cd82bc00e04a3e99b74289e1593e45c3268f936a61313dcf4d7bcfca69ee9c3",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `HTTP Request Task` 節點只能發送一次 HTTP 請求，無法連續發送 HTTP 請求"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2656093c",
+      "source_content": "- The `HTTP Request Task` node cannot affect the status of the workflow when the request fails, such as aborting the workflow.",
+      "source_content_hash": "7eb9745e29a456d462ea7fff8f5509ebddcbeb13e462682edb495628f9712d53",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `HTTP Request Task` 節點在請求失敗時無法影響 Workflow 的狀態，例如中止 Workflow"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "191265da",
+      "source_content": "## Field description",
+      "source_content_hash": "afef87832591f63e7a3c9579f8a2492cf81afc3e8b0d02296e334646ad82d4f6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "85ea22dd",
+      "source_content": "For more information about Workflow and Template, refer to [Create Chaos Mesh Workflow](create-chaos-mesh-workflow.md#field-description).",
+      "source_content_hash": "9f78e4f3a8b3e60341419c6e40a89632a8059f169ce7e871eb4665510f0b5ee8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "有關 Workflow 和 Template 的更多資訊，請參閱[建立 Chaos Mesh Workflow](create-chaos-mesh-workflow.md#field-description)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e1642ab4",
+      "source_content": "### StatusCheck field description",
+      "source_content_hash": "1f7c23c76c50a8768b27c7dc7242f04dfb1a414bb4d0cf1841065480d89c0376",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### StatusCheck 欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a815f635",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| mode | `string` | The execution mode of the status check. Support value: `Synchronous`/`Continuous`. | None | Yes | `Synchronous` |\n| type | `string` | The type of the status check. Support value: `HTTP`. | `HTTP` | Yes | `HTTP` |\n| duration | `string` | The duration of the whole status check if the number of failed execution does not exceed the `failureThreshold`. It is available in both `Synchronous` and `Continuous` modes. | None | No | `100s` |\n| timeoutSeconds | `int` | The timeout seconds when the status check fails. | `1` | No | `1` |\n| intervalSeconds | `int` | Defines how often (in seconds) to perform an execution of status check. | `1` | No | `1` |\n| failureThreshold | `int` | The minimum consecutive failure for the status check to be considered failed. | `3` | No | `3` |\n| successThreshold | `int` | The minimum consecutive successes for the status check to be considered successful. | `1` | No | `1` |\n| recordsHistoryLimit | `int` | The number of records to retain. | `100` | No | `100` |\n| http | `HTTPStatusCheck` | Configure the detail of the HTTP request to execute. | None | No |  |",
+      "source_content_hash": "593285b200d2b9ae49cb64ffaffd81e7d5efa6668f084f7982b9590758cc85f8",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a815f635"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "be4b1cbf",
+      "source_content": "### HTTPStatusCheck field description",
+      "source_content_hash": "7baa88f20ba83f3cf7fb258995d92693a8c74c01b3606cdc76d29ed92a6ea772",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### HTTPStatusCheck 欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6f7967ab",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| url | `string` | The URL of the HTTP request. | None | Yes | `http://123.123.123.123` |\n| method | `string` | The method of the HTTP request. Support value: `GET`/`POST`. | `GET` | No | `GET` |\n| headers | `map[string][]string` | The headers of the HTTP request. | None | No |  |\n| body | `string` | The body of the HTTP request. | None | No | `{\"a\":\"b\"}` |\n| criteria | `HTTPCriteria` | Defines how to determine the result of the HTTP StatusCheck. | None | Yes |  |",
+      "source_content_hash": "2d88774b0239ca4e144eca96b4bbe4ef566ceb0d53c16da266806f07d58a586c",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6f7967ab"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b7d7a8d8",
+      "source_content": "### HTTPCriteria field description",
+      "source_content_hash": "a64c28a91ebfa1529d160dcecd0da0484a6d2235a76470585502a7f4358c1cba",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### HTTPCriteria 欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d251d5be",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| statusCode | `string` | The expected http status code for the request. A statusCode string could be a single code (e.g. `200`), or an inclusive range (e.g. `200-400`, both `200` and `400` are included). | None | Yes | `200` |",
+      "source_content_hash": "5fbdf411ccd45311aaeba21b9280b0f8c82b7fd51e78db77a991ca914a4dac9d",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d251d5be"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/status-check-in-workflow.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.296232+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "93500eeafaeeafc37e45686312f95609a24abdc8a93a15761c81806c29eb6c65"
+  }
+}

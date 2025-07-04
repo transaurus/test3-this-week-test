@@ -1,0 +1,34 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/define-workflow-scheduling-rules.md",
+  "source_file_content_hash": "a516773983689f15f5a954be67744faba8f345bfb89175a46b5bdaa0a6f33198",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: 定义调度规则\n---",
+      "source_content_hash": "de3c1c42938bfb937a99ce2fa1e348803be0a2fbb5963f8a5aa5f92164804555",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f85bbfb4",
+      "source_content": "## TODO",
+      "source_content_hash": "f412d40cac05e357371f77218084d95faf8621b50642faf4353f0cb4bb1c78cc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 待辦事項"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/define-workflow-scheduling-rules.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.072416+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "a516773983689f15f5a954be67744faba8f345bfb89175a46b5bdaa0a6f33198"
+  }
+}

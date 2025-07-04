@@ -1,0 +1,321 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "src/pages/supported-releases.md",
+  "source_file_content_hash": "7308e9e226d9de658ae979b497ea91884d60d00804df4d8807545b9614d8a4b0",
+  "segments": [
+    {
+      "segment_id": "76e4a56a",
+      "source_content": "# Supported Releases",
+      "source_content_hash": "c62bbb6ec4347ceaf585823125215671e103d4455a6f46edd9661849bd973d3d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "# 支援的版本"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "faebdc62",
+      "source_content": "This page lists the status, timeline and policies for currently supported releases.",
+      "source_content_hash": "18e7da37276b81712109459ddef81c328ae4762aa686f03ea12000477a657776",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本頁列出當前支援版本的狀態、時間表與政策。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8218387e",
+      "source_content": ":::info\n\n## TL;DR\n\n~~Each release is supported for a period of **six months**, and we create a new release **every three months**.~~\n\nUpdated in 2024-02-01:\n\nAs we currently haven't had enough maintainers to support the release cycle, we will release new versions from time to time, with a cycle of about **6 months**.\n\n:::",
+      "source_content_hash": "96127f5d2464c6e707efdd2c710c80253a9878636eea86cb8006f6ff07109c12",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::info\n\n## 摘要說明\n\n~~每個版本支援期為 **六個月**，我們 **每三個月** 發布一次新版本。~~\n\n2024-02-01 更新：\n\n因目前缺乏足夠維護者支援發布週期，我們將不定期發布新版本，週期約為 **六個月**。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3daf1b88",
+      "source_content": "## Naming Scheme",
+      "source_content_hash": "86e938382fd3ae0501726b719b617c95d0451e901b2ee4b782ef2f606c3de421",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 命名方案"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "Our naming scheme mostly follows [Semantic Versioning 2.0.0](https://semver.org/) with `v` prepended to git tags and docker images:",
+      "source_content_hash": "de0dab2974cdc028b2539d6e2051fde27d82191b732ffb198e6f1c0642eb3a7e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們的命名方案主要遵循[語義化版本 2.0.0](https://semver.org/)，並在 Git 標籤與 Docker 映像檔前綴 `v`："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cbbebf8e",
+      "source_content": "```plain\nv<major>.<minor>.<patch>\n```",
+      "source_content_hash": "3b1d4ad722ce8b3cddb3c0f5a2407d38be29f9134a062ba734e636700d2105d9",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_cbbebf8e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c2bdd0",
+      "source_content": "where `<minor>` is increased for each release, and `<patch>` counts the number of patches for the current `<minor>` release. A patch is usually a small change relative to the `<minor>` release.",
+      "source_content_hash": "17bc9aaac2cfacfeeb53956bd19b7521d7f33e2c23fae29df47dc7de52e421eb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "其中 `<minor>` 隨每次版本發布遞增，`<patch>` 則計算當前 `<minor>` 版本的修補次數。修補版本通常是相對於 `<minor>` 版本的微小變更。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fa430ad4",
+      "source_content": "## Support Status of Chaos Mesh",
+      "source_content_hash": "94124614c7f763298c334e259be760a0d59e7e728b934802ceca499df28d9f5b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## Chaos Mesh 支援狀態"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "57971bfb",
+      "source_content": ":::note\n\nSupport for Kubernetes `1.22` is available starting with version `2.0.4`.\n\n:::",
+      "source_content_hash": "8d7f677f1d7285026a114b814ef4a658dc9f5ef0714c0c13de3adea15054ae5d",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\nKubernetes `1.22` 的支援始於版本 `2.0.4`。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "26b47687",
+      "source_content": ":::info\n\nThe `2.6` version also theoretically works fine on the `1.26`, `1.27`, and `1.28` versions of Kubernetes, but we do not sync the E2E tests for these versions.\n\n:::",
+      "source_content_hash": "a3ff7049bc63a08d43c41888726244ef6ba646907e84d35ee37677d3548314aa",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::info\n\n`2.6` 版本理論上可在 Kubernetes `1.26`、`1.27` 和 `1.28` 版本正常運作，但我們未同步針對這些版本的端對端測試。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "388f52fd",
+      "source_content": "| Version | Currently Supported   | Release Date | End of Life  | Supported Kubernetes versions                        |\n| :------ | :-------------------- | :----------- | :----------- | :--------------------------------------------------- |\n| master  | No, development only  | -            | -            | 1.30, 1.31, 1.32                                     |\n| 2.7     | `Yes`                 | Sep 20, 2024 | -            | 1.26, 1.27, 1.28                                     |\n| 2.6     | `Yes`                 | May 31, 2023 | -            | 1.20, 1.21, 1.22, 1.23, 1.24, 1.25, 1.26, 1.27, 1.28 |\n| 2.5     | No                    | Nov 22, 2022 | Sep 20, 2024 | 1.20, 1.21, 1.22, 1.23, 1.24, 1.25                   |\n| 2.4     | No                    | Sep 23, 2022 | May 31, 2023 | 1.20, 1.21, 1.22, 1.23, 1.24, 1.25                   |\n| 2.3     | No                    | Jul 29, 2022 | Nov 22, 2022 | 1.15, 1.16, 1.17, 1.18, 1.19, 1.20, 1.21, 1.22       |\n| 2.2     | No                    | Apr 29, 2022 | Sep 23, 2022 | 1.15, 1.16, 1.17, 1.18, 1.19, 1.20, 1.21, 1.22       |\n| 2.1     | No                    | Nov 30, 2021 | Jul 29, 2022 | 1.15, 1.16, 1.17, 1.18, 1.19, 1.20, 1.21, 1.22       |\n| 2.0     | No                    | Jul 23, 2021 | Apr 29, 2022 | 1.15, 1.16, 1.17, 1.18, 1.19, 1.20, 1.21, 1.22       |\n| 1.2     | No                    | Apr 23, 2021 | Nov 30, 2021 | 1.12, 1.13, 1.14, 1.15                               |\n| 1.1     | No                    | Jan 08, 2021 | Jul 23, 2021 | 1.12, 1.13, 1.14, 1.15                               |\n| 1.0     | No                    | Sep 25, 2020 | Apr 23, 2021 | 1.12, 1.13, 1.14, 1.15                               |",
+      "source_content_hash": "0bbec77e7c84164e7b434b43e0ebbbea603a0d76629ca81dd790fba1769f3aa1",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_388f52fd"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2c1b51df",
+      "source_content": "## Upcoming Releases",
+      "source_content_hash": "3682cad73057b7a8e5749997adcd1ac1739ef78ab79ecc68245f48ae284dc8e9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 即將發布的版本"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e536ea0d",
+      "source_content": "You could track the upcoming release on [GitHub milestones](https://github.com/chaos-mesh/chaos-mesh/milestones).",
+      "source_content_hash": "646df19087c543045eb6f41daedd431a01cc4ae31cc9a55da2ce0f4ecd0821fe",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可透過 [GitHub 里程碑](https://github.com/chaos-mesh/chaos-mesh/milestones)追蹤即將發布的版本。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ab5fc5b5",
+      "source_content": "## Support Policies",
+      "source_content_hash": "2ca221465541bf0b8cfd108d731db2a75492aea1bbe9e629134063af53bdf6d0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 支援政策"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ea4c715",
+      "source_content": "Our support window is **six months** for each release branch. The support window corresponds to the **two latest releases**, given that we produce a new final release **every three months**.",
+      "source_content_hash": "4476ef121e833d378948fe7cea28e8270d36a250920bf9d5b5d75d1d35e6a555",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "每個發布分支的支援窗口期為 **六個月**。考慮我們 **每三個月** 發布一次正式版本，此支援窗口對應 **最新的兩個版本**。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "79ad944d",
+      "source_content": "For this we offer two type of supports:",
+      "source_content_hash": "df3166271acc5d9ef4b3dce33b7de56d68a1fa75dea25fb1f6a2fa7a6e83d0c5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "為此我們提供兩類支援："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "296e1d68",
+      "source_content": "- [Community technical support](#community-technical-support)",
+      "source_content_hash": "8f64e749b806081a7a85a542db7598b10abc63a4e61c8fc9c23d39243da04678",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- [社群技術支援](#社群技術支援)",
+          "reason": "URL for a 'link' was changed from '#community-technical-support' to '#社群技術支援'.",
+          "timestamp": "2025-07-04T06:49:59.316601+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "795a1b7f",
+      "source_content": "- [Security and bug fixes](#security-and-bug-fixes)",
+      "source_content_hash": "ba920cc8f42ac49631b1987662e47a9987fa2a2ba56c469cc80e1a4cb9701375",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- [安全性與錯誤修復](#安全性與錯誤修復)",
+          "reason": "URL for a 'link' was changed from '#security-and-bug-fixes' to '#安全性與錯誤修復'.",
+          "timestamp": "2025-07-04T06:49:59.316628+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "3ef18741",
+      "source_content": "### Community technical support",
+      "source_content_hash": "eea56c6b95ffece261cc16b6a4c4117d6d06d3a90c513c9efb5f25f5c36823b2",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 社群技術支援"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7772088",
+      "source_content": "You can request support from the community on CNCF Slack (in the [#project-chaos-mesh](https://cloud-native.slack.com/archives/C0193VAV272) channel), or using the [GitHub Discussions](https://github.com/chaos-mesh/chaos-mesh/discussions).",
+      "source_content_hash": "c9418e2a49a3ca50b39c1dd1703be8531b1cb41865a8bd83c677c4aa89575b2a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可透過 CNCF Slack（在 [#project-chaos-mesh](https://cloud-native.slack.com/archives/C0193VAV272) 頻道）或 [GitHub 討論區](https://github.com/chaos-mesh/chaos-mesh/discussions)向社群請求支援。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d422fb13",
+      "source_content": "### Security and bug fixes",
+      "source_content_hash": "b1e31180db9516368c0aa6444c99c286b75a7ecae8fbdb6551b1b611cceb1e53",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 安全性與錯誤修復"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f01228d3",
+      "source_content": "Security issues are fixed as soon as possible. They get back-ported to the last two releases, and a new patch release is immediately created for them.",
+      "source_content_hash": "66bef76c96ec2eefc02fe4831f427fde7c3929d5e5c2260db0ed52c8c2efe7d5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "安全性問題會盡快修復。這些修復會回溯至最後兩個版本，並立即為其建立新的修補版本。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "afa378f7",
+      "source_content": "For enhancements or bugfixes, we would make a new patch release as required.",
+      "source_content_hash": "04aca7844b2e3b56467bbf26b2e306481ee5dcc13a8dec85460ae2c6cf8a76f1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "對於功能增強或錯誤修復，我們將視需求發布新的修補版本。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "58ed925f",
+      "source_content": "## How we determine supported Kubernetes versions",
+      "source_content_hash": "ec6f8dd3ac0a28a976890e8f3b2db0f0f2445ea3c69317cc662922d3916a43d5",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 我們如何決定支援的 Kubernetes 版本"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "463ed165",
+      "source_content": "After testing the compatibility of various versions of Kubernetes clusters through E2E testing, the Chaos Mesh team determines [Supported Status of Chaos Mesh](#support-status-of-chaos-mesh) based on its test results.",
+      "source_content_hash": "a5e36c809a96d48cc28bee5cc8e511ab08edb2178d899358769c2fa1135de40e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "Chaos Mesh 團隊透過端對端測試驗證多種 Kubernetes 集群版本的相容性後，依據測試結果決定 [Chaos Mesh 支援狀態](#chaos-mesh-支援狀態)。",
+          "reason": "URL for a 'link' was changed from '#support-status-of-chaos-mesh' to '#chaos-mesh-支援狀態'.",
+          "timestamp": "2025-07-04T06:49:59.316655+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "a5c5772a",
+      "source_content": "Below are Kubernetes versions covered by each version of the E2E tests:",
+      "source_content_hash": "686c76ed6b7b1a9686031f4ea6d3d1ab131cbd3b572604e9bfec2411b4ef1fd3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下是各版本端對端測試涵蓋的 Kubernetes 版本："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d40dc481",
+      "source_content": "| Version | Tested kubernetes Versions |\n| :------ | :------------------------- |\n| master  | 1.30.10, 1.31.6, 1.32.2    |\n| 2.7     | 1.26.13, 1.27.10, 1.28.6   |\n| 2.6     | 1.20.15, 1.23.4, 1.25.1    |\n| 2.5     | 1.20, 1.23, 1.25           |",
+      "source_content_hash": "59a8f98d61679698627c0038387ea633a15bb94dbae5bae3801c8a10eca968b5",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d40dc481"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-pages/supported-releases.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.316685+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "7308e9e226d9de658ae979b497ea91884d60d00804df4d8807545b9614d8a4b0"
+  }
+}

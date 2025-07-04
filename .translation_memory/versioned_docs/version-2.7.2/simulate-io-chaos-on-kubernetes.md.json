@@ -1,0 +1,991 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/simulate-io-chaos-on-kubernetes.md",
+  "source_file_content_hash": "4fc0d2aad3405bf00291e7fdcd6a11f947f81fdbf82b2a98e0ee58f064763afd",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate File I/O Faults\n---",
+      "source_content_hash": "55fc29982670cde5ec60622add3840c326498bda539d76bebca66d34b99bedca",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document describes how to create IOChaos experiments in Chaos Mesh.",
+      "source_content_hash": "c3688e1a1bc6c557b497509bbb4483b845a306f48d05db12a9bdf7ffa2383773",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文檔說明如何在 Chaos Mesh 中建立 IOChaos 實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## IOChaos introduction",
+      "source_content_hash": "2696bb03044098225063c4776e9655617f333633ee73340054d531ae9594f93b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## IOChaos 簡介"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "IOChaos is a type of fault in Chaos Mesh. By creating an IOChaos experiment, you can simulate a scenario of file system fault. Currently, IOChaos supports the following fault types:",
+      "source_content_hash": "297077bec07bfad43033b9b3644020fb72407a418d57ea551c701c6be4643d48",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "IOChaos 是 Chaos Mesh 中的一種故障類型。透過建立 IOChaos 實驗，您可以模擬檔案系統故障的情境。目前，IOChaos 支援以下故障類型："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "760d111a",
+      "source_content": "- `latency`: delays file system calls",
+      "source_content_hash": "7ec6540f2dd075ced4ba56d1dc1d8843daa5f75dfe07881015a0b98131a3aea8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `latency`：延遲檔案系統呼叫"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ee0c6cb",
+      "source_content": "- `fault`: returns an error for filesystem calls",
+      "source_content_hash": "b5e07aae33199334889400b61b7168f585e377a78e1d056918607ca8f625be23",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `fault`：針對檔案系統呼叫返回錯誤"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2b4a9900",
+      "source_content": "- `attrOverride`: modifies file properties",
+      "source_content_hash": "67eeae287d3329192d34b80d0a6a08b27523627b3b8bf7dee6fe7afb3820e659",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `attrOverride`：修改檔案屬性"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9a03a62b",
+      "source_content": "- `mistake`: makes the file read or write a wrong value",
+      "source_content_hash": "41424d4e92ef21649d8f93da562114b8fbb72e179785325dc71869cf24d76bba",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `mistake`：使檔案讀取或寫入錯誤數值"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "86b54d44",
+      "source_content": "For specific features, refer to [Create experiments using the YAML files](#create-experiments-using-the-yaml-files).",
+      "source_content_hash": "29a09ab5fb4f967d1e5bc4969ff65e2f3b517cba73ad49687b21ad1194ab26f3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "具體功能請參閱[使用 YAML 檔案建立實驗](#create-experiments-using-the-yaml-files)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d350c018",
+      "source_content": "## Notes",
+      "source_content_hash": "63e13e87b378d1e85f838ead267db9020c1457b1118a37e0af9fb5f976144f4b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 注意事項"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dc10b09",
+      "source_content": "1. Before creating an IOChaos experiment, make sure there is no Control Manager of Chaos Mesh running on the target Pod.",
+      "source_content_hash": "7057530acdf2f0c7e8a13e0744fc98ae916c6f2e75433eed1c9b7eb5453632f9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 在建立 IOChaos 實驗前，請確保目標 Pod 上沒有執行 Chaos Mesh 的控制管理器。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f998e7f9",
+      "source_content": "2. IOChaos may damage your data. Use IOChaos **with caution** in the production environment.",
+      "source_content_hash": "b11fd95283c3c05cbbf7b64f6713f9ceabc1d4ed26cd250c1cade3f9e7593494",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. IOChaos 可能損壞您的資料。在生產環境中使用 IOChaos 時**請務必謹慎**。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "95b38f97",
+      "source_content": "## Create experiments using Chaos Dashboard",
+      "source_content_hash": "0e6c13931d3c46c241532f93bf2c43261695607133973a006c15d6651045ed71",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Chaos Dashboard 建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cec935ef",
+      "source_content": "1. Open Chaos Dashboard, and click **NEW EXPERIMENT** on the page to create a new experiment:\n\n   ![Create a New Experiment](./img/create-new-exp.png)",
+      "source_content_hash": "c407990d32defc55f7efbfba60c48bdcfe3320afc14e0581d6a5ae8f9315e6c8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 開啟 Chaos Dashboard，點擊頁面上的**新建實驗**建立新實驗：\n\n   ![建立新實驗](./img/create-new-exp.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5df3dd43",
+      "source_content": "2. In the **Choose a Target** area, choose **FILE SYSTEM INJECTION** and select a specific fault type, such as **LATENCY**.\n\n   ![ioChaos Experiments](./img/iochaos-exp.png)",
+      "source_content_hash": "b8adde62470d476a65822df78332a8f98cdfe48f2fb50a6176449e43b5a8957f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 在**選擇目標**區域，選擇**檔案系統注入**並選取特定故障類型，例如**延遲**。\n\n   ![ioChaos 實驗](./img/iochaos-exp.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c0463e48",
+      "source_content": "3. Fill out the experiment information, and specify the experiment scope and the scheduled experiment duration.\n\n   ![Experiment Information](./img/exp-info.png)",
+      "source_content_hash": "f597255327746137c9ccdc362eee66b20f627572c6631ece543654362c78343d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 填寫實驗資訊，並指定實驗範圍與排程實驗持續時間。\n\n   ![實驗資訊](./img/exp-info.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ec638a20",
+      "source_content": "4. Submit the experiment information.",
+      "source_content_hash": "d43f9894c758dcc87cfc64b219f833d55e60a63f3367195f2557b06b88c799f0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 提交實驗資訊。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "782c902a",
+      "source_content": "## Create experiments using the YAML files",
+      "source_content_hash": "b28651d6feb8cbe0279d0621bb5559ff4dc33f1eb16ffa643cf71d9a907b48f0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 YAML 檔案建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8d04259b",
+      "source_content": "### Latency example",
+      "source_content_hash": "038ecf752306fb270946c1cea655bf406ac527cb63ef39acab16a0f6c4992fe1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 延遲範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6c00797f",
+      "source_content": "1. Write the experiment configuration to the `io-latency.yaml` file, as shown below:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: IOChaos\n   metadata:\n     name: io-latency-example\n     namespace: chaos-mesh\n   spec:\n     action: latency\n     mode: one\n     selector:\n       labelSelectors:\n         app: etcd\n     volumePath: /var/run/etcd\n     path: '/var/run/etcd/**/*'\n     delay: '100ms'\n     percent: 50\n     duration: '400s'\n   ```\n\n   In this configuration example, Chaos Mesh injects a delay into the directory `/var/run/etcd` and causes latency of 100 milliseconds to all file system operations (including read, writing, list contents, and so on) in this directory.",
+      "source_content_hash": "e521e91a529f3e3d118efa54cb97822dc7eb5653c53b6369f31b61bc577b4b32",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將實驗配置寫入 `io-latency.yaml` 檔案，如下所示：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: IOChaos\n   metadata:\n     name: io-latency-example\n     namespace: chaos-mesh\n   spec:\n     action: latency\n     mode: one\n     selector:\n       labelSelectors:\n         app: etcd\n     volumePath: /var/run/etcd\n     path: '/var/run/etcd/**/*'\n     delay: '100ms'\n     percent: 50\n     duration: '400s'\n   ```\n\n   在此配置範例中，Chaos Mesh 向目錄 `/var/run/etcd` 注入延遲，使該目錄下所有檔案系統操作（包括讀取、寫入、列表內容等）產生 100 毫秒延遲。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "795a1b7f",
+      "source_content": "2. After the configuration file is prepared, use `kubectl` to create an experiment:\n\n   ```bash\n   kubectl apply -f ./io-latency.yaml\n   ```",
+      "source_content_hash": "fc19ef6d4129102f7d09796d1c64ff700da6171ccb8d0accbe203f86881ce95e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 準備好配置檔案後，使用 `kubectl` 建立實驗：\n\n   ```bash\n   kubectl apply -f ./io-latency.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d422fb13",
+      "source_content": "### Fault example",
+      "source_content_hash": "9870c4293e263ddbc7435578f82f961c504c6005293379b119aab2565a7d667f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 故障範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ae11e253",
+      "source_content": "1. Write the experiment configuration to the `io-fault.yaml` file, as shown below:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: IOChaos\n   metadata:\n     name: io-fault-example\n     namespace: chaos-mesh\n   spec:\n     action: fault\n     mode: one\n     selector:\n       labelSelectors:\n         app: etcd\n     volumePath: /var/run/etcd\n     path: /var/run/etcd/**/*\n     errno: 5\n     percent: 50\n     duration: '400s'\n   ```\n\n   In this example, Chaos Mesh injects a file fault into the directory `/var/run/etcd`, which gives a 50% probability of failure in all file system operations under this directory and returns error code 5 (Input/output error).",
+      "source_content_hash": "1c248078653b37b75b910e11d0c8d0a69e0ec455d76de37eae5a6e9276fe0f2a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將實驗配置寫入 `io-fault.yaml` 檔案，如下所示：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: IOChaos\n   metadata:\n     name: io-fault-example\n     namespace: chaos-mesh\n   spec:\n     action: fault\n     mode: one\n     selector:\n       labelSelectors:\n         app: etcd\n     volumePath: /var/run/etcd\n     path: /var/run/etcd/**/*\n     errno: 5\n     percent: 50\n     duration: '400s'\n   ```\n\n   在此範例中，Chaos Mesh 向目錄 `/var/run/etcd` 注入檔案故障，使該目錄下所有檔案系統操作有 50% 概率失敗，並返回錯誤碼 5（輸入/輸出錯誤）。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "506bd6d4",
+      "source_content": "2. After the configuration file is prepared, use `kubectl` to create an experiment:\n\n   ```bash\n   kubectl apply -f ./io-fault.yaml\n   ```",
+      "source_content_hash": "7e616a6d94c762e71ded0b6e1e25277fdce7d821c1973c6741cafb90c77d3d6d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 準備好配置檔案後，使用 `kubectl` 建立實驗：\n\n   ```bash\n   kubectl apply -f ./io-fault.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "71169a2d",
+      "source_content": "### attrOverride example",
+      "source_content_hash": "5e35ddad24f199f23e4ec0efb57f1bec4b0a46a31a307a6210d832a902b69ee4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### attrOverride 範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b25fcdf7",
+      "source_content": "1. Write the experiment configuration to the `io-attr.yaml` file:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: IOChaos\n   metadata:\n     name: io-attr-example\n     namespace: chaos-mesh\n   spec:\n     action: attrOverride\n     mode: one\n     selector:\n       labelSelectors:\n         app: etcd\n     volumePath: /var/run/etcd\n     path: /var/run/etcd/**/*\n     attr:\n       perm: 72\n     percent: 10\n     duration: '400s'\n   ```\n\n   In this configuration example, Chaos Mesh injects `/var/run/etcd` directories `attrOverride` fault, giving a 10% probability that all file system operations in this directory will change the target file permissions to 72 (110 in octal), which will allow files to be executed only by the owner and their group and not authorized to perform other actions.",
+      "source_content_hash": "5d678d7bba4110cf2435709f53b44825e7ef97d45184161e46164c4e47f87932",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將實驗配置寫入 `io-attr.yaml` 檔案：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: IOChaos\n   metadata:\n     name: io-attr-example\n     namespace: chaos-mesh\n   spec:\n     action: attrOverride\n     mode: one\n     selector:\n       labelSelectors:\n         app: etcd\n     volumePath: /var/run/etcd\n     path: /var/run/etcd/**/*\n     attr:\n       perm: 72\n     percent: 10\n     duration: '400s'\n   ```\n\n   在此配置範例中，Chaos Mesh 對 `/var/run/etcd` 目錄注入 `attrOverride` 故障，給予此目錄下所有檔案系統操作 10% 的機率，將目標檔案權限更改為 72（八進制中的 110），這將使檔案僅允許所有者和其群組執行，而不授權其他操作。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1cf42f92",
+      "source_content": "2. After the configuration file is prepared, use `kubectl` to create an experiment:\n\n   ```bash\n   kubectl apply -f ./io-attr.yaml\n   ```",
+      "source_content_hash": "68f577171afd3c96c9a70a69392026d0a312ddb251ef09e52e091def0a8be8be",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 準備好設定檔後，使用 `kubectl` 建立實驗：\n\n   ```bash\n   kubectl apply -f ./io-attr.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c83259bb",
+      "source_content": "### Mistake example",
+      "source_content_hash": "b4d44c58b68ce2ef3594b8a01726e619a4915ec743775645f9965b22902f49fa",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### Mistake 範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8845f8e3",
+      "source_content": "1. Write the experiment configuration to the `io-mistake.yaml` file:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: IOChaos\n   metadata:\n     name: io-mistake-example\n     namespace: chaos-mesh\n   spec:\n     action: mistake\n     mode: one\n     selector:\n       labelSelectors:\n         app: etcd\n     volumePath: /var/run/etcd\n     path: /var/run/etcd/**/*\n     mistake:\n       filling: zero\n       maxOccurrences: 1\n       maxLength: 10\n     methods:\n       - READ\n       - WRITE\n     percent: 10\n     duration: '400s'\n   ```\n\n   In this configuration example, Chaos Mesh injects read and write faults into the directory `/var/run/etcd`, which gives a 10% probability of failure in the read and write operations under this directory. During this process, one random position with a maximum length of 10 bytes will be replaced with 0 bytes.",
+      "source_content_hash": "c6c357a8fd73fbf6d636e92d349fa68c614c7d58a99df52bd8049accf39006ab",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將實驗配置寫入 `io-mistake.yaml` 檔案：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: IOChaos\n   metadata:\n     name: io-mistake-example\n     namespace: chaos-mesh\n   spec:\n     action: mistake\n     mode: one\n     selector:\n       labelSelectors:\n         app: etcd\n     volumePath: /var/run/etcd\n     path: /var/run/etcd/**/*\n     mistake:\n       filling: zero\n       maxOccurrences: 1\n       maxLength: 10\n     methods:\n       - READ\n       - WRITE\n     percent: 10\n     duration: '400s'\n   ```\n\n   在此配置範例中，Chaos Mesh 對目錄 `/var/run/etcd` 注入讀寫故障，給予此目錄下讀寫操作 10% 的失敗機率。在此過程中，一個隨機位置、最大長度為 10 位元組的內容將被替換為 0 位元組。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e2bb80f",
+      "source_content": "2. After the configuration file is prepared, use `kubectl` to create an experiment:\n\n   ```bash\n   kubectl apply -f ./io-mistake.yaml\n   ```",
+      "source_content_hash": "48a2cb85c208cbd36d2601caee370df1307be4848f03a2c90e72abb28851cf3b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 準備好設定檔後，使用 `kubectl` 建立實驗：\n\n   ```bash\n   kubectl apply -f ./io-mistake.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ffd1ebe",
+      "source_content": "### Field description",
+      "source_content_hash": "65096914168d6220ba2cc9e38088ff322d829e39af74e98d0df5f5b3cb7a27de",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a49ac2ed",
+      "source_content": "#### General fields",
+      "source_content_hash": "3a1cdfbbea4c0107abf726b7e34a01651b59cb9979e5aaedd64b2c64670e232c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 通用欄位"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "41321865",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| action | string | Indicates the specific type of faults. Only latency, fault, attrOverride, and mistake are supported. |  | Yes | latency |\n| mode | string | Specifies the mode of the experiment. The mode options include `one` (selecting a Pod at random), `all` (selecting all eligible Pods), `fixed` (selecting a specified number of eligible Pods), `fixed-percent` (selecting a specified percentage of the eligible Pods), and `random-max-percent` (selecting the maximum percentage of the eligible Pods). | None | Yes | `one` |\n| selector | struct | Specifies the target Pod. For details, refer to [Define the experiment scope](./define-chaos-experiment-scope.md). | None | Yes |  |\n| value | string | Provides parameters for the `mode` configuration, depending on `mode`. For example, when `mode` is set to `fixed-percent`, `value` specifies the percentage of Pods. |  | No | 1 |\n| volumePath | string | The mount point of volume in the target container. Must be the root directory of the mount. |  | Yes | /var/run/etcd |\n| path | string | The valid range of fault injections, either a wildcard or a single file. | Valid for all files by default | No | /var/run/etcd/\\*_/_ |\n| methods | []string | Type of the file system call that requires injecting fault. For more information about supported types, refer to [Appendix A](#appendix-a: methods-type). | All Types | No | READ |\n| percent | int | Probability of failure per operation, in %. | 100 | No | 100 |\n| containerNames | []string | Specifies the name of the container into which the fault is injected. |  | No |  |\n| duration | string | Specifies the duration of the experiment. |  | Yes | 30s |",
+      "source_content_hash": "939d5587f771f7d272d59eac56a390062057eed628753dcefc6ed8304ff3fe7d",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_41321865"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b62f7d8",
+      "source_content": "#### Fields related to action",
+      "source_content_hash": "3be742d08045839208d9c9f8a80b08fa269b7232bc8530533baadea9834b630e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 與 action 相關的欄位"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4899bc54",
+      "source_content": "The following are specific information about fields corresponding to action:",
+      "source_content_hash": "38a1769e3b0e6b613dde5ca39dfd14d7bf9d21fa3e1c92c102cc758f3e46d10f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下是對應 action 的欄位具體資訊："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bd60f16b",
+      "source_content": "- latency\n\n  | Parameter | Type   | Description         | Default value | Required | Example |\n  | --------- | ------ | ------------------- | ------------- | -------- | ------- |\n  | delay     | string | Specific delay time |               | Yes      | 100 ms  |",
+      "source_content_hash": "3806c1a1b5467231d2092376fe90499a2ef90671b3fe77ab81eaa7efa8c68960",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- latency\n\n  | 參數 | 類型   | 描述         | 預設值 | 是否必填 | 範例 |\n  | ---- | ------ | ------------ | ------ | -------- | ---- |\n  | delay | string | 具體延遲時間 |        | 是       | 100 ms |"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "50d288c8",
+      "source_content": "- fault\n\n  | Parameter | Type | Description           | Default value | Required | Example |\n  | --------- | ---- | --------------------- | ------------- | -------- | ------- |\n  | errno     | int  | returned error number |               | Yes      | 22      |\n\n  For common error numbers, see [Appendix B](#appendix-b-common-error-numbers).",
+      "source_content_hash": "6e705fdbc26c16ceb5074f7ecc861f57acbc3235140a1c2649a7454684957178",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- fault\n\n  | 參數 | 類型 | 描述             | 預設值 | 是否必填 | 範例 |\n  | ---- | ---- | ---------------- | ------ | -------- | ---- |\n  | errno | int  | 返回的錯誤號碼 |        | 是       | 22   |\n\n   常見的錯誤號碼，請參閱[附錄 B](#appendix-b-common-error-numbers)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "84fa691d",
+      "source_content": "- attrOverride\n\n  | Parameter | Type             | Description                      | Default value | Required | Example    |\n  | --------- | ---------------- | -------------------------------- | ------------- | -------- | ---------- |\n  | attr      | AttrOverrideSpec | Specific property override rules |               | Yes      | As follows |\n\n  AttrOverrideSpec is defined as follows:\n\n  | Parameter | Type | Description | Default value | Required | Example |\n  | --- | --- | --- | --- | --- | --- |\n  | ino | int | ino number |  | No |  |\n  | size | int | File size |  | No |  |\n  | blocks | int | Number of blocks that the file uses |  | No |  |\n  | atime | TimeSpec | Last access time |  | No |  |\n  | mtime | TimeSpec | Last modified time |  | No |  |\n  | ctime | TimeSpec | Last status change time |  | No |  |\n  | kind | string | File type, see [fuser::FileType](https://docs.rs/fuser/0.7.0/fuser/enum.FileType.html) |  | No |  |\n  | perm | int | File permissions in decimal |  | No | 72 (110 in octal) |\n  | nlink | int | Number of hard links |  | No |  |\n  | `uid` | int | User ID of the owner |  | No |  |\n  | gid | int | Group ID of the owner |  | No |  |\n  | rdev | int | Device ID |  | No |  |\n\n  TimeSpec is defined as follows:\n\n  | Parameter | Type | Description              | Default value | Required | Example |\n  | --------- | ---- | ------------------------ | ------------- | -------- | ------- |\n  | sec       | int  | timestamp in seconds     |               | No       |         |\n  | nsec      | int  | Timestamp in nanoseconds |               | No       |         |\n\n  For the specific meaning of parameters, you can refer to [man stat](https://man7.org/linux/man-pages/man2/lstat.2.html).",
+      "source_content_hash": "c73cd3631deca4edb7d71567cb7048f75041322486cfcd775ae390b127addbdd",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- attrOverride\n\n  | 參數 | 類型             | 描述                       | 預設值 | 必填 | 範例       |\n  | ---- | ---------------- | -------------------------- | ------ | ---- | ---------- |\n  | attr | AttrOverrideSpec | 具體的屬性覆蓋規則         |        | 是   | 如下所示   |\n\n  AttrOverrideSpec 定義如下：\n\n  | 參數  | 類型 | 描述                     | 預設值 | 必填 | 範例              |\n  | ----- | ---- | ------------------------ | ------ | ---- | ----------------- |\n  | ino   | int  | ino 編號                 |        | 否   |                   |\n  | size  | int  | 檔案大小                 |        | 否   |                   |\n  | blocks| int  | 檔案使用的區塊數量       |        | 否   |                   |\n  | atime | TimeSpec | 最後存取時間         |        | 否   |                   |\n  | mtime | TimeSpec | 最後修改時間         |        | 否   |                   |\n  | ctime | TimeSpec | 最後狀態變更時間     |        | 否   |                   |\n  | kind  | string | 檔案類型，參見 [fuser::FileType](https://docs.rs/fuser/0.7.0/fuser/enum.FileType.html) | | 否 | |\n  | perm  | int  | 檔案權限（十進制表示）   |        | 否   | 72 (八進制110)    |\n  | nlink | int  | 硬連結數量               |        | 否   |                   |\n  | `uid` | int  | 所有者使用者 ID          |        | 否   |                   |\n  | gid   | int  | 所有者群組 ID            |        | 否   |                   |\n  | rdev  | int  | 裝置 ID                  |        | 否   |                   |\n\n  TimeSpec 定義如下：\n\n  | 參數 | 類型 | 描述               | 預設值 | 必填 | 範例 |\n  | ---- | ---- | ------------------ | ------ | ---- | ---- |\n  | sec  | int  | 時間戳（秒）       |        | 否   |      |\n  | nsec | int  | 時間戳（奈秒）     |        | 否   |      |\n\n  參數具體含義可參閱 [man stat](https://man7.org/linux/man-pages/man2/lstat.2.html)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e204478c",
+      "source_content": "- mistake\n\n  | Parameter | Type        | Description          | Default value | Required | Example |\n  | --------- | ----------- | -------------------- | ------------- | -------- | ------- |\n  | mistake   | MistakeSpec | Specific error rules |               | Yes      |         |\n\n  MistakeSpec is defined as follows:\n\n  | Parameter | Type | Description | Default value | Required | Example |\n  | --- | --- | --- | --- | --- | --- |\n  | filling | string | The wrong data to be filled. Only zero (fill 0) or random (fill random bytes) are supported. |  | Yes |  |\n  | maxOccurrences | int | Maximum number of errors in each operation. |  | Yes | 1 |\n  | maxLength | int | Maximum length of each error (in bytes). |  | Yes | 1 |",
+      "source_content_hash": "e6974e43b82c0d126d24c07f82d697c687b57b08565f0e6610e7d216641825b1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- mistake\n\n  | 參數    | 類型        | 描述           | 預設值 | 必填 | 範例 |\n  | ------- | ----------- | -------------- | ------ | ---- | ---- |\n  | mistake | MistakeSpec | 具體錯誤規則   |        | 是   |      |\n\n  MistakeSpec 定義如下：\n\n  | 參數          | 類型   | 描述                                 | 預設值 | 必填 | 範例 |\n  | ------------- | ------ | ------------------------------------ | ------ | ---- | ---- |\n  | filling       | string | 要填充的錯誤數據（僅支援 zero 或 random） |        | 是   |      |\n  | maxOccurrences| int    | 每次操作的最大錯誤次數               |        | 是   | 1    |\n  | maxLength     | int    | 每個錯誤的最大長度（單位：字節）     |        | 是   | 1    |"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "318fb07e",
+      "source_content": "::warning It is suggested that you only use mistake on READ and WRITE file system calls. Using mistake on other file system calls may lead to unexpected consequences, including but not limited to file system damage and program crashes. :::",
+      "source_content_hash": "49598774205ca2e784f28c5cd686551b66f842172af55c8e44896510b43432ff",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::warning 建議僅在 READ 和 WRITE 檔案系統調用中使用 mistake。在其他檔案系統調用中使用可能導致意外後果，包括但不限於檔案系統損壞和程序崩潰。 :::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "68f08256",
+      "source_content": "## Local debugging",
+      "source_content_hash": "abedfa9d762e5b2b5c56723048fd359f88bdcefb74790dee728d57a72e3e8dd9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 本地調試"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5d3138c7",
+      "source_content": "If you are not sure about the effect of a certain Chaos, you can use [toda](https://github.com/chaos-mesh/toda) to test the feature locally. Chaos Mesh also uses toda to implement IOChaos.",
+      "source_content_hash": "df77944dc0ead216113cd37147d4b580bb3c9346c9832b6768807c335013f156",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若不確定某個 Chaos 的效果，可使用 [toda](https://github.com/chaos-mesh/toda) 在本地測試功能。Chaos Mesh 同樣使用 toda 實現 IOChaos。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cb2e9dbf",
+      "source_content": "## Appendix A: methods type",
+      "source_content_hash": "f5ff4e1196094a913d688b7daa276a96b23a44665dee71df3800c751194a8c47",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 附錄 A：方法類型"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9cd2907a",
+      "source_content": "- lookup",
+      "source_content_hash": "ebda01cab75e3da0bba11e2cc8882cd2e3becedf765fddf1aefdef2cbca2cc70",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- lookup"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a1a0e520",
+      "source_content": "- forget",
+      "source_content_hash": "d5748ea750390dc5192fb9e261e905e414ea3a100143665150546df954faaf86",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- forget"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b89059df",
+      "source_content": "- getattr",
+      "source_content_hash": "8b2c993f543ebd8e16545096a54f34da7fac802d50a6c6bf4a5927248e033b36",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- getattr"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "706e59cc",
+      "source_content": "- setattr",
+      "source_content_hash": "851c90dfda25487c2c1e1e9aec9fb4519f583f517f214155c184b66302d56176",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- setattr"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "78d896bd",
+      "source_content": "- readlink",
+      "source_content_hash": "3c2212d6ab825a0f4bc0d0d1a7ad803b1c3dc76cd656bb6dce926c03b5460a02",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- readlink"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ff6f5736",
+      "source_content": "- mknod",
+      "source_content_hash": "1955cf967768b6bdbb7e557cad5d15767c868403ac6e183c2a7989a8613e4106",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- mknod"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "567c5159",
+      "source_content": "- mkdir",
+      "source_content_hash": "48ab8a7e2e8f350dbbb1cbcf3c22c2bf3a4ed5e442c27f145ed52448c1445445",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- mkdir"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c68eeb",
+      "source_content": "- unlink",
+      "source_content_hash": "8a3d0657472bbed43586d574daab44811920fa334a5afb6aa376c0777d190218",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- unlink"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b89d6448",
+      "source_content": "- rmdir",
+      "source_content_hash": "8793e2fc7147816a5093c5d95e4a67e8be1589f0548180626a6e315683bf88cd",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- rmdir"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "23d2dfe4",
+      "source_content": "- symlink",
+      "source_content_hash": "f0cc8b885584e7a3f5563396a9bfa1962fffc2f9aed849115fc2a9b9906cd388",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- symlink"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "de61082d",
+      "source_content": "- rename",
+      "source_content_hash": "907c52479374c2ccf7cd1948ddb2888b1b8326f66f13d6242980aa290d4dd28d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- rename"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "144c28f3",
+      "source_content": "- link",
+      "source_content_hash": "57965ac91c153990a40ead3d92acf4b2030de82c4942fc0a705fd6d436816d08",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- link"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e416f2c6",
+      "source_content": "- open",
+      "source_content_hash": "3613de9b84f0d82c3ed5ce2de4dc5df57bd3a65508d196a7d95ed3d1ce9618f4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- open"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6296b9e4",
+      "source_content": "- read",
+      "source_content_hash": "c37056fcd2e418c019d4396011f30d1cd4204117c98bdb629547b25927c45cee",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- read"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a72e1fe8",
+      "source_content": "- write",
+      "source_content_hash": "d5b2a37a2612ff200b9a5a636c3a18a33ba8e1164cb0988f87109103acdc6ca0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- write"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "210521a8",
+      "source_content": "- flush",
+      "source_content_hash": "171134eaa3ef89b1c0bbb3a0ac7be9819d8343a54804686929cddef04d05545b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- flush"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "64f5b055",
+      "source_content": "- release",
+      "source_content_hash": "448f10128d9087af57e01ca06b7f046f856a5e4b2e7ce50f96aea3283180e784",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- release"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a27ec71d",
+      "source_content": "- fsync",
+      "source_content_hash": "f3b090ce5bf4c9259f172154cb0318e2b2306acc479d26146979cc25e507dfaa",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- fsync"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ab1c723d",
+      "source_content": "- opendir",
+      "source_content_hash": "a595af90b2dbe2dd4d8058cbf18f76465d9edb4b0a8de0daa082382d42edd88e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- opendir"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "33854bf3",
+      "source_content": "- readdir",
+      "source_content_hash": "0cefff14cddfe9a3e80d68714f18c98adb31626347fe0ee34e536392b9173de8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- readdir"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b0e73753",
+      "source_content": "- releasedir",
+      "source_content_hash": "21c1eb51cbeca4ec9152b52f917ba930337fbcf896681add0a4d5446eee8ac6c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- releasedir"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dcefe32d",
+      "source_content": "- fsyncdir",
+      "source_content_hash": "e552d99ad70a249e8097c433a7fdaa26c09a235b5f8028b13a588eb2fef8e84d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- fsyncdir"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "726409ee",
+      "source_content": "- statfs",
+      "source_content_hash": "1dff899703527f2183bf2174e717ac409c6b8cc8b8b87560cb18df7599de502b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- statfs"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ae1c928",
+      "source_content": "- setxattr",
+      "source_content_hash": "343e823fc27cc0e4a1200c625bc7310051c562733b05778df40fb49a53037a7c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- setxattr"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "751569c2",
+      "source_content": "- getxattr",
+      "source_content_hash": "e1e9ea3260c3bd7a11335bcf83b03e6193ac628bcbd4a31290383979283b0e54",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- getxattr"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2d4f29d0",
+      "source_content": "- listxattr",
+      "source_content_hash": "be4f7797f306210301930bd8122eb0f4cfc0be5ae441340edc9ce7b139b04fee",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- listxattr"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "23aca5fb",
+      "source_content": "- removexatr",
+      "source_content_hash": "84793725fa7bc8828ae1e00298f54aa5182147b736c68f1a53d07c0dedc8e003",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- removexatr"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d14657e6",
+      "source_content": "- access",
+      "source_content_hash": "5ab2a29a3b8bbc7716c07dea3af070e9e31b6e06bd89df470bd93d21bfd5d9a6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- access"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "59d35ef5",
+      "source_content": "- create",
+      "source_content_hash": "fe207d286149bd0b791cf02e8925a7086bc3893764806eb882a3a40b585fc858",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- create"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6e3890d4",
+      "source_content": "- getlk",
+      "source_content_hash": "84ef2255a332e1d62a5dfc59c59f9cceadec3e718c7432d45e35b2083154f172",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- getlk"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "907da7db",
+      "source_content": "- setlk",
+      "source_content_hash": "a978cec8aa3f126e2391d66bb62a33ba05513ebb8b8a9dbf5dc5c56fa5d9aed4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- setlk"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "299188e6",
+      "source_content": "- bmap",
+      "source_content_hash": "2717030e414a4a96f06f697edf726fc5f0c4683b8f6059699005e277c7d1f631",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- bmap"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "858b0a05",
+      "source_content": "For more information, refer to [fuser::Filesystem](https://docs.rs/fuser/0.7.0/fuser/trait.Filesystem.html).",
+      "source_content_hash": "e3d22c95611612b41e3df06d97dc2aa58397b5fb36a942e9260cf333774c2c0d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "更多資訊，請參閱 [fuser::Filesystem](https://docs.rs/fuser/0.7.0/fuser/trait.Filesystem.html)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "18b30a5c",
+      "source_content": "## Appendix B: Common Error Numbers",
+      "source_content_hash": "2d40bf7844d376306f0b76a1eb868332bd4529df7c856547ce65711894e2cddd",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 附錄 B：常見錯誤碼"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a6c2d2ee",
+      "source_content": "- 1: Operation not permitted",
+      "source_content_hash": "f9e59961b77f4704b20b0dd6e156e440876ff5a3d29f8f0239c7553237f9a456",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 1: 不允許的操作"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7356c3df",
+      "source_content": "- 2: No such file or directory",
+      "source_content_hash": "a16415d191af4083d2558acd3a72ece78736d1069ce94987ebe17ae18f739468",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 2: 沒有此檔案或目錄"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5b579c5b",
+      "source_content": "- 5: I/O error",
+      "source_content_hash": "66fbf222322d04452288b8e15ca0cc55dd8d35beb3b5372dd2927ca64dc2a755",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 5: I/O 錯誤"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d27b313a",
+      "source_content": "- 6: No such device or address",
+      "source_content_hash": "12e20ba10f79758fd0e5e85099413e3954c7f4cb47a98f5db6ac95152fd9e55d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 6: 沒有此裝置或位址"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ddee190f",
+      "source_content": "- 12: Out of memory",
+      "source_content_hash": "852f54467fbcb9d12dabe9cdd56ea534d9e0f710fed18d4416c9c99d74c4d265",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 12: 記憶體不足"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e4673504",
+      "source_content": "- 16: Device or resource busy",
+      "source_content_hash": "377db890e5a88e8ad0a83b935fa65a7b5010833688f3e1450f24906bb3573102",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 16: 裝置或資源忙碌"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0702a776",
+      "source_content": "- 17: File exists",
+      "source_content_hash": "0128921cf2e27186c23e62a6a4bc79a09301a035d655902fe62dbddc186994a4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 17: 檔案已存在"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0fb10be0",
+      "source_content": "- 20: Not a directory",
+      "source_content_hash": "e08b6be4d369695c2a721daf055c7635fbadff77037d989c65d647cb926a17ee",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 20: 不是目錄"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a5bf67fb",
+      "source_content": "- 22: Invalid argument",
+      "source_content_hash": "acb11e8dfef71eac76950aa86f1f4d577c330b2db6c9ddc2a460b7c0b056262d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 22: 無效的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c3ddf07b",
+      "source_content": "- 24: Too many open files",
+      "source_content_hash": "77eeab61d5c6c11b7db00e86675c3a00dca14458f9a04d71291b30e559a580ab",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 24: 開啟過多檔案"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3510770e",
+      "source_content": "- 28: No space left on device",
+      "source_content_hash": "6376f538d6b1b72c97e92bf7d37be97b9e79b1c4307c9339d5ebce849e7f7673",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 28: 裝置上無可用空間"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b2ffb658",
+      "source_content": "For more information, refer to [Linux source code](https://raw.githubusercontent.com/torvalds/linux/master/include/uapi/asm-generic/errno-base.h).",
+      "source_content_hash": "2f9988d915410b68e2bb1726b0bb2cc0c57e36c6dd35d9c36e114df4fecee5e8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "更多資訊，請參閱 [Linux 原始碼](https://raw.githubusercontent.com/torvalds/linux/master/include/uapi/asm-generic/errno-base.h)。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/simulate-io-chaos-on-kubernetes.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.103795+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "4fc0d2aad3405bf00291e7fdcd6a11f947f81fdbf82b2a98e0ee58f064763afd"
+  }
+}

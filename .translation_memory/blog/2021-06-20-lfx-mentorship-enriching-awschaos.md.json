@@ -1,0 +1,357 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2021-06-20-lfx-mentorship-enriching-awschaos.md",
+  "source_file_content_hash": "5df2bb73dd7cacfe2246266c46b07b24102ff480dec82155a3ad0839b3792fee",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /lfx-mentorship-enriching-awschaos\ntitle: From a Newbie in Software Engineering to a Graduated LFX-Mentee\nauthors: debabratapanigrahi\nimage: /img/blog/mentorship_experience.png\ntags: [Chaos Mesh, Chaos Engineering, LFX Mentorship, AWS Chaos]\n---",
+      "source_content_hash": "99f8f538b5eeacb6024482808e9a69c9e59b41a71054f1c176fb3e4fb9164c7b",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![LFX Mentorship Experience](/img/blog/mentorship_blog.jpeg)",
+      "source_content_hash": "5055b2595475e12ab8e927658c97e322b3aa2c44d12c555556ae5ad39488c185",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![LFX 導師計畫經驗分享](/img/blog/mentorship_blog.jpeg)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "[I’m](https://mentorship.lfx.linuxfoundation.org/mentee/6a0bf7de-9e18-4acb-9a66-f5fecdbeb42e) a junior undergraduate majoring in Biomedical Engineering in the Department of Biotechnology and Medical Engineering at the [National Institute of Technology Rourkela](https://nitrkl.ac.in/), India. For someone who started to code only because I was fascinated by it, it was all a journey of self-learning, filled with various adversities. But when I started with open-source contributions, it was all very beginner-friendly and I came across a lot of people who helped me learn the tech stack better.",
+      "source_content_hash": "6a199db20c28b16674c2bbd423f178c403eca7ca1dc15e71fa6f60e6f2c671b9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[我](https://mentorship.lfx.linuxfoundation.org/mentee/6a0bf7de-9e18-4acb-9a66-f5fecdbeb42e)是印度[國家技術學院魯爾克拉分校](https://nitrkl.ac.in/)生物技術與醫學工程系的生物醫學工程大三學生。作為純粹因熱愛而開始編程的人，這是一段充滿挑戰的自學歷程。但當我踏入開源貢獻領域時，發現它對初學者非常友好，並遇到許多幫助我精進技術的人。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "![img1](/img/blog/mentroship_blog1.png)",
+      "source_content_hash": "57bcadb92cc50c6a617da1970211b744407311fbd6c72eb3fff36a83447d67bf",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![圖1](/img/blog/mentroship_blog1.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3daf1b88",
+      "source_content": "## The journey through the application",
+      "source_content_hash": "5380d6aff1e5fd9ec72a84fcd4f533c5cd375ddd6aa8554c5a3b0c9d379242dd",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 申請歷程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "In the spring of 2021, I got to know about this LFX mentorship program and after browsing through all the [projects](https://github.com/cncf/mentoring/blob/master/lfx-mentorship/2021/01-Spring/README.md), it felt quite intimidating to me as I wasn’t acquainted with most of the terms and was confused, and I thought it was not for newbies like me. Then I went through the program [docs](https://docs.linuxfoundation.org/lfx/mentorship), the mentorship [FAQ’s](https://docs.linuxfoundation.org/lfx/mentorship/mentorship-faqs) followed the steps mentioned there and applied for a few projects that interested me, and used tech-stacks that I am familiar with, like Docker, AWS, Python, etc.",
+      "source_content_hash": "3dfdf2fdb74926494a888e3eb1f03fbc3df49d6bc071cb7bf9fe6aa42d1ba2bf",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2021年春季，我得知LFX導師計畫，瀏覽所有[專案清單](https://github.com/cncf/mentoring/blob/master/lfx-mentorship/2021/01-Spring/README.md)後感到忐忑，因不熟悉多數術語而困惑，以為不適合新手。隨後我研讀計畫[文件](https://docs.linuxfoundation.org/lfx/mentorship)、導師計畫[常見問答](https://docs.linuxfoundation.org/lfx/mentorship/mentorship-faqs)，依指示申請了幾個感興趣且技術棧熟悉的專案，如Docker、AWS、Python等。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "Then I applied to both projects offered by [Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) and submitted my CV and cover letter as immediate tasks. After a few days, I received an email from my mentor regarding an additional task to be submitted.",
+      "source_content_hash": "f855b5e0dfd37747447b52e68fba34758f0b41c8de0dff1f4196cc625abc1c1d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "接著我申請了[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh)的兩個專案，並立即提交履歷和求職信。幾天後收到導師來信要求提交額外任務。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "![img2](/img/blog/mentorship_blog2.png)",
+      "source_content_hash": "7fb08d9d331a4a3271c1c94e49f9a2e5bf61cfd35c138db69487bd99ab526431",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![圖2](/img/blog/mentorship_blog2.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c2bdd0",
+      "source_content": "I completed the above-mentioned task, uploaded the files to GitHub, and shared the link with my mentor.",
+      "source_content_hash": "a8c5acadbe1367d8081eaef6a90ef10ed8a9a9e063cb1f5af1c43d7214338ee6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我完成上述任務後，將檔案上傳至GitHub並與導師分享連結。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fa430ad4",
+      "source_content": "## The selection and Initial days as a mentee",
+      "source_content_hash": "000bbe6104949e64473b863384f27d36a37e0ad16937014dc45bea16114bbf69",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 獲選與初期見習"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "57971bfb",
+      "source_content": ":::note\n\n2022-10-24: Because of https://www.oreilly.com/online-learning/leveraging-katacoda-technology.html, and refer to [#356](https://github.com/chaos-mesh/website/pull/356), the interactive tutorial is temporarily unavailable.\n\n:::",
+      "source_content_hash": "309c9fa56a89085317288948daab67d47db5d9ef3cd9382c10b3a8e1c64972fe",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n2022-10-24：因應 https://www.oreilly.com/online-learning/leveraging-katacoda-technology.html 並參見 [#356](https://github.com/chaos-mesh/website/pull/356)，互動式教學目前暫停提供。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bdc231b1",
+      "source_content": "I distinctly remember the day when I received an email from my mentor regarding my selection in the mentorship program. I was elated, as it was my first involvement in any open-source program. I was glad to be accepted as a mentee in the program, I even received an email from CNCF regarding my selection.",
+      "source_content_hash": "941cc7ae713047fad40bd41d12db791fc3aaf4d99b9f021b1257e18cfdec3620",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我清晰記得收到導師錄取通知郵件的那天，欣喜萬分——這是我首次參與開源計畫。成為計畫見習生讓我倍感榮幸，甚至收到CNCF的正式錄取通知。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "97ae4a01",
+      "source_content": "![img3](/img/blog/mentorship_blog4.png)",
+      "source_content_hash": "894adbcfca0d0cf7187fbde5a6636414cf72603ce8f75af3290d3ac0e36400b8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![圖3](/img/blog/mentorship_blog4.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c3a738de",
+      "source_content": "Along with my mentor, we decided on our mode of communication: through Slack. He also enquired about my knowledge of Kubernetes and GOlang, as I didn’t have much knowledge about either of them. He suggested a few resources and gave me 2 weeks to go through them. In the meantime, he also planned a few experiments for me to get acquainted with all these technologies.",
+      "source_content_hash": "8903f04b9c2fa9deaff5157a18718dd1620a49c89ae414f795828681ddae57cb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "與導師商定透過Slack溝通後，他詢問我對Kubernetes和GOlang的掌握程度。由於基礎有限，他推薦學習資源並給予兩週準備期，同時規劃實驗任務助我熟悉這些技術。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3cfe6286",
+      "source_content": "As I was getting more comfortable with Kubernetes, I started exploring Chaos Mesh and completed the `interactive tutorial`, which gave me a clearer idea about the usage of Chaos Mesh. I then implemented the [hello-world chaos](https://chaos-mesh-website-archived.netlify.app/docs/1.2.4/development_guides/develop_a_new_chaos), which helped me to know more about controllers and CRDs, considered to be the most important part of Chaos Mesh. Also, I got to know about the boilerplate codes, the [kube-builder client](https://github.com/kubernetes-sigs/kubebuilder), and how to use them for scaffolding, followed by writing our own controllers.",
+      "source_content_hash": "692b8e70427f2e81e9cfe3eb20e2689952d255b8b9640cc808bf630ea41917e0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "隨著對Kubernetes漸入佳境，我開始探索Chaos Mesh並完成`互動式教學`，更清楚掌握其用法。接著實作[hello-world故障實驗](https://chaos-mesh-website-archived.netlify.app/docs/1.2.4/development_guides/develop_a_new_chaos)，深入理解控制器與CRD——Chaos Mesh的核心組件。同時學習了[kube-builder客戶端](https://github.com/kubernetes-sigs/kubebuilder)的樣板程式碼，掌握如何用其搭建框架並編寫自訂控制器。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`interactive tutorial`', Translation: '`互動式教學`'.",
+          "timestamp": "2025-07-04T06:49:59.310499+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "1042b50d",
+      "source_content": "After the initial days of experimenting and getting to know the project better, I started with solving a few good first issues to get acquainted with upstream contributions to Chaos Mesh.",
+      "source_content_hash": "a8777018d0ef8921b130d41f67c153fe75760de2ac783494aaab87303261e58e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在最初的幾天實驗和更了解專案後，我開始解決一些「good first issues」以熟悉對 Chaos Mesh 的上游貢獻。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa1e7006",
+      "source_content": "![img4](/img/blog/mentorship_blog3.png)",
+      "source_content_hash": "96da909b78a5440d7dd905a0848d67565a89ba04a6fd3569dc69e6283ca63056",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![img4](/img/blog/mentorship_blog3.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "13d9cd70",
+      "source_content": "In one of my contributions, I tried to add multi-container support to stress-chaos, which was not possible before. Though it was successfully implemented, it broke a few other features and couldn’t be merged for the upcoming release. What’s more, for the 2.0.0 release, this refactoring was already done, so this particular contribution was a learning experience for both me and my mentor. After that, we became careful and the next time we tried to implement any new features, we would first submit an [RFC](https://github.com/chaos-mesh/rfcs) and have discussions with the other contributors before starting.",
+      "source_content_hash": "feca9071721fdefb318df358dd551223d769aa8bdf83dacdcd9daf2aba441349",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在其中一項貢獻中，我嘗試為 stress-chaos 添加多容器支援，這是之前無法實現的。雖然成功實現了，但它破壞了一些其他功能，因此無法合併到即將發布的版本中。更重要的是，在 2.0.0 版本中，這項重構已經完成，因此這項貢獻對我和我的導師來說都是一次學習經驗。之後，我們變得更加謹慎，下次嘗試實現任何新功能時，我們會先提交一份 [RFC](https://github.com/chaos-mesh/rfcs)，並在開始前與其他貢獻者進行討論。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6f930b2f",
+      "source_content": "## My contribution to AWS Chaos",
+      "source_content_hash": "6ad7796f9f2f22371a03e88ff8eabf25ad84a8adb821d55e98a8692e89002b16",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 我對 AWS Chaos 的貢獻"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c504c207",
+      "source_content": "Initially, I was asked to implement one type of AWS Chaos as part of this project, but as I started exploring more about it, I found [awsssmchaosrunner](https://github.com/amzn/awsssmchaosrunner), and given its functionality, we wanted to integrate it into Chaos Mesh.",
+      "source_content_hash": "bf68ce74424d6e21142dd867110d935dfeac2e7605a1061e725bf66c822069d8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "最初，我被要求實現一種 AWS Chaos 作為該專案的一部分，但當我開始深入探索時，我發現了 [awsssmchaosrunner](https://github.com/amzn/awsssmchaosrunner)，鑑於其功能，我們希望將其整合到 Chaos Mesh 中。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "98d26038",
+      "source_content": "We planned to do it in two parts, one part is the “[runner thing](https://github.com/STRRL/awsssmchaosrunner-cli)” project, which integrates with awsssmchaosrunner, that part should be written in kotlin, and a docker image is to be built out of it.",
+      "source_content_hash": "dc3a37eea84642c9bb899f6ff4485c73c510bd50f7aaa5a06cc44a8b6be90688",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們計劃分兩部分進行，一部分是「[runner thing](https://github.com/STRRL/awsssmchaosrunner-cli)」專案，它與 awsssmchaosrunner 整合，該部分應使用 kotlin 編寫，並從中構建一個 docker 映像。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d3649a1e",
+      "source_content": "Another part is the definition of the AWS Chaos and its [controller](https://github.com/chaos-mesh/chaos-mesh/pull/1919), which is to be written in go, the controller of AWS Chaos will create a pod with that “kotlin cli image”, and send commands to AWS.",
+      "source_content_hash": "b821e61c088f8ac240248672c36b92309ca349ccc11afc46f5962ba21c0fa01c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "另一部分是 AWS Chaos 的定義及其[控制器](https://github.com/chaos-mesh/chaos-mesh/pull/1919)，該部分將使用 go 語言編寫，AWS Chaos 的控制器將使用該「kotlin cli image」建立一個 pod，並向 AWS 發送命令。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e50bebbf",
+      "source_content": "## Other opportunities",
+      "source_content_hash": "db683db539eac3e9cc27ae12ac70c6df7008b3df5a1bc7479765a50936326fac",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 其他機會"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "23dfb152",
+      "source_content": "I was invited to one of the Chaos Mesh [community meetings](https://www.youtube.com/watch?v=ElG0pHRoXwI&t=2s) towards the end of the mentorship where I showcased my project.",
+      "source_content_hash": "7409c4c46a50a4cf366c955e2faa430ded231a2f918e5f6eef5c04480b66bb3b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在導師計畫接近尾聲時，我受邀參加了一次 Chaos Mesh [社群會議](https://www.youtube.com/watch?v=ElG0pHRoXwI&t=2s)，並在會上展示我的專案。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1131ef75",
+      "source_content": "Afterwards, I applied for the CFP for [Kubernetes Community Days Bangalore](https://community.cncf.io/events/details/cncf-kcd-bengaluru-presents-kubernetes-community-days-bengaluru/), scheduled virtually from June 25–26, 2021, and was selected as a speaker and now I’m all set to present my talk there.",
+      "source_content_hash": "390ddaa4271b9ecfd85ce53c96260b5728502a7ffab02ae07c6ef28c3529a646",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "之後，我申請了 [Kubernetes Community Days Bangalore](https://community.cncf.io/events/details/cncf-kcd-bengaluru-presents-kubernetes-community-days-bengaluru/) 的 CFP（徵求提案），該活動定於 2021 年 6 月 25 日至 26 日以虛擬方式舉行，我被選為演講者，現在已準備好在會上進行演講。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9e95fc4a",
+      "source_content": "## Graduation and Next steps",
+      "source_content_hash": "8a3147a51f98a8ed12547c25bab552e7299ede263f1e0e7200074379b097702b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 畢業與後續步驟"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5dae11e3",
+      "source_content": "Yayyyy!! After 12 weeks, I successfully graduated from the program, thanks to my mentor [Zhou Zhiqiang](https://mentorship.lfx.linuxfoundation.org/mentor/e78b3177-160c-4566-9f3d-8fc9b2ec3cea) and his guidance, because without whom, this wouldn’t have been possible.",
+      "source_content_hash": "33c4bef887ddc65492831a58c6e75c4633cfc43be90ef20e51ca312dfb642287",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "太棒了！！經過 12 週，我成功從該計畫畢業，感謝我的導師 [Zhou Zhiqiang](https://mentorship.lfx.linuxfoundation.org/mentor/e78b3177-160c-4566-9f3d-8fc9b2ec3cea) 和他的指導，因為沒有他，這一切都不可能實現。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0bb95128",
+      "source_content": "I had an amazing time with the Chaos Mesh community, with the amazing members supporting and helping me throughout the journey. I look forward to contributing more to this project and being more active in the community.",
+      "source_content_hash": "54c57a829c649eb57978cb84f996cdf218ef550d11a4aa41bacd0d0e58032782",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我在 Chaos Mesh 社群度過了一段美好的時光，社群中出色的成員在整個旅程中給予我支持和幫助。我期待為該專案貢獻更多，並在社群中更加活躍。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3ef18741",
+      "source_content": "## Join the Chaos Mesh community",
+      "source_content_hash": "8564db0f343dd92819ace9cd4486095b86c53f848516defb72402a118c439277",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 加入 Chaos Mesh 社群"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7772088",
+      "source_content": "To join and learn more about Chaos Mesh, find the #project-chaos-mesh channel in [CNCF slack workspace](https://slack.cncf.io/) or their [GitHub](https://github.com/chaos-mesh/chaos-mesh).",
+      "source_content_hash": "6377b4cfbf7fcdccd324f99d9bf1979d1498d6cfc04b6eb0dc8a57c40481f6f1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要加入並了解更多關於 Chaos Mesh 的資訊，請在 [CNCF slack workspace](https://slack.cncf.io/) 中找到 #project-chaos-mesh 頻道，或造訪他們的 [GitHub](https://github.com/chaos-mesh/chaos-mesh)。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2021-06-20-lfx-mentorship-enriching-awschaos.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.310535+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "5df2bb73dd7cacfe2246266c46b07b24102ff480dec82155a3ad0839b3792fee"
+  }
+}

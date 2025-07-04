@@ -1,0 +1,680 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/production-installation-using-helm.md",
+  "source_file_content_hash": "c88faeb3b8f0ac0567abb2e6f6a6e38045791cb4defb87e51323d6438c3dab4f",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Install Chaos Mesh using Helm\n---",
+      "source_content_hash": "0656e90c85c806f95401285d5cb657307abe0624f74ee7aaf09e68b3df096617",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7335511f",
+      "source_content": "import Tabs from '@theme/Tabs'",
+      "source_content_hash": "2fabe77d766c4770ef075914408ef8503fc4c7532530c72113ad5730f84a60e7",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7335511f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "10c4cb47",
+      "source_content": "import TabItem from '@theme/TabItem'",
+      "source_content_hash": "b6dec1f52d757c10f395c3b5f0de435aba916cdd5c1cc763756fe0703355bfa3",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_10c4cb47"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "623f74e7",
+      "source_content": "import PickVersion from '@site/src/components/PickVersion'",
+      "source_content_hash": "ca7269780bfa6037f17f284ffc268b62f4da5d348125e9f85064a4fe1f2214ef",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_623f74e7"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b608d7f0",
+      "source_content": "import PickHelmVersion from '@site/src/components/PickHelmVersion'",
+      "source_content_hash": "753aee644dbd2a4b70a118018b50ec80427523e751a14d470e7956678fd8cb94",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b608d7f0"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1c302051",
+      "source_content": "import VerifyInstallation from './common/\\_verify-installation.md'",
+      "source_content_hash": "3c86e852bc2036b9490fb7547723d440cc096b89eff8c4f05ea4f33f75f05b60",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1c302051"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7631d086",
+      "source_content": "import QuickRun from './common/\\_quick-run.md'",
+      "source_content_hash": "4cb6d0f068aa48b54d7a66bfc31448ba6bc9a5f8a90793a946cd894fa1e5dfa5",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7631d086"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "This document describes how to install Chaos Mesh in the production environment.",
+      "source_content_hash": "298cfe30dd64a06ed7fe4916dbcf428a2ad2a4273b5154d7bef3976e96643e77",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件描述如何在生產環境中安裝 Chaos Mesh。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee0e40d",
+      "source_content": "## Prerequisites",
+      "source_content_hash": "bbd3d4949a6f237efd8d4ff5c7c5f30d968e7a989ad12f3d7dcef69c98053912",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 先決條件"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "Before installing Chaos Mesh, make sure that you have installed [Helm](https://helm.sh/docs/intro/install/) in your environment.",
+      "source_content_hash": "02daac5f6c3f7cff091c9da7e69dd5053bf657e49082e97f1c6d46cd1b835c30",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在安裝 Chaos Mesh 之前，請確保您已在環境中安裝 [Helm](https://helm.sh/docs/intro/install/)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "To check whether Helm is installed or not, execute the following command:",
+      "source_content_hash": "80e5db187260def89dee9a568e9d6140b64465d33eed1dcdb14e96d5a8ea2051",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要檢查 Helm 是否已安裝，請執行以下命令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3569d545",
+      "source_content": "```bash\nhelm version\n```",
+      "source_content_hash": "e664eb11ea7caf4b52b54a41dc56ac93a34f160fe6b328548317371f719efdf6",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3569d545"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b1d2d7d",
+      "source_content": "The expected output is as follows:",
+      "source_content_hash": "f619ab41c913a7405e4d6ae7b0212d3658fe20bdf352850f375a0b552e74b38a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "預期輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cb57d798",
+      "source_content": "```bash\nversion.BuildInfo{Version:\"v3.5.4\", GitCommit:\"1b5edb69df3d3a08df77c9902dc17af864ff05d1\", GitTreeState:\"dirty\", GoVersion: \"go1.16.3\"}\n```",
+      "source_content_hash": "e126e2bd3dd21b29412f0cfd1821649331be16c3fa566d716f3c585018f7ebd3",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_cb57d798"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bdc231b1",
+      "source_content": "If your actual output is similar to the expected output with `Version`, `GitCommit`, `GitTreeState`, and `GoVersion`, it means that Helm is installed successfully.",
+      "source_content_hash": "3c7fd46bb0d7ba3069e278222ef7be790e24c95704f9c5d27903cab59d707275",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若您的實際輸出與預期輸出相似，包含 `Version`、`GitCommit`、`GitTreeState` 和 `GoVersion`，則表示 Helm 已成功安裝。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "26794fc5",
+      "source_content": ":::note\n\nIn this document, Helm v3 is used in commands to make operations on Chaos Mesh. If Helm v2 is used in your environment, refer to [Migrating Helm v2 to v3](https://helm.sh/docs/topics/v2_v3_migration/) or modify the Helm version to the v2 format.\n\n:::",
+      "source_content_hash": "f641564ab8d1163e3deae6a6f3bcc3fcf67aae827ca5ca3178c4c793448206da",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n本文檔使用 Helm v3 命令來操作 Chaos Mesh。如果您的環境使用 Helm v2，請參閱 [Migrating Helm v2 to v3](https://helm.sh/docs/topics/v2_v3_migration/) 或將 Helm 版本修改為 v2 格式。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "06c0f776",
+      "source_content": "## Install Chaos Mesh using Helm",
+      "source_content_hash": "1cbdee2ad96ca10dda3f5f9e6833d768b811cf80fe10f08b60d3d15a5b476f24",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Helm 安裝 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "35a77014",
+      "source_content": "### Step 1: Add Chaos Mesh repository",
+      "source_content_hash": "639be2396c398688d8f51339f7437c80972e927fec2a91fb3d6b5c9ae129558d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 1：新增 Chaos Mesh 儲存庫"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "13d9cd70",
+      "source_content": "Add the Chaos Mesh repository to the Helm repository:",
+      "source_content_hash": "a351d530f5fb34f12f276385bb746fd2047573e0495b107e10c33774dd8a89c8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "將 Chaos Mesh 儲存庫新增至 Helm 儲存庫："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "229d6705",
+      "source_content": "```bash\nhelm repo add chaos-mesh https://charts.chaos-mesh.org\n```",
+      "source_content_hash": "6711735b62f6bcc2293318bcdbe431b7ab7e36fe749590415929522e221c8d2e",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_229d6705"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c6cc90a0",
+      "source_content": "### Step 2: View the installable versions of Chaos Mesh",
+      "source_content_hash": "e83776edf2e746a48b18b16bd1cb56f05c388fa496c576c907b5164d57292de3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 2：查看可安裝的 Chaos Mesh 版本"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d3649a1e",
+      "source_content": "To see charts that can be installed, execute the following command:",
+      "source_content_hash": "2e37b90860e94095558cc3f1cd62fe4d5b78a08b0793402d0cfdaebdd0b7fd99",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要查看可安裝的圖表，請執行以下命令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c3955998",
+      "source_content": "```bash\nhelm search repo chaos-mesh\n```",
+      "source_content_hash": "6bb563441b2b526e898d8b0061de6470894f0c97ab31334d4bda189578775122",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_c3955998"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "416beea7",
+      "source_content": ":::note\n\nThe above command will output the latest release of chart. If you want to install a historical version, execute the following command to view all released versions:\n\n```bash\nhelm search repo chaos-mesh -l\n```\n\n:::",
+      "source_content_hash": "cf47bde478af55ee8e963e1772a5150dde46ac5535fe4ca8a614133fe79b1e3b",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n上述命令將輸出圖表的最新版本。若要安裝歷史版本，請執行以下命令查看所有發布版本：\n\n```bash\nhelm search repo chaos-mesh -l\n```\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7772088",
+      "source_content": "After the above command is completed, you can start installing Chaos Mesh.",
+      "source_content_hash": "a13f868e9341e7fde6f286be014fdfd1990ec9bc7e64310b3fb711289744f74b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "完成上述命令後，即可開始安裝 Chaos Mesh。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d422fb13",
+      "source_content": "### Step 3: Create the namespace to install Chaos Mesh",
+      "source_content_hash": "ed3ebe52ac0d61ae3db6bca4e0f05f19ebebf0b4dfbc48b08551d16c02937532",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 3：建立安裝 Chaos Mesh 的命名空間"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f01228d3",
+      "source_content": "It is recommended to install Chaos Mesh under the `chaos-mesh` namespace, or you can specify any namespace to install Chaos Mesh:",
+      "source_content_hash": "8fef54a5c645b891e00b56fcbea1c796d17b8506a2f5a5442a6382daec959b26",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "建議在 `chaos-mesh` 命名空間下安裝 Chaos Mesh，或可指定任意命名空間進行安裝："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c808e01e",
+      "source_content": "```bash\nkubectl create ns chaos-mesh\n```",
+      "source_content_hash": "a57682b778e35736bf2ce8fabff9635365aed85070b18ead7eab0f0686ded0fd",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_c808e01e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b936dd6a",
+      "source_content": "### Step 4: Install Chaos Mesh in different environments",
+      "source_content_hash": "39ed8a53ad0250ef38a065fd247fd48bdf66ec5e7ddbf5e0afa19ea4006604e3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 4：在不同環境中安裝 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "17f3ca09",
+      "source_content": ":::note\n\nWhen installing Chaos Mesh on Kubernetes v1.15(or an earlier version), you need to manually install CRD. For more information, see [FAQ](./faqs.md#failed-to-install-chaos-mesh-with-the-message-no-matches-for-kind-customresourcedefinition-in-version-apiextensionsk8siov1).\n\n:::",
+      "source_content_hash": "05159523838a4766ab26c06ba6eaf09f9589b773a83ec2b1534854759c20be21",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n在 Kubernetes v1.15（或更早版本）上安裝 Chaos Mesh 時，需手動安裝 CRD。詳情請參閱 [FAQ](./faqs.md#failed-to-install-chaos-mesh-with-the-message-no-matches-for-kind-customresourcedefinition-in-version-apiextensionsk8siov1)。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "74dd7937",
+      "source_content": "As the daemons of different container runtimes listen on different socket paths, you need to set the appropriate values during installation. You can run the following installation commands according to different environments.",
+      "source_content_hash": "0cb77015fb0f315f8ef695c3bf57799d17eb06154a38b9d50d88fb8db9b56735",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "由於不同容器運行時的守護程序監聽不同 socket 路徑，安裝時需設定適當值。請根據不同環境執行以下安裝命令。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dce3ad56",
+      "source_content": "<!-- prettier-ignore -->",
+      "source_content_hash": "a94eeea12154992988ea88567eed85506a35d1f83e439a912e23fafd65191f47",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_dce3ad56"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9cb0b344",
+      "source_content": "<Tabs defaultValue=\"docker\" values={[\n  {label: 'Docker', value: 'docker'},\n  {label: 'Containerd', value: 'containerd'},\n  {label: 'K3s', value: 'k3s'},\n  {label: 'MicroK8s', value: 'microk8s'},\n  {label: 'CRI-O', value: 'cri-o'}\n]}>\n  <TabItem value=\"docker\">\n    <PickHelmVersion>{`\\# Default to /var/run/docker.sock\\nhelm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --version latest`}</PickHelmVersion>\n  </TabItem>\n  <TabItem value=\"containerd\">\n    <PickHelmVersion>{`helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --set chaosDaemon.runtime=containerd --set chaosDaemon.socketPath=/run/containerd/containerd.sock --version latest`}</PickHelmVersion>\n  </TabItem>\n  <TabItem value=\"k3s\">\n    <PickHelmVersion>{`helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --set chaosDaemon.runtime=containerd --set chaosDaemon.socketPath=/run/k3s/containerd/containerd.sock --version latest`}</PickHelmVersion>\n  </TabItem>\n  <TabItem value=\"microk8s\">\n    <PickHelmVersion>{`helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --set chaosDaemon.runtime=containerd --set chaosDaemon.socketPath=/var/snap/microk8s/common/run/containerd.sock --version latest`}</PickHelmVersion>\n  </TabItem>\n  <TabItem value=\"cri-o\">\n    <PickHelmVersion>{`helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --set chaosDaemon.runtime=crio --set chaosDaemon.socketPath=/var/run/crio/crio.sock --version latest`}</PickHelmVersion>\n  </TabItem>\n</Tabs>",
+      "source_content_hash": "df8a3c73e9b1ee99f472d5bd453a8e772894e3d3577e5f19f1917ec60818d2d0",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9cb0b344"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5b81fcd1",
+      "source_content": ":::info\n\nTo install a specific version of Chaos Mesh, add the `--version x.y.z` parameter after `helm install`. For example, `helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --version 2.1.0`.\n\n:::",
+      "source_content_hash": "f48aeb56726dd744f1ed37c59ecd580d54cebe72f30d9111db58b418aae482b9",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::info\n\n若要安裝特定版本的 Chaos Mesh，請在 `helm install` 後新增 `--version x.y.z` 參數。例如：`helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --version 2.1.0`。\n\n:::",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`--version x.y.z`', Translation: '`helm install`'.",
+          "timestamp": "2025-07-04T06:49:59.297374+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "e8e66eae",
+      "source_content": ":::tip\n\nTo ensure high availability, Chaos Mesh turns on `leader-election` feature by default. If you do not need to use this feature, you can disable it manually with `--set controllerManager.leaderElection.enabled=false`.\n\n> If version `<2.6.1`, you still need to set `--set controllerManager.replicaCount=1` to reduce the controller manager to one replica.\n\n:::",
+      "source_content_hash": "7ac13928bf77512551e16cc90ac24c82f5dd5ddc2758f0c75dae3debf8adb4e8",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::tip\n\n為確保高可用性，Chaos Mesh 預設啟用 `leader-election` 功能。若不需要此功能，可手動使用 `--set controllerManager.leaderElection.enabled=false` 停用。\n\n> 若版本 `<2.6.1`，仍需設定 `--set controllerManager.replicaCount=1` 將控制器管理員縮減為單一副本。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4dd6a631",
+      "source_content": "## Verify the installation",
+      "source_content_hash": "0d2ed30d9f4336dd5ab339cd313dd26e5461d2a21711f677bc0840bc5fa6dbbe",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 驗證安裝"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f801fe2d",
+      "source_content": "<VerifyInstallation />",
+      "source_content_hash": "f4281d3be47e560c31b96d45cf57751dc4aa12be8104a8eb2cc4ef27046bead4",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_f801fe2d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8f1c1cd6",
+      "source_content": "## Run Chaos experiments",
+      "source_content_hash": "0eb74e2b0136974b1afaddf125d2258ca783f01c81654608726279a87f3b096a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 執行混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "88cb26ec",
+      "source_content": "<QuickRun />",
+      "source_content_hash": "c8366f6b814a147c7134b91ca99b14da6c72fa93b10d995f922b9148b63cd13f",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_88cb26ec"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "13292277",
+      "source_content": "## Upgrade Chaos Mesh",
+      "source_content_hash": "7601a2cf9c8a08b60ac568b6bf9272805c2b66b27f5c3c5495bc6d7324ccf8f6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 升級 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e478ec2c",
+      "source_content": "To upgrade Chaos Mesh, execute the following command:",
+      "source_content_hash": "58c309f002c1cf98e5cd8170751f000bf96c1a7c4ce6e837462643b2b29b98f4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要升級 Chaos Mesh，請執行以下命令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e908327f",
+      "source_content": "```bash\nhelm upgrade chaos-mesh chaos-mesh/chaos-mesh\n```",
+      "source_content_hash": "d4f387b089c575aa24a78005444c4c1f5f2dd291ba5fd3d4e7e6bdb79cd92094",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_e908327f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8f285cf5",
+      "source_content": ":::info\n\nTo upgrade to a specific version of Chaos Mesh, add the `--version x.y.z` parameter after `helm upgrade`. For example, `helm upgrade chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --version 2.1.0`.\n\n:::",
+      "source_content_hash": "01e949113182f7f4fa7a1cd7e2f786bbdeb79c61cfb21d9a66bfbfb01edc08eb",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::info\n\n若要升級至特定版本的 Chaos Mesh，請在 `helm upgrade` 指令後方加入 `--version x.y.z` 參數。例如：`helm upgrade chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --version 2.1.0`。\n\n:::",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`--version x.y.z`', Translation: '`helm upgrade`'.",
+          "timestamp": "2025-07-04T06:49:59.297396+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "ff35cad6",
+      "source_content": ":::note\n\nIf you have upgraded Chaos Mesh in a non-Docker environment, you will need to add the appropriate parameters as described in [Step 4: Install Chaos Mesh in different environments](#step-4-install-chaos-mesh-in-different-environments).\n\n:::",
+      "source_content_hash": "a79df904a1da10a917819a2f11beba43a7914e5ae147a081432f9dd5d4872f19",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n若您已在非 Docker 環境中升級 Chaos Mesh，則需按照[步驟 4：在不同環境安裝 Chaos Mesh](#step-4-install-chaos-mesh-in-different-environments) 的描述添加相應參數。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "44285072",
+      "source_content": "To modify the configuration, set different values according to your need. For example, execute the following command to upgrade and uninstall `chaos-dashboard`:",
+      "source_content_hash": "ea81f6eb46b96f3d221ba041f0a573dac98c2e12eff302b235466a4c1881eb9a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要修改配置，請根據需求設定不同參數值。例如執行以下指令進行升級並解除安裝 `chaos-dashboard`："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a6c20a74",
+      "source_content": "<PickHelmVersion>{`helm upgrade chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --version latest --set dashboard.create=false`}</PickHelmVersion>",
+      "source_content_hash": "708c546698198fd493d41300af50e61570be4767a527cc61104aef9571a2a5b8",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a6c20a74"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa52af07",
+      "source_content": ":::note\n\nFor more values and their usages, refer to [all values](https://github.com/chaos-mesh/chaos-mesh/blob/master/helm/chaos-mesh/values.yaml).\n\n:::",
+      "source_content_hash": "02678a89bae8d4df7447a7709b8d3c82bc96f9e9907af50480ac7849c789b4c3",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n更多參數值及其用法，請參閱[完整參數列表](https://github.com/chaos-mesh/chaos-mesh/blob/master/helm/chaos-mesh/values.yaml)。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "50ecdbd8",
+      "source_content": ":::caution\n\nCurrently, the latest CustomResourceDefinition (CRD) is not applied during the Helm upgrading, which might cause errors. To avoid this situation, you can apply the latest CRD manually:\n\n<PickVersion>\n{`curl -sSL https://mirrors.chaos-mesh.org/latest/crd.yaml | kubectl create -f -`}\n</PickVersion>\n\n:::",
+      "source_content_hash": "cf0105f243f0837c183e6dfe9ee220e5d93f24503c42ec0894c4bc04667f8ded",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::caution\n\n目前 Helm 升級過程中不會自動套用最新的 CustomResourceDefinition (CRD)，可能導致錯誤。為避免此情況，請手動套用最新 CRD：\n\n<PickVersion>\n{`curl -sSL https://mirrors.chaos-mesh.org/latest/crd.yaml | kubectl create -f -`}\n</PickVersion>\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e1642ab4",
+      "source_content": "## Uninstall Chaos Mesh",
+      "source_content_hash": "ab80d8b7494f870b8fc95c1724720f1abc9e343d7de90d1758433f83418c2bb6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 解除安裝 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "674abb31",
+      "source_content": "To uninstall Chaos Mesh, execute the following command:",
+      "source_content_hash": "5f34dc8c1d90d6968703a678bcd3e0b49211ebb9cc10fd684eac3df252a3378f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要解除安裝 Chaos Mesh，請執行以下指令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ebc385af",
+      "source_content": "```bash\nhelm uninstall chaos-mesh -n chaos-mesh\n```",
+      "source_content_hash": "5aa2d9cef69549afffb978e9f248a1a99f34288c818d8da632daad803aa1d9ac",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ebc385af"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "188a0310",
+      "source_content": "## FAQs",
+      "source_content_hash": "3bd810b3b5e6d0ff5d76e1b6274203676713250cc2873a02e39284054734cd17",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 常見問題"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e63d69ef",
+      "source_content": "### How can I install the latest version of Chaos Mesh?",
+      "source_content_hash": "9fe79dffbf6a4d2c68e577ea3ef7156813c7adbd78e91c452d4aaeab327bccc9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 如何安裝最新版 Chaos Mesh？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0427bb2b",
+      "source_content": "The `helm/chaos-mesh/values.yaml` file defines the image of the latest version (the master branch). To install the latest version of Chaos Mesh, execute the following command:",
+      "source_content_hash": "e9940213f30903a7a54ab0a5b9b94a8e3e155b1d441563ecbbcb029365f2467d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "`helm/chaos-mesh/values.yaml` 檔案定義了最新版本（master 分支）的映像檔。安裝最新版 Chaos Mesh 請執行以下指令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0152e600",
+      "source_content": "```bash\n# Clone repository\ngit clone https://github.com/chaos-mesh/chaos-mesh.git\ncd chaos-mesh\n\nhelm install chaos-mesh helm/chaos-mesh -n=chaos-mesh\n```",
+      "source_content_hash": "54d1d43b41f296ab4fd34e658ee0939ebf4111bcd3d6538959e61f6d778442e7",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_0152e600"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8159e12a",
+      "source_content": "### How can I disable the safe mode?",
+      "source_content_hash": "c968b0ac16e59ffb929336dc5b61db02801ca790090536ce37983ceccda4a7a4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 如何關閉安全模式？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6e5d54a8",
+      "source_content": "Safe mode allows you to disable authentication to the Chaos Mesh dashboard, and should only be used for non-production deployments. Safe mode is **enabled** by default. To disable the safe mode, specify `dashboard.securityMode` as `false` during the installation or upgrade:",
+      "source_content_hash": "adde3f081a359e76264011440d924fe269d0a20cb3839d135159d4bebbf36aa6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "安全模式允許您關閉 Chaos Mesh 儀表板的驗證機制，僅適用於非生產環境部署。安全模式預設**啟用**，若要關閉請在安裝或升級時指定 `dashboard.securityMode` 為 `false`："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d7cf3ad8",
+      "source_content": "<PickHelmVersion>\n{`helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --set dashboard.securityMode=false --version latest`}\n</PickHelmVersion>",
+      "source_content_hash": "97d3da773f62e1965d74d2741a88ab0ee9579d6519a0556bf7ab619ff6e7b667",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d7cf3ad8"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "778e087a",
+      "source_content": "### How can I persist Chaos Dashboard data",
+      "source_content_hash": "2da92c96d6ea4c79f54396274494a70400bc76a6b0b0cbea9f65f86ce65beb97",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 如何持久化儲存 Chaos Dashboard 資料"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "90c4b96b",
+      "source_content": "Chaos Dashboard uses `SQLite` as the default database engine. If [PV (Persistent Volumes)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) is disabled, the data of Chaos Dashboard will be lost after a reboot occurs. To avoid data loss, you can refer to the [Persistence of Chaos Dashboard Data](persistence-dashboard.md) document to enable PV for Chaos Dashboard or set `MySQL` and `PostgreSQL` as the database engine.",
+      "source_content_hash": "fa51103ed46d6e7faabd6a190cdd3af77d55fb286431c50c6032d28d71233ebd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Dashboard 預設使用 `SQLite` 作為資料庫引擎。若未啟用[持久化儲存卷 (PV)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)，重啟後 Chaos Dashboard 的資料將會遺失。為避免資料遺失，請參閱[持久化儲存 Chaos Dashboard 資料](persistence-dashboard.md)文件，為 Chaos Dashboard 啟用 PV 或設定 `MySQL` 與 `PostgreSQL` 作為資料庫引擎。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/production-installation-using-helm.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.297424+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "c88faeb3b8f0ac0567abb2e6f6a6e38045791cb4defb87e51323d6438c3dab4f"
+  }
+}

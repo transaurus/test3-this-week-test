@@ -1,0 +1,749 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/simulate-disk-pressure-in-physical-nodes.md",
+  "source_file_content_hash": "3cd72b89c7040f4f84a449eee4c57fc49b7ccb839f6ccd904da1e39f04113ea9",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate Disk Faults\n---",
+      "source_content_hash": "80036d1a632dde058b3e88f91555c65f04f6b850b5b500db15d454f68a51b74e",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document describes how to use Chaosd to simulate disk faults. This feature helps you simulate disk read/write load (via [dd](https://man7.org/linux/man-pages/man1/dd.1.html)) or disk fill (via [dd](https://man7.org/linux/man-pages/man1/dd.1.html) or [fallocate](https://man7.org/linux/man-pages/man1/fallocate.1.html)).",
+      "source_content_hash": "d6075b8e7834cae081278933ddba4ce8fde59af00f6d685cc0ecfcf2876756a4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文檔說明如何使用 Chaosd 模擬磁碟故障。此功能可協助您模擬磁碟讀寫負載（透過 [dd](https://man7.org/linux/man-pages/man1/dd.1.html)）或磁碟填充（透過 [dd](https://man7.org/linux/man-pages/man1/dd.1.html) 或 [fallocate](https://man7.org/linux/man-pages/man1/fallocate.1.html)）。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## Create experiments using the command-line mode",
+      "source_content_hash": "1f3fe4b5166e719cfc4bb6d25f1edc906258751c11d775ab0f82d0e32437a92b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用命令列模式建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "This section describes how to create disk fault experiments using the command-line mode.",
+      "source_content_hash": "f1f457a5ba8abf38a6f245f8b35f0fda3f5015d866ec83c0a33c79ee59c89154",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本節說明如何使用命令列模式建立磁碟故障實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "Before creating an experiment, you can run the following command to check the types of disk faults that are supported by Chaosd:",
+      "source_content_hash": "27ebeaf37b782b4f9adcf4e773f10f94872e1c1e9dbe6ee1eb1569c60c226a70",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在建立實驗前，您可以執行以下命令查看 Chaosd 支援的磁碟故障類型："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9c7a144",
+      "source_content": "```bash\nchaosd attack disk -h\n```",
+      "source_content_hash": "1845793245d09a570e56c3ecc476ebbe6d34c26ae31202b9f9f3aaad6cac606c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b9c7a144"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "940e34e3",
+      "source_content": "```bash\ndisk attack related command\n\nUsage:\n  chaosd attack disk [command]\n\nAvailable Commands:\n  add-payload add disk payload\n  fill        fill disk\n\nFlags:\n  -h, --help   help for disk\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n\nUse \"chaosd attack disk [command] --help\" for more information about a command.\n```",
+      "source_content_hash": "7d2d0a41d2d235811998f755934add19ef6edb1259a4186c4fbfb139aadd81bb",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_940e34e3"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "135468ee",
+      "source_content": "Currently, Chaosd supports creating disk read load experiments, disk write load experiments, and disk fill experiments.",
+      "source_content_hash": "23b791ac16e5914bf0fa9aae86a991e33214428843b7818196f4d26279a425fb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前 Chaosd 支援建立磁碟讀取負載實驗、磁碟寫入負載實驗與磁碟填充實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "782c902a",
+      "source_content": "### Simulate disk read load using the command-line mode",
+      "source_content_hash": "93b516ba850d6cc9dd55a44c7a920d16cb83edf533c8edddce49da0f01ff74aa",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式模擬磁碟讀取負載"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "50746522",
+      "source_content": "Simulating disk read load is a one-time operation, so the experiment does not need to be recovered.",
+      "source_content_hash": "b472300aa68bda594303332b0e85dcf9fcb6c4b0fe29f6ba70abe57fc15fb7e0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "模擬磁碟讀取負載屬於一次性操作，因此實驗無需手動恢復。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "54268405",
+      "source_content": "#### Commands for simulating disk read load",
+      "source_content_hash": "aae5bfd19eb13f9d8143726395c239e60375af2e530fcd9a342f177a28804fe8",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬磁碟讀取負載命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4ec2920d",
+      "source_content": "```bash\nchaosd attack disk add-payload read -h\n```",
+      "source_content_hash": "183e8c1088a93a9ead5a6735f113600f019df14d213ad5c95638be3e9ae93f16",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4ec2920d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a44047a5",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "64b6f348",
+      "source_content": "```bash\nread payload\n\nUsage:\n  chaosd attack disk add-payload read [flags]\n\nFlags:\n  -h, --help                help for read\n  -p, --path string         'path' specifies the location to read data.If path not provided, payload will read from disk mount on \"/\"\n  -n, --process-num uint8   'process-num' specifies the number of process work on reading , default 1, only 1-255 is valid value (default 1)\n  -s, --size string         'size' specifies how many units of data will read from the file path.'unit' specifies the unit of data, support c=1, w=2, b=512, kB=1000, K=1024, MB=1000*1000,M=1024*1024, , GB=1000*1000*1000, G=1024*1024*1024 BYTESexample : 1M | 512kB\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n```",
+      "source_content_hash": "ed7ba13cb58e1b73731528db539edf884f628cfe7183beb058994aebaeb9a03c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_64b6f348"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bd92edfc",
+      "source_content": "#### Configuration description for simulating disk read load",
+      "source_content_hash": "60905d8e2f5f2b5064f30667b3b6852698d341fb03dfe611490d5504bdde385c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬磁碟讀取負載配置說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "24b230ee",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| `path` | p | Specifies the file path to read the data. If this parameter is not specified, or the parameter value is set to an empty string, Chaosd reads from the virtual disk files mounted in the \"/\" directory. Depending on the permissions to read the files, you might be required to run this program using certain permissions. | type: string; default: `\"\"` |\n| `process-num` | n | Specifies the number of concurrently running [dd](https://man7.org/linux/man-pages/man1/dd.1.html) programs to be used. | type: uint8; default: `1`; range: `1` to `255` |\n| `size` | s | Specifies the volume of data to be read. It is the total size of data that dd reads. | type: string; default: `\"\"`; **required**; legal form: the combination of an integer and a unit. For example, 1M, 512kB. Supported units are c=1, w=2, b=512, kB=1000, K=1024, MB=1000\\*1000, M=1024\\*1024, GB=1000\\*1000\\*1000, G=1024\\*1024\\*1024\\*1024 BYTE and so on. |",
+      "source_content_hash": "6e697cd0815e5bdbdf300881aa242f8b3f6d5828a7df984d9e0f961b2ef2f8c9",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_24b230ee"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b051b70c",
+      "source_content": "#### Example for simulating disk read load",
+      "source_content_hash": "545c3dc6f6698540855e2c508b2b4c23cb87eec14e8ac6cc3e078f60df10d94d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬磁碟讀取負載範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8a9e710a",
+      "source_content": "```bash\nchaosd attack disk add-payload read -s 1000G -n 7 -p /dev/zero\n```",
+      "source_content_hash": "698df15d70fdd5176448e83f1492a5724e56fa9016a2b44b7ad95560882022c6",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_8a9e710a"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6270d577",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d8159289",
+      "source_content": "```bash\nandrew@LAPTOP-NUS30NQD:~/chaosd/bin$ ./chaosd attack disk add-payload read -s 1000G -n 7 -p /dev/zero\n[2021/05/20 13:54:31.323 +08:00] [INFO] [disk.go:128] [\"5242880+0 records in\\n5242880+0 records out\\n5242880 bytes (5.2 MB, 5.0 MiB) copied, 4.13252 s, 1.3 MB/s\\n\"]\n[2021/05/20 13:54:46.977 +08:00] [INFO] [disk.go:147] [\"146285+0 records in\\n146285+0 records out\\n153390940160 bytes (153 GB, 143 GiB) copied, 15.6513 s, 9.8 GB/s\\n\"]\n[2021/05/20 13:54:47.002 +08:00] [INFO] [disk.go:147] [\"146285+0 records in\\n146285+0 records out\\n153390940160 bytes (153 GB, 143 GiB) copied, 15.6762 s, 9.8 GB/s\\n\"]\n[2021/05/20 13:54:47.004 +08:00] [INFO] [disk.go:147] [\"146285+0 records in\\n146285+0 records out\\n153390940160 bytes (153 GB, 143 GiB) copied, 15.6777 s, 9.8 GB/s\\n\"]\n[2021/05/20 13:54:47.015 +08:00] [INFO] [disk.go:147] [\"146285+0 records in\\n146285+0 records out\\n153390940160 bytes (153 GB, 143 GiB) copied, 15.6899 s, 9.8 GB/s\\n\"]\n[2021/05/20 13:54:47.018 +08:00] [INFO] [disk.go:147] [\"146285+0 records in\\n146285+0 records out\\n153390940160 bytes (153 GB, 143 GiB) copied, 15.6914 s, 9.8 GB/s\\n\"]\n[2021/05/20 13:54:47.051 +08:00] [INFO] [disk.go:147] [\"146285+0 records in\\n146285+0 records out\\n153390940160 bytes (153 GB, 143 GiB) copied, 15.7254 s, 9.8 GB/s\\n\"]\n[2021/05/20 13:54:47.074 +08:00] [INFO] [disk.go:147] [\"146285+0 records in\\n146285+0 records out\\n153390940160 bytes (153 GB, 143 GiB) copied, 15.7487 s, 9.7 GB/s\\n\"]\nRead file /dev/zero successfully, uid: 4bc9b74a-5fe2-4038-b4f2-09ae95b57694\n```",
+      "source_content_hash": "8128c6dcad5bacfa5143fdb4aa22b77ae6d0396f83115e35db0199940e67a567",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d8159289"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b10963d7",
+      "source_content": "### Simulate disk write load using the command-line mode",
+      "source_content_hash": "e58c5e9ff642439118659ca21a3b97871bba060374605777387c92d50a21d5e6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式模擬磁碟寫入負載"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e06c002e",
+      "source_content": "#### Command for simulating disk write load",
+      "source_content_hash": "27254e47460940dd8b660bff2ff18f30d3c92d41145970c0589b48a7194df643",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬磁碟寫入負載命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "efbe5e3f",
+      "source_content": "```bash\nchaosd attack disk add-payload write -h\n```",
+      "source_content_hash": "2e993d405336d1cb5e84b96678ba511b44eaa417582b30d13d735e515b1097ec",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_efbe5e3f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2838eb68",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "de26f08a",
+      "source_content": "```bash\nwrite payload\n\nUsage:\n  chaosd attack disk add-payload write [flags]\n\nFlags:\n  -h, --help                help for write\n  -p, --path string         'path' specifies the location to fill data in.If path not provided, payload will write into a temp file, temp file will be deleted after writing\n  -n, --process-num uint8   'process-num' specifies the number of process work on writing , default 1, only 1-255 is valid value (default 1)\n  -s, --size string         'size' specifies how many units of data will write into the file path.'unit' specifies the unit of data, support c=1, w=2, b=512, kB=1000, K=1024, MB=1000*1000,M=1024*1024, , GB=1000*1000*1000, G=1024*1024*1024 BYTESexample : 1M | 512kB\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n```",
+      "source_content_hash": "aca52b13034b8f062a6ed216f20887d5cb5b078dd8ce1f920aaa353a4a9d5457",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_de26f08a"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9b8694c",
+      "source_content": "#### Configuration description for simulating disk write load",
+      "source_content_hash": "5304fbc2d27b99c828aa8c7622a5a63cfc97a013d6710b81382fd35753563f95",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬磁碟寫入負載配置說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fedc7286",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| `path` | p | Specifies the file path to write the data. If this parameter is not specified, or the parameter value is set to an empty string, a temporary file will be created in the program execution directory. Depending on the permissions to write the files, you might be required to run this program using certain permissions. | type: string; default: `\"\"` |\n| `process-num` | n | Specifies the number of concurrently running [dd](https://man7.org/linux/man-pages/man1/dd.1.html) programs to be used. | type: uint8; default: `1`; range: `1` to `255` |\n| `size` | s | Specifies the volume of data to be written. It is the total size of data that dd writes. | type: string; default: `\"\"`; **required**; legal form: the combination of an integer and a unit. For example, 1M, 512kB. Supported units are c=1, w=2, b=512, kB=1000, K=1024, MB=1000\\*1000, M=1024\\*1024, GB=1000\\*1000\\*1000, G=1024\\*1024\\*1024\\*1024 BYTE and so on. |",
+      "source_content_hash": "6efdda98300b79d375cdea46a639b282c41e638d883256e26c7d07c55c4a2590",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_fedc7286"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c35e5786",
+      "source_content": "#### Example for simulating disk write load",
+      "source_content_hash": "8b3f7483b943c407b1f11790bf389a43a9970d87997fa63163d6688ac07d5cac",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬磁碟寫入負載範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "18fb666f",
+      "source_content": "```bash\nchaosd attack disk add-payload write -s 2G -n 8\n```",
+      "source_content_hash": "a409e5c1004261bad1bfa3fdb244329897330f8e4a31eaa9d071930886fdf8ec",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_18fb666f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ecf0882",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4c6754b2",
+      "source_content": "```bash\n[2021/05/20 14:28:14.452 +08:00] [INFO] [disk.go:128] [\"0+0 records in\\n0+0 records out\\n0 bytes copied, 4.3e-05 s, 0.0 kB/s\\n\"]\n[2021/05/20 14:28:16.793 +08:00] [INFO] [disk.go:147] [\"256+0 records in\\n256+0 records out\\n268435456 bytes (268 MB, 256 MiB) copied, 2.32841 s, 115 MB/s\\n\"]\n[2021/05/20 14:28:16.793 +08:00] [INFO] [disk.go:147] [\"256+0 records in\\n256+0 records out\\n268435456 bytes (268 MB, 256 MiB) copied, 2.3344 s, 115 MB/s\\n\"]\n[2021/05/20 14:28:16.793 +08:00] [INFO] [disk.go:147] [\"256+0 records in\\n256+0 records out\\n268435456 bytes (268 MB, 256 MiB) copied, 2.33312 s, 115 MB/s\\n\"]\n[2021/05/20 14:28:16.793 +08:00] [INFO] [disk.go:147] [\"256+0 records in\\n256+0 records out\\n268435456 bytes (268 MB, 256 MiB) copied, 2.33466 s, 115 MB/s\\n\"]\n[2021/05/20 14:28:16.793 +08:00] [INFO] [disk.go:147] [\"256+0 records in\\n256+0 records out\\n268435456 bytes (268 MB, 256 MiB) copied, 2.33189 s, 115 MB/s\\n\"]\n[2021/05/20 14:28:16.793 +08:00] [INFO] [disk.go:147] [\"256+0 records in\\n256+0 records out\\n268435456 bytes (268 MB, 256 MiB) copied, 2.33752 s, 115 MB/s\\n\"]\n[2021/05/20 14:28:16.793 +08:00] [INFO] [disk.go:147] [\"256+0 records in\\n256+0 records out\\n268435456 bytes (268 MB, 256 MiB) copied, 2.33295 s, 115 MB/s\\n\"]\n[2021/05/20 14:28:16.794 +08:00] [INFO] [disk.go:147] [\"256+0 records in\\n256+0 records out\\n268435456 bytes (268 MB, 256 MiB) copied, 2.3359 s, 115 MB/s\\n\"]\nWrite file /home/andrew/chaosd/bin/example255569279 successfully, uid: e66afd86-6f3e-43a0-b161-09447ed84856\n```",
+      "source_content_hash": "e41672f20a202413ac5468def31e87bb0434a50d4c9bfc201dab609a4b8c1b32",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4c6754b2"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ab1b234",
+      "source_content": "### Simulate disk fill using the command-line mode",
+      "source_content_hash": "18d5f781c043c83aa2c3b710feb6fe1784197b4cc09f22def22c971789d527d1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式模擬磁碟填充"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b77e7669",
+      "source_content": "#### Command for simulating disk fill",
+      "source_content_hash": "80c56b9b818eab31b051eb04311c60d13925050c067f597a892ed77daeeaa462",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬磁碟填充命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "68d4860d",
+      "source_content": "```bash\nchaosd attack disk fill -h\n```",
+      "source_content_hash": "a3d6f30e69cf09b0828ddf07e5bd6d14a72d8a063a244e84f2e5bbe6b3296382",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_68d4860d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a8f09c71",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "25a51782",
+      "source_content": "```bash\nfill disk\n\nUsage:\n  chaosd attack disk fill [flags]\n\nFlags:\n  -d, --destroy          destroy file after filled in or allocated\n  -f, --fallocate        fill disk by fallocate instead of dd (default true)\n  -h, --help             help for fill\n  -p, --path string      'path' specifies the location to fill data in.If path not provided, a temp file will be generated and deleted immediately after data filled in or allocated\n  -c, --percent string   'percent' how many percent data of disk will fill in the file path\n  -s, --size string      'size' specifies how many units of data will fill in the file path.'unit' specifies the unit of data, support c=1, w=2, b=512, kB=1000, K=1024, MB=1000*1000,M=1024*1024, , GB=1000*1000*1000, G=1024*1024*1024 BYTESexample : 1M | 512kB\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n```",
+      "source_content_hash": "1d89fe4cd724bd810de6c63c82ad8dd9417807ef0058246ad51d0c968153a865",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_25a51782"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "445c72bd",
+      "source_content": "#### Configuration description for simulating disk fill",
+      "source_content_hash": "aa9512a2a1e4f0018739981d44482062b6eb9f6c0bbd3b416636125e25fb49c3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬磁碟填充配置說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f72f4682",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| `destroy` | d | If this parameter is set to `true,` the fill file is immediately deleted after being filled. | type: bool; default: `false` |\n| `fallocate` | f | If this parameter is set to `true`, Linux is used to call fallocate to quickly apply for disk space and size must be greater than `0`. If this parameter is set to `false`, Linux is used to call dd to fill disks at a relatively slow pace. | type: bool; default: `true` |\n| `path` | p | Specifies the file path to write the data. If this parameter is not specified, or the parameter value is set to an empty string, a temporary file will be created in the program execution directory. Depending on the permissions to write the files, you might be required to run this program using certain permissions. | type: string; default: `\"\"` |\n| `percent` | c | Specifies the percentage of disk size to be filled. | type: string; default: `\"\"`; positive integer of the uint type is acceptable; You must set one of `size` or `percent` (both items **cannot** be `\"\"` at the same time). |\n| `size` | s | Specifies the volume of data to be written. | type: string; default: `\"\"`; legal form: the combination of an integer and a unit. For example, 1M, 512kB. Supported units are c=1, w=2, b=512, kB=1000, K=1024, MB=1000\\*1000, M=1024\\*1024, GB=1000\\*1000\\*1000, G=1024\\*1024\\*1024\\*1024 BYTE and so on. You must set one of `size` or `percent` (both items **cannot** be `\"\"` at the same time). |",
+      "source_content_hash": "42083c0aa24e7064e2ff968b486461bf9b7d0aff5f7ad71bf7bfcf4b1b53d676",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_f72f4682"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b62f7d8",
+      "source_content": "#### Example for simulating disk fill",
+      "source_content_hash": "4cfc6913cd3b65bb612338fb356a89d2aca944725cfaa987dcbd5942902d277f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬磁碟填充範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0152e600",
+      "source_content": "```bash\nchaosd attack disk fill -c 50 -d\n```",
+      "source_content_hash": "0343dc83f0cac3aabba01d592f6816cb326adfd81cc13bd30e68f8cbf9b0b7bd",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_0152e600"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "af016b8e",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "96831bda",
+      "source_content": "```bash\n[2021/05/20 14:30:02.943 +08:00] [INFO] [disk.go:215]\nFill file /home/andrew/chaosd/bin/example623832242 successfully, uid: 097b4214-8d8e-46ad-8768-c3e0d8cbb326\n```",
+      "source_content_hash": "2b86d7dc6643a9e270d529a5ccda5140e3ac57152e2eb4e383c711494dfb4710",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_96831bda"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ac93c98",
+      "source_content": "## Create experiments using the service mode",
+      "source_content_hash": "21a61e134aac80e8a1532695033d8e1444724683a2402c92b4a349f553eec87b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用服務模式建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b4204c03",
+      "source_content": "This section describes how to create disk fault experiments using the service mode.",
+      "source_content_hash": "9a29c84a4e042fad5a53f9aa60c44eee0bc30eb1eb981af90bdf44ab0cbb91d7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本節說明如何使用服務模式建立磁碟故障實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "428f235a",
+      "source_content": "### Simulate disk read load using the service mode",
+      "source_content_hash": "7653b8c585466808a958a7856d9f8bee74ff0b64f541d9f0811db0675d045e79",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬磁碟讀取負載"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dad05c50",
+      "source_content": "Simulating disk read load is a one-time operation, so the experiment does not need to be recovered.",
+      "source_content_hash": "b472300aa68bda594303332b0e85dcf9fcb6c4b0fe29f6ba70abe57fc15fb7e0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "模擬磁碟讀取負載屬於一次性操作，因此實驗無需手動恢復。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4e8f71c1",
+      "source_content": "#### Parameters for simulating disk read load",
+      "source_content_hash": "c1d9e0d499e07bee08ef5c2fab0f07a630535de8401c7e097510a7e15978b888",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬磁碟讀取負載參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d0e4b221",
+      "source_content": "| Parameter | Description | Value |\n| :-- | :-- | :-- |\n| `action` | Actions of the experiment | Set to `\"read-payload\"` |\n| `path` | Specifies the file path to read the data. If this parameter is not specified, or the parameter value is set to an empty string, Chaosd reads from the virtual disk files mounted in the \"/\" directory. Depending on the permissions to read the files, you might be required to run this program using certain permissions. | type: string; default: `\"\"\"` |\n| `payload-process-num` | Specifies the number of concurrently running [dd](https://man7.org/linux/man-pages/man1/dd.1.html) programs to be used. | type: uint8; default: `1`; range: `1` to `255` |\n| `size` | Specifies the volume of data to be read. It is the total size of data that dd reads. | type: string; default: `\"\"`; **required**; legal form: the combination of an integer and a unit. For example, 1M, 512kB. Supported units are c=1, w=2, b=512, kB=1000, K=1024, MB=1000\\*1000, M=1024\\*1024, GB=1000\\*1000\\*1000, G=1024\\*1024\\*1024\\*1024 BYTE and so on. |",
+      "source_content_hash": "502f07d32c77262e46505d91d58a04954d2d63d768e019befe6cbb6490ac09e7",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d0e4b221"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dc825187",
+      "source_content": "#### Example for simulating disk read load using the service mode",
+      "source_content_hash": "cb5b17d5e4625678902923d8776e6e64be77c278d350a54f4b19e7ee69a1992a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬磁碟讀取負載範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "daad2e28",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/disk -H \"Content-Type:application/json\" -d '{\"action\":\"read-payload\",\"path\":\"/dev/zero\", \"payload-process-num\":7,\"size\":\"1000G\"}'\n```",
+      "source_content_hash": "d481ad6415357eb5d5e018740ff97c57ea6df6adb519cd8ac2db4dab58981cb0",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_daad2e28"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "61e5dad6",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "18e3e63d",
+      "source_content": "```bash\n{\"status\":200,\"message\":\"attack successfully\",\"uid\":\"a551206c-960d-4ac5-9056-518e512d4d0d\"}\n```",
+      "source_content_hash": "680ba5db225e6af39867ff818ae19e849c7f9d5ad5e21d681075515a3676ac55",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_18e3e63d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "79f90fe4",
+      "source_content": "### Simulate disk write load using the service mode",
+      "source_content_hash": "7dba3cae49732e971735ed31260fd7d45d93112f0e6a1b23b13ac15ba2bf9c60",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬磁碟寫入負載"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fbdb880f",
+      "source_content": "#### Parameters for simulating disk write load",
+      "source_content_hash": "814261319e5fdf8838f4c27ff1dcaa1383883a63d08e54e42a56f807e56287bb",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬磁碟寫入負載參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6bbb7614",
+      "source_content": "| Parameter | Description | Value |\n| :-- | :-- | :-- |\n| `action` | Actions of the experiment | Set to `\"write-payload\"` |\n| `path` | Specifies the file path to write the data. If this parameter is not specified, or the parameter value is set to an empty string, a temporary file will be created in the program execution directory. Depending on the permissions to write the files, you might be required to run this program using certain permissions. | type: string; default: `\"\"` |\n| `payload-process-num` | Specifies the number of concurrently running [dd](https://man7.org/linux/man-pages/man1/dd.1.html) programs to be used. | type: uint8; default: `1`; range: `1` to `255` |\n| `size` | Specifies the volume of data to be written. It is the total size of data that dd writes. | type: string; default: `\"\"`; **required**; legal form: the combination of an integer and a unit. For example, 1M, 512kB. Supported units are c=1, w=2, b=512, kB=1000, K=1024, MB=1000\\*1000, M=1024\\*1024, GB=1000\\*1000\\*1000, G=1024\\*1024\\*1024\\*1024 BYTE and so on. |",
+      "source_content_hash": "3e63d908fbe862ad7760f5b1c27c3cde49801271f1226ab8730169a264ca49df",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6bbb7614"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "61d0a6d1",
+      "source_content": "#### Example for simulating disk write load using the service mode",
+      "source_content_hash": "5b62c4276a9d2e5f97e905e321acfb3d636556a30cb13687f9deee3e871d99e1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬磁碟寫入負載範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "03859cae",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/disk -H \"Content-Type:application/json\" -d '{\"action\":\"write-payload\",\"path\":\"/tmp/test\", \"payload-process-num\":7,\"size\":\"1000G\"}'\n```",
+      "source_content_hash": "c80ae8c390a11862225b4fa5c4f3dbe3e1069934461f72c992dc473d4f95a57b",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_03859cae"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6dc3e423",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ab152d31",
+      "source_content": "```bash\n{\"status\":200,\"message\":\"attack successfully\",\"uid\":\"a551206c-960d-4ac5-9056-518e512d4d0d\"}\n```",
+      "source_content_hash": "680ba5db225e6af39867ff818ae19e849c7f9d5ad5e21d681075515a3676ac55",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ab152d31"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6beaa586",
+      "source_content": "### Simulate disk fill using the service mode",
+      "source_content_hash": "3e0f9b79f3fb074a4630f44d8b2e2c47434190f3e4ac422cf818131a798c242b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬磁碟填充"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "365a11aa",
+      "source_content": "#### Parameters for simulating disk fill",
+      "source_content_hash": "f36ce65956c7b3bb3790f524f9e3c9297b4b6fe16382974401d22b555aa612db",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬磁碟填充的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "09d95d42",
+      "source_content": "| Parameter | Description | Value |\n| :-- | :-- | :-- |\n| `action` | Actions of the experiment | Set to `\"fill\"` |\n| `destroy` | If this parameter is set to `true,` the fill file is immediately deleted after being filled. | type: bool; default: `false` |\n| `fill-by-fallocate` | If this parameter is set to `true`, Chaosd uses Linux to call `fallocate` to apply for disk space quickly, and you must set `size` to a value greater than `0`. If this parameter is set to `false`, Chaosd uses Linux to call dd to fill disks at a relatively slow pace. | type: bool; default: `true` |\n| `path` | Specifies the file path to write the data. If this parameter is not specified, or the parameter value is set to an empty string, a temporary file will be created in the program execution directory. Depending on the permissions to write the files, you might be required to run this program using certain permissions. | type: string; default: `\"\"` |\n| `percent` | Specifies the percentage of disk size to be filled. | type: string; default: \"\"; positive integer of the uint type is acceptable; You must set one of `size` or `percent` (both items **cannot** be `\"\"` at the same time). |\n| `size` | Specifies the volume of data to be read. | type: string; default: `\"\"`; legal form: the combination of an integer and a unit. For example, 1M, 512kB. Supported units are c=1, w=2, b=512, kB=1000, K=1024, MB=1000\\*1000, M=1024\\*1024, GB=1000\\*1000\\*1000, G=1024\\*1024\\*1024\\*1024 BYTE and so on. You must set one of `size` or `percent` (both items **cannot** be `\"\"` at the same time). |",
+      "source_content_hash": "17ec5617f903d7e47f130fa7190b0e5aa52c7c0ee2d1dde7ad6d7c8aa173d966",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_09d95d42"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b1889ce8",
+      "source_content": "#### Example for simulating disk fill using the service mode",
+      "source_content_hash": "a672c3170d9f2b98f757da5fccb2e18c94e1b5828b4b9e4c77d915341d010807",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬磁碟填充的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a3c4300b",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/disk -H \"Content-Type:application/json\" -d '{\"action\":\"fill\",\"path\":\"/tmp/test\", \"fill-by-fallocate\":true,\"percent\":\"50\"}'\n```",
+      "source_content_hash": "f8217ef54841355f46055e093737b72e9692ca4ed27b6b575da660695e424a63",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a3c4300b"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "216a8ee1",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b7c66f56",
+      "source_content": "```bash\n{\"status\":200,\"message\":\"attack successfully\",\"uid\":\"a551206c-960d-4ac5-9056-518e512d4d0d\"}\n```",
+      "source_content_hash": "680ba5db225e6af39867ff818ae19e849c7f9d5ad5e21d681075515a3676ac55",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b7c66f56"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/simulate-disk-pressure-in-physical-nodes.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.027140+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "3cd72b89c7040f4f84a449eee4c57fc49b7ccb839f6ccd904da1e39f04113ea9"
+  }
+}

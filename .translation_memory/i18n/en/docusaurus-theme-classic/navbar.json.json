@@ -1,0 +1,104 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "i18n/en/docusaurus-theme-classic/navbar.json",
+  "source_file_content_hash": "5a1ce3af3de1ee045d71de1db1bf17f8b01cc959cb380836c89ea72118200f02",
+  "segments": [
+    {
+      "segment_id": "title",
+      "source_content": "Chaos Mesh",
+      "source_content_hash": "fc22712f998d78ce30dc96ef504555d2593dbc85a6abd17f05ae15aae35af59b",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title in the navbar"
+      }
+    },
+    {
+      "segment_id": "logo.alt",
+      "source_content": "Chaos Mesh",
+      "source_content_hash": "fc22712f998d78ce30dc96ef504555d2593dbc85a6abd17f05ae15aae35af59b",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The alt text of navbar logo"
+      }
+    },
+    {
+      "segment_id": "item.label.Documentation",
+      "source_content": "Documentation",
+      "source_content_hash": "c205924de0fe636ccdde4ed616fef66f75b78e98b03620637965c033fd161141",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "文件"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "Navbar item with label Documentation"
+      }
+    },
+    {
+      "segment_id": "item.label.Blog",
+      "source_content": "Blog",
+      "source_content_hash": "8c6bc099534a0251b576f6b88bd2db124ae9497c64bd9242e92a6aec23e6a73a",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "部落格"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "Navbar item with label Blog"
+      }
+    },
+    {
+      "segment_id": "item.label.Community Group",
+      "source_content": "Community Group",
+      "source_content_hash": "eb97dc8b793f9ce9e4ca65ff4eae0bebeb126a362911ee5ca6dc4b6ba1039d48",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "社群群組"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "Navbar item with label Community Group"
+      }
+    }
+  ],
+  "original_json_structure": {
+    "title": {
+      "message": "Chaos Mesh",
+      "description": "The title in the navbar"
+    },
+    "logo.alt": {
+      "message": "Chaos Mesh",
+      "description": "The alt text of navbar logo"
+    },
+    "item.label.Documentation": {
+      "message": "Documentation",
+      "description": "Navbar item with label Documentation"
+    },
+    "item.label.Blog": {
+      "message": "Blog",
+      "description": "Navbar item with label Blog"
+    },
+    "item.label.Community Group": {
+      "message": "Community Group",
+      "description": "Navbar item with label Community Group"
+    }
+  },
+  "target_i18n_subpath": "docusaurus-theme-classic/navbar.json",
+  "last_updated_timestamp": "2025-07-04T06:49:56.107300+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "5a1ce3af3de1ee045d71de1db1bf17f8b01cc959cb380836c89ea72118200f02"
+  }
+}

@@ -1,0 +1,438 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2020-9-25-chaos-mesh-1.0-chaos-engineering-on-kubernetes-made-easier.md",
+  "source_file_content_hash": "91836847d080ef3447bef84d065b36279c5d044b778a9cf017c76e4923700cd5",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /chaos-mesh-1.0-chaos-engineering-on-kubernetes-made-easier\ntitle: 'Chaos Mesh 1.0: Chaos Engineering on Kubernetes Made Easier'\nauthors: chaos-mesh\nimage: /img/blog/chaos-mesh-1.0.png\ntags: [Chaos Mesh, Chaos Engineering, Announcement]\n---",
+      "source_content_hash": "4339ff311273166700c33488fa2fd6f5a6dfff6a26a98c32d42a641832458cfa",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Chaos-Mesh-1.0 - Chaos-Engineering-on-Kubernetes-Made-Easier](/img/blog/chaos-mesh-1.0.png)",
+      "source_content_hash": "76eb0deb97e39e88126af25c77918d717cdfbea05ca4801d6f0a70f6af1320a8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Mesh 1.0 - 讓 Kubernetes 混沌工程更簡單](/img/blog/chaos-mesh-1.0.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "Today, we are proud to announce the general availability of Chaos Mesh 1.0, following its entry into CNCF as a [sandbox project](https://pingcap.com/blog/announcing-chaos-mesh-as-a-cncf-sandbox-project) in July, 2020.",
+      "source_content_hash": "6ea4caa4587e4ea40d877c805fe0518306286c5d5c3ca5f2473f40b8ca67479c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "今天，我們自豪地宣布 Chaos Mesh 1.0 正式發布（GA），這是繼 2020 年 7 月成為 [CNCF 沙盒專案](https://pingcap.com/blog/announcing-chaos-mesh-as-a-cncf-sandbox-project)後的重要里程碑。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "Chaos Mesh 1.0 is a major milestone in the project’s development. After 10 months of effort within the open-source community, Chaos Mesh is now ready in terms of functionality, scalability, and ease of use. Here are some highlights.",
+      "source_content_hash": "df117313c0c7d015e780ea73fb06942edb0320468fcfa9a84a88f528ef241d2c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 1.0 是專案發展的重大里程碑。經過開源社群 10 個月的努力，Chaos Mesh 在功能完備性、擴展性和易用性方面已臻成熟。以下是主要亮點："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3daf1b88",
+      "source_content": "## Powerful chaos support",
+      "source_content_hash": "8b5a5a7608ef2dc240a8b48986168d192f0d5f875855742852cf09b9c7de4cbc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 強大的故障注入支援"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "[Chaos Mesh](https://chaos-mesh.org) originated in the testing framework of [TiDB](https://pingcap.com/products/tidb), a distributed database, so it takes into account the possible faults of a distributed system. Chaos Mesh provides comprehensive and fine-grained fault types, covering the Pod, the network, system I/O, and the kernel. Chaos experiments are defined in YAML, which is fast and easy to use.",
+      "source_content_hash": "199f1267119c3f0fc756fef2ef2914cb6c892786e7ac40602c72867b87734982",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Chaos Mesh](https://chaos-mesh.org) 起源於分散式資料庫 [TiDB](https://pingcap.com/products/tidb) 的測試框架，因此充分考量了分散式系統的潛在故障場景。Chaos Mesh 提供全面且細粒度的故障類型，涵蓋 Pod、網路、I/O 和核心層面。透過 YAML 定義混沌實驗，操作簡便高效。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "Chaos Mesh 1.0 supports the following fault types:",
+      "source_content_hash": "970d5e80db71047e6e70ca9fd279cfbf3cc737a395790c446ae9d469bb465e71",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 1.0 支援以下故障類型："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b31a2bd",
+      "source_content": "- clock-skew: Simulates clock skew",
+      "source_content_hash": "ed58ec13bebe4f33869f38e2793d346706fcfd6c08a94fb138c824b7dfada179",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- clock-skew: 模擬時鐘偏移"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d7f0c63d",
+      "source_content": "- container-kill: Simulates the container being killed",
+      "source_content_hash": "886899457ec6c5413f58869395af7d0af8826681bd945e805f27a453b9e8bc7e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- container-kill: 模擬容器被終止"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ff75e5d8",
+      "source_content": "- cpu-burn: Simulates CPU pressure",
+      "source_content_hash": "eadeff6b1a963b4b1c39773e868817576fac07d9f699ed6acb7cd8bab43a557b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- cpu-burn: 模擬 CPU 壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cec935ef",
+      "source_content": "- io-attribution-override: Simulates file exceptions",
+      "source_content_hash": "ff340be28083523b6f39233d0e4a7f534e518f8fabb91830d63c7da2c70d4499",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- io-attribution-override: 模擬檔案異常"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b08b37ac",
+      "source_content": "- io-fault: Simulates file system I/O errors",
+      "source_content_hash": "eb0c6e570cea3a9dc9924f5c7249c2d22f85e87e888ee5eeea9babb31e075e42",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- io-fault: 模擬檔案系統 I/O 錯誤"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "882f8186",
+      "source_content": "- io-latency: Simulates file system I/O latency",
+      "source_content_hash": "b1b4309766eb523c87bf64d97d73962aefb55562d06a029de67bde10a4e4fe99",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- io-latency: 模擬檔案系統 I/O 延遲"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2523feeb",
+      "source_content": "- kernel-injection: Simulates kernel failures",
+      "source_content_hash": "0c06c89d0e5bd85d76a83183bb129739aea7a2e48cf984f3f0285f440e616f03",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- kernel-injection: 模擬核心故障"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5df3dd43",
+      "source_content": "- memory-burn: Simulates memory pressure",
+      "source_content_hash": "2eb297acdcaeb9a1e06197ec9b2b8d4b02a9b3400924c58d49ea025c1578f74c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- memory-burn: 模擬記憶體壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "346d5f8d",
+      "source_content": "- network-corrupt: Simulates network packet corruption",
+      "source_content_hash": "e16ed66bd666faa11c787992107d288703ef3bfd68ced61ca81ebba2ea5a3565",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- network-corrupt: 模擬網路封包損壞"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "56d666fe",
+      "source_content": "- network-duplication: Simulates network packet duplication",
+      "source_content_hash": "9116357c31542d85846666862df95afcc6e5395144b6877e02bc1b839f81d7f8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- network-duplication: 模擬網路封包重複"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "212333a8",
+      "source_content": "- network-latency: Simulate network latency",
+      "source_content_hash": "dbe1160895509f2ead1dceade26a01b63a5836bcb7e53ab326ea59c51cda8abe",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- network-latency: 模擬網路延遲"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c0463e48",
+      "source_content": "- network-loss: Simulates network loss",
+      "source_content_hash": "5d8251572a935f54d131aedbd66a77bb4ceaf51f50e03880d722aafa4e15b90e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- network-loss: 模擬網路封包遺失"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2d89eb89",
+      "source_content": "- network-partition: Simulates network partition",
+      "source_content_hash": "500a7d4dc860e15bec66955521cd07deab07d5b595be7a97109149f634bbb65f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- network-partition: 模擬網路分割"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cc5346ac",
+      "source_content": "- pod-failure: Simulates continuous unavailability of Kubernetes Pods",
+      "source_content_hash": "b98dd424dc8b24766b74e8b10da1e74b9a41fecce39f60df243d27675331dce1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- pod-failure: 模擬 Kubernetes Pod 持續不可用"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa355dc5",
+      "source_content": "- pod-kill: Simulates the Kubernetes Pod being killed",
+      "source_content_hash": "9537ef901707517e283d06619e1770164f24c49318e840c0f6ce058b86f448cf",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- pod-kill: 模擬 Kubernetes Pod 被終止"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "62a6890b",
+      "source_content": "## Visual chaos orchestration",
+      "source_content_hash": "cf4cf760ba220ea242fc13e5f9e6555ca9a9df898d093c34d386f325733a88d4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 可視化的混沌實驗編排"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3cfe6286",
+      "source_content": "The Chaos Dashboard component is a one-stop web interface for Chaos Mesh users to orchestrate chaos experiments. Previously, Chaos Dashboard was only available for testing TiDB. With Chaos Mesh 1.0, it is available to everyone. Chaos Dashboard greatly simplifies the complexity of chaos experiments. With only a few mouse clicks, you can define the scope of the chaos experiment, specify the type of chaos injection, define scheduling rules, and observe the results of the chaos experiment—all in the same web interface.",
+      "source_content_hash": "e67fffda75affaf27d244c6bc7d4a7fc0e45e755b94bb6e4da9e0b45e8d38b54",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Dashboard 組件是 Chaos Mesh 的一站式 Web 介面，用於編排混沌實驗。先前僅供 TiDB 測試使用，Chaos Mesh 1.0 已全面開放。該儀表板大幅簡化混沌實驗複雜度，透過點擊操作即可完成實驗範圍定義、故障類型指定、排程規則設定及實驗結果觀察。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1042b50d",
+      "source_content": "![Chaos Dashboard](/img/blog/chaos-dashboard.gif)",
+      "source_content_hash": "d051d3668ca75af21e5198a3f84c3e65159a6ff47fc1e75f6eaa8ff18e709ab5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![混沌儀表板](/img/blog/chaos-dashboard.gif)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "35a77014",
+      "source_content": "## Grafana plug-in for enhanced observability",
+      "source_content_hash": "d1e1ccff482260dd2d8e589235fd625272fca87df398027e6b1ccdcb3c3e9542",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 強化可觀測性的 Grafana 插件"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "13d9cd70",
+      "source_content": "To further improve the observability of chaos experiments, Chaos Mesh 1.0 includes a Grafana plug-in to allow you to directly display real-time chaos experiment information on your application monitoring panel. Currently, the chaos experiment information is displayed as annotations. This way, you can simultaneously observe the running status of the application and the current chaos experiment information.",
+      "source_content_hash": "9ba0e694a6f40ad0cdd45d175ae45b75beed91a0d8ba1ce8f8b46ed6ed4d8457",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "為提升混沌實驗可觀測性，Chaos Mesh 1.0 內建 Grafana 插件，可直接在應用監控面板顯示即時實驗資訊。目前以註釋形式呈現實驗數據，實現應用運行狀態與混沌實驗狀態的同步觀察。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "29528c8d",
+      "source_content": "![Chaos status and application status on Grafana](/img/blog/chaos-status.png)",
+      "source_content_hash": "e12a9a7faae5541d206561efef88163e2440f09fe3746d1934f6e7a92697705b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Grafana 上的混沌狀態與應用狀態](/img/blog/chaos-status.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "11c76fcc",
+      "source_content": "## Safe and controllable chaos",
+      "source_content_hash": "17a829f838f24a241aa0d681ecab5b7f96ee461a9804381c33ac98676c50eca9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 安全可控的混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "98d26038",
+      "source_content": "When we conduct chaos experiments, it is vital that we keep strict control over the chaos scope or “blast radius.” Chaos Mesh 1.0 not only provides a wealth of selectors to accurately control the scope of the experiment, but it also enables you to set protected Namespaces to protect important applications. You can also use Namespace permissions to limit the scope of Chaos Mesh to a specific Namespace. Together, these features make chaos experiments with Chaos Mesh safe and controllable.",
+      "source_content_hash": "cfeac8a25daa55a713ec338558659bcf2cefdbc5388459b625485481a0634f72",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "混沌實驗需嚴格控制故障範圍（爆炸半徑）。Chaos Mesh 1.0 不僅提供豐富選擇器精確定位實驗範圍，還支援設定受保護命名空間以保障關鍵應用。同時可透過命名空間權限限制 Chaos Mesh 作用域，多重機制確保混沌實驗安全可控。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "af52d59d",
+      "source_content": "## Try it out now",
+      "source_content_hash": "5a7109d03a37547783f66d82adf9d65420c5e43206b7a163e4dfc1ee0baca6a3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 立即試用"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0bfbe139",
+      "source_content": ":::note\n\n2022-10-24: Because of https://www.oreilly.com/online-learning/leveraging-katacoda-technology.html, and refer to [#356](https://github.com/chaos-mesh/website/pull/356), the interactive tutorial is temporarily unavailable.\n\n:::",
+      "source_content_hash": "309c9fa56a89085317288948daab67d47db5d9ef3cd9382c10b3a8e1c64972fe",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::note\n\n2022-10-24: 由於 https://www.oreilly.com/online-learning/leveraging-katacoda-technology.html，並請參閱 [#356](https://github.com/chaos-mesh/website/pull/356)，互動式教學暫時無法使用。\n\n:::",
+          "reason": "URL for a 'link' was changed from 'https://www.oreilly.com/online-learning/leveraging-katacoda-technology.html' to 'https://www.oreilly.com/online-learning/leveraging-katacoda-technology.html，並請參閱'.",
+          "timestamp": "2025-07-04T06:49:59.314428+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "8b2a52b1",
+      "source_content": "You can quickly deploy Chaos Mesh in your Kubernetes environment through the `install.sh` script or the Helm tool. For specific installation steps, please refer to the [Chaos Mesh Getting Started](https://chaos-mesh-website-archived.netlify.app/docs/1.2.4/user_guides/installation) document. In addition, thanks to the `Katakoda interactive tutorial`, you can also quickly get your hands on Chaos Mesh without having to deploy it.",
+      "source_content_hash": "5aba264f2303a2b85f15f3505f30512a6a8efaeb9f456df0ee773adb7e0279e4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "您可以透過 `install.sh` 腳本或 Helm 工具，在您的 Kubernetes 環境中快速部署 Chaos Mesh。具體安裝步驟，請參閱 [Chaos Mesh 入門指南](https://chaos-mesh-website-archived.netlify.app/docs/1.2.4/user_guides/installation)文件。此外，得益於 `Katakoda 互動式教學`，您也可以無需部署，快速上手 Chaos Mesh。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`Katakoda interactive tutorial`', Translation: '`Katakoda 互動式教學`'.",
+          "timestamp": "2025-07-04T06:49:59.314455+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "5dae11e3",
+      "source_content": "If you haven’t upgraded to 1.0 GA, please refer to the [1.0 Release Notes](https://github.com/chaos-mesh/chaos-mesh/releases/tag/v1.0.0) for the changes and upgrade guidelines.",
+      "source_content_hash": "e39ecb5c9b07914684d79e2d69231c68b7fc5367983fa79b1590bfb76bf2e57e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若您尚未升級至 1.0 GA，請參閱 [1.0 版本發布說明](https://github.com/chaos-mesh/chaos-mesh/releases/tag/v1.0.0)了解變更內容及升級指南。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a5a4323e",
+      "source_content": "## Thanks",
+      "source_content_hash": "1e57366f4f2b8342ce1186455878164e2c099d41b453de456c1a921520e0df59",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 致謝"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "657c2b20",
+      "source_content": "Thanks to all our Chaos Mesh [contributors](https://github.com/chaos-mesh/chaos-mesh/graphs/contributors)!",
+      "source_content_hash": "4224d15676eda72bb9da417abaae846b0888add96a42ffd98a4e5afae65c0f05",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "感謝所有 Chaos Mesh [貢獻者](https://github.com/chaos-mesh/chaos-mesh/graphs/contributors)！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7772088",
+      "source_content": "If you are interested in Chaos Mesh, you’re welcome to join us by submitting issues, or contributing code, documentation, or articles. We look forward to your participation and feedback!",
+      "source_content_hash": "97180b183196e2023c4fdb1332b90f2cc8cc2be40e7fc47cbfe75b5bbd80c9f5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如果您對 Chaos Mesh 感興趣，歡迎透過提交問題、貢獻程式碼、文件或文章加入我們。我們期待您的參與和回饋！"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2020-9-25-chaos-mesh-1.0-chaos-engineering-on-kubernetes-made-easier.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.314486+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "91836847d080ef3447bef84d065b36279c5d044b778a9cf017c76e4923700cd5"
+  }
+}

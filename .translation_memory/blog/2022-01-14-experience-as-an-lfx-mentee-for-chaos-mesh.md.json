@@ -1,0 +1,320 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2022-01-14-experience-as-an-lfx-mentee-for-chaos-mesh.md",
+  "source_file_content_hash": "e19defb6f4d004b6ed576204664a624b08b45c74205af91a37dc3b85ad416186",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /experience-as-a-chaos-mesh-lfx-mentee\ntitle: 'Experience as an LFX Mentee for Chaos Mesh'\nauthors: chunxuzhang\nimage: /img/blog/lfx-mentee-experience-banner.png\ntags: [Chaos Mesh, Chaos Engineering, LFX Mentorship, Monitoring Metrics]\n---",
+      "source_content_hash": "2fd0a6e46e31c0cc305ece1318edea3e8e7f960a418f3672f4aa4047229f2523",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Experience as an LFX Mentee for Chaos Mesh](/img/blog/lfx-mentee-experience-banner.png)",
+      "source_content_hash": "dd31288bdc3eb558bcc76a1ea759b1aa433d6334e334055d6cf41c6b650a1bbe",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Mesh LFX 學員經驗分享](/img/blog/lfx-mentee-experience-banner.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "I am a graduate student studying software engineering at Nanjing University. My research focuses on DevOps, which has intrinsic connections with chaos engineering and observability. To get involved in the open-source community, understand Kubernetes more deeply, and experience the daily jobs around infrastructure, I applied for the CNCF LFX Mentorship in Fall 2021 to work on the [Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) project.",
+      "source_content_hash": "4c3f7a32196f103e402c72e009b8d4e249854c1b45c3c13997141d2cc23fccd3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我目前是南京大學軟體工程研究所的研究生，研究領域聚焦於 DevOps，這與混沌工程和可觀測性有著本質上的關聯。為了參與開源社群、深入理解 Kubernetes 並體驗基礎設施領域的日常工作，我申請了 2021 年秋季的 CNCF LFX 導師計畫，參與 [Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) 專案的開發。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e14c9928",
+      "source_content": "## Application Process",
+      "source_content_hash": "f00639f8489061dfa952e5490d130ab67d7f71d8687364d4f28fe49ae82b478c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 申請流程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "At the end of August, I finished an internship of a business nature. As expected, I decided that I was not much into business-related work. However, I always had a strong passion for infrastructure technologies. By chance, I discovered the Chaos Mesh project at CNCF LFX Mentorship.I thought this was a great opportunity to work on an open source project, which I had been dreaming about. I also had the right technology stack, so I submitted my resume right before the deadline.",
+      "source_content_hash": "7fda0866acacb03a3d4f39765ede21fb5889b306d4083cc2c9572b053f1add03",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "八月底結束商業性質的實習後，我確認自己對業務導向的工作興趣不大，但始終對基礎設施技術懷抱熱忱。偶然發現 CNCF LFX 導師計畫中的 Chaos Mesh 專案後，我認為這是實現參與開源專案夢想的絕佳機會。由於技術棧吻合，我在截止前遞交了申請。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "Three days later, I received an interview email from my mentor. As part of the interview, the mentor left a small piece of homework - to write a mini-node-exporter that would expose Prometheus metrics and present them in the Grafana dashboard. I was also required to deploy the mini-node-exporter, the configured Prometheus, and Grafana dashboard on the Kubernetes platform. The design and implementation process was very smooth. The only difficulty was to write the Grafana dashboard as a configuration YAML for the Kubernetes deployment. After a series of queries through documentation and experiments, this problem was finally solved.",
+      "source_content_hash": "76db0d89234627027a8a9efc43919ade1c1edea802891b999fef30e70284c36c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "三天後收到導師的面試邀請，其中包含一項小任務：編寫能暴露 Prometheus 指標的 mini-node-exporter，並在 Grafana 儀表板呈現數據。同時需將該組件與配置好的 Prometheus、Grafana 部署至 Kubernetes 平台。開發過程相當順利，唯一挑戰是將 Grafana 儀表板轉寫為 Kubernetes 部署用的 YAML 配置檔。經過文件查閱與實驗驗證後，最終成功解決。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "On August 30, I was lucky enough to receive the good news that I passed the interview. During the one-on-one meeting with the mentor, we simply talked about my familiarity with Kubernetes and other technologies, the main tasks, and some key timelines. I also raised some concerns, such as the pressure of my graduate lab project that might affect the progress of the mentorship, and the design guidelines of the metrics. My mentor understood me well and addressed my concerns.",
+      "source_content_hash": "71f596813ddf8cfa46c8edb33053261df29659141451138d7912bdd58a941f7e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "8 月 30 日幸運獲知面試通過。與導師一對一會議中，我們簡要討論了我對 Kubernetes 等技術的熟悉度、主要任務與關鍵時程。我也提出研究生實驗室專案可能影響進度、指標設計規範等顧慮，導師充分理解並給予支持。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "40f9552a",
+      "source_content": "## Project Process",
+      "source_content_hash": "f021e48e76b94e0d734cd7f7af5e2f89962f8c2f67975bebffb1966851e379fe",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 專案執行"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c2bdd0",
+      "source_content": "The project I applied for was called [Monitoring Metrics about Chaos Mesh](https://mentorship.lfx.linuxfoundation.org/project/8db683b0-0273-4a83-9ed9-4c33ee2cfcf0), which aimed to improve the observability of the Chaos Mesh system by collecting metrics and providing a Grafana dashboard.",
+      "source_content_hash": "0c96be4738f5c2744cffbea8f874309ce0a7d57d2193c9ff0ef158af6500ebb5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我申請的專案名為 [Chaos Mesh 監控指標](https://mentorship.lfx.linuxfoundation.org/project/8db683b0-0273-4a83-9ed9-4c33ee2cfcf0)，目標是透過收集指標並提供 Grafana 儀表板來提升 Chaos Mesh 系統的可觀測性。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a76548f8",
+      "source_content": "During the first two weeks of the project, I got familiar with the business process and some code details of chaos mesh. In the next two weeks, I started to write the design document to sort out all the metrics and collection methods. During this time, I studied the metric design guidelines and met with the mentor to understand the details of the proposal and some of the code logic.",
+      "source_content_hash": "5e5258b69a57d9ccaf193e038390757758a2c37394eadec0ea97f25581bf2338",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "專案前兩週熟悉 Chaos Mesh 業務流程與程式碼細節，隨後兩週開始撰寫設計文件梳理所有指標及採集方式。期間研讀指標設計規範，並與導師會議釐清提案細節與部分程式邏輯。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b1d2d7d",
+      "source_content": "Most of these metrics are relatively simple to collect, requiring only simple queries to database objects, k8s objects, or some simple counts. However, there are some special metrics that are difficult to collect. For example, you need to query the data by executing commands in the network namespace of the corresponding container, or query all the containers under the daemon through three different container runtimes, or collect data on the communication between the gRPC client and the server.",
+      "source_content_hash": "5a5109f6a7fa08ba34cd361f213268c6c917aedfd7f3a7a422f410dd63e8ea74",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "多數指標採集相對簡單，僅需查詢資料庫物件、k8s 物件或進行基礎計數。但部分特殊指標採集難度較高，例如：需在對應容器的網路命名空間執行指令查詢資料、透過三種不同容器運行時查詢 daemon 下所有容器，或收集 gRPC 客戶端與伺服器間的通訊數據。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfe931a2",
+      "source_content": "These tasks were strange to me. Therefore, I had to ask my mentor for technical support from time to time, and he was always very responsive. I was greatly impressed by my mentor’s extensive knowledge and experience in this field. Under the guidance from my mentor, I was finally able to put together the [RFC](https://github.com/chaos-mesh/rfcs/pull/23) document for my design. Later, in order to track my work, I created a [tracking issue](https://github.com/chaos-mesh/chaos-mesh/issues/2397).",
+      "source_content_hash": "8fd67dd15d0b112e6cb355f4d66f54381667a19ab1e0473e7e1180b22213b3e4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "這些任務對我而言相當陌生，因此不時需要導師的技術支援，而導師總是及時回應。導師在該領域的深厚知識與經驗令我印象深刻。在指導下，最終完成設計的 [RFC](https://github.com/chaos-mesh/rfcs/pull/23) 文件。後續為追蹤進度，建立了[專案追蹤 issue](https://github.com/chaos-mesh/chaos-mesh/issues/2397)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4daf5cdd",
+      "source_content": "![Tracking issue](/img/blog/lfx-mentee-experience-tracking-issue.png)",
+      "source_content_hash": "9fa7bde416c119ea0f379c0c5f627ff6cc4bc7af639adc04e60573ce25ea7e29",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![專案追蹤 issue](/img/blog/lfx-mentee-experience-tracking-issue.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bdc231b1",
+      "source_content": "However, during the subsequent coding work, I encountered various problems. In retrospect, I found that many of them could have been solved in advance. So I have summarized some suggestions below:",
+      "source_content_hash": "19021dfbaea4f25a80bc04b7b06d3af93e8f24707dc80d64e7eccd3e5af26564",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "然而後續編碼過程中仍遇到諸多問題，回顧發現許多可提前避免。以下總結幾點建議："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "97ae4a01",
+      "source_content": "**Keep thinking critically**. When I accepted the proposal, I proposed my solution for each metric off the top of my head, but ignored some basic questions: are these metrics necessary? Do we have a better solution that’s available? These basic questions should have been addressed during the proposal phase, but they were propagated to the later design implementation phase. For example, when submitting the RFC, I was reminded by my mentor and reviewers that some metrics were already implemented in the controller-runtime library. When I was working on BPM-related metrics, I was asked similarly by the reviewer. Only then did I realize that I had never paid attention to it.",
+      "source_content_hash": "36fef58b86dcc86e85375f515e5fbf1b28bfa864583cdb5f0a645cc055d6513a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**保持批判性思考**。當我接受提案時，憑直覺提出了每個指標的解決方案，卻忽略了一些基本問題：這些指標是否必要？我們是否有更好的解決方案可用？這些基礎問題本應在提案階段解決，卻被延續到後續的設計實施階段。例如提交 RFC 時，導師和審閱者提醒我部分指標已在 controller-runtime 函式庫中實現；處理 BPM 相關指標時，審閱者同樣提出質疑。直到那時我才意識到自己從未關注這點。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c3a738de",
+      "source_content": "![Comments about BPM metrics](/img/blog/lfx-mentee-experience-thinking-critically.png)",
+      "source_content_hash": "2a19aef6dba9ade43b11a6ac220928679f9e91623be7137c98ad40fd275c7bd2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![關於 BPM 指標的評論](/img/blog/lfx-mentee-experience-thinking-critically.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3cfe6286",
+      "source_content": "**Continuous communication**. How to communicate effectively is a very important issue in this mentorship. There are many lessons learned about communication, but the most profound is that it is better to give options before getting advice. When you have to ask for help, provide some options for the other party to reference. Although these options may not be valid, it contains your own thinking. Therefore, unless you still have no idea after thinking things through, don’t put other people in the middle of your questions.",
+      "source_content_hash": "ba43c1c66c7b56a2195717d7b2faf684c6913bd5462294960465ad0b8dd4fcbf",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**持續溝通**。如何有效溝通是本次導師計畫的重要課題。我學到許多溝通經驗，最深刻的體悟是：尋求建議前應先提供選項。當需要求助時，提供參考選項給對方。儘管這些選項可能不成立，但包含你的思考脈絡。因此除非徹底思考後仍無頭緒，否則別讓他人在你的問題中迷失方向。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1042b50d",
+      "source_content": "**Understand open source**. This is my first actual experience with open source. Compared with working in a company, things are a lot different. Here are some examples:",
+      "source_content_hash": "4e86f0ec1c6b5175435ad9108c9ee66fac4f955d918e32fd815dc9082c3169d5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**理解開源文化**。這是我首次實際參與開源專案，與企業工作模式大相逕庭。以下具體說明："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee9c310",
+      "source_content": "1. The way information is synchronized. Unlike working in a company where we communicate often with face-to-face meetings, basically most of the communications with an open source community are concentrated in slack channels, GitHub issues, and pull requests. Therefore, we need to record our work so that we can always let other folks know what is going on. In the first few weeks, I maintained an online R&D document based on my previous habit. Later I found that it was better to set up a Kanban or issue on GitHub, so that I would not introduce additional communication cost for my mentor by using a different platform.\n\n   ![Online R&D document](/img/blog/lfx-mentee-experience-rd-doc.png)",
+      "source_content_hash": "db1005d1e334455c06f4dd94dc43b681e99a2c20a87d709ef96bd30c62193371",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. **資訊同步方式**。企業工作常透過面對面會議溝通，開源社群則集中於 Slack 頻道、GitHub 議題與拉取請求。因此必須完整記錄工作進展，讓社群成員隨時掌握狀況。前幾週我沿用習慣維護線上研發文件，後發現改用 GitHub 看板或議題更合適，避免因使用不同平台增加導師溝通成本。\n\n   ![線上研發文件](/img/blog/lfx-mentee-experience-rd-doc.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ba6feeca",
+      "source_content": "2. Better and more rigorous automated testing. For business companies, automated testing only includes static code analysis, unit testing and simple smoke testing, while manual testing will be more rigorous. But in open source projects, the automated code pipeline contains more detailed and complete test cases, such as integration testing, end-to-end testing, license checking, and so on. The quality and security of the submitted code will be checked initially in this phase.",
+      "source_content_hash": "a50f4f9c7fb6a86fe8a7207f172f67e663bb8442094be3e1efead1a2fa3c3fff",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. **更嚴謹的自動化測試**。商業公司的自動化測試通常僅含靜態程式碼分析、單元測試與基礎冒煙測試，主要倚重人工測試。但開源專案的自動化流程包含更完整的測試案例，如整合測試、端到端測試、授權檢查等，初步把關程式碼品質與安全性。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a2d18d88",
+      "source_content": "3. Code review. Many people will participate in your code reviews, and the review may last for a long time. Unlike company work, there are no dedicated reviewers in an open source community. It could be users, maintainers, or other community members who are either assigned or voluntarily do the job, which may be part of the reason for the long review duration.",
+      "source_content_hash": "1b75d0524f52855cd8e9bd480f220655644950ac56bb5572169556fcb6b57407",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. **程式碼審查機制**。多人將參與你的程式碼審查，過程可能持續較久。與企業專職審查者不同，開源社群審查者可能是使用者、維護者或其他自願參與的成員，這種開放性可能是審查週期較長的部分原因。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c6cc90a0",
+      "source_content": "## After the project",
+      "source_content_hash": "5fb093bd67197df21390aa7a5a4bc9514563059ed963f9faf174474f0c9f8127",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 專案結束後"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d3649a1e",
+      "source_content": "I had a wonderful experience in these 12 weeks. I gained a deeper understanding of Kubernetes, CRD, and observability. I also realized that I was still lacking a lot of knowledge on how to improve code structure, Linux basics, and container technologies. There is still more to learn!",
+      "source_content_hash": "97e42695cae9831652435117c783d36e32807e9d180107ecbbd799d80e3537fe",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "這 12 週是段美妙經歷。我深入理解了 Kubernetes、CRD 與可觀測性，也意識到在程式碼架構優化、Linux 基礎與容器技術方面仍有不足，學習之路漫長！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4d52a261",
+      "source_content": "At the same time, because of the unexpected pressure of the graduate lab project, I didn’t have much dedicated time for the mentorship. I didn’t even get to finish the design of the Grafana part within the time frame. I will definitely follow up with it and hope to finish it successfully and give a real conclusion to this project.",
+      "source_content_hash": "36340b0885aab1be702bb45f2f951642e9c9cacd0369f9dd1b1e2797d4e9b0f5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "同時因研究所專案突增壓力，我未能投入充足時間於導師計畫，甚至未能在時限內完成 Grafana 儀表板設計。我必將持續跟進，期望圓滿完成此專案，為這段旅程畫下句點。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "23dfb152",
+      "source_content": "I would like to thank my mentor [@STRRL](https://github.com/STRRL). During my internship, I encountered many problems in the project, such as Git operations, cycle dependency solutions, and finding the runtime interface for CRI-O. Without my mentor's patience and guidance, it would have been difficult for me to complete these unfamiliar technical challenges. I would also like to thank the maintainers of Chaos Mesh for reviewing my code, and the CNCF LFX Mentorship project for providing a great platform for all of us who want to participate in the open-source community.",
+      "source_content_hash": "6bff023001576680fa6a6c93f1eaed4bd38653cc17c4f8ccfe1946d5dff24733",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "衷心感謝導師 [@STRRL](https://github.com/STRRL)。實習期間遭遇諸多技術挑戰：Git 操作、循環依賴解決方案、CRI-O 執行時介面查詢等。若無導師耐心指導，我難以克服這些陌生技術難題。同時感謝 Chaos Mesh 維護者審閱程式碼，以及 CNCF LFX 導師計畫為開源社群參與者提供的卓越平台。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1131ef75",
+      "source_content": "![Mentor's LGTM](/img/blog/lfx-mentee-experience-mentors-lgtm.png)",
+      "source_content_hash": "544fe613b582c40aa36c776bce7a78d3a596ab4c5fb597932ec266c8e88cffa3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![導師的 LGTM 認可](/img/blog/lfx-mentee-experience-mentors-lgtm.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b2a52b1",
+      "source_content": "Finally, I hope every student who wants to be part of the open-source community can take the first step with LFX Mentorship!",
+      "source_content_hash": "6d660bd2ad84bdabb1507aa86c1f614abd5cc7c1b6aa5ec4b5240a31c7016615",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "最後，我希望每位想要參與開源社群的學生都能透過 LFX Mentorship 踏出第一步！"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2022-01-14-experience-as-an-lfx-mentee-for-chaos-mesh.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.065298+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "e19defb6f4d004b6ed576204664a624b08b45c74205af91a37dc3b85ad416186"
+  }
+}

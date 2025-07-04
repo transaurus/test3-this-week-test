@@ -1,0 +1,742 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2020-08-14-building_automated_testing_framework.md",
+  "source_file_content_hash": "ac279c13eb412a354e072a4c7f0f02b27e2a62b0be933c70f03e278ca889d88b",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /building_automated_testing_framework\ntitle: Building an Automated Testing Framework Based on Chaos Mesh and Argo\nauthors: chaos-mesh\nimage: /img/blog/automated_testing_framework.png\ntags: [Chaos Mesh, Chaos Engineering, Test Automation]\n---",
+      "source_content_hash": "92d3b105888feffc7ef3fae8515eb6b5465ba1341c726ecd3975273e2484cba6",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![TiPocket - Automated Testing Framework](/img/blog/automated_testing_framework.png)",
+      "source_content_hash": "b84d9ce45f9f3f80034c29010a554e7ea244d57f69991b82074ea5647b1559ff",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![TiPocket - 自動化測試框架](/img/blog/automated_testing_framework.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) is an open-source chaos engineering platform for Kubernetes. Although it provides rich capabilities to simulate abnormal system conditions, it still only solves a fraction of the Chaos Engineering puzzle. Besides fault injection, a full chaos engineering application consists of hypothesizing around defined steady states, running experiments in production, validating the system via test cases, and automating the testing.",
+      "source_content_hash": "f49102e5ae8632866e9feae7d9c0decc41c8cbefc6a578a679197abc556503ca",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) 是一個開源的 Kubernetes 混沌工程平台。儘管它提供了豐富的能力來模擬異常系統狀況，但它仍然只解決了混沌工程難題的一小部分。除了故障注入外，完整的混沌工程應用還包括圍繞定義的穩定狀態提出假設、在生產環境中運行實驗、透過測試案例驗證系統，以及實現測試自動化。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "180bddb1",
+      "source_content": "This article describes how we use [TiPocket](https://github.com/pingcap/tipocket), an automated testing framework to build a full Chaos Engineering testing loop for TiDB, our distributed database.",
+      "source_content_hash": "05755cdaaffd3663869c63a5bac7bb864995103a27e94214229b6e4f185bbc42",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文將說明我們如何使用 [TiPocket](https://github.com/pingcap/tipocket) 這套自動化測試框架，為我們的分散式資料庫 TiDB 構建完整的混沌工程測試循環。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28a64196",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_28a64196"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3daf1b88",
+      "source_content": "## Why do we need TiPocket?",
+      "source_content_hash": "5e88dacf1c8236b95dcd83c2e4d82a1c1bcc71779af408827e4fe776283280ff",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 為什麼我們需要 TiPocket？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "Before we can put a distributed system like [TiDB](https://github.com/pingcap/tidb) into production, we have to ensure that it is robust enough for day-to-day use. For this reason, several years ago we introduced Chaos Engineering into our testing framework. In our testing framework, we:",
+      "source_content_hash": "ca7070bde69044fe9f21a3ef86ce0784610b8d8d1c4812fdde2e1dfd0660088a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在將 [TiDB](https://github.com/pingcap/tidb) 這類分散式系統投入生產環境前，我們必須確保其具備足夠的穩健性以應對日常使用。為此，數年前我們將混沌工程引入測試框架。在我們的測試框架中，我們："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28563fec",
+      "source_content": "1. Observe the normal metrics and develop our testing hypothesis.",
+      "source_content_hash": "1e13abc3972a4606c8c765d2b7b6859b0b9ed3fba273d1310c999b13466d6068",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 觀察正常指標並建立測試假設。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f998e7f9",
+      "source_content": "2. Inject a list of failures into TiDB.",
+      "source_content_hash": "97553dc21d79edb2bf03e94a2e6654e69732b211cbc0c6b6ce3e31c5659bd881",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 將一系列故障注入 TiDB。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b31a2bd",
+      "source_content": "3. Run various test cases to verify TiDB in fault scenarios.",
+      "source_content_hash": "dd12901c906907a447aa40e49ff1c8019141498cb96dd93a90861040ba212ac2",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 運行各類測試案例以在故障情境下驗證 TiDB。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d7f0c63d",
+      "source_content": "4. Monitor and collect test results for analysis and diagnosis.",
+      "source_content_hash": "cb10f156fd48e2287b30c2ec82e23bb67f828eadac51a8b7df47bb3e8fa11a3f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 監控並收集測試結果以進行分析與診斷。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ccc88b4c",
+      "source_content": "This sounds like a solid process, and we’ve used it for years. However, as TiDB evolves, the testing scale multiplies. We have multiple fault scenarios, against which dozens of test cases run in the Kubernetes testing cluster. Even with Chaos Mesh helping to inject failures, the remaining work can still be demanding—not to mention the challenge of automating the pipeline to make the testing scalable and efficient.",
+      "source_content_hash": "c974b9589c5bc340f16605f11ac9c7e1a1df9cc6babf30d74f3b86686401d48c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "這聽似穩固的流程已運作多年，然而隨著 TiDB 演進，測試規模呈倍數增長。我們面臨多重故障情境，需在 Kubernetes 測試集群中運行數十項測試案例。即使有 Chaos Mesh 協助注入故障，剩餘工作仍相當繁重——更遑論實現流程自動化以提升測試擴展性與效率的挑戰。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d9172fa4",
+      "source_content": "This is why we built TiPocket, a fully-automated testing framework based on Kubernetes and Chaos Mesh. Currently, we mainly use it to test TiDB clusters. However, because of TiPocket’s Kubernetes-friendly design and extensible interface, you can use Kubernetes’ create and delete logic to easily support other applications.",
+      "source_content_hash": "fbf05568fb71be13cc81515deda91676014c38a9ac3e793373488cfc5a8f30a0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "因此我們開發了 TiPocket，這套基於 Kubernetes 與 Chaos Mesh 的全自動測試框架。目前我們主要用於測試 TiDB 集群，但得益於 TiPocket 的 Kubernetes 友好設計與可擴展介面，您可透過 Kubernetes 的創建/刪除邏輯輕鬆支援其他應用。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d06306f7",
+      "source_content": "## How does it work",
+      "source_content_hash": "a475fc18fc36f0929a0814a24ccd7b46c365963f982dd286fb6718e9cb64f5f1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 運作原理"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "73ab96a3",
+      "source_content": "Based on the above requirements, we need an automatic workflow that:",
+      "source_content_hash": "1d8a3fec575753a55b5816a3fbc18d625e886fad959f8e70778fc68a53de16de",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "基於上述需求，我們需要一套能實現以下功能的自動化工作流程："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c0463e48",
+      "source_content": "- [Injects chaos](#injecting-chaos---chaos-mesh)",
+      "source_content_hash": "ff28e0f7da82a09fc44b6185284bcebb4446564c3e0553b263dcf8b12467acb2",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [注入混沌](#injecting-chaos---chaos-mesh)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2d89eb89",
+      "source_content": "- [Verifies the impact of that chaos](#verifying-chaos-impacts-test-cases)",
+      "source_content_hash": "7d6e7e07529c3cd80b6ca3fdc9196c90e72ece2fa04daf9f248cfe5072fb8717",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [驗證混沌影響](#verifying-chaos-impacts-test-cases)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cc5346ac",
+      "source_content": "- [Automates the chaos pipeline](#automating-the-chaos-pipeline---argo)",
+      "source_content_hash": "b3f197c9476fb1f1d211962d3ff9fb7c7d578200d2089a4db22991ceb19f711f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [自動化混沌流程](#automating-the-chaos-pipeline---argo)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa355dc5",
+      "source_content": "- [Visualizes the results](#visualizing-the-results-loki)",
+      "source_content_hash": "c7d5dd3620ce55b56d4b8b3ad4acd2a2b42c2a03ab048fe687997dd0b0c9cdb6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [視覺化結果](#visualizing-the-results-loki)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "62a6890b",
+      "source_content": "### Injecting chaos - Chaos Mesh",
+      "source_content_hash": "02c13979a373bcfaf651f9dadaa011f059634b690507658213cdb7e91c97268d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 注入混沌 - Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3cfe6286",
+      "source_content": "Fault injection is the core chaos testing. In a distributed database, faults can happen anytime, anywhere—from node crashes, network partitions, and file system failures, to kernel panics. This is where Chaos Mesh comes in.",
+      "source_content_hash": "fe79aed89ccfb9b28dabdf2aab254f1629ef57ad51c4d8b4f5928e539ec7a576",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "故障注入是混沌測試的核心。在分散式資料庫中，故障隨時隨地可能發生——從節點崩潰、網路分割、檔案系統故障到核心恐慌皆屬此類。這正是 Chaos Mesh 的用武之地。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1042b50d",
+      "source_content": "Currently, TiPocket supports the following types of fault injection:",
+      "source_content_hash": "2c70ea8aacbfbab2645b593f16e425aae3824d80ba602bf6c6046b3599ebb36c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前 TiPocket 支援下列故障注入類型："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee9c310",
+      "source_content": "- **Network**: Simulates network partitions, random packet loss, disorder, duplication, or delay of links.",
+      "source_content_hash": "96f0ca90f0d1843d8df1e637cb2e1720ba7c7a13fa6eebb4ab85aca773f8af2c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **網路**：模擬網路分割、隨機封包遺失、亂序、重複或鏈路延遲。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "394e77a6",
+      "source_content": "- **Time skew**: Simulates clock skew of the container to be tested.",
+      "source_content_hash": "323ab044322dbb649079b70df8e3b24003dd9384d04fd2462fbe399aa98cb795",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **時間偏移**：模擬待測試容器的時鐘偏移。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c710067",
+      "source_content": "- **Kill**: Kills the specified pod, either randomly in a cluster or within a component (TiDB, TiKV, or Placement Driver (PD)).",
+      "source_content_hash": "39dc049df05e681c6e60348647e6b24b3d6e9abb04b6daab5a10c6d55354fc2a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **終止**：終止指定 pod，可於集群中隨機選擇或限定於特定元件（TiDB、TiKV 或 Placement Driver (PD)）。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "def098da",
+      "source_content": "- **I/O**: Injects I/O delays in TiDB’s storage engine, TiKV, to identify I/O related issues.",
+      "source_content_hash": "73b059c5900b179e09a1ff569eb480f2e97621202de3d70a2b0869ba7d8e720d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **I/O**：在 TiDB 的儲存引擎 TiKV 中注入 I/O 延遲，以識別 I/O 相關問題。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a44047a5",
+      "source_content": "With fault injection handled, we need to think about verification. How do we make sure TiDB can survive these faults?",
+      "source_content_hash": "0945e2f1088906937d59527916399fa61c24080579acbfd3d08005758cdd4717",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "完成故障注入後，我們需思考驗證機制：如何確保 TiDB 能在這些故障中維持運作？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cb5b269c",
+      "source_content": "## Verifying chaos impacts: test cases",
+      "source_content_hash": "904be6b08673743d2d7007ff21255e8f7e4e304f352b5b34c0571b062703e1f8",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 驗證混沌影響：測試案例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b36c6338",
+      "source_content": "To validate how TiDB withstands chaos, we implemented dozens of test cases in TiPocket, combined with a variety of inspection tools. To give you an overview of how TiPocket verifies TiDB in the event of failures, consider the following test cases. These cases focus on SQL execution, transaction consistency, and transaction isolation.",
+      "source_content_hash": "1f6bdbddf62ca8d1653dd8078bbf7b27be73a3544c265bee2de85c034f56374e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "為了驗證 TiDB 在混沌環境中的穩定性，我們在 TiPocket 中實現了數十種測試案例，並結合多種檢測工具。以下概述 TiPocket 如何在故障事件中驗證 TiDB，這些案例聚焦於 SQL 執行、交易一致性與交易隔離性。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2c1b51df",
+      "source_content": "### Fuzz testing: SQLsmith",
+      "source_content_hash": "0570e844b9912194903e5ac9505925ffdabaee6cd2e256544ae4bc372929025f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 模糊測試：SQLsmith"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e536ea0d",
+      "source_content": "[SQLsmith](https://github.com/pingcap/tipocket/tree/master/pkg/go-sqlsmith) is a tool that generates random SQL queries. TiPocket creates a TiDB cluster and a MySQL instance.. The random SQL generated by SQLsmith is executed on TiDB and MySQL, and various faults are injected into the TiDB cluster to test. In the end, execution results are compared. If we detect inconsistencies, there are potential issues with our system.",
+      "source_content_hash": "d13d8cce3daa4995537368a1d74b83f0d0540091b7c580b04b66fe8a2173e481",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[SQLsmith](https://github.com/pingcap/tipocket/tree/master/pkg/go-sqlsmith) 是一款隨機生成 SQL 查詢的工具。TiPocket 創建一個 TiDB 集群和一個 MySQL 實例，將 SQLsmith 生成的隨機 SQL 語句在 TiDB 和 MySQL 上執行，同時向 TiDB 集群注入各類故障進行測試。最終比對執行結果，若檢測到不一致，則表示系統可能存在潛在問題。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ab5fc5b5",
+      "source_content": "### Transaction consistency testing: Bank and Porcupine",
+      "source_content_hash": "92958e71368e5d8d800557ed749746392ebd4c817e6af7db49372986e9387324",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 交易一致性測試：Bank 與 Porcupine"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ea4c715",
+      "source_content": "[Bank](https://github.com/pingcap/tipocket/tree/master/cmd/bank) is a classical test case that simulates the transfer process in a banking system. Under snapshot isolation, all transfers must ensure that the total amount of all accounts must be consistent at every moment, even in the face of system failures. If there are inconsistencies in the total amount, there are potential issues with our system.",
+      "source_content_hash": "5e8d336a4b1def427290ed7478e3af07022ae0520fcb5902317643cee3f1c1cb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Bank](https://github.com/pingcap/tipocket/tree/master/cmd/bank) 是模擬銀行系統轉帳流程的經典測試案例。在快照隔離級別下，所有轉帳操作必須確保所有帳戶總金額在任何時刻都保持一致，即使面對系統故障亦然。若總金額出現不一致，則表示系統可能存在潛在問題。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "79ad944d",
+      "source_content": "[Porcupine](https://github.com/anishathalye/porcupine) is a linearizability checker in Go built to test the correctness of distributed systems. It takes a sequential specification as executable Go code, along with a concurrent history, and it determines whether the history is linearizable with respect to the sequential specification. In TiPocket, we use the [Porcupine](https://github.com/pingcap/tipocket/tree/master/pkg/check/porcupine) checker in multiple test cases to check whether TiDB meets the linearizability constraint.",
+      "source_content_hash": "4f7c7f288d4727717195b19aa7b0d775450341710fcac2e14585a1144efe4a1c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Porcupine](https://github.com/anishathalye/porcupine) 是基於 Go 語言構建的線性化檢查工具，用於驗證分散式系統的正確性。它接收可執行的 Go 代碼作為順序規範，結合併發歷史記錄，判斷該歷史是否符合順序規範的線性化要求。在 TiPocket 中，我們通過 [Porcupine](https://github.com/pingcap/tipocket/tree/master/pkg/check/porcupine) 檢查器在多個測試案例中驗證 TiDB 是否符合線性化約束。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8c6d7ee7",
+      "source_content": "### Transaction Isolation testing: Elle",
+      "source_content_hash": "e1ddaf8a7654b7382276a00524ab71571312914133c5ceda338293190e0bc830",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 交易隔離性測試：Elle"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "06e24cc0",
+      "source_content": "[Elle](https://github.com/jepsen-io/elle) is an inspection tool that verifies a database’s transaction isolation level. TiPocket integrates [go-elle](https://github.com/pingcap/tipocket/tree/master/pkg/elle), the Go implementation of the Elle inspection tool, to verify TiDB’s isolation level.",
+      "source_content_hash": "3c9bcb7bf478ba8db66c2a751448b7efd0c893dd59e22c880219e79cb80511f5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Elle](https://github.com/jepsen-io/elle) 是驗證資料庫交易隔離級別的檢測工具。TiPocket 整合了 Elle 工具的 Go 語言實現 [go-elle](https://github.com/pingcap/tipocket/tree/master/pkg/elle)，用以驗證 TiDB 的隔離級別。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7f71ff2a",
+      "source_content": "These are just a few of the test cases TiPocket uses to verify TiDB’s accuracy and stability. For more test cases and verification methods, see our [source code](https://github.com/pingcap/tipocket).",
+      "source_content_hash": "2f37de3f80d68ba2a31684204cabd7f257252c68bf8cc253a226d75ef81ab88d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以上僅是 TiPocket 用於驗證 TiDB 準確性與穩定性的部分測試案例。更多測試案例與驗證方法，請參閱我們的[源碼庫](https://github.com/pingcap/tipocket)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "047c2395",
+      "source_content": "## Automating the chaos pipeline - Argo",
+      "source_content_hash": "6a9bc20925f96e16fb76fbb05dc7a997d9f8689829bfc0f023f5fda061d558c6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 自動化混沌管線：Argo"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "883231d4",
+      "source_content": "Now that we have Chaos Mesh to inject faults, a TiDB cluster to test, and ways to validate TiDB, how can we automate the chaos testing pipeline? Two options come to mind: we could implement the scheduling functionality in TiPocket, or hand over the job to existing open-source tools. To make TiPocket more dedicated to the testing part of our workflow, we chose the open-source tools approach. This, plus our all-in-K8s design, lead us directly to [Argo](https://github.com/argoproj/argo).",
+      "source_content_hash": "7616df091988ddb0f70196dc629b81cbaaedb71ca2b9fa2cbec1ed0e99e18ad8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "現在我們擁有 Chaos Mesh 注入故障、待測 TiDB 集群以及驗證方法，如何實現混沌測試管線的自動化？兩種方案浮現：在 TiPocket 中實現調度功能，或將任務移交現有開源工具。為使 TiPocket 更專注於工作流的測試環節，我們選擇開源工具方案。結合全 Kubernetes 架構設計，這直接引導我們採用 [Argo](https://github.com/argoproj/argo)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6cc549f2",
+      "source_content": "Argo is a workflow engine designed for Kubernetes. It has been an open source product for a long time, and has received widespread attention and application.",
+      "source_content_hash": "fd630f66c46184c210a59759cbbe6efb7802f805a818024e54be909d20c4be5a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Argo 是專為 Kubernetes 設計的工作流引擎，作為開源產品已運作多年，並獲得廣泛關注與應用。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d0dd855b",
+      "source_content": "Argo has abstracted several custom resource definitions (CRDs) for workflows. The most important ones include Workflow Template, Workflow, and Cron Workflow. Here is how Argo fits in TiPocket:",
+      "source_content_hash": "8e3c9510bc06eed19fe2af9e78e6935979ea4317d5774d75a5d54b860f2732a7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Argo 為工作流抽象了多種自定義資源定義（CRD），其中最重要的是 Workflow Template、Workflow 和 Cron Workflow。以下是 Argo 在 TiPocket 中的應用方式："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dff3cae1",
+      "source_content": "- **Workflow Template** is a template defined in advance for each test task. Parameters can be passed in when the test is running.",
+      "source_content_hash": "cf1526c5b7197a1cc756aa3635a4d562811c15653bc78bfc8041fb9a9e347bbc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **Workflow Template** 是預先定義的測試任務模板，執行時可傳入參數。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f96bec5f",
+      "source_content": "- **Workflow** schedules multiple workflow templates in different orders, which form the tasks to be executed. Argo also lets you add conditions, loops, and directed acyclic graphs (DAGs) in the pipeline.",
+      "source_content_hash": "a12a29ba3329b855b06639cf623da25f5cd4a66170976c4ab26feb3979dcd3fb",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **Workflow** 調度多個工作流模板形成不同順序的執行任務。Argo 還支持在管線中添加條件判斷、循環及有向無環圖（DAG）。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "659c6b3e",
+      "source_content": "- **Cron Workflow** lets you schedule a workflow like a cron job. It is perfectly suitable for scenarios where you want to run test tasks for a long time.",
+      "source_content_hash": "5372b9a7dc503018c9c62709ba62c2e40fc3bfea2acb997d507f2adcbe073361",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **Cron Workflow** 可像定時任務般調度工作流，完美適用於需長期運行測試任務的場景。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a1fa5396",
+      "source_content": "The sample workflow for our predefined bank test is shown below:",
+      "source_content_hash": "1776bcec86fe73b7cefa336b4eb05357020a6ef64cee045357d030631b31cd99",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下展示我們預定義的 bank 測試工作流範例："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8c3563d3",
+      "source_content": "```yml\nspec:\n  entrypoint: call-tipocket-bank\n  arguments:\n    parameters:\n      - name: ns\n        value: tipocket-bank\n            - name: nemesis\n        value: random_kill,kill_pd_leader_5min,partition_one,subcritical_skews,big_skews,shuffle-leader-scheduler,shuffle-region-scheduler,random-merge-scheduler\n  templates:\n    - name: call-tipocket-bank\n      steps:\n        - - name: call-wait-cluster\n            templateRef:\n              name: wait-cluster\n              template: wait-cluster\n        - - name: call-tipocket-bank\n            templateRef:\n              name: tipocket-bank\n              template: tipocket-bank\n```",
+      "source_content_hash": "b247e907d566186773ee0811795803bf85d6ef0a2c4796764ee4d5ee5d88da1f",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_8c3563d3"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f0984c2a",
+      "source_content": "In this example, we use the workflow template and nemesis parameters to define the specific failure to inject. You can reuse the template to define multiple workflows that suit different test cases. This allows you to add more customized failure injections in the flow.",
+      "source_content_hash": "402cc5dcfe86c3e04f0a33d7bc5d11b8f5dd61baa38bcb3c66ee5694dfc5353e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在此範例中，我們使用工作流程範本和故障參數來定義要注入的特定故障。您可以重複使用該範本來定義多個適用於不同測試案例的工作流程，從而能在流程中添加更多自訂的故障注入。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a81544fd",
+      "source_content": "Besides [TiPocket’s](https://github.com/pingcap/tipocket/tree/master/argo/workflow) sample workflows and templates, the design also allows you to add your own failure injection flows. Handling complicated logics using codable workflows makes Argo developer-friendly and an ideal choice for our scenarios.",
+      "source_content_hash": "056e0110a229b4575df3c7be1e6b6f65d627462698566dcc564ac5f7e20e59c9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "除了 [TiPocket 的](https://github.com/pingcap/tipocket/tree/master/argo/workflow) 範例工作流程和範本外，此設計還允許您添加自己的故障注入流程。透過可編碼的工作流程處理複雜邏輯，使 Argo 對開發者友好，成為我們場景的理想選擇。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0801d969",
+      "source_content": "Now, our chaos experiment is running automatically. But if our results do not meet our expectations? How do we locate the problem? TiDB saves a variety of monitoring information, which makes log collecting essential for enabling observability in TiPocket.",
+      "source_content_hash": "9956f4119fc0b9f24a56a46a63a9e916a90f8c133c8b972d452f057262bcaea7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "現在，我們的混沌實驗已自動運行。但如果結果不符合預期呢？該如何定位問題？TiDB 儲存了多種監控資訊，這使得日誌收集對於在 TiPocket 中實現可觀測性至關重要。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ab39e8a7",
+      "source_content": "## Visualizing the results: Loki",
+      "source_content_hash": "1f7129d237c20d6c6be0a4a0fa3eff6ce4d366febbe1d1e17390a847dfc386da",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 視覺化結果：Loki"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d21af28f",
+      "source_content": "In cloud-native systems, observability is very important. Generally speaking, you can achieve observability through **metrics**, **logging**, and **tracing**. TiPocket’s main test cases evaluate TiDB clusters, so metrics and logs are our default sources for locating issues.",
+      "source_content_hash": "2e93936d6c2b5e40f4d2a15c98c21b55935b16e01c0cc976d9943a846c530696",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在雲原生系統中，可觀測性非常重要。一般而言，您可以透過**指標（metrics）**、**日誌（logging）**和**追蹤（tracing）**實現可觀測性。TiPocket 的主要測試案例評估 TiDB 叢集，因此指標和日誌是我們定位問題的預設來源。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "44aaa880",
+      "source_content": "On Kubernetes, Prometheus is the de-facto standard for metrics. However, there is no common way for log collection. Solutions such as [Elasticsearch](https://en.wikipedia.org/wiki/Elasticsearch), [Fluent Bit](https://fluentbit.io/), and [Kibana](https://www.elastic.co/kibana) perform well, but they may cause system resource contention and high maintenance costs. We decided to use [Loki](https://github.com/grafana/loki), the Prometheus-like log aggregation system from [Grafana](https://grafana.com/).",
+      "source_content_hash": "d5e5dab9d06c8d0a6a6f7ef68f4d98dd8977bbe51b58557f813be62eef048c7d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "在 Kubernetes 上，Prometheus 是指標監控的事實標準，但日誌收集尚無統一方法。[Elasticsearch](https://en.wikipedia.org/wiki/Elasticsearch)、[Fluent Bit](https://fluentbit.io/) 和 [Kibana](https://www.elastic.co/kibana) 等解決方案表現良好，但可能導致系統資源競爭和高維護成本。我們決定採用 [Grafana](https://grafana.com/) 開發的類 Prometheus 日誌聚合系統 [Loki](https://github.com/grafana/loki)。",
+          "reason": "URL for a 'link' was changed from 'https://github.com/grafana/loki' to 'https://grafana.com/'.",
+          "timestamp": "2025-07-04T06:49:59.312374+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "396efb28",
+      "source_content": "Prometheus processes TiDB’s monitoring information. Prometheus and Loki have a similar labeling system, so we can easily combine Prometheus' monitoring indicators with the corresponding pod logs and use a similar query language. Grafana also supports the Loki dashboard, which means we can use Grafana to display monitoring indicators and logs at the same time. Grafana is the built-in monitoring component in TiDB, which Loki can reuse.",
+      "source_content_hash": "9e2f01769e01f56c0f608a3b791936175ee8eb1dfa1d6afabe5a2b472b86a7db",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Prometheus 處理 TiDB 的監控資訊。由於 Prometheus 和 Loki 具有相似的標籤系統，我們能輕鬆將 Prometheus 監控指標與對應的 pod 日誌結合，並使用相似的查詢語言。Grafana 也支援 Loki 儀表板，意味著我們可用 Grafana 同時顯示監控指標和日誌。Grafana 是 TiDB 的內建監控元件，Loki 可直接重複利用它。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cbd60296",
+      "source_content": "## Putting them all together - TiPocket",
+      "source_content_hash": "3fb1f08dfaed7151002944ecef6a5c32f59406a120e6fa9517d23e82ab287002",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 整合所有元件 - TiPocket"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f38d1cb0",
+      "source_content": "Now, everything is ready. Here is a simplified diagram of TiPocket:",
+      "source_content_hash": "14cc83983e57c6671c4f832ee7b9d2c826544885759346452e0d6379029d8fee",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "現在，萬事俱備。以下是 TiPocket 的簡化架構圖："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5f82a1e9",
+      "source_content": "![TiPocket Architecture](/img/blog/tipocket-architecture.png)",
+      "source_content_hash": "6383fd0c860199fff1d797ec36d691850b1e6d9afefe9a15e5f401526f13c0eb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![TiPocket 架構](/img/blog/tipocket-architecture.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6fc234cf",
+      "source_content": "As you can see, the Argo workflow manages all chaos experiments and test cases. Generally, a complete test cycle involves the following steps:",
+      "source_content_hash": "b8ffa7808dad623d6949d4cdeb4a3d68c40293678e212ebc3ef4dbf86b28d043",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如您所見，Argo 工作流程管理所有混沌實驗和測試案例。通常，完整的測試週期包含以下步驟："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1cf42f92",
+      "source_content": "1. Argo creates a Cron Workflow, which defines the cluster to be tested, the faults to inject, the test case, and the duration of the task. If necessary, the Cron Workflow also lets you view case logs in real-time.",
+      "source_content_hash": "8e8adf5fd601de049e08fb472ab51923e8d1628a6955ab32f94fb149f302632b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. Argo 建立 Cron Workflow，定義待測叢集、待注入故障、測試案例及任務持續時間。必要時，Cron Workflow 還允許即時查看案例日誌。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f45239ba",
+      "source_content": "![Argo Workflow](/img/blog/argo-workflow.png)",
+      "source_content_hash": "2204d3a11674775cb28cd727b26ef4f400eaccf715e95e56b316ae296bdb3f0e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Argo 工作流程](/img/blog/argo-workflow.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "313c2967",
+      "source_content": "1. At a specified time, a separate TiPocket thread is started in the workflow, and the Cron Workflow is triggered. TiPocket sends TiDB-Operator the definition of the cluster to test. In turn, TiDB-Operator creates a target TiDB cluster. Meanwhile, Loki collects the related logs.",
+      "source_content_hash": "f2455dd1028e2e62091bb507b5b5f740768f683096cdf6c252b24023960035b7",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 在指定時間，工作流程中啟動獨立的 TiPocket 執行緒觸發 Cron Workflow。TiPocket 向 TiDB-Operator 發送待測叢集定義，由 TiDB-Operator 建立目標 TiDB 叢集。同時，Loki 收集相關日誌。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "526396f0",
+      "source_content": "2. Chaos Mesh injects faults in the cluster.",
+      "source_content_hash": "404fbfe663344fe4802c47206a977b4699e02dec5efc573bd94f1019f7a37fba",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. Chaos Mesh 在叢集中注入故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ae3920fd",
+      "source_content": "3. Using the test cases mentioned above, the user validates the health of the system. Any test case failure leads to workflow failure in Argo, which triggers Alertmanager to send the result to the specified Slack channel. If the test cases complete normally, the cluster is cleared, and Argo stands by until the next test.",
+      "source_content_hash": "a84ed5ddadae1cce618ddcde528f651aade2d013a7fabb0929de25dc5a4fb54c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 使用者透過前述測試案例驗證系統健康狀態。任何測試案例失敗都會導致 Argo 工作流程失敗，觸發 Alertmanager 將結果發送至指定 Slack 頻道。若測試案例正常完成，則清除叢集，Argo 待命至下次測試。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "14bc6b75",
+      "source_content": "![Alert in Slack](/img/blog/alert_message.png)",
+      "source_content_hash": "c56ac6477b26bac36335e631011d73360759c7959e54cba4458bdb62b5e6fd82",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Slack 警報訊息](/img/blog/alert_message.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e478ec2c",
+      "source_content": "This is the complete TiPocket workflow. .",
+      "source_content_hash": "9f2f07eb7ca85e8482bd667b6deec0e58131b01f7bd62c612d7edcf7d462cf23",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "這就是完整的 TiPocket 工作流程。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c2ab4c8",
+      "source_content": "## Join us",
+      "source_content_hash": "3fc5e0480bf8946efd0385c226e89244e129396b947320026f0f26193ff71cf0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 加入我們"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a9c2a503",
+      "source_content": "[Chaos Mesh](https://github.com/pingcap/chaos-mesh) and [TiPocket](https://github.com/pingcap/tipocket) are both in active iterations. We have donated Chaos Mesh to [CNCF](https://github.com/cncf/toc/pull/367), and we look forward to more community members joining us in building a complete Chaos Engineering ecosystem. If this sounds interesting to you, check out our [website](https://chaos-mesh.org/), or join #project-chaos-mesh in the [CNCF Slack](hthttps://slack.cncf.io/).",
+      "source_content_hash": "8fd919585c57af1f47a38c7c11dbe648528380abef2341f1bdda35659b6b763b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Chaos Mesh](https://github.com/pingcap/chaos-mesh) 與 [TiPocket](https://github.com/pingcap/tipocket) 都在積極迭代發展中。我們已將 Chaos Mesh 捐贈給 [CNCF](https://github.com/cncf/toc/pull/367)，並期待更多社群成員加入我們，共同構建完整的混沌工程生態系統。若您對此感興趣，請查看我們的[網站](https://chaos-mesh.org/)，或加入 [CNCF Slack](hthttps://slack.cncf.io/) 中的 #project-chaos-mesh 頻道。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2020-08-14-building_automated_testing_framework.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.312405+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "ac279c13eb412a354e072a4c7f0f02b27e2a62b0be933c70f03e278ca889d88b"
+  }
+}

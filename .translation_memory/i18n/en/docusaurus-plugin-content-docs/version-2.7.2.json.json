@@ -1,0 +1,302 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "i18n/en/docusaurus-plugin-content-docs/version-2.7.2.json",
+  "source_file_content_hash": "163b708dc7168c19eb2d41e35ea6ff34fe9926d6f95e732d64e23d43cc346f51",
+  "segments": [
+    {
+      "segment_id": "version.label",
+      "source_content": "2.7.2",
+      "source_content_hash": "d935c946d114e94165c1860150330a1782b66c7dc8bc04d0d15ee1e289660ad0",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2.7.2"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for version 2.7.2"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.category.About Chaos Mesh",
+      "source_content": "About Chaos Mesh",
+      "source_content_hash": "3448dd3d9b42f6646b19c6fdfcfec66e05c5657be55021cf96d653449c7b7218",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "關於 Chaos Mesh"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for category About Chaos Mesh in sidebar docs"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.category.Getting Started",
+      "source_content": "Getting Started",
+      "source_content_hash": "d00eca1bae6742803906ab42a831e8b5396d15b6573ea13c139ec31631208ec1",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "開始使用"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for category Getting Started in sidebar docs"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.category.Installation and Deployment",
+      "source_content": "Installation and Deployment",
+      "source_content_hash": "5c01e94e98ed89ac58f7c51c2400ec42624e497e5ae796dec41edf2a34406891",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "安裝與部署"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for category Installation and Deployment in sidebar docs"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.category.Run a Single Chaos Experiment",
+      "source_content": "Run a Single Chaos Experiment",
+      "source_content_hash": "ac07aec5797f15afdb9bd5c801d769a934a1cd4d8b507285c66adf1d83ff7090",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行單一混沌實驗"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for category Run a Single Chaos Experiment in sidebar docs"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.category.Orchestrate Multiple Chaos Experiments",
+      "source_content": "Orchestrate Multiple Chaos Experiments",
+      "source_content_hash": "16727610877ed255701798991743b79a083011f0a2064f5a060430943c47ad92",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "編排多重混沌實驗"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for category Orchestrate Multiple Chaos Experiments in sidebar docs"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.category.Types of Chaos Experiments",
+      "source_content": "Types of Chaos Experiments",
+      "source_content_hash": "6505b0dfbb01affa0f10c7218ef908c1235e2108426f14480dbd2ea680cc4d93",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "混沌實驗類型"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for category Types of Chaos Experiments in sidebar docs"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.category.Kubernetes",
+      "source_content": "Kubernetes",
+      "source_content_hash": "a37d07fe30048d3ae9db9a02c8c16da029bb44a586c5adaea2a1ce7be2c9d904",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Kubernetes"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for category Kubernetes in sidebar docs"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.category.Physical Nodes",
+      "source_content": "Physical Nodes",
+      "source_content_hash": "e796905e09ee336912874aac386865382d3d9a95446816454b2e38041b04ccb6",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "實體節點"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for category Physical Nodes in sidebar docs"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.category.Authentication",
+      "source_content": "Authentication",
+      "source_content_hash": "66880d2d8216260d201917a72eb245440ef18ba9b54c070ee39aa4c343ae126f",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "認證機制"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for category Authentication in sidebar docs"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.category.Tools Integration",
+      "source_content": "Tools Integration",
+      "source_content_hash": "9ce927dffbe6c27341ef359d8f66505c798360e385a062f928a4c046d17a03d8",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "工具整合"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for category Tools Integration in sidebar docs"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.category.Development Guides",
+      "source_content": "Development Guides",
+      "source_content_hash": "cfaf1c98cceea5539fa2adfab2af90687f8fb7d8a77067d578de9fe41ba2623d",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "開發指南"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for category Development Guides in sidebar docs"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.category.FAQs and Troubleshooting",
+      "source_content": "FAQs and Troubleshooting",
+      "source_content_hash": "74294f9e67680ae863836633ccbdc99566936462416b95034834e180627167ed",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "常見問題與故障排除"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for category FAQs and Troubleshooting in sidebar docs"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.category.Release",
+      "source_content": "Release",
+      "source_content_hash": "e020e3c67bd0c31227720bd8eb2c3a777d162e0987e8fd8438b007c170266476",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "版本發布"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for category Release in sidebar docs"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.category.Release Tracking",
+      "source_content": "Release Tracking",
+      "source_content_hash": "c3b75f90ef112a089bb0ebdf4c7a4316f4c414082997b00b0b9d85835b21bba0",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "版本追蹤"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for category Release Tracking in sidebar docs"
+      }
+    },
+    {
+      "segment_id": "sidebar.docs.link.Supported Releases",
+      "source_content": "Supported Releases",
+      "source_content_hash": "867fb0116ccc70c21e9ba21335e10e50334ce24de8cf0566ccf9bf3a9c8a6c90",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "支援的版本"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for link Supported Releases in sidebar docs, linking to /supported-releases"
+      }
+    }
+  ],
+  "original_json_structure": {
+    "version.label": {
+      "message": "2.7.2",
+      "description": "The label for version 2.7.2"
+    },
+    "sidebar.docs.category.About Chaos Mesh": {
+      "message": "About Chaos Mesh",
+      "description": "The label for category About Chaos Mesh in sidebar docs"
+    },
+    "sidebar.docs.category.Getting Started": {
+      "message": "Getting Started",
+      "description": "The label for category Getting Started in sidebar docs"
+    },
+    "sidebar.docs.category.Installation and Deployment": {
+      "message": "Installation and Deployment",
+      "description": "The label for category Installation and Deployment in sidebar docs"
+    },
+    "sidebar.docs.category.Run a Single Chaos Experiment": {
+      "message": "Run a Single Chaos Experiment",
+      "description": "The label for category Run a Single Chaos Experiment in sidebar docs"
+    },
+    "sidebar.docs.category.Orchestrate Multiple Chaos Experiments": {
+      "message": "Orchestrate Multiple Chaos Experiments",
+      "description": "The label for category Orchestrate Multiple Chaos Experiments in sidebar docs"
+    },
+    "sidebar.docs.category.Types of Chaos Experiments": {
+      "message": "Types of Chaos Experiments",
+      "description": "The label for category Types of Chaos Experiments in sidebar docs"
+    },
+    "sidebar.docs.category.Kubernetes": {
+      "message": "Kubernetes",
+      "description": "The label for category Kubernetes in sidebar docs"
+    },
+    "sidebar.docs.category.Physical Nodes": {
+      "message": "Physical Nodes",
+      "description": "The label for category Physical Nodes in sidebar docs"
+    },
+    "sidebar.docs.category.Authentication": {
+      "message": "Authentication",
+      "description": "The label for category Authentication in sidebar docs"
+    },
+    "sidebar.docs.category.Tools Integration": {
+      "message": "Tools Integration",
+      "description": "The label for category Tools Integration in sidebar docs"
+    },
+    "sidebar.docs.category.Development Guides": {
+      "message": "Development Guides",
+      "description": "The label for category Development Guides in sidebar docs"
+    },
+    "sidebar.docs.category.FAQs and Troubleshooting": {
+      "message": "FAQs and Troubleshooting",
+      "description": "The label for category FAQs and Troubleshooting in sidebar docs"
+    },
+    "sidebar.docs.category.Release": {
+      "message": "Release",
+      "description": "The label for category Release in sidebar docs"
+    },
+    "sidebar.docs.category.Release Tracking": {
+      "message": "Release Tracking",
+      "description": "The label for category Release Tracking in sidebar docs"
+    },
+    "sidebar.docs.link.Supported Releases": {
+      "message": "Supported Releases",
+      "description": "The label for link Supported Releases in sidebar docs, linking to /supported-releases"
+    }
+  },
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2.json",
+  "last_updated_timestamp": "2025-07-04T06:49:56.113736+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "163b708dc7168c19eb2d41e35ea6ff34fe9926d6f95e732d64e23d43cc346f51"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/java-client.md",
+  "source_file_content_hash": "3b9e722efead7bdfd9489cf4ec601a8dc65c559e65e8622b128bb0f2a4263e59",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: JAVA\n---",
+      "source_content_hash": "7e524b2e927d2f700d37156fdc54e9f047d12035e61070d37c386991863fdeab",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f85bbfb4",
+      "source_content": "## TODO",
+      "source_content_hash": "f412d40cac05e357371f77218084d95faf8621b50642faf4353f0cb4bb1c78cc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 待辦事項"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/java-client.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.103611+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "3b9e722efead7bdfd9489cf4ec601a8dc65c559e65e8622b128bb0f2a4263e59"
+  }
+}

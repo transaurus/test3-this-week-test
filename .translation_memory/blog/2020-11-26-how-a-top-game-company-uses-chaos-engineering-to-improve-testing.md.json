@@ -1,0 +1,364 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2020-11-26-how-a-top-game-company-uses-chaos-engineering-to-improve-testing.md",
+  "source_file_content_hash": "5239865940ffac4849d73cee430c28a67d7178c03fc4adf570165a7051f1a26e",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /how-a-top-game-company-uses-chaos-engineering-to-improve-testing\ntitle: 'How a Top Game Company Uses Chaos Engineering to Improve Testing'\nauthors: huizhang\nimage: /img/blog/fuxi-case-banner.jpg\ntags: [Chaos Mesh, Chaos Engineering]\n---",
+      "source_content_hash": "2fd6050077c08d47a48c241d85de198be8e56cddd5bd4bf9501324967f30af7c",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![How-a-Top-Game-Company-Uses-Chaos-Engineering-to-Improve-Testing](/img/blog/fuxi-case-banner.jpg)",
+      "source_content_hash": "daa43fee10de3d0f9f4e65cfb2cc30fc0c234ec84a27eda4539e3ee8c997fe83",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![頂尖遊戲公司如何運用混沌工程提升測試品質](/img/blog/fuxi-case-banner.jpg)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "NetEase Fuxi AI Lab is China’s first professional game AI research institution. Researchers use our Kubernetes-based Danlu platform for algorithm development, training and tuning, and online publishing. Thanks to the integration with Kubernetes, our platform is much more efficient. However, due to Kubernetes- and microservices-related issues, we are constantly testing and improving our platform to make it more stable.",
+      "source_content_hash": "04a118609cbf243c7293b33807edfb90863d543f00bc10372eb91a8ccf1b6c59",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "網易伏羲實驗室是中國首個專業遊戲 AI 研究機構。研究人員使用基於 Kubernetes 的丹爐平台進行算法開發、訓練調優和線上發布。得益於與 Kubernetes 的整合，我們的平台效率大幅提升。然而，由於 Kubernetes 和微服務相關問題，我們持續測試並改進平台以提升其穩定性。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "In this article, I’ll discuss one of our most valuable testing tools, [Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh). Chaos Mesh is an open-source Chaos Engineering tool that provides a wide range of fault injections and excellent fault monitoring through its Dashboard.",
+      "source_content_hash": "2cab2d2b5b842145478e8f8780085cef0f77f0d8141ad74dcbce2e8e8fb50fa7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文將介紹我們最寶貴的測試工具之一——[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh)。Chaos Mesh 是一個開源的混沌工程工具，透過其儀表板提供廣泛的故障注入能力和卓越的故障監控功能。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3daf1b88",
+      "source_content": "## Why Chaos Mesh",
+      "source_content_hash": "c28945bd4aa111ba84c6ca8923a2f3349779782cc4abc0f61a9a6020826b563e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 為何選擇 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "We started our search for a Chaos Engineering tool in 2018. We were looking for a tool with:",
+      "source_content_hash": "080f44bf65b36d2101ecb4006051345ef049ef2abbdf33cf1a1cb9fa800378c9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們自 2018 年開始尋找混沌工程工具，期望找到具備以下特性的方案："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28563fec",
+      "source_content": "- Cloud-native support. Kubernetes is practically the de facto standard for service orchestration and scheduling, and the application runtime has been fully standardized. For applications that run entirely on K8s, cloud-native support is a must for any tools that go with them.",
+      "source_content_hash": "9799b18a5e6ab6ca51c550fa8548e1e0a21523af742a5a3fe110cc33082686f6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **雲原生支援**：Kubernetes 已是服務編排與調度的實質標準，應用運行環境已全面標準化。對於完全運行於 K8s 的應用，配套工具必須具備雲原生支援能力。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b31a2bd",
+      "source_content": "- Sufficient fault injection types. For stateful services, network failure simulation is particularly important. The platform must be able to simulate failures at different levels, such as Pods, network, and I/O.",
+      "source_content_hash": "90ef2396358f669212526de9b081c65cab65ceda0d1617c03fd86bd73cbd973d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **充足的故障注入類型**：對於有狀態服務，網路故障模擬尤為關鍵。平台需能模擬不同層級的故障，例如 Pod、網路和 I/O 層面。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ff75e5d8",
+      "source_content": "- Good observability. Knowing when a fault is injected and when it can be recovered is vital for us to tell whether there is an abnormality in the application.",
+      "source_content_hash": "99ce1de113552d46c8d5a37c7bdb47be40908c285678856692a4b22eefef8359",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **良好的可觀測性**：精確掌握故障注入時間與恢復時機，對我們判斷應用異常至關重要。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b08b37ac",
+      "source_content": "- Active community support. We want to use an open-source project that is thoroughly tested and consistently maintained. That’s why we value sustained and timely community support.",
+      "source_content_hash": "c312e5e075f59dbd09ad09209f088de378ae8bf8b0d1cbd13850a1e7b0c742fc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **活躍的社群支援**：我們希望採用經過充分測試且持續維護的開源專案，因此重視持久且及時的社群支援。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2523feeb",
+      "source_content": "- No intrusion on existing applications, with no domain knowledge required.",
+      "source_content_hash": "dfc1960f0953b31c67f8d8d8e162519c551ab36ba685b27099235c81aa4ad7c5",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **對現有應用零侵入，無需領域知識**。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "346d5f8d",
+      "source_content": "- Actual use cases for us to evaluate and build upon.",
+      "source_content_hash": "af3fc8ac0248f2e9afa04ce57dae6e0d3c3a285a00054855efc0d1a97bc9cd96",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **具備實際用例供評估參考**。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4daf5cdd",
+      "source_content": "In 2019, when Chaos Mesh, a Chaos Engineering platform for Kubernetes was open-sourced, we found the tool we were looking for. It was still in its early stage; however, we were immediately struck with the richness of fault types it supported. This was a big advantage over other chaos engineering tools, because, to a certain degree, it determines the number of issues that we can locate in the system. We instantly realized that Chaos Mesh met our expectations in almost every way.",
+      "source_content_hash": "0df69baf6d56bdf78dca83435362262ae09de0467242d05306e30aaf383cfdd5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2019 年，當專為 Kubernetes 設計的混沌工程平台 Chaos Mesh 開源時，我們終於找到了理想工具。儘管當時仍處早期階段，但其豐富的故障類型支援立即吸引了我們。相較其他混沌工程工具，這項優勢至關重要——它直接決定了系統可發現問題的維度。我們當即意識到 Chaos Mesh 幾乎滿足了所有預期。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bdc231b1",
+      "source_content": "![Chaos Mesh architecture](/img/blog/chaos-mesh-architecture.png)",
+      "source_content_hash": "c248a1de052f385739f685c0e62a791f3d904cc2bf42994b0956b78ceebd9556",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Mesh 架構](/img/blog/chaos-mesh-architecture.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3b7478ea",
+      "source_content": "## Our journey with Chaos Mesh",
+      "source_content_hash": "b7c0c92d27beb04218ef430b4bf5dd7a08ab15fa568b472b90be918ca6621367",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 我們的 Chaos Mesh 實踐歷程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c3a738de",
+      "source_content": "Chaos Mesh has helped us find several important bugs. For example, it detected a brain-split issue in [rabbitMQ](https://www.rabbitmq.com/), the open-source message-queueing software for Danlu. According to [Wikipedia](https://en.wikipedia.org/wiki/Split-brain), “a split-brain condition indicates data or availability inconsistencies originating from the maintenance of two separate data sets with overlap in scope.” When a rabbitMQ cluster has a brain split error, there will be data write conflicts or errors, which cause more serious problems such as data inconsistencies in the messaging service. As shown in our architecture below, when brain split happens, consumers do not function normally and keep reporting server exceptions.",
+      "source_content_hash": "02f7fd3b94e122152854ffdf6afea41e92c32f30a452ce1ca0a57f9e93a55eb5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 協助我們發現了多個關鍵錯誤。例如，它檢測出丹爐平台開源消息隊列軟體 [rabbitMQ](https://www.rabbitmq.com/) 的腦裂問題。根據 [維基百科](https://en.wikipedia.org/wiki/Split-brain) 解釋：「腦裂狀態源於兩個獨立數據集在重疊範圍內的維護不一致，導致數據或可用性異常」。當 rabbitMQ 集群發生腦裂錯誤時，將出現數據寫入衝突或錯誤，進而引發消息服務數據不一致等更嚴重問題。如下方架構圖所示，發生腦裂時消費者無法正常運作並持續報告伺服器異常。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3cfe6286",
+      "source_content": "![Architecture of a RabbitMQ cluster](/img/blog/architecture-of-a-rabbitmq-cluster.png)",
+      "source_content_hash": "01d1604cd8a7581534d27808083369574237752723e97f5d85e67ae18f90bdea",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![RabbitMQ 集群架構](/img/blog/architecture-of-a-rabbitmq-cluster.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1042b50d",
+      "source_content": "With Chaos Mesh, we could stably reproduce this issue by injecting `pod-kill` faults into our container instances cloud.",
+      "source_content_hash": "3dd3c345128d29badbb82460e55b28cb07739f14f5f187c45e1b7bbc3a3e46f0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "透過 Chaos Mesh，我們可穩定復現此問題——只需在容器實例雲中注入 `pod-kill` 故障即可。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa1e7006",
+      "source_content": "Chaos Mesh also found several other issues including a startup failure, a join failure for crashed broker clusters, a heartbeat timeout, and a connection channel shutdown. Over time, our development team fixed these issues and greatly improved the stability of the Danlu platform.",
+      "source_content_hash": "dceff83a41ca1832204c8428eec477f8be720f19c29a4e2be673c5a5c6f6961b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 還發現了其他多項問題，包括啟動失敗、崩潰代理集群的加入失敗、心跳超時及連接通道關閉等。隨著時間推移，我們的開發團隊修復了這些問題，大幅提升了丹爐平台的穩定性。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f44c1398",
+      "source_content": "## A fast-growing project",
+      "source_content_hash": "64f29ef1f8aeb259cbbe0065417e58c5ba839fefe46984dbccad342164e4769d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 快速發展的專案"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "29528c8d",
+      "source_content": "Chaos Mesh is constantly updated and improved. When we first adopted it, it hadn’t even reached a stable version. It didn’t have a debugging or log collection tool, and the Dashboard component only applied to TiDB. The only way we could use Chaos Mesh to test other applications was to execute the YAML configuration file via `kubectl apply`.",
+      "source_content_hash": "95f265ae40afbe35798d126427cf7c3a3502913cd865618f30df117a0703d1b7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 持續更新與改進。當我們最初採用時，它甚至尚未達到穩定版本。缺乏調試或日誌收集工具，且儀表板元件僅適用於 TiDB。當時唯一能使用 Chaos Mesh 測試其他應用程式的方式，是透過 `kubectl apply` 執行 YAML 設定檔。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c504c207",
+      "source_content": "[Chaos Mesh 1.0](https://chaos-mesh.org/blog/chaos-mesh-1.0-chaos-engineering-on-kubernetes-made-easier) fixed or improved most of these limitations. It offers more fine-grained and powerful chaos support, a generally-available Chaos Dashboard, enhanced observability, and more accurate chaos scope control. These are all driven by an open, collaborative, and vibrant community.",
+      "source_content_hash": "d4335675fbc7ca4324747732f94f18833b37f8cb214cfb874d0f4650851949e0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Chaos Mesh 1.0](https://chaos-mesh.org/blog/chaos-mesh-1.0-chaos-engineering-on-kubernetes-made-easier) 解決或改善了大部分限制。它提供更細粒度且強大的混沌支援、正式可用的 Chaos Dashboard、增強的觀測能力，以及更精準的混沌範圍控制。這些進展皆由開放、協作且充滿活力的社群驅動。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "98d26038",
+      "source_content": "![Chaos Dashboard is now generally available](/img/blog/chaos-dashboard.gif)",
+      "source_content_hash": "dea4468946a22d325152a85a16d3d76af759d277d7f54231c208f061a953834a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Dashboard 現已正式可用](/img/blog/chaos-dashboard.gif)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "af52d59d",
+      "source_content": "## Looking forward",
+      "source_content_hash": "35d7da05f99d4b83edb28c57b26cd9a83f3ce70127f27f65fab1ab766940e74d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 未來展望"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4d52a261",
+      "source_content": "It’s amazing to see how much Chaos Mesh has grown and how much traction it’s gaining. We’re also happy with what we have achieved with it.",
+      "source_content_hash": "2d03ed4c5d5c72609379dc57b5678a2df04cbde634610216c2ef09bf759150f2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "見證 Chaos Mesh 的成長與廣泛採用令人驚嘆，我們也對透過它達成的成果感到欣喜。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "23dfb152",
+      "source_content": "However, Chaos Engineering is a big area to work on. In the future, we’d like to see the following features:",
+      "source_content_hash": "91c0eeee6bb146513bb2aa8428e15878b0466d8556e0c2a3fb810c7a1754c098",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "然而混沌工程領域仍有廣闊發展空間。未來我們期望看到以下功能："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5257fefd",
+      "source_content": "- Atomic fault injection",
+      "source_content_hash": "4684fc95e33225c304f63255094357c512be3c9c33d67d8fe9ae4ca4a163d947",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 原子故障注入"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "21d3e688",
+      "source_content": "- Unattended fault inject that combines customized fault types with standardized methods to validate experimental objects",
+      "source_content_hash": "0df6550d3af9db99e9dbabacbc94790a7fb5548af6fde267e438638496b08d42",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 無人值守故障注入：結合自訂故障類型與標準化方法驗證實驗對象"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3de828dc",
+      "source_content": "- Standard test cases for general components such as MySQL, Redis, and Kafka",
+      "source_content_hash": "dd84697d83b4bc707a2d3ea4fe6c40b506d0a6bfbaf827e489fa26f42d80fd57",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 通用元件標準測試案例（如 MySQL、Redis、Kafka）"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0bb95128",
+      "source_content": "We’ve discussed these features with those who maintain Chaos Mesh, and they said these features are on the Chaos Mesh 2.0 roadmap.",
+      "source_content_hash": "111c33f67b7acb714a8d2f8062e17d02f70b6b5a39a5bb0c08b6b727190ea732",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們已與 Chaos Mesh 維護者討論這些功能，確認它們已列入 Chaos Mesh 2.0 路線圖。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "657c2b20",
+      "source_content": "If you are interested, join the Chaos Mesh community via [Slack](https://slack.cncf.io/) (#project-chaos-mesh) or [GitHub](https://github.com/chaos-mesh/chaos-mesh).",
+      "source_content_hash": "43f1c676f70a312e9fc434772acecea90d7d6c1a322ea9da2d0e98370d452b24",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若您有興趣，歡迎透過 [Slack](https://slack.cncf.io/) (#project-chaos-mesh) 或 [GitHub](https://github.com/chaos-mesh/chaos-mesh) 加入 Chaos Mesh 社群。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2020-11-26-how-a-top-game-company-uses-chaos-engineering-to-improve-testing.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.056462+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "5239865940ffac4849d73cee430c28a67d7178c03fc4adf570165a7051f1a26e"
+  }
+}

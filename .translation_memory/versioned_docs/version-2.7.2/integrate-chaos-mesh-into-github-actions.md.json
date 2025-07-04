@@ -1,0 +1,456 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/integrate-chaos-mesh-into-github-actions.md",
+  "source_file_content_hash": "6006040d1a814d5e6d8c55f53db0d22b5529085c4622f8d39ec58e4d263f1015",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Integrate Chaos Mesh to GitHub Actions\n---",
+      "source_content_hash": "067c3340f9c01be31d9c79d545eb56c88ceab227682d4c251fbbd8de1b6fdd9f",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document describes how to integrate Chaos Mesh to customize the continuous integration (CI) using chaos-mesh-action. This helps you identify issues that have been introduced into system development before product releases.",
+      "source_content_hash": "e4e1c8e7ee36923077f8d88886064466d1a1356cbbda69a7607b93e562083810",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件描述如何使用 Chaos Mesh 整合 chaos-mesh-action 來自訂持續整合 (CI)。這能協助您在產品發布前，辨識系統開發中引入的問題。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "chaos-mesh-action is a GitHub action that has been released on [GitHub Marketplace](https://github.com/marketplace/actions/chaos-mesh). Its source code is on [GitHub](https://github.com/chaos-mesh/chaos-mesh-action) as well.",
+      "source_content_hash": "d1c041c95a47ac7bc49c01e4184cf2a54c799b1da73171c643053e994d68ad18",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "chaos-mesh-action 是一個已在 [GitHub Marketplace](https://github.com/marketplace/actions/chaos-mesh) 發布的 GitHub action。其原始碼也位於 [GitHub](https://github.com/chaos-mesh/chaos-mesh-action)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d912d376",
+      "source_content": "## Design of chaos-mesh-action",
+      "source_content_hash": "b5761e3be18617064106703d18cafe341db9bce5ba7d77eb1d8eee9cb4cebd1b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## chaos-mesh-action 的設計"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "[GitHub Action](https://docs.github.com/en/actions) is the continuous integration (CI) and continuous deployment (CD) feature natively supported by GitHub. Using GitHub Action, you can easily automate and customize software development workflows right in your repository with GitHub Actions.",
+      "source_content_hash": "dd22087b3c160123b439169c45005461ee250bff7ae7299b67bc68ac41f0f218",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[GitHub Action](https://docs.github.com/en/actions) 是 GitHub 原生支援的持續整合 (CI) 和持續部署 (CD) 功能。使用 GitHub Action，您可以在儲存庫中輕鬆自動化和自訂軟體開發工作流程。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "180bddb1",
+      "source_content": "Equipped with GitHub Action, Chaos Mesh can be easily integrated into your daily development and tests, which ensures that all code submitted on GitHub is bug-free (to pass tests at least) without affecting the current logic. The image below shows chaos-mesh-action integrated into the CI workflow:",
+      "source_content_hash": "6a47d78f31fd8092f30f565b0d62ecf39188ba41a58f9621b5b0ada78c38c37c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "配備 GitHub Action 後，Chaos Mesh 可以輕鬆整合到您的日常開發和測試中，確保所有提交到 GitHub 的程式碼至少通過測試而沒有錯誤，且不影響當前邏輯。下圖顯示 chaos-mesh-action 整合到 CI 工作流程中："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "![chaos-mesh-action-integrate-in-the-ci-workflow](./img/chaos-mesh-action-integrate-in-the-ci-workflow.png)",
+      "source_content_hash": "0ea5240508269a266fdbe5e890e0cae6679b6b7827c3567b438b5794ad2c6da7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![chaos-mesh-action 整合到 CI 工作流程中](./img/chaos-mesh-action-integrate-in-the-ci-workflow.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3daf1b88",
+      "source_content": "## Use chaos-mesh-action in GitHub workflow",
+      "source_content_hash": "b558e01dd50f22d65a540923e6274241e8821af1b80bd434aa1962bb2c2411ec",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 在 GitHub 工作流程中使用 chaos-mesh-action"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "chaos-mesh-action works for GitHub workflow. GitHub workflow is a configurable automated process. You can set up GitHub workflows in your repository to build, test, pack, publish or deploy any GitHub project. To integrate Chaos Mesh into your CI, take the following process:",
+      "source_content_hash": "891bcc2f71121d138efeef1a6f004d556528e453f55e682c28690243be4ec655",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "chaos-mesh-action 適用於 GitHub 工作流程。GitHub 工作流程是可配置的自動化流程。您可以在儲存庫中設定 GitHub 工作流程以建置、測試、打包、發布或部署任何 GitHub 專案。要將 Chaos Mesh 整合到您的 CI 中，請遵循以下流程："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28563fec",
+      "source_content": "- Step 1: Design workflow",
+      "source_content_hash": "6a6f5553e5f9812288b0d5e58eb0ebe6ad1b21c8d9bec6ca9b69abeecc3ec3dd",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 步驟 1：設計工作流程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f998e7f9",
+      "source_content": "- Step 2: Create workflow",
+      "source_content_hash": "59756ecf9bdfa7250175fe5fa25dbd24c0750af6c15ca7371055fce607d27bdc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 步驟 2：建立工作流程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b31a2bd",
+      "source_content": "- Step 3: Run workflow",
+      "source_content_hash": "fb9d3b78400f2d24f6c0ed84e751b009572ddd457ac1e762e3e9bae197d9120e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 步驟 3：執行工作流程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ed7dde9c",
+      "source_content": "### Step 1: Design workflow",
+      "source_content_hash": "ba53f4971bfb25a81dd844f6e28de2acfc518d3928957070c2f1ef8594c2ecc6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 1：設計工作流程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a76548f8",
+      "source_content": "Before designing a workflow, take the following questions into consideration:",
+      "source_content_hash": "99a6447df004ee6467b4bfe50b9821fd54c74f76b4dffe059c61caed379c42b5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在設計工作流程前，請考慮以下問題："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2523feeb",
+      "source_content": "- What features do you want to test in this workflow?",
+      "source_content_hash": "a4b8d64c338853d7cab2abe53b366130078c7fd055c7c2aec5b0552e57e7d4e4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 您想在此工作流程中測試哪些功能？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5df3dd43",
+      "source_content": "- What type of fault will be injected?",
+      "source_content_hash": "55e2672eb43408fbd620d6980a23e1531cae0e060616fad716875741c6b710a6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 將注入哪種類型的故障？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "346d5f8d",
+      "source_content": "- How to verify the correctness of the system?",
+      "source_content_hash": "d3d7efc446c2ec6b5925f2aa042877131fcff645924af10c182fb43ee866555c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 如何驗證系統的正確性？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4daf5cdd",
+      "source_content": "For example, we can design a simple workflow for tests. The steps below can be included:",
+      "source_content_hash": "566fe3853bc2eaef00c5efc88245e04412384639fd903c7d330a5a4e65c29e5e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "例如，我們可以設計一個簡單的測試工作流程。可以包含以下步驟："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2d89eb89",
+      "source_content": "1. Create two Pods in the Kubernetes cluster.",
+      "source_content_hash": "8edeaf44860c9856a2dd69e51303fda63c1e34fe32f45907c8aa223b5446b441",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 在 Kubernetes 叢集中建立兩個 Pod。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cc5346ac",
+      "source_content": "2. Send ping request from one Pod to another Pod.",
+      "source_content_hash": "4abedd436ff8e82d9717c8f907949b48f59df21f98dff95ab8f59b37f936ba9b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 從一個 Pod 傳送 ping 請求到另一個 Pod。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa355dc5",
+      "source_content": "3. Use Chaos Mesh to inject the network latency fault to test whether the ping command is affected.",
+      "source_content_hash": "8edbc858a5ff33ba24a3ad52e4ea7b4f55f706ca810bf9dde096d2acaf0a44d9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 使用 Chaos Mesh 注入網路延遲故障，以測試 ping 指令是否受到影響。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "62a6890b",
+      "source_content": "### Step 2: Create workflow",
+      "source_content_hash": "f9bf2efe38d076d437418246c47d02e20f075bc2ddc46e19a5b96f28ee4f4b90",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 2：建立工作流程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3cfe6286",
+      "source_content": "After the workflow is designed, take the following steps to create a workflow.",
+      "source_content_hash": "9aa955364d8a4ca2c7a44b07c6002e115e5a29d2a20f2c54a5b8193b002b5c68",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "設計完工作流程後，請按照以下步驟建立工作流程。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c6e6fb16",
+      "source_content": "1. Enter the GitHub repository of the software to be tested.",
+      "source_content_hash": "28afa22ecc6f0483c8916656abd8fc1f54b8eb0a4d0832bf87ab7a26da4163dd",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 進入待測試軟體的 GitHub 儲存庫。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6c00797f",
+      "source_content": "2. Create a workflow by clicking `Actions` and then click `New workflow`.",
+      "source_content_hash": "eed2aebf439f2c467e0e79f23fd4692f9794a042c58b17ed7062fbf88d6b7d8d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 點擊 `Actions`，然後點擊 `New workflow` 來建立工作流程。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8af76f3d",
+      "source_content": "![creating-a-workflow](./img/creating-a-workflow.png)",
+      "source_content_hash": "2697abfd9c82f7a23cdbe7bbe80521f6a104d2dc22f36e81748281bb60f2f9db",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![建立工作流程](./img/creating-a-workflow.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a9d49f92",
+      "source_content": "In essence, workflow is a sequentially automated job configuration. Note that the following job is configured in a single file. To provide a clear explanation, the script is split into different working groups, as shown below in:",
+      "source_content_hash": "eb7c959ce538d83a0a55890e07893de8c4fde83690c59e80069cf5fc520d8335",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本質上，工作流程是一個循序的自動化作業配置。請注意，以下作業在單一檔案中配置。為了清楚說明，腳本被拆分為不同的工作組，如下所示："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b1573599",
+      "source_content": "- Set the workflow name and the trigger rules.\n\n  Name the workflow to \"Chaos\". When you commit code or create a pull request to a master branch, this workflow is triggered.\n\n  ```yaml\n  name: Chaos\n\n  on:\n    push:\n      branches:\n        - master\n    pull_request:\n      branches:\n        - master\n  ```",
+      "source_content_hash": "eb694eb7c23a58ae6e5b66c58385af00d5c0d4f6d46e0ac8f0d41cfb38d69f4e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 設定工作流程名稱和觸發規則。\n\n  將工作流程命名為 \"Chaos\"。當您提交程式碼或建立一個指向 master 分支的 pull request 時，此工作流程將被觸發。\n\n  ```yaml\n  name: Chaos\n\n  on:\n    push:\n      branches:\n        - master\n    pull_request:\n      branches:\n        - master\n  ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "296e1d68",
+      "source_content": "- Install the CI-related environment.\n\n  This configuration specifies the operating system (Ubuntu) and creates a Kind cluster using helm/kind-action. After that, it prints the cluster information. Finally, it checks out the GitHub repository that the workflow is to access.\n\n  ```yaml\n  jobs:\n    build:\n      runs-on: ubuntu-latest\n      steps:\n        - name: Creating kind cluster\n          uses: helm/kind-action@v1.0.0-rc.1\n\n        - name: Print cluster information\n          run: |\n            kubectl config view\n            kubectl cluster-info\n            kubectl get nodes\n            kubectl get pods -n kube-system\n            helm version\n            kubectl version\n\n        - uses: actions/checkout@v2\n  ```",
+      "source_content_hash": "cb45156adef32c9ed1f0f7b0f3b2ab310256a66a505cd4bedf6af8e76dac1e3a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 安裝 CI 相關環境。\n\n  此配置指定了操作系統 (Ubuntu) 並使用 helm/kind-action 創建一個 Kind 叢集。之後，它會列印叢集資訊。最後，它會簽出工作流程要存取的 GitHub 儲存庫。\n\n  ```yaml\n  jobs:\n    build:\n      runs-on: ubuntu-latest\n      steps:\n        - name: Creating kind cluster\n          uses: helm/kind-action@v1.0.0-rc.1\n\n        - name: Print cluster information\n          run: |\n            kubectl config view\n            kubectl cluster-info\n            kubectl get nodes\n            kubectl get pods -n kube-system\n            helm version\n            kubectl version\n\n        - uses: actions/checkout@v2\n  ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4ce2fc15",
+      "source_content": "- Deploy an application.\n\n  In the following example, this job deploys an application that creates two Kubernetes Pods.\n\n  ```yaml\n  - name: Deploy an application\n       run: |\n         kubectl apply -f https://raw.githubusercontent.com/chaos-mesh/apps/master/ping/busybox-statefulset.yaml\n  ```",
+      "source_content_hash": "dd9bff456797b1c27bff7dccfb33d0d99850f6045bbddc84f49b938e464dbd54",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 部署一個應用程式。\n\n  在以下範例中，此工作部署了一個建立兩個 Kubernetes Pod 的應用程式。\n\n  ```yaml\n  - name: Deploy an application\n       run: |\n         kubectl apply -f https://raw.githubusercontent.com/chaos-mesh/apps/master/ping/busybox-statefulset.yaml\n  ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0d3f19f5",
+      "source_content": "- Inject faults using Chaos Mesh.\n\n  ```yaml\n  - name: Run chaos mesh action\n      uses: chaos-mesh/chaos-mesh-action@v0.5\n      env:\n        CHAOS_MESH_VERSION: v1.0.0\n        CFG_BASE64: YXBpVmVyc2lvbjogY2hhb3MtbWVzaC5vcmcvdjFhbHBoYTEKa2luZDogTmV0d29ya0NoYW9zCm1ldGFkYXRhOgogIG5hbWU6IG5ldHdvcmstZGVsYXkKICBuYW1lc3BhY2U6IGJ1c3lib3gKc3BlYzoKICBhY3Rpb246IGRlbGF5ICMgdGhlIHNwZWNpZmljIGNoYW9zIGFjdGlvbiB0byBpbmplY3QKICBtb2RlOiBhbGwKICBzZWxlY3RvcjoKICAgIHBvZHM6CiAgICAgIGJ1c3lib3g6CiAgICAgICAgLSBidXN5Ym94LTAKICBkZWxheToKICAgIGxhdGVuY3k6ICIxMG1zIgogIGR1cmF0aW9uOiAiNXMiCiAgc2NoZWR1bGVyOgogICAgY3JvbjogIkBldmVyeSAxMHMiCiAgZGlyZWN0aW9uOiB0bwogIHRhcmdldDoKICAgIHNlbGVjdG9yOgogICAgICBwb2RzOgogICAgICAgIGJ1c3lib3g6CiAgICAgICAgICAtIGJ1c3lib3gtMQogICAgbW9kZTogYWxsCg==\n  ```\n\n  Using chaos-mesh-action, Chaos Mesh is be installed and injects faults automatically. You only need to prepare the configuration of the chaos experiment and get its value encoded in base64. If you want to inject network latency to the Pod, you can use the following configuration example:\n\n  ```yaml\n  apiVersion: chaos-mesh.org/v1alpha1\n  kind: NetworkChaos\n  metadata:\n    name: network-delay\n    namespace: busybox\n  spec:\n    action: delay # the specific chaos action to inject\n    mode: all\n    selector:\n      pods:\n        busybox:\n          - busybox-0\n    delay:\n      latency: '10ms'\n    duration: '5s'\n    scheduler:\n      cron: '@every 10s'\n    direction: to\n    target:\n      selector:\n        pods:\n          busybox:\n            - busybox-1\n      mode: all\n  ```\n\n  Get the base64-encoded value of the chaos experiment configuration file above using the command below:\n\n  ```bash\n  base64 chaos.yaml\n  ```",
+      "source_content_hash": "a580f7919c6b4d9979658aaddc822288cfb31c4b3666cc105646e604f06af05e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 使用 Chaos Mesh 注入故障。\n\n  ```yaml\n  - name: Run chaos mesh action\n      uses: chaos-mesh/chaos-mesh-action@v0.5\n      env:\n        CHAOS_MESH_VERSION: v1.0.0\n        CFG_BASE64: YXBpVmVyc2lvbjogY2hhb3MtbWVzaC5vcmcvdjFhbHBoYTEKa2luZDogTmV0d29ya0NoYW9zCm1ldGFkYXRhOgogIG5hbWU6IG5ldHdvcmstZGVsYXkKICBuYW1lc3BhY2U6IGJ1c3lib3gKc3BlYzoKICBhY3Rpb246IGRlbGF5ICMgdGhlIHNwZWNpZmljIGNoYW9zIGFjdGlvbiB0byBpbmplY3QKICBtb2RlOiBhbGwKICBzZWxlY3RvcjoKICAgIHBvZHM6CiAgICAgIGJ1c3lib3g6CiAgICAgICAgLSBidXN5Ym94LTAKICBkZWxheToKICAgIGxhdGVuY3k6ICIxMG1zIgogIGR1cmF0aW9uOiAiNXMiCiAgc2NoZWR1bGVyOgogICAgY3JvbjogIkBldmVyeSAxMHMiCiAgZGlyZWN0aW9uOiB0bwogIHRhcmdldDoKICAgIHNlbGVjdG9yOgogICAgICBwb2RzOgogICAgICAgIGJ1c3lib3g6CiAgICAgICAgICAtIGJ1c3lib3gtMQogICAgbW9kZTogYWxsCg==\n  ```\n\n  使用 chaos-mesh-action，Chaos Mesh 會被自動安裝並注入故障。您只需準備混沌實驗的配置並取得其 base64 編碼值。若您想對 Pod 注入網路延遲，可以使用以下配置範例：\n\n  ```yaml\n  apiVersion: chaos-mesh.org/v1alpha1\n  kind: NetworkChaos\n  metadata:\n    name: network-delay\n    namespace: busybox\n  spec:\n    action: delay # the specific chaos action to inject\n    mode: all\n    selector:\n      pods:\n        busybox:\n          - busybox-0\n    delay:\n      latency: '10ms'\n    duration: '5s'\n    scheduler:\n      cron: '@every 10s'\n    direction: to\n    target:\n      selector:\n        pods:\n          busybox:\n            - busybox-1\n      mode: all\n  ```\n\n  使用以下指令取得上述混沌實驗配置檔案的 base64 編碼值：\n\n  ```bash\n  base64 chaos.yaml\n  ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa6c701a",
+      "source_content": "- Verify the correctness of the system.\n\n  In this job, the workflow sends ping requests from one Pod to another Pod and observes the network latency.\n\n  ```yaml\n  - name: Verify\n       run: |\n         echo \"do some verification\"\n         kubectl exec busybox-0 -it -n busybox -- ping -c 30 busybox-1.busybox.busybox.svc\n  ```",
+      "source_content_hash": "a361fba5505a879fd018e0b55ad3e060a53fb53818653a339c4d2a7d6e97f829",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 驗證系統的正確性。\n\n  在此作業中，工作流程從一個 Pod 發送 ping 請求到另一個 Pod，並觀察網路延遲。\n\n  ```yaml\n  - name: Verify\n       run: |\n         echo \"do some verification\"\n         kubectl exec busybox-0 -it -n busybox -- ping -c 30 busybox-1.busybox.busybox.svc\n  ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2f2d5f01",
+      "source_content": "### Step 3: Run workflow",
+      "source_content_hash": "355a0d02774cc2d9387c765457b76732036b76b4c125903a6b95b598deea7293",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 3：執行工作流程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "44285072",
+      "source_content": "Once a workflow is created, you can trigger it by creating a pull request to a master branch. Once the workflow completes its running process, the output of the job verification is similar to the one below:",
+      "source_content_hash": "36227f98b8098a5c231a5671ca405d1fefdd8d932efedd4a02afcb125f679dfb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "一旦工作流程建立完成，您可以透過向主分支提交拉取請求來觸發它。當工作流程執行完畢後，作業驗證的輸出將類似以下內容："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5680b15c",
+      "source_content": "```log\ndo some verification\nUnable to use a TTY - input is not a terminal or the right kind of file\nPING busybox-1.busybox.busybox.svc (10.244.0.6): 56 data bytes\n64 bytes from 10.244.0.6: seq=0 ttl=63 time=0.069 ms\n64 bytes from 10.244.0.6: seq=1 ttl=63 time=10.136 ms\n64 bytes from 10.244.0.6: seq=2 ttl=63 time=10.192 ms\n64 bytes from 10.244.0.6: seq=3 ttl=63 time=10.129 ms\n64 bytes from 10.244.0.6: seq=4 ttl=63 time=10.120 ms\n64 bytes from 10.244.0.6: seq=5 ttl=63 time=0.070 ms\n64 bytes from 10.244.0.6: seq=6 ttl=63 time=0.073 ms\n64 bytes from 10.244.0.6: seq=7 ttl=63 time=0.111 ms\n64 bytes from 10.244.0.6: seq=8 ttl=63 time=0.070 ms\n64 bytes from 10.244.0.6: seq=9 ttl=63 time=0.077 ms\n……\n```",
+      "source_content_hash": "382390188defdf4be909acfe20309ffbdd4562dac708b81416d95ba8e8520ddd",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_5680b15c"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "808b0414",
+      "source_content": "The output shows a series of 10-milliseconds delays, and each delay lasts for 5 seconds (which is 5 times). This is consistent with the configuration of chaos experiments that are injected using chaos-mesh-action.",
+      "source_content_hash": "447c219d786b93fac82e6fad07b6fc919a64100f38246b833e65b0a243d64d6f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出顯示一系列 10 毫秒的延遲，每次延遲持續 5 秒（共 5 次）。這與透過 chaos-mesh-action 注入的混沌實驗配置相符。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a75f8411",
+      "source_content": "## What's next",
+      "source_content_hash": "b90b110a9bc5f59f5e449a7d3c27a1c9cadb64466dc9e6c207bf6764ac41a4a2",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 後續步驟"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39c48ff7",
+      "source_content": "Currently, chaos-mesh-action has been applied in [TiDB Operator](https://github.com/pingcap/tidb-operator). By injecting Pod faults into the workflow, you can verify the restart of the Operator instances. This is to ensure that the TiDB Operator can work properly when a Pod of TiDB operator is randomly deleted by the injected fault. For details, see the [TiDB Operator Workflow page](https://github.com/pingcap/tidb-operator/actions?query=workflow%3Achaos).",
+      "source_content_hash": "4acf0408bb04186659ad0d565d0d1dfb5586844c595283b77f802b6ea57581ba",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前 chaos-mesh-action 已應用於 [TiDB Operator](https://github.com/pingcap/tidb-operator)。透過在工作流程中注入 Pod 故障，您可以驗證 Operator 實例的重啟機制，確保當注入的故障隨機刪除 TiDB Operator 的 Pod 時，Operator 仍能正常運作。詳情請參閱 [TiDB Operator 工作流程頁面](https://github.com/pingcap/tidb-operator/actions?query=workflow%3Achaos)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e29bd639",
+      "source_content": "In the future, chaos-mesh-action will be applied in more TiDB tests to ensure the stability of TiDB and its components. Your are welcome to use chaos-mesh-action to create your own workflow.",
+      "source_content_hash": "67d91308ad00b644c17b289277eb360df48923f5f839b385637f35d66dca329c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "未來 chaos-mesh-action 將應用於更多 TiDB 測試中，以確保 TiDB 及其元件的穩定性。歡迎您使用 chaos-mesh-action 建立自己的工作流程。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e5821418",
+      "source_content": "If you find any issue in chaos-mesh-action, or find any information is missing, you are welcome to create an [GitHub issue](https://github.com/pingcap/chaos-mesh/issues) or a [pull request (PR)](https://github.com/chaos-mesh/chaos-mesh/pulls) in the Chaos Mesh repository. You can also join our slack channel [#project-chaos-mesh](https://slack.cncf.io/) in the [CNCF](https://www.cncf.io/) workspace.",
+      "source_content_hash": "51480ccffba9e706a58ad8be9df2d5df5d0dad6bf266ad4ee9daa7f912e6408c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "若您在 chaos-mesh-action 中發現任何問題或資訊缺漏，歡迎在 Chaos Mesh 儲存庫建立 [GitHub 議題](https://github.com/pingcap/chaos-mesh/issues) 或提交 [拉取請求 (PR)](https://github.com/chaos-mesh/chaos-mesh/pulls)。您也可加入 [CNCF](https://www.cncf.io/) 工作區中的 Slack 頻道 [#project-chaos-mesh](https://slack.cncf.io/)。",
+          "reason": "URL for a 'link' was changed from 'https://slack.cncf.io/' to 'https://www.cncf.io/'.",
+          "timestamp": "2025-07-04T06:49:59.316986+00:00"
+        }
+      }
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/integrate-chaos-mesh-into-github-actions.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.317019+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "6006040d1a814d5e6d8c55f53db0d22b5529085c4622f8d39ec58e4d263f1015"
+  }
+}

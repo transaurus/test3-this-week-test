@@ -1,0 +1,614 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/use-grafana-data-source.md",
+  "source_file_content_hash": "649b9662611032f6a37f09f595d3d54ddfc005fddce4fa5f41ac784d4dea2b1e",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Use Grafana Data Source Plugin for Observations\n---",
+      "source_content_hash": "8f15b28af0b6ebb2e9cbef97915d22caa535c4bb85897a00d969aef2312a23ee",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document describes how to install the Data Source plugin for Grafana and setup the plugin to observe Chaos Mesh events.",
+      "source_content_hash": "54d83afe6c8d6baf940a847913c5520c49a93c6edb6bf3d8af00ff39499b89bf",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件說明如何安裝 Grafana 的 Data Source 外掛程式，並設定此外掛程式以觀察 Chaos Mesh 事件。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8c98994c",
+      "source_content": ":::note\n\nThis plugin requires Chaos Mesh **>=2.1**, Grafana >= **10.0**.\n\nWe only test the plugin on Grafana 10.0.3, it may support lower versions, but we are not sure. Upgrading to Grafana v10 is because of the [Angular support deprecation](https://github.com/chaos-mesh/datasource/issues/55). If you encounter any problems, please open an issue to let us know.\n\n:::",
+      "source_content_hash": "599516e29741d1e48c7b58c4b560cbe272935df3396b6aa7a8a8bc326135f224",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n此外掛程式需要 Chaos Mesh **>=2.1** 版本，以及 Grafana >= **10.0** 版本。\n\n我們僅在 Grafana 10.0.3 上測試此外掛程式，它可能支援較低版本，但我們不確定。升級至 Grafana v10 是因為 [Angular 支援已被棄用](https://github.com/chaos-mesh/datasource/issues/55)。若您遇到任何問題，請開啟 issue 告知我們。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e14c9928",
+      "source_content": "## Installation",
+      "source_content_hash": "a15d12503bf00f654df068bd9e5af6259db1703ac04a61365b991ce52557e5ea",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 安裝"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3daf1b88",
+      "source_content": "### With dashboard",
+      "source_content_hash": "e987f39ecc399d83fd3332da5f8ca422f968b7746422415f46389ace50f46fdc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 透過儀表板"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "[https://grafana.com/docs/grafana/latest/administration/plugin-management/#install-a-plugin](https://grafana.com/docs/grafana/latest/administration/plugin-management/#install-a-plugin)",
+      "source_content_hash": "7f4a0487c522ad18de347cae70f27746a46a00288d20dbde63098220ad50224d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[https://grafana.com/docs/grafana/latest/administration/plugin-management/#install-a-plugin](https://grafana.com/docs/grafana/latest/administration/plugin-management/#install-a-plugin)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "418617bd",
+      "source_content": "### With cli",
+      "source_content_hash": "02947d50762cfc5efa4d6f6be36610113038b5bf8b1e7a214c2bf8966f478c2a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 透過指令列 (CLI)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "41a8ae85",
+      "source_content": "```sh\ngrafana-cli plugins install chaosmeshorg-datasource\n```",
+      "source_content_hash": "1364b3780fc1b4d049359fdc778907e3fe5497ea22a2af58850b3d4657aeede1",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_41a8ae85"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fa430ad4",
+      "source_content": "### Manual installation",
+      "source_content_hash": "9925e1eec21319608e8414faa053a83e8aa3e2e56748296c050022b4dfdc090f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 手動安裝"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b1d2d7d",
+      "source_content": "Download the plugin zip package with the following command or go to https://github.com/chaos-mesh/datasource/releases to download:",
+      "source_content_hash": "1e933b6f5b1567eaa2f7bdea16bdbdeab393a3f688069ec2f776b7dd13fa9926",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "透過以下指令下載外掛程式的 zip 壓縮檔，或前往 https://github.com/chaos-mesh/datasource/releases 下載："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cb57d798",
+      "source_content": "```shell\ncurl -LO https://github.com/chaos-mesh/datasource/releases/download/v3.0.0/chaosmeshorg-datasource-3.0.0.zip\n```",
+      "source_content_hash": "9ccef2a1332db3dae695bad4c3feb365ebe9115db78316176152c417ccb59674",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_cb57d798"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bdc231b1",
+      "source_content": "After downloading, unzip:",
+      "source_content_hash": "fce04395e7e04370a389725f35206884cafeffe63e7810526f4b046726cf6470",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "下載後，請解壓縮："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "be2d5397",
+      "source_content": "```shell\nunzip chaosmeshorg-datasource-3.0.0.zip -d YOUR_PLUGIN_DIR\n```",
+      "source_content_hash": "70114045306a349de6c466909cb44d48200dabce898b40e8b88036fd72a12e57",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_be2d5397"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "688f7369",
+      "source_content": ":::tip\n\nTo find the plugin directory, refer to https://grafana.com/docs/grafana/latest/plugins/installation/#install-a-packaged-plugin.\n\n:::",
+      "source_content_hash": "b4968ed22778874597a29ab3c8cc2ca1ffa3750c95fb48f1765f8020c172eb95",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::tip\n\n若要尋找外掛程式目錄，請參閱 https://grafana.com/docs/grafana/latest/plugins/installation/#install-a-packaged-plugin。\n\n:::",
+          "reason": "URL for a 'link' was changed from 'https://grafana.com/docs/grafana/latest/plugins/installation/#install-a-packaged-plugin' to 'https://grafana.com/docs/grafana/latest/plugins/installation/#install-a-packaged-plugin。'.",
+          "timestamp": "2025-07-04T06:49:59.323969+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "13d9cd70",
+      "source_content": "Then update and save the `grafana.ini` file:",
+      "source_content_hash": "4ef32a66745c5148c64098d8eec6dfaffdb57dabfdeea3804812a59d450d9dc4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "然後更新並儲存 `grafana.ini` 檔案："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "229d6705",
+      "source_content": "```ini\n[plugins]\n  allow_loading_unsigned_plugins = chaosmeshorg-datasource\n```",
+      "source_content_hash": "6c1ffce1ff9cd2a87326b1b28ac15950d05b4869e8cc41c6f190d010aa49d518",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_229d6705"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "45aba823",
+      "source_content": ":::tip\n\nTo find the configuration file, refer to https://grafana.com/docs/grafana/latest/administration/configuration/#config-file-locations.\n\n:::",
+      "source_content_hash": "2fdcfe56588be12ca9e2a3d686cb70f1675f551eb917021f9a353a2be814c37b",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::tip\n\n若要尋找設定檔案，請參閱 https://grafana.com/docs/grafana/latest/administration/configuration/#config-file-locations。\n\n:::",
+          "reason": "URL for a 'link' was changed from 'https://grafana.com/docs/grafana/latest/administration/configuration/#config-file-locations' to 'https://grafana.com/docs/grafana/latest/administration/configuration/#config-file-locations。'.",
+          "timestamp": "2025-07-04T06:49:59.323998+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "40158b4b",
+      "source_content": "Finally, restart Grafana to load the plugin.",
+      "source_content_hash": "3fffdd1aa86225329d74ffed6a7d7f80cb6f797057230663308fcb98154ce2f6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "最後，重新啟動 Grafana 以載入外掛程式。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c431704b",
+      "source_content": "## Setup",
+      "source_content_hash": "0ecddf15e1aff85f7399e0fd362b9856d804a3e66dd65e41b547c255fc86d8c1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 設定"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "79ad944d",
+      "source_content": "Once installed, go to **Administration -> Data sources** and add Chaos Mesh, then go to the configuration page:",
+      "source_content_hash": "92f1020c6c94f007dd995d54cf843a1e9bd17e3feca46161db238629aa03b8a4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "安裝完成後，前往 **管理 (Administration) -> 資料來源 (Data sources)**，新增 Chaos Mesh，然後前往設定頁面："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "531437ca",
+      "source_content": "![Settings](img/grafana/settings.png)",
+      "source_content_hash": "ac5a69dc034b17ea2cb416f0e8f68b9280560f40bcc0169bc2275e1593228e9a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Settings](img/grafana/settings.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "06e24cc0",
+      "source_content": "Assuming you have Chaos Mesh installed locally, the Chaos Dashboard will export the API on port `2333` by default. So, if you haven't changed anything, you can fill in `http://localhost:2333`.",
+      "source_content_hash": "e7ddd216764acc620eec3653a78988d7c148f9878a9cc87fde5510c784ca3c68",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "假設您已在本機安裝 Chaos Mesh，Chaos Dashboard 預設會在連接埠 `2333` 上匯出 API。因此，若您未更改任何設定，可以填入 `http://localhost:2333`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7f71ff2a",
+      "source_content": "Then use the `port-forward` command to make the API externally accessible:",
+      "source_content_hash": "881a2caa545147f5c0f07a48b10cf102ad2fcac3d7271a18758bb3ea70c4db31",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "然後使用 `port-forward` 指令使 API 可從外部存取："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4fb3ded8",
+      "source_content": "```shell\nkubectl port-forward -n chaos-mesh svc/chaos-dashboard 2333:2333\n```",
+      "source_content_hash": "2e1014ed117c119bd2f9e7e614c006e029a8478cffdecd6cd29756ca56f120bb",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4fb3ded8"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6cc549f2",
+      "source_content": "Finally, click **Save & test** to test the connection. If it shows a successful notification, the setup is complete.",
+      "source_content_hash": "1cc8d2233a74b5bc71a04fb83e6c451f29d8932b3122edb5cec3ce544a8765c8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "最後，點選 **儲存並測試 (Save & test)** 以測試連線。若顯示成功通知，則設定完成。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "98355e36",
+      "source_content": "### Authentication",
+      "source_content_hash": "cc84445df013ed3356bf032986950d6aa9071e65a548c05af79fe52b977c09a6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 驗證"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7736989b",
+      "source_content": "If you deploy Chaos Mesh with [permission authentication](./manage-user-permissions.md), you need to add the `Authorization` header to the configuration. You can follow the steps below to add the header:",
+      "source_content_hash": "3dd30f5bf83238d8a109c167cddffe69ab0fc12d91cfcbaab6566d187283e613",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若您使用 [權限驗證](./manage-user-permissions.md) 部署 Chaos Mesh，則需要在設定中加入 `Authorization` 標頭。請按照以下步驟新增標頭："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "659c6b3e",
+      "source_content": "1. Click the **Add header** button.",
+      "source_content_hash": "7e4f62e168dd2f3b56a1d421161948cc4161b81b0667395cea18bd48205e982f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 點選 **新增標頭 (Add header)** 按鈕。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6220f8bc",
+      "source_content": "2. Fill in the `Authorization` in the **Header** field.",
+      "source_content_hash": "42bf97c7a03110162d9304f6b5c1fc86fb6b1a57260d95480af87af3b31c38c0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 在 **標頭 (Header)** 欄位中填入 `Authorization`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "771cf34e",
+      "source_content": "3. Follow [this section](./manage-user-permissions.md#get-the-token) to get the token.",
+      "source_content_hash": "5bb4356f8782176030ddfe549b032d6da410cdf63774a8d449c92378049fe91c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 按照 [此節](./manage-user-permissions.md#get-the-token) 取得權杖 (token)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c76e6a32",
+      "source_content": "4. Fill in the `Bearer YOUR_TOKEN` in the **Value** field.",
+      "source_content_hash": "d4f43fa89c257e3d5aa5f5e10061a4206915558582cb0843e95573ac9487101c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 在 **數值 (Value)** 欄位中填入 `Bearer YOUR_TOKEN`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8126f763",
+      "source_content": "Then don't forget to click **Save & test** to test the connection.",
+      "source_content_hash": "d90744bf54f3826e2f930bece06529116aadda272d923ad85cd6d8dbc0f8e7b5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "然後別忘了點選 **儲存並測試 (Save & test)** 以測試連線。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3a8d2b95",
+      "source_content": "## Query",
+      "source_content_hash": "d2c89e5a0dfd96f0894cd8cfa0d4bbb8cd85d44aeb064642e9e58c730b5611b5",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 查詢"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5803caac",
+      "source_content": "The data source plugin looks at the Chaos Mesh through the lens of events, and the following options are responsible for filtering the different events:",
+      "source_content_hash": "e22843f4a46df66d97400105caad9956853964f50ee69e3896f62acbf6cc0538",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此外掛程式透過事件視角觀察 Chaos Mesh，以下選項負責過濾不同的事件："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dc60c76a",
+      "source_content": "- **Object ID**\n\n  > Filter by object uuid.",
+      "source_content_hash": "b13efb99a157313649af736d41988167e956771199db93e9cf48f346e9c70865",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **物件 ID (Object ID)**\n\n  > 依物件 uuid 過濾。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0fb9184a",
+      "source_content": "- **Namespace**\n\n  > Filter by different namespace.",
+      "source_content_hash": "e9986edb62483f8d5bff3f88e27b21ecd302002732c125f72037c510aa13d1a1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **命名空間 (Namespace)**\n\n  > 依不同的命名空間過濾。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bee1eb3b",
+      "source_content": "- **Name**\n\n  > Filter by object name.",
+      "source_content_hash": "4aadc325cf71a6de245bdd5ef02b91ed902a66ba5ae78a37bcab9be105d19627",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **名稱 (Name)**\n\n  > 依物件名稱過濾。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2ca32339",
+      "source_content": "- **Kind**\n\n  > Filter by kind (PodChaos, NetworkChaos, Schedule...). You can also input an arbitrary kind if you implement a new kind in Chaos Mesh.",
+      "source_content_hash": "3f4d82854c94e738cfd5834b49e5da20ec6c086e912b66327a051d580ce48f2d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **種類 (Kind)**\n\n  > 依種類 (PodChaos、NetworkChaos、Schedule 等) 過濾。若您在 Chaos Mesh 中實作了新的種類，也可以輸入任意種類。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6a21ca8b",
+      "source_content": "- **Limit**\n\n  > Limit the number of events.",
+      "source_content_hash": "e404359035d1b1bbb4d05c6a8a801a9a997471360111703334638737583e1722",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **限制 (Limit)**\n\n  > 限制事件數量。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6693c38c",
+      "source_content": "All of them will be passed as parameters to the `/api/events` API.",
+      "source_content_hash": "addcfbdf8b500cfa39815429f6c4c106893065b9e95e44bc462e99531bef10fb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "所有這些參數都將傳遞至 `/api/events` API 接口。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8172a0a5",
+      "source_content": "## Variables",
+      "source_content_hash": "e68ef700990927f73d439d417b9684f9ba6067a3865bb079009371df58b39963",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 變數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1b4de6df",
+      "source_content": "The data source plugin supports adding query variables by different metrics:",
+      "source_content_hash": "3e79e63c25fbaf33587a17302066e9d67ba3eb2f8aa2c5a156c6c5f137ff99a8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此數據源外掛程式支援透過不同指標添加查詢變數："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1958bc43",
+      "source_content": "![Variables](img/grafana/variables.png)",
+      "source_content_hash": "554cbacbb5d0dca5c883341de8c27ac6a26f39f52abf29cc0fcc5d41aa39d60c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Variables](img/grafana/variables.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c527cf10",
+      "source_content": "- **Namespace**\n\n  > After selection, all available namespaces will show in the **Preview of values** directly.",
+      "source_content_hash": "6d84dc5a3ba1ad3d33300ea5cdbd486688658d296d58fea247d427d136bc8486",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **Namespace（命名空間）**\n\n  > 選擇後，所有可用命名空間將直接顯示在 **預覽值（Preview of values）** 區域。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dc564926",
+      "source_content": "- **Kind**\n\n  > Same as **Namespace**. Retrieve all kinds.",
+      "source_content_hash": "7dea65de3e978a1d99684d14aa7e7026a69c06dfd7019325a3e501aef169fcad",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **Kind（類型）**\n\n  > 與 **Namespace** 相同。檢索所有類型。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7387b539",
+      "source_content": "- **Experiment/Schedule/Workflow**\n\n  > Same as **Namespace**. Retrieve current all experiments/schedules/workflows.\n  >\n  > You can also specify the `queries` to further filter the values, for example, `?namespace=default` will only retrieve the experiments/schedules/workflows in the `default` namespace.",
+      "source_content_hash": "b35be2eaab0cea0465e92c994b45f945086c44dd3fd2cdc6cd7f53fcd490da2e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **Experiment/Schedule/Workflow（實驗/排程/工作流）**\n\n  > 與 **Namespace** 相同。檢索當前所有實驗/排程/工作流。\n  >\n  > 您也可指定 `queries` 進一步過濾數值，例如 `?namespace=default` 將僅檢索 `default` 命名空間中的實驗/排程/工作流。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d53c8ed4",
+      "source_content": "## Annotations",
+      "source_content_hash": "82240f01a68b4c2d7f31c325f0b755f82e1304978e68685ff85b2c545f7708aa",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 註解"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ecf0882",
+      "source_content": "You can integrate events into panels via annotations, the following is a sample creation, it will retrieve all PodChaos events:",
+      "source_content_hash": "665a4fbdc97d7c69e921d34163b8ee48904749a4b7c5b96acfb55d74697df45a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可透過註解將事件整合至面板，以下為建立範例，將檢索所有 PodChaos 事件："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e77cf7c6",
+      "source_content": "![Annotations](img/grafana/annotations.png)",
+      "source_content_hash": "c3fbe2138befc80f8dc3aa1e0ba07a3943acd1c3e571d70a51db687fe7eee5cd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Annotations](img/grafana/annotations.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bb1346b6",
+      "source_content": "Please refer to [Query](#query) to fill in the corresponding fields.",
+      "source_content_hash": "0f99b626927ef1b98f90829e27a9b137bfad990e772f55b65c21779a768b5c2d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "請參閱 [查詢](#query) 章節填寫對應欄位。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "734d40d8",
+      "source_content": "## Questions and feedback",
+      "source_content_hash": "3c2022148ba07f7e3c89985d4baf2f4330bbf506bfba24e1c8b2ad8fc5aee68f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 問題與回饋"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9e90a9b3",
+      "source_content": "If you encounter problems during installation or setup, you are welcome to ask questions to the community at [CNCF Slack](https://cloud-native.slack.com/archives/C0193VAV272), or create an [GitHub issue](https://github.com/chaos-mesh/datasource/issues) to communicate with the Chaos Mesh team.",
+      "source_content_hash": "ace759cbbfb78650d8e1472d70ce4f27314a0cdfa7c16baa6c6f053f18ef4c91",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若在安裝或設定過程中遇到問題，歡迎至 [CNCF Slack](https://cloud-native.slack.com/archives/C0193VAV272) 向社群提問，或建立 [GitHub issue](https://github.com/chaos-mesh/datasource/issues) 與 Chaos Mesh 團隊交流。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a0d0e29e",
+      "source_content": "## What's next",
+      "source_content_hash": "b90b110a9bc5f59f5e449a7d3c27a1c9cadb64466dc9e6c207bf6764ac41a4a2",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 後續步驟"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "be17ccc3",
+      "source_content": "If you want to learn more details about the Data Source plugin, feel free to check out the source code at [chaos-mesh/datasource](https://github.com/chaos-mesh/datasource).",
+      "source_content_hash": "7be5ace99551f81c917580f077972c58040aef7a9f27bef18dc85972130b9a07",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若欲了解更多數據源外掛程式細節，歡迎查看 [chaos-mesh/datasource](https://github.com/chaos-mesh/datasource) 原始碼。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/use-grafana-data-source.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.324035+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "649b9662611032f6a37f09f595d3d54ddfc005fddce4fa5f41ac784d4dea2b1e"
+  }
+}

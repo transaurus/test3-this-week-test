@@ -1,0 +1,423 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/faqs.md",
+  "source_file_content_hash": "fce670441abf44b399a0f51b0ba103289522daa1fd6b0aca8b9aecdfaa39adfe",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: FAQs\n---",
+      "source_content_hash": "780c97e1635c2da96fae7024c2e78868f7e1a7fb52b72cbe8b89388c174282ab",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7335511f",
+      "source_content": "import PickHelmVersion from '@site/src/components/PickHelmVersion'",
+      "source_content_hash": "753aee644dbd2a4b70a118018b50ec80427523e751a14d470e7956678fd8cb94",
+      "node_type": "mdxjsEsm",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7335511f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "### If I do not have deployed Kubernetes clusters, can I use Chaos Mesh to create chaos experiments?",
+      "source_content_hash": "e805cc6b62ff542abcdb942303f02e6edf915ea0b7288ceb77b9e3d97c223a35",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 如果尚未部署 Kubernetes 叢集，我是否可以使用 Chaos Mesh 建立混沌實驗？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "No. Instead, you could use [`chaosd`](https://github.com/chaos-mesh/chaosd/) to inject failures without kubernetes.",
+      "source_content_hash": "05161ae342fe366d8336a80a0b5481991d8161cd673bda830cf6691204e56642",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "不行。但您可以使用 [`chaosd`](https://github.com/chaos-mesh/chaosd/) 在沒有 Kubernetes 的情況下注入故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8a5f6a7b",
+      "source_content": "### I have deployed Chaos Mesh and created PodChaos experiments successfully, but I still failed in creating NetworkChaos/TimeChaos Experiment. The log is shown as below:",
+      "source_content_hash": "280a44c5481ce050f19e40b639d3dc8a7e251e2763fdc309a92be4ce922bb099",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 我已經部署了 Chaos Mesh 並成功建立了 PodChaos 實驗，但在建立 NetworkChaos/TimeChaos 實驗時仍然失敗。日誌顯示如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9c7a144",
+      "source_content": "```console\n2020-06-18T02:49:15.160Z ERROR controllers.TimeChaos failed to apply chaos on all pods {\"reconciler\": \"timechaos\", \"error\": \"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing dial tcp xx.xx.xx.xx:xxxx: connect: connection refused\\\"\"}\n```",
+      "source_content_hash": "2e6708d7b921e0a319e2d4e73f2792213883338597776fc6353cea83362e20e7",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b9c7a144"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "The reason is that `chaos-controller-manager` failed to connect to `chaos-daemon`. You need to first check the Pod network and its [policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/).",
+      "source_content_hash": "ec2ff49669cb5ca0d84a1f0478a82d325255a41c8b4be58dc503c27c85440303",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "原因在於 `chaos-controller-manager` 無法連接到 `chaos-daemon`。您需要先檢查 Pod 網路及其[政策](https://kubernetes.io/docs/concepts/services-networking/network-policies/)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "If everything is in order, maybe you can use the `hostNetwork` parameter to fix this problem as follows:",
+      "source_content_hash": "302bca3d43590358c3febf91375da0130da304708a231488e5374cd4fbbbb16f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如果一切正常，您可以透過以下方式使用 `hostNetwork` 參數解決此問題："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1485a88b",
+      "source_content": "<PickHelmVersion>{`helm upgrade chaos-mesh chaos-mesh/chaos-mesh -n chaos-mesh --version latest --set chaosDaemon.hostNetwork=true`}</PickHelmVersion>",
+      "source_content_hash": "9699824fda3d21c1f46ba5a2cc4bfe9ab2edd755f34d794bddebe3179bf4e24d",
+      "node_type": "mdxJsxFlowElement",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1485a88b"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "Reference: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/#hostport-services-do-not-work",
+      "source_content_hash": "4362393c13afaeac904d12e1ddaab6f4cf84e07b9c0792a0e3e658b6a9f82649",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "參考：https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/#hostport-services-do-not-work"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ed7dde9c",
+      "source_content": "### The default administrator Google Cloud user account is forbidden to create chaos experiments. How to fix it?",
+      "source_content_hash": "ef5c1d5ac33a2331cc3a1e856055faff98370eb77cad18f4aca600e542b668c5",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 預設的 Google Cloud 管理員帳戶被禁止建立混沌實驗。如何修復？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a76548f8",
+      "source_content": "The default administrator Google Cloud user cannot be checked by `AdmissionReview`. You need to create an administrator role and assign the role to your account to grant the privilege of creating chaos experiments to it. For example:",
+      "source_content_hash": "224e9b7c54d91d4ea89fccc7e9ddfc0878349d3176e45c04aeebdae9a6a4ae71",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "預設的 Google Cloud 管理員帳戶無法通過 `AdmissionReview` 檢查。您需要建立管理員角色並將該角色指派給帳戶，以授予建立混沌實驗的權限。例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0c911872",
+      "source_content": "```yaml\nkind: ClusterRole\napiVersion: rbac.authorization.k8s.io/v1\nmetadata:\n  name: role-cluster-manager-pdmas\nrules:\n  - apiGroups: ['']\n    resources: ['pods', 'namespaces']\n    verbs: ['get', 'watch', 'list']\n  - apiGroups:\n      - chaos-mesh.org\n    resources: ['*']\n    verbs: ['get', 'list', 'watch', 'create', 'delete', 'patch', 'update']\n---\nkind: ClusterRoleBinding\napiVersion: rbac.authorization.k8s.io/v1\nmetadata:\n  name: cluster-manager-binding\n  namespace: chaos-mesh\nsubjects:\n  # Google Cloud user account\n  - kind: User\n    name: USER_ACCOUNT\nroleRef:\n  kind: ClusterRole\n  name: role-cluster-manager-pdmas\n  apiGroup: rbac.authorization.k8s.io\n```",
+      "source_content_hash": "3a3e62b002adfdb422de0f0d429244d52d3ef29bf8492973ca2f92caae65c7fe",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_0c911872"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e536ea0d",
+      "source_content": "The `USER_ACCOUNT` above should be your Google Cloud user email.",
+      "source_content_hash": "39569523a462af35a4be5351126328e8d0cb742b6856f483479897d1e727d5e1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "上述的 `USER_ACCOUNT` 應為您的 Google Cloud 使用者電子郵件。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ab5fc5b5",
+      "source_content": "### Daemon throws an error similar to `version 1.41 is too new. The maximum supported API version is 1.39`",
+      "source_content_hash": "89ec238b0831881a996ccfee28807451f338d3f2bfd50335ad073e3052fb2aef",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### Daemon 拋出類似 `version 1.41 is too new. The maximum supported API version is 1.39` 的錯誤"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ea4c715",
+      "source_content": "This indicates that the maximum API version that the Docker daemon can accept is `1.39`, but the client in `chaos-daemon` uses `1.41` by default. You can choose the following options to solve this problem:",
+      "source_content_hash": "be06ba7c6b5355be224af36666788ad03589e09e149a8c26236c2ab43eff135f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "這表示 Docker daemon 可接受的最大 API 版本為 `1.39`，但 `chaos-daemon` 中的客戶端預設使用 `1.41`。您可以選擇以下解決方案："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "276be359",
+      "source_content": "1. Upgrade your Docker to a newer version.",
+      "source_content_hash": "ffe246fd8a99b8b4c4ff81a81f383d31b18562f6cd21d2d9ea232d2d90a20109",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將 Docker 升級至較新版本。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3de828dc",
+      "source_content": "2. Helm install/upgrade with `--set chaosDaemon.env.DOCKER_API_VERSION=1.39`.",
+      "source_content_hash": "26cb0b4d7ae5a2785eae1387c371a954e2c0f0b67f47ee19e26af9cf43a1ead4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 在 Helm 安裝/升級時加入 `--set chaosDaemon.env.DOCKER_API_VERSION=1.39`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a5a4323e",
+      "source_content": "## DNSChaos",
+      "source_content_hash": "a5475283d9c992e70cc73c7170966c228c4e7197ddc2942f18bc8f17541782e8",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## DNSChaos"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3ef18741",
+      "source_content": "### While trying to run DNSChaos in OpenShift, the problems regarding authorization blocked the process",
+      "source_content_hash": "1871982ca22dff910f4c6c1d32bab49d657cd99a4b737a144b68ed0e79818c2b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 嘗試在 OpenShift 執行 DNSChaos 時，授權問題導致程序受阻"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7772088",
+      "source_content": "If the error message is similar to the following:",
+      "source_content_hash": "38fb3e6939dcc20da784ee62fabe37cfbc22294accc02d6fe24651be11218ae8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若錯誤訊息類似以下內容："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bc137a19",
+      "source_content": "```bash\nError creating: pods \"chaos-dns-server-123aa56123-\" is forbidden: unable to validate against any security context constraint: [spec.containers[0].securityContext.capabilities.add: Invalid value: \"NET_BIND_SERVICE\": capability may not be added]\n```",
+      "source_content_hash": "e6d1b57875ca3d7fde20a69b19d0af86358959fe47402ab94d4a9f7102d88dc7",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_bc137a19"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "afa378f7",
+      "source_content": "You need to add the privileged Security Context Constraints (SCC) to the `chaos-dns-server`.",
+      "source_content_hash": "e6868a8e5f073327066060a73b106af131a98468bc5ae65c86a0a35ef50c4f1f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您需要將 privileged Security Context Constraints (SCC) 新增至 `chaos-dns-server`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a89f84e1",
+      "source_content": "```bash\noc adm policy add-scc-to-user privileged -n chaos-mesh -z chaos-dns-server\n```",
+      "source_content_hash": "280941b96ee0f356746b764aa25d3774806aaf7771e8dd961b09456951fba0d5",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a89f84e1"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "66819c78",
+      "source_content": "## Installation",
+      "source_content_hash": "a15d12503bf00f654df068bd9e5af6259db1703ac04a61365b991ce52557e5ea",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 安裝"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0a103a02",
+      "source_content": "### While trying to install Chaos Mesh in OpenShift, the problems regarding authorization blocked the installation process",
+      "source_content_hash": "1f31723b891fae8e5f480d2cbb77ab9703340e42ede2a3b658498e061b2990ca",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 嘗試在 OpenShift 安裝 Chaos Mesh 時，授權問題導致安裝程序受阻"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8126f763",
+      "source_content": "If the error message is similar to the following:",
+      "source_content_hash": "38fb3e6939dcc20da784ee62fabe37cfbc22294accc02d6fe24651be11218ae8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若錯誤訊息類似以下內容："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6563256",
+      "source_content": "```bash\nError creating: pods \"chaos-daemon-\" is forbidden: unable\n to validate against any security context constraint: [spec.securityContext.hostNetwork:\n Invalid value: true: Host network is not allowed to be used spec.securityContext.hostPID:\n Invalid value: true: Host PID is not allowed to be used spec.securityContext.hostIPC:\n Invalid value: true: Host IPC is not allowed to be used securityContext.runAsUser:\n Invalid value: \"hostPath\": hostPath volumes are not allowed to be used spec.containers[0].securityContext.volumes[1]:\n Invalid value: true: Host network is not allowed to be used spec.containers[0].securityContext.containers[0].hostPort:\n Invalid value: 31767: Host ports are not allowed to be used spec.containers[0].securityContext.hostPID:\n Invalid value: true: Host PID is not allowed to be used spec.containers[0].securityContext.hostIPC:\n......]\n```",
+      "source_content_hash": "4feee8e17d104a9ff05b2cb100659b9c9e546b14cc90a9fe018a2c686237368a",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_f6563256"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ca4479f",
+      "source_content": "You need to add privileged scc to default.",
+      "source_content_hash": "38d31f59c027e5ce12aad4934a806f383e17194144175d5bccf440a1d4bb263d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您需要將 privileged scc 新增至 default。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1cf51900",
+      "source_content": "```bash\noc adm policy add-scc-to-user privileged -n chaos-mesh -z chaos-daemon\n```",
+      "source_content_hash": "8ee2063c54556ac7960ea41eebbb8f222925f1133197c75c718cbfa086a64c9c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1cf51900"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1f4b3b94",
+      "source_content": "### Failed to install Chaos Mesh with the message: no matches for kind \"CustomResourceDefinition\" in version \"apiextensions.k8s.io/v1\"",
+      "source_content_hash": "b855a8df07d874e9486d2698aa6778b0fefc6eb81b1bec438ec401137e6c124e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 安裝 Chaos Mesh 失敗並顯示訊息：no matches for kind \"CustomResourceDefinition\" in version \"apiextensions.k8s.io/v1\""
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a81544fd",
+      "source_content": "This issue occurs when you install Chaos Mesh on Kubernetes v1.15 or an earlier version. We use `apiextensions.k8s.io/v1` by default, but it was introduced in Kubernetes v1.16 on 2019-09-19.",
+      "source_content_hash": "4cdfe504ba0ff712218213cc12f311b847f275b172995fafad6ef3c258c7b442",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此問題發生於 Kubernetes v1.15 或更早版本安裝 Chaos Mesh 時。我們預設使用 `apiextensions.k8s.io/v1`，但該版本於 2019-09-19 在 Kubernetes v1.16 引入。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0801d969",
+      "source_content": "When you install Chaos Mesh on Kubernetes lower than v1.16, you need to follow the below process:",
+      "source_content_hash": "05db5637e7f5f413bd6bfbaa8d58ef85f3a1fb2b72cfcea586f70145a6402e89",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在低於 v1.16 的 Kubernetes 安裝 Chaos Mesh 時，需遵循以下流程："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "46dead5a",
+      "source_content": "1. Manually create CRD through `https://mirrors.chaos-mesh.org/<chaos-mesh-version>/crd-v1beta1.yaml`.",
+      "source_content_hash": "f3d049466b604c94b38f86c752d174af9322ca9d7cf36e438ab183d2a81fe42c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 透過 `https://mirrors.chaos-mesh.org/<chaos-mesh-version>/crd-v1beta1.yaml` 手動建立 CRD。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "885ad07b",
+      "source_content": "2. Add `--validate=false`. If the configuration is not added, compatibility issues with breaking changes with CRD might occur. For example, `kubectl create -f https://mirrors.chaos-mesh.org/v2.1.0/crd-v1beta1.yaml --validate=false`.",
+      "source_content_hash": "3fb5e4c1ef157836f5b4fcfaece9275650fe75a55593dc6ed9c2b348efe77911",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 新增 `--validate=false`。若未添加此配置，可能因 CRD 的破壞性變更導致相容性問題。例如：`kubectl create -f https://mirrors.chaos-mesh.org/v2.1.0/crd-v1beta1.yaml --validate=false`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e268b758",
+      "source_content": "3. Use Helm to finish the rest process of installation, and append `--skip-crds` with `helm install` command.",
+      "source_content_hash": "de9d70aceb21bfbb08ecbf4298d38cdb5ec3ac1619e0ccae03bc4f973477be0c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "3. 使用 Helm 完成剩餘的安裝過程，並在 `helm install` 命令中附加 `--skip-crds`。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`--skip-crds`', Translation: '`helm install`'.",
+          "timestamp": "2025-07-04T06:49:59.294865+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "44aaa880",
+      "source_content": "We suggest upgrading your Kubernetes cluster by referencing Kubernetes [Version Skew Policy](https://kubernetes.io/releases/version-skew-policy/).",
+      "source_content_hash": "70f3461367482ad3431525f06ee838ccf576f3aef68c04bdba85c223d7993fcb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們建議參考 Kubernetes 的[版本偏差策略](https://kubernetes.io/releases/version-skew-policy/)來升級您的 Kubernetes 叢集。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/faqs.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.294903+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "fce670441abf44b399a0f51b0ba103289522daa1fd6b0aca8b9aecdfaa39adfe"
+  }
+}

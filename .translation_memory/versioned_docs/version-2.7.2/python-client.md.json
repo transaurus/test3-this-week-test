@@ -1,0 +1,34 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/python-client.md",
+  "source_file_content_hash": "d466df96000ee4f3ec5ccae928045c247d161c1c2bca18246824ec87ad8b2673",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Python\n---",
+      "source_content_hash": "884d5c32600a777f63056b63b39fe9fb4a3ea9029aa571f07d4bc8a387c00656",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f85bbfb4",
+      "source_content": "## TODO",
+      "source_content_hash": "f412d40cac05e357371f77218084d95faf8621b50642faf4353f0cb4bb1c78cc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 待辦事項"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/python-client.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.084968+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "d466df96000ee4f3ec5ccae928045c247d161c1c2bca18246824ec87ad8b2673"
+  }
+}

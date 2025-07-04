@@ -1,0 +1,665 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/create-chaos-mesh-workflow.md",
+  "source_file_content_hash": "dd5afec99fd70a5f9ec124ac53854605a785fb13dde93acbe88b3e6c5245a059",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Create Chaos Mesh Workflow\n---",
+      "source_content_hash": "8294cc47a4523ec1b3cb8eb32bc8fdb09e55328571c5c6dc8b4ea5c068448025",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f85bbfb4",
+      "source_content": "## Introduction to Chaos Mesh Workflow",
+      "source_content_hash": "8059c90b192a95c24d5632d5e5a33cbf09e22acd52eb1447e0262002a74c9c4c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## Chaos Mesh 工作流程介紹"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "When you use Chaos Mesh to simulate real system faults, continuous validation is always a need. You might want to build a series of faults on the Chaos Mesh platform, instead of performing individual Chaos injections.",
+      "source_content_hash": "f9437bda81558d46dc9904e8613acff040c715e4bffeacdf117c0eba0f974dff",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當您使用 Chaos Mesh 模擬真實系統故障時，持續驗證始終是必要的需求。您可能希望在 Chaos Mesh 平台上建立一系列故障場景，而非執行單個獨立的混沌注入實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "To meet this need, Chaos Mesh provided Chaos Mesh Workflow, a built-in workflow engine. Using this engine, you can run different Chaos experiments in serial or parallel to simulate production-level errors.",
+      "source_content_hash": "35bfc23dbce740ac6528dc8a51b8b59bfa43eb599c8c33063051cc5587201163",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "為滿足此需求，Chaos Mesh 提供了內建的工作流程引擎 Chaos Mesh Workflow。透過此引擎，您可以串行或並行執行不同的混沌實驗，模擬生產環境級別的錯誤。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "Currently, Chaos Mesh Workflow supports the following features:",
+      "source_content_hash": "ca75aa59343e994fa4f099f536f557c1649b9b7846a088666af6776318106664",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前 Chaos Mesh Workflow 支援以下功能："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2b4a9900",
+      "source_content": "- Serial Orchestration",
+      "source_content_hash": "17c6baa7e62103988f25611f5e98b51c7befaada1f61ef815ab4c8480d90b9b8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 串行編排"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9a03a62b",
+      "source_content": "- Parallel Orchestration",
+      "source_content_hash": "b33bb389277238751d1130e9305c572f5f1a652fdb5bf2b9fb8f262bc1f9b04d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 並行編排"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "586b24f7",
+      "source_content": "- Customized tasks",
+      "source_content_hash": "24a2ff6083311fd834e82c95292e4511c2f7f74350fae5716816eec5e13ddd30",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 自訂任務"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "740fbfd7",
+      "source_content": "- Conditional branch",
+      "source_content_hash": "0e802c3c2280877d9eb6460d4af8c0b6ea2e581494c28cccf0aa3854963ea117",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 條件分支"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39b3772c",
+      "source_content": "Typical user scenarios:",
+      "source_content_hash": "c52f4bc53f6986b30814797ccd89ceb64e7d45080fe19176427ba51e0d10c13d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "典型應用場景："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dc10b09",
+      "source_content": "- Use parallel orchestration to inject multiple NetworkChaos faults to simulate complex web environments.",
+      "source_content_hash": "4b005a3d7f7bfd48a64b1224abe0e3652d8a96c93d612d0f823a2e47526514d4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 使用並行編排注入多個 NetworkChaos 故障，模擬複雜網路環境"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28563fec",
+      "source_content": "- Use serial orchestration to perform health checks and use the conditional branch to determine whether to perform the remaining steps.",
+      "source_content_hash": "0da4462e14714e3ff2d4e17a72257b0f555cb2f0fe7054c6d9dd547098262312",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 使用串行編排執行健康檢查，並透過條件分支決定是否執行後續步驟"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "The design of Chaos Mesh Workflow is, to some extent, inspired by Argo Workflows. If you are familiar with Argo Workflows, you can also quickly get started with Chaos Mesh Workflow.",
+      "source_content_hash": "b0b23a7d7a4cef22e392d8962e63f1de30d180363e27451eef126bcac1a15406",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh Workflow 的設計在某種程度上受到 Argo Workflows 啟發，若您熟悉 Argo Workflows，也能快速上手 Chaos Mesh Workflow。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c2bdd0",
+      "source_content": "More workflow examples are available in the [Chaos Mesh GitHub repository](https://github.com/chaos-mesh/chaos-mesh/tree/master/examples/workflow).",
+      "source_content_hash": "cceccd075ca2427f803fa7bd03bcfa26f2559ac0283d95082e395a3a6ca6ec5a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "更多工作流程範例請參閱 [Chaos Mesh GitHub 儲存庫](https://github.com/chaos-mesh/chaos-mesh/tree/master/examples/workflow)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fa430ad4",
+      "source_content": "## Create a workflow using Chaos Dashboard",
+      "source_content_hash": "8b57de94b3c941b8c215e61a95e860cead5b3782fd816ed2e96c8128746310e9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Chaos Dashboard 建立工作流程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2f30ae8",
+      "source_content": "### Step 1. Open Chaos Dashboard",
+      "source_content_hash": "5373fef0f5f4d9248e0c4d6bf6edec93f7e92d0f085bb5cbc2dde545334f8d8e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 1. 開啟 Chaos Dashboard"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfe931a2",
+      "source_content": "Click **NEW WORKFLOW**.",
+      "source_content_hash": "600823f568c8c5d1021f9a00b1c54f4a90640a68314e46b3cb5a3440892c9f87",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "點擊 **NEW WORKFLOW**。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4daf5cdd",
+      "source_content": "![New Workflow](./img/new-workflow.png)",
+      "source_content_hash": "bc9346d132c4118e50f6eaa51666ea4cf7a892e06c9426b8d6f27349d4e8f7d2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![New Workflow](./img/new-workflow.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f422383e",
+      "source_content": "### Step 2. Setup basic information of the workflow",
+      "source_content_hash": "05f8d137a9abcfefb2e7620e4713c5465503975d0145fbe37792fc75928091f0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 2. 設定工作流程基本資訊"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "97ae4a01",
+      "source_content": "![Workflow Info](./img/workflow-info.png)",
+      "source_content_hash": "4db3a9de5634513c3e79ccb4a1c0d6bd85e30cfb252bed236ddcd5084afe04dc",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Workflow Info](./img/workflow-info.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "62a6890b",
+      "source_content": "### Step 3. Configure the nodes of the workflow",
+      "source_content_hash": "84bdeee7293f98bef5940aece040f0a551b212387763163d0c004a715d0eaddf",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 3. 配置工作流程節點"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c4706327",
+      "source_content": "1. Select an option under **Choose task type** according to your needs.\n\n   In this example, the \"Single” type is selected as the task type.\n\n   :::note\n\n   Chaos Dashboard automatically creates a serial node named \"entry\" as the entry point for this workflow.\n\n   :::\n\n   ![Choose Task Type](./img/choose-task-type.png)",
+      "source_content_hash": "f8d7d627b1926d9a65c015f30ff2a077eb173dec4ecd987cdcbae4bfc8d533d9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 根據需求在 **Choose task type** 下選擇選項\n\n   此範例選擇 \"Single\" 類型作為任務類型\n\n   :::note\n\n   Chaos Dashboard 會自動建立名為 \"entry\" 的串行節點作為工作流程入口點\n\n   :::\n\n   ![Choose Task Type](./img/choose-task-type.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "002560c3",
+      "source_content": "2. Fill out the experiment information.\n\n   The configuration method is the same as creating a normal chaos experiment. For example, you can set up a \"POD KILL\" type of \"PodChaos\" named `kill-nginx`.\n\n   ![Create podkill in Workflow](./img/create-podkill-in-workflow.png)",
+      "source_content_hash": "9886f189ff229a90bfb01bf835de0db568cd6155c9442ed2e9465af121774aad",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 填寫實驗資訊\n\n   設定方式與建立普通混沌實驗相同。例如可建立名為 `kill-nginx` 的 \"POD KILL\" 類型 PodChaos\n\n   ![Create podkill in Workflow](./img/create-podkill-in-workflow.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7283cdac",
+      "source_content": "### Step 4. Submit the workflow",
+      "source_content_hash": "256773f78adaa6b9ee89feb4df064e54aeee08065f22909dfdec021e1aadaf5e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 4. 提交工作流程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1131ef75",
+      "source_content": "You can check workflow definition through **Preview**, and then click the **SUBMIT WORKFLOW** to create the workflow.",
+      "source_content_hash": "c01f563afbe4c89cf1bac11cc1b5a75b85b0a6dba8a5428ede0c3f911203d87b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可透過 **Preview** 檢視工作流程定義，點擊 **SUBMIT WORKFLOW** 建立工作流程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b2a52b1",
+      "source_content": "![Submit Workflow](./img/submit-workflow.png)",
+      "source_content_hash": "884b1df28e6ba644131762082693dafcdf823209f579826b4d98da596710ae38",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Submit Workflow](./img/submit-workflow.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "126950d7",
+      "source_content": "## Create a workflow using a YAML file and `kubectl`",
+      "source_content_hash": "1cb867fed6b413c81e5c62dbe72f23008388999ce2616a9ee69ca3b18e2f9575",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 YAML 檔案與 `kubectl` 建立工作流程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0bb95128",
+      "source_content": "Similar to various types of Chaos objects, workflows also exist in a Kubernetes cluster as a CRD. You can create a Chaos Mesh workflow using `kubectl create -f <workflow.yaml>`. The following command is an example of creating a workflow. Create a workflow using a local YAML file:",
+      "source_content_hash": "6a94b24d2e2c32964b08cb2596305bfbc37b8faab62771b3dba4a6683aaec451",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "與各類混沌物件類似，工作流程在 Kubernetes 叢集中以 CRD 形式存在。您可使用 `kubectl create -f <workflow.yaml>` 建立 Chaos Mesh 工作流程，以下為建立範例命令。使用本機 YAML 檔案建立："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "29ad5b0e",
+      "source_content": "```shell\nkubectl create -f <workflow.yaml>\n```",
+      "source_content_hash": "df10ef255be1b7d2091eb0cc3ec19a816d6d48b070fae064dfdeb9f5464e4d88",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_29ad5b0e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "eab056be",
+      "source_content": "Create a workflow using a YAML file from the network:",
+      "source_content_hash": "30bd843f0a42404ad9ea47676df88d1e776d44463d0b0dc732420cf70760f2f2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "使用網路 YAML 檔案建立："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9f3b4022",
+      "source_content": "```shell\nkubectl create -f https://raw.githubusercontent.com/chaos-mesh/chaos-mesh/master/examples/workflow/serial.yaml\n```",
+      "source_content_hash": "0eef13a922fbe1d19b9994707bc6b087e7e2f2bf44e4b73a79d87223fc1afda8",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9f3b4022"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e8e162a9",
+      "source_content": "A simple workflow YAML file is defined as follows. In this workflow, `StressChaos`, `NetworkChaos`, and `PodChaos` are injected:",
+      "source_content_hash": "be92492538bd2b84db2f03a8d395e2780cb6df74d02ae20230230f833a03ec1f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下為簡單工作流程 YAML 檔案定義，此工作流程將注入 `StressChaos`、`NetworkChaos` 與 `PodChaos`："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9f4336b3",
+      "source_content": "```yaml\napiVersion: chaos-mesh.org/v1alpha1\nkind: Workflow\nmetadata:\n  name: try-workflow-parallel\nspec:\n  entry: the-entry\n  templates:\n    - name: the-entry\n      templateType: Parallel\n      deadline: 240s\n      children:\n        - workflow-stress-chaos\n        - workflow-network-chaos\n        - workflow-pod-chaos-schedule\n    - name: workflow-network-chaos\n      templateType: NetworkChaos\n      deadline: 20s\n      networkChaos:\n        direction: to\n        action: delay\n        mode: all\n        selector:\n          labelSelectors:\n            'app': 'hello-kubernetes'\n        delay:\n          latency: '90ms'\n          correlation: '25'\n          jitter: '90ms'\n    - name: workflow-pod-chaos-schedule\n      templateType: Schedule\n      deadline: 40s\n      schedule:\n        schedule: '@every 2s'\n        type: 'PodChaos'\n        podChaos:\n          action: pod-kill\n          mode: one\n          selector:\n            labelSelectors:\n              'app': 'hello-kubernetes'\n    - name: workflow-stress-chaos\n      templateType: StressChaos\n      deadline: 20s\n      stressChaos:\n        mode: one\n        selector:\n          labelSelectors:\n            'app': 'hello-kubernetes'\n        stressors:\n          cpu:\n            workers: 1\n            load: 20\n            options: ['--cpu 1', '--timeout 600']\n```",
+      "source_content_hash": "f763d8b53cf7e40419c1dcb06f993cc14b3aaa07f5c6435923915661d8fc3d8b",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9f4336b3"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ecf0882",
+      "source_content": "In the above YAML template, the `templates` fields define the steps of the experiment. The `entry` field defines the entry of the workflow when the workflow is being executed.",
+      "source_content_hash": "a5cb78b7862d2eaa19e08ce0ac2bc955cb49bad7747ab11b5e7cc3a3f7a2bf2b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "上述 YAML 範本中，`templates` 欄位定義實驗步驟，`entry` 欄位定義工作流程執行時的入口點"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e77cf7c6",
+      "source_content": "Each element in `templates` represents a workflow step. For example:",
+      "source_content_hash": "0e18ef85ab6f946ffdd48bf8f6307d237c793c4f51acbc0b61e355c894c7e51a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "`templates` 中的每個元素代表一個工作流程步驟，例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6e57b94c",
+      "source_content": "```yaml\nname: the-entry\ntemplateType: Parallel\ndeadline: 240s\nchildren:\n  - workflow-stress-chaos\n  - workflow-network-chaos\n  - workflow-pod-chaos\n```",
+      "source_content_hash": "b2b7fe65ae9a89fdad051aee8436feec2bd8f181f4c07a6ea32ea8fb37674910",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6e57b94c"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ad3e22c6",
+      "source_content": "`templateType: Parallel` means that the node type is parallel. `deadline: 240s` means that all parallel experiments on this node are expected to be performed in 240 seconds; otherwise, the experiments time out. `children` means the other template names to be executed in parallel.",
+      "source_content_hash": "79f34188690af7c8adfd33694a9edc3348f5e3bf103e698d89f5c9638e9f71e7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "`templateType: Parallel` 表示節點類型為並行。`deadline: 240s` 表示此節點上的所有並行實驗預期在 240 秒內完成，否則實驗將超時。`children` 表示要並行執行的其他模板名稱。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e8f45da",
+      "source_content": "For example:",
+      "source_content_hash": "652744a2ab28954bbafd780fd76c15c2bd557594532f907f10ead1989727af95",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d58c5dc0",
+      "source_content": "```yaml\nname: workflow-pod-chaos\ntemplateType: PodChaos\ndeadline: 40s\npodChaos:\n  action: pod-kill\n  mode: one\n  selector:\n    labelSelectors:\n      'app': 'hello-kubernetes'\n```",
+      "source_content_hash": "9b5dd9a5ca9ca64963ecb97d4f965da59666c89ffb260cd30d806467aeb6eb51",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d58c5dc0"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6b40e7a2",
+      "source_content": "`templateType: PodChaos` means that the node type is PodChaos experiments. `deadline: 40s` means that the current Chaos experiment lasts for 40 seconds. `podChaos` is the definition of the PodChaos experiment.",
+      "source_content_hash": "7961c457493ed5a260a24af05e61204da7731714633748834189eb8e67aeaf5c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "`templateType: PodChaos` 表示節點類型為 PodChaos 實驗。`deadline: 40s` 表示當前混沌實驗持續 40 秒。`podChaos` 是 PodChaos 實驗的定義。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39f476dc",
+      "source_content": "It is flexible to create a workflow using a YAML file and `kubectl`. You can nest parallel or serial orchestrations to declare complex orchestrations, and even combine the orchestration with conditional branches to achieve a circular effect.",
+      "source_content_hash": "6ed24007371c64cec4589addf1bc35c883495b9caff5638802634e6089fd5fa1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "透過 YAML 檔案和 `kubectl` 建立工作流具有高度靈活性。您可以嵌套並行或串行編排來宣告複雜的編排結構，甚至結合條件分支實現循環效果。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "16ae54ea",
+      "source_content": "## Field description",
+      "source_content_hash": "afef87832591f63e7a3c9579f8a2492cf81afc3e8b0d02296e334646ad82d4f6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ffd1ebe",
+      "source_content": "### Workflow field description",
+      "source_content_hash": "bd031a2307b1dd866fdd304dbda336245bacd7034cd31c37bfc1ee35607e18cd",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 工作流欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b6840b81",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| entry | string | Declares the entry of the workflow. Its value is a name of a template. | None | Yes |  |\n| templates | []Template | Declares the behavior of each step executable in the workflow. See [Template field description](#template-field-description) for details. | None | Yes |  |",
+      "source_content_hash": "87359d12fb170cebf43993b532462170cb4f2cf61cc535f7465cb0437c0d8ec2",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b6840b81"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "445c72bd",
+      "source_content": "### Template field description",
+      "source_content_hash": "c476963e7dbfd7e17749602fa6951e61e804ef081f1d410116e247e53d5fa976",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 模板欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f72f4682",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| name | string | The name of the template, which needs to meet the DNS-1123 requirements. | None | Yes | any-name |\n| type | string | Type of template. Value options are Task, Serial, Parallel, Suspend, Schedule, AWSChaos, DNSChaos, GCPChaos, HTTPChaos, IOChaos, JVMChaos, KernelChaos, NetworkChaos, PodChaos, StressChaos, and TimeChaos, StatusCheck. | None | Yes | PodChaos |\n| deadline | string | The duration of the template. | None | No | '5m30s' |\n| children | []string | Declares the subtasks under this template. You need to configure this field when the type is `Serial` or `Parallel`. | None | No | [\"any-chaos-1\", \"another-serial-2\", \"any-shcedue\"] |\n| task | Task | Configures the customized task. You need to configure this field when the type is `Task`. See the [Task field description](#task-field-description) for details. | None | No |  |\n| conditionalBranches | []ConditionalBranch | Configures the conditional branch which executes after customized task. You need to configure this field when the type is `Task`. See the [Conditional branch field description](#conditionalbranch-field-description) for details. | None | No |  |\n| awsChaos | object | Configures AWSChaos. You need to configure this field when the type is `AWSChaos`. See the [Simulate AWS Faults](simulate-aws-chaos.md) document for details. | None | No |  |\n| dnsChaos | object | Configures DNSChaos. You need to configure this field when the type is `DNSChaos`. See the [Simulate DNS Faults](simulate-dns-chaos-on-kubernetes.md) document for details. | None | No |  |\n| gcpChaos | object | Configures GCPChaos. You need to configure this field when the type is `GCPChaos`.See the [Simulation GCP Faults](simulate-gcp-chaos.md) document for details. | None | No |  |\n| httpChaos | object | Configures HTTPChaos. You need to configure this field when the type is `HTTPChaos`. See the [Simulate HTTP Faults](simulate-http-chaos-on-kubernetes.md) document for details. | None | No |  |\n| ioChaos | object | Configure IOChaos. You need to configure this field when the type is `IOChaos`. See the [Simulate File I/O Faults](simulate-io-chaos-on-kubernetes.md) document for details. | None | No |  |\n| jvmChaos | object | Configures JVMChaos. You need to configure this field when the type is `JVMChaos`. See the [Simulate JVM Application Faults](simulate-jvm-application-chaos.md) document for details. | None | No |  |\n| kernelChaos | object | Configure KernelChaos. You need to configure this field when the type is `KernelChaos`. See the [Simulate Kernel Faults](simulate-kernel-chaos-on-kubernetes.md) document for details. | None | No |  |\n| networkChaos | object | Configures NetworkChaos. You need to configure this field when the type is `NetworkChaos`. See the [Simulate Network Faults](simulate-network-chaos-on-kubernetes.md) document for details. | None | No |  |\n| podChaos | object | Configures PodChaos. You need to configure this field when the type is `PodChaos`. See the [Simulate Pod Faults](simulate-pod-chaos-on-kubernetes.md) document for details. | None | No |  |\n| stressChaos | object | Configures StressChaos. You need to configure this field when the type is `StressChaos`. See the [Simulate Heavy Stress on Kubernetes](simulate-heavy-stress-on-kubernetes.md) document for details. | None | No |  |\n| timeChaos | object | Configures TimeChaos. You need to configure this field when the type is `TimeChaos`. See the [SImulate Time Faults](simulate-time-chaos-on-kubernetes.md) document for details. | None | No |  |\n| schedule | object | Configures Schedule. You need to configure this field when the type is `Schedule`. See the [Define Scheduling Rules](define-scheduling-rules.md) document for details. | None | No |  |\n| statusCheck | object | Configures StatusCheck. You need to configure this field when the type is `StatusCheck`. See the [StatusCheck in Workflow](status-check-in-workflow.md) document for details. | None | No |  |\n| abortWithStatusCheck | bool | Configures whether abort the Workflow when StatusCheck is failed. You can configure this field when the type is `StatusCheck`. | `false` | No | `true` |",
+      "source_content_hash": "3c51651b2f19822019ccfe0505ee874a3f82a1f2079498f824596065b1c7e1e9",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_f72f4682"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aeec072b",
+      "source_content": ":::note\n\nWhen creating a Chaos with a duration in the workflow, you need to fill the duration in the outer `deadline` field instead of using the `duration` field in Chaos.\n\n:::",
+      "source_content_hash": "9da6b472f32ce65480ea0cfeaf95974512b98b45f844682af0f9a822649699af",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n在工作流中建立具有持續時間的混沌實驗時，需在外層 `deadline` 欄位填寫持續時間，而非使用 Chaos 中的 `duration` 欄位。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4e8f71c1",
+      "source_content": "### Task field description",
+      "source_content_hash": "fbc1ba060b8f45b285da33d8f1a52e317f5b8b843a9d4c17767f47e94df5d7e0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 任務欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d0e4b221",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| container | object | Defines a customized task container. See [Container field description](#container-field-description) for details. | None | No |  |\n| volumes | array | If you need to mount a volume in a customized task container, you need to declare the volume in this field. For the detailed definition of a volume, see the [Kubernetes documentation - corev1.Volume](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#volume-v1-core). | None | No |  |",
+      "source_content_hash": "960c76bc171c93541316de973c52b171b2baa9eab806cf86da9810ecdcd01051",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d0e4b221"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e594a4f9",
+      "source_content": "### ConditionalBranch field description",
+      "source_content_hash": "2c2d0cbd39d851646f194ad9587305e3b485407ed0221b1b3ccaaa503cbc297b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 條件分支欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7fba24f0",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| target | string | The name of the template to be executed by the current conditional branch. | None | Yes | another-chaos |\n| expression | string | The type is a boolean expression. When a customized task is completed and the expression value is true, the current condition branch is executed. When this value is not set, the conditional branch will be executed directly after the customized task is completed. | None | No | exitCode == 0 |",
+      "source_content_hash": "04c5ebde44d23538dbfde9670a13b44a9c3e7a6e897150e9af18799a3daaee91",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7fba24f0"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9ede513a",
+      "source_content": "Currently, two context variables are provided in `expression`:",
+      "source_content_hash": "7f609f05383411872e00eef42ca677b10ee0ccc276eddd4f418d801cb8443a8b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前 `expression` 提供兩個上下文變數："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5655b39f",
+      "source_content": "- `exitCode` means the exit code for a customized task.",
+      "source_content_hash": "807a9fd122d337ed9836e96a1a5f0f18d6b83be1f67821369d35c8d0dcce2c30",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `exitCode` 表示自訂任務的退出代碼。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6f2542a9",
+      "source_content": "- `stdout` indicates the standard output for a customized task.",
+      "source_content_hash": "ba3640ab37303191352b6ae2cc36386afcc31c2cbf469fde7fe9cc20f9c43f50",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `stdout` 表示自訂任務的標準輸出。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4603f4d0",
+      "source_content": "> More context variables will be added in later releases.",
+      "source_content_hash": "11ab8bf66f972377eff34cbee5908c441d712be6fe908ae8c5d903b7ca0d1268",
+      "node_type": "blockquote",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "> 後續版本將增加更多上下文變數。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "228d01d5",
+      "source_content": "Refer to [this document](https://github.com/antonmedv/expr/blob/master/docs/Language-Definition.md) write `expression` expressions.",
+      "source_content_hash": "a898e3e7204143a9de70f5bcc2d406426b66d4da9fde4ccdea8865c7e0ff4d45",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "撰寫 `expression` 表達式可參考[此文件](https://github.com/antonmedv/expr/blob/master/docs/Language-Definition.md)。",
+          "reason": "Type mismatch for special element #1: source is 'link', translation is 'inlineCode'.",
+          "timestamp": "2025-07-04T06:49:59.303229+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "fbdb880f",
+      "source_content": "### Container field description",
+      "source_content_hash": "37402d11dfe94e34871c417969c6f8c7eb1e59c350c249ac11b05f80fde21289",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 容器欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d3912b2e",
+      "source_content": "The following table only lists the commonly used fields. For the definitions of more fields, see [Kubernetes documentation - core1.Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).",
+      "source_content_hash": "731343e352aa4da3a578d1a328cb955bbc2fad0c77626b05d11fd54fbfa633d8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "下表僅列出常用欄位，更多欄位定義請參閱 [Kubernetes 文件 - core1.Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4e844e8c",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| name | string | Container name | None | Yes | task |\n| image | string | Image name | None | Yes | busybox:latest |\n| command | []string | Container commands | None | No | `[\"wget\", \"-q\", \"http://httpbin.org/status/201\"]` |",
+      "source_content_hash": "2dd04c4d5335df0619faf6f396db16f558379ac56dac599e5341b156fc184c55",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4e844e8c"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/create-chaos-mesh-workflow.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.303278+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "dd5afec99fd70a5f9ec124ac53854605a785fb13dde93acbe88b3e6c5245a059"
+  }
+}

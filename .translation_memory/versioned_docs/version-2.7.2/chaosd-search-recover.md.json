@@ -1,0 +1,372 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/chaosd-search-recover.md",
+  "source_file_content_hash": "917209d9bf9d77f752e359bdfee4810c91e15655d122bb9ecf0ef3559225d8b4",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Search and Recover Experiments of Chaosd\nsummary: Describes how to search and recover the experiments of Chaosd, and provide related examples.\n---",
+      "source_content_hash": "45feb434dfe414bf08e164989ba40421d154e621230bd5da8f64f4e56893b508",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bb42506b",
+      "source_content": "You can search experiments by conditions and recover the experiments corresponding to specified UIDs using Chaosd. This document describes how to search and recover experiments of Chaosd, and provides related examples.",
+      "source_content_hash": "d4f4036ae281461f7cb6e5b14731f640861039cd83836638981c7ddd39f4083f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可透過 Chaosd 依據條件搜尋實驗，並恢復指定 UID 對應的實驗。本文說明如何搜尋與恢復 Chaosd 實驗，並提供相關範例。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cc3c868d",
+      "source_content": "## Search experiments of Chaosd",
+      "source_content_hash": "b3931cad355ad0d0b7d0d14b98d760e340b9586e68f90312cc279957e0346f10",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 搜尋 Chaosd 實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7e5c5a39",
+      "source_content": "This section introduces how to use command-line mode and service mode to find experiments of Chaosd.",
+      "source_content_hash": "795b084c221ccb664d03be05345c0c8f1274b4cee99687854e4843c4899e2f14",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本節介紹如何透過命令列模式與服務模式搜尋 Chaosd 實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9fcbdce9",
+      "source_content": "### Search experiments using the command-line mode",
+      "source_content_hash": "e70ad07b9febf27c3b2adfeabcc5930528ab550c8fe550851bb7e3fad7e4101d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式搜尋實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ad8fd492",
+      "source_content": "By running the following command, you can view the configurations supported by the `search` command:",
+      "source_content_hash": "4b3493f0c1328b2a8390bf3593cb0f12633c6a8f685aefc0f1a0b528c1be7692",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下命令可查看 `search` 指令支援的配置參數："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "41ad46a6",
+      "source_content": "```bash\n$ chaosd search --help\nSearch chaos attack, you can search attacks through the uid or the state of the attack\n\nUsage:\n  chaosd search UID [flags]\n\nFlags:\n  -A, --all             list all chaos attacks\n      --asc             order by CreateTime, default value is false that means order by CreateTime desc\n  -h, --help            help for search\n  -k, --kind string     attack kind, supported value: network, process, stress, disk, host, jvm\n  -l, --limit uint32    limit the count of attacks\n  -o, --offset uint32   starting to search attacks from offset\n  -s, --status string   attack status, supported value: created, success, error, destroyed, revoked\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n```",
+      "source_content_hash": "35d50cec4fa9a92cbd8ac8b5db05817faff1e3d94859f38264fc7317c8fad1ca",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_41ad46a6"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "109ace10",
+      "source_content": "#### Configuration description",
+      "source_content_hash": "9d6dcdcce335751c2299ee791d6a45e572345e0f7d5457cea9e00c75fd8e9de2",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 配置說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c75fd5e6",
+      "source_content": "| Configuration item | Abbreviation | Description | Type |\n| :-- | :-- | :-- | :-- |\n| `all` | A | Lists all experiments | bool |\n| `asc` | None | Sorts the experiments in ascending order of the creation time. The default value is `false`. | bool |\n| `kind` | k | Lists experiments of the specified kind | string. The supported kinds are as follows: `network`, `process`, `stress`, `disk`, `host`, `jvm` |\n| `limit` | l | The number of listed experiments | int |\n| `offset` | o | Searches from the specified offset | int |\n| `status` | s | Lists experiments with the specified status | string. The supported types are as follows: `created`, `success`, `error`, `destroyed`, `revoked` |",
+      "source_content_hash": "f1e953edb30b2c5739cdf1d4b2ea3bcd2649062e99dc466d7e8e790c72832f96",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_c75fd5e6"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f44c1398",
+      "source_content": "#### Example",
+      "source_content_hash": "1e720ea2922f5b6373e42d9ca218cbcb1e44639aa4d384b8f07731c2e4e14edf",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "229d6705",
+      "source_content": "```bash\n./chaosd search --kind network --status destroyed --limit 1\n```",
+      "source_content_hash": "95eac50ac8c4c55ecb0a9c0b5e8f8aafd8f121f844cda12d6435b3ba6f0849df",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_229d6705"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "98d26038",
+      "source_content": "By running this command, you can search the experiments of the kind of `network` in the status of `destroyed` (indicating that the experiment has been recovered).",
+      "source_content_hash": "3e42049eafb4b6e3a16e2a509217e4f69b8798de864d1f712cdbfe55dc028e88",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "此命令可搜尋狀態為 `destroyed`（表示實驗已恢復）且類型為 `network` 的實驗。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`network`', Translation: '`destroyed`'.",
+          "timestamp": "2025-07-04T06:49:59.323610+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "d3649a1e",
+      "source_content": "After running the command, only one row of data is output in the result:",
+      "source_content_hash": "9c00f5089cd81d7ec7fe1c077eeef33931d14b7b2d2a02ddf7ef26ed9a08cd5f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行命令後，結果僅輸出一行數據："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c3955998",
+      "source_content": "```bash\n                  UID                     KIND     ACTION    STATUS            CREATE TIME                                                                                                                  CONFIGURATION\n--------------------------------------- --------- -------- ----------- --------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n  1f6c1253-522a-43d9-83f8-42607102b3b9   network   delay    destroyed   2021-11-02T15:14:07+08:00   {\"schedule\":\"\",\"duration\":\"\",\"action\":\"delay\",\"kind\":\"network\",\"uid\":\"1f6c1253-522a-43d9-83f8-42607102b3b9\",\"latency\":\"2s\",\"jitter\":\"0ms\",\"correlation\":\"0\",\"device\":\"eth0\",\"ip-address\":\"220.181.38.251\",\"ip-protocol\":\"all\"}\n```",
+      "source_content_hash": "3282ba0b337aa9a589ee37cb5b034b9aed1b550f5b7c0740020ab070dabb0592",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_c3955998"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9e95fc4a",
+      "source_content": "### Search experiments using the service mode",
+      "source_content_hash": "32fa0d2c7d0be77eae40c6f2c0733ae1f401688b0abce64463512a72abf6fe34",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式搜尋實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5dae11e3",
+      "source_content": "Currently, the service mode only supports searching all experiments. You can get the data by visiting the `/api/experiments/` path of Chaosd service.",
+      "source_content_hash": "357abe41e2382b9faacdaa4bb13d2e7fe3dc7e3aeea091a13c1aca082bf5672f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前服務模式僅支援搜尋全部實驗，可透過訪問 Chaosd 服務的 `/api/experiments/` 路徑獲取數據。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a5a4323e",
+      "source_content": "#### Example",
+      "source_content_hash": "1e720ea2922f5b6373e42d9ca218cbcb1e44639aa4d384b8f07731c2e4e14edf",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "29ad5b0e",
+      "source_content": "```bash\ncurl -X GET 127.0.0.1:31767/api/experiments/\n```",
+      "source_content_hash": "65bbd7c597e99f98647d596afa7da091246807f4dbf0624d83e856de9588dd87",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_29ad5b0e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "eab056be",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9f3b4022",
+      "source_content": "```bash\n[{\"id\":1,\"uid\":\"ddc5ca81-b677-4595-b691-0ce57bedb156\",\"created_at\":\"2021-10-18T16:01:18.563542491+08:00\",\"updated_at\":\"2021-10-18T16:07:27.87111393+08:00\",\"status\":\"success\",\"kind\":\"stress\",\"action\":\"mem\",\"recover_command\":\"{\\\"schedule\\\":\\\"\\\",\\\"duration\\\":\\\"\\\",\\\"action\\\":\\\"mem\\\",\\\"kind\\\":\\\"stress\\\",\\\"uid\\\":\\\"ddc5ca81-b677-4595-b691-0ce57bedb156\\\",\\\"Load\\\":0,\\\"Workers\\\":0,\\\"Size\\\":\\\"100MB\\\",\\\"Options\\\":null,\\\"StressngPid\\\":0}\",\"launch_mode\":\"svr\"}]\n```",
+      "source_content_hash": "2426becd0bedfa3f391b03275b556bd3db592aea35566877627030e59385e879",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9f3b4022"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "58ed925f",
+      "source_content": "## Recover experiments of Chaosd",
+      "source_content_hash": "15229f55f6f726bbe023692447684569b74d6f10eebc8895cf1be910241efacb",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 恢復 Chaosd 實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "463ed165",
+      "source_content": "After creating an experiment, if you want to withdraw the impact caused by the experiment, you can use the recovery feature of experiments.",
+      "source_content_hash": "795ce5409be897045d5621c9b05f4f18a9e9444138e12117d06e0a4d8bace2bf",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "建立實驗後若需撤銷其影響，可使用實驗恢復功能。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "66819c78",
+      "source_content": "### Recover experiments using the command-line mode",
+      "source_content_hash": "ebc652518425885a5a45151e43d2a833a72341d437a2601908af881efaedf4df",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式恢復實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fbc2db85",
+      "source_content": "You can recover an experiment by using Chaosd recover UID.",
+      "source_content_hash": "74eb163c8dc10852286bbaeeb2f8e7b3e0dd67429c7bc420ce8e1444899be879",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可透過 Chaosd recover UID 恢復實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8126f763",
+      "source_content": "The following example shows how to recover an experiment using the command-line mode.",
+      "source_content_hash": "f7ed60ecf8210d969241cc4eea2f4788db557f2f70bb42b0fafb8dc381ba912f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下範例展示使用命令列模式恢復實驗："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "83fc985d",
+      "source_content": "1. Create a CPU stress experiment using Chaosd:\n\n   ```bash\n   chaosd attack stress cpu --workers 2 --load 10\n   ```\n\n   The result is as follows:\n\n   ```bash\n   [2021/05/12 03:38:33.698 +00:00] [INFO] [stress.go:66] [\"stressors normalize\"] [arguments=\" --cpu 2 --cpu-load 10\"]\n   [2021/05/12 03:38:33.702 +00:00] [INFO] [stress.go:82] [\"Start stress-ng process successfully\"] [command=\"/usr/bin/stress-ng --cpu 2 --cpu-load 10\"] [Pid=27483]\n   Attack stress cpu successfully, uid: 4f33b2d4-aee6-43ca-9c43-0f12867e5c9c\n   ```\n\n   Save the experiment UID for later use.",
+      "source_content_hash": "b435b70ae312e46cd256b8edbd75c11815c8186064ca42798b5201f976dd5e43",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 使用 Chaosd 建立 CPU 壓力實驗：\n\n   ```bash\n   chaosd attack stress cpu --workers 2 --load 10\n   ```\n\n   結果如下：\n\n   ```bash\n   [2021/05/12 03:38:33.698 +00:00] [INFO] [stress.go:66] [\"stressors normalize\"] [arguments=\" --cpu 2 --cpu-load 10\"]\n   [2021/05/12 03:38:33.702 +00:00] [INFO] [stress.go:82] [\"Start stress-ng process successfully\"] [command=\"/usr/bin/stress-ng --cpu 2 --cpu-load 10\"] [Pid=27483]\n   Attack stress cpu successfully, uid: 4f33b2d4-aee6-43ca-9c43-0f12867e5c9c\n   ```\n\n   保存實驗 UID 供後續使用。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2ca32339",
+      "source_content": "2. When you do not need to simulate the CPU stress scenario anymore, use the `recover` command to recover the experiment corresponding to the UID:\n\n   ```bash\n   chaosd recover 4f33b2d4-aee6-43ca-9c43-0f12867e5c9c\n   ```",
+      "source_content_hash": "cca229627863b3601a9722ad2dc4ec4fa0acce5e7891fd67885ca2a1e14d4034",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 當不再需要模擬 CPU 壓力場景時，使用 `recover` 命令恢復對應 UID 的實驗：\n\n   ```bash\n   chaosd recover 4f33b2d4-aee6-43ca-9c43-0f12867e5c9c\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d1f76d04",
+      "source_content": "### Recover experiments using the service mode",
+      "source_content_hash": "65934f5957581a7ca4f1c8be7bab79cfcf7afc502bc69a56f50d7c3c9213465d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式恢復實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6693c38c",
+      "source_content": "You can recover an experiment by sending a `DELETE` HTTP request to the `/api/attack/{uid}` path of Chaosd service.",
+      "source_content_hash": "a3eaeb41e5bfed47c6c619a1616dbeb1fa383ea5fef42fd9f1e29723df3aa984",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "可向 Chaosd 服務的 `/api/attack/{uid}` 路徑發送 `DELETE` HTTP 請求以恢復實驗。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`DELETE`', Translation: '`/api/attack/{uid}`'.",
+          "timestamp": "2025-07-04T06:49:59.323634+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "e9313fef",
+      "source_content": "The following example shows how to recover an experiment using the service mode.",
+      "source_content_hash": "b361b2992a3081ce561cca79c070c1adfc604e4b578ef05e05225438a1a0c6f7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下範例展示使用服務模式恢復實驗："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9e54c725",
+      "source_content": "1. Send a `POST` HTTP request to the Chaosd service to create a CPU stress experiment:\n\n   ```bash\n   curl -X POST 172.16.112.130:31767/api/attack/stress -H \"Content-Type:application/json\" -d '{\"load\":10, \"action\":\"cpu\",\"workers\":1}'\n   ```\n\n   The result is as follows:\n\n   ```bash\n   {\"status\":200,\"message\":\"attack successfully\",\"uid\":\"c3c519bf-819a-4a7b-97fb-e3d0814481fa\"}\n   ```\n\n   Save the experiment UID for later use.",
+      "source_content_hash": "7d95e4b024888fe2772d283df72a3c03dc59ea55d54e8fa85e473da7f2f73148",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 向 Chaosd 服務發送 `POST` HTTP 請求建立 CPU 壓力實驗：\n\n   ```bash\n   curl -X POST 172.16.112.130:31767/api/attack/stress -H \"Content-Type:application/json\" -d '{\"load\":10, \"action\":\"cpu\",\"workers\":1}'\n   ```\n\n   結果如下：\n\n   ```bash\n   {\"status\":200,\"message\":\"attack successfully\",\"uid\":\"c3c519bf-819a-4a7b-97fb-e3d0814481fa\"}\n   ```\n\n   保存實驗 UID 供後續使用。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b1d2b7df",
+      "source_content": "2. When you do not need to simulate the CPU stress scenario anymore, run the following command to recover the experiment corresponding to the UID:\n\n   ```bash\n   curl -X DELETE 172.16.112.130:31767/api/attack/c3c519bf-819a-4a7b-97fb-e3d0814481fa\n   ```",
+      "source_content_hash": "0699b7770bff1090783acc0f21294c4e15338665a68849fe96b364a19cad5d7f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 當您不再需要模擬 CPU 壓力情境時，執行以下指令來復原對應 UID 的實驗：\n\n   ```bash\n   curl -X DELETE 172.16.112.130:31767/api/attack/c3c519bf-819a-4a7b-97fb-e3d0814481fa\n   ```"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/chaosd-search-recover.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.323662+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "917209d9bf9d77f752e359bdfee4810c91e15655d122bb9ecf0ef3559225d8b4"
+  }
+}

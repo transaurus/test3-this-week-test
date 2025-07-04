@@ -1,0 +1,1879 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/simulate-network-chaos-in-physical-nodes.md",
+  "source_file_content_hash": "246d64ea7991d6bc1c9a90f342b4ddfa9a52ca55e166cadf54caf91895c76cad",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate Network Faults\n---",
+      "source_content_hash": "30fa39ebb5879952d3a52d52c2d3b12ac2510586e3bd1d3b1ee2505f1193ff2f",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document introduces how to use Chaosd to simulate network faults. The simulations can be completed by modifying network routing and traffic flow control using iptables, ipsets, tc, etc.",
+      "source_content_hash": "db969ccbd8a4cfbcd0cc6821e0ff8915fc4707b0929d2cd11ec475e1f3e9cfa9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文介紹如何使用 Chaosd 模擬網路故障。這些模擬可透過修改網路路由與流量控制（使用 iptables、ipsets、tc 等工具）來完成。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8c98994c",
+      "source_content": ":::note\n\nMake sure the NET_SCH_NETEM module is installed in the Linux kernel. If you are using CentOS, you can install the module through the kernel-modules-extra package. Most other Linux distributions have installed it already by default.\n\n:::",
+      "source_content_hash": "a93ecf4a5a0cfa07b899dbec2dce49eab2c275b9b4e97420d7fd0166a19ab79e",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n請確保 Linux 核心已安裝 NET_SCH_NETEM 模組。若使用 CentOS，可透過 kernel-modules-extra 套件安裝。多數其他 Linux 發行版預設已安裝此模組。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ba4f48ff",
+      "source_content": "## Create network fault experiments using command-line mode",
+      "source_content_hash": "1ea0f39fc49bb507ca2e29abbaf4cc63342e7bb2af30343de541934847d5f21c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用命令列模式建立網路故障實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "This section introduces how to create network fault experiments using command-line mode.",
+      "source_content_hash": "46871ea081a5b8bde95918bb23a48d0763dcccc04193717404658d99e56b2634",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本節介紹如何透過命令列模式建立網路故障實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "Before creating an experiment, you can run the following command to check the types of network faults supported by Chaosd:",
+      "source_content_hash": "6958bbc1f663049eccb46b9d5031a2dfbf37ef909166c8dc995ecc9b33b7cb5d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "建立實驗前，可執行以下指令查看 Chaosd 支援的網路故障類型："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "940e34e3",
+      "source_content": "```bash\nchaosd attack network --help\n```",
+      "source_content_hash": "0a2f08e1c2745538d5dd0438839f759936c307ea287480dc06a35806a89b1ed8",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_940e34e3"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "The output is as follows:",
+      "source_content_hash": "e393a74ababf246af54d3aaa19b45a8f23cc8470c3659248fb33a6888578f447",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3569d545",
+      "source_content": "```bash\nNetwork attack related commands\n\nUsage:\n  chaosd attack network [command]\n\nAvailable Commands:\n  bandwidth   limit network bandwidth\n  corrupt     corrupt network packet\n  delay       delay network\n  dns attack  DNS server or map specified host to specified IP\n  duplicate   duplicate network packet\n  loss        loss network packet\n  partition   partition\n  port        attack network port\n\nFlags:\n  -h, --help   help for network\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n\nUse \"chaosd attack network [command] --help\" for more information about a command.\n```",
+      "source_content_hash": "820438a82d661113a87c475f63f30226d5b828f4bac9862529b716890c97f9a6",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3569d545"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a44047a5",
+      "source_content": "Currently, you can simulate four experimental scenarios using Chaosd: network corruption, network latency, network duplication, and network loss.",
+      "source_content_hash": "5278720b53d4d22986204f99e4bf7922c7feae0d0be2fe3286c274a20beed98e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前可使用 Chaosd 模擬四種實驗場景：網路損壞、網路延遲、網路重複傳輸及網路丟包。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cb5b269c",
+      "source_content": "### Simulate network corruption using the command-line mode",
+      "source_content_hash": "a3d8cefb3f8948a63965eee5e1a1e892201ba7c2ded1dd70b44795993fbe4b17",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式模擬網路損壞"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b36c6338",
+      "source_content": "You can run the command below to see the configuration of simulated network corruption using Chaosd.",
+      "source_content_hash": "7cb04b81ddc78262fde36d5b2eccc0551c419745a160c22f2382567980344197",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可執行以下指令查看 Chaosd 模擬網路損壞的配置。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2c1b51df",
+      "source_content": "#### The command for network corruption",
+      "source_content_hash": "537bf2830270846d515957cc18e48aa4ada4403d81f00f56abb00f1daf39c9ab",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路損壞指令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e536ea0d",
+      "source_content": "The command is as follows:",
+      "source_content_hash": "e14ccfbe6a673e405ebd668fc44cab8945f780ed2ed9ef5d7219a826db7209c2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "指令如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3c08ed05",
+      "source_content": "```bash\nchaosd attack network corrupt --help\n```",
+      "source_content_hash": "433e984226d2a5717bfdfbbb6dd7fdfaf4a697ee7c9fb5362b1b036201909ef2",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3c08ed05"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "79ad944d",
+      "source_content": "The output is as follows:",
+      "source_content_hash": "e393a74ababf246af54d3aaa19b45a8f23cc8470c3659248fb33a6888578f447",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5d4925eb",
+      "source_content": "```bash\ncorrupt network packet\n\nUsage:\n  chaosd attack network corrupt [flags]\n\nFlags:\n  -c, --correlation string   correlation is percentage (10 is 10%) (default \"0\")\n  -d, --device string        the network interface to impact\n  -e, --egress-port string   only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. It can only be used in conjunction with -p tcp or -p udp\n  -h, --help                 help for corrupt\n  -H, --hostname string      only impact traffic to these hostnames\n  -i, --ip string            only impact egress traffic to these IP addresses\n      --percent string       percentage of packets to corrupt (10 is 10%) (default \"1\")\n  -p, --protocol string      only impact traffic using this IP protocol, supported: tcp, udp, icmp, all\n  -s, --source-port string   only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. It can only be used in conjunction with -p tcp or -p udp\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n```",
+      "source_content_hash": "b9fef390bfd39c326947325da30a8b4793f99dad5c57b5dbb48b7587b97dd533",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_5d4925eb"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "759d12dd",
+      "source_content": "#### Configuration items related to network corruption",
+      "source_content_hash": "3442964ec45262379d24b8419d8c579fec8f8abcda3540f253e45efd22506ee1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路損壞相關配置項目"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "74dd7937",
+      "source_content": "The related configuration items are described as follows:",
+      "source_content_hash": "b219033739ec1bd7e5f522138d9647a6c4e71d91b049110404082652c74547ca",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "相關配置項目說明如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9be2808c",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| correlation | c | The correlation between the percentage of current corrupt occurrence and the previous occurrence. | int. It is a percentage ranging from 0 to 100 (10 is 10%) (\"0\" by default ). |\n| device | d | Name of the impacted network interface card. | string, such as \"eth0\", required. |\n| egress-port | e | The egress traffic that only impacts specific destination ports. It can only be configured when the protocol is TCP or UDP. | string. You need to use a `,` to separate the specific port or to indicate the range of the port, such as \"80,8001:8010\". |\n| hostname | H | The host name impacted by traffic. `hostname` and `ip` cannot be empty at the same time. When `hostname` and `ip` are set at the same time, the configuration item affects both the specified `hostname` and `ip`. | string, such as \"chaos-mesh.org\". |\n| ip | i | The IP address impacted by egress traffic. `hostname` and `ip` cannot be empty at the same time. When `hostname` and `ip` are set at the same time, the configuration item affects both the specified `hostname` and `ip`. | string, such as \"123.123.123.123\". |\n| protocol | p | The IP protocol impacted by traffic. | string. Supported protocols: tcp, udp, icmp, all (all network protocols). |\n| source-port | s | The egress traffic which only impact specific source ports. It can only be configured when the protocol is TCP or UDP. | string. Use a `,` to delimit the specific port or to indicate the range of the ports, such as \"80,8001:8010\". |\n| percent |  | Ratio of network packet corruption. | string. It is a percentage which range is 0 to 100 (10 is 10%) (default \"1\"). |",
+      "source_content_hash": "1fac9382abeddd7605254e51620d2af2039aa2d266352447130caa740159887f",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9be2808c"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a138e327",
+      "source_content": "#### Example for simulating network corruption using the command mode",
+      "source_content_hash": "cb1f78a112ddc139d480c6747b3ad926c787cd232e1fc847ec71e15359a5e128",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用命令模式模擬網路損壞範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a2c0166e",
+      "source_content": "Run the following command to simulate network corruption:",
+      "source_content_hash": "a255f06f9804a0f54423a6a0729b5a94a8505296ddc838b55a493f6d088ad923",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下指令模擬網路損壞："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d44e4104",
+      "source_content": "```bash\nchaosd attack network corrupt -d eth0 -i 172.16.4.4 --percent 50\n```",
+      "source_content_hash": "ec121e91d5346d073e0b93545719c1c38a0211fbdd4a059aeae2763502dee702",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d44e4104"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a81544fd",
+      "source_content": "If the command runs successfully, the output is as follows:",
+      "source_content_hash": "8021cdf24a4cb3ae634fffa14dc0ce05a8a29fe9cf9b75eaf5f213da2e85094e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若指令執行成功，輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "03a9ab41",
+      "source_content": "```bash\nAttack network successfully, uid: 4eab1e62-8d60-45cb-ac85-3c17b8ac4825\n```",
+      "source_content_hash": "8bb2884d4ac6c041d6c73aeb81f65afd01641f05d5d29dea46589c8bf6d03d7b",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_03a9ab41"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7974af84",
+      "source_content": "### Simulate network latency using the command-line mode",
+      "source_content_hash": "f4919b2e7883dd7603908b9dc788ca92df9f82dea14afde6da9ed488937d713e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式模擬網路延遲"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "44aaa880",
+      "source_content": "You can run the command below to see the configuration of simulated network latency using Chaosd.",
+      "source_content_hash": "9a35a2ce09082fe358d42d1aab7f86d271029283ca48ab670a8b1d81479763cc",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可執行以下指令查看 Chaosd 模擬網路延遲的配置。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "638efb88",
+      "source_content": "#### The command for network latency",
+      "source_content_hash": "ff430cefbd8cdfebe035b840cc27b4b04d0b9058f25fa61ea5238f98d5a9f9a9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路延遲指令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "558df877",
+      "source_content": "The command is as follows:",
+      "source_content_hash": "e14ccfbe6a673e405ebd668fc44cab8945f780ed2ed9ef5d7219a826db7209c2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "指令如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6f605d92",
+      "source_content": "```bash\nchaosd attack network delay --help\n```",
+      "source_content_hash": "203a53ed45c385a36e0c6ca0ddbdacbaf8f3c1dfc055740e99f90a4547888490",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6f605d92"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6fc234cf",
+      "source_content": "The output is as follows:",
+      "source_content_hash": "e393a74ababf246af54d3aaa19b45a8f23cc8470c3659248fb33a6888578f447",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a3a1b8eb",
+      "source_content": "```bash\ndelay network\n\nUsage:\n  chaosd attack network delay [flags]\n\nFlags:\n  -c, --correlation string   correlation is percentage (10 is 10%) (default \"0\")\n  -d, --device string        the network interface to impact\n  -e, --egress-port string   only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. It can only be used in conjunction with -p tcp or -p udp\n  -h, --help                 help for delay\n  -H, --hostname string      only impact traffic to these hostnames\n  -i, --ip string            only impact egress traffic to these IP addresses\n  -j, --jitter string        jitter time, time units: ns, us (or µs), ms, s, m, h.\n  -l, --latency string       delay egress time, time units: ns, us (or µs), ms, s, m, h.\n  -p, --protocol string      only impact traffic using this IP protocol, supported: tcp, udp, icmp, all\n  -s, --source-port string   only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. It can only be used in conjunction with -p tcp or -p udp\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n```",
+      "source_content_hash": "0f5a62271f170d57d82933434c053a114816184ee3420675064cd64c22877985",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a3a1b8eb"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ab1b234",
+      "source_content": "#### Configuration items related to network latency",
+      "source_content_hash": "5ff2b3fc558e4f8028039d192def330182347ddbe8130d2a051e93c5d4dea9ba",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路延遲相關配置項目"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42d9ca67",
+      "source_content": "The related configuration items are described as follows:",
+      "source_content_hash": "b219033739ec1bd7e5f522138d9647a6c4e71d91b049110404082652c74547ca",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "相關配置項目說明如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "51c5cf39",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| correlation | c | The correlation between the current latency and the previous one. | string. It is a percentage ranging from 0 to 100 (10 is 10%) (\"0\" by default). |\n| device | d | Name of the impacted network interface card. | string, such as \"eth0\", required. |\n| egress-port | e | The egress traffic which only impact specific destination ports. It can only be configured when the protocol is TCP or UDP. | string. You need to use a `,` to separate the specific port or to indicate the range of the port, such as \"80,8001:8010\". |\n| hostname | H | The host name impacted by traffic. `hostname` and `ip` cannot be empty at the same time. When `hostname` and `ip` are set at the same time, the configuration item affects both the specified `hostname` and `ip`. | string, such as \"chaos-mesh.org\". |\n| ip | i | The IP address impacted by egress traffic. `hostname` and `ip` cannot be empty at the same time. When `hostname` and `ip` are set at the same time, the configuration item affects both the specified `hostname` and `ip`. | string, such as \"123.123.123.123\". |\n| jitter | j | Range of the length of network delay time. | string. The time units can be: ns, us (µs), ms, s, m, h, such as \"1ms\". |\n| latency | l | Length of network delay time. | string. The time units can be: ns, us (μs), ms, s, m, h, such as \"1ms\". |\n| protocol | p | The IP protocol impacted by traffic. | string. It supports the following protocol types: \"tcp\", \"udp\", \"icmp\", \"all\" (all network protocols). |\n| source-port | s | The egress traffic that only impacts specified source ports. It can only be configured when the protocol is TCP or UDP. | string. You need to use a `,` to separate the specific port or to indicate the range of the port, such as \"80,8001:8010\". |",
+      "source_content_hash": "c2729d30cba6ecc40f1042171030d60b7d5fa7b4e097615db31d164abb127f34",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_51c5cf39"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "08f73f73",
+      "source_content": "#### Example for simulating network latency using the command-line mode",
+      "source_content_hash": "22e3e99f5650b9f84d4b4b5048f45e0eec3bcf55a7c4e3cec30f6efec7381301",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用命令列模式模擬網路延遲範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b08ad0b4",
+      "source_content": "Run the following command to simulate network latency:",
+      "source_content_hash": "cdf07cf1dfb09e62c26dab6880161be1bec44d5c03d5aad259a080b1c08b3957",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下指令模擬網路延遲："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "90c0aa8a",
+      "source_content": "```bash\nchaosd attack network delay -d eth0 -i 172.16.4.4 -l 10ms\n```",
+      "source_content_hash": "d97b5338d6b52ea6d695c2f70a493069be06375fd42ed9d6e163c2c02d230da5",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_90c0aa8a"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "85ea22dd",
+      "source_content": "If the command runs successfully, the output is as follows:",
+      "source_content_hash": "8021cdf24a4cb3ae634fffa14dc0ce05a8a29fe9cf9b75eaf5f213da2e85094e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若指令執行成功，輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9bc650e1",
+      "source_content": "```bash\nAttack network successfully, uid: 4b23a0b5-e193-4b27-90a7-3e04235f32ab\n```",
+      "source_content_hash": "9cf937768d813a3a3597198eb6c766f31a39c5883f7d7e7fbf747617011519cd",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9bc650e1"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c66e62ef",
+      "source_content": "### Simulate network duplication using the command-line mode",
+      "source_content_hash": "70e357417e30d81c9b687a553a5a7e414a849c5210d22d18cc68baf64426b5f7",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式模擬網路重複傳輸"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fe25bd72",
+      "source_content": "You can run the command below to see the configuration of simulated network duplication using Chaosd.",
+      "source_content_hash": "6045c3aec442b37ceb53c24fd971b13e86e9f86f2c851410f87a295106160d34",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可執行以下指令查看 Chaosd 模擬網路重複傳輸的配置。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "188a0310",
+      "source_content": "#### The command for network duplication",
+      "source_content_hash": "a1982362451493d026182b79f641ca2f400efbd31fa0ea0c2da422c4b5a52743",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路重複傳輸指令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5cf1bce4",
+      "source_content": "The command is as follows:",
+      "source_content_hash": "e14ccfbe6a673e405ebd668fc44cab8945f780ed2ed9ef5d7219a826db7209c2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "指令如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d7c0a6db",
+      "source_content": "```bash\nchaosd attack network duplicate --help\n```",
+      "source_content_hash": "5ff82514b56e96c8a91dccdad1409d1d1f2f5f3dde00f46b6c1781f36ee517e5",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d7c0a6db"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b27c61de",
+      "source_content": "The output is as follows:",
+      "source_content_hash": "e393a74ababf246af54d3aaa19b45a8f23cc8470c3659248fb33a6888578f447",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "de34d0f2",
+      "source_content": "```bash\nduplicate network packet\n\nUsage:\n  chaosd attack network duplicate [flags]\n\nFlags:\n  -c, --correlation string   correlation is percentage (10 is 10%) (default \"0\")\n  -d, --device string        the network interface to impact\n  -e, --egress-port string   only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. It can only be used in conjunction with -p tcp or -p udp\n  -h, --help                 help for duplicate\n  -H, --hostname string      only impact traffic to these hostnames\n  -i, --ip string            only impact egress traffic to these IP addresses\n      --percent string       percentage of packets to duplicate (10 is 10%) (default \"1\")\n  -p, --protocol string      only impact traffic using this IP protocol, supported: tcp, udp, icmp, all\n  -s, --source-port string   only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. It can only be used in conjunction with -p tcp or -p udp\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n```",
+      "source_content_hash": "4dc5c02f6a7aa1989075cc7f1f4b6490cb11e2899587ed59120b3ba130e7e411",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_de34d0f2"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "be106497",
+      "source_content": "#### Configuration items related to network duplication",
+      "source_content_hash": "29bec509eec372624a42424229861648ab32444e29dddf6703198462109339dc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路重複傳輸相關配置項目"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c277c3c0",
+      "source_content": "The related configuration items are described as follows:",
+      "source_content_hash": "b219033739ec1bd7e5f522138d9647a6c4e71d91b049110404082652c74547ca",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "相關配置項目說明如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "17216594",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| correlation | c | The correlation between the percentage of current duplication occurrence and the previous one. | string. It is a percentage which range is 0 to 100 (10 is 10%) (default \"0\"). |\n| device | d | Name of the impacted network interface card. | string, such as \"eth0\", required. |\n| egress-port | e | The egress traffic that only impacts specified destination ports. It can only be configured when the protocol is TCP or UDP. | string. You need to use a `,` to separate the specific port or to indicate the range of the port, such as \"80,8001:8010\". |\n| hostname | H | The host name impacted by traffic. `hostname` and `ip` cannot be empty at the same time. When `hostname` and `ip` are set at the same time, the configuration item affects both the specified `hostname` and `ip`. | string, such as \"chaos-mesh.org\". |\n| ip | i | The IP address impacted by egress traffic. `hostname` and `ip` cannot be empty at the same time. When `hostname` and `ip` are set at the same time, the configuration item affects both the specified `hostname` and `ip`. | string, such as \"123.123.123.123\". |\n| percent | N/A | Ratio of network packet duplicate. | string. It is a percentage which range is 0 to 100 (10 is 10%) (default \"1\"). |\n| protocol | p | The IP protocol impacted by traffic. | string. It supports the following protocol types: \"tcp\", \"udp\", \"icmp\", \"all\" (all network protocols). |\n| source-port | s | The egress traffic which only impact specific source ports. It can only be configured when the protocol is TCP or UDP. | string. You need to use a `,` to separate the specific port or to indicate the range of the port, such as \"80,8001:8010\". |",
+      "source_content_hash": "cf22cb8dacdb892cfcfb4f1a5d122a099b005c6e288b0f5acd299b0707d5adbc",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_17216594"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "79f90fe4",
+      "source_content": "#### Example for simulating network duplication using the command-line mode",
+      "source_content_hash": "0f640583334a1cca866f3e2b7651fe498cabe93094d6062bb1c77e4cc0c8040e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用命令列模式模擬網路重複傳輸範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "85b17c36",
+      "source_content": "Run the following command to simulate network duplication:",
+      "source_content_hash": "0053bb1332fd6984a141bc51ebd8a18e1a4794778f4eed9e99757a8b12bffc57",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下指令模擬網路重複傳輸："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d1a6eaaa",
+      "source_content": "```bash\nchaosd attack network duplicate -d eth0 -i 172.16.4.4 --percent 50\n```",
+      "source_content_hash": "620d3fb98b50fbe80228852e23b24e0bf8eeaa0f37491302092f82fc0a9fc68c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d1a6eaaa"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ba12acea",
+      "source_content": "If the command runs successfully, the output is as follows:",
+      "source_content_hash": "8021cdf24a4cb3ae634fffa14dc0ce05a8a29fe9cf9b75eaf5f213da2e85094e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若指令執行成功，輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9d31dc8f",
+      "source_content": "```bash\nAttack network successfully, uid: 7bcb74ee-9101-4ae4-82f0-e44c8a7f113c\n```",
+      "source_content_hash": "cf2aa07028cb81dc4f8c96dc9a02f81fdfddae5b16146ae2b895942a0e4f7f3a",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9d31dc8f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a9950191",
+      "source_content": "### Simulate network loss using the command-line mode",
+      "source_content_hash": "e653976a4d1987e7f07828bc6de275bf6dca88cdd7ec91641efafb711150b1f3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式模擬網路丟包"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d3f13bf4",
+      "source_content": "You can run the command below to see the configuration of simulated network loss using Chaosd:",
+      "source_content_hash": "8fa594ddbac98784624944acbc963a849b0eb6a701fca42f035a7b7273009357",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可執行以下指令查看 Chaosd 模擬網路丟包的配置："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "13095ea3",
+      "source_content": "#### The command for network loss",
+      "source_content_hash": "5d9a34c57c54cfb09b69f091e87f9c2dfc3dbf4e39ed4a747f2f9684931cf019",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路丟包指令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b0c30ab4",
+      "source_content": "The command is as follows:",
+      "source_content_hash": "e14ccfbe6a673e405ebd668fc44cab8945f780ed2ed9ef5d7219a826db7209c2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "指令如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fc50cfb2",
+      "source_content": "```bash\nchaosd attack network loss --help\n```",
+      "source_content_hash": "10bf502e6fe04384e4a5f8e2e7e740c096ddd59166a3de23b951e0c0217e84d5",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_fc50cfb2"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5d3138c7",
+      "source_content": "The output is as follows:",
+      "source_content_hash": "e393a74ababf246af54d3aaa19b45a8f23cc8470c3659248fb33a6888578f447",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7b9b1777",
+      "source_content": "```bash\nloss network packet\n\nUsage:\n  chaosd attack network loss [flags]\n\nFlags:\n  -c, --correlation string   correlation is percentage (10 is 10%) (default \"0\")\n  -d, --device string        the network interface to impact\n  -e, --egress-port string   only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. It can only be used in conjunction with -p tcp or -p udp\n  -h, --help                 help for loss\n  -H, --hostname string      only impact traffic to these hostnames\n  -i, --ip string            only impact egress traffic to these IP addresses\n      --percent string       percentage of packets to drop (10 is 10%) (default \"1\")\n  -p, --protocol string      only impact traffic using this IP protocol, supported: tcp, udp, icmp, all\n  -s, --source-port string   only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. It can only be used in conjunction with -p tcp or -p udp\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n```",
+      "source_content_hash": "3d3f7cf0b511e8764daaf10b8be53706d4f0fd51551381cbfdbe3cfd092f56ed",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7b9b1777"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "73eb56bc",
+      "source_content": "#### Configuration items related to network loss",
+      "source_content_hash": "9dad5e5c0e3199f9c058a3515f755624e9caa950164a449b0851bcbf5f7b109b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路丟包相關配置項"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e962484d",
+      "source_content": "The related configuration items are described as follows:",
+      "source_content_hash": "b219033739ec1bd7e5f522138d9647a6c4e71d91b049110404082652c74547ca",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "相關配置項說明如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "85829b62",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| correlation | c | The correlation between the percentage of the current network loss and the previous one. | string. It is a percentage which range is 0 to 100 (10 is 10%) (default \"0\"). |\n| device | d | Name of the impacted network interface card. | string, such as \"eth0\", required. |\n| egress-port | e | The egress traffic that only impacts specified destination ports. It can only be configured when the protocol is TCP or UDP. | string. You need to use a `,` to separate the specific port or to indicate the range of the port, such as \"80,8001:8010\". |\n| hostname | H | The host name impacted by traffic. `hostname` and `ip` cannot be empty at the same time. When `hostname` and `ip` are set at the same time, the configuration item affects both the specified `hostname` and `ip`. | string, such as \"chaos-mesh.org\". |\n| ip | i | The IP address impacted by egress traffic. `hostname` and `ip` cannot be empty at the same time. When `hostname` and `ip` are set at the same time, the configuration item affects both the specified `hostname` and `ip`. | string, such as \"123.123.123.123\". |\n| percent | N/A | Ratio of network packet loss. | string. It is a percentage which range is 0 to 100 (10 is 10%) (default \"1\"). |\n| protocol | p | Only impact traffic using this IP protocol. | string. It supports the following protocol types: \"tcp\", \"udp\", \"icmp\", \"all\" (all network protocols). |\n| source-port | s | The egress traffic which only impact specific source ports. It can only be configured when the protocol is TCP or UDP. | string. You need to use a `,` to separate the specific port or to indicate the range of the port, such as \"80,8001:8010\". |",
+      "source_content_hash": "27bd6dada3f267d8ca0149c9a131800b05a8c967ed3938c1234a2867091c82b8",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_85829b62"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a99db0f6",
+      "source_content": "#### Example for simulating network loss using the command-line mode",
+      "source_content_hash": "036a1df29b1c12e82d704cfd95b9ca7e6e7f0fd571a85ab53036ebfe587969bb",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 命令列模式模擬網路丟包範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2ab62b74",
+      "source_content": "Run the following command to simulate network loss:",
+      "source_content_hash": "bb23132d5a3b713a3e9ff3d8362beb0215d6e292fca52ae262b9b3ce071e854d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下指令模擬網路丟包："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6c91a0a1",
+      "source_content": "```bash\nchaosd attack network loss -d eth0 -i 172.16.4.4 --percent 50\n```",
+      "source_content_hash": "64c019168bd7e8a77ebf3b01910a7cf19edca8328862e82ae337ff1f11641552",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6c91a0a1"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8517ac25",
+      "source_content": "If the command runs successfully, the output is as follows:",
+      "source_content_hash": "8021cdf24a4cb3ae634fffa14dc0ce05a8a29fe9cf9b75eaf5f213da2e85094e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若指令執行成功，輸出結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9b048e5d",
+      "source_content": "```bash\nAttack network successfully, uid: 1e818adf-3942-4de4-949b-c8499f120265\n```",
+      "source_content_hash": "6e895a93b6e82081c0ec91881b6e4a7343d5415114052b30ee2b15e099bb49f8",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9b048e5d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d087570f",
+      "source_content": "### Simulate network partition using the command-line mode",
+      "source_content_hash": "2062997b60a42203b09510e87df5c5a55e9cc43a63bbd6c5d960cf296e0b1515",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 命令列模式模擬網路分割"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1f92e934",
+      "source_content": "You can run the command below to see the configuration of simulated network partition using Chaosd.",
+      "source_content_hash": "fc717935e4c6b43d3c64fe3f51b7fc5d7676f18e7d895240f4a72eeb125eb652",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可執行以下指令查看 Chaosd 模擬網路分割的配置："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "92d715c2",
+      "source_content": "#### The command for network partition",
+      "source_content_hash": "f2ddc962b33749c5750129a5aa620605c04de6dcb22a578d1fb1810e323f0105",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路分割指令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "83d7d3bc",
+      "source_content": "The command is as follows:",
+      "source_content_hash": "e14ccfbe6a673e405ebd668fc44cab8945f780ed2ed9ef5d7219a826db7209c2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "指令如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f24a5721",
+      "source_content": "```bash\nchaosd attack network partition --help\n```",
+      "source_content_hash": "becece31eb53abb8f01c16173e7ba8a0729f46705b717b102a9412448934e57d",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_f24a5721"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b8954ec9",
+      "source_content": "The output is as follows:",
+      "source_content_hash": "e393a74ababf246af54d3aaa19b45a8f23cc8470c3659248fb33a6888578f447",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e0b4ec91",
+      "source_content": "```bash\npartition\n\nUsage:\n  chaosd attack network partition [flags]\n\nFlags:\n      --accept-tcp-flags string   only the packet which match the tcp flag can be accepted, others will be dropped. only set when the protocol is tcp.\n  -d, --device string             the network interface to impact\n      --direction string          specifies the partition direction, values can be 'to', 'from' or 'both'. 'from' means packets coming from the 'IPAddress' or 'Hostname' and going to your server, 'to' means packets originating from your server and going to the 'IPAddress' or 'Hostname'. (default \"both\")\n  -h, --help                      help for partition\n  -H, --hostname string           only impact traffic to these hostnames\n  -i, --ip string                 only impact egress traffic to these IP addresses\n  -p, --protocol string           only impact traffic using this IP protocol, supported: tcp, udp, icmp, all\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "b7bf79e95603afdf2209260cddb618a604ad34259530f0b4fcb5aa636485a244",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_e0b4ec91"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e85288f7",
+      "source_content": "#### Configuration items related to network partition",
+      "source_content_hash": "b02031f2a87b29c5935a34bf704f68a9859fe384f6e5c8bb6cf0dc8e75b0bc11",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路分割相關配置項"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f10c482a",
+      "source_content": "The related configuration items are described as follows:",
+      "source_content_hash": "b219033739ec1bd7e5f522138d9647a6c4e71d91b049110404082652c74547ca",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "相關配置項說明如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "12788e21",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| accept-tcp-flags | N/A | Only the packet which matches the tcp flag can be accepted, others will be dropped. Only set when the protocol is tcp. | string, such as \"SYN,ACK SYN,ACK\" |\n| device | d | the network interface to impact | string, such as \"eth0\", required |\n| direction | d | Specifies the partition direction, values can be 'to', 'from' or 'both'. 'from' means packets coming from the 'ip' or 'hostname' and going to your server, 'to' means packets originating from your server and going to the 'ip' or 'hostname'. | string, values can be \"to\", \"from\" or \"both\" (default \"both\") |\n| hostname | H | Only impact traffic to these hostnames. `hostname` and `ip` cannot be empty at the same time. When `hostname` and `ip` are set at the same time, the configuration item affects both the specified `hostname` and `ip`. | string, such as \"chaos-mesh.org\". |\n| ip | i | Only impact egress traffic to these IP addresses. `hostname` and `ip` cannot be empty at the same time. When `hostname` and `ip` are set at the same time, the configuration item affects both the specified `hostname` and `ip`. | string, such as \"192.168.123.123\". |\n| protocol | p | Only impact traffic using this IP protocol | string. It supports the following protocol types: \"tcp\", \"udp\", \"icmp\", \"all\" (all network protocols). |",
+      "source_content_hash": "347c0bca9feb06e1a6940154dab8cdc0a1ac50fe2d04329686ccc923bdef6edb",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_12788e21"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "74f95bc3",
+      "source_content": "#### Example for simulating network partition using the command-line mode",
+      "source_content_hash": "f41ae2b2534ac11e80beb904d338bd6cdec9b89227495af924ff15df4d5e580b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 命令列模式模擬網路分割範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0274aeec",
+      "source_content": "Run the following command to simulate network partition:",
+      "source_content_hash": "c50c21a378b342cc31cc47ad1eb8218ca6ce3e6cbd1ff7ed9dd7dd4b75ec81a4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下指令模擬網路分割："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "99afeceb",
+      "source_content": "```bash\nchaosd attack network partition -i 172.16.4.4 -d eth0 --direction from\n```",
+      "source_content_hash": "0dd3b47b7531260c4f1f087b8ed6d32ff3b8d65d6f86f6baec79373308d52801",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_99afeceb"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ef0eaf79",
+      "source_content": "### Simulate DNS fault using the command-line mode",
+      "source_content_hash": "7c5151da5debd505c0f787b924f48d560fcf78d9bfc0ea97cf807b4c09c8cd4d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 命令列模式模擬 DNS 故障"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "227b5df5",
+      "source_content": "You can run the command below to see the configuration of simulated DNS fault using Chaosd.",
+      "source_content_hash": "11e112ef3cbbad8f510a375abd981e576b551b30825e6e28871c56384087629f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可執行以下指令查看 Chaosd 模擬 DNS 故障的配置："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d15a149c",
+      "source_content": "#### The command for DNS fault",
+      "source_content_hash": "a0fa4e8f6a69affdc17c3423cdc6102d5bdc185e039b68611dc233e41eb82762",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### DNS 故障指令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b41b4d77",
+      "source_content": "The command is as follows:",
+      "source_content_hash": "e14ccfbe6a673e405ebd668fc44cab8945f780ed2ed9ef5d7219a826db7209c2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "指令如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b4d188d4",
+      "source_content": "```bash\nchaosd attack network dns --help\n```",
+      "source_content_hash": "466ceb59133b2bd2b1567d09291ab0169fcf1974536d1c00880cecc7795f8fc3",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b4d188d4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b0c7a884",
+      "source_content": "The output is as follows:",
+      "source_content_hash": "e393a74ababf246af54d3aaa19b45a8f23cc8470c3659248fb33a6888578f447",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d965316f",
+      "source_content": "```bash\nattack DNS server or map specified host to specified IP\n\nUsage:\n  chaosd attack network dns [flags]\n\nFlags:\n  -d, --dns-domain-name string   map this host to specified IP\n  -i, --dns-ip string            map specified host to this IP address\n      --dns-server string        update the DNS server in /etc/resolv.conf with this value (default \"123.123.123.123\")\n  -h, --help                     help for dns\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "283a34e3e21e65d0d59af11649863ac065e15e8373bd817cb4059456196a6103",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d965316f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "811ba0cd",
+      "source_content": "#### Configuration items related to DNS fault",
+      "source_content_hash": "9789374da6976804db3fac8c98735c5d4a5855a14970c599006759eec015b546",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### DNS 故障相關配置項"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "639926e9",
+      "source_content": "The related configuration items are described as follows:",
+      "source_content_hash": "b219033739ec1bd7e5f522138d9647a6c4e71d91b049110404082652c74547ca",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "相關配置項說明如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "942e483d",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| dns-domain-name | d | Map this host to specified IP(dns-ip) | string, such as \"chaos-mesh.org\". |\n| dns-ip | i | Map specified host(dns-domain-name) to this IP address | string, such as \"123.123.123.123\" |\n| dns-server | N/A | Update the DNS server in /etc/resolv.conf with this value | string, default is \"123.123.123.123\" |",
+      "source_content_hash": "ffe139e36a6f970a0ab340cc9d2b6c15347d9f7156a4745af2799492dbfca1e1",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_942e483d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5d1aec8a",
+      "source_content": "#### Example for simulating DNS fault using the command-line mode",
+      "source_content_hash": "f7f8f4b2df663c7692433d6f4ae393a4e522119643fc8b07402fc9b39f547d17",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 命令列模式模擬 DNS 故障範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ff95ec03",
+      "source_content": "Run the following command to simulate DNS fault by mapping specified host to specified IP:",
+      "source_content_hash": "0c37ed9549ddbc053ff514735bf704e6fd083ecc98e6072af66513d40890a3ed",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下指令將指定主機映射至指定 IP 來模擬 DNS 故障："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7d792611",
+      "source_content": "```bash\nchaosd attack network dns --dns-ip 123.123.123.123 --dns-domain-name chaos-mesh.org\n```",
+      "source_content_hash": "7048969a1dca959422780b31e22423f2b056cf371e668dd74796b851ae93971e",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7d792611"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "94a47b80",
+      "source_content": "Run the following command to simulate DNS fault by using wrong DNS server:",
+      "source_content_hash": "cb9735a660e39184b893bed968d0fe53fa44dff6b0b43520fcadb50a3c3ec013",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下指令使用錯誤 DNS 伺服器模擬 DNS 故障："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9f4bf2e5",
+      "source_content": "```bash\nchaosd attack network dns --dns-server 123.123.123.123\n```",
+      "source_content_hash": "4a50a82b49ef6766a1aa98f3f0df0f04fd91ed9bf8231f8ae9cbb8ee67e17cc0",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9f4bf2e5"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a7b21ac5",
+      "source_content": "### Simulate network bandwidth using the command-line mode",
+      "source_content_hash": "f664252059b72562ab5ab6c79bf94f16e6defc8a268119fe382e053adcda8e0b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 命令列模式模擬網路頻寬"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "250c20ca",
+      "source_content": "You can run the command below to see the configuration of simulated network bandwidth using Chaosd.",
+      "source_content_hash": "ff561dbd040c8fd82c8de117a197c44bea7d9d2876122a1f53c8093b8c64e8b6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可執行以下指令查看 Chaosd 模擬網路頻寬的配置："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a29cafe0",
+      "source_content": "#### The command for network bandwidth",
+      "source_content_hash": "3c22ebd5d7750b1780fa3a59b4166ac51ba920e551f1355385042b94f453807c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路頻寬指令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "033308da",
+      "source_content": "The command is as follows:",
+      "source_content_hash": "e14ccfbe6a673e405ebd668fc44cab8945f780ed2ed9ef5d7219a826db7209c2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "指令如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0e8f4883",
+      "source_content": "```bash\nchaosd attack network bandwidth --help\n```",
+      "source_content_hash": "68407ec830eb6fadebc3092aa88d4109920f58abfa2a04ffccea232ac9ebec4e",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_0e8f4883"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ac91a2d7",
+      "source_content": "The output is as follows:",
+      "source_content_hash": "e393a74ababf246af54d3aaa19b45a8f23cc8470c3659248fb33a6888578f447",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "51315946",
+      "source_content": "```bash\nlimit network bandwidth\n\nUsage:\n  chaosd attack network bandwidth [flags]\n\nFlags:\n  -b, --buffer uint32     the maximum amount of bytes that tokens can be available for instantaneously\n  -d, --device string     the network interface to impact\n  -h, --help              help for bandwidth\n  -H, --hostname string   only impact traffic to these hostnames\n  -i, --ip string         only impact egress traffic to these IP addresses\n  -l, --limit uint32      the number of bytes that can be queued waiting for tokens to become available\n  -m, --minburst uint32   specifies the size of the peakrate bucket\n      --peakrate uint     the maximum depletion rate of the bucket\n  -r, --rate string       the speed knob, allows bps, kbps, mbps, gbps, tbps unit. bps means bytes per second\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "d67f14ed75b0dbac02bcb69ee5584be8c43a1117a81d2398f5a69adb8b3ccdf6",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_51315946"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "65863fe2",
+      "source_content": "#### Configuration items related to network bandwidth",
+      "source_content_hash": "1b5e79b8ce257abde9e4d883d719a6475f764b5f8b4a2e357e3013fc2051e385",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 網路頻寬相關配置項"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "db871df4",
+      "source_content": "The related configuration items are described as follows:",
+      "source_content_hash": "b219033739ec1bd7e5f522138d9647a6c4e71d91b049110404082652c74547ca",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "相關配置項說明如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ce2d0eb2",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| buffer | b | The maximum amount of bytes that tokens can be available for instantaneously | int, such as `10000`, required |\n| device | d | The network interface to impact | string, such as \"eth0\", required |\n| hostname | H | Only impact traffic to these hostnames. `hostname` and `ip` cannot be empty at the same time. When `hostname` and `ip` are set at the same time, the configuration item affects both the specified `hostname` and `ip`. | string, such as \"chaos-mesh.org\". |\n| ip | i | Only impact egress traffic to these IP addresses. `hostname` and `ip` cannot be empty at the same time. When `hostname` and `ip` are set at the same time, the configuration item affects both the specified `hostname` and `ip`. | string, such as \"123.123.123.123\". |\n| limit | l | The number of bytes that can be queued waiting for tokens to become available | int, such as `10000`, required |\n| minburst | `m` | Specifies the size of the peakrate bucket | int, such as `10000` |\n| peakrate | N/A | The maximum depletion rate of the bucket | int, such as `10000` |\n| rate | r | The speed knob, allows bps, kbps, mbps, gbps, tbps unit. The bps unit means bytes per second. | string, such as \"1mbps\", required |",
+      "source_content_hash": "c7cf48bf26235dc041ae8f04dc3d35db390f03fcb6b5ddc396250300c71d7654",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ce2d0eb2"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3551e936",
+      "source_content": "#### Example for simulating network bandwidth using the command-line mode",
+      "source_content_hash": "195ac06dffef6e0ce8e15f603271356cb457271da8d66964ca11518770987dee",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 命令列模式模擬網路頻寬範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ebe19e6f",
+      "source_content": "Run the following command to simulate network bandwidth:",
+      "source_content_hash": "85881e2ed19c87dc1c226d4294962202cf605ac6f695dc447c25dcfbdfed3f33",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下指令模擬網路頻寬："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a0d841d7",
+      "source_content": "```bash\nchaosd attack network bandwidth --buffer 10000 --device eth0 --limit 10000 --rate 10mbps\n```",
+      "source_content_hash": "8d1fe2b4ba7b012eea0c41b0aefc8a5d5c1680a49a58f74f08ee60d7333666a5",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a0d841d7"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "841204f6",
+      "source_content": "### Simulate port occupation using the command-line mode",
+      "source_content_hash": "b588245a1f9d6ec1ab5ae0985431731129432a760f29c2e1f911b8c968925142",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 命令列模式模擬端口佔用"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ae95f665",
+      "source_content": "You can run the command below to see the configuration of simulated port occupation.",
+      "source_content_hash": "419459c7244d3c73b573f0c96bc979594e2617f4a78a2a13da3b5f452a610664",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可執行以下指令查看模擬端口佔用的配置："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c5ae9e2c",
+      "source_content": "#### The command for port occupation",
+      "source_content_hash": "aa168dd630fae09ca8cf321df531ceb44093f1465712351f670abd2b6f07a505",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 端口佔用指令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bc1752c9",
+      "source_content": "The command is as follows:",
+      "source_content_hash": "e14ccfbe6a673e405ebd668fc44cab8945f780ed2ed9ef5d7219a826db7209c2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "指令如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "816ae405",
+      "source_content": "```bash\nchaosd attack network port --help\n```",
+      "source_content_hash": "77f95d8570217de669db953b9eb1be23ee5f775d50dce9de5914b55357078cbe",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_816ae405"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cbbdf094",
+      "source_content": "The output is as follows:",
+      "source_content_hash": "e393a74ababf246af54d3aaa19b45a8f23cc8470c3659248fb33a6888578f447",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "輸出結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "de546337",
+      "source_content": "```bash\nattack network port\n\nUsage:\n  chaosd attack network port [flags]\n\nFlags:\n  -h, --help          help for port\n  -p, --port string   this specified port is to occupied\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "e2d4b5b18abb8f10924077ae3f2daf94ef21b9d3f22f0f38c58cd80aa713c4c9",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_de546337"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "22e907f5",
+      "source_content": "#### Configuration items related to port occupation",
+      "source_content_hash": "e9d1442065b8b4be34ada25ec414b82d4b7a2a7082e999fe25fd7722432c6c70",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 端口佔用相關配置項"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0cfab7d6",
+      "source_content": "The related configuration items are described as follows:",
+      "source_content_hash": "b219033739ec1bd7e5f522138d9647a6c4e71d91b049110404082652c74547ca",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "相關配置項說明如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "238091ca",
+      "source_content": "| Configuration item | Abbreviation | Description                       | Value                       |\n| :----------------- | :----------- | :-------------------------------- | :-------------------------- |\n| port               | p            | The specified port to be occupied | int, such as 8080, required |",
+      "source_content_hash": "48f1f57f336d26689afad5062c3dbca1e11ee657d7ff95c176d8117445e5ec93",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_238091ca"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "abda6bdf",
+      "source_content": "#### Example for simulating port occupation using the command-line mode",
+      "source_content_hash": "7b4cfb2bf0a9270ffe240ca562000c4fe2ebb48c80054bd49f2f090e389edaa9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 命令列模式模擬端口佔用範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d5059db6",
+      "source_content": "Run the following command to simulate network bandwidth:",
+      "source_content_hash": "85881e2ed19c87dc1c226d4294962202cf605ac6f695dc447c25dcfbdfed3f33",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行以下指令以模擬網路頻寬限制："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9ba63803",
+      "source_content": "```bash\nchaosd attack network port --port 8080\n```",
+      "source_content_hash": "8da095759b174ceb6cc802e78939b82f8e0e1b6ca60dc33d2eabe970cb031dd6",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9ba63803"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3a8e718b",
+      "source_content": "## Create network fault experiments using service mode",
+      "source_content_hash": "b94e5068cb77c43a62cc2eee941dfbda9d162bbb957991c0d270a2edbe49a02d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用服務模式建立網路故障實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7b046f1b",
+      "source_content": "To create experiments using the service mode, follow the instructions below:",
+      "source_content_hash": "730e9766ed6188cf20ad25677e3237e8c03f2b6f8b03ae8e712f0a97e475b6e4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要使用服務模式建立實驗，請遵循以下說明："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ad65442f",
+      "source_content": "1. Run Chaosd in the service mode:\n\n   ```bash\n   chaosd server --port 31767\n   ```",
+      "source_content_hash": "a7a0cffab3b474db67fd57185d4e0d82872bbf47d68713429c067bf874b71392",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 在服務模式下執行 Chaosd：\n\n   ```bash\n   chaosd server --port 31767\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5fce6574",
+      "source_content": "2. Send a `POST` HTTP request to the `/api/attack/process` path of the Chaosd service.\n\n   ```bash\n   curl -X POST 172.16.112.130:31767/api/attack/process -H \"Content-Type:application/json\" -d '{fault-configuration}'\n   ```\n\n   In the above command, you need to configure `fault-configuration` according to the fault types. For the corresponding parameters, refer to the parameters and examples of each fault type in the following sections.",
+      "source_content_hash": "92c87015298ccfbd715e84d7a78cd74204b0835926a225d9f0c7a923582a68fb",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "2. 向 Chaosd 服務的 `/api/attack/process` 路徑發送 `POST` HTTP 請求：\n\n   ```bash\n   curl -X POST 172.16.112.130:31767/api/attack/process -H \"Content-Type:application/json\" -d '{fault-configuration}'\n   ```\n\n   在上述指令中，您需要根據故障類型配置 `fault-configuration`。對應參數請參考後續章節中各故障類型的參數說明與範例。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`POST`', Translation: '`/api/attack/process`'.",
+          "timestamp": "2025-07-04T06:49:59.306908+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "b7d32b99",
+      "source_content": ":::note\n\nWhen running an experiment, remember to record the UID of the experiment. When you want to end the experiment corresponding to the UID, you need to send a `DELETE` HTTP request to the `/api/attack/{uid}` path of the Chaosd service.\n\n:::",
+      "source_content_hash": "7c57fd60c1e2cb3853d3c4c77af10c3900650c1f00a9dea43efcd39ed7ae3b10",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::note\n\n執行實驗時，請務必記錄實驗的 UID。當您要終止對應 UID 的實驗時，需向 Chaosd 服務的 `/api/attack/{uid}` 路徑發送 `DELETE` HTTP 請求。\n\n:::",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`DELETE`', Translation: '`/api/attack/{uid}`'.",
+          "timestamp": "2025-07-04T06:49:59.306936+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "e8e93efb",
+      "source_content": "### Simulate network corruption using the service mode",
+      "source_content_hash": "80e7f6be29c7d0e3a103da7cb0b1c523b05c4b32eaf586e4004b99e44a8cf514",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬網路損壞"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "03464bfb",
+      "source_content": "#### Parameters for simulating network corruption",
+      "source_content_hash": "f61bb4b3228c97e3e95f3a275a37ee59cf04e411cf095cd83ed29555665f528f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬網路損壞的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7cc62407",
+      "source_content": "| Parameter | Description | Value |\n| --- | --- | --- |\n| action | Action of the experiment. | set to \"corrupt\" |\n| correlation | The correlation between the current latency and the previous one. | string. It is a percentage ranging from 0 to 100 (10 is 10%) (\"0\" by default). |\n| device | Name of the impacted network interface card. | string, such as \"eth0\", required. |\n| egress-port | The egress traffic which only impact specific destination ports. It can only be configured when the protocol is TCP or UDP. | string. You need to use a `,` to separate the specific port or to indicate the range of the port, such as \"80,8001:8010\". |\n| hostname | The host name impacted by traffic. `hostname` and `ip-address` cannot be empty at the same time. when `hostname` and `ip-address` are set at the same time, the configuration item affects both the specified `hostname` and `ip-address`. | string, such as \"chaos-mesh.org\". |\n| ip-address | The IP address impacted by egress traffic. `hostname` and `ip-address` cannot be empty at the same time. when `hostname` and `ip-address` are set at the same time, the configuration item affects both the specified `hostname` and `ip-address`. | string, such as \"123.123.123.123\". |\n| ip-protocol | The IP protocol impacted by traffic. | string. Supported protocols: tcp, udp, icmp, all (all network protocols). |\n| source-port | The egress traffic which only impact specific source ports. It can only be configured when the protocol is TCP or UDP. | string. Use a `,` to delimit the specific port or to indicate the range of the ports, such as \"80,8001:8010\". |\n| percent | Ratio of network packet corruption. | string. It is a percentage which range is 0 to 100 (10 is 10%) (default \"1\"). |",
+      "source_content_hash": "5be5f088714e107685a06bfd6e43a9b95c60665cb7705d57658f01473d16e103",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7cc62407"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "75e008c1",
+      "source_content": "#### Example for simulating network corruption using the service mode",
+      "source_content_hash": "4458a1128794a9effe33a18ec8238c6286a9818aa09bacb92d8e3e90cd29773e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬網路損壞的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "77b670b1",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/network -H \"Content-Type:application/json\" -d '{\"action\":\"corrupt\",\"device\":\"eth0\",\"ip-address\":\"172.16.4.4\",\"percent\":\"50\"}'\n```",
+      "source_content_hash": "13c5d7439ccb56d570265cc978888f5198aee028a97987129870be58b026cfaa",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_77b670b1"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8744c122",
+      "source_content": "### Simulate network latency using the service mode",
+      "source_content_hash": "fd337bf994833667a2c93d20713092314fad077480a33441bad7137a365e91d1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬網路延遲"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2e4f8998",
+      "source_content": "#### Parameters for simulating network latency",
+      "source_content_hash": "b24b210b5bdb00e05ec6cc78975813a041d11b4b811e6bb2f29d64800c4529e0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬網路延遲的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "05719abd",
+      "source_content": "| Parameter | Description | Value |\n| --- | --- | --- |\n| action | Action of the experiment. | set to \"delay\" |\n| correlation | The correlation between the current latency and the previous one. | string. It is a percentage ranging from 0 to 100 (10 is 10%) (\"0\" by default). |\n| device | Name of the impacted network interface card. | string, such as \"eth0\", required. |\n| egress-port | The egress traffic which only impact specific destination ports. It can only be configured when the protocol is TCP or UDP. | string. You need to use a `,` to separate the specific port or to indicate the range of the port, such as \"80,8001:8010\". |\n| hostname | The host name impacted by traffic. `hostname` and `ip-address` cannot be empty at the same time. When `hostname` and `ip-address` are set at the same time, the configuration item affects both the specified `hostname` and `ip-address`. | string, such as \"chaos-mesh.org\". |\n| ip-address | The IP address impacted by egress traffic. `hostname` and `ip-address` cannot be empty at the same time. When `hostname` and `ip-address` are set at the same time, the configuration item affects both the specified `hostname` and `ip-address`. | string, such as \"123.123.123.123\". |\n| jitter | Range of the length of network delay time. | string. The time units can be: ns, us (µs), ms, s, m, h, such as \"1ms\". |\n| latency | Length of network delay time. | string. The time units can be: ns, us (μs), ms, s, m, h, such as \"1ms\". |\n| ip-protocol | The IP protocol impacted by traffic. | string. It supports the following protocol types: \"tcp\", \"udp\", \"icmp\", \"all\" (all network protocols). |\n| source-port | The egress traffic that only impacts specified source ports. It can only be configured when the protocol is TCP or UDP. | string. You need to use a `,` to separate the specific port or to indicate the range of the port, such as \"80,8001:8010\". |",
+      "source_content_hash": "34c13c0575903b2311da279ba83fca1a2d615a78c6e57453d720a2019724dce7",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_05719abd"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9697cbb",
+      "source_content": "#### Example for simulating network latency using the service mode",
+      "source_content_hash": "5e1f6bfc4042cc7dbf1b1d40a7d12f1c2cdd3bf14cf5ab96c6852007e41f1ae4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬網路延遲的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa353c25",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/network -H \"Content-Type:application/json\" -d '{\"action\":\"delay\",\"device\":\"eth0\",\"ip-address\":\"172.16.4.4\",\"latency\":\"10ms\"}'\n```",
+      "source_content_hash": "eb2a23f9389f5aa69e3dcbf98ec97d2e1d2536c4b03240eb667a2bc01dd0ff9b",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_aa353c25"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a3806a96",
+      "source_content": "### Simulate network duplication using the service mode",
+      "source_content_hash": "a6f21251af3a94f0578d4b52be7371893454af74bdb8bcebfb599eddfb74b1dc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬網路封包重複"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7f7d0ca9",
+      "source_content": "#### Parameters for simulating network duplication",
+      "source_content_hash": "ef6a94e31965a05719aed6bc23582a17fe111bfe26a1149ac53faac1f14c95c6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬網路封包重複的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "864e8b65",
+      "source_content": "| Parameter | Description | Value |\n| --- | --- | --- |\n| action | Action of the experiment. | set to \"duplicate\" |\n| correlation | The correlation between the percentage of current duplication occurrence and the previous one. | string. It is a percentage which range is 0 to 100 (10 is 10%) (default \"0\"). |\n| device | Name of the impacted network interface card. | string, such as \"eth0\", required. |\n| egress-port | The egress traffic that only impacts specified destination ports. It can only be configured when the protocol is TCP or UDP. | string. You need to use a `,` to separate the specific port or to indicate the range of the port, such as \"80,8001:8010\". |\n| hostname | The host name impacted by traffic. `hostname` and `ip-address` cannot be empty at the same time. when `hostname` and `ip-address` are set at the same time, the configuration item affects both the specified `hostname` and `ip-address`. | string, such as \"chaos-mesh.org\". |\n| ip-address | The IP address impacted by egress traffic. `hostname` and `ip-address` cannot be empty at the same time. when `hostname` and `ip-address` are set at the same time, the configuration item affects both the specified `hostname` and `ip-address`. | string, such as \"123.123.123.123\". |\n| percent | Ratio of network packet duplicate. | string. It is a percentage which range is 0 to 100 (10 is 10%) (default \"1\"). |\n| ip-protocol | The IP protocol impacted by traffic. | string. It supports the following protocol types: \"tcp\", \"udp\", \"icmp\", \"all\" (all network protocols). |\n| source-port | The egress traffic which only impact specific source ports. It can only be configured when the protocol is TCP or UDP. | string. You need to use a `,` to separate the specific port or to indicate the range of the port, such as \"80,8001:8010\". |",
+      "source_content_hash": "f5ce8238c0dd0aeadcbe4ef063f13949711e55d2e4a985a2a8643863301ee512",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_864e8b65"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "50c165cd",
+      "source_content": "#### Example for simulating network duplication using the service mode",
+      "source_content_hash": "199da2e9800bbfee6ce6b600db40f414a362f1066cad2d16c4b6b58d62652248",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬網路封包重複的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2c71ed3c",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/network -H \"Content-Type:application/json\" -d '{\"action\":\"duplicate\",\"ip-address\":\"172.16.4.4\",\"device\":\"eth0\",\"percent\":\"50\"}'\n```",
+      "source_content_hash": "0ee579d0cd2fd44f24aa8d7de7f25c6fc13f17a99e596945927d90778e24d951",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_2c71ed3c"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3652952e",
+      "source_content": "### Simulate network loss using the service mode",
+      "source_content_hash": "055073990c839dbf9ee91e6328a915f05b2287e35b4fad6342d714804d6e838e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬網路丟包"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5f403015",
+      "source_content": "#### Parameters for simulating network loss",
+      "source_content_hash": "9016a632924ccaf4d23ed2c46bc684d5715cc5de4b31070a26f9663d4a5b464b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬網路丟包的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "865b2b6b",
+      "source_content": "| Parameter | Description | Value |\n| --- | --- | --- |\n| action | Action of the experiment. | set to \"loss\" |\n| correlation | The correlation between the percentage of the current network loss and the previous one. | string, it is a percentage which range is 0 to 100 (10 is 10%) (default \"0\"). |\n| device | Name of the impacted network interface card. | string, such as \"eth0\", required. |\n| egress-port | The egress traffic that only impacts specified destination ports. It can only be configured when the protocol is TCP or UDP. | string. You need to use a `,` to separate the specific port or to indicate the range of the port, such as \"80,8001:8010\". |\n| hostname | The host name impacted by traffic. `hostname` and `ip-address` cannot be empty at the same time. when `hostname` and `ip-address` are set at the same time, the configuration item affects both the specified `hostname` and `ip-address`. | string, such as \"chaos-mesh.org\". |\n| ip-address | The IP address impacted by egress traffic. `hostname` and `ip-address` cannot be empty at the same time. when `hostname` and `ip-address` are set at the same time, the configuration item affects both the specified `hostname` and `ip-address`. | string, such as \"123.123.123.123\". |\n| percent | Ratio of network packet loss. | string. It is a percentage which range is 0 to 100 (10 is 10%) (default \"1\"). |\n| ip-protocol | Only impact traffic using this IP protocol. | string, it supports the following protocol types: \"tcp\", \"udp\", \"icmp\", \"all\" (all network protocols). |\n| source-port | The egress traffic which only impact specific source ports. It can only be configured when the protocol is TCP or UDP. | string. You need to use a `,` to separate the specific port or to indicate the range of the port, such as \"80,8001:8010\". |",
+      "source_content_hash": "12c3c8ab4417311290ffee4b5b11e149204f9f89ecc34e9d4f36894c781a8c16",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_865b2b6b"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "31962a34",
+      "source_content": "#### Example for simulating network loss using the service mode",
+      "source_content_hash": "83a049bf37f18194a7dd48dafa77c39c4c2bb350a5e2f55ca522a8e790511dd1",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬網路丟包的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "82a36dab",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/network -H \"Content-Type:application/json\" -d '{\"action\":\"loss\",\"ip-address\":\"172.16.4.4\",\"device\":\"eth0\",\"percent\":\"50\"}'\n```",
+      "source_content_hash": "1288bbc0471f3b475b21970bbc72e593b05fae79876839bfdacf34fa88f437cb",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_82a36dab"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "66b13e38",
+      "source_content": "### Simulate network partition using the service mode",
+      "source_content_hash": "291441533ade3978f429c7747f61c46cd93c4a930005e76a0190b1968cb03a90",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬網路分割"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "77dc047b",
+      "source_content": "#### Parameters for simulating network partition",
+      "source_content_hash": "70cfa9b67c8dd2b419d8991c03d0f64795f9736f9bbfc6938f4bb92c1b60601e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬網路分割的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "884fac69",
+      "source_content": "| Parameter | Description | Value |\n| --- | --- | --- |\n| action | Action of the experiment. | set to \"partition\" |\n| accept-tcp-flags | Only the packet which match the tcp flag can be accepted, others will be dropped. Only set when the protocol is tcp. | string, such as \"SYN,ACK SYN,ACK\" |\n| device | The network interface to impact | string, such as \"eth0\", required |\n| direction | Specifies the partition direction, values can be 'to', 'from' or 'both'. 'from' means packets coming from the 'ip-address' or 'hostname' and going to your server, 'to' means packets originating from your server and going to the 'ip-address' or 'hostname'. | string, values can be \"to\", \"from\" or \"both\" (default \"both\") |\n| hostname | Only impact traffic to these hostnames. `hostname` and `ip-address` cannot be empty at the same time. when `hostname` and `ip-address` are set at the same time, the configuration item affects both the specified `hostname` and `ip-address`. | string, such as \"chaos-mesh.org\". |\n| ip-address | Only impact egress traffic to these IP addresses. `hostname` and `ip-address` cannot be empty at the same time. when `hostname` and `ip-address` are set at the same time, the configuration item affects both the specified `hostname` and `ip-address`. | string, such as \"192.168.123.123\". |\n| ip-protocol | Only impact traffic using this IP protocol | string. It supports the following protocol types: tcp, udp, icmp, all (all network protocols). |",
+      "source_content_hash": "be8aa580271dcd1c1f1a89847b8e76dcc55f52c8b9b16052bbf802996bc77ca8",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_884fac69"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ac8a983d",
+      "source_content": "#### Example for simulating network partition using the service mode",
+      "source_content_hash": "82f5a27eccd2b0944a71a5ba531942a749dc5d757c1110dc64651044bdb98cbc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬網路分割的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf28054d",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/network -H \"Content-Type:application/json\" -d '{\"action\":\"partition\",\"ip-address\":\"172.16.4.4\",\"device\":\"eth0\",\"direction\":\"from\"}'\n```",
+      "source_content_hash": "20ab0e0e5346da3ab6869a8b57a5c31975c108691c39aa88d1f579f550817f1d",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_cf28054d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ba83a67",
+      "source_content": "### Simulate DNS fault using the service mode",
+      "source_content_hash": "c8a99d9d67d7c3cfcf12ad81cee88cabd9fbf2b772eb2ef7ccff48c5d2bca6bf",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬 DNS 故障"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dca946ac",
+      "source_content": "#### Parameters for simulating DNS fault",
+      "source_content_hash": "ce171075755d809c191c7ef5b0b412f6d100b0aba25ee9da05476df258214bd0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬 DNS 故障的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ca6845b8",
+      "source_content": "| Parameter | Description | Value |\n| --- | --- | --- |\n| action | Action of the experiment. | set to \"dns\" |\n| dns-domain-name | Map this host to specified IP(dns-ip) | string, such as \"chaos-mesh.org\". |\n| dns-ip | Map specified host(dns-domain-name) to this IP address | string, such as \"123.123.123.123\" |\n| dns-server | Update the DNS server in /etc/resolv.conf with this value | string, such as \"123.123.123.123\" (default \"123.123.123.123\") |",
+      "source_content_hash": "e752546e947b123a3112f53b24106dada892cd8c03c52da942774e174c8995bf",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ca6845b8"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a547ab9e",
+      "source_content": "#### Example for simulating DNS fault using the service mode",
+      "source_content_hash": "58ba612f39486ea5269e3a0bf881e2cb9ecc9e061066c8a3d528184f838ffd64",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬 DNS 故障的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "50216bc1",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/network -H \"Content-Type:application/json\" -d '{\"action\":\"dns\",\"dns-domain-name\":\"chaos-mesh.org\",\"dns-ip\":\"123.123.123.123\"}'\n```",
+      "source_content_hash": "818924e30e315af928e708550c99d91ae8f2bbbbc101573ef6959b6cd921ee6b",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_50216bc1"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfc5d601",
+      "source_content": "### Simulate network bandwidth using the service mode",
+      "source_content_hash": "bc68aa27a9da27cc6467a1d944d851df30e9640a2dbf70a34cc9d9917ee01ae3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬網路頻寬限制"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0a218f61",
+      "source_content": "#### Parameters for simulating network bandwidth",
+      "source_content_hash": "c5d3a010fd2f0c004bee5f2eba2f27602bf5b5396c0c41e4df38bd7768423d4d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬網路頻寬限制的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6009472d",
+      "source_content": "| Parameter | Description | Value |\n| --- | --- | --- |\n| action | Action of the experiment. | set to \"bandwidth\" |\n| buffer | The maximum amount of bytes that tokens can be available for instantaneously | int, such as `10000`, required |\n| device | The network interface to impact | string, such as \"eth0\", required |\n| hostname | Only impact traffic to these hostnames. `hostname` and `ip-address` cannot be empty at the same time. when `hostname` and `ip-address` are set at the same time, the configuration item affects both the specified `hostname` and `ip-address`. | string, such as \"chaos-mesh.org\". |\n| ip-address | Only impact egress traffic to these IP addresses. `hostname` and `ip-address` cannot be empty at the same time. When `hostname` and `ip-address` are set at the same time, the configuration item affects both the specified `hostname` and `ip-address`. | string, such as \"123.123.123.123\". |\n| limit | The number of bytes that can be queued waiting for tokens to become available | int, such as `10000`, required |\n| minburst | Specifies the size of the peakrate bucket | int, such as `10000` |\n| peakrate | The maximum depletion rate of the bucket | int, such as `10000` |\n| rate | The speed knob, allows bps, kbps, mbps, gbps, tbps unit. The bps unit means bytes per second. | string, such as \"1mbps\", required |",
+      "source_content_hash": "0b7e54bf24aaddb132293b6e3788ce8753f54396f47d158b54fca04ed32d2b8e",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6009472d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "00f1d343",
+      "source_content": "#### Example for simulating network bandwidth using the service mode",
+      "source_content_hash": "9841c52c9bb57159aaa8241c006d85dec1454ccd4609490ed019f02aca6ea756",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬網路頻寬限制的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f61b8321",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/network -H \"Content-Type:application/json\" -d '{\"action\":\"bandwidth\",\"buffer\":10000,\"limit\":10000,\"rate\":\"10mbps\",\"device\":\"eth0\"}'\n```",
+      "source_content_hash": "ed750160ad45f27078065f577a9ec5ad6f5c2dae42b3a752028e81668ba7ff31",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_f61b8321"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c1758d09",
+      "source_content": "### Simulate port occupation using the service mode",
+      "source_content_hash": "f92b920ba9bf66a909ad91a48f3cbc977c0762457469c12aaf1791f2ecaf07d6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬端口佔用"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7cbcfb2d",
+      "source_content": "#### Parameters for simulating port occupation",
+      "source_content_hash": "04e9cd10e3158838e744d1ef27f0e53aa70d4dc6cc12f3f9ba6e9a1e42e0e99a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬端口佔用的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b1d8e3b6",
+      "source_content": "| Parameter | Description                        | Value                       |\n| --------- | ---------------------------------- | --------------------------- |\n| action    | Action of the experiment.          | set to \"occupied\"           |\n| port      | The specified port to be occupied. | int, such as 8080, required |",
+      "source_content_hash": "feeb9c65c8a7bdf4b2e29816a86270b152781377d46eb644312c28ad25761ea7",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b1d8e3b6"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4d4c89ad",
+      "source_content": "#### Example for simulating port occupation using the service mode",
+      "source_content_hash": "7b0269ba11c9fb3bf87af754f054d7729a9c0a496859d8c04c8fc3709d088bca",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬端口佔用的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "905abbcd",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/network -H \"Content-Type:application/json\" -d '{\"action\":\"occupied\",\"port\":8080}'\n```",
+      "source_content_hash": "0a6a3f2100a92363a02ea0b7fe112e5d5e03f1f1372961dbfd5cfa5cb86f94c2",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_905abbcd"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/simulate-network-chaos-in-physical-nodes.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.306969+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "246d64ea7991d6bc1c9a90f342b4ddfa9a52ca55e166cadf54caf91895c76cad"
+  }
+}

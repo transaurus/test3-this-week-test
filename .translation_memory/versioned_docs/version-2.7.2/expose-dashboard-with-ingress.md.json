@@ -1,0 +1,67 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/expose-dashboard-with-ingress.md",
+  "source_file_content_hash": "5840315007e141fb7264b8f78be2d96e510722f849eb3bf0a63e6846e549534c",
+  "segments": [
+    {
+      "segment_id": "76e4a56a",
+      "source_content": "# Expose Chaos Dashboard with Ingress",
+      "source_content_hash": "c6b2660a03b1ce5d9da7dc353b2e73933164d0a9863b3bd8203d5422c600896d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "# 使用 Ingress 公開 Chaos Dashboard"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "faebdc62",
+      "source_content": "At times, you may need to make the Chaos Dashboard accessible to external users, while placing it under the subpath of your current monitoring dashboard.",
+      "source_content_hash": "b4bf7232889172d98f969ba07b98e09522812ae7b555ef6b7e9506d0bd92535d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "有時您可能需要讓外部使用者能夠存取 Chaos Dashboard，同時將其置於現有監控儀表板的子路徑下。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "Below is an example of how to expose the Chaos Dashboard under the path `/chaos-mesh`:",
+      "source_content_hash": "58333d3f6fb82785a6c5f644fa46786b3997947682daaaa10b3fa3e352f3720f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下是如何在路徑 `/chaos-mesh` 下公開 Chaos Dashboard 的範例："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "efa96cff",
+      "source_content": "```yaml\napiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata:\n  name: ingress-chaos-dashboard-under-subpath\n  namespace: chaos-mesh\n  annotations:\n    nginx.ingress.kubernetes.io/use-regex: 'true'\n    nginx.ingress.kubernetes.io/rewrite-target: /$1\n    nginx.ingress.kubernetes.io/configuration-snippet: |\n      sub_filter '<head>' '<head> <base href=\"/chaos-mesh/\">';\nspec:\n  rules:\n    - http:\n        paths:\n          - path: /chaos-mesh/?(.*)\n            pathType: Prefix\n            backend:\n              service:\n                name: chaos-dashboard\n                port:\n                  number: 2333\n```",
+      "source_content_hash": "c1feb901c09829d50507174496683308fc7683a7a8ea23458ad9800f236df023",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_efa96cff"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfe931a2",
+      "source_content": "You can also find this example in https://github.com/chaos-mesh/chaos-mesh/blob/master/examples/dashboard/ingress-subpath.yaml.",
+      "source_content_hash": "c2d4a697fa4680bb996c97b4dc243046f0cd9c9174201a59625cde86de404da7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您也可以在 https://github.com/chaos-mesh/chaos-mesh/blob/master/examples/dashboard/ingress-subpath.yaml 找到此範例。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/expose-dashboard-with-ingress.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.105355+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "5840315007e141fb7264b8f78be2d96e510722f849eb3bf0a63e6846e549534c"
+  }
+}

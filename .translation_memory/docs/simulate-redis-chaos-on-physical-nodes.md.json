@@ -1,0 +1,966 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/simulate-redis-chaos-on-physical-nodes.md",
+  "source_file_content_hash": "93cbfc18dc959ce603288aabc2530fb827f92a8749dc3164f7c68250698aca16",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate Redis Faults\n---",
+      "source_content_hash": "39363323e5a3e0f95cce25068d774114b6beca73c6977abe1ff57a3bec3321d0",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document introduces how to use Chaosd to simulate Redis faults. This feature uses Golang interfaces in `go-redis` package and the `redis-server` command-line tool. You can create experiments either in command-line mode or service mode.",
+      "source_content_hash": "320bbde8de68cbc2b23322dd5f31f17cd5db4ec1d6bc03d5aefc72554d998a46",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件介紹如何使用 Chaosd 模擬 Redis 故障。此功能使用 `go-redis` 套件中的 Golang 介面以及 `redis-server` 命令列工具。您可以透過命令列模式或服務模式建立實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## Create experiments using command-line mode",
+      "source_content_hash": "8e1e5b87717f5db35089135f2d5cb107f6430d2ead4b8d9f1699a1697b623ca8",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用命令列模式建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "Before creating an experiment, you can run the following command to see the Redis fault types that are supported by Chaosd:",
+      "source_content_hash": "0a615dd91500784f2c5d1d12e2432a279c498f5168911b194255669f1015e31e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在建立實驗之前，您可以執行以下命令來查看 Chaosd 支援的 Redis 故障類型："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "43a8bc7e",
+      "source_content": "```bash\nchaosd attack redis -h\n```",
+      "source_content_hash": "eeb9a9d4db9bfec8de7f608dd7e13d2ec69f0407de000fa3ef95be2c935e588d",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_43a8bc7e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "93be3c14",
+      "source_content": "```bash\nRedis attack related commands\n\nUsage:\n  chaosd attack redis [command]\n\nAvailable Commands:\n  cache-expiration  expire keys in Redis\n  cache-limit       set maxmemory of Redis\n  cache-penetration penetrate cache\n  sentinel-restart  restart sentinel\n  sentinel-stop     stop sentinel\n\nFlags:\n  -h, --help   help for redis\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --uid string         the experiment ID\n\nUse \"chaosd attack redis [command] --help\" for more information about a command.\n```",
+      "source_content_hash": "6a0bd9bcc078dd66f7b0b2abd50b08504c29169d235ca743031596afd1310b5f",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_93be3c14"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "33331f27",
+      "source_content": "Currently, Chaosd supports simulating cache expiration, cache penetration, cache limit, sentinel restart, and sentinel stop.",
+      "source_content_hash": "81651c8fbe95e586d1408eee08df3f330f5079a138aa3c4b53b31faec4ef3fb7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前，Chaosd 支援模擬快取過期、快取穿透、快取限制、Sentinel 重啟以及 Sentinel 停止。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8d04259b",
+      "source_content": "### Simulate cache expiration using command-line mode",
+      "source_content_hash": "07922cda613f7765249de1eebcd369d5be22b1554ec5d3d2440953dbaf53ac5f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式模擬快取過期"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "95e9ba12",
+      "source_content": "The meaning of this command is the same as EXPIRE in Redis. For more details, refer to the [Redis official documentation](https://redis.io/commands/expire/).",
+      "source_content_hash": "373addf9ad8b4babe4a952d427e8253d6e5940f819fbfcc07d8c6fea348b2dc6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此命令的意義與 Redis 中的 EXPIRE 相同。更多詳細資訊，請參閱 [Redis 官方文件](https://redis.io/commands/expire/)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "80e5ac71",
+      "source_content": ":::note\n\nCurrently, Chaosd does not support recovering keys that have executed `cache-expiration`, so please backup them in advance if you want to recover them.\n\n:::",
+      "source_content_hash": "61421c30ab41c54b2a9a37a7fb516ec6c0f8a92e4a3ddcb6c7afc9256d14970f",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n目前，Chaosd 不支援復原已執行 `cache-expiration` 的鍵，因此如果您希望復原，請事先備份。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cb5b269c",
+      "source_content": "#### Commands for cache expiration",
+      "source_content_hash": "d880aaa5aa10115d35420840e80c9f3833fef0fa8ddbacd047aaed9efd82bc05",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 快取過期的命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3ce8f045",
+      "source_content": "```bash\nchaosd attack redis cache-expiration -h\n```",
+      "source_content_hash": "4140e8f635b321acde0ff0aacfd9fa5d97c615c09a24cebc8203ccce25b51c67",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3ce8f045"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e536ea0d",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3c08ed05",
+      "source_content": "```bash\nexpire keys in Redis\n\nUsage:\n  chaosd attack redis cache-expiration [flags]\n\nFlags:\n  -a, --addr string         The address of redis server\n      --expiration string   The expiration of the key. A expiration string should be able to be converted to a time duration, such as \"5s\" or \"30m\" (default \"0\")\n  -h, --help                help for cache-expiration\n  -k, --key string          The key to be set a expiration, default expire all keys\n      --option string       The additional options of expiration, only NX, XX, GT, LT supported\n  -p, --password string     The password of server\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "26db08291fa9865d4e3357d6b3cb5bbe05d22bcd4931072ccd0879a1dd69bcf1",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3c08ed05"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "58ed925f",
+      "source_content": "#### Configuration description for cache expiration",
+      "source_content_hash": "57866eec59149c2ce70a8460a21e0c784b66a39b72cbf2339922f9c5b9bb5661",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 快取過期的設定描述"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6deb5047",
+      "source_content": "| Configuration item | Abbreviation | Type | Description | Value |\n| :-- | :-- | :-- | :-- | :-- |\n| `addr` | a | string | The address and port of Redis server to be injected into the fault, for example `127.0.0.1:6379` | Default value: `\"\"` |\n| `expiration` | None | string | The specified key will be expired after `expiration` arrives | Default value: `\"0\"`. Make sure that the string is in the format supported by `time.Duration` |\n| `key` | k | string | The key to be expired | Default value: `\"\"`, which means the expiration is set for all keys |\n| `option` | None | string | Additional options for `expiration`. **Only versions of Redis after 7.0.0 support this flag** | Default value: `\"\"`. Only NX, XX, GT, and LT are supported |\n| `password` | p | string | The password to log in to the server | Default value: `\"\"` |",
+      "source_content_hash": "71390fc5b95880f9cc0eb0f6df8d9b75aeea2b5136a6f8c1aa1460c96e3a9139",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6deb5047"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3a8d2b95",
+      "source_content": "#### Example for simulating cache expiration",
+      "source_content_hash": "727702d2bc40a928d585f809f895bae64a124877bbc56687646c04b6c9f7c7b4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬快取過期的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5dd0e3a7",
+      "source_content": "```bash\nchaosd attack redis cache-expiration -a 127.0.0.1:6379 --option GT --expiration 1m\n```",
+      "source_content_hash": "a2d11bd8cf139d8964f43aa06fcca225bea13b2a03299f01b29d5d33872ca231",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_5dd0e3a7"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e33a2404",
+      "source_content": "### Simulate cache limit using command-line mode",
+      "source_content_hash": "f6556f90f969ed2da8f45ac8fa9d9e60b2e0c87f113f2ac98d7c8da1c91c4f3e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式模擬快取限制"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b10963d7",
+      "source_content": "#### Commands for cache limit",
+      "source_content_hash": "8577480a3e5b45b2ff5ece3a708ad9693ab8b5ceafe546aa2ca385f6dd89a2ea",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 快取限制的命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "890e01bc",
+      "source_content": "```bash\nchaosd attack redis cache-limit -h\n```",
+      "source_content_hash": "2e2ca1ed325567418ea29db6669eb353450a1312e6f987bd0eb787a5f9a14dee",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_890e01bc"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d79a4831",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "64071bcc",
+      "source_content": "```bash\nset maxmemory of Redis\n\nUsage:\n  chaosd attack redis cache-limit [flags]\n\nFlags:\n  -a, --addr string       The address of redis server\n  -h, --help              help for cache-limit\n  -p, --password string   The password of server\n      --percent string    The percentage of maxmemory\n  -s, --size string       The size of cache (default \"0\")\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "a82d7f87a6e8a81b8a7b8e6d1915243314c433e99194102dc0ed9557c5bbaced",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_64071bcc"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9b8694c",
+      "source_content": "#### Configuration description for cache limit",
+      "source_content_hash": "16ece3514df35dea0f3c874f0dd0510ee6ffe6ea4a2f35a6bee2173eec17a2e3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 快取限制的設定描述"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fedc7286",
+      "source_content": "| Configuration item | Abbreviation | Type | Description | Value |\n| :-- | :-- | :-- | :-- | :-- |\n| `addr` | a | string | The address and port of Redis server to be injected into the fault, such as `127.0.0.1:6379` | Default value: `\"\"` |\n| `password` | p | string | The password to log in to the server | Default value: `\"\"` |\n| `percent` | None | string | Specifies `maxmemory` as a percentage of the original value | Default value: `\"\"` |\n| `size` | s | string | Specifies the size of `maxmemory` | Default `0`, which means no limitation of memory |",
+      "source_content_hash": "b71f39136e7698448b350b111941e618215d2807e2b12f175cfbebd552019fa3",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_fedc7286"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "47cd8dd6",
+      "source_content": "#### Example for simulating cache limit",
+      "source_content_hash": "046dd73ccab5af2593bc06e1ff0341f95906e71efe0914619ebb21210203ac03",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬快取限制的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "136818ce",
+      "source_content": "```bash\nchaosd attack redis cache-limit -a 127.0.0.1:6379 -s 256M\n```",
+      "source_content_hash": "e215b7f190869811f9c6e532de3896c68b6eb186eb4f1487aae4e1e7c7343453",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_136818ce"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "13292277",
+      "source_content": "### Simulate cache penetration using command-line mode",
+      "source_content_hash": "8fc2d5074afe8b18ce1135cea012bc110023fd9edcff3837665cc73ebc454d2f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式模擬快取穿透"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e478ec2c",
+      "source_content": "This command will send the specified number of `GET` requests to Redis server as quickly as possible using Redis Pipeline. Since the requested keys do not exist on the Redis server, these requests will cause a cache penetration phenomenon.",
+      "source_content_hash": "a9bbcecac05395c52396175d1edeb0b35701aa3d252b24ad67e7dd67045e2d6b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此命令將使用 Redis Pipeline 盡快向 Redis 伺服器發送指定數量的 `GET` 請求。由於請求的鍵在 Redis 伺服器上不存在，這些請求將導致快取穿透現象。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c2ab4c8",
+      "source_content": "#### Commands for cache penetration",
+      "source_content_hash": "6cd916c164d580b579c0228d59b6229722b4b2143a2e6adbc4bed0332d69f61b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 快取穿透的命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "01a167f4",
+      "source_content": "```bash\nchaosd attack redis cache-penetration -h\n```",
+      "source_content_hash": "e81d9a9360faca69fd6de5bea9b4a05e2681530f388fc28b184b8bc6518e5fa8",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_01a167f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f7e6e884",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ad3cd2f7",
+      "source_content": "```bash\npenetrate cache\n\nUsage:\n  chaosd attack redis cache-penetration [flags]\n\nFlags:\n  -a, --addr string       The address of redis server\n  -h, --help              help for cache-penetration\n  -p, --password string   The password of server\n      --request-num int   The number of requests\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "fca75d404303f77c75292e5b93de0929f1348b0e1669e7312b48a91fe3af2671",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ad3cd2f7"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3f77c6a0",
+      "source_content": "#### Configuration description for cache penetration",
+      "source_content_hash": "a66e59bed74f016b9ddaf36e88ce8da8da2d4816f543d9694fd1364835057258",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 快取穿透的設定描述"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "be0dc8ff",
+      "source_content": "| Configuration item | Abbreviation | Type | Description | Value |\n| :-- | :-- | :-- | :-- | :-- |\n| `addr` | a | string | The address and port of Redis server to be injected into the fault, such as `127.0.0.1:6379` | Default value: `\"\"` |\n| `password` | p | string | The password to log in to the server | Default value: `\"\"` |\n| `request-num` | None | int | Specifies the number of requests to be sent to the Redis server | Default value: `0` |",
+      "source_content_hash": "c2fe03a70b987a21499f918e4f373d8beb257a24f316d01e69c5bb4b81a0f07c",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_be0dc8ff"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a49ac2ed",
+      "source_content": "#### Example for simulating cache penetration",
+      "source_content_hash": "f530c02fbe667223834789ef684fb766e579def69feb97dc774aec03bd24577b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬快取穿透的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "31b98214",
+      "source_content": "```bash\nchaosd attack redis cache-penetration -a 127.0.0.1:6379 --request-num 100000\n```",
+      "source_content_hash": "4e7860d544c076e40d629bd93434eda7f9cfd0ce3ba5451ce9106be675d6a34e",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_31b98214"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2b5df263",
+      "source_content": "### Simulate Sentinel restart using command-line mode",
+      "source_content_hash": "1c69c1e8e6e38caf12280c8df066b7c523265042479ee1abaca045c397875e8e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式模擬 Sentinel 重啟"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8d279c43",
+      "source_content": "#### Commands for Sentinel restart",
+      "source_content_hash": "484c03b7e74855d68e1574a1cc9bdd46f2beed1d7080e2baf47705019c631d1f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### Sentinel 重啟的命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "44ecd2e3",
+      "source_content": "```bash\nchaosd attack redis sentinel-restart -h\n```",
+      "source_content_hash": "969e96a72bc0a38bb4fbc77a1ebd9e002fe7ec7f25876555f6931c002f88a4fe",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_44ecd2e3"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b49a7009",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "768336f1",
+      "source_content": "```bash\nrestart sentinel\n\nUsage:\n  chaosd attack redis sentinel-restart [flags]\n\nFlags:\n  -a, --addr string         The address of redis server\n  -c, --conf string         The config of Redis server\n      --flush-config         Force Sentinel to rewrite its configuration on disk (default true)\n  -h, --help                help for sentinel-restart\n  -p, --password string     The password of server\n      --redis-path string   The path of the redis-server command\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "35ee427fc90e4d506a2cf3dec612a4c13c7a8b092fe02641231f22f2a77b8aa9",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_768336f1"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bf3eb388",
+      "source_content": "#### Configuration description for Sentinel restart",
+      "source_content_hash": "880524b3d4c8d51340e7e81bb55a1156b4f68e4b6d54fd7d78be04413a1ffa6d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### Sentinel 重啟的設定描述"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d7ed0393",
+      "source_content": "| Configuration item | Abbreviation | Type | Description | Value |\n| :-- | :-- | :-- | :-- | :-- |\n| `addr` | a | string | The address and port of Sentinel to be injected into the fault, such as `127.0.0.1:26379` | Default value: `\"\"` |\n| `conf` | c | string | Specifies the path of Sentinel config file, this file will be used to revover the Sentinel | Default value: `\"\"` |\n| `flush-config` | None | bool | Forces Sentinel to rewrite its configuration on disk, including the current Sentinel state | Default value: `true` |\n| `password` | p | string | The password to log in to the server | Default value: `\"\"` |\n| `redis-path` | None | string | Specifies the path of `redis-server` command-line tool | Default value: `\"\"` |",
+      "source_content_hash": "7f0ead746cfb4ef894bdb6ee225403a3eac2359b6062b0920e1f365772e64177",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d7ed0393"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dc825187",
+      "source_content": "#### Example for simulating Sentinel restart",
+      "source_content_hash": "d065cb6a0873913efbdaa00a6194e07b2b4b5d18374297ba52f70ccabddf16a9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬 Sentinel 重啟的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "daad2e28",
+      "source_content": "```bash\nchaosd attack redis sentinel-restart -a 127.0.0.1:26379 --conf /home/redis-test/sentinel-26379.conf\n```",
+      "source_content_hash": "0034839172af0a6bb69bdd3d2caf35a5e58a2e992456f9a6f1d0be4772f3b64a",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_daad2e28"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dae9676f",
+      "source_content": "### Simulate Sentinel stop using command-line mode",
+      "source_content_hash": "2a3c9021e6a3aff4fdb07de09370284d95da3598ad49a56936f256f84625741b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式模擬 Sentinel 停止"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "43662a16",
+      "source_content": "#### Commands for Sentinel stop",
+      "source_content_hash": "2399f394bd50f3acfe679a8532ecf9ba03df9b8fe03be1887402ec5f28ec8e98",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### Sentinel 停止的命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a7e764c4",
+      "source_content": "```bash\nchaosd attack redis sentinel-stop -h\n```",
+      "source_content_hash": "661c2985749e2b57c77da44974ecc51e9a10962e3b10c17a9e0ee3b065a9a4ee",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a7e764c4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "85b17c36",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d1a6eaaa",
+      "source_content": "```bash\nstop sentinel\n\nUsage:\n  chaosd attack redis sentinel-stop [flags]\n\nFlags:\n  -a, --addr string         The address of redis server\n  -c, --conf string         The config path of Redis server\n      --flush-config        Force Sentinel to rewrite its configuration on disk (default true)\n  -h, --help                help for sentinel-stop\n  -p, --password string     The password of server\n      --redis-path string   The path of the redis-server command\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "46568f19efec0148fb4d6fe44fb36f45069973702fa51f31109c9914d837b3a4",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d1a6eaaa"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6beaa586",
+      "source_content": "#### Configuration description for Sentinel stop",
+      "source_content_hash": "c7bf31d9d5e8dc30acf47262a0252beb636cbf8aed1cb1211847a12688553e51",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### Sentinel 停止的設定描述"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ca6faa68",
+      "source_content": "| Configuration item | Abbreviation | Type | Description | Value |\n| :-- | :-- | :-- | :-- | :-- |\n| `addr` | a | string | The address and port of Sentinel to be injected into the fault, such as `127.0.0.1:26379` | Default value: `\"\"` |\n| `conf` | c | string | Specifies the path of Sentinel configuration file, which is used to recover the Sentinel | Default value: `\"\"` |\n| `flush-config` | None | bool | Forces Sentinel to rewrite its configuration on disk, including the current Sentinel state | Default value: `true` |\n| `password` | p | string | The password to log in to the server | Default value: `\"\"` |\n| `redis-path` | None | string | Specifies the path of `redis-server` command-line tool | Default value: `\"\"` |",
+      "source_content_hash": "5b063fa11fe3ec194411492a3d74d4e6ca0b48ee8f9237cd4a1783a2aab84db0",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ca6faa68"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4cb3b0aa",
+      "source_content": "#### Example for simulating Sentinel restart",
+      "source_content_hash": "d065cb6a0873913efbdaa00a6194e07b2b4b5d18374297ba52f70ccabddf16a9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬 Sentinel 重啟的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "48340a8d",
+      "source_content": "```bash\nchaosd attack redis sentinel-stop -a 127.0.0.1:26379 --conf /home/redis-test/sentinel-26379.conf\n```",
+      "source_content_hash": "69638c6e4c964063c693a327d6dbce4c1606887eabc4882cf8640d0f799083b1",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_48340a8d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bb74dfa2",
+      "source_content": "## Create Redis fault experiments using service mode",
+      "source_content_hash": "e55bbe98b67f44ea1600aae9f1968795f94dc32da332ab100ff6a3cddcf44e73",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用服務模式建立 Redis 故障實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f4b938fe",
+      "source_content": "To create experiments using the service mode, follow the instructions below:",
+      "source_content_hash": "730e9766ed6188cf20ad25677e3237e8c03f2b6f8b03ae8e712f0a97e475b6e4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要使用服務模式建立實驗，請遵循以下指示："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6296b9e4",
+      "source_content": "1. Run Chaosd in the service mode:\n\n   ```bash\n   chaosd server --port 31767\n   ```",
+      "source_content_hash": "a7a0cffab3b474db67fd57185d4e0d82872bbf47d68713429c067bf874b71392",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 以服務模式執行 Chaosd：\n\n   ```bash\n   chaosd server --port 31767\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "33854bf3",
+      "source_content": "2. Send a `POST` HTTP request to the `/api/attack/redis` path of the Chaosd service.\n\n   ```bash\n   curl -X POST 127.0.0.1:31767/api/attack/redis -H \"Content-Type:application/json\" -d '{fault-configuration}'\n   ```\n\n   In the above command, you need to configure `fault-configuration` according to the fault types. For the corresponding parameters, refer to the parameters and examples of each fault type in the following sections.",
+      "source_content_hash": "1fee2657e29b6fcbe6050a1080bcfa26f1ca0fd8225c190b71dbfe6d646bc846",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "2. 向 Chaosd 服務的 `/api/attack/redis` 路徑發送 `POST` HTTP 請求：\n\n   ```bash\n   curl -X POST 127.0.0.1:31767/api/attack/redis -H \"Content-Type:application/json\" -d '{fault-configuration}'\n   ```\n\n   在上述命令中，您需要根據故障類型設定 `fault-configuration`。對應參數請參考以下各節中各故障類型的參數與範例。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`POST`', Translation: '`/api/attack/redis`'.",
+          "timestamp": "2025-07-04T06:49:59.308667+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "33dfb2ba",
+      "source_content": ":::note\n\nWhen running an experiment, remember to record the UID of the experiment. When you want to end the experiment corresponding to the UID, you need to send a `DELETE` HTTP request to the `/api/attack/{uid}` path of the Chaosd service.\n\n:::",
+      "source_content_hash": "7c57fd60c1e2cb3853d3c4c77af10c3900650c1f00a9dea43efcd39ed7ae3b10",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::note\n\n執行實驗時，請務必記錄實驗的 UID。當您需要終止對應 UID 的實驗時，需向 Chaosd 服務的 `/api/attack/{uid}` 路徑發送 `DELETE` HTTP 請求。\n\n:::",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`DELETE`', Translation: '`/api/attack/{uid}`'.",
+          "timestamp": "2025-07-04T06:49:59.308693+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "f8d1807a",
+      "source_content": "### Simulate cache expiration using service mode",
+      "source_content_hash": "53c65ef0ba628e1f798a08ff7c3a824778662cdba0391fdb0448ef0ba1598b94",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬快取過期"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "18b30a5c",
+      "source_content": "#### Parameters for simulating cache expiration",
+      "source_content_hash": "92cd06740f0c699e78db1b9497c0f5bd50a63b1a53233edfa6155ac3c3bcba7e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬快取過期的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "290a1a57",
+      "source_content": "| Parameter | Description | Type | Value |\n| :-- | :-- | :-- | :-- |\n| `action` | Action of the experiment | string | set to \"corrupt\" |\n| `addr` | The address and port of Redis server to be injected into the fault, such as `127.0.0.1:6379` | string | Default value: `\"\"` |\n| `expiration` | The specified key will be expired after `expiration` arrives | string | Default value: `\"0\"`. Make sure that the string is in the format supported by `time.Duration` |\n| `key` | The key to be expired | string | Default value: `\"\"`, which means the expiration is set for all keys |\n| `option` | Additional options for `expiration`. **Only versions of Redis after 7.0.0 support this flag** | string | Default value: `\"\"`. Only NX, XX, GT, and LT are supported |\n| `password` | The password to log in to the server | Default value: `\"\"` |",
+      "source_content_hash": "da27a63adc58a1f308213f81226d08127aced1df52e7f292bcf22e89d6ebda55",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_290a1a57"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b8925cfb",
+      "source_content": "#### Example for simulating cache expiration using service mode",
+      "source_content_hash": "63cba6f142b8d394b46ac37a587fa8e4a4cf44619897c97bb41ff26254e01aea",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬快取過期的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d96a088c",
+      "source_content": "```bash\ncurl -X POST 127.0.0.1:31767/api/attack/redis -H \"Content-Type:application/json\" -d '{\"action\":\"expiration\", \"expiration\":\"1m\",\"addr\":\"127.0.0.1:6379\"}'\n```",
+      "source_content_hash": "22cb320b587e88fb2b859465fc21b7c9ef3c7f571fad93ebb4ba436121cbb877",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_d96a088c"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "92d715c2",
+      "source_content": "### Simulate cache limit using service mode",
+      "source_content_hash": "6c5ad2a1a46651930b6dca3ab239c718c6c8c6993a3d358d38eb09b95fcd4523",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬快取限制"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e0e9d747",
+      "source_content": "#### Parameters for simulating cache limit",
+      "source_content_hash": "b2d5a1eaf078587d28fe593b33a5ac483da4b3a08663ee44ce191f4b941f1050",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬快取限制的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b844b7cf",
+      "source_content": "| Parameter | Description | Type | Value |\n| :-- | :-- | :-- | :-- |\n| `action` | Action of the experiment | string | set to \"cacheLimit\" |\n| `addr` | The address and port of Redis server to be injected into the fault, such as `127.0.0.1:6379` | string | Default value: `\"\"` |\n| `password` | The password to log in to the server | string | Default value: `\"\"` |\n| `percent` | Specifies `maxmemory` as a percentage of the original value | string | Default value: `\"\"` |\n| `size` | Specifies the size of `maxmemory` | string | Default `0`, which means no limitation of memory |",
+      "source_content_hash": "b74d73896e45e7c91ed25d359feeed8c82f5940c49ea4a161a1bd1172d02c0f1",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b844b7cf"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9faeed88",
+      "source_content": "#### Example for simulating cache limit using service mode",
+      "source_content_hash": "7dd2865ecd3c79ce227e3e46259d3bdfcb2f70ee5c1b7d37447a9e91bba5c892",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬快取限制的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "31df1954",
+      "source_content": "```bash\ncurl -X POST 127.0.0.1:31767/api/attack/redis -H \"Content-Type:application/json\" -d '{\"action\":\"cacheLimit\", \"\"addr\":\"127.0.0.1:6379\", \"percent\":\"50%\"}'\n```",
+      "source_content_hash": "bf5ca71622b863d7baea0ab8b33f2281f5d9127f8e7c203af419bd02d7b08537",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_31df1954"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c48a3f55",
+      "source_content": "### Simulate cache penetration using service mode",
+      "source_content_hash": "385a263879b353312ba1172361b4acdea6e9a166c64ddd6ccdcffeb58fd4d385",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬快取穿透"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7901dac3",
+      "source_content": "#### Parameters for simulating cache penetration",
+      "source_content_hash": "6aefca4e818a3d67ad7b13a1496495710e061450a9559e66b4e563272a69a226",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬快取穿透的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fe96d751",
+      "source_content": "| Parameter | Description | Type | Value |\n| :-- | :-- | :-- | :-- |\n| `action` | Action of the experiment | string | set to \"penetration\" |\n| `addr` | The address and port of Redis server to be injected into the fault, such as `127.0.0.1:6379` | string | Default value: `\"\"` |\n| `password` | The password to log in to the server | string | Default value: `\"\"` |\n| `request-num` | Specifies the number of requests to be sent to the Redis server | int | Default value: `0` |",
+      "source_content_hash": "44b0ecc8c8fec6fe88b506507dd1b3cabef6d555d56d4446300710a455ab4aa4",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_fe96d751"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5bc50701",
+      "source_content": "#### Example for simulating cache penetration using service mode",
+      "source_content_hash": "cad7429858cab3343d4f8ff4657628e053b540c5066f7d30e3b61c1204bd74c9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬快取穿透的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f4a7be08",
+      "source_content": "```bash\ncurl -X POST 127.0.0.1:31767/api/attack/redis -H \"Content-Type:application/json\" -d '{\"action\":\"penetration\", \"\"addr\":\"127.0.0.1:6379\", \"request-num\":\"10000\"}'\n```",
+      "source_content_hash": "d319c7dbe90ba99488c1e7dae7b1aad0914668a3a41ab8b518711b0d2a7e6b3f",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_f4a7be08"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1e5c4bc8",
+      "source_content": "### Simulate Sentinel restart using service mode",
+      "source_content_hash": "31c8f000cab7f244bee94bc09bdb63ddf2a1d8f091067cce37eebc3636c7217a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬 Sentinel 重啟"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4e36860d",
+      "source_content": "#### Parameters for simulating Sentinel restart",
+      "source_content_hash": "640e850159acc5ca32ceddc3b8f5d809921610c82807568b4f9744866a967029",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬 Sentinel 重啟的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "af5613f7",
+      "source_content": "| Parameter | Description | Type | Value |\n| :-- | :-- | :-- | :-- |\n| `action` | Action of the experiment | string | set to \"restart\" |\n| `addr` | The address and port of Sentinel to be injected into the fault, such as `127.0.0.1:26379` | string | Default value: `\"\"` |\n| `conf` | Specifies the path of Sentinel configuration file, which is used to recover the Sentinel | string | Default value: `\"\"` |\n| `flush-config` | Forces Sentinel to rewrite its configuration on disk, including the current Sentinel state | bool | Default value: `true` |\n| `password` | The password to log in to the server | string | Default value: `\"\"` |\n| `redis-path` | Specifies the path of `redis-server` command-line tool | string | Default value: `\"\"` |",
+      "source_content_hash": "9abcc0e1920c99fbd9041861f15fd0a129911d1323c23a41aa194dd5c2edbf5e",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_af5613f7"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4bd6ff74",
+      "source_content": "#### Example for simulating Sentinel restart using service mode",
+      "source_content_hash": "8dbf877310273065862805b90b1236b6fdbca68e1ebecd614d4ec66fb4950f27",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬 Sentinel 重啟的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfe86be9",
+      "source_content": "```bash\ncurl -X POST 127.0.0.1:31767/api/attack/redis -H \"Content-Type:application/json\" -d '{\"action\":\"restart\", \"\"addr\":\"127.0.0.1:26379\", \"conf\":\"/home/redis-test/sentinel-26379.conf\"}'\n```",
+      "source_content_hash": "2a2545f2dd958e498c8eb5f0773eb5a241177879a60d4814d70ad38f9d73c3c2",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_dfe86be9"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "99e44af3",
+      "source_content": "### Simulate Sentinel stop using service mode",
+      "source_content_hash": "a28b975831f9e14748b16df96982441bdbb953d7b37e3218460140219d24fbb5",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬 Sentinel 停止"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7bd550b1",
+      "source_content": "#### Parameters for simulating Sentinel stop",
+      "source_content_hash": "d1199fc8eeaa4dd27a28952322098d08d23160ffb7af43a642d1353f619f2f71",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬 Sentinel 停止的參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "efc5991c",
+      "source_content": "| Parameter | Description | Type | Value |\n| :-- | :-- | :-- | :-- |\n| `action` | Action of the experiment | string | set to \"stop\" |\n| `addr` | The address and port of Sentinel to be injected into the fault, such as `127.0.0.1:26379` | string | Default value: `\"\"` |\n| `conf` | Specifies the path of Sentinel configuration file, which is used to recover the Sentinel | string | Default value: `\"\"` |\n| `flush-config` | Forces Sentinel to rewrite its configuration on disk, including the current Sentinel state | bool | Default value: `true` |\n| `password` | The password to log in to the server | string | Default value: `\"\"` |\n| `redis-path` | Specifies the path of `redis-server` command-line tool | string | Default value: `\"\"` |",
+      "source_content_hash": "67153b30cab714ae8c34bf5c1c04970ffd7ca33d4aad4acb3e53a7255f7fb783",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_efc5991c"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5176651f",
+      "source_content": "#### Example for simulating Sentinel stop using service mode",
+      "source_content_hash": "562bb1f3691cbfa45087456aac0b004ee62efbd277084475d374dbdc36348eef",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 使用服務模式模擬 Sentinel 停止的範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "50e9b713",
+      "source_content": "```bash\ncurl -X POST 127.0.0.1:31767/api/attack/redis -H \"Content-Type:application/json\" -d '{\"action\":\"stop\", \"\"addr\":\"127.0.0.1:26379\", \"conf\":\"/home/redis-test/sentinel-26379.conf\"}'\n```",
+      "source_content_hash": "7270474e88919fc6e56c20c61e8e93c37ee29c7f1637a7ded0a398a8f2861068",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_50e9b713"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/simulate-redis-chaos-on-physical-nodes.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.308722+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "93cbfc18dc959ce603288aabc2530fb827f92a8749dc3164f7c68250698aca16"
+  }
+}

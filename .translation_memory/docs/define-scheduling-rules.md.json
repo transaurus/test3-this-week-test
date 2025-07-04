@@ -1,0 +1,740 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/define-scheduling-rules.md",
+  "source_file_content_hash": "68b2b228209151de3d04c9282331083b7fb166b9fe0671692e6e45e641143999",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Define Scheduling Rules\n---",
+      "source_content_hash": "b490ed3e98e1710726540932ed0f18fc4442317f42f6ad5e461ce2660010e0ac",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f85bbfb4",
+      "source_content": "## Schedule overview",
+      "source_content_hash": "a802dea29e2d9c041cf3095e58ba60c477642b34f112e274fce95dce895553ff",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 排程功能概覽"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "This document describes how to use Chaos Mesh to create a scheduled task, which can automatically create Chaos experiments at a fixed time (or at a fixed time interval).",
+      "source_content_hash": "de01cea2d4405cc2cef48b4b59332dca4a5fb0838d5f4035902d1504a246f439",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文說明如何使用 Chaos Mesh 建立排程任務，該功能可在固定時間（或固定時間間隔）自動建立混沌實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "In Kubernetes, Chaos Mesh uses `Schedule` to describe scheduled tasks.",
+      "source_content_hash": "aef3ed8674ccffd665c99bc98369e021b12fd3565fdb9e8eca842d945eeb7f7a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在 Kubernetes 中，Chaos Mesh 使用 `Schedule` 物件來描述排程任務。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bb849aa9",
+      "source_content": ":::note\n\nThe name of a `Schedule` object should not exceed 57 characters because the created Chaos experiment will add 6 additional random characters to the end of the name.The name of the `Schedule` object with `Workflow` should not exceed 51 characters because Workflow will add 6 additional random characters to the end of the name.\n\n:::",
+      "source_content_hash": "f0760e1abf9623df42464f3ce7ebbbe0037e9542a806ee279fa5d681aea8c78b",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::note\n\n`Schedule` 物件名稱不應超過 57 個字元，因為建立的混沌實驗會在名稱末尾添加 6 個隨機字元。若為 `Workflow` 的 `Schedule` 物件，名稱不應超過 51 個字元，因為工作流程會在名稱末尾添加 6 個隨機字元。\n\n:::",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`Schedule`', Translation: '`Workflow`'.",
+          "timestamp": "2025-07-04T06:49:59.304435+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "3daf1b88",
+      "source_content": "## Create scheduling rules with `kubectl` using YAML files",
+      "source_content_hash": "d2b6aae050f913bd1ec72888ca37364adf986f58be83486b1e9f7827f6434cc8",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 YAML 檔案透過 `kubectl` 建立排程規則"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "For example, to apply a 100 millisecond delay for 12 seconds in the fifth minute of each hour, configure the YAML file as follows:",
+      "source_content_hash": "9f65d5cd9c50fa82a17a3fbfe6cd3f95ba90d172b013bfa51ff933353915653d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "例如，若要在每小時的第 5 分鐘施加 100 毫秒延遲持續 12 秒，可配置如下 YAML 檔案："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cbbebf8e",
+      "source_content": "```yaml\napiVersion: chaos-mesh.org/v1alpha1\nkind: Schedule\nmetadata:\n  name: schedule-delay-example\nspec:\n  schedule: '5 * * * *'\n  historyLimit: 2\n  concurrencyPolicy: 'Allow'\n  type: 'NetworkChaos'\n  networkChaos:\n    action: delay\n    mode: one\n    selector:\n      namespaces:\n        - default\n      labelSelectors:\n        'app': 'web-show'\n    delay:\n      latency: '10ms'\n      correlation: '100'\n      jitter: '0ms'\n    duration: '12s'\n```",
+      "source_content_hash": "228eb9efc84efe01bf8853dd92d1ec0e60db710edf004e39fa13b675ae36d109",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_cbbebf8e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8af76f3d",
+      "source_content": "Save this YAML file as `schedule-networkchaos.yaml`, and then run `kubectl apply -f ./schedule-networkchaos.yaml`.",
+      "source_content_hash": "8ac2f0d6a80c3a8c87fbc9d2a8e828ea55fb45b8da2fe5ffaa6f5240b2e1630f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "將此 YAML 檔案儲存為 `schedule-networkchaos.yaml`，然後執行 `kubectl apply -f ./schedule-networkchaos.yaml`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a9d49f92",
+      "source_content": "Based on this configuration, Chaos Mesh will create the following `NetworkChaos` object in the fifth minute of each hour (such as `0:05`, `1:05`...):",
+      "source_content_hash": "50a4d73c90934ecf23ac156a6df75539cbf68e36d301b552259d3cadfa5f352e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "根據此配置，Chaos Mesh 將在每小時的第 5 分鐘（例如 `0:05`、`1:05`...）建立以下 `NetworkChaos` 物件：",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`NetworkChaos`', Translation: '`0:05`'.",
+          "timestamp": "2025-07-04T06:49:59.304464+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "95318d95",
+      "source_content": "```yaml\napiVersion: chaos-mesh.org/v1alpha1\nkind: NetworkChaos\nmetadata:\n  name: schedule-delay-example-xxxxx\nspec:\n  action: delay\n  mode: one\n  selector:\n    namespaces:\n      - default\n    labelSelectors:\n      'app': 'web-show'\n  delay:\n    latency: '10ms'\n    correlation: '100'\n    jitter: '0ms'\n  duration: '12s'\n```",
+      "source_content_hash": "53d12daebce4d1a9ab7449f6a22cde207aa30959109da5e011a4173b4dd71141",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_95318d95"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7f71ff2a",
+      "source_content": "The fields in `Schedule` are described below, mostly similar to fields in Kubernetes `CronJob`. You can refer to the [documentation of Kubernetes CronJob](https://kubernetes.io/zh/docs/concepts/workloads/controllers/cron-jobs/) for more information.",
+      "source_content_hash": "5dddab4d2617115f6cb9ec04aa550910b42264d0548b21618517d7b2ddf0d565",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "`Schedule` 中的欄位說明如下，大多與 Kubernetes `CronJob` 的欄位相似。更多資訊可參考 [Kubernetes CronJob 文件](https://kubernetes.io/zh/docs/concepts/workloads/controllers/cron-jobs/)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c1d6a7ca",
+      "source_content": ":::note\n\nThe timezone in the `schedule` field subjects to the timezone of `chaos-controller-manager`.\n\n:::",
+      "source_content_hash": "e57b641b0a18960645e0b1a442b63ae1e91403554ef3012816d82f7869f2f7af",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n`schedule` 欄位的時區取決於 `chaos-controller-manager` 的時區設定。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "98355e36",
+      "source_content": "### `schedule` field",
+      "source_content_hash": "beda887afdd99817c001d6a5fd6c46a2c71ec672645ab4a79b99fd976e117b99",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### `schedule` 欄位"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7736989b",
+      "source_content": "The `schedule` field is used to specify the time when an experiment is to be run. In other words, the alias for a schedule is a cron job:",
+      "source_content_hash": "a539c5c8d2f5ada89d4c2132ccd759eced01c6551b52bdfd4cb8df7b27da6d4f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "`schedule` 欄位用於指定實驗執行時間。換言之，排程的別名就是 cron 任務："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a716abf2",
+      "source_content": "```txt\n# ┌───────────── minute (0 - 59)\n# │ ┌───────────── hour (0 - 23)\n# │ │ ┌───────────── day of the month (1 - 31)\n# │ │ │ ┌───────────── month (1 - 12)\n# │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday; 7 is also Sunday on some systems)\n# │ │ │ │ │\n# │ │ │ │ │\n# │ │ │ │ │\n# * * * * * <command to execute>\n```",
+      "source_content_hash": "8fdf4b6ae3cb523545483cdcb1d0e2eb42654d343f059c5ffee170b4de89db69",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_a716abf2"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c769e6ea",
+      "source_content": "> This diagram is taken from https://en.wikipedia.org/wiki/Cron.",
+      "source_content_hash": "0230afa22761a6cdc412c5c59eafd2b59f36f55f9c00a9230042c0312628f4f6",
+      "node_type": "blockquote",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "> 此圖取自 https://en.wikipedia.org/wiki/Cron。",
+          "reason": "URL for a 'link' was changed from 'https://en.wikipedia.org/wiki/Cron' to 'https://en.wikipedia.org/wiki/Cron。'.",
+          "timestamp": "2025-07-04T06:49:59.304487+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "a311e967",
+      "source_content": "Chaos Mesh uses [robfig/cron/v3](https://pkg.go.dev/github.com/robfig/cron/v3) to transform the `schedule` field into a cron expression internally.",
+      "source_content_hash": "95f3b8f66637efc8b1388b3cc9fbffbaf4f0e593d4a1bb9d549ff2501e8d21f1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 內部使用 [robfig/cron/v3](https://pkg.go.dev/github.com/robfig/cron/v3) 將 `schedule` 欄位轉換為 cron 表達式。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ca7170d9",
+      "source_content": ":::tip\n\nIf you need to generate a schedule, you can use some web tools such as [crontab.guru](https://crontab.guru).\n\n:::",
+      "source_content_hash": "28cbbb09feaf18b4522021723070b84182dabe90bbae9a8d7a776b7ef6219ad6",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::tip\n\n若需生成排程設定，可使用 [crontab.guru](https://crontab.guru) 等線上工具。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "71169a2d",
+      "source_content": "#### Predefined schedules",
+      "source_content_hash": "681c8b57c3fd60decd598fd37cd3f3746fbf282ccf591383b265f69f23c54d3c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 預定義排程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c1eaf30b",
+      "source_content": "In addition to regular syntax, it also has several pre-defined schedules. You may use one of several pre-defined schedules in place of a cron expression:",
+      "source_content_hash": "348a47cce88d8dc3b683935ba5ebd8318c0fe137ad1b72a0fb2f49d845ffcf4d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "除常規語法外，亦提供多種預定義排程。您可使用以下預定義排程替代 cron 表達式："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "99cd240c",
+      "source_content": "| Entry                  | Description                                | Equivalent To |\n| ---------------------- | ------------------------------------------ | ------------- |\n| @yearly (or @annually) | Run once a year, midnight, Jan. 1st        | 0 0 1 1 \\*    |\n| @monthly               | Run once a month, midnight, first of month | 0 0 1 \\* \\*   |\n| @weekly                | Run once a week, midnight between Sat/Sun  | 0 0 \\* \\* 0   |\n| @daily (or @midnight)  | Run once a day, midnight                   | 0 0 \\* \\* \\*  |\n| @hourly                | Run once an hour, beginning of hour        | 0 \\* \\* \\* \\* |",
+      "source_content_hash": "68f2fb726fd9184f9ba28dc0f20c072a7f9e8903b731b5a106176ec69bd3ba98",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_99cd240c"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5bf3976",
+      "source_content": "> This table is taken from https://pkg.go.dev/github.com/robfig/cron/v3#hdr-Predefined_schedules.",
+      "source_content_hash": "653e43430135fd87e33471209af381f5dcc15d27c63e46264ae2623072c76fbe",
+      "node_type": "blockquote",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "> 此表取自 https://pkg.go.dev/github.com/robfig/cron/v3#hdr-Predefined_schedules。",
+          "reason": "URL for a 'link' was changed from 'https://pkg.go.dev/github.com/robfig/cron/v3#hdr-Predefined_schedules' to 'https://pkg.go.dev/github.com/robfig/cron/v3#hdr-Predefined_schedules。'.",
+          "timestamp": "2025-07-04T06:49:59.304528+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "f8614e13",
+      "source_content": "#### Intervals",
+      "source_content_hash": "1dab0e3a8ec5f2282b7eb359c838ee93a39065e5a22705aea7ad895eaddd56de",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 間隔設定"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "396efb28",
+      "source_content": "You may also schedule a job to execute at fixed intervals, starting at the time it's added or cron is run. This is supported by formatting the cron spec like this:",
+      "source_content_hash": "dcfa1b511289e3e49f0336d45546a8c2c85035b951b709999ea03b43b94699d6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您亦可設定任務以固定間隔執行，從添加任務或 cron 啟動時開始計時。支援以下 cron 規格格式："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b27056c4",
+      "source_content": "```txt\n@every <duration>\n```",
+      "source_content_hash": "230683b3e698be41c6201bd486c86ca2bc57c84a8a71d805cf109a611987acf4",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b27056c4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5f82a1e9",
+      "source_content": "For example, `@every 1h30m10s` would indicate a schedule that activates after 1 hour, 30 minutes, 10 seconds, and then every interval after that.",
+      "source_content_hash": "8a7307b87b6f8ff2e35d22369504edb116cbc93bc5781e14cfc24d47bf22f77a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "例如，`@every 1h30m10s` 表示排程將在 1 小時 30 分 10 秒後啟動，之後按此間隔重複執行。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "168f82c4",
+      "source_content": ":::info\n\nThe content of `Intervals` is taken from https://pkg.go.dev/github.com/robfig/cron/v3#hdr-Intervals. You can refer to the official documentation for more information.\n\n:::",
+      "source_content_hash": "a330637b5038dee1b04e9c7e32c41f439d5d047b27d54e00434b59036d9dcc2c",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::info\n\n`Intervals` 內容取自 https://pkg.go.dev/github.com/robfig/cron/v3#hdr-Intervals。更多資訊請參考官方文件。\n\n:::",
+          "reason": "URL for a 'link' was changed from 'https://pkg.go.dev/github.com/robfig/cron/v3#hdr-Intervals' to 'https://pkg.go.dev/github.com/robfig/cron/v3#hdr-Intervals。更多資訊請參考官方文件。'.",
+          "timestamp": "2025-07-04T06:49:59.304556+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "8f1c1cd6",
+      "source_content": "### `historyLimit` field",
+      "source_content_hash": "e87db159291c50a2ed0f020c86c2158f2b12d7dc880cf122bc4ab8c497d59628",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### `historyLimit` 欄位"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "383fbdd2",
+      "source_content": "After an experiment ends, the corresponding history will not be deleted so you can retrieve and observe the results easily in case of any errors. The number set in `historyLimit` is the number of reserved tasks. This number includes tasks in progress. Chaos Mesh does not delete running tasks.",
+      "source_content_hash": "4ec32910e57a727b4311f3816139f16ef370ed6c56d03f46e57b3568df5fd431",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "實驗結束後，對應的歷史記錄不會被刪除，以便在發生錯誤時可輕鬆檢索與觀察結果。`historyLimit` 設定的數值即為保留的任務數量，此數量包含進行中的任務。Chaos Mesh 不會刪除運行中的任務。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "14bc6b75",
+      "source_content": "When there are more than `historyLimit` tasks, Chaos Mesh will delete the earliest created tasks sequentially. If those tasks continue to run, they will be skipped and not deleted.",
+      "source_content_hash": "14648bba76898aadd7826b038430b983a0792de560b06e6c120bf20ae355e7a8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當任務數量超過 `historyLimit` 設定值時，Chaos Mesh 會依序刪除最早建立的任務。若這些任務仍在執行中，則會被跳過而不刪除。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5dba1427",
+      "source_content": "### `concurrencyPolicy` field",
+      "source_content_hash": "6f47b38863c14bfcb0736d7ceceedb3d9e172f3c73669b8e6c2f2cd1ebae5e19",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### `concurrencyPolicy` 欄位"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "534ac82e",
+      "source_content": "The values available for this field are `\"Forbid\"`, `\"Allow\"`, and `\"\"`.",
+      "source_content_hash": "43075e52e572eb53b8f560e611588c00669aeffa8bb28ccd3103c3200d6129ea",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此欄位可填入的值為 `\"Forbid\"`、`\"Allow\"` 及 `\"\"`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a9c2a503",
+      "source_content": "This field is used to specify whether to allow this `Schedule` object to create multiple concurrent experiments. For example, with the `schedule: * * * * *` configuration, one experiment will be created every minute. If the `duration` of the experiment is configured to be 70 seconds, multiple experiments will be created simtaneously.",
+      "source_content_hash": "8b361e88f95c0f997ea41c374877f86885df966e11838f98b7cd73e84ea9ff70",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此欄位用於指定是否允許此 `Schedule` 物件建立多個並行實驗。例如採用 `schedule: * * * * *` 設定時，每分鐘都會建立一個實驗。若實驗的 `duration` 設定為 70 秒，則會同時存在多個實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cfeb9eb1",
+      "source_content": "By default, the `concurrencyPolicy` field is set to `Forbid`, which means multiple experiments are not allowed to be created simultaneously. If you set the value of the `concurrencyPolicy` field to `Allow`, multiple experiments are allowed to be created simultaneously.",
+      "source_content_hash": "64edc744693858c5bea72f4a957c3726b870852a6580c6ec852a8c3fd79a20d4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "預設情況下，`concurrencyPolicy` 欄位設為 `Forbid`，表示不允許多個實驗同時執行。若將 `concurrencyPolicy` 欄位值設為 `Allow`，則允許多個實驗同時建立。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f7e6e884",
+      "source_content": "The following configuration still takes the delay experiment as an example:",
+      "source_content_hash": "2b04abd5a5e1c647ddf66ba57472b522b3a2ed8c23ec3642626faafcc466a5e1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下仍以延遲實驗為例的設定："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ad3cd2f7",
+      "source_content": "```yaml\nspec:\n  schedule: '* * * * *'\n  type: 'NetworkChaos'\n  networkChaos:\n    action: delay\n    mode: one\n    selector:\n      namespaces:\n        - default\n      labelSelectors:\n        'app': 'web-show'\n    delay:\n      latency: '10ms'\n    duration: '70s'\n```",
+      "source_content_hash": "4af87ce929fa55416989fb596838fb92ada3f56a5dbef3bea1798ebd7a1df249",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ad3cd2f7"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6b40e7a2",
+      "source_content": "Based on this configuration, if you set `concurrencyPolicy: \"Allow\"`, there will be a delay of 20 milliseconds in 10 seconds every minute. And for the other 50 seconds, there will be a delay of 10 milliseconds. If you set `concurrencyPolicy: \"Forbid\"`, there will always be a delay of 10 milliseconds.",
+      "source_content_hash": "da26268b3c2791bf57cf217fe8a2a49925e1a46f20565bb5d35a5fc3b78f2a45",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "根據此設定，若採用 `concurrencyPolicy: \"Allow\"`，則每分鐘的前 10 秒會有 20 毫秒延遲，其餘 50 秒則維持 10 毫秒延遲。若採用 `concurrencyPolicy: \"Forbid\"`，則全程始終保持 10 毫秒延遲。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b1fb63b3",
+      "source_content": ":::note\n\nNot all experiment types support multiple experiments on the same Pod. For details, refer to the documents of the specific experiment types.\n\n:::",
+      "source_content_hash": "bb709e49389e8dcc4c220dbc5e9ec5d2a2ca7a78b23d7b5aea68209fcc908bc1",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n並非所有實驗類型都支援在同個 Pod 上執行多個實驗，詳情請參閱各實驗類型的說明文件。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a49ac2ed",
+      "source_content": "### `startingDeadlineSeconds` field",
+      "source_content_hash": "3c7e6af48d4cd892d127c6f1e044bee184001bbe826e08e14472de84fc0217f6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### `startingDeadlineSeconds` 欄位"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "808b0414",
+      "source_content": "The default value of `startingDeadlineSeconds` is `nil`.",
+      "source_content_hash": "879e9059700ba8910313a68c239c9646ce701d89a5ffa1d4c616055e241deccc",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "`startingDeadlineSeconds` 的預設值為 `nil`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "61a78cbe",
+      "source_content": "When `startingDeadlineSeconds` is set to `nil`, Chaos Mesh will check if any experiments are missed from the last time of the scheduling to now (this might happen when you close Chaos Mesh, suspend Schedule for a long time, or set `concurrencyPolicy` to `Forbid`).",
+      "source_content_hash": "b332f4b830b2a3406ed1c4aa2d4bb387cf87c32556602bdfa682a11c0642e822",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當 `startingDeadlineSeconds` 設為 `nil` 時，Chaos Mesh 會檢查從上次排程時間至今是否有遺漏的實驗（可能發生於關閉 Chaos Mesh、長期暫停 Schedule 或將 `concurrencyPolicy` 設為 `Forbid` 時）。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39c48ff7",
+      "source_content": "When `startingDeadlineSeconds` is set and larger than `0`, Chaos Mesh will check if any experiments are missed for the past `startingDeadlineSeconds` seconds since the current time. If the value of `startingDeadlineSeconds` is too small, some experiments might be missed. For example:",
+      "source_content_hash": "222078d0b91f20c35a1ecef4f3251e1faef0abb83857a6020df1cb238da7d678",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當 `startingDeadlineSeconds` 設為大於 `0` 的值時，Chaos Mesh 會檢查當前時間往前回溯 `startingDeadlineSeconds` 秒內是否有遺漏實驗。若 `startingDeadlineSeconds` 值過小，可能導致部分實驗被遺漏。例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b26685f5",
+      "source_content": "```yaml\nspec:\n  schedule: '* * * * *'\n  type: 'NetworkChaos'\n  networkChaos:\n    action: delay\n    mode: one\n    selector:\n      namespaces:\n        - default\n      labelSelectors:\n        'app': 'web-show'\n    startingDeadlineSeconds: 5\n    delay:\n      latency: '10ms'\n    duration: '70s'\n```",
+      "source_content_hash": "03a7e3538eade3c5080c1a32267255f44b8801a4aac3559bc2e7e70d11cfb793",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b26685f5"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3208eb29",
+      "source_content": "In the above example, due to `concurrencyPolicy` is set to `Forbid`, creating new tasks is forbidden at the beginning of the minute. And in the tenth second of this minute, the last created Chaos experiment has finished running. But due to the limits of `startingDeadlineSeconds` and the set of `concurrencyPolicy`, the missing events will not be retrieved and no Chaos experiments will be created. New Chaos experiment will only be created at the beginning of the next minute.",
+      "source_content_hash": "9b458621ac8a69874a698b6d9e207f81ae10c3ac94427420494e558551f85930",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "上例中，由於 `concurrencyPolicy` 設為 `Forbid`，在每分鐘起始時禁止建立新任務。而在該分鐘第 10 秒時，最後建立的 Chaos 實驗已執行完畢。但受 `startingDeadlineSeconds` 限制和 `concurrencyPolicy` 設定影響，遺漏事件將不被補發，也不會建立任何 Chaos 實驗。新的 Chaos 實驗僅會在下分鐘起始時建立。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "38f964f1",
+      "source_content": "If `startingDeadlineSeconds` is not set (or is set to `nil`), there will always be a delay of 10 milliseconds. This is because after the running task is done, Chaos Mesh finds a previous missing task (due to `concurrencyPolicy` is set to `Forbid`), and immediately creates a new task.",
+      "source_content_hash": "2a5dc2fb430492c4034456460a1969019e6a5ac886b20a4e99aff642f9a28140",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若未設定 `startingDeadlineSeconds`（或設為 `nil`），則始終會保持 10 毫秒延遲。這是因為在執行中任務完成後，Chaos Mesh 發現先前因 `concurrencyPolicy` 設為 `Forbid` 而遺漏的任務，隨即建立新任務。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b4204c03",
+      "source_content": "To learn more examples and similar explanations of this field, see [Kubernetes CronJob documents](https://kubernetes.io/zh/docs/concepts/workloads/controllers/cron-jobs/#cron-job-limitations).",
+      "source_content_hash": "5605082b97279163347263d24719309fd05c79191ecdee3bf19d10d35669d280",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "更多範例與類似說明，請參閱 [Kubernetes CronJob 文件](https://kubernetes.io/zh/docs/concepts/workloads/controllers/cron-jobs/#cron-job-limitations)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "428f235a",
+      "source_content": "### Define experiments",
+      "source_content_hash": "02cda3f1b506bfebf5182bed41929f971874edc97c366b2514f86c67377f9953",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 定義實驗內容"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dad05c50",
+      "source_content": "To define the specific content of the experiment, you need to specify two fields in `Schedule`: `type` and `*Chaos`. `type` field is used to specify the type of an experiment, and `*Chaos` field is used to describe the content of the experiment. Normally, the content in the `type` field uses upper camel case, for example: `NetworkChaos`, `PodChaos`, `IOChaos`. While the key of `*Chaos` uses lower camel case like `networkChaos`, `podChaos`, and `ioChaos`. The key of `*Chaos` is the `spec` of the corresponding type of experiment. For details, refer to the documents of the specific experiment types.",
+      "source_content_hash": "4a8dad5fcdf9918f70166737eb6b266da1a8003dfda780880ef168d5a4a2f059",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要定義實驗的具體內容，需在 `Schedule` 中指定兩個欄位：`type` 和 `*Chaos`。`type` 欄位用於指定實驗類型，`*Chaos` 欄位則描述實驗內容。通常 `type` 欄位內容採用大駝峰命名法，例如：`NetworkChaos`、`PodChaos`、`IOChaos`；而 `*Chaos` 的鍵名採用小駝峰命名法，如 `networkChaos`、`podChaos`、`ioChaos`。`*Chaos` 的鍵值即為該實驗類型的 `spec` 規格，詳情請參閱各實驗類型的說明文件。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4e8f71c1",
+      "source_content": "## Create Scheduling rules using Chaos Dashboard",
+      "source_content_hash": "8cfc658ccfe6e5bb3b5c71f8dc526eb265f2fe715a056dda6037d86e0d36fede",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Chaos Dashboard 建立排程規則"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "120d9ae1",
+      "source_content": "1. Open Chaos Dashboard, and click **NEW EXPERIMENT** on the page to create a new experiment.\n\n   ![Create plans](./img/create-new-schedule.png)",
+      "source_content_hash": "e7991c9b2be44e116a77a3a5f5f7ae71bcc9b25350848e06e625fd0cee967987",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 開啟 Chaos Dashboard，在頁面上點擊 **NEW EXPERIMENT** 建立新實驗。\n\n   ![建立排程計畫](./img/create-new-schedule.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b6ca1dd1",
+      "source_content": "2. Select and fill in the specific details of the experiment.\n\n   ![Select and fill in the content](./img/define-schedule-inner-resource.png)",
+      "source_content_hash": "921d8ba22dac32de3dde4718e5f209c1aa1e9aa6fd732e3eb7b2bcf1823f876e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 選擇並填寫實驗的具體細節內容。\n\n   ![選擇並填寫內容](./img/define-schedule-inner-resource.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0ecf6f0e",
+      "source_content": "3. Fill out information including the planning cycle and concurrency strategy.\n\n   ![Fill out planning rules](./img/define-schedule-spec.png)",
+      "source_content_hash": "76f81b6b84e512aaaa24e39c5af2d8808c607fa7180f51ccddc46838425b3860",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 填寫包含排程週期與並行策略等資訊。\n\n   ![填寫排程規則](./img/define-schedule-spec.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3fbfa307",
+      "source_content": "4. Submit the experiment information.",
+      "source_content_hash": "d43f9894c758dcc87cfc64b219f833d55e60a63f3367195f2557b06b88c799f0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 提交實驗資訊。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "43ad2e31",
+      "source_content": "### Pause the scheduled task",
+      "source_content_hash": "4e4b99e40ca16d389ed856b606f1f1711cc156c336f06cf93e60f3521180204f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 暫停排程任務"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "01902900",
+      "source_content": "Unlike `CronJob`, pausing `Schedule` not only prevents it from creating a new experiment, but also pauses an already created experiment.",
+      "source_content_hash": "54cd20d1302d9ebfc62ec4ec22e44c5778c45cc8eae5b98a003fe53d1c850211",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "與 `CronJob` 不同，暫停 `Schedule` 不僅會阻止建立新實驗，還會暫停已建立的實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dbeb30c1",
+      "source_content": "If you do not want to create a Chaos experiment as a scheduled task for now, you need to add the `experiment.chaos-mesh.org/pause=true` annotation to the `Schedule` object. You can add the annotation using the `kubectl` command:",
+      "source_content_hash": "b52c173cff7c872dc8795c4b762fae85995ae2eef9868f5a46dc541cba2b1cfd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "若需暫時停止排程任務建立混沌實驗，需在 `Schedule` 物件添加 `experiment.chaos-mesh.org/pause=true` 註解。可使用 `kubectl` 指令添加：",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`experiment.chaos-mesh.org/pause=true`', Translation: '`Schedule`'.",
+          "timestamp": "2025-07-04T06:49:59.304703+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "489cbec9",
+      "source_content": "```bash\nkubectl annotate -n $NAMESPACE schedule $NAME experiment.chaos-mesh.org/pause=true\n```",
+      "source_content_hash": "77cead4bf86f7699f4ff42f03ea2572bf0ab65451bc5e73a917e4042bcab7ac2",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_489cbec9"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "130a77cc",
+      "source_content": "In the command, `$NAMESPACE` is a namespace, and `$NAME` is the name of `Schedule`. The successful result is returned as follows:",
+      "source_content_hash": "4ec943d019b6d9d78638f2c41fb45fa030ee7082835029d38314f02ac37f8ad3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "指令中 `$NAMESPACE` 為命名空間，`$NAME` 是 `Schedule` 的名稱。成功結果顯示如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0883e35a",
+      "source_content": "```bash\nschedule/$NAME annotated\n```",
+      "source_content_hash": "f7a465029e3bacb88b320108b8326dfba36b26357c4501693f5e1e9374b636ec",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_0883e35a"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f211c69a",
+      "source_content": "If you want to unpause the task, you can use the following command to remove the annotation:",
+      "source_content_hash": "57cac87bf574178531080ddff74ac4af9d82bbaed0e8ebde4c07679bd02e81f6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若要恢復任務，可使用以下指令移除註解："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "03859cae",
+      "source_content": "```bash\nkubectl annotate -n $NAMESPACE schedule $NAME experiment.chaos-mesh.org/pause-\n```",
+      "source_content_hash": "5cd847dd7645d9ce4246600c4d3ecbf8ef9a8b4ee923558f5cc464e480630366",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_03859cae"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6dc3e423",
+      "source_content": "In the command, `$NAMESPACE` is the namespace, and `$NAME` is the name of `Schedule`.The successful result is returned as follows:",
+      "source_content_hash": "7c93848b423e0e7783bc4ffcf22c6c3947db279feca2698e774b69278b98654d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "指令中 `$NAMESPACE` 為命名空間，`$NAME` 是 `Schedule` 的名稱。成功結果顯示如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ab152d31",
+      "source_content": "```bash\nschedule/$NAME annotated\n```",
+      "source_content_hash": "f7a465029e3bacb88b320108b8326dfba36b26357c4501693f5e1e9374b636ec",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ab152d31"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/define-scheduling-rules.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.304744+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "68b2b228209151de3d04c9282331083b7fb166b9fe0671692e6e45e641143999"
+  }
+}

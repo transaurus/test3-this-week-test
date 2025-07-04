@@ -1,0 +1,614 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/simulate-jvm-application-chaos.md",
+  "source_file_content_hash": "ca5f0af593eae76d8a5d840aef9b621f2f06a5c284df5bcaa95f7981e14efaf1",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate JVM Application Faults\n---",
+      "source_content_hash": "7b0a5ccc05ac137b8e75422434af8373636172c3516204e79402151e65416e21",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "Chaos Mesh simulates the faults of JVM application through [Byteman](https://github.com/chaos-mesh/byteman). The supported fault types are as follows:",
+      "source_content_hash": "2b45a24ef6092779e101e02eec1285ef6fe197b97c76361d46fd4490d9bda2a9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 透過 [Byteman](https://github.com/chaos-mesh/byteman) 模擬 JVM 應用程式的故障。支援的故障類型如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "237365ee",
+      "source_content": "- Throw custom exceptions",
+      "source_content_hash": "864fd8ff34e3e814f12e90f469a3c78494d209f830bf2b40bad2815c69dcbaa6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 拋出自訂例外"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2516e62c",
+      "source_content": "- Trigger garbage collection",
+      "source_content_hash": "1e3d4d81cd58bb6bcd4378468eeec4c6fc6af42e648984a37e70135b67e520fc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 觸發垃圾回收"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1a7466c7",
+      "source_content": "- Increase method latency",
+      "source_content_hash": "d4c3b3f661262ee0e749b53a32cb14b24a902889dd496209c0aba489d891ae46",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 增加方法延遲"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7c4bd672",
+      "source_content": "- Modify return values of a method",
+      "source_content_hash": "87dbf60697b96be65cefd25d728e5a945e66cdca991340c9d230b3a7d457abd1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 修改方法返回值"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "760d111a",
+      "source_content": "- Trigger faults by setting Byteman configuration files",
+      "source_content_hash": "978ff073a7e9adcc1e891f30f3e283d19089ee2eb6a51cd34041711158443aa1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 透過設定 Byteman 組態檔案觸發故障"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ee0c6cb",
+      "source_content": "- Increase JVM pressure",
+      "source_content_hash": "66e0d82fb237145f2d04ba5eb030efacef3e673addadee4cda0b8e0ac9b372ae",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 增加 JVM 壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ad8fd492",
+      "source_content": "This document describes how to use Chaos Mesh to create the above fault types of JVM experiments.",
+      "source_content_hash": "28b01fc839e65af551fc3839f51dd03a7dba8d72d1d75b62c9db9db3f1e7ab34",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文說明如何使用 Chaos Mesh 建立上述故障類型的 JVM 實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "976d532b",
+      "source_content": ":::note\n\nYour Linux kernel must be v4.1 or later.\n\n:::",
+      "source_content_hash": "07613849c01606e30e99cd4e2701735ddefeca8fdbe4fefa4383938b6952778e",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n您的 Linux 核心必須是 v4.1 或更新版本。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "63622bf0",
+      "source_content": "## Create experiments using Chaos Dashboard",
+      "source_content_hash": "0e6c13931d3c46c241532f93bf2c43261695607133973a006c15d6651045ed71",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 Chaos Dashboard 建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d7f0c63d",
+      "source_content": "1. Open Chaos Dashboard, and click **NEW EXPERIMENT** on the page to create a new experiment.\n\n   ![create a new experiment](./img/create-new-exp.png)",
+      "source_content_hash": "2c4bfcd8a6fc057a139434de21ba3c5ba02cfcb5137e0c9e2e76fd12370ee483",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 開啟 Chaos Dashboard，點擊頁面中的 **NEW EXPERIMENT** 建立新實驗。\n\n   ![create a new experiment](./img/create-new-exp.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "882f8186",
+      "source_content": "2. In the **Choose a Target** area, choose **JVM FAULT**, and select a specific behavior, such as **`RETURN`**. Then, fill out the detailed configurations.\n\n   ![JVMChaos experiments](./img/jvmchaos-exp.png)\n\n   For information about how to fill out the configurations, refer to [Field Description] (#field-description).",
+      "source_content_hash": "3e60aa34e875b41479e2fe585a69acd604456360223432e31b7ddcf591f01b0c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "2. 在 **Choose a Target** 區域選擇 **JVM FAULT**，並選取特定行為（例如 **`RETURN`**）。接著填寫詳細設定。\n\n   ![JVMChaos experiments](./img/jvmchaos-exp.png)\n\n   設定填寫方式請參閱[欄位說明](#field-description)。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 2, translation has 3.",
+          "timestamp": "2025-07-04T06:49:59.306040+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "c0463e48",
+      "source_content": "3. Fill out the experiment information, and specify the experiment scope and the scheduled experiment duration.\n\n   ![experiment information](./img/exp-info.png)",
+      "source_content_hash": "b8b865df32ee2b2545b95e5d71e14b43ce8f3cc5305a29914b068b5164443d4a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 填寫實驗資訊，並指定實驗範圍與排程執行時間。\n\n   ![experiment information](./img/exp-info.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ec638a20",
+      "source_content": "4. Submit the experiment information.",
+      "source_content_hash": "d43f9894c758dcc87cfc64b219f833d55e60a63f3367195f2557b06b88c799f0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 提交實驗資訊。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "782c902a",
+      "source_content": "## Create experiments using YAML files",
+      "source_content_hash": "87be3d29972bae4243b6969851f9d8cee6ef367c0b93cb5fe2ad6e4c107cd5a3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 YAML 檔案建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "50746522",
+      "source_content": "The following example shows the usage and effects of JVMChaos. The example specifies the return values of a method. The YAML files referred to in the following steps can be found in [examples/jvm](https://github.com/chaos-mesh/chaos-mesh/tree/master/examples/jvm). The default work directory for the following steps is also `examples/jvm`. The default namespace where Chaos Mesh is installed is `chaos-mesh`.",
+      "source_content_hash": "df4f14c6deafb402478ae2e62c9201a1d9ef00f7ed0c9f7430641b2c3cf6342f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下範例展示 JVMChaos 的用法與效果。範例指定方法的返回值，相關 YAML 檔案可在 [examples/jvm](https://github.com/chaos-mesh/chaos-mesh/tree/master/examples/jvm) 找到。後續步驟的預設工作目錄同為 `examples/jvm`，Chaos Mesh 預設安裝在 `chaos-mesh` 命名空間。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "54268405",
+      "source_content": "### Step 1. Create the target application",
+      "source_content_hash": "51983759435465890239acb8aee3a81e3d3630b6495fe265b866dda3cd7acb95",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 1. 建立目標應用程式"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8af76f3d",
+      "source_content": "[Helloworld](https://github.com/WangXiangUSTC/byteman-example/tree/main/example.helloworld) is a simple Java application. In this section, this application is used as the target application that is to be tested. The target application is defined in `example/jvm/app.yaml` as follows:",
+      "source_content_hash": "d2d0dc79fa2e88da0e10c91fe322a4cb2fd87a6c24ba3864816ec9206bda94d5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Helloworld](https://github.com/WangXiangUSTC/byteman-example/tree/main/example.helloworld) 是簡單的 Java 應用程式。本節以此應用程式作為待測目標，目標應用程式定義於 `example/jvm/app.yaml`："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "48ec8149",
+      "source_content": "```yaml\napiVersion: v1\nkind: Pod\nmetadata:\n  name: helloworld\n  namespace: helloworld\nspec:\n  containers:\n    - name: helloworld\n      # source code: https://github.com/WangXiangUSTC/byteman-example/tree/main/example.helloworld\n      # this application will print log like this below:\n      # 0. Hello World\n      # 1. Hello World\n      # ...\n      image: xiang13225080/helloworld:v1.0\n      imagePullPolicy: IfNotPresent\n```",
+      "source_content_hash": "8c9632a4a0b0877b18d9e344ad591a8c29a1090b953b72c6b1b756a4e25505e3",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_48ec8149"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "296e1d68",
+      "source_content": "1. Create the namespace for the target application:\n\n   ```shell\n   kubectl create namespace helloworld\n   ```",
+      "source_content_hash": "5349662d9351da257c273f816b9bd212068e3e804f2fbb00255a827a3dec5af4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 建立目標應用程式的命名空間：\n\n   ```shell\n   kubectl create namespace helloworld\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3ed00714",
+      "source_content": "2. Build the application Pod:\n\n   ```shell\n   kubectl apply -f app.yaml\n   ```",
+      "source_content_hash": "82501f883f2d145f28b768a6e8f69e08c6d36d1c44b8b515fbbe8496dcf935c0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 建立應用程式 Pod：\n\n   ```shell\n   kubectl apply -f app.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f59fdf04",
+      "source_content": "3. Execute `kubectl -n helloworld get pods`, and you are expected to find a pod named `helloworld` in the `helloworld` namespace.\n\n   ```shell\n   kubectl -n helloworld get pods\n   ```\n\n   The result is as follows:\n\n   ```text\n   kubectl get pods -n helloworld\n   NAME         READY   STATUS    RESTARTS   AGE\n   helloworld   1/1     Running   0          2m\n   ```\n\n   After the `READY` column turns to `1/1`, you can proceed to the next step.",
+      "source_content_hash": "a2e28f80db7734ce0a02d11028b738151549f350dbfb0e9d8b9ca6ae84ed64c7",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "3. 執行 `kubectl -n helloworld get pods`，預期可在 `helloworld` 命名空間找到名為 `helloworld` 的 Pod。\n\n   ```shell\n   kubectl -n helloworld get pods\n   ```\n\n   結果如下：\n\n   ```text\n   kubectl get pods -n helloworld\n   NAME         READY   STATUS    RESTARTS   AGE\n   helloworld   1/1     Running   0          2m\n   ```\n\n   當 **READY** 欄位顯示 `1/1` 後，即可繼續下一步。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 5, translation has 4.",
+          "timestamp": "2025-07-04T06:49:59.306072+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "f6b04a59",
+      "source_content": "### Step 2. Observe application behaviors before injecting faults​",
+      "source_content_hash": "e4defa8682e9e92e4281e1e0a03673c5ab66ee9b4eaa58dcae8b719bf8dc5eff",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 2. 觀察注入故障前的應用行為​"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a311e967",
+      "source_content": "You can observe the behavior of `helloworld` application before injecting faults, for example:",
+      "source_content_hash": "cdf071040ecae23d4e1b518c2d13b19e45b4ec0d33842815712e28a0e23c6436",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可觀察 `helloworld` 應用程式在注入故障前的行為，例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7fa46732",
+      "source_content": "```shell\nkubectl -n helloworld logs -f helloworld\n```",
+      "source_content_hash": "0469cd49d3e820ec1823adf6b402403f198e4858f6c26f6d0f75bf446abae068",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7fa46732"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ca4479f",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1cf51900",
+      "source_content": "```shell\n0. Hello World\n1. Hello World\n2. Hello World\n3. Hello World\n4. Hello World\n5. Hello World\n```",
+      "source_content_hash": "86b384e2d9d22ba7bdcaac189f66108654868ca9e6dbf615d93362a259925179",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1cf51900"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6693c38c",
+      "source_content": "You can see that `helloworld` outputs a line of `Hello World` every second, and the number of each line increases in turn.",
+      "source_content_hash": "dcd96a633cd06b761a9d8d7ecc578671c9eb7d0f506bc77499d0bffcb7a53aec",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可見 `helloworld` 每秒輸出一行 `Hello World`，且每行數字依序遞增。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8172a0a5",
+      "source_content": "### Step 3. Inject JVMChaos and check",
+      "source_content_hash": "db1a7c5ed1a885f3092581bd2111dc4a61058d01bbc1a48d723d057a5f781eae",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 步驟 3. 注入 JVMChaos 並驗證"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9e54c725",
+      "source_content": "1. The JVMChaos with a specified return value is as follows:\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: JVMChaos\n   metadata:\n     name: return\n     namespace: helloworld\n   spec:\n     action: return\n     class: Main\n     method: getnum\n     value: '9999'\n     mode: all\n     selector:\n       namespaces:\n         - helloworld\n   ```\n\n   JVMChaos changes the return value of the `getnum` method to the number `9999`, which means that the number of each line in the `helloworld` output is set to `9999`.",
+      "source_content_hash": "6f824dc71340a50133e092e13978b6f50713f383343f62dee8c51019dfb7444d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 指定返回值的 JVMChaos 配置如下：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: JVMChaos\n   metadata:\n     name: return\n     namespace: helloworld\n   spec:\n     action: return\n     class: Main\n     method: getnum\n     value: '9999'\n     mode: all\n     selector:\n       namespaces:\n         - helloworld\n   ```\n\n   JVMChaos 將 `getnum` 方法的返回值更改為數字 `9999`，這表示 `helloworld` 輸出的每行數字將被設定為 `9999`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8845f8e3",
+      "source_content": "2. Inject JVMChaos with a specified value:\n\n   ```shell\n   kubectl apply -f ./jvm-return-example.yaml\n   ```",
+      "source_content_hash": "9b6a0ac225418b6835c86da6bdac94edf0a50d6170314bb485f0a16dc4b269ba",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 注入帶有指定值的 JVMChaos：\n\n   ```shell\n   kubectl apply -f ./jvm-return-example.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf19ad04",
+      "source_content": "3. Check the latest log of `helloworld`:\n\n   ```shell\n   kubectl -n helloworld logs -f helloworld\n   ```\n\n   The log is as follows:\n\n   ```shell\n   Rule.execute called for return_0:0\n   return execute\n   caught ReturnException\n   9999. Hello World\n   ```",
+      "source_content_hash": "7293997736574c440426cc72ca98e3c17d11cb7694236909798fbef352a854a4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 檢查 `helloworld` 的最新日誌：\n\n   ```shell\n   kubectl -n helloworld logs -f helloworld\n   ```\n\n   日誌如下：\n\n   ```shell\n   Rule.execute called for return_0:0\n   return execute\n   caught ReturnException\n   9999. Hello World\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c6b2ca77",
+      "source_content": "## Field description",
+      "source_content_hash": "afef87832591f63e7a3c9579f8a2492cf81afc3e8b0d02296e334646ad82d4f6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 欄位說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1603328c",
+      "source_content": "| Parameter | Type | Description | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| `action` | string | Indicates the specific fault type. The available fault types include `latency`, `return`, `exception`, `stress`, `gc`, and `ruleData`. | None | Yes | return |\n| `mode` | string | Indicates how to select Pod. The supported modes include `one`, `all`, `fixed`, `fixed-percent`, and `random-max-percent`. | None | Yes | `one` |",
+      "source_content_hash": "2eb9e903be70c033de60acb7b4a1012be6964f5c21470775cb79a8d32f898834",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1603328c"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0ddaa835",
+      "source_content": "The meanings of the different `action` values are as follows:",
+      "source_content_hash": "766a7cb3f2d0fb81a5e42d08bf2318e494e9823f90d1bf853e2a8e072beeee84",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "不同 `action` 值的含義如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "62c9412b",
+      "source_content": "| Value | Meaning |\n| --- | --- |\n| `latency` | Increase method latency |\n| `return` | Modify return values of a method |\n| `exception` | Throw custom exceptions |\n| `stress` | Increase CPU usage of Java process, or cause memory overflow (support heap overflow and stack overflow) |\n| `gc` | Trigger garbage collection |\n| `ruleData` | Trigger faults by setting Byteman configuration files |",
+      "source_content_hash": "0245f63efef407daa1260a8bac56d132924ac6ecb975a6c3032901c8533e8d9b",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_62c9412b"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "808b0414",
+      "source_content": "For different `action` values, there are different configuration items that can be filled in.",
+      "source_content_hash": "c0e7a7efdec96165f53e116517f7c639d0e3297855711111cc0ccc1ac2a29cd2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "針對不同 `action` 值，有各自可填寫的配置項目。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a75f8411",
+      "source_content": "### Parameters for `latency`",
+      "source_content_hash": "154583193f31c7ef596f8aeaee79bde2dee7ad4bc02e7d7adf20b8773cc0e62c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### `latency` 參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dda3514e",
+      "source_content": "| Parameter | Type | Description | Required |\n| --- | --- | --- | --- |\n| `class` | string | The name of the Java class | Yes |\n| `method` | string | The name of the method | Yes |\n| `latency` | int | The duration of increasing method latency. The unit is millisecond. | Yes |\n| `port` | int | The port ID attached to the Java process agent. The faults are injected into the Java process through this ID. | No |",
+      "source_content_hash": "a49452077f9b739d1539d6aebd56dc37e0206cc134c58726eba10b6e9f6701fd",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_dda3514e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e63d69ef",
+      "source_content": "### Parameters for `return`",
+      "source_content_hash": "14e9d7e7104c9b6c7b6fd50a029f7e1d859ea10f59d2f56415b6cc5de0a0f83d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### `return` 參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "04e40597",
+      "source_content": "| Parameter | Type | Description | Required |\n| --- | --- | --- | --- |\n| `class` | string | The name of the Java class | Yes |\n| `method` | string | The name of the method | Yes |\n| `value` | string | Specifies the return value of the method. Currently, the item can be numeric and string types. If the item (return value) is string, double quotes are required, like \"chaos\". | Yes |\n| `port` | int | The port ID attached to the Java process agent. The faults are injected into the Java process through this ID. | No |",
+      "source_content_hash": "bd348dab20d6500e20eda19fc4509527f6c24261264935a124fe35922a681e33",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_04e40597"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfa23ddf",
+      "source_content": "### Parameters for `exception`",
+      "source_content_hash": "2a14be71e0f26a4256753ee1797e73cf56467c6c17b8380ac3be1f3014bc4a0e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### `exception` 參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c3939ea",
+      "source_content": "| Parameter | Type | Description | Required |\n| --- | --- | --- | --- |\n| `class` | string | The name of the Java class | Yes |\n| `method` | string | The name of the method | Yes |\n| `exception` | string | The thrown custom exception, such as 'java.io.IOException(\"BOOM\")'. | Yes |\n| `port` | int | The port ID attached to the Java process agent. The faults are injected into the Java process through this ID. | No |",
+      "source_content_hash": "96130d1478c26262bd971b82f5a6553cb81abc4fa4945c0443c6ccb7790f97ec",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9c3939ea"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a7628008",
+      "source_content": "### Parameters for `stress`",
+      "source_content_hash": "940901b9887d8ae300cc93d60fed53491afd818218a071274ca14e798307ee1a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### `stress` 參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0542488c",
+      "source_content": "| Parameter | Type | Description | Required |\n| --- | --- | --- | --- |\n| `cpuCount` | int | The number of CPU cores used for increasing CPU stress. You must configure one item between `cpu-count` and `mem-type`. | No |\n| `memType` | string | The type of OOM. Currently, both 'stack' and 'heap' OOM types are supported. You must configure one item between `cpu-count` and `mem-type`. | No |\n| `port` | int | The port ID attached to the Java process agent. The faults are injected into the Java process through this ID. | No |",
+      "source_content_hash": "c0b5337a95dd803aed9c8bbd969aadb132c7d96121cafe7b8cfde59662f5e623",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_0542488c"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dd21637d",
+      "source_content": "### Parameters for `gc`",
+      "source_content_hash": "6149751e80088d26c32928970aa66a9823be1b61d36dfbc2a21c109f045e04e9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### `gc` 參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0ef6e712",
+      "source_content": "| Parameter | Type | Description | Required |\n| --- | --- | --- | --- |\n| `port` | int | The port ID attached to the Java process agent. The faults are injected into the Java process through this ID. | No |",
+      "source_content_hash": "f4853bf7d53424caf7650bc40e89950bccc1ab2b56324320014189ad05a2808e",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_0ef6e712"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dc825187",
+      "source_content": "### Parameters for `ruleData`",
+      "source_content_hash": "cf8fc9846179d2aaff7cbe14a514e9ff0204aa108059069ca41e6326cff0cbea",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### `ruleData` 參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b8bf77d8",
+      "source_content": "| Parameter | Type | Description | Required |\n| --- | --- | --- | --- |\n| `ruleData` | string | Specifies the Byteman configuration data | Yes |\n| `port` | int | The port ID attached to the Java process agent. The faults are injected into the Java process through this ID. | No |",
+      "source_content_hash": "2aefe466dc9327e86fc67f02331e6492e8f44760dc09b1604fedb56f7045da2f",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b8bf77d8"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "49be422b",
+      "source_content": "When you write the rule configuration file, take into account the specific Java program and the [byteman-rule-language](https://downloads.jboss.org/byteman/4.0.16/byteman-programmers-guide.html#the-byteman-rule-language). For example:",
+      "source_content_hash": "dad04a4c11293af569c919dcbe539fe54eccfa728e7a83852dacb6d96a8d4202",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "編寫規則配置文件時，需考量具體 Java 程式與 [byteman-rule-language](https://downloads.jboss.org/byteman/4.0.16/byteman-programmers-guide.html#the-byteman-rule-language)。例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5ad8d2b2",
+      "source_content": "```txt\nRULE modify return value\nCLASS Main\nMETHOD getnum\nAT ENTRY\nIF true\nDO\n    return 9999\nENDRULE\n```",
+      "source_content_hash": "4dbcd21ead3708322943d58ee6eeabe25769bff2bc6d74c6ffe7303b44aaa40c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_5ad8d2b2"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ba12acea",
+      "source_content": "You need to escape the line breaks in the configuration file to the newline character \"\\n\", and use the escaped text as the value of \"rule-data\" as follows:",
+      "source_content_hash": "2a61eacc74ea7712f8c156994b39e6ce0f73e057a08ae72073b01c9f299c79d1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "需將配置文件的換行符轉義為換行字元 \"\\n\"，並將轉義後的文字作為 \"rule-data\" 的值，如下所示："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9d31dc8f",
+      "source_content": "```txt\n\\nRULE modify return value\\nCLASS Main\\nMETHOD getnum\\nAT ENTRY\\nIF true\\nDO return 9999\\nENDRULE\\n\"\n```",
+      "source_content_hash": "555c65757100835b44278617603b0893b01e4570e97d31c077cc685155103a63",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9d31dc8f"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/simulate-jvm-application-chaos.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.306103+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "ca5f0af593eae76d8a5d840aef9b621f2f06a5c284df5bcaa95f7981e14efaf1"
+  }
+}

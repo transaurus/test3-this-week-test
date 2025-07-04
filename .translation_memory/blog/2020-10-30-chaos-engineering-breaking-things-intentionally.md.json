@@ -1,0 +1,460 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2020-10-30-chaos-engineering-breaking-things-intentionally.md",
+  "source_file_content_hash": "c205ed0d32cc3cad0aafa06591625d6e7fb01d6220a62c4e719b5b8ce9862de9",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /chaos-engineering-breaking-things-intentionally\ntitle: Chaos Engineering - Breaking things Intentionally\nauthors: manishdangi\nimage: /img/blog/chaos-engineering2.png\ntags: [Chaos Engineering, Chaos Mesh, Open Source]\n---",
+      "source_content_hash": "97833dc1c83a68be763823b4046fd98147249e497edfbc1b8c1d79763a449f2c",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Chaos-Engineering-Breaking-things-Intentionally](/img/blog/chaos-engineering2.png)",
+      "source_content_hash": "ac19a1924b5154cf852db98370419429d7597a2aab7592c2c03d5ccd38593fb4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![混沌工程-故意破壞系統](/img/blog/chaos-engineering2.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "“Necessity is the mother of invention”; similarly, Netflix is not only a platform for online media streaming. Netflix gave birth to Chaos engineering because of their necessity.",
+      "source_content_hash": "2879ea23903b5543b1230f1621a7103bf6c8e66008c387587bc34111c217f23f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "「需求是發明之母」；同樣地，Netflix 不僅僅是線上影音串流平台。Netflix 因自身需求而催生了混沌工程。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "In 2008, Netflix [experienced a major database corruption](https://about.netflix.com/en/news/completing-the-netflix-cloud-migration). They couldn't deliver DVDs for three days. This encouraged Netflix engineers to think about their monolithic architecture’s migration to a distributed cloud-based architecture.",
+      "source_content_hash": "ad17184749ffe36031949a9e052ea5f06cb7ae97e04186b4d81510a9c045293e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2008 年，Netflix [經歷了嚴重的資料庫損壞事件](https://about.netflix.com/en/news/completing-the-netflix-cloud-migration)。他們連續三天無法寄送 DVD。這促使 Netflix 工程師開始思考將單體式架構遷移至分散式的雲端架構。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "The new distributed architecture of Netflix composed of hundreds of microservices. Migration to distributed architecture solved their single point failure problem, but it gave rise to many other complexities requiring a more reliable and fault-tolerant system. At this point, Netflix engineers came up with an innovative idea to test the system’s fault tolerance without impacting customer service.",
+      "source_content_hash": "94b7a7674922cd4ec78baa4fa41a26e7383d0bc3a9b52e4869a3a0a9c1746cb6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Netflix 的新分散式架構由數百個微服務組成。遷移到分散式架構解決了單點故障問題，但也帶來了其他複雜性，需要更可靠且具備容錯能力的系統。此時，Netflix 工程師提出了一個創新想法：在不影響客戶服務的情況下測試系統的容錯能力。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "They created [Chaos Monkey](https://github.com/Netflix/chaosmonkey): a tool that causes random failures at different places with different intervals of time. With the development of Chaos Monkey, a new discipline arises: Chaos Engineering.",
+      "source_content_hash": "8b86f5e0040d9c197a67728873357d90404593e95447c389dad5886ad44c1579",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "他們開發了 [Chaos Monkey](https://github.com/Netflix/chaosmonkey)：這個工具能在不同位置隨機引發故障，並以不同時間間隔觸發。隨著 Chaos Monkey 的發展，一門新學科應運而生：混沌工程。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "“Chaos Engineering is the discipline of experimenting on a system in order to build confidence in the system’s capability to withstand turbulent conditions in production.” - [Principle of Chaos](https://principlesofchaos.org/)",
+      "source_content_hash": "8d8b6a8399252d570bf592e6abfdd5df1ee33dde635d2d95e14bd95167d8d2ef",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "「混沌工程是透過在系統上進行實驗的學科，以建立對系統在生產環境中承受動盪條件能力的信心。」—— [混沌原則](https://principlesofchaos.org/)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "Chaos Engineering is an approach for learning how your system behaves by applying a discipline of empirical exploration. Just as scientists conduct experiments to study physical and social phenomena, Chaos Engineering uses experiments to learn about a particular system - the systems' reliability, stability, and capability to survive in unexpected or unstable conditions.",
+      "source_content_hash": "c3772441ddfd7ffee4f635cca10224e3912078fa1ac2edbf229a4ba1dd731a46",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "混沌工程是透過實證探索的學科來了解系統行為的方法。正如科學家透過實驗研究物理和社會現象，混沌工程使用實驗來了解特定系統——系統的可靠性、穩定性以及在意外或不穩定條件下存活的能力。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c2bdd0",
+      "source_content": "When we have a large-scale distributed system, failures could be caused by a number of factors like application failure, infrastructure failure, dependency failure, network failure, and many more. These failures could not be all covered by traditional methods such as integration testing or unit testing, which makes Chaos Engineering a necessity:",
+      "source_content_hash": "0b4f9761900a2602756e05e5098d45bef902f74452d725ded5ac4e7d6238c987",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當我們擁有大型分散式系統時，故障可能由多種因素引起，例如應用程式故障、基礎設施故障、依賴項故障、網路故障等。這些故障無法全部透過傳統方法（如整合測試或單元測試）涵蓋，這使得混沌工程成為必要手段："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b08b37ac",
+      "source_content": "- To improve resiliency of the system",
+      "source_content_hash": "a033aac58268d218847b4697055f676bdc215d0d142f9db297a2fc9678973031",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 提升系統韌性"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "882f8186",
+      "source_content": "- To expose hidden threats and vulnerability of the system",
+      "source_content_hash": "3a4ad63bd179611aff4983682c43f0b761c93d3ec359112dda7b908989027b22",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 揭露系統潛藏的威脅與漏洞"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2523feeb",
+      "source_content": "- To figure out system weaknesses before they cause any failure in production",
+      "source_content_hash": "2f4f061fdd83e196b8613ece7811d39e87619ed7f390a92d5a18aff7eb8456c9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 在系統弱點導致生產環境故障前發現問題"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfe931a2",
+      "source_content": "Lots of people think that they are not as big compared to Netflix and other tech giants; nor do they have any databases or systems of that scale.",
+      "source_content_hash": "f394f08588feb3b5dc294f558f07bed8bf20fd5db6c995571e75e3de962d1a81",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "許多人認為自己的規模無法與 Netflix 等科技巨頭相比，也沒有同等規模的資料庫或系統。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4daf5cdd",
+      "source_content": "They are probably right, but over the period, Chaos engineering has evolved so much that it’s no longer limited to digital companies like Netflix. To ensure consistent performance and constant availability of their systems, more and more companies from different industries are implementing chaos experiments.",
+      "source_content_hash": "b4ed5db0f60f2538c25a47b9eb4fd706495f2b1e8144d81b1a819e65858fc131",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "他們可能沒錯，但隨著時間推移，混沌工程已發展到不再局限於 Netflix 等數位公司。為了確保系統的穩定性能和持續可用性，越來越多不同產業的公司正在實施混沌實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f422383e",
+      "source_content": "## Chaos-Mesh",
+      "source_content_hash": "d48f30412c394342f460ddc4e29174763c5d68cfefa582ff622fb8b49579952b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "26794fc5",
+      "source_content": ":::note\n\n2022-10-24: Because of https://www.oreilly.com/online-learning/leveraging-katacoda-technology.html, and refer to [#356](https://github.com/chaos-mesh/website/pull/356), the interactive tutorial is temporarily unavailable.\n\n:::",
+      "source_content_hash": "309c9fa56a89085317288948daab67d47db5d9ef3cd9382c10b3a8e1c64972fe",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::note\n\n2022-10-24：因 https://www.oreilly.com/online-learning/leveraging-katacoda-technology.html，並參考 [#356](https://github.com/chaos-mesh/website/pull/356)，互動式教學暫時無法使用。\n\n:::",
+          "reason": "URL for a 'link' was changed from 'https://www.oreilly.com/online-learning/leveraging-katacoda-technology.html' to 'https://www.oreilly.com/online-learning/leveraging-katacoda-technology.html，並參考'.",
+          "timestamp": "2025-07-04T06:49:59.313163+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "1042b50d",
+      "source_content": "To test the resiliency and reliability of [TiDB](https://pingcap.com/products/tidb), engineers at [PingCAP](https://pingcap.com/) came up with a fantastic tool for Chaos testing called [Chaos Mesh](https://chaos-mesh.org/), a cloud-native Chaos Engineering platform that orchestrates chaos on Kubernetes environments. Chaos Mesh takes into account the possible faults of a distributed system, covering the pod, the network, system I/O, and the kernel.",
+      "source_content_hash": "5f536af4f490dc9bc24ee7e11741f7681c8a10aaf915ecf51dc5d97d8a3274ed",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "為了測試 [TiDB](https://pingcap.com/products/tidb) 的韌性與可靠性，[PingCAP](https://pingcap.com/) 的工程師開發了出色的混沌測試工具 [Chaos Mesh](https://chaos-mesh.org/)。這是一個雲原生的混沌工程平台，可在 Kubernetes 環境中編排混沌實驗。Chaos Mesh 涵蓋了分散式系統可能出現的故障，包括 Pod、網路、系統 I/O 和核心層面。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa1e7006",
+      "source_content": "Chaos Mesh provides many fault injection methods:",
+      "source_content_hash": "a9a31ff5f0a110c5bdf0eb59383b27a6baca004ea1ab2d5d33dc0bf57269e6d5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 提供多種故障注入方法："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c710067",
+      "source_content": "- **clock-skew:** Simulates clock skew",
+      "source_content_hash": "4382b576fe22af0c7b6c3bfa418f760d2f95a0622cda1ee87fb6134b7b59fabc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **clock-skew:** 模擬時鐘偏移"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "def098da",
+      "source_content": "- **container-kill:** Simulates the container being killed",
+      "source_content_hash": "32ac8e0aed3851f05e2eab3e8ef2af0049ab0111a7c24b45ef8d5976b46dd2f9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **container-kill:** 模擬容器被終止"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ba6feeca",
+      "source_content": "- **cpu-burn:** Simulates CPU pressure",
+      "source_content_hash": "4109139ea447f068652366bb593c3fcc4222cf272655c62a3a18a7f324ad5be9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **cpu-burn:** 模擬 CPU 壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b1573599",
+      "source_content": "- **io-attribution-override:** Simulates file exceptions",
+      "source_content_hash": "4970f73a3580a6db00c6120493988e16402489aa5bf69ba0dc5b80462ccf03e7",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **io-attribution-override:** 模擬檔案異常"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a2d18d88",
+      "source_content": "- **io-fault:** Simulates file system I/O errors",
+      "source_content_hash": "10b85126b2d0ea01a208bae39be440b634e59530145c7f1bf77d9251acf1281f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **io-fault:** 模擬檔案系統 I/O 錯誤"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "11f54993",
+      "source_content": "- **io-latency:** Simulates file system I/O latency",
+      "source_content_hash": "a7426f4da9d0ea4760de0ac8a85c35882e5aba3d3d64208af5daf5c9b5e0c0f6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **io-latency:** 模擬檔案系統 I/O 延遲"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "002560c3",
+      "source_content": "- **kernel-injection:** Simulates kernel failures",
+      "source_content_hash": "283f86723630e7f12ae0bbc5ce5c859d714e0339f4a22304d442f531448c0037",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **kernel-injection:** 模擬核心故障"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0fcf7990",
+      "source_content": "- **memory-burn:** Simulates memory pressure",
+      "source_content_hash": "a54d35e78233a1e9c80531a1caa90acfa70f9294a66b023b1a15c71a231562ee",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **memory-burn:** 模擬記憶體壓力"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f60f155a",
+      "source_content": "- **network-corrupt:** Simulates network packet corruption",
+      "source_content_hash": "5aa2e626352f0691a60ee94ff75a7ef6cd7888a83fac0663b5bc7d9ba658d95f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **network-corrupt:** 模擬網路封包損壞"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f14222dd",
+      "source_content": "- **network-duplication:** Simulates network packet duplication",
+      "source_content_hash": "285de38f3227ce8b0ed217357a3c8108b705857cb83f2caf5dbd7fcee7932d7e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **network-duplication:** 模擬網路封包重複"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "20dde05e",
+      "source_content": "- **network-latency:** Simulate network latency",
+      "source_content_hash": "df8f2b4c7a3c2d1dce33a92916b7efd748cc3b9b14d63707cd498236fe757e6b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **network-latency:** 模擬網路延遲"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "333176e5",
+      "source_content": "- **network-loss:** Simulates network loss",
+      "source_content_hash": "127c4d41f29a89807b1c67edc4afa75e42cc30d95dae6fe5ec4885e24624799b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **network-loss:** 模擬網路封包遺失"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2be69f97",
+      "source_content": "- **network-partition:** Simulates network partition",
+      "source_content_hash": "1d9f5c7989a12b6b0a8b12d4a058df60271bd39d134eaf9bee52b2196d2959e4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **network-partition:** 模擬網路分割"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "36e1c593",
+      "source_content": "- **pod-failure:** Simulates continuous unavailability of Kubernetes Pods",
+      "source_content_hash": "c8316672cd2cee5f3fc8ef0c20775c8dbbfa7d2e06015971fb6ca4fa40cc9c43",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **pod-failure:** 模擬 Kubernetes Pod 持續不可用"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5257fefd",
+      "source_content": "- **pod-kill:** Simulates the Kubernetes Pod being killed",
+      "source_content_hash": "99c38e9f3272bb64c7a575ff20bff76e16ca1b9f50b26e93b7532a0e59287afc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **pod-kill:** 模擬 Kubernetes Pod 被終止"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b2a52b1",
+      "source_content": "Chaos Mesh mainly focuses on the simplicity of how all chaos tests are done quickly and easily understandable to anyone using it.",
+      "source_content_hash": "465b5ca22f8155c3a89a18e5aef2359958621db2ebabccaed0072380b5d3b4e3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 主要著重於簡化所有混沌測試的執行方式，使其能快速完成且易於使用者理解。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5dae11e3",
+      "source_content": "The recent [1.0 release](https://chaos-mesh.org/blog/chaos-mesh-1.0-chaos-engineering-on-kubernetes-made-easier/) provides the general availability of Chaos Dashboard, which Chaos simplifies the complexities of chaos experiment. With a few mouse clicks, you can define the Chaos experiment's scope, specify the type of chaos injection, define scheduling rules, and observe the chaos experiment results- all in the dashboard of Chaos Mesh.",
+      "source_content_hash": "1d1f1b35b5ad9ecf53312257ffbce4ac5dadef87d611cb265dc734afc1561e78",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "近期發佈的 [1.0 版本](https://chaos-mesh.org/blog/chaos-mesh-1.0-chaos-engineering-on-kubernetes-made-easier/) 正式推出 Chaos Dashboard，大幅簡化混沌實驗的複雜性。只需點擊幾下滑鼠，即可在 Chaos Mesh 儀表板中完成：定義實驗範圍、指定混沌注入類型、設定排程規則，並觀察實驗結果。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0bb95128",
+      "source_content": "In case you want to try Chaos Mesh in your browser, checkout `Katakoda interactive tutorial`, where you can get your hands on Chaos Mesh without even deploying it. To understand the design principles and how Chaos Mesh works, read [this blog](https://chaos-mesh.org/blog/chaos_mesh_your_chaos_engineering_solution) by the project's maintainer, [Cwen Yin](https://www.linkedin.com/in/cwen-yin-81985318b/).",
+      "source_content_hash": "7e224ad3064091aa88e501e5b0cb0b802405d4cd50564c3e2ac317bc17ddfe8f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "若想在瀏覽器中試用 Chaos Mesh，請查看 `Katakoda 互動教學`，無需部署即可實際操作。欲了解設計原理與運作機制，可閱讀專案維護者 [Cwen Yin](https://www.linkedin.com/in/cwen-yin-81985318b/) 撰寫的[本篇部落格](https://chaos-mesh.org/blog/chaos_mesh_your_chaos_engineering_solution)。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`Katakoda interactive tutorial`', Translation: '`Katakoda 互動教學`'.",
+          "timestamp": "2025-07-04T06:49:59.313190+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "3ef18741",
+      "source_content": "## Join the community",
+      "source_content_hash": "13ff40bc8e0d10f37d09e52c8816fafffaaa53292c52909c0f943ad216476375",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 加入社群"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7772088",
+      "source_content": "Anyone who wants to explore the area of chaos engineering or Chaos Mesh are welcomed to join the Chaos Mesh community. Being a member of the Chaos Mesh community, I would like to say it is a lovely community where project maintainers love to engage and hear your views and suggestions for the improvement of the project and the community.",
+      "source_content_hash": "def0997e78980f200edb39b578cb0e51a4a137999273edae7f0c4e5768f62709",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "歡迎所有想探索混沌工程或 Chaos Mesh 的開發者加入社群。作為社群成員，我必須說這是個充滿活力的社群：專案維護者樂於交流，並重視您對專案與社群的改進建議。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "eab056be",
+      "source_content": "To join and learn more about Chaos Mesh, find the #project-chaos-mesh channel in [CNCF slack workspace](https://slack.cncf.io/).",
+      "source_content_hash": "8329010e22bc8bcc7b90dff66e3deeb9e0877d84ad30882908b7618c80bf1671",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "欲加入社群或了解更多資訊，請至 [CNCF Slack 工作區](https://slack.cncf.io/) 的 #project-chaos-mesh 頻道。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2020-10-30-chaos-engineering-breaking-things-intentionally.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.313221+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "c205ed0d32cc3cad0aafa06591625d6e7fb01d6220a62c4e719b5b8ce9862de9"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/common/_verify-installation.md",
+  "source_file_content_hash": "0122608b928375502efa57641a0819996034d3375f93fc43b74b1997e9fb9e91",
+  "segments": [
+    {
+      "segment_id": "68c6737b",
+      "source_content": "To check the running status of Chaos Mesh, execute the following command:",
+      "source_content_hash": "b880431e71faa1d2841a06675f4928f8b6a14eee6ca8899737b3ada487c8fe85",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要檢查 Chaos Mesh 的運行狀態，請執行以下命令："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4015384f",
+      "source_content": "```sh\nkubectl get pods -n chaos-mesh -l app.kubernetes.io/instance=chaos-mesh\n```",
+      "source_content_hash": "da6ad0797038b1e575f26dcb7b4811c5dd6f559b9f5ba2dac7317a235edbd375",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_4015384f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "The expected output is as follows:",
+      "source_content_hash": "f619ab41c913a7405e4d6ae7b0212d3658fe20bdf352850f375a0b552e74b38a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "預期輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "71d8dc9b",
+      "source_content": "```txt\nNAME                                       READY   STATUS    RESTARTS   AGE\nchaos-controller-manager-7b8c86cc9-44dzf   1/1     Running   0          17m\nchaos-controller-manager-7b8c86cc9-mxw99   1/1     Running   0          17m\nchaos-controller-manager-7b8c86cc9-xmc5v   1/1     Running   0          17m\nchaos-daemon-sg2k2                         1/1     Running   0          17m\nchaos-dashboard-b9dbc6b68-hln25            1/1     Running   0          17m\nchaos-dns-server-546675d89d-qkjqq          1/1     Running   0          17m\n```",
+      "source_content_hash": "95eae6c5bfc395ffcfb35a707e22d29fdad25299e93c7aa213d9724251205e7e",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_71d8dc9b"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "If your actual output is similar to the expected output, then Chaos Mesh has been successfully installed.",
+      "source_content_hash": "658893a848ce82b72810fd9df4a78c415c53e8681e6da85bfcee8b9e754d9abe",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "如果您的實際輸出與預期輸出相似，則表示 Chaos Mesh 已成功安裝。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cac45343",
+      "source_content": ":::note\n\nIf the `STATUS` of your actual output is not `Running`, then execute the following command to check the Pod details, and troubleshoot issues according to the error information.\n\n```sh\n# Take the chaos-controller as an example\nkubectl describe po -n chaos-mesh chaos-controller-manager-7b8c86cc9-44dzf\n```\n\n:::",
+      "source_content_hash": "9b7ddd93575aea473388fd61a759f2e04d84dd32d7cdc98b88b74fc6a46a8a0c",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n如果您的實際輸出中 `STATUS` 狀態不是 `Running`，請執行以下命令檢查 Pod 詳細資訊，並根據錯誤訊息進行問題排查。\n\n```sh\n# 以 chaos-controller 為例\nkubectl describe po -n chaos-mesh chaos-controller-manager-7b8c86cc9-44dzf\n```\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0d170438",
+      "source_content": ":::note\n\nIf leader election is turned off, `chaos-controller-manager` should only have 1 replication.\n\n```txt\nNAME                                        READY   STATUS    RESTARTS   AGE\nchaos-controller-manager-676d8567c7-ndr5j   1/1     Running   0          24m\nchaos-daemon-6l55b                          1/1     Running   0          24m\nchaos-dashboard-b9dbc6b68-hln25             1/1     Running   0          44m\nchaos-dns-server-546675d89d-qkjqq           1/1     Running   0          44m\n```\n\n:::",
+      "source_content_hash": "df67150ab8513f3ba05ae4a7c1ff5b6ae3c44bcd1b5536c9f6d9838a5fdf6ba9",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n如果關閉了 leader election 功能，`chaos-controller-manager` 應該只有 1 個複本。\n\n```txt\nNAME                                        READY   STATUS    RESTARTS   AGE\nchaos-controller-manager-676d8567c7-ndr5j   1/1     Running   0          24m\nchaos-daemon-6l55b                          1/1     Running   0          24m\nchaos-dashboard-b9dbc6b68-hln25             1/1     Running   0          44m\nchaos-dns-server-546675d89d-qkjqq           1/1     Running   0          44m\n```\n\n:::"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/common/_verify-installation.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.064861+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "0122608b928375502efa57641a0819996034d3375f93fc43b74b1997e9fb9e91"
+  }
+}

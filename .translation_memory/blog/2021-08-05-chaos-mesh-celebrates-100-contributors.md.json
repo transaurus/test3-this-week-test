@@ -1,0 +1,287 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2021-08-05-chaos-mesh-celebrates-100-contributors.md",
+  "source_file_content_hash": "43855ed9c54a74c2de1b8749d827812236725d57cd1343944c3ee6444ef5c626",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /chaos-mesh-celebrates-100th-contributor\ntitle: 'Chaos Mesh Celebrates 100th Contributor'\nauthors: chaos-mesh\nimage: /img/blog/chaos-mesh-celebrates-100-contributors.png\ntags: [Chaos Mesh, Chaos Engineering, Community]\n---",
+      "source_content_hash": "258a0252e235dae08f270a6d950f817b1b24d54075f29a4e8f8d762c18d2b078",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Chaos Mesh Celebrates 100th Contributor](/img/blog/chaos-mesh-celebrates-100-contributors.png)",
+      "source_content_hash": "04cf247e28f74b55a31f5c3457504595be29c1154451d37ae52a24b6ac3772cf",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Mesh 慶祝第 100 位貢獻者](/img/blog/chaos-mesh-celebrates-100-contributors.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "The [Chaos Mesh project](https://github.com/chaos-mesh/chaos-mesh) just hit two major milestones: the community recently welcomed our [100th contributor](https://github.com/chaos-mesh/chaos-mesh/graphs/contributors) to the chaos-mesh repo and 1,000 followers on [Twitter](https://twitter.com/chaos_mesh)!",
+      "source_content_hash": "c9e809cd59d0e98605e019a126ffd997e3ec80a0aaa9d152e18f99d86eafbe3d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Chaos Mesh 專案](https://github.com/chaos-mesh/chaos-mesh) 剛剛達成兩大里程碑：社群近期迎來了 chaos-mesh 倉庫的第 [100 位貢獻者](https://github.com/chaos-mesh/chaos-mesh/graphs/contributors)，以及在 [Twitter](https://twitter.com/chaos_mesh) 上突破 1,000 名追蹤者！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "Chaos Mesh is a Chaos Engineering platform that orchestrates chaos experiments on Kubernetes environments. Ever since first open-sourced on GitHub on Dec 31st, 2019, it has not stopped: in July 2020, Chaos Mesh joined CNCF [as a Sandbox project](https://chaos-mesh.org/blog/chaos-mesh-join-cncf-sandbox-project); a few months later in September, Chaos Mesh 1.0 was [officially released](https://chaos-mesh.org/blog/chaos-mesh-1.0-chaos-engineering-on-kubernetes-made-easier). In July 2021, after a few beta versions, [Chaos Mesh 2.0 was announced generally available](https://github.com/chaos-mesh/chaos-mesh/releases/tag/v2.0.0)!",
+      "source_content_hash": "3da7f4c661e8894113061fda8eb7493b6b49d17724aa9b235c09fb3d99f29c4b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 是一個在 Kubernetes 環境中編排混沌實驗的混沌工程平台。自 2019 年 12 月 31 日首次於 GitHub 開源以來，發展從未停歇：2020 年 7 月，Chaos Mesh 以[沙盒專案身份加入 CNCF](https://chaos-mesh.org/blog/chaos-mesh-join-cncf-sandbox-project)；數月後的 9 月，Chaos Mesh 1.0 [正式發布](https://chaos-mesh.org/blog/chaos-mesh-1.0-chaos-engineering-on-kubernetes-made-easier)。2021 年 7 月，在經歷數個測試版本後，[Chaos Mesh 2.0 宣布全面可用](https://github.com/chaos-mesh/chaos-mesh/releases/tag/v2.0.0)！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "So far, Chaos Mesh has brought out 35 releases, received 1,500+ commits from 100+ contributors, won over 3.8k+ stargazers and 420+ forks. All these achievements would not have been possible without the wonderful community.",
+      "source_content_hash": "1b26aa85c25d0ac354a8d4edbd3f9a373c3fec40b8bd60b0709a0d22795ed5a4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "迄今為止，Chaos Mesh 已發布 35 個版本，獲得來自 100 多位貢獻者的 1,500+ 次提交，累積超過 3.8k+ 星標與 420+ 分支。這些成就皆歸功於卓越的社群支持。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "![Chaos Mesh contributors](/img/blog/chaos-mesh-all-contributors.jpeg)",
+      "source_content_hash": "502151e0391498189c648a6dbdb3897e2bd5361f67f89e464a4c60af4b197736",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Mesh 貢獻者們](/img/blog/chaos-mesh-all-contributors.jpeg)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "Here are a few of our favourite contributions to highlight:",
+      "source_content_hash": "a3b6f44d88e8804e4b2d07b4d2fbd1391e9b692566c93fe150bcfe0f9aefd308",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下精選幾項我們特別推崇的貢獻："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b31a2bd",
+      "source_content": "- [@YangKeao](https://github.com/YangKeao) introduced `kubebuilder` to Chaos Mesh, an SDK for building Kubernetes APIs using CRD, which simplified the steps to implement the Controller.",
+      "source_content_hash": "494f690671af64b3eee4c2674af19a151f4714143119d6025330f87dd009ecc0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [@YangKeao](https://github.com/YangKeao) 將 `kubebuilder` 引入 Chaos Mesh，這套透過 CRD 建構 Kubernetes API 的 SDK 大幅簡化了 Controller 實作步驟。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d7f0c63d",
+      "source_content": "- [@g1eny0ung](https://github.com/g1eny0ung) brought in the Chaos Dashboard, a Web UI for manipulating and observing chaos experiments.",
+      "source_content_hash": "3ba1b69942f5fd4e05fc4a58b95b775917f19ea75aa373c19cb684d53d67fa96",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [@g1eny0ung](https://github.com/g1eny0ung) 開發了 Chaos Dashboard，提供操作與觀察混沌實驗的 Web UI 介面。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ff75e5d8",
+      "source_content": "- [@Yiyiyimu](https://github.com/Yiyiyimu) contributed `chaosctl`, a tool that simplifies chaos development and debugging.",
+      "source_content_hash": "95cf5c0311a320eeae9f05215835d92ac9ea93921a080d06d47e5f5351c8c5fc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [@Yiyiyimu](https://github.com/Yiyiyimu) 貢獻了 `chaosctl` 工具，簡化混沌實驗的開發與除錯流程。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cec935ef",
+      "source_content": "- [@Gallardot](https://github.com/Gallardot) helped implement JVMChaos, making it possible for Chaos Mesh to simulate JVM application faults.",
+      "source_content_hash": "663496a0af2bb4318ee2b728970f4f0786029d862a66849e84a1276422897838",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [@Gallardot](https://github.com/Gallardot) 協助實作 JVMChaos，使 Chaos Mesh 能模擬 JVM 應用程式故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b08b37ac",
+      "source_content": "- [@STRRL](https://github.com/STRRL) started the work on Chaos Mesh Workflow, a built-in workflow engine which enables running different chaos experiments in a serial or parallel manner to simulate production-level errors.",
+      "source_content_hash": "fda4b9c15eca69988474f337a67db69570a5505caabd4c71fe87ecbefe3d5c38",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [@STRRL](https://github.com/STRRL) 啟動了 Chaos Mesh Workflow 的開發，此內建工作流引擎可透過串行或並行方式執行混沌實驗，模擬生產級錯誤。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b1d2d7d",
+      "source_content": "For those who enjoy chaos engineering and open source equally, our mission is to make sure that this is where you belong by enriching the contribution journey, and here’s where we are at so far:",
+      "source_content_hash": "e1a969a3b3351fae03036d4e55cc525567039649dcbda71ca15cd09e3d1e7be7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "對於熱愛混沌工程與開源的人們，我們致力透過豐富貢獻歷程讓此處成為歸屬之地，以下為當前進展："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "346d5f8d",
+      "source_content": "- We published the Chaos Mesh [Governance](https://github.com/chaos-mesh/chaos-mesh/blob/master/GOVERNANCE.md) in the beginning of 2021, making clear the roles and responsibilities of each community member as well as the decision-making process, and has since promoted 9 Committers.",
+      "source_content_hash": "b64b53389e3baf95cfce64646d49bfab58e6fda0f55a696e0bb9242e17f6b267",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 2021 年初發布 Chaos Mesh [治理文件](https://github.com/chaos-mesh/chaos-mesh/blob/master/GOVERNANCE.md)，明確規範社群成員職責與決策流程，並已晉升 9 位 Committer。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "56d666fe",
+      "source_content": "- We have mentored 4 mentees through the LFX mentorship programs so far. Our mentees have written blogs and hosted talks sharing their LFX experience.",
+      "source_content_hash": "b40080982a9177c8db21a6663afd87cc760de3af11cf76ae9004f6f7f411b3ce",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 迄今透過 LFX 導師計畫指導 4 位學員，學員們撰寫部落格並舉辦講座分享經驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "212333a8",
+      "source_content": "- We have participated in 3 KubeCons, where we participated in the bug bash contest and hosted Office Hours to meet and chat with old faces and welcome new members to our community. We even posted a [Q&A](https://chaos-mesh.org/blog/chaos-mesh-q&a) after the KubeCon EU 2021 since we received so many questions!",
+      "source_content_hash": "5108f94eb83165747bae8d6e3f67a8d439af1a07e87d394bc6eae6a129e7e70e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 參與 3 屆 KubeCon，期間加入 bug bash 競賽並舉辦 Office Hours 活動，與社群成員交流互動。因 KubeCon EU 2021 收到大量提問，我們甚至發布了[問答集](https://chaos-mesh.org/blog/chaos-mesh-q&a)！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c0463e48",
+      "source_content": "- We are currently applying to propose Chaos Mesh to be promoted to the CNCF [incubating stage](https://github.com/cncf/toc/pull/683), hoping that being promoted to the next stage of maturity brings the project new chances and more exposure.",
+      "source_content_hash": "83b02ec1d99bc3daa0792482b05b3d44534b249d6b02c6a87c8a106abe580d7b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 目前正申請將 Chaos Mesh 晉升至 CNCF [孵化階段](https://github.com/cncf/toc/pull/683)，盼透過成熟度提升為專案創造新機會與曝光度。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "517051a7",
+      "source_content": "Although this is an achievement worth celebrating, we know that there is still a lot of work ahead:",
+      "source_content_hash": "f377e9a375326bb3bf414fac810116602f0b09aacc825d4db24c615e64a73cd6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "儘管這是值得慶祝的成就，但我們深知前方仍有許多工作待完成："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ec638a20",
+      "source_content": "- We have also been working with the community to refine the Chaos Mesh [documentation](https://chaos-mesh.org/docs/): updating English versions as per each release and adding Chinese versions for our growing number of Chinese adopters and contributors.",
+      "source_content_hash": "3552fb88e26fbfd45e54f7c35b6f888aa06a4d29c984bc267903bf243ed7c0ad",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 我們持續與社群合作完善 Chaos Mesh 的[文件](https://chaos-mesh.org/docs/)：隨著每個版本更新英文內容，並為日益增長的中文使用者和貢獻者新增中文版本。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b49764d4",
+      "source_content": "- We hope to continue to contribute to the Cloud-Native ecosystem: for example, by developing and amplifying chaos engineering related content, and collaborating with other communities for meetups and projects.",
+      "source_content_hash": "6d28b4e44f2dbcfebf8e3e394f46ed0a8e02b4e81d69c712b1d1944e41ec1c59",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 我們期望持續貢獻雲原生生態系：例如開發並擴散混沌工程相關內容，並與其他社群合作舉辦技術聚會與專案。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3cfe6286",
+      "source_content": "Another goal of ours is to continue building a more diverse and engaging community— there is no barrier to being part of the Chaos Mesh community and becoming a Chaos Mesh contributor, as contributions are not limited to coding: writing documentation, offering ideas for features, posting issues, writing blogs, answering community questions, or sharing cases are all part of the contribution journey.",
+      "source_content_hash": "26d167e1730be6b592c04360533c8ca91fbbe8c62ed5ecd408c0d7e4fe3f74a4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "另一目標是持續建立更多元化且活躍的社群——成為 Chaos Mesh 社群成員及貢獻者毫無門檻，貢獻形式不局限於程式碼：撰寫文件、提出功能構想、回報議題、撰寫技術文章、解答社群疑問或分享案例，皆是貢獻旅程的重要環節。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "06c0f776",
+      "source_content": "## To sum up",
+      "source_content_hash": "50de48bd585c1353fe4acb92e4dc2439485091c8d0eb6aea40bd2109321b7813",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 總結而言"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa1e7006",
+      "source_content": "From the bottom of our hearts, thank you! We hope that we can keep up the good work and continue to build up this not-so-little community of ours, and continue to contribute to the CNCF and the chaos engineering ecology.",
+      "source_content_hash": "7d14ccb4f97b716ef638312c081ab7fe34f2ff91c91fe9c07094bffe3f42e48b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們由衷致謝！期盼能持續這份努力，壯大這個日益蓬勃的社群，並持續為 CNCF 及混沌工程生態系做出貢獻。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "13d9cd70",
+      "source_content": "If this is the first time you are hearing of Chaos Mesh, and would like to learn more, find the #project-chaos-mesh channel in [CNCF slack workspace](https://slack.cncf.io/), submit your pull requests or issues to our [GitHub repository](https://github.com/chaos-mesh/chaos-mesh), or sign up to join in on our next [monthly community meeting](https://community.cncf.io/chaos-mesh-community/)!",
+      "source_content_hash": "eb099b5aea7dece0714348f70e0b6e270dc8905ca48162d8ff0a620191d7b9af",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若您初次聽聞 Chaos Mesh 並想深入了解，歡迎至 [CNCF Slack 工作區](https://slack.cncf.io/) 尋找 #project-chaos-mesh 頻道，向我們的 [GitHub 儲存庫](https://github.com/chaos-mesh/chaos-mesh) 提交 Pull Request 或議題，或報名參與下次[每月社群會議](https://community.cncf.io/chaos-mesh-community/)！"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2021-08-05-chaos-mesh-celebrates-100-contributors.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.098506+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "43855ed9c54a74c2de1b8749d827812236725d57cd1343944c3ee6444ef5c626"
+  }
+}

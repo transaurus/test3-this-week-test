@@ -1,0 +1,559 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.6.7/simulate-process-chaos-in-physical-nodes.md",
+  "source_file_content_hash": "415076db62359ed301b1458e939d977bb4a0d87c8b2d53169638225229f058b5",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate Process Faults\n---",
+      "source_content_hash": "212d2d8a04c0e7a85082ad9d391a2a905e6a161b0fdfce81fe9cffeb216b8598",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document describes how to use Chaosd to simulate process faults. The process faults use the Golang interface of the `kill` command to simulate the scenarios that the process is killed or stopped. You can create experiments either in the command-line mode or service mode.",
+      "source_content_hash": "b94a940e8af6eb9b0edac6205589cb22864c29c59165962f901086dcbc7425b1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件說明如何使用 Chaosd 模擬程序故障。程序故障利用 `kill` 命令的 Golang 介面，模擬程序被終止或停止的場景。您可透過命令列模式或服務模式建立實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## Create experiments using the command-line mode",
+      "source_content_hash": "1f3fe4b5166e719cfc4bb6d25f1edc906258751c11d775ab0f82d0e32437a92b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用命令列模式建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "Before creating an experiment, you can run the following command to see the process fault types that are supported by Chaosd:",
+      "source_content_hash": "886bbb0bbffbc4f6fbb41f100f5d2c2168a5f6d07d2f53aa4d2af0e427833e8c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "建立實驗前，可執行以下命令查看 Chaosd 支援的程序故障類型："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "43a8bc7e",
+      "source_content": "```bash\nchaosd attack process -h\n```",
+      "source_content_hash": "f1292841117845c514bd02514600a5dcd1b58d152eb73f5d4299a1ed3b731271",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_43a8bc7e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "93be3c14",
+      "source_content": "```bash\nProcess attack related commands\n\nUsage:\n  chaosd attack process [command]\n\nAvailable Commands:\n  kill        kill process, default signal 9\n  stop        stop process, this action will stop the process with SIGSTOP\n\nFlags:\n  -h, --help   help for process\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n\nUse \"chaosd attack process [command] --help\" for more information about a command.\n```",
+      "source_content_hash": "80ff34e1df51457e54d3a0d48ba3ed11804360852136cd234f98492d51e251f3",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_93be3c14"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "517051a7",
+      "source_content": "Currently, Chaosd supports simulating that a process is killed or stopped.",
+      "source_content_hash": "6dc9c9374352950ee7f76686f12d5dcba2d7acb24f014defd878c9a4eba8aedd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前 Chaosd 支援模擬程序被終止或停止。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "80d9e13c",
+      "source_content": "### Killing a process using the command-line mode",
+      "source_content_hash": "9c3f9675c2db3d52a1f9c24dd86f136cb253a4e6873e1ce4fee9d511b3672ae2",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式終止程序"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "782c902a",
+      "source_content": "#### Commands for killing a process",
+      "source_content_hash": "c4510882ea98c59114686013e14678926dd6a3314b2b371510728fe9a96c9575",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 終止程序命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "026f2f3e",
+      "source_content": "```bash\nchaosd attack process kill -h\n```",
+      "source_content_hash": "770dc66c05a5095718c20ba16aab535d553ead8972bd33b290aa990789ab0569",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_026f2f3e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8af76f3d",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "48ec8149",
+      "source_content": "```bash\nkill process, default signal 9\n\nUsage:\n  chaosd attack process kill [flags]\n\nFlags:\n  -h, --help                 help for kill\n  -p, --process string       The process name or the process ID\n  -r, --recover-cmd string   The command to be run when recovering experiment\n  -s, --signal int           The signal number to send (default 9)\n\nGlobal Flags:\n      --log-level string   the log level of chaosd. The value can be 'debug', 'info', 'warn' and 'error'\n      --uid string         the experiment ID\n```",
+      "source_content_hash": "1f29b1fec9cb4f620852516da6dc7cfa052a2b987eae7a16198c674a1e948191",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_48ec8149"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "126950d7",
+      "source_content": "#### Configuration description for killing a process",
+      "source_content_hash": "4d824accc8923cf99887c0e205fdc6cc292b0e1d42a0774fc67917e335b6375e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 終止程序配置說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "653d45c6",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| `process` | p | The name or the identifier of the process to be injected faults | string; the default value is `\"\"`. |\n| `recover-cmd` | r | The command to be run when recovering experiment | string; the default value is `\"\"`. |\n| `signal` | s | The provided value of the process signal | int; the default value is `9`. Currently, only `SIGKILL`, `SIGTERM`, and `SIGSTOP` are supported. |",
+      "source_content_hash": "294503af490d2e23b3f183ce8bd82fbc3210ec3efaf2f7b0a3e2c49e4d15452d",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_653d45c6"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d422fb13",
+      "source_content": "#### Example for killing a process",
+      "source_content_hash": "e4f8a478625ab07b3fd48322873a5033b02f4947356547a53d3f95c63984b91a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 終止程序範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9f3b4022",
+      "source_content": "```bash\nchaosd attack process kill -p python\n```",
+      "source_content_hash": "8f3cfa305276c7a6e016adc69c6454685d864b834b171c7182b4c9ba422b0a97",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9f3b4022"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e8e162a9",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9f4336b3",
+      "source_content": "```bash\nAttack process python successfully, uid: 10e633ac-0a37-41ba-8b4a-cd5ab92099f9\n```",
+      "source_content_hash": "70ab0159bfb4645134933e954df82c03298ef92bbca0dccc7c8125b06bec6f8a",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9f4336b3"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "edb00ead",
+      "source_content": ":::note\n\nOnly the experiments whose `signal` is `SIGSTOP` can be recovered.\n\n:::",
+      "source_content_hash": "bc57141b607abb299585c7463cb74cd0bd0234e469b12b1dda1b926634a965c7",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n僅 `signal` 設為 `SIGSTOP` 的實驗可被恢復。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ec8ed2a1",
+      "source_content": "### Stopping a process using the command-line mode",
+      "source_content_hash": "ac1deb7fb7dcf1bf347c75ce7645e70bc4f190083b1dd01283137c07311958ff",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用命令列模式停止程序"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39db08de",
+      "source_content": "#### Command for stopping a process",
+      "source_content_hash": "45954bbf0a77f81b728864b8492bc662181278abb1c599f9e3937c461f6cd77b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 停止程序命令"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "59f28e14",
+      "source_content": "```bash\nchaosd attack process stop -h\n```",
+      "source_content_hash": "a9a5bb0b0c21f8c113c1b7d8f6f544b08d173783d799f7a918bfaa76afa3da8f",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_59f28e14"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2822251a",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "efbe5e3f",
+      "source_content": "```bash\nstop process, this action will stop the process with SIGSTOP\n\nUsage:\n  chaosd attack process stop [flags]\n\nFlags:\n  -h, --help             help for stop\n  -p, --process string   The process name or the process ID\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n```",
+      "source_content_hash": "eb3b9fc8dd208aad3835a4224a7e51b06fae4c18a42e0e9d28b912a048345620",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_efbe5e3f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8172a0a5",
+      "source_content": "#### Configuration description of stopping a process",
+      "source_content_hash": "bb6c77cab5d2e74b7b4609460cdcbd68b8225636dbd8da922078a29f16977a4e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 停止程序配置說明"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9df9b564",
+      "source_content": "| Configuration item | Abbreviation | Description | Value |\n| :-- | :-- | :-- | :-- |\n| `process` | p | The name or the identifier of the process to be stopped | string; the default value is `\"\"`. |",
+      "source_content_hash": "a0d923fc1f24bdb439e3168beb2e3e24614318911c07dad857cd95418f4f918b",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_9df9b564"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c7fa1e8d",
+      "source_content": "#### Example for stopping a process",
+      "source_content_hash": "3df2b21315f81e82f18aa8e99b3022577bdba1fe4c557b55d7c4971d5cffc9f0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 停止程序範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7102653e",
+      "source_content": "```bash\nchaosd attack process stop -p python\n```",
+      "source_content_hash": "71e21f94449d6402a6b18a64743b71d2f8d0de68610dcbd7cf552fb5d68c0ca9",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7102653e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9331170",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2f34b0ad",
+      "source_content": "```bash\nAttack process python successfully, uid: 9cb6b3be-4f5b-4ecb-ae05-51050fcd0010\n```",
+      "source_content_hash": "f9b0375c23ad2d0b114a6550ff5058827991614be398cee732f3750c49f27ff4",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_2f34b0ad"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c766290e",
+      "source_content": "## Create experiments using the service mode",
+      "source_content_hash": "21a61e134aac80e8a1532695033d8e1444724683a2402c92b4a349f553eec87b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用服務模式建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5c7d994c",
+      "source_content": "To create experiments using the service mode, follow the instructions below:",
+      "source_content_hash": "730e9766ed6188cf20ad25677e3237e8c03f2b6f8b03ae8e712f0a97e475b6e4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "透過服務模式建立實驗，請依循以下指示："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bda86db3",
+      "source_content": "1. Run Chaosd in the service mode:\n\n   ```bash\n   chaosd server --port 31767\n   ```",
+      "source_content_hash": "a7a0cffab3b474db67fd57185d4e0d82872bbf47d68713429c067bf874b71392",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 以服務模式執行 Chaosd：\n\n   ```bash\n   chaosd server --port 31767\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3ec6a223",
+      "source_content": "2. Send a `POST` HTTP request to the `/api/attack/process` path of the Chaosd service.\n\n   ```bash\n   curl -X POST 172.16.112.130:31767/api/attack/process -H \"Content-Type:application/json\" -d '{fault-configuration}'\n   ```\n\n   In the above command, you need to configure `fault-configuration` according to the fault types. For the corresponding parameters, refer to the parameters and examples of each fault type in the following sections.",
+      "source_content_hash": "92c87015298ccfbd715e84d7a78cd74204b0835926a225d9f0c7a923582a68fb",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "2. 向 Chaosd 服務的 `/api/attack/process` 路徑發送 `POST` HTTP 請求：\n\n   ```bash\n   curl -X POST 172.16.112.130:31767/api/attack/process -H \"Content-Type:application/json\" -d '{fault-configuration}'\n   ```\n\n   上述命令需根據故障類型配置 `fault-configuration`，對應參數請參閱後續章節各故障類型的參數與範例。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`POST`', Translation: '`/api/attack/process`'.",
+          "timestamp": "2025-07-04T06:49:59.338892+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "2a6fcac9",
+      "source_content": ":::note\n\nWhen running an experiment, remember to record the UID of the experiment. When you want to end the experiment corresponding to the UID, you need to send a `DELETE` HTTP request to the `/api/attack/{uid}` path of the Chaosd service.\n\n:::",
+      "source_content_hash": "7c57fd60c1e2cb3853d3c4c77af10c3900650c1f00a9dea43efcd39ed7ae3b10",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::note\n\n執行實驗時，請務必記錄實驗 UID。需結束對應 UID 的實驗時，請向 Chaosd 服務的 `/api/attack/{uid}` 路徑發送 `DELETE` HTTP 請求。\n\n:::",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`DELETE`', Translation: '`/api/attack/{uid}`'.",
+          "timestamp": "2025-07-04T06:49:59.338934+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "b50cf7ff",
+      "source_content": "### Simulate process faults using the service mode",
+      "source_content_hash": "636e9355b036f92720d5c5a1dbb30ccca90953c028d7ad9f256df392685ca74f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式模擬程序故障"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c6b2ca77",
+      "source_content": "#### Parameters for simulating process faults",
+      "source_content_hash": "0fb531c70c3144d5f76493563e1952a6b039959eb5383ec5089d09e9de10f07b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 模擬程序故障參數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1603328c",
+      "source_content": "| Parameter | Description                                                     | Value                              |\n| :-------- | :-------------------------------------------------------------- | :--------------------------------- |\n| `process` | The name or the identifier of the process to be injected faults | string; the default value is `\"\"`. |\n| `signal`  | The provided value of the process signal                        | int; the default value is `9`      |",
+      "source_content_hash": "0d38816f6f61f5a1988062eb1f76e832e036762610a8dcf73f957e2214468f98",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1603328c"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a5905b07",
+      "source_content": "#### Examples for simulating process faults using the service mode",
+      "source_content_hash": "0bbca05f1e58c9f582b1a8f96944a5bc819b1de8fb53049bf35f2ee7723840ad",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "#### 服務模式模擬程序故障範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "08f73f73",
+      "source_content": "##### Terminate a process",
+      "source_content_hash": "9d4a8d043668d78db96a2b1ed83daed3c83e24de5ee5ac7ef97114167873c474",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "##### 終止程序"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dddc2d3c",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/process -H \"Content-Type:application/json\" -d '{\"process\":\"12345\",\"signal\":15}'\n```",
+      "source_content_hash": "deb57aa92d1b5b813d314c0c809bdb5079143f40f358b36b9d0f707576d681b6",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_dddc2d3c"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "99840f13",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5010ec34",
+      "source_content": "```bash\n{\"status\":200,\"message\":\"attack successfully\",\"uid\":\"c3c519bf-819a-4a7b-97fb-e3d0814481fa\"}\n```",
+      "source_content_hash": "4054117a6c9620bc4fc46e75f1e17eab8c3a1bfcfaddd6b31ed37fd491139cb6",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_5010ec34"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "445c72bd",
+      "source_content": "##### Stop a process",
+      "source_content_hash": "df095bc6470c1982d2c502faa80edc647101799e31b1f9b8f80b4e2f411642d0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "##### 停止程序"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ebc385af",
+      "source_content": "```bash\ncurl -X POST 172.16.112.130:31767/api/attack/process -H \"Content-Type:application/json\" -d '{\"process\":\"12345\",\"signal\":19}'\n```",
+      "source_content_hash": "2ea339bc7cf30ee3b7ec29d16e621bb9f44241b2d3702fb5214b198765d52b0c",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_ebc385af"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c8a6ab3e",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f02969e0",
+      "source_content": "```bash\n{\"status\":200,\"message\":\"attack successfully\",\"uid\":\"a00cca2b-eba7-4716-86b3-3e66f94880f7\"}\n```",
+      "source_content_hash": "ced9644b782f9636f744e2c3c4fd60c752272d5df314891795c91759242b6bcd",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_f02969e0"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "59f1eda1",
+      "source_content": ":::note\n\nOnly the experiments whose `signal` is `SIGSTOP` can be recovered.\n\n:::",
+      "source_content_hash": "bc57141b607abb299585c7463cb74cd0bd0234e469b12b1dda1b926634a965c7",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n僅 `signal` 設為 `SIGSTOP` 的實驗可被恢復。\n\n:::"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.6.7/simulate-process-chaos-in-physical-nodes.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.338965+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "415076db62359ed301b1458e939d977bb4a0d87c8b2d53169638225229f058b5"
+  }
+}

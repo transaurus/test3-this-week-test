@@ -1,0 +1,34 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/release-1.0.0.md",
+  "source_file_content_hash": "398e7d227570791a8af68f128ad0690de24fe4bc9c76cc1b0b73393a5cdda189",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: 1.0.0 release notes\n---",
+      "source_content_hash": "8f581f76607c3cbff2f30d922719d62530a501802164b5966cfade23f9918e76",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f85bbfb4",
+      "source_content": "## TODO",
+      "source_content_hash": "f412d40cac05e357371f77218084d95faf8621b50642faf4353f0cb4bb1c78cc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 待辦事項"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/release-1.0.0.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.006371+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "398e7d227570791a8af68f128ad0690de24fe4bc9c76cc1b0b73393a5cdda189"
+  }
+}

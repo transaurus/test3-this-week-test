@@ -1,0 +1,269 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2021-07-09-chaos-mesh-q&a.md",
+  "source_file_content_hash": "1198a532e3a6e3b2e66cf235a311fbf13e8f2fe389535c51ccd82b6a4ebef2cd",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /chaos-mesh-q&a\ntitle: 'Chaos Mesh Q&A'\nauthors: chaos-mesh\nimage: /img/blog/chaos-mesh-q&a.jpeg\ntags: [Chaos Mesh, Chaos Engineering]\n---",
+      "source_content_hash": "5e13f66d516e1012e3b00da03950acbbc9ff3d90c8ccc8c8067e244e0a491e9c",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Chaos Mesh Q&A](/img/blog/chaos-mesh-q&a.jpeg)",
+      "source_content_hash": "2da03a7ef40a4129f9e921f35b7cd5f47e8581b4e8858f2dec7bf29cf129f087",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Mesh 問答](/img/blog/chaos-mesh-q&a.jpeg)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "At KubeCon EU 2021, the [Chaos Mesh](https://chaos-mesh.org/) team hosted two “office hours sessions” where newcomers, community members, and project maintainers had a chance to chat, get to know each other, and learn more about the project.",
+      "source_content_hash": "27788d9bb272b84f45683a5f53b9252b5d63da1ae495c0614e582efa1f3cf682",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在 KubeCon EU 2021 大會上，[Chaos Mesh](https://chaos-mesh.org/) 團隊舉辦了兩場「辦公室時間會議」，讓新成員、社群參與者和專案維護者有機會交流互動、相互認識，並深入了解此專案。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "Big thanks to the more than 200 of you who joined us! We received so many great questions during the session, we thought we’d do a round up Q&A.",
+      "source_content_hash": "ceea0639ac7b51d172fe6d386513f067389927a20ed3d33a550354da6d6630c9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "衷心感謝超過 200 位參與者！會議期間我們收到大量優質問題，因此決定整理成這篇問答集錦。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3daf1b88",
+      "source_content": "## Your questions answered",
+      "source_content_hash": "eb4664926ea39571a82b833b18cef96b045ca7544dc4823b810bb39307960d04",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 您的問題解答"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "**Q: Is Chaos Mesh compatible with Service Meshes, such as Istio?**",
+      "source_content_hash": "aa5f5b2d634aba7bebb6e31539df66c18540a09eed606a9d664fc2a1f9068e5d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**提問：Chaos Mesh 是否相容於 Istio 等服務網格（Service Mesh）？**"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "**A:** Yes, you can use Chaos Mesh in the Service Mesh environment. At one of our [previous community meetings](https://www.youtube.com/watch?v=paIgJYOhdGw), Sergio Méndez and Jossie Castrillo from the University of San Carlos of Guatemala shared how they used Linkerd and Chaos Mesh to conduct chaos experiments for their project, “[COVID-19 Realtime Vaccinated People Visualizer](https://github.com/sergioarmgpl/operating-systems-usac-course/blob/master/lang/en/projects/project1v3/project1.md)”.",
+      "source_content_hash": "8504d9dd92844e574f0dc9ff4fab47d2e7478f366cc221510427269093eb8bce",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**解答：** 是的，您可在服務網格環境中使用 Chaos Mesh。在我們[先前的社群會議](https://www.youtube.com/watch?v=paIgJYOhdGw)中，瓜地馬拉聖卡洛斯大學的 Sergio Méndez 和 Jossie Castrillo 曾分享如何運用 Linkerd 與 Chaos Mesh 為其專案「[COVID-19 即時疫苗接種視覺化系統](https://github.com/sergioarmgpl/operating-systems-usac-course/blob/master/lang/en/projects/project1v3/project1.md)」執行混沌實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "![Project Architecture](/img/blog/chaos-mesh-linkerd-architecture.png)",
+      "source_content_hash": "f04ad687859a7063eeb21bbf3bcdcef960e93da2102e6c4e4d33c88769a0bbc5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![專案架構圖](/img/blog/chaos-mesh-linkerd-architecture.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c2bdd0",
+      "source_content": "**Q: Can I use Chaos Mesh on-premises or do I need Amazon Web Services (AWS) or Google Cloud Platform (GCP)?**",
+      "source_content_hash": "d5fc15b30e9b2cbe8619158e5fd5411f1ff7b50e7344216e89fed0f5c76d357e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**提問：我能否在本地部署環境使用 Chaos Mesh？還是必須依賴 AWS 或 GCP 雲端服務？**"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a76548f8",
+      "source_content": "**A:** You can do either! You can deploy Chaos Mesh on your Kubernetes cluster, so it does not matter whether you manage it yourself or have it hosted on AWS or GCP. However, if you would like to use it in a Kubernetes environment, you need to [set relevant parameters](https://chaos-mesh-website-archived.netlify.app/docs/1.2.4/user_guides/installation) during installation.",
+      "source_content_hash": "979744edab71f853bf6607c4355260e4f0ebb8121c8be5969d62c6e5455070bd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**解答：** 兩種方式皆可！Chaos Mesh 可部署於任何 Kubernetes 叢集，無論是自行管理的本地環境或 AWS/GCP 託管服務皆適用。但若要在 Kubernetes 環境運行，安裝時需[設定相關參數](https://chaos-mesh-website-archived.netlify.app/docs/1.2.4/user_guides/installation)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b1d2d7d",
+      "source_content": "**Q: How do \"chaos actions\" work?**",
+      "source_content_hash": "0a03f4f666823ae40cc4dad1930528f689b90a3216fd153a11ad5d0c355c9f50",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**提問：「混沌操作」（chaos actions）如何運作？**"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfe931a2",
+      "source_content": "**A:** Chaos Mesh uses Kubernetes CustomResourceDefinitions (CRDs) to manage chaos experiments. Different fault injection behaviors are implemented in different ways, but the overall idea is the same: Chaos Mesh uses an application's execution link to inject chaos into the application. For example, when we inject chaos into the overall link of network interaction, the network interaction card is passed through. Because Linux uses traffic control to increase interference to the specific network interaction card, we can directly use traffic control for network fault injection.",
+      "source_content_hash": "a1582c3752eb90bbdb6640a0a6df817259f7a03cf714d3d1ab7f56e55a030d06",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**解答：** Chaos Mesh 採用 Kubernetes 自定義資源定義（CRD）管理混沌實驗。不同故障注入行為的實作方式各異，但核心原理相同：透過應用程式的執行鏈路注入混沌。例如在網路互動鏈路注入故障時，由於 Linux 使用流量控制機制對特定網路介面卡施加干擾，我們可直接運用流量控制實現網路故障注入。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4daf5cdd",
+      "source_content": "**Q: Are you going to add probe support to Chaos Mesh for steady state detection and experiment validation?**",
+      "source_content_hash": "c2d53511e23c18bd6d9b12a6a11a2ed8f286e3d8ee0938815945f98c7b15b8ab",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**提問：是否計劃在 Chaos Mesh 加入探針（probe）支援，用於穩態檢測與實驗驗證？**"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bdc231b1",
+      "source_content": "**A:** Currently, there is no plan to add this support. Steady state detection and experiment validation are necessary if an application is ready for production. Chaos Mesh itself does not monitor related work, but provides an interface to access existing monitoring systems or the status interface of the application to monitor and detect the application’s steady state.",
+      "source_content_hash": "d0c84b8ac73f00a592de1cde7dd3fc7afd367fecacf7f802696714a73b330ea5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**解答：** 目前暫無此計劃。穩態檢測與實驗驗證是應用上生產環境的必要環節。Chaos Mesh 本身不負責監控相關工作，但提供介面可整合現有監控系統或應用程式的狀態介面，藉此監測與偵測應用穩態。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "97ae4a01",
+      "source_content": "**Q: What elevated privileges do the Chaos Mesh pods need?**",
+      "source_content_hash": "a2571f68324bcf12c7a3f60b0b1c60128a16e18213b54646b79cef8ab9a1af49",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**提問：Chaos Mesh 的 Pod 需要哪些進階權限？**"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c3a738de",
+      "source_content": "**A:** By default, the Chaos Daemon components in Chaos Mesh run in the `privileged` mode. If your Kubernetes cluster version is v3.11 or higher, you can replace `privileged` mode by configuring `capabilities`.",
+      "source_content_hash": "52420b901fdec001d12ec7e10b6369351b0370c9936f97563b7b18a48aa2e517",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "**解答：** 預設情況下，Chaos Mesh 的 Chaos Daemon 元件以 `privileged` 特權模式運行。若您的 Kubernetes 叢集版本為 v3.11 或更高，可透過設定 `capabilities` 取代特權模式。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 3, translation has 2.",
+          "timestamp": "2025-07-04T06:49:59.313489+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "3cfe6286",
+      "source_content": "**Q: Can I implement Chaos Mesh inside build pipelines to log specific test results?**",
+      "source_content_hash": "4a672166061771e20ba9dda9344e9ccd630f57c1e96d04160df4da01bfb76f20",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**提問：能否在構建流水線中整合 Chaos Mesh 來記錄特定測試結果？**"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1042b50d",
+      "source_content": "**A:** Yes, that’s easy to do. You can integrate Chaos Mesh with pipeline systems such as Argo, Jenkins, GitHub Action, and Spanner. Chaos Mesh uses Kubernetes CRDs to manage chaos experiments. To inject chaos, you only need to create the chaos CRD object you want in the pipeline. You can obtain the running status of an experiment through its status structure and event.",
+      "source_content_hash": "28af811e3f322614969083b888b5b92e1db5c93ff235fd79fa876822f7dcd3c0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**解答：** 可以，這很容易實現。您可將 Chaos Mesh 與 Argo、Jenkins、GitHub Action、Spanner 等流水線系統整合。由於 Chaos Mesh 使用 CRD 管理實驗，只需在流水線中建立對應的混沌 CRD 物件即可注入故障。實驗運行狀態可透過其狀態結構和事件取得。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa1e7006",
+      "source_content": "**Q: What can we expect from the 2.0 release? Can you share some updates on HTTPChaos?**",
+      "source_content_hash": "2e43fd8ee8cbe29dc54f0a37888d36a6c22ed163212adfa43d96f172a70a669b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**提問：2.0 版本將帶來哪些更新？能否分享 HTTPChaos 的最新進展？**"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "13d9cd70",
+      "source_content": "**A:** Chaos Mesh 2.0 will provide native workflow support, and users can arrange chaos experiments in Chaos Mesh. In addition, for Chaos Mesh 2.0, we have reconstructed the existing chaos controller so that users can more easily add new fault injection types. As for HTTPChaos, we’re adding network failure simulation to the HTTP application layer!",
+      "source_content_hash": "998dade0f066209f8b59be13fd5db6d3a549febc16dc53476ca0195c9697feca",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**A:** Chaos Mesh 2.0 將提供原生工作流程支援，使用者可在 Chaos Mesh 中編排混沌實驗。此外，針對 Chaos Mesh 2.0，我們已重構現有的混沌控制器，讓使用者能更輕鬆新增故障注入類型。至於 HTTPChaos，我們正在為 HTTP 應用層加入網路故障模擬功能！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6f930b2f",
+      "source_content": "## Join the Chaos Mesh community",
+      "source_content_hash": "8564db0f343dd92819ace9cd4486095b86c53f848516defb72402a118c439277",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 加入 Chaos Mesh 社群"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c504c207",
+      "source_content": "If you are interested in Chaos Mesh and would like to help us improve it, you're welcome to join [our Slack channel](https://slack.cncf.io/) or submit your pull requests or issues to our [GitHub repository](https://github.com/chaos-mesh/chaos-mesh).",
+      "source_content_hash": "714e56c49b8b6eb85a7a57dd7857bfdbb4d077c57eda31bcf9b4233c0890c10f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若您對 Chaos Mesh 感興趣且希望協助改進，歡迎加入 [我們的 Slack 頻道](https://slack.cncf.io/) 或提交 pull request 與 issue 至 [GitHub 儲存庫](https://github.com/chaos-mesh/chaos-mesh)。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2021-07-09-chaos-mesh-q&a.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.313519+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "1198a532e3a6e3b2e66cf235a311fbf13e8f2fe389535c51ccd82b6a4ebef2cd"
+  }
+}

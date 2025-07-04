@@ -1,0 +1,243 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/inspect-chaos-experiments.md",
+  "source_file_content_hash": "a4bbae5be6b32aa092cb182ff2429e538509d84da41a6468ee6efb221c25f195",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Inspect Results of Chaos Experiments\n---",
+      "source_content_hash": "fbb7e420617cb2a65388e1d6d067e9111d00ddf12902c7f7808103b5d7aeb0fa",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document describes how to use Chaos Mesh to check running status and results of chaos experiments.",
+      "source_content_hash": "f0c710665b7e02f2bb047f34ea587aa5bbca9a3282bf0f8cf0dcf74b112e190e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件說明如何使用 Chaos Mesh 檢查混亂實驗的運行狀態與結果。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a703643c",
+      "source_content": "## Introduction to steps of a chaos experiment",
+      "source_content_hash": "fa057dd69f75734b395c04e065e1ee44bb4b3ce96c7a0b9151a09d7b7b157acd",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 混亂實驗步驟介紹"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "In Chaos Mesh, the life cycle of a chaos experiment is divided into four steps, according to its running process:",
+      "source_content_hash": "ff31e2aaa26845d8ccd0d967cffcc202853b887fbf9a8127ecfa59a0ed7c3577",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在 Chaos Mesh 中，混亂實驗的生命週期根據運行流程分為四個步驟："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "760d111a",
+      "source_content": "- Injecting: Chaos experiment is in the process of fault injection. Normally, this step lasts for a short time. If the \"Injecting\" step lasts a long time, it may be due to some exceptions in the chaos experiment. In this case, you can check `Events` to find the cause of the exceptions.",
+      "source_content_hash": "8945f8e61ce2d267d79f31eddae4bd96eb090c5a684f5b0857bbebcc369560a8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **注入中 (Injecting)**：混亂實驗正處於故障注入過程。此步驟通常持續時間較短。若「注入中」狀態持續過久，可能是實驗發生異常。此時可檢查 `Events` 以找出異常原因。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ee0c6cb",
+      "source_content": "- Running: After the faults have been successfully injected into all target pods, the chaos experiment starts running.",
+      "source_content_hash": "3d207e06e1101b7912b361d1e458f840f98af555842e4c98461a66d6665fd6d6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **運行中 (Running)**：當故障成功注入所有目標 Pod 後，混亂實驗即進入運行狀態。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2b4a9900",
+      "source_content": "- Paused: when executing a [paused](run-a-chaos-experiment.md#pause-chaos-experiments) process for a running chaos experiment, Chaos Mesh restores the injected faults from all target pods, which indicates the experiment is paused.",
+      "source_content_hash": "28af8a625c6136b426fa0dfa1ca4aa38c45befa52960dbf837167e7137de624f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **已暫停 (Paused)**：對運行中的混亂實驗執行[暫停流程](run-a-chaos-experiment.md#pause-chaos-experiments)時，Chaos Mesh 會從所有目標 Pod 恢復已注入的故障，表示實驗已暫停。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9a03a62b",
+      "source_content": "- Finished: if the `duration` parameter of the experiment is configured, and when the experiment runs it up, Chaos Mesh restores the injected faults from all target pods, which indicates that the experiment is finished.",
+      "source_content_hash": "d2ff1ff038ea3bbd90e1f9e6c78ee41f6f9a07daf3fdb136e5052185c4013c55",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **已完成 (Finished)**：若實驗配置了 `duration` 參數，當運行時間到達設定值時，Chaos Mesh 會從所有目標 Pod 恢復已注入的故障，表示實驗已完成。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cbe57f9d",
+      "source_content": "## Check results using Chaos Dashboard",
+      "source_content_hash": "b56871c1fd7c8965a74cb61d88b17a439ba4a84a66096f13f83cda95ee1c0658",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 透過 Chaos Dashboard 檢查結果"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39b3772c",
+      "source_content": "You can check the running steps of chaos experiments on any of the following pages using Chaos Dashboard:",
+      "source_content_hash": "73e6a3d84ce32de8a9c6cf24acd5a7c651ef61f892931460f45f8fc9c50341cb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可在 Chaos Dashboard 的以下任一頁面查看混亂實驗的運行步驟："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dc10b09",
+      "source_content": "- List of chaos experiments:\n\n  ![Experimental Status](img/list_chaos_status.png)",
+      "source_content_hash": "0833ea1f816da980c4d99a44cb6e19063d0a4f072bd57945976d7365056235fe",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 混亂實驗清單頁面：\n\n  ![實驗狀態](img/list_chaos_status.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d7f0c63d",
+      "source_content": "- Details of chaos experiments:\n\n  ![Experimental Status](img/chaos_detail_status.png)",
+      "source_content_hash": "e34fc54e8a5964ac1087f8234d302a57438b17577bc212e0e6f397b2db47e902",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 混亂實驗詳情頁面：\n\n  ![實驗狀態](img/chaos_detail_status.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d2808037",
+      "source_content": ":::note\n\n- If the **\"Injecting\"** step lasts for a long time, it may be due to some anomalies in the chaos experiment (e.g. the configured selectors have not selected target pods where to inject chaos actions). In this case, you can check **`Events`** to find the cause of the exceptions and check the configuration of the chaos experiment.\n- Chaos Dashboard only displays [main steps of a chaos experiment](#introduction-to-steps-of-a-chaos-experiment). For more detailed information about experiment status and results, run the `kubectl` command.\n\n:::",
+      "source_content_hash": "567d65a74c7651f60eac99391206f35f7d41b25474536512abdc20f14061de72",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n- 若 **「注入中」** 狀態持續過久，可能是混亂實驗發生異常（例如配置的選擇器未選中目標 Pod）。此時可檢查 **`Events`** 找出異常原因並驗證實驗配置。\n- Chaos Dashboard 僅顯示[混亂實驗的主要步驟](#introduction-to-steps-of-a-chaos-experiment)。如需更詳細的實驗狀態與結果資訊，請執行 `kubectl` 命令。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f422383e",
+      "source_content": "## Check results using the `kubectl` command",
+      "source_content_hash": "0c2aeac4108c3b39666f23352ed28f33a4db0868e8617c7abcdcd5bfe55bedd9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 透過 `kubectl` 命令檢查結果"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "97ae4a01",
+      "source_content": "To confirm the results of chaos experiments, use the following `kubectl describe` command to check the `Status` and `Events` of experiment objects.",
+      "source_content_hash": "5a10d16aa45d88b3d246d1edc2ae91222e91ba77388bf332ea0b0875c362a7dc",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "要確認混亂實驗結果，請使用以下 `kubectl describe` 命令檢查實驗物件的 `Status` 和 `Events`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "de8f60af",
+      "source_content": "```shell\nkubectl describe podchaos pod-failure-tikv -n tidb-cluster\n```",
+      "source_content_hash": "40a7e4b6c5ba1dbc9e13462352d6e1a3ac61a32cfcd90949f3578eca081a3992",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_de8f60af"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1042b50d",
+      "source_content": "The expected output is as follows:",
+      "source_content_hash": "f619ab41c913a7405e4d6ae7b0212d3658fe20bdf352850f375a0b552e74b38a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "預期輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6648a219",
+      "source_content": "```shell\n...\nStatus:\n  Conditions:\n    Reason:\n    Status:  False\n    Type:    Paused\n    Reason:\n    Status:  True\n    Type:    Selected\n    Reason:\n    Status:  True\n    Type:    AllInjected\n    Reason:\n    Status:  False\n    Type:    AllRecovered\n  Experiment:\n    Container Records:\n      Id:            tidb-cluster/basic-tikv-0\n      Phase:         Injected\n      Selector Key:  .\n    Desired Phase:   Run\nEvents:\n  Type    Reason           Age   From          Message\n  ----    ------           ----  ----          -------\n  Normal  FinalizerInited  39s   finalizer     Finalizer has been inited\n  Normal  Paused           39s   desiredphase  Experiment has been paused\n  Normal  Updated          39s   finalizer     Successfully update finalizer of resource\n  Normal  Updated          39s   records       Successfully update records of resource\n  Normal  Updated          39s   desiredphase  Successfully update desiredPhase of resource\n  Normal  Started          17s   desiredphase  Experiment has started\n  Normal  Updated          17s   desiredphase  Successfully update desiredPhase of resource\n  Normal  Applied          17s   records       Successfully apply chaos for tidb-cluster/basic-tikv-0\n  Normal  Updated          17s   records       Successfully update records of resource\n```",
+      "source_content_hash": "6324a7de7f92ab3f01b050a28e78e153b166ed84e909b1b44d8f1bb51cb8d2a2",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6648a219"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "463ed165",
+      "source_content": "The above output contains two parts:",
+      "source_content_hash": "1d2424760376540100404a0c14b0968bb2ca8e88c09e2bebd6287ec0414bda9b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "上述輸出包含兩個部分："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6220f8bc",
+      "source_content": "- `Status`\n\n  Based on the running process of the chaos experiment, the `Status` provides four types of status records:\n\n  - `Paused`: indicates the chaos experiment is in the \"Paused\" step.\n  - `Selected`: indicates the chaos experiment had correctly selected the target pods where to inject chaos actions.\n  - `AllInjected`: indicates the faults have been successfully injected to all target pods.\n  - `AllRecoverd`: indicates the injected faults have been successfully restored from all target pods.\n\n  The actual running status of current chaos experiments can be inferred from these four types of status records. For example:\n\n  - When `Paused`、`Selected`、`AllRecoverd` is `True` and `AllInjected` is `False`, it indicates the current chaos experiment is paused.\n  - When `Paused` is `True`, it indicates the current chaos experiment is paused. However, if the `Selected` is `False` at the same time, then it means the current experiment cannot select the target pods where to inject chaos actions.\n\n  :::note\n\n  You can get more information from the combination of the above status records, for example, when `Paused` is `True`, it indicates the experiment is paused, but if the `Selected` is `False` at the same time, then it means the current experiment cannot select the target pods where to inject chaos actions.\n\n  :::",
+      "source_content_hash": "7e955c05c36c97e97b36a0592e9685fa581a64ac779c54ce064ac9a56d494181",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `Status`\n\n  根據混亂實驗的運行流程，`Status` 提供四種狀態記錄：\n  \n  - `Paused`：表示混亂實驗處於「已暫停」步驟\n  - `Selected`：表示實驗已正確選中要注入混亂操作的目標 Pod\n  - `AllInjected`：表示故障已成功注入所有目標 Pod\n  - `AllRecoverd`：表示已成功從所有目標 Pod 恢復注入的故障\n\n  可從這四種狀態記錄推斷當前實驗的實際運行狀態。例如：\n  \n  - 當 `Paused`、`Selected`、`AllRecoverd` 為 `True` 且 `AllInjected` 為 `False` 時，表示當前實驗已暫停\n  - 當 `Paused` 為 `True` 時，表示實驗已暫停。但若同時 `Selected` 為 `False`，則表示當前實驗無法選中目標 Pod\n\n  :::note\n\n  您可從狀態記錄的組合獲取更多資訊。例如當 `Paused` 為 `True` 表示實驗暫停，但若同時 `Selected` 為 `False`，則表示當前實驗無法選中要注入混亂操作的目標 Pod。\n\n  :::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7a4ba486",
+      "source_content": "- `Events`\n\n  It contains the records of actions conducted during the whole life cycle of a chaos experiment, which can help to check experiment status and troubleshoot issues.",
+      "source_content_hash": "c5819d5ed4a70ddbd4f8c5c968d423d92d0010a643b36444e53476fe3ba7a174",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- `Events`\n\n  包含混亂實驗整個生命週期中的操作記錄，有助於檢查實驗狀態與疑難排解。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/inspect-chaos-experiments.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.112893+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "a4bbae5be6b32aa092cb182ff2429e538509d84da41a6468ee6efb221c25f195"
+  }
+}

@@ -1,0 +1,592 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2020-03-18-run-your-first-chaos-experiment.md",
+  "source_file_content_hash": "2fbeeb70af9270d29857e680a5dee5cfbca22207ca9b9146aba62dd8e78847c1",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /run_your_first_chaos_experiment\ntitle: Run Your First Chaos Experiment in 10 Minutes\nauthors: cwen\nimage: /img/blog/run-first-chaos-experiment-in-ten-minutes.jpg\ntags: [Chaos Mesh, Chaos Engineering, Kubernetes]\n---",
+      "source_content_hash": "ca0bbd3178caa60284bf0fddb04405e23615f8d25ffa8ba4730580f85e072b26",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Run your first chaos experiment in 10 minutes](/img/blog/run-first-chaos-experiment-in-ten-minutes.jpg)",
+      "source_content_hash": "43f505212c87d50ccf26c7ca6315f0432b215750b2142f0282ed0d8168721216",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![在 10 分鐘內運行你的第一個混沌實驗](/img/blog/run-first-chaos-experiment-in-ten-minutes.jpg)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "Chaos Engineering is a way to test a production software system's robustness by simulating unusual or disruptive conditions. For many people, however, the transition from learning Chaos Engineering to practicing it on their own systems is daunting. It sounds like one of those big ideas that require a fully-equipped team to plan ahead. Well, it doesn't have to be. To get started with chaos experimenting, you may be just one suitable platform away.",
+      "source_content_hash": "767dede386309305bfdb4d8886e38d67ff6e145d235351e914c32c8265d084d9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "混沌工程是一種透過模擬異常或破壞性條件來測試生產軟體系統健壯性的方法。然而對許多人而言，從學習混沌工程到在自身系統實踐的轉變過程令人卻步。這聽起來像是需要完整團隊預先規劃的大型構想，但其實不然。開始混沌實驗，可能只差一個合適的平台。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) is an **easy-to-use**, open-source, cloud-native Chaos Engineering platform that orchestrates chaos in Kubernetes environments. This 10-minute tutorial will help you quickly get started with Chaos Engineering and run your first chaos experiment with Chaos Mesh.",
+      "source_content_hash": "1a3e1f15b9aa15a9bd39a47a951c168813b9d02f7ed1cf38573907f0ec1d1e8e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) 是一個**易於使用**、開源、雲原生的混沌工程平台，可在 Kubernetes 環境中編排混亂。這篇 10 分鐘教學將協助你快速入門混沌工程，並使用 Chaos Mesh 運行首個混沌實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "For more information about Chaos Mesh, refer to our [previous article](https://pingcap.com/blog/chaos-mesh-your-chaos-engineering-solution-for-system-resiliency-on-kubernetes/) or the [chaos-mesh project](https://github.com/chaos-mesh/chaos-mesh) on GitHub.",
+      "source_content_hash": "228075151313136130d57eb1d322e838572f7caefd942e6b6e5371920046398a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "有關 Chaos Mesh 的更多資訊，請參閱我們的[前文](https://pingcap.com/blog/chaos-mesh-your-chaos-engineering-solution-for-system-resiliency-on-kubernetes/)或 GitHub 上的 [chaos-mesh 專案](https://github.com/chaos-mesh/chaos-mesh)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee0e40d",
+      "source_content": "## A preview of our little experiment",
+      "source_content_hash": "c2c19f790b0f05ac734d8a90c8f0c49b6e0df117d13a56e392a8de150fd3002a",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 實驗預覽"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "Chaos experiments are similar to experiments we do in a science class. It's perfectly fine to stimulate turbulent situations in a controlled environment. In our case here, we will be simulating network chaos on a small web application called [web-show](https://github.com/chaos-mesh/web-show). To visualize the chaos effect, web-show records the latency from its pod to the kube-controller pod (under the namespace of `kube-system`) every 10 seconds.",
+      "source_content_hash": "15b37f7740441981d23ba522324799dcfae7608f698308f69cd40b1e00706c4b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "混沌實驗類似科學課堂實驗，在受控環境中模擬混亂狀況完全可行。本文將在名為 [web-show](https://github.com/chaos-mesh/web-show) 的小型 Web 應用程式上模擬網路混沌。為可視化混沌效果，web-show 每 10 秒記錄其 Pod 到 `kube-system` 命名空間下 kube-controller Pod 的延遲。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "The following clip shows the process of installing Chaos Mesh, deploying web-show, and creating the chaos experiment within a few commands:",
+      "source_content_hash": "4780be67136e13e43bbb76ee4f9d66f80d95de7205a0c0d47109c737a5b19edc",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下片段展示通過幾個指令安裝 Chaos Mesh、部署 web-show 及建立混沌實驗的過程："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c2bdd0",
+      "source_content": "![The whole process of the chaos experiment](/img/blog/whole-process-of-chaos-experiment.gif)",
+      "source_content_hash": "73539a72af7795b0492ccdc556a703cf6b708782803ac50bee8e3f7aebdbd093",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![混沌實驗完整流程](/img/blog/whole-process-of-chaos-experiment.gif)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a76548f8",
+      "source_content": "Now it's your turn! It's time to get your hands dirty.",
+      "source_content_hash": "3f80922e9a6650eee9182a08516a79cc99acaccc29c2fd1f00bf64bd57d7ff80",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "現在輪到你了！是時候動手實作。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2f30ae8",
+      "source_content": "## Let's get started!",
+      "source_content_hash": "0fb4a2594832c33e13f4ab27b436387337cdd9657b8b514c12f1b38b86c31905",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 開始實作"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfe931a2",
+      "source_content": "For our simple experiment, we use Kubernetes in the Docker ([Kind](https://kind.sigs.k8s.io/)) for Kubernetes development. You can feel free to use [Minikube](https://minikube.sigs.k8s.io/) or any existing Kubernetes clusters to follow along.",
+      "source_content_hash": "f2d566dafa8a713ddb17b7b5c606817b329d574ae7da786cb5133804f70717cf",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本簡單實驗採用 Docker 中的 Kubernetes ([Kind](https://kind.sigs.k8s.io/)) 進行開發。你可自由使用 [Minikube](https://minikube.sigs.k8s.io/) 或任何現有 Kubernetes 叢集跟隨操作。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0037ff70",
+      "source_content": "### Prepare the environment",
+      "source_content_hash": "3190a178a9bbd83ed3064366ff4286ef8ca3c6975a9fc4cf4e6ebb4fac51b224",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 準備環境"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bdc231b1",
+      "source_content": "Before moving forward, make sure you have [Git](https://git-scm.com/) and [Docker](https://www.docker.com/) installed on your local computer, with Docker up and running. For macOS, it's recommended to allocate at least 6 CPU cores to Docker. For details, see [Docker configuration for Mac](https://docs.docker.com/docker-for-mac/#advanced).",
+      "source_content_hash": "4f4abc253b097ce54d538cfcfae5d29e13bc1addfb2a6fc2fe20a6b376c0181d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "繼續前，請確保本機已安裝並運行 [Git](https://git-scm.com/) 和 [Docker](https://www.docker.com/)。macOS 建議為 Docker 分配至少 6 個 CPU 核心，詳見 [Mac 進階配置](https://docs.docker.com/docker-for-mac/#advanced)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa355dc5",
+      "source_content": "1. Get Chaos Mesh:\n\n   ```bash\n   git clone https://github.com/chaos-mesh/chaos-mesh.git\n   cd chaos-mesh/\n   ```",
+      "source_content_hash": "6145b272327ca9c484898359ae9438e92ba436f0c4e7b67c1e744626f09ed513",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 取得 Chaos Mesh：\n\n   ```bash\n   git clone https://github.com/chaos-mesh/chaos-mesh.git\n   cd chaos-mesh/\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6c00797f",
+      "source_content": "2. Install Chaos Mesh with the `install.sh` script:\n\n   ```bash\n   ./install.sh --local kind\n   ```\n\n   `install.sh` is an automated shell script that checks your environment, installs Kind, launches Kubernetes clusters locally, and deploys Chaos Mesh. To see the detailed description of `install.sh`, you can include the `--help` option.\n\n   > **Note:**\n   >\n   > If your local computer cannot pull images from `docker.io` or `gcr.io`, use the local gcr.io mirror and execute `./install.sh --local kind --docker-mirror` instead.",
+      "source_content_hash": "106376b0331d7e484487099e21e8e783d49a5d7cb04b24882c8f650e4a8890d5",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "2. 使用 `install.sh` 腳本安裝 Chaos Mesh：\n\n   ```bash\n   ./install.sh --local kind\n   ```\n\n   `install.sh` 是自動化 shell 腳本，會檢查環境、安裝 Kind、在本機啟動 Kubernetes 叢集並部署 Chaos Mesh。查看詳細說明可加入 `--help` 選項。\n\n   > **注意：**\n   >\n   > 若本機無法從 `docker.io` 或 `gcr.io` 拉取映像，請使用 local gcr.io 鏡像並執行 `./install.sh --local kind --docker-mirror`。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 7, translation has 6.",
+          "timestamp": "2025-07-04T06:49:59.311372+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "f14222dd",
+      "source_content": "3. Set the system environment variable:\n\n   ```bash\n   source ~/.bash_profile\n   ```",
+      "source_content_hash": "6c39c3f894a3736f0816ce06b7f2f719f47f752259bbfac1fb180316d372f746",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 設定系統環境變數：\n\n   ```bash\n   source ~/.bash_profile\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "73f3d740",
+      "source_content": "> **Note:**\n>\n> - Depending on your network, these steps might take a few minutes.\n> - If you see an error message like this:\n>\n>   ```bash\n>   ERROR: failed to create cluster: failed to generate kubeadm config content: failed to get kubernetes version from node: failed to get file: command \"docker exec --privileged kind-control-plane cat /kind/version\" failed with error: exit status 1\n>   ```\n>\n>   increase the available resources for Docker on your local computer and execute the following command:\n>\n>   ```bash\n>   ./install.sh --local kind --force-local-kube\n>   ```",
+      "source_content_hash": "767576910db40eb6a51a55b5d59845b1c2ad94a9a890c1ed3979a554287b6df9",
+      "node_type": "blockquote",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "> **注意：**\n>\n> - 根據您的網路狀況，這些步驟可能需要幾分鐘時間。\n> - 若出現類似以下錯誤訊息：\n>\n>   ```bash\n>   ERROR: failed to create cluster: failed to generate kubeadm config content: failed to get kubernetes version from node: failed to get file: command \"docker exec --privileged kind-control-plane cat /kind/version\" failed with error: exit status 1\n>   ```\n>\n>   請增加本地電腦分配給 Docker 的資源，並執行以下命令：\n>\n>   ```bash\n>   ./install.sh --local kind --force-local-kube\n>   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "afa378f7",
+      "source_content": "When the process completes you will see a message indicating Chaos Mesh is successfully installed.",
+      "source_content_hash": "11651a60df49c97769a4c21fd39084e538332b769d20ceab5dc38bc992a19579",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當程序完成時，您將看到 Chaos Mesh 已成功安裝的提示訊息。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "58ed925f",
+      "source_content": "### Deploy the application",
+      "source_content_hash": "a486ec791e196e243471128832ee849b52da24965c856bf0d88dba30c561587e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 部署應用程式"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "463ed165",
+      "source_content": "The next step is to deploy the application for testing. In our case here, we choose web-show because it allows us to directly observe the effect of network chaos. You can also deploy your own application for testing.",
+      "source_content_hash": "cb61034153674824f7f37b523c6470c1a74ce5579d7403e5c95810eb77963ced",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "下一步是部署待測試的應用程式。此處我們選擇 web-show，因為它能直觀呈現網路混沌實驗的效果。您也可以部署自己的應用程式進行測試。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6220f8bc",
+      "source_content": "1. Deploy web-show with the `deploy.sh` script:\n\n   ```bash\n   # Make sure you are in the Chaos Mesh directory\n   cd examples/web-show &&\n   ./deploy.sh\n   ```\n\n   > **Note:**\n   >\n   > If your local computer cannot pull images from `docker.io`, use the `local gcr.io` mirror and execute `./deploy.sh --docker-mirror` instead.",
+      "source_content_hash": "9371990a2a87458f5b2da813a25e2871eb98f79709d6fb29d82568d1a3cefc32",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 使用 `deploy.sh` 腳本部署 web-show：\n\n   ```bash\n   # 確保位於 Chaos Mesh 目錄中\n   cd examples/web-show &&\n   ./deploy.sh\n   ```\n\n   > **注意：**\n   >\n   > 若本地電腦無法從 `docker.io` 拉取鏡像，請使用 `local gcr.io` 鏡像並執行 `./deploy.sh --docker-mirror`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b40bd2d6",
+      "source_content": "2. Access the web-show application. From your web browser, go to `http://localhost:8081`.",
+      "source_content_hash": "104ff0d2be640a61a8e577a8a9896dd9b57f3618d629c4e86e870b154bd417f8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 存取 web-show 應用程式。在網頁瀏覽器中前往 `http://localhost:8081`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b10963d7",
+      "source_content": "### Create the chaos experiment",
+      "source_content_hash": "85502086e5d89d984d9a9651d42e9a6025ad7f7ce84e3cca1a575a901c2ff479",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 建立混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2822251a",
+      "source_content": "Now that everything is ready, it's time to run your chaos experiment!",
+      "source_content_hash": "31e409484efb8213abd992af9cd691085b9f6cd45aa804ce1de477028904b7cc",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "現在萬事俱備，是時候運行您的混沌實驗了！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "25212439",
+      "source_content": "Chaos Mesh uses [CustomResourceDefinitions](https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/) (CRD) to define chaos experiments. CRD objects are designed separately based on different experiment scenarios, which greatly simplifies the definition of CRD objects. Currently, CRD objects that have been implemented in Chaos Mesh include PodChaos, NetworkChaos, IOChaos, TimeChaos, and KernelChaos. Later, we'll support more fault injection types.",
+      "source_content_hash": "55959b76812f92840f9e63e2e310881e1591b82ec13a6810300cdb09f1887fe7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 使用 [CustomResourceDefinitions](https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/) (CRD) 定義混沌實驗。CRD 物件根據不同實驗場景獨立設計，大幅簡化了定義流程。目前 Chaos Mesh 已實作的 CRD 物件包括 PodChaos、NetworkChaos、IOChaos、TimeChaos 和 KernelChaos，後續將支援更多故障注入類型。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d79a4831",
+      "source_content": "In this experiment, we are using [NetworkChaos](https://github.com/chaos-mesh/chaos-mesh/blob/master/examples/web-show/network-delay.yaml) for the chaos experiment. The NetworkChaos configuration file, written in YAML, is shown below:",
+      "source_content_hash": "f9cc36fd838e4ae47c654889cd5bb6a6325847a082ea929a978ba2fc97a1c33a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本實驗中，我們使用 [NetworkChaos](https://github.com/chaos-mesh/chaos-mesh/blob/master/examples/web-show/network-delay.yaml) 進行混沌實驗。以下為以 YAML 撰寫的 NetworkChaos 設定檔："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "64071bcc",
+      "source_content": "```\napiVersion: chaos-mesh.org/v1alpha1\nkind: NetworkChaos\nmetadata:\n  name: network-delay-example\nspec:\n  action: delay\n  mode: one\n  selector:\n    namespaces:\n      - default\n    labelSelectors:\n      \"app\": \"web-show\"\n  delay:\n    latency: \"10ms\"\n    correlation: \"100\"\n    jitter: \"0ms\"\n  duration: \"30s\"\n  scheduler:\n    cron: \"@every 60s\"\n```",
+      "source_content_hash": "96fd5a730a296a86cc9383a50a10bf41d75ba44e87f5568ca1527e16bf897823",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_64071bcc"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9331170",
+      "source_content": "For detailed descriptions of NetworkChaos actions, see [Chaos Mesh wiki](https://github.com/chaos-mesh/chaos-mesh/wiki/Network-Chaos). Here, we just rephrase the configuration as:",
+      "source_content_hash": "d83fe207c7e06826150d9a4ebe5d8f1e0731d20d2ce2111913f464270a5801ce",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "NetworkChaos 操作的詳細說明請參閱 [Chaos Mesh wiki](https://github.com/chaos-mesh/chaos-mesh/wiki/Network-Chaos)。此處我們將設定內容簡述為："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7387b539",
+      "source_content": "- target: `web-show`",
+      "source_content_hash": "be2eedbc6a94a14db280539b88a77c3ba3c11d127008018320fb661001830302",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 目標：`web-show`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1cf42f92",
+      "source_content": "- mission: inject a `10ms` network delay every `60s`",
+      "source_content_hash": "ccff54dfd473c1289f50567ecd1d89b66c437c5ffe4105e81655965ebfbd0889",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- 任務：每 `60s` 注入 `10ms` 網路延遲",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`10ms`', Translation: '`60s`'.",
+          "timestamp": "2025-07-04T06:49:59.311398+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "b1d2b7df",
+      "source_content": "- attack duration: `30s` each time",
+      "source_content_hash": "b556e0ad0f00478a8d729ab539a6c23e257a014f4e2d47e6429fd9c9fff5c248",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 攻擊持續時間：每次 `30s`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9c9e2b64",
+      "source_content": "To start NetworkChaos, do the following:",
+      "source_content_hash": "e8e8d5fb9c6970eb7d9f25dfb053873e5a68329bbf6e88a71bf61b1c3d102ccf",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "啟動 NetworkChaos 的步驟如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "526396f0",
+      "source_content": "1. Run `network-delay.yaml`:\n\n   ```bash\n   # Make sure you are in the chaos-mesh/examples/web-show directory\n   kubectl apply -f network-delay.yaml\n   ```",
+      "source_content_hash": "1d8fe067f2c97fc9f1427ace248b1fe4f087f1f1864542d146784b998fab0360",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 運行 `network-delay.yaml`：\n\n   ```bash\n   # 確保位於 chaos-mesh/examples/web-show 目錄\n   kubectl apply -f network-delay.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "304b107d",
+      "source_content": "2. Access the web-show application. In your web browser, go to `http://localhost:8081`.\n\n   From the line graph, you can tell that there is a 10 ms network delay every 60 seconds.",
+      "source_content_hash": "4a7311883133143a3bf9f2efad17feee4ae631d9036761719d41e1e1dc495463",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 存取 web-show 應用程式。在網頁瀏覽器中前往 `http://localhost:8081`。\n\n   從折線圖可觀察到每隔 60 秒會出現 10 毫秒的網路延遲。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cfeb9eb1",
+      "source_content": "![Using Chaos Mesh to insert delays in web-show](/img/blog/using-chaos-mesh-to-insert-delays-in-web-show.png)",
+      "source_content_hash": "2b745bb79d5e27a7ea6802f861ef0b3f1a50c83a80dc1cce03f3548af855f596",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![使用 Chaos Mesh 在 web-show 注入延遲](/img/blog/using-chaos-mesh-to-insert-delays-in-web-show.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f7e6e884",
+      "source_content": "Congratulations! You just stirred up a little bit of chaos. If you are intrigued and want to try out more chaos experiments with Chaos Mesh, check out [examples/web-show](https://github.com/chaos-mesh/chaos-mesh/tree/master/examples/web-show).",
+      "source_content_hash": "85c133cd9520551104477abeb0db1c24d7c45164e77c475a0ab91634de65985d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "恭喜！您已成功製造了一點混沌。若感興趣並想嘗試更多 Chaos Mesh 實驗，請參閱 [examples/web-show](https://github.com/chaos-mesh/chaos-mesh/tree/master/examples/web-show)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "35353302",
+      "source_content": "### Delete the chaos experiment",
+      "source_content_hash": "a6ab13219e096de8baaf07a179373b3b924a7532ddd0ac8219665486c12ee7ef",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 刪除混沌實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "719d3997",
+      "source_content": "Once you're finished testing, terminate the chaos experiment.",
+      "source_content_hash": "d806c877dae65ec0f803dba1a98493b4e20ce14a43bd507637e180d48e69a495",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "測試完成後，請終止混沌實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f545c46e",
+      "source_content": "1. Delete `network-delay.yaml`:\n\n   ```bash\n   # Make sure you are in the chaos-mesh/examples/web-show directory\n   kubectl delete -f network-delay.yaml\n   ```",
+      "source_content_hash": "b4d452ed190c53c68ab8293663aeb27a0f5cd89e8802521d5f0ed7873a6e7025",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 刪除 `network-delay.yaml`：\n\n   ```bash\n   # 確保位於 chaos-mesh/examples/web-show 目錄\n   kubectl delete -f network-delay.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6cd03926",
+      "source_content": "2. Access the web-show application. From your web browser, go to `http://localhost:8081`.",
+      "source_content_hash": "104ff0d2be640a61a8e577a8a9896dd9b57f3618d629c4e86e870b154bd417f8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 存取 web-show 應用程式。請在您的網頁瀏覽器中前往 `http://localhost:8081`。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6f08f877",
+      "source_content": "From the line graph, you can see the network latency level is back to normal.",
+      "source_content_hash": "5058ba4a617eb243f528ccf397373c67ce8f2bf5febf69e94ec0ff3f65d5c028",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "從折線圖中，您可以看到網路延遲水準已恢復正常。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dbfc5f7",
+      "source_content": "![Network latency level is back to normal](/img/blog/network-latency-level-is-back-to-normal.png)",
+      "source_content_hash": "e300a29743fa9cb45e81209c031859f63cce20cce653a0ce35059dea5ba1b253",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![網路延遲水準恢復正常](/img/blog/network-latency-level-is-back-to-normal.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3f77c6a0",
+      "source_content": "### Delete Kubernetes clusters",
+      "source_content_hash": "88362f0cc81fa7b90de4ce45753bab4b37e25441552a9a67705cd33959b42b9f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 刪除 Kubernetes 叢集"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39f476dc",
+      "source_content": "After you're done with the chaos experiment, execute the following command to delete the Kubernetes clusters:",
+      "source_content_hash": "88f41eab66001a377c2616d16415e9837408472b861b1890b497482cc9ef921d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "完成混沌實驗後，請執行以下指令刪除 Kubernetes 叢集："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ecb92db",
+      "source_content": "```bash\nkind delete cluster --name=kind\n```",
+      "source_content_hash": "80543c9d7dd6670e4d8f239d6f1852e236e836efacfc5782008f1e3ab2bce372",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_8ecb92db"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fa447120",
+      "source_content": "> **Note:**\n>\n> If you encounter the `kind: command not found` error, execute `source ~/.bash_profile` command first and then delete the Kubernetes clusters.",
+      "source_content_hash": "3a3bcf0f082ad02b20c065070fd016fe40b32aead0d3d346a5bd328677546470",
+      "node_type": "blockquote",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "> **注意：**\n>\n> 若遇到 `kind: command not found` 錯誤，請先執行 `source ~/.bash_profile` 指令，再刪除 Kubernetes 叢集。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a75f8411",
+      "source_content": "## Cool! What's next?",
+      "source_content_hash": "e0862abdfd6ae3a4fe7713a5356e666fb7568f4092150c110d8059aec8f54d98",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 太棒了！接下來呢？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39c48ff7",
+      "source_content": "Congratulations on your first successful journey into Chaos Engineering. How does it feel? Chaos Engineering is easy, right? But perhaps Chaos Mesh is not that easy-to-use. Command-line operation is inconvenient, writing YAML files manually is a bit tedious, or checking the experiment results is somewhat clumsy? Don't worry, Chaos Dashboard is on its way! Running chaos experiments on the web sure does sound exciting! If you'd like to help us build testing standards for cloud platforms or make Chaos Mesh better, we'd love to hear from you!",
+      "source_content_hash": "53f38eb27929d6c365ae451aac08d0eace5ad6962c9f14062ed7e070057c0640",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "恭喜您成功完成首次混沌工程之旅！感覺如何？混沌工程很簡單對吧？不過 Chaos Mesh 可能沒那麼容易使用。命令列操作不夠便利、手動編寫 YAML 檔案有些繁瑣，或是檢查實驗結果稍顯笨拙？別擔心，Chaos Dashboard 即將登場！在網頁上執行混沌實驗聽起來確實令人興奮！如果您願意協助我們建立雲端平台的測試標準或改進 Chaos Mesh，我們非常期待您的參與！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e29bd639",
+      "source_content": "If you find a bug or think something is missing, feel free to file an issue, open a pull request (PR), or join us on the #project-chaos-mesh channel in the [CNCF slack workspace](https://slack.cncf.io/).",
+      "source_content_hash": "c1e096264a7f6c449593dd764eba2500525f5d0453fcfd35b897086397afbf12",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若發現錯誤或認為內容有所遺漏，歡迎提交 issue、發起拉取請求（PR），或加入 [CNCF slack 工作區](https://slack.cncf.io/)的 #project-chaos-mesh 頻道。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e5821418",
+      "source_content": "GitHub: [https://github.com/chaos-mesh/chaos-mesh](https://github.com/chaos-mesh/chaos-mesh)",
+      "source_content_hash": "b75733d09677e0aa0d576fc3d698c82f623a933dae94e1c93e29d422b66566b2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "GitHub: [https://github.com/chaos-mesh/chaos-mesh](https://github.com/chaos-mesh/chaos-mesh)"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2020-03-18-run-your-first-chaos-experiment.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.311427+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "2fbeeb70af9270d29857e680a5dee5cfbca22207ca9b9146aba62dd8e78847c1"
+  }
+}

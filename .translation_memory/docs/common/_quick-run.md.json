@@ -1,0 +1,34 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/common/_quick-run.md",
+  "source_file_content_hash": "721640fa20c28a9d2116dab2d95eeac30a4ea6e90b1e66d61e9a0f7b8b533d8d",
+  "segments": [
+    {
+      "segment_id": "68c6737b",
+      "source_content": "After verifying that the installation is complete, you can run a Chaos experiment to experience the features of Chaos Mesh.",
+      "source_content_hash": "4d2fbb7e411ab4c7160bf01ed2b51d12caf45ccae50fbec982544d88c3fa8ee6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "驗證安裝完成後，您可以執行混沌實驗以體驗 Chaos Mesh 的功能。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "faebdc62",
+      "source_content": "For the method to run the experiment, it is recommended to refer to [Run a Chaos experiment](run-a-chaos-experiment.md). After successfully creating the experiment, you can observe the running status of the experiment on the Chaos Dashboard.",
+      "source_content_hash": "574396fd33eb3f5a758a4b48d129162a6345986f52f78e1ac73856357f950842",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "關於執行實驗的方法，建議參考[執行混沌實驗](run-a-chaos-experiment.md)。成功創建實驗後，您可在 Chaos Dashboard 上觀察實驗的運行狀態。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/common/_quick-run.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.103446+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "721640fa20c28a9d2116dab2d95eeac30a4ea6e90b1e66d61e9a0f7b8b533d8d"
+  }
+}

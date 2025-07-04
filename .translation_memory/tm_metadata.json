@@ -1,0 +1,85 @@
+{
+  "locales": [
+    "zh-hant"
+  ],
+  "folder_patterns": [
+    {
+      "source_dir_relative_to_docusaurus_root": "docs",
+      "target_i18n_subpath": "docusaurus-plugin-content-docs",
+      "original_agent_pattern": {
+        "type": "docs",
+        "source_path": "docs",
+        "plugin_id": "default",
+        "is_versioned": true,
+        "description": "Default documentation instance."
+      },
+      "type": "docs",
+      "description": "Default documentation instance.",
+      "ignore_patterns": null
+    },
+    {
+      "source_dir_relative_to_docusaurus_root": "blog",
+      "target_i18n_subpath": "docusaurus-plugin-content-blog",
+      "original_agent_pattern": {
+        "type": "blog",
+        "source_path": "blog",
+        "plugin_id": "default",
+        "is_versioned": null,
+        "description": "Default blog instance."
+      },
+      "type": "blog",
+      "description": "Default blog instance.",
+      "ignore_patterns": null
+    },
+    {
+      "source_dir_relative_to_docusaurus_root": "src/pages",
+      "target_i18n_subpath": "docusaurus-plugin-content-pages",
+      "original_agent_pattern": {
+        "type": "pages",
+        "source_path": "src/pages",
+        "plugin_id": "default",
+        "is_versioned": null,
+        "description": "React pages."
+      },
+      "type": "pages",
+      "description": "React pages.",
+      "ignore_patterns": [
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.ts",
+        "**/*.tsx"
+      ]
+    },
+    {
+      "source_dir_relative_to_docusaurus_root": "i18n/en",
+      "target_i18n_subpath": "",
+      "original_agent_pattern": {
+        "type": "json_translations",
+        "source_path": "i18n/en",
+        "plugin_id": "default",
+        "is_versioned": null,
+        "description": "JSON translation files for theme and plugin components."
+      },
+      "type": "json_translations",
+      "description": "JSON translation files for theme and plugin components.",
+      "ignore_patterns": null
+    },
+    {
+      "source_dir_relative_to_docusaurus_root": "versioned_docs",
+      "target_i18n_subpath": "docusaurus-plugin-content-docs",
+      "original_agent_pattern": {
+        "type": "versioned_docs",
+        "source_path": "versioned_docs",
+        "plugin_id": "default",
+        "is_versioned": true,
+        "description": "Versioned documentation for previous releases (rule-based)."
+      },
+      "type": "versioned_docs",
+      "description": "Versioned documentation for previous releases (rule-based)."
+    }
+  ],
+  "docusaurus_root_dir_relative_to_repo": "",
+  "docusaurus_config_filepath_relative_to_repo": "docusaurus.config.js",
+  "source_language": "en",
+  "docusaurus_config_sha": "3f6f71fb76fde6de45295fb34c84b963823dc7171d9f81731e5e404086d77b9d"
+}

@@ -1,0 +1,2506 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "i18n/en/code.json",
+  "source_file_content_hash": "9a38dc32d003dfc24ae830f3fcae5e593abb3fe6a5a66068bfa07f77be0ac921",
+  "segments": [
+    {
+      "segment_id": "home.features.k8s",
+      "source_content": "Design for Kubernetes",
+      "source_content_hash": "08eaaae2d6b048fdce57008d92095fc90ef3f4d07d3f6876fcd77d066be686df",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "專為 Kubernetes 設計"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.features.k8s.desc",
+      "source_content": "In the Kubernetes realm, {crd} is a proven solution for implementing custom resources. Chaos Mesh leverages CRDs for natural integration with the Kubernetes ecosystem.",
+      "source_content_hash": "8a61150ebc8d2f9ac809dfa7bc067ed3398890778c0aa882e076037c2ad334ab",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在 Kubernetes 領域中，{crd} 是實現自訂資源的成熟解決方案。Chaos Mesh 利用 CRD 實現與 Kubernetes 生態系統的無縫整合。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.features.easytouse",
+      "source_content": "Easy to Use",
+      "source_content_hash": "c8ac41fb1eecbfe3823ef7a2e2924a186239ddfac84bf3b40c73ce6804635def",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "易於使用"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.features.easytouse.desc",
+      "source_content": "No special dependencies, Chaos Mesh can be easily deployed on Kubernetes clusters directly, including {minikube} and {kind}.",
+      "source_content_hash": "ad06757e6a6d2825847ea33b8093f9878478f36905c21c75b8887f51a655d8c2",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "無需特殊依賴，Chaos Mesh 可直接輕鬆部署在 Kubernetes 叢集上，包括 {minikube} 和 {kind}。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.features.easytouse.list.1",
+      "source_content": "Ability to perform chaos experiments in production environments without modifying the deployment logic of applications.",
+      "source_content_hash": "94fc2b8af642370b7fa014e07ba4cfe686d641558d3e378442e945b85d6a1dfc",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "能夠在生產環境中執行混沌實驗，而無需修改應用程式的部署邏輯。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.features.easytouse.list.2",
+      "source_content": "Quickly create chaos experiments through the dashboard, allowing users to observe the experiment's state in real time and quickly roll back any injected failures.",
+      "source_content_hash": "aaf8720f21e502350ac7322702ba013691c5646804a6ae104c3adeac33ca79a3",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "透過儀表板快速建立混沌實驗，讓使用者即時觀察實驗狀態，並快速回滾任何注入的故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.features.flexiblescope",
+      "source_content": "Flexible Scope",
+      "source_content_hash": "88ba8791c33578c3a491f00d64162f45bfde8b6a4737c92e134dc35a88a94cc8",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "靈活的範圍"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.features.flexiblescope.desc.1",
+      "source_content": "Chaos Mesh provides multiple filtering rules that allow selecting injection targets based on labels, annotations, and so on. They are collectively called selectors.",
+      "source_content_hash": "b5c738b03550317c92bf514d42bcbc1e9e60cb8a542217ecf163210ef965022b",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 提供多種過濾規則，可根據標籤、註解等選擇注入目標，這些規則統稱為選擇器。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.features.flexiblescope.desc.2",
+      "source_content": "In addition, users can also set a namespace whitelist to greater control the \"blast radius\" of the experiment.",
+      "source_content_hash": "7cabc1f73533f54c77c822c5d8911e162f61a0ffaa5bf33d448a90f53b0bf81e",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此外，使用者還可以設定命名空間白名單，以更精準控制實驗的「爆炸半徑」。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.features.securityfirst",
+      "source_content": "Security First",
+      "source_content_hash": "e6d7e3668eacd8d835838fe2fb247ba372143c247fd7ecc699a317cc6c2071c7",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "安全第一"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.features.securityfirst.desc",
+      "source_content": "Role-based access control (RBAC) is enabled by default to restrict malicious operations. Users must be authorized with specific privileges to access the dashboard.",
+      "source_content_hash": "e038d07143a0a0132c8cb87131e710f6af537ddef2ff75d8b1b2047ccfe208cb",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "預設啟用基於角色的存取控制（RBAC）以限制惡意操作，使用者必須被授予特定權限才能存取儀表板。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.desc",
+      "source_content": "Chaos Mesh brings various types of fault simulation to Kubernetes and has an enormous capability to orchestrate fault scenarios. It helps you conveniently simulate various abnormalities that might occur in reality during the development, testing, and production environments and find potential problems in the system.",
+      "source_content_hash": "778f87daef930a254a0a866b86c2f27576d7be72b7d407fc1d0005edd7a03a40",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 為 Kubernetes 帶來多種類型的故障模擬，並具備強大的故障場景編排能力，幫助您在開發、測試和生產環境中模擬現實可能發生的異常狀況，發現系統潛在問題。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.getstarted",
+      "source_content": "Get Started →",
+      "source_content_hash": "c97ed9d267f0499d8aa8f532e88db0b4e32e97fc1197886a77b084c309008926",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "開始使用 →"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.tryitout",
+      "source_content": "Try it out with the following command 👇",
+      "source_content_hash": "ca8fd2d91db90ea8b5e885d58938f666678c83b0d9b52f76c79cfcb8b2d1e9cb",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "使用以下命令試試看 👇"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.whoisusing",
+      "source_content": "Users of Chaos Mesh",
+      "source_content_hash": "aa9eac4ffbe4bdad7cb65b3be6d530f610724931a02475a1ecec235de61b1d04",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 的使用者"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.features.desc",
+      "source_content": "Based on the principles of Chaos Engineering, Chaos Mesh abstracts real-world events into objects that can be directly applied, hiding the trivial details.",
+      "source_content_hash": "9b58fda4c2b9df1c98b46e54645f37ba26ed366716541fa15e42be0f3071140d",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "基於混沌工程原則，Chaos Mesh 將現實事件抽象為可直接應用的物件，隱藏繁瑣細節。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.failuretypes.desc",
+      "source_content": "Chaos Mesh initially started from a distributed system perspective, fully considering its possible failures, thus providing more comprehensive and fine-grained fault types to help users with fault injection for networks, disks, file systems, operating systems, etc.",
+      "source_content_hash": "29ef0be871bc2e8e6dcdd335d9c7f5d6c626e2f4eb20ff0e05fdd5a576cb2410",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 從分散式系統角度出發，全面考量可能的故障類型，提供更細粒度的網路、磁碟、檔案系統及作業系統故障注入能力。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.exploremore",
+      "source_content": "Explore More",
+      "source_content_hash": "838985f1607f54af61fa2f7ebf24e6e0032d36248f462e3c432dd3c30fc4c7ed",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "探索更多"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.workflows.desc",
+      "source_content": "Real-world failures are often not isolated causes.Chaos Mesh has built-in workflows that allow you to experiment serially or in parallel at will to build walkthroughs that fit the architecture.",
+      "source_content_hash": "2151d3d978e3025825e7f5deb19ade35dabbf9d2cdf96244865b2012287cb09e",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "現實故障往往非單一成因，Chaos Mesh 內建工作流程讓您自由進行串列或並行實驗，構建符合架構的演練場景。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.workflows.suspend",
+      "source_content": "Suspend",
+      "source_content_hash": "4948e134182f84200d4e8197f88fd1d8510a7004f281222325311858b969380a",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "暫停"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.workflows.suspend.desc",
+      "source_content": "You can also use the suspend node to simulate a temporary recovery.",
+      "source_content_hash": "f3f5c9d4271fe7b195909139320e2e7e2f7061f70be8dd5ed2a0e3d90e8242cb",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您亦可使用暫停節點模擬臨時恢復狀態。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.workflows.statuscheck",
+      "source_content": "Status Check",
+      "source_content_hash": "d00b57c233334ed4d1510d4fd1c8e803cda84a07781f8feb6aff254ef1ad34ca",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "狀態檢查"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.workflows.statuscheck.desc",
+      "source_content": "You can also use customized status checks to inform the cluster status.",
+      "source_content_hash": "319725ff2092f54c1890f018ff9d2dd84f4aa20c97bd57c273d5a79da93cf415",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您還可透過自訂狀態檢查機制回報叢集狀態。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.startcreating",
+      "source_content": "Start Creating →",
+      "source_content_hash": "5aa28d163773d275fff9541e68d42628ae696c203afb9fc9ac1ad7541013dab1",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "開始建立 →"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.experimental",
+      "source_content": "Experimental",
+      "source_content_hash": "3dc9f569422dcfdadcb2c33f3eb2ee6fcebc8ba679bd63e690f9ddd0ff7c24be",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "實驗性功能"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.chaosd.desc",
+      "source_content": "Even if you are not using Kubernetes, you can still take advantage of the features of Chaos Mesh. One of our experimental tools, Chaosd, specifically tests chaos on physical machines. Moreover, you can use {link} in Chaos Mesh to remotely invoke Chaosd for conducting experiments on physical machines.",
+      "source_content_hash": "dcf6a72caaac12c663e4fe475409ca9480372737be71ccc14f57ab2491533ad7",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "即使未使用 Kubernetes，仍可透過實驗性工具 Chaosd 在實體機器測試混沌，並透過 Chaos Mesh 的 {link} 遠端呼叫 Chaosd 執行實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.learnmore",
+      "source_content": "Learn More →",
+      "source_content_hash": "73be7e77139b3f80faef9884285257db908b7df2f72d30192829625f23569233",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "了解更多 →"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.buildcommunity.desc",
+      "source_content": "Join the community and interact with maintainers and other users. Your suggestions can make Chaos Mesh better.",
+      "source_content_hash": "7622776cd6cca33430badc6562d1a86ebb9fd2d591f6e197772d60ddb400868d",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "加入社群與維護者及其他使用者交流，您的建議將使 Chaos Mesh 更加完善。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.buildcommunity.beacontributor",
+      "source_content": "Be a contributor to building the future of Chaos Mesh.",
+      "source_content_hash": "5478f98a9ccddfb1b66becc253cd6638ee8472223e1562399fa9432a7261baa9",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "成為建構 Chaos Mesh 未來的貢獻者。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.buildcommunity.help",
+      "source_content": "Experiencing any issues? Don't hesitate to reach out to us for assistance.",
+      "source_content_hash": "577766da8703d97336aaad4183c383ceefd6456386e66159bd2fc733fabdad7b",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "遇到任何問題？請隨時聯絡我們尋求協助。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.buildcommunity.slack",
+      "source_content": "Connect with other users on our Slack channel (#project-chaos-mesh).",
+      "source_content_hash": "ff69c74de754ef1e47b11d1cd0b421239cf8a95606d22e065278733823fd9e92",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在 Slack 頻道 (#project-chaos-mesh) 與其他使用者交流。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "home.buildcommunity.slack.join",
+      "source_content": "Join Slack channel",
+      "source_content_hash": "78b51da666e461575f94df64ed0d19ef012c6138985c84e2766ebc8e6e4366f4",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "加入 Slack 頻道"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "theme.ErrorPageContent.title",
+      "source_content": "This page crashed.",
+      "source_content_hash": "61f8a32b0a81f1e879969b34d4c92824acda7eb932c4c11a85d54e3c85b6d0f6",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此頁面發生崩潰"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title of the fallback page when the page crashed"
+      }
+    },
+    {
+      "segment_id": "theme.BackToTopButton.buttonAriaLabel",
+      "source_content": "Scroll back to top",
+      "source_content_hash": "2ae71ffa6c1c05aabbbb0202c976de8442a3ff7999579ef396591f664e35564f",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "返回頁面頂部"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for the back to top button"
+      }
+    },
+    {
+      "segment_id": "theme.blog.archive.title",
+      "source_content": "Archive",
+      "source_content_hash": "66f4804ee23ddc092d1bae43cb88186aa541187fff7c1cc8a4aa17e59a9f4123",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "歸檔"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The page & hero title of the blog archive page"
+      }
+    },
+    {
+      "segment_id": "theme.blog.archive.description",
+      "source_content": "Archive",
+      "source_content_hash": "66f4804ee23ddc092d1bae43cb88186aa541187fff7c1cc8a4aa17e59a9f4123",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "歸檔"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The page & hero description of the blog archive page"
+      }
+    },
+    {
+      "segment_id": "theme.blog.paginator.navAriaLabel",
+      "source_content": "Blog list page navigation",
+      "source_content_hash": "b61fc99000ea4a88f4d7fdbf30df4c1075697699bc7fa932093fb8e1681e0821",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "部落格清單頁面導覽"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for the blog pagination"
+      }
+    },
+    {
+      "segment_id": "theme.blog.paginator.newerEntries",
+      "source_content": "Newer entries",
+      "source_content_hash": "61d6ff4e7f3c0d2193f3906b90c3bce8609ae9245d2888df70b47cb2db6ed145",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "較新的條目"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label used to navigate to the newer blog posts page (previous page)"
+      }
+    },
+    {
+      "segment_id": "theme.blog.paginator.olderEntries",
+      "source_content": "Older entries",
+      "source_content_hash": "62f32f746e40653407ebd56403069598f35654c0f56725c3fccfca50055a4425",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "較舊的條目"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label used to navigate to the older blog posts page (next page)"
+      }
+    },
+    {
+      "segment_id": "theme.blog.post.paginator.navAriaLabel",
+      "source_content": "Blog post page navigation",
+      "source_content_hash": "57501fdeec3bc10bd5384d5d73e680e9b6965f394d6c394cc3fca1d867c81c7b",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "部落格文章分頁導覽"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for the blog posts pagination"
+      }
+    },
+    {
+      "segment_id": "theme.blog.post.paginator.newerPost",
+      "source_content": "Newer post",
+      "source_content_hash": "7f4508940737b4ac10bad9e9fb6457857ccf23a455c5e06bf65fcb5e3076f02d",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "較新文章"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The blog post button label to navigate to the newer/previous post"
+      }
+    },
+    {
+      "segment_id": "theme.blog.post.paginator.olderPost",
+      "source_content": "Older post",
+      "source_content_hash": "99bac119057d1a323bb46f4eeaf8bcca2c0b75f9eba0066d58ebe53a3e27edc5",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "較舊文章"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The blog post button label to navigate to the older/next post"
+      }
+    },
+    {
+      "segment_id": "theme.tags.tagsPageLink",
+      "source_content": "View all tags",
+      "source_content_hash": "ddd5e2896e5e184a2be17fec4ee2b1a0af90547814c0d98b781d7bb03d71cdf4",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "檢視所有標籤"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label of the link targeting the tag list page"
+      }
+    },
+    {
+      "segment_id": "theme.colorToggle.ariaLabel.mode.system",
+      "source_content": "system mode",
+      "source_content_hash": "16f679ba1b28616fd0901d22fa3fec46c3cbf3e64914936e9a65523df314a8d6",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "系統模式"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The name for the system color mode"
+      }
+    },
+    {
+      "segment_id": "theme.colorToggle.ariaLabel.mode.light",
+      "source_content": "light mode",
+      "source_content_hash": "a6ea4833bc3f883c067eadc432de158f4426e857a0c1551d393221feeaeedd49",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "淺色模式"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The name for the light color mode"
+      }
+    },
+    {
+      "segment_id": "theme.colorToggle.ariaLabel.mode.dark",
+      "source_content": "dark mode",
+      "source_content_hash": "ddf377084a3224274c6c493e76e9b62155269645c64aaca8c091e6f88981430a",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "深色模式"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The name for the dark color mode"
+      }
+    },
+    {
+      "segment_id": "theme.colorToggle.ariaLabel",
+      "source_content": "Switch between dark and light mode (currently {mode})",
+      "source_content_hash": "246c76dc4b28163373d94ef84c0234aadcc7f399733f4e7191f9aa03f15c51c1",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "切換深色/淺色模式（當前為 {mode}）"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for the color mode toggle"
+      }
+    },
+    {
+      "segment_id": "theme.docs.breadcrumbs.navAriaLabel",
+      "source_content": "Breadcrumbs",
+      "source_content_hash": "73667278486b9c9d3958f9449418af7d1caac4e1db5a70209b6d0bad7d9e301e",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "導覽路徑"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for the breadcrumbs"
+      }
+    },
+    {
+      "segment_id": "theme.docs.DocCard.categoryDescription.plurals",
+      "source_content": "1 item|{count} items",
+      "source_content_hash": "d4a87d6b454caf524fbc1f9ec4b20fa83ab81c622dd21bae2a6df389a1fd4c8e",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1 個項目|{count} 個項目"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The default description for a category card in the generated index about how many items this category includes"
+      }
+    },
+    {
+      "segment_id": "theme.docs.paginator.navAriaLabel",
+      "source_content": "Docs pages",
+      "source_content_hash": "758061873727938c87007174dc0a69949cb7c7e423ece886c92f4c0bce246b70",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "文件分頁"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for the docs pagination"
+      }
+    },
+    {
+      "segment_id": "theme.docs.paginator.previous",
+      "source_content": "Previous",
+      "source_content_hash": "a57b08a480b822a0a572b993391c292ede593bf8000b406675b180bbb16260fa",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "上一頁"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label used to navigate to the previous doc"
+      }
+    },
+    {
+      "segment_id": "theme.docs.paginator.next",
+      "source_content": "Next",
+      "source_content_hash": "1ff57a29d7c9d11bdf61c1b80f2b289b44c1ea844824d4b94a0d52b6ba5fc858",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "下一頁"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label used to navigate to the next doc"
+      }
+    },
+    {
+      "segment_id": "theme.docs.tagDocListPageTitle.nDocsTagged",
+      "source_content": "One doc tagged|{count} docs tagged",
+      "source_content_hash": "e96ecd09ae1cc3713db6979a647a1d33b1da812601f6136ae7307f3d548f64e7",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1 份文件標記|{count} 份文件標記"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+      }
+    },
+    {
+      "segment_id": "theme.docs.tagDocListPageTitle",
+      "source_content": "{nDocsTagged} with \"{tagName}\"",
+      "source_content_hash": "c68823366823b04059138ebbf8a6f330b3061c68e4a6746bfda5c01a90c7fca2",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "{nDocsTagged} 標籤為 \"{tagName}\""
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title of the page for a docs tag"
+      }
+    },
+    {
+      "segment_id": "theme.docs.versionBadge.label",
+      "source_content": "Version: {versionLabel}",
+      "source_content_hash": "17fd56e2079a80830455bc785fc5357e37314cb694beaafc8f5420309b5f363f",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "版本：{versionLabel}"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "theme.docs.versions.unreleasedVersionLabel",
+      "source_content": "This is unreleased documentation for {siteTitle} {versionLabel} version.",
+      "source_content_hash": "b48f344a3282972ccb109fe37d7ecb9eb7e44ffeca3e8615210b2790609d7478",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此為 {siteTitle} {versionLabel} 版本的未發布文件"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label used to tell the user that he's browsing an unreleased doc version"
+      }
+    },
+    {
+      "segment_id": "theme.docs.versions.unmaintainedVersionLabel",
+      "source_content": "This is documentation for {siteTitle} {versionLabel}, which is no longer actively maintained.",
+      "source_content_hash": "6d35df058a3b2344b5638b5d58fa820ddc8ac1952138c3bb7c18d66869f968f2",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此為 {siteTitle} {versionLabel} 版本的文件，已不再積極維護"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label used to tell the user that he's browsing an unmaintained doc version"
+      }
+    },
+    {
+      "segment_id": "theme.docs.versions.latestVersionSuggestionLabel",
+      "source_content": "For up-to-date documentation, see the {latestVersionLink} ({versionLabel}).",
+      "source_content_hash": "63e9c46b1e49202c69eb4dd5703dc8a6977806591c4cdc9041c23ee797c475a6",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "請參閱 {latestVersionLink}（{versionLabel}）以獲取最新文件"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label used to tell the user to check the latest version"
+      }
+    },
+    {
+      "segment_id": "theme.docs.versions.latestVersionLinkLabel",
+      "source_content": "latest version",
+      "source_content_hash": "5fe87164c1923b3c7cd59758a7e03610c6a95b3c9ad8cb45ab86911fd463962d",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "最新版本"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label used for the latest version suggestion link label"
+      }
+    },
+    {
+      "segment_id": "theme.common.editThisPage",
+      "source_content": "Edit this page",
+      "source_content_hash": "a9029e19d5b3d36d8ede9c51ff2e147eddf9c6fa41a8cdfd5dbf6ceb7eb72a8f",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "編輯此頁面"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The link label to edit the current page"
+      }
+    },
+    {
+      "segment_id": "theme.common.headingLinkTitle",
+      "source_content": "Direct link to {heading}",
+      "source_content_hash": "f514688566aaa11baf503cbe4e995001bc42d27b1ba9a6256417f1dc616b2c77",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "直接連結至 {heading}"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "Title for link to heading"
+      }
+    },
+    {
+      "segment_id": "theme.lastUpdated.atDate",
+      "source_content": " on {date}",
+      "source_content_hash": "e8a6241baffbcb8293b3bfc1f8dd635d84a548cf70e443f761721186a189fcbc",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "於 {date}"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The words used to describe on which date a page has been last updated"
+      }
+    },
+    {
+      "segment_id": "theme.lastUpdated.byUser",
+      "source_content": " by {user}",
+      "source_content_hash": "75f117172ea53ec05b9920645ff22d75fdefd058f6a796ffb3e36d9ae5bb1d9b",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "由 {user}"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The words used to describe by who the page has been last updated"
+      }
+    },
+    {
+      "segment_id": "theme.lastUpdated.lastUpdatedAtBy",
+      "source_content": "Last updated{atDate}{byUser}",
+      "source_content_hash": "2c6781f3ea27ef3fa439d05bfa217a586a6651f5e4f76659dd8d8417685d12a2",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "最後更新{atDate}{byUser}"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The sentence used to display when a page has been last updated, and by who"
+      }
+    },
+    {
+      "segment_id": "theme.navbar.mobileVersionsDropdown.label",
+      "source_content": "Versions",
+      "source_content_hash": "f89ea27036ac1d3174e2160a4d291d006ad6f85d466726ba04760beec0940c24",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "版本"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for the navbar versions dropdown on mobile view"
+      }
+    },
+    {
+      "segment_id": "theme.NotFound.title",
+      "source_content": "Page Not Found",
+      "source_content_hash": "cb2f00d1e554baf96001ddb5e22ee63a8053fd3f8b6cad8acd74504af0dadb52",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "頁面不存在"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title of the 404 page"
+      }
+    },
+    {
+      "segment_id": "theme.tags.tagsListLabel",
+      "source_content": "Tags:",
+      "source_content_hash": "865658f888f2c50229acf31c7f4f412dfe4412ada982c4591a67b0774d45bd02",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "標籤："
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label alongside a tag list"
+      }
+    },
+    {
+      "segment_id": "theme.admonition.caution",
+      "source_content": "caution",
+      "source_content_hash": "3cf083c28255868b5f464f8ed39b1db95aee54b99b8670a2dbb556a580e9d5da",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "注意"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The default label used for the Caution admonition (:::caution)"
+      }
+    },
+    {
+      "segment_id": "theme.admonition.danger",
+      "source_content": "danger",
+      "source_content_hash": "123fd666aa39d376690cfa6570426d3585c188b291bc87acf47b84e3fe822102",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "危險"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The default label used for the Danger admonition (:::danger)"
+      }
+    },
+    {
+      "segment_id": "theme.admonition.info",
+      "source_content": "info",
+      "source_content_hash": "06271baf49532c879aa3c58b48671884bcc858f09197412d682750496c33e1e1",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "資訊"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The default label used for the Info admonition (:::info)"
+      }
+    },
+    {
+      "segment_id": "theme.admonition.note",
+      "source_content": "note",
+      "source_content_hash": "edb465624291e4053c6c5ea4b7eb320dec773e10a57d26b95dcf0564f8e310f8",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "備註"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The default label used for the Note admonition (:::note)"
+      }
+    },
+    {
+      "segment_id": "theme.admonition.tip",
+      "source_content": "tip",
+      "source_content_hash": "97380187a878903ffe722b7bfd8d8ba92457ef77de0216cfe9261c72c2b87397",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "提示"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The default label used for the Tip admonition (:::tip)"
+      }
+    },
+    {
+      "segment_id": "theme.admonition.warning",
+      "source_content": "warning",
+      "source_content_hash": "4bd9354bb652233497a0f42647464b81b83a83654fcf1511263a5d0120d74c91",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "警告"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The default label used for the Warning admonition (:::warning)"
+      }
+    },
+    {
+      "segment_id": "theme.AnnouncementBar.closeButtonAriaLabel",
+      "source_content": "Close",
+      "source_content_hash": "7d9eb7acb13e24625c404401d8e88b2350e32162455885f18276cf802f7701ed",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "關閉"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for close button of announcement bar"
+      }
+    },
+    {
+      "segment_id": "theme.blog.sidebar.navAriaLabel",
+      "source_content": "Blog recent posts navigation",
+      "source_content_hash": "d031de661e73af4296b4caae3412af713493579e09ad5098bfc6ccbbd242570f",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "部落格近期文章導覽"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for recent posts in the blog sidebar"
+      }
+    },
+    {
+      "segment_id": "theme.DocSidebarItem.expandCategoryAriaLabel",
+      "source_content": "Expand sidebar category '{label}'",
+      "source_content_hash": "71f45a1e41f1adf06edfe1ec5b1fe962419d2f7e822347ef83eb50171e71bf0c",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "展開側邊欄類別「{label}」"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label to expand the sidebar category"
+      }
+    },
+    {
+      "segment_id": "theme.DocSidebarItem.collapseCategoryAriaLabel",
+      "source_content": "Collapse sidebar category '{label}'",
+      "source_content_hash": "cae152c6b5e750b2c2410ab2117ad3fc2f5e828a935e26429b853060741e9b1c",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "收合側邊欄類別「{label}」"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label to collapse the sidebar category"
+      }
+    },
+    {
+      "segment_id": "theme.NavBar.navAriaLabel",
+      "source_content": "Main",
+      "source_content_hash": "eb814be3ca3b78c0734c560518be2a03e8d8f6e7e26447224cc7c7b105e1193e",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "主導覽"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for the main navigation"
+      }
+    },
+    {
+      "segment_id": "theme.navbar.mobileLanguageDropdown.label",
+      "source_content": "Languages",
+      "source_content_hash": "318655cea4bd2096fbfad433d7c019bac40750d1a456fc34d366df41fcc77197",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "語言"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for the mobile language switcher dropdown"
+      }
+    },
+    {
+      "segment_id": "theme.NotFound.p1",
+      "source_content": "We could not find what you were looking for.",
+      "source_content_hash": "887e4838ffa96692b36cf413d531e20c92958b4a45fb3cc2448f913e8301b8e7",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "找不到您要的內容"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The first paragraph of the 404 page"
+      }
+    },
+    {
+      "segment_id": "theme.NotFound.p2",
+      "source_content": "Please contact the owner of the site that linked you to the original URL and let them know their link is broken.",
+      "source_content_hash": "0cf882ed2315a80023d3a3f5d4621ae38d0d2f9a3e2ebf12e364c515c41ff175",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "請聯繫原始連結提供者，告知連結已失效"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The 2nd paragraph of the 404 page"
+      }
+    },
+    {
+      "segment_id": "theme.TOCCollapsible.toggleButtonLabel",
+      "source_content": "On this page",
+      "source_content_hash": "b5658fc8edda24f9c94eabac9e536e0a18e3055a8ca255f9d1b8f256ea02a6cc",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本頁目錄"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label used by the button on the collapsible TOC component"
+      }
+    },
+    {
+      "segment_id": "theme.blog.post.readMore",
+      "source_content": "Read more",
+      "source_content_hash": "83b794145c0cc3f560cb6dfb6b5bcf7afac4dba15e5c6dbc54d103dae029fec6",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "閱讀更多"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label used in blog post item excerpts to link to full blog posts"
+      }
+    },
+    {
+      "segment_id": "theme.blog.post.readMoreLabel",
+      "source_content": "Read more about {title}",
+      "source_content_hash": "23698aca02aba4c2e5376eac758e654fda555250c8251a869089843f262a7a49",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "閱讀更多關於「{title}」的內容"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for the link to full blog posts from excerpts"
+      }
+    },
+    {
+      "segment_id": "theme.blog.post.readingTime.plurals",
+      "source_content": "One min read|{readingTime} min read",
+      "source_content_hash": "7c21f68b3dc6cbcba3288d06578945132ca07ec8ec0dc2c97d428c124f997bbe",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1 分鐘閱讀|{readingTime} 分鐘閱讀"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+      }
+    },
+    {
+      "segment_id": "theme.CodeBlock.copy",
+      "source_content": "Copy",
+      "source_content_hash": "e21f935f11d7e966dbbae78da9daa378fe8142a14e7c0cd7434183005faa6c5c",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "複製"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The copy button label on code blocks"
+      }
+    },
+    {
+      "segment_id": "theme.CodeBlock.copied",
+      "source_content": "Copied",
+      "source_content_hash": "8d525e5f158b9afe05f3122af363ac67763bdc4e1395b46597b320c289766ce3",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "已複製"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The copied button label on code blocks"
+      }
+    },
+    {
+      "segment_id": "theme.CodeBlock.copyButtonAriaLabel",
+      "source_content": "Copy code to clipboard",
+      "source_content_hash": "f0437b8953e1d58a2d791ebdea9a92985b7afe296ffd50bf936e4372cb1ed900",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "複製程式碼至剪貼簿"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for copy code blocks button"
+      }
+    },
+    {
+      "segment_id": "theme.CodeBlock.wordWrapToggle",
+      "source_content": "Toggle word wrap",
+      "source_content_hash": "ecd0f38a04446721e9a09b1994bae262fe43d2d47b050870a2d3b1d9e9a11a6b",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "切換自動換行"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title attribute for toggle word wrapping button of code block lines"
+      }
+    },
+    {
+      "segment_id": "theme.docs.breadcrumbs.home",
+      "source_content": "Home page",
+      "source_content_hash": "11d58b08de98e05930a7f73b5f5d75367e4a58ac27335a420d55583cb16ad1ff",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "首頁"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for the home page in the breadcrumbs"
+      }
+    },
+    {
+      "segment_id": "theme.docs.sidebar.collapseButtonTitle",
+      "source_content": "Collapse sidebar",
+      "source_content_hash": "aab31cde23ba9783050a754575b80c05e0e799b1542990b24b4b4bde2327e37e",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "收合側邊欄"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title attribute for collapse button of doc sidebar"
+      }
+    },
+    {
+      "segment_id": "theme.docs.sidebar.collapseButtonAriaLabel",
+      "source_content": "Collapse sidebar",
+      "source_content_hash": "aab31cde23ba9783050a754575b80c05e0e799b1542990b24b4b4bde2327e37e",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "收合側邊欄"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title attribute for collapse button of doc sidebar"
+      }
+    },
+    {
+      "segment_id": "theme.docs.sidebar.navAriaLabel",
+      "source_content": "Docs sidebar",
+      "source_content_hash": "b2b5561fa18f91f78a39879dc0754b3ebbb96818c8b1a41d725294ce8824d54d",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "文件側邊欄"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for the sidebar navigation"
+      }
+    },
+    {
+      "segment_id": "theme.docs.sidebar.closeSidebarButtonAriaLabel",
+      "source_content": "Close navigation bar",
+      "source_content_hash": "fe1e984bf7134dc98302ff4d77c4f057b8474a73471687071a068c69b4111a84",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "關閉導覽列"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for close button of mobile sidebar"
+      }
+    },
+    {
+      "segment_id": "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel",
+      "source_content": "← Back to main menu",
+      "source_content_hash": "e35c6e48aa36ab346557173fd941f671e096ebe9d4b56b93d7a20e7ed20c821a",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "← 返回主選單"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+      }
+    },
+    {
+      "segment_id": "theme.docs.sidebar.toggleSidebarButtonAriaLabel",
+      "source_content": "Toggle navigation bar",
+      "source_content_hash": "64cbd960a7108dbb48fad79b5dd4ce88e9fc0101bad61398b2043af6c6e19b55",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "切換導覽列"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for hamburger menu button of mobile navigation"
+      }
+    },
+    {
+      "segment_id": "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel",
+      "source_content": "Expand the dropdown",
+      "source_content_hash": "88b7f9ea5cd759be53282f3f31785be35e10ae6652e145a7000baffe8b655a4b",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "展開下拉選單"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label of the button to expand the mobile dropdown navbar item"
+      }
+    },
+    {
+      "segment_id": "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel",
+      "source_content": "Collapse the dropdown",
+      "source_content_hash": "135a99f6883a321de00bd366e719f1c31fbdbb975f4e461138f920be3a6e424a",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "收合下拉選單"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
+      }
+    },
+    {
+      "segment_id": "theme.docs.sidebar.expandButtonTitle",
+      "source_content": "Expand sidebar",
+      "source_content_hash": "37a5d6485e109bf695382308d0e2cd33913c3e5f7e9ab990e8f1a5f4287b2c6a",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "展開側邊欄"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label and title attribute for expand button of doc sidebar"
+      }
+    },
+    {
+      "segment_id": "theme.docs.sidebar.expandButtonAriaLabel",
+      "source_content": "Expand sidebar",
+      "source_content_hash": "37a5d6485e109bf695382308d0e2cd33913c3e5f7e9ab990e8f1a5f4287b2c6a",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "展開側邊欄"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label and title attribute for expand button of doc sidebar"
+      }
+    },
+    {
+      "segment_id": "theme.SearchBar.seeAll",
+      "source_content": "See all {count} results",
+      "source_content_hash": "7a15783a74a51ce10c82f1c10e0ad797fb240cebb4b100afc74fb77e2c483c55",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "查看全部 {count} 項結果"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "theme.SearchPage.documentsFound.plurals",
+      "source_content": "One document found|{count} documents found",
+      "source_content_hash": "6d44a43c22210405b2d7b7271809278ab97ffa0ea1110f24aa2ad9bd161a517c",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "找到 1 份文件|找到 {count} 份文件"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+      }
+    },
+    {
+      "segment_id": "theme.SearchPage.existingResultsTitle",
+      "source_content": "Search results for \"{query}\"",
+      "source_content_hash": "43947f3cdcf1186ae158fdecaf543b18fd0b1188c875b8cadb116d8d32790ba1",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "「{query}」的搜尋結果"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The search page title for non-empty query"
+      }
+    },
+    {
+      "segment_id": "theme.SearchPage.emptyResultsTitle",
+      "source_content": "Search the documentation",
+      "source_content_hash": "2bdb6b49bb2c69b550828f75df7d54d6f44318022fc735d7ecd82207e6885b88",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "搜尋文件"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The search page title for empty query"
+      }
+    },
+    {
+      "segment_id": "theme.SearchPage.inputPlaceholder",
+      "source_content": "Type your search here",
+      "source_content_hash": "8ace0cba09aa578e47bf84032e3968616ee75e4d09a611db6bb060d5817750cb",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在此輸入搜尋內容"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The placeholder for search page input"
+      }
+    },
+    {
+      "segment_id": "theme.SearchPage.inputLabel",
+      "source_content": "Search",
+      "source_content_hash": "49c266baaaa70981ea188fa714d5c40cf13830d786a861c9943ae0d26a7f3fe9",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "搜尋"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for search page input"
+      }
+    },
+    {
+      "segment_id": "theme.SearchPage.algoliaLabel",
+      "source_content": "Search by Algolia",
+      "source_content_hash": "1f4f568cec4f3d4bae359fe5649894190d7a94cebac999148eb897cd7365da40",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "由 Algolia 提供搜尋"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for Algolia mention"
+      }
+    },
+    {
+      "segment_id": "theme.SearchPage.noResultsText",
+      "source_content": "No results were found",
+      "source_content_hash": "8fb7e1ee6a3ad73b4676d7578e23b7585cbef054e52934c78b091eb30ab53f67",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "未找到任何結果"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The paragraph for empty search result"
+      }
+    },
+    {
+      "segment_id": "theme.SearchPage.fetchingNewResults",
+      "source_content": "Fetching new results...",
+      "source_content_hash": "8b5f3b89021efe16afdb08e83d522b13fa94a426930f2795a0023a72bfce42a4",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "正在取得新結果..."
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The paragraph for fetching new search results"
+      }
+    },
+    {
+      "segment_id": "theme.SearchBar.label",
+      "source_content": "Search",
+      "source_content_hash": "49c266baaaa70981ea188fa714d5c40cf13830d786a861c9943ae0d26a7f3fe9",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "搜尋"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label and placeholder for search button"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.searchBox.resetButtonTitle",
+      "source_content": "Clear the query",
+      "source_content_hash": "290601437330bf590bea691741d0a98ca548204bc308d527d4e06c560c3ddc7d",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "清除查詢"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label and ARIA label for search box reset button"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.searchBox.cancelButtonText",
+      "source_content": "Cancel",
+      "source_content_hash": "19766ed6ccb2f4a32778eed80d1928d2c87a18d7c275ccb163ec6709d3eb2e27",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "取消"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label and ARIA label for search box cancel button"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.startScreen.recentSearchesTitle",
+      "source_content": "Recent",
+      "source_content_hash": "690dbe9dc0993c4256683738fc3fd541cfa96f60d299be33343615dd58179d93",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "最近搜尋"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title for recent searches"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.startScreen.noRecentSearchesText",
+      "source_content": "No recent searches",
+      "source_content_hash": "fa985b571cdb26dabcdeca39e339d1d9cfd8763dcce511d13a7b42d9f4ed62c2",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "無最近搜尋記錄"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The text when no recent searches"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.startScreen.saveRecentSearchButtonTitle",
+      "source_content": "Save this search",
+      "source_content_hash": "cd3b55bc11fafd8eab70cdc50b941f0fce17da720cb6da6ceb00b8e17ce04fa0",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "儲存此搜尋"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for save recent search button"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.startScreen.removeRecentSearchButtonTitle",
+      "source_content": "Remove this search from history",
+      "source_content_hash": "0f108aa282564d8ec6bcef42c022436e516bf86eaed419450426609801d668f4",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "從記錄中移除此搜尋"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for remove recent search button"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.startScreen.favoriteSearchesTitle",
+      "source_content": "Favorite",
+      "source_content_hash": "ea713ecd8537f77ec9a7abaaf39c03f4ad011f8ad960dc557e65b0237812190f",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "收藏"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title for favorite searches"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.startScreen.removeFavoriteSearchButtonTitle",
+      "source_content": "Remove this search from favorites",
+      "source_content_hash": "7013068aa1a8518644439612f92ad6ae5a8ed7d04fc334db0a400376b6a5a280",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "從收藏中移除此搜尋"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for remove favorite search button"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.errorScreen.titleText",
+      "source_content": "Unable to fetch results",
+      "source_content_hash": "d8819ac88d3133a7910ee083155cb95221eb818056df7278099b7c6e2681a26d",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "無法取得結果"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title for error screen of search modal"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.errorScreen.helpText",
+      "source_content": "You might want to check your network connection.",
+      "source_content_hash": "a90ebaa3e7381bc52eeddda067dd5279c7d198448e96c73de1ec7561d8bf7ff6",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "建議檢查您的網路連線狀態"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The help text for error screen of search modal"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.footer.selectText",
+      "source_content": "to select",
+      "source_content_hash": "a7f58de1b71e913cf02d52f097818a378aa168335d98aaddc7d038717542887b",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "進行選取"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The explanatory text of the action for the enter key"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.footer.selectKeyAriaLabel",
+      "source_content": "Enter key",
+      "source_content_hash": "d787682755d0870de594fb78c4985c3aa7a8bd6a105dd8ad77e79ca09e9e3ccd",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Enter 鍵"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for the Enter key button that makes the selection"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.footer.navigateText",
+      "source_content": "to navigate",
+      "source_content_hash": "5a70bdb08330fafc60eda32d2f4d7acce036268dd33a2480d31e8c9b7a330ea5",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "進行導航"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The explanatory text of the action for the Arrow up and Arrow down key"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.footer.navigateUpKeyAriaLabel",
+      "source_content": "Arrow up",
+      "source_content_hash": "a0a5f0bf0615ba5e5b5643be64958ea946d3bdbd1bb6cf399f4a3accc51a20a5",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "向上箭頭鍵"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for the Arrow up key button that makes the navigation"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.footer.navigateDownKeyAriaLabel",
+      "source_content": "Arrow down",
+      "source_content_hash": "abfd15f94ec53e9c0db6a0caaf26c8bd72d0541b8b391dbc50d7def8d78c0b7e",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "向下箭頭鍵"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for the Arrow down key button that makes the navigation"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.footer.closeText",
+      "source_content": "to close",
+      "source_content_hash": "ce9c329f815c3a63a87ac3de0c453ec6a36c8e853c9255d789315b300d7d56fa",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "進行關閉"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The explanatory text of the action for Escape key"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.footer.closeKeyAriaLabel",
+      "source_content": "Escape key",
+      "source_content_hash": "1e4989dfe89d09638a30fcf6db28dcc02f8de4292fb2482ee597d2968fab9595",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Escape 鍵"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The ARIA label for the Escape key button that close the modal"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.footer.searchByText",
+      "source_content": "Search by",
+      "source_content_hash": "86f5c627fced939d610fe2594368f9e01bd5becb01b38522de49e511fc61740f",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "搜尋由"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The text explain that the search is making by Algolia"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.noResultsScreen.noResultsText",
+      "source_content": "No results for",
+      "source_content_hash": "ca05013959ab2db7c26d8ae61ad2c7d52b769aac2223dbb721deb730dab37df3",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "無符合結果"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The text explains that there are no results for the following search"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.noResultsScreen.suggestedQueryText",
+      "source_content": "Try searching for",
+      "source_content_hash": "71d1853437ebac3cd936cedd21a2c7a5170f99e13717c6a5ca6fd6f56593b020",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "嘗試搜尋"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The text for the suggested query when no results are found for the following search"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.noResultsScreen.reportMissingResultsText",
+      "source_content": "Believe this query should return results?",
+      "source_content_hash": "d258ae019466a700ac3bfb43d12095019760d9f50ae8e382ad997111293813e5",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "認為此查詢應返回結果？"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The text for the question where the user thinks there are missing results"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText",
+      "source_content": "Let us know.",
+      "source_content_hash": "e0b5363aa7b92c2aed2845459384b037bc6ff1d2d30b68190ab59adf4474567a",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "請通知我們"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The text for the link to report missing results"
+      }
+    },
+    {
+      "segment_id": "theme.SearchModal.placeholder",
+      "source_content": "Search docs",
+      "source_content_hash": "e2af5a17d42b83b9a56cf5ae38acf75ac7d8af517c0102f78f7335e5447dc625",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "搜尋文件"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The placeholder of the input of the DocSearch pop-up modal"
+      }
+    },
+    {
+      "segment_id": "theme.blog.post.plurals",
+      "source_content": "One post|{count} posts",
+      "source_content_hash": "9c1684210f2697c7676fc3e5b67cb83cbd2eb89f0f18014a785fa27afeaba5e2",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1 篇文章|{count} 篇文章"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+      }
+    },
+    {
+      "segment_id": "theme.blog.tagTitle",
+      "source_content": "{nPosts} tagged with \"{tagName}\"",
+      "source_content_hash": "4b684216376becf33ff139e258b4650835aa502cc55cbcf444611782b8a6da1b",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "「{tagName}」標籤下的 {nPosts} 篇文章"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title of the page for a blog tag"
+      }
+    },
+    {
+      "segment_id": "theme.blog.author.pageTitle",
+      "source_content": "{authorName} - {nPosts}",
+      "source_content_hash": "132604694eabf6fb2d9e7958d35ae5b9629ffddd390400d937a95c000fb3ccf7",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "{authorName} - {nPosts}"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title of the page for a blog author"
+      }
+    },
+    {
+      "segment_id": "theme.blog.authorsList.pageTitle",
+      "source_content": "Authors",
+      "source_content_hash": "2c00c9aaa72c717ad6d901a09c4d698a68b2e9740be3769e0af7d6bd85d72d5d",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "作者列表"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title of the authors page"
+      }
+    },
+    {
+      "segment_id": "theme.blog.authorsList.viewAll",
+      "source_content": "View all authors",
+      "source_content_hash": "d0dab631990f4d2d6859d5f7c7d79117ed7469a631961a3230f9715bf5dd1108",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "瀏覽所有作者"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label of the link targeting the blog authors page"
+      }
+    },
+    {
+      "segment_id": "theme.blog.author.noPosts",
+      "source_content": "This author has not written any posts yet.",
+      "source_content_hash": "b3f63de13395eb1c6cf884622917882221dfcfc7c58a8e286b46d0433b4494cf",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此作者尚未撰寫任何文章。"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The text for authors with 0 blog post"
+      }
+    },
+    {
+      "segment_id": "theme.contentVisibility.unlistedBanner.title",
+      "source_content": "Unlisted page",
+      "source_content_hash": "4f54b4aacd7e0cd8bcb8116db30626c600d4886f9592865febea2f45a5c53c4d",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "未列出的頁面"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The unlisted content banner title"
+      }
+    },
+    {
+      "segment_id": "theme.contentVisibility.unlistedBanner.message",
+      "source_content": "This page is unlisted. Search engines will not index it, and only users having a direct link can access it.",
+      "source_content_hash": "82d7237b996e2775bec45ee494bb7320745c4ca45ab0f768f488aa6d8287e02a",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此頁面未被列出。搜尋引擎不會將其索引，只有擁有直接連結的使用者才能存取。"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The unlisted content banner message"
+      }
+    },
+    {
+      "segment_id": "theme.contentVisibility.draftBanner.title",
+      "source_content": "Draft page",
+      "source_content_hash": "62cf6a8479e41bc03ea338c903338e56cbbd6cd2134aaab6c3e8c0fe943e0e39",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "草稿頁面"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The draft content banner title"
+      }
+    },
+    {
+      "segment_id": "theme.contentVisibility.draftBanner.message",
+      "source_content": "This page is a draft. It will only be visible in dev and be excluded from the production build.",
+      "source_content_hash": "ee94fd3e7c9290cbfb5a9a7a57c344f74bb11c0b9895c80e989b32c6e1c21c49",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此頁面是草稿。它僅在開發環境中可見，並且會被排除在正式版本之外。"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The draft content banner message"
+      }
+    },
+    {
+      "segment_id": "theme.ErrorPageContent.tryAgain",
+      "source_content": "Try again",
+      "source_content_hash": "d8b8392e2c542950ca64867168e4ef87d4ad606882d5898f826b51c6d553988f",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "再試一次"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label of the button to try again rendering when the React error boundary captures an error"
+      }
+    },
+    {
+      "segment_id": "theme.common.skipToMainContent",
+      "source_content": "Skip to main content",
+      "source_content_hash": "c887f134c26ea8310e1fb4bd6fbab7b640393bd1b556e62691c7a442be92ec2a",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "跳至主要內容"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+      }
+    },
+    {
+      "segment_id": "theme.tags.tagsPageTitle",
+      "source_content": "Tags",
+      "source_content_hash": "1331275bc537b4c2bf1e46f7275677967515342e30b572e6852fa6f51b831fe8",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "標籤"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title of the tag list page"
+      }
+    }
+  ],
+  "original_json_structure": {
+    "home.features.k8s": {
+      "message": "Design for Kubernetes"
+    },
+    "home.features.k8s.desc": {
+      "message": "In the Kubernetes realm, {crd} is a proven solution for implementing custom resources. Chaos Mesh leverages CRDs for natural integration with the Kubernetes ecosystem."
+    },
+    "home.features.easytouse": {
+      "message": "Easy to Use"
+    },
+    "home.features.easytouse.desc": {
+      "message": "No special dependencies, Chaos Mesh can be easily deployed on Kubernetes clusters directly, including {minikube} and {kind}."
+    },
+    "home.features.easytouse.list.1": {
+      "message": "Ability to perform chaos experiments in production environments without modifying the deployment logic of applications."
+    },
+    "home.features.easytouse.list.2": {
+      "message": "Quickly create chaos experiments through the dashboard, allowing users to observe the experiment's state in real time and quickly roll back any injected failures."
+    },
+    "home.features.flexiblescope": {
+      "message": "Flexible Scope"
+    },
+    "home.features.flexiblescope.desc.1": {
+      "message": "Chaos Mesh provides multiple filtering rules that allow selecting injection targets based on labels, annotations, and so on. They are collectively called selectors."
+    },
+    "home.features.flexiblescope.desc.2": {
+      "message": "In addition, users can also set a namespace whitelist to greater control the \"blast radius\" of the experiment."
+    },
+    "home.features.securityfirst": {
+      "message": "Security First"
+    },
+    "home.features.securityfirst.desc": {
+      "message": "Role-based access control (RBAC) is enabled by default to restrict malicious operations. Users must be authorized with specific privileges to access the dashboard."
+    },
+    "home.desc": {
+      "message": "Chaos Mesh brings various types of fault simulation to Kubernetes and has an enormous capability to orchestrate fault scenarios. It helps you conveniently simulate various abnormalities that might occur in reality during the development, testing, and production environments and find potential problems in the system."
+    },
+    "home.getstarted": {
+      "message": "Get Started →"
+    },
+    "home.tryitout": {
+      "message": "Try it out with the following command 👇"
+    },
+    "home.whoisusing": {
+      "message": "Users of Chaos Mesh"
+    },
+    "home.features.desc": {
+      "message": "Based on the principles of Chaos Engineering, Chaos Mesh abstracts real-world events into objects that can be directly applied, hiding the trivial details."
+    },
+    "home.failuretypes.desc": {
+      "message": "Chaos Mesh initially started from a distributed system perspective, fully considering its possible failures, thus providing more comprehensive and fine-grained fault types to help users with fault injection for networks, disks, file systems, operating systems, etc."
+    },
+    "home.exploremore": {
+      "message": "Explore More"
+    },
+    "home.workflows.desc": {
+      "message": "Real-world failures are often not isolated causes.Chaos Mesh has built-in workflows that allow you to experiment serially or in parallel at will to build walkthroughs that fit the architecture."
+    },
+    "home.workflows.suspend": {
+      "message": "Suspend"
+    },
+    "home.workflows.suspend.desc": {
+      "message": "You can also use the suspend node to simulate a temporary recovery."
+    },
+    "home.workflows.statuscheck": {
+      "message": "Status Check"
+    },
+    "home.workflows.statuscheck.desc": {
+      "message": "You can also use customized status checks to inform the cluster status."
+    },
+    "home.startcreating": {
+      "message": "Start Creating →"
+    },
+    "home.experimental": {
+      "message": "Experimental"
+    },
+    "home.chaosd.desc": {
+      "message": "Even if you are not using Kubernetes, you can still take advantage of the features of Chaos Mesh. One of our experimental tools, Chaosd, specifically tests chaos on physical machines. Moreover, you can use {link} in Chaos Mesh to remotely invoke Chaosd for conducting experiments on physical machines."
+    },
+    "home.learnmore": {
+      "message": "Learn More →"
+    },
+    "home.buildcommunity.desc": {
+      "message": "Join the community and interact with maintainers and other users. Your suggestions can make Chaos Mesh better."
+    },
+    "home.buildcommunity.beacontributor": {
+      "message": "Be a contributor to building the future of Chaos Mesh."
+    },
+    "home.buildcommunity.help": {
+      "message": "Experiencing any issues? Don't hesitate to reach out to us for assistance."
+    },
+    "home.buildcommunity.slack": {
+      "message": "Connect with other users on our Slack channel (#project-chaos-mesh)."
+    },
+    "home.buildcommunity.slack.join": {
+      "message": "Join Slack channel"
+    },
+    "theme.ErrorPageContent.title": {
+      "message": "This page crashed.",
+      "description": "The title of the fallback page when the page crashed"
+    },
+    "theme.BackToTopButton.buttonAriaLabel": {
+      "message": "Scroll back to top",
+      "description": "The ARIA label for the back to top button"
+    },
+    "theme.blog.archive.title": {
+      "message": "Archive",
+      "description": "The page & hero title of the blog archive page"
+    },
+    "theme.blog.archive.description": {
+      "message": "Archive",
+      "description": "The page & hero description of the blog archive page"
+    },
+    "theme.blog.paginator.navAriaLabel": {
+      "message": "Blog list page navigation",
+      "description": "The ARIA label for the blog pagination"
+    },
+    "theme.blog.paginator.newerEntries": {
+      "message": "Newer entries",
+      "description": "The label used to navigate to the newer blog posts page (previous page)"
+    },
+    "theme.blog.paginator.olderEntries": {
+      "message": "Older entries",
+      "description": "The label used to navigate to the older blog posts page (next page)"
+    },
+    "theme.blog.post.paginator.navAriaLabel": {
+      "message": "Blog post page navigation",
+      "description": "The ARIA label for the blog posts pagination"
+    },
+    "theme.blog.post.paginator.newerPost": {
+      "message": "Newer post",
+      "description": "The blog post button label to navigate to the newer/previous post"
+    },
+    "theme.blog.post.paginator.olderPost": {
+      "message": "Older post",
+      "description": "The blog post button label to navigate to the older/next post"
+    },
+    "theme.tags.tagsPageLink": {
+      "message": "View all tags",
+      "description": "The label of the link targeting the tag list page"
+    },
+    "theme.colorToggle.ariaLabel.mode.system": {
+      "message": "system mode",
+      "description": "The name for the system color mode"
+    },
+    "theme.colorToggle.ariaLabel.mode.light": {
+      "message": "light mode",
+      "description": "The name for the light color mode"
+    },
+    "theme.colorToggle.ariaLabel.mode.dark": {
+      "message": "dark mode",
+      "description": "The name for the dark color mode"
+    },
+    "theme.colorToggle.ariaLabel": {
+      "message": "Switch between dark and light mode (currently {mode})",
+      "description": "The ARIA label for the color mode toggle"
+    },
+    "theme.docs.breadcrumbs.navAriaLabel": {
+      "message": "Breadcrumbs",
+      "description": "The ARIA label for the breadcrumbs"
+    },
+    "theme.docs.DocCard.categoryDescription.plurals": {
+      "message": "1 item|{count} items",
+      "description": "The default description for a category card in the generated index about how many items this category includes"
+    },
+    "theme.docs.paginator.navAriaLabel": {
+      "message": "Docs pages",
+      "description": "The ARIA label for the docs pagination"
+    },
+    "theme.docs.paginator.previous": {
+      "message": "Previous",
+      "description": "The label used to navigate to the previous doc"
+    },
+    "theme.docs.paginator.next": {
+      "message": "Next",
+      "description": "The label used to navigate to the next doc"
+    },
+    "theme.docs.tagDocListPageTitle.nDocsTagged": {
+      "message": "One doc tagged|{count} docs tagged",
+      "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+    },
+    "theme.docs.tagDocListPageTitle": {
+      "message": "{nDocsTagged} with \"{tagName}\"",
+      "description": "The title of the page for a docs tag"
+    },
+    "theme.docs.versionBadge.label": {
+      "message": "Version: {versionLabel}"
+    },
+    "theme.docs.versions.unreleasedVersionLabel": {
+      "message": "This is unreleased documentation for {siteTitle} {versionLabel} version.",
+      "description": "The label used to tell the user that he's browsing an unreleased doc version"
+    },
+    "theme.docs.versions.unmaintainedVersionLabel": {
+      "message": "This is documentation for {siteTitle} {versionLabel}, which is no longer actively maintained.",
+      "description": "The label used to tell the user that he's browsing an unmaintained doc version"
+    },
+    "theme.docs.versions.latestVersionSuggestionLabel": {
+      "message": "For up-to-date documentation, see the {latestVersionLink} ({versionLabel}).",
+      "description": "The label used to tell the user to check the latest version"
+    },
+    "theme.docs.versions.latestVersionLinkLabel": {
+      "message": "latest version",
+      "description": "The label used for the latest version suggestion link label"
+    },
+    "theme.common.editThisPage": {
+      "message": "Edit this page",
+      "description": "The link label to edit the current page"
+    },
+    "theme.common.headingLinkTitle": {
+      "message": "Direct link to {heading}",
+      "description": "Title for link to heading"
+    },
+    "theme.lastUpdated.atDate": {
+      "message": " on {date}",
+      "description": "The words used to describe on which date a page has been last updated"
+    },
+    "theme.lastUpdated.byUser": {
+      "message": " by {user}",
+      "description": "The words used to describe by who the page has been last updated"
+    },
+    "theme.lastUpdated.lastUpdatedAtBy": {
+      "message": "Last updated{atDate}{byUser}",
+      "description": "The sentence used to display when a page has been last updated, and by who"
+    },
+    "theme.navbar.mobileVersionsDropdown.label": {
+      "message": "Versions",
+      "description": "The label for the navbar versions dropdown on mobile view"
+    },
+    "theme.NotFound.title": {
+      "message": "Page Not Found",
+      "description": "The title of the 404 page"
+    },
+    "theme.tags.tagsListLabel": {
+      "message": "Tags:",
+      "description": "The label alongside a tag list"
+    },
+    "theme.admonition.caution": {
+      "message": "caution",
+      "description": "The default label used for the Caution admonition (:::caution)"
+    },
+    "theme.admonition.danger": {
+      "message": "danger",
+      "description": "The default label used for the Danger admonition (:::danger)"
+    },
+    "theme.admonition.info": {
+      "message": "info",
+      "description": "The default label used for the Info admonition (:::info)"
+    },
+    "theme.admonition.note": {
+      "message": "note",
+      "description": "The default label used for the Note admonition (:::note)"
+    },
+    "theme.admonition.tip": {
+      "message": "tip",
+      "description": "The default label used for the Tip admonition (:::tip)"
+    },
+    "theme.admonition.warning": {
+      "message": "warning",
+      "description": "The default label used for the Warning admonition (:::warning)"
+    },
+    "theme.AnnouncementBar.closeButtonAriaLabel": {
+      "message": "Close",
+      "description": "The ARIA label for close button of announcement bar"
+    },
+    "theme.blog.sidebar.navAriaLabel": {
+      "message": "Blog recent posts navigation",
+      "description": "The ARIA label for recent posts in the blog sidebar"
+    },
+    "theme.DocSidebarItem.expandCategoryAriaLabel": {
+      "message": "Expand sidebar category '{label}'",
+      "description": "The ARIA label to expand the sidebar category"
+    },
+    "theme.DocSidebarItem.collapseCategoryAriaLabel": {
+      "message": "Collapse sidebar category '{label}'",
+      "description": "The ARIA label to collapse the sidebar category"
+    },
+    "theme.NavBar.navAriaLabel": {
+      "message": "Main",
+      "description": "The ARIA label for the main navigation"
+    },
+    "theme.navbar.mobileLanguageDropdown.label": {
+      "message": "Languages",
+      "description": "The label for the mobile language switcher dropdown"
+    },
+    "theme.NotFound.p1": {
+      "message": "We could not find what you were looking for.",
+      "description": "The first paragraph of the 404 page"
+    },
+    "theme.NotFound.p2": {
+      "message": "Please contact the owner of the site that linked you to the original URL and let them know their link is broken.",
+      "description": "The 2nd paragraph of the 404 page"
+    },
+    "theme.TOCCollapsible.toggleButtonLabel": {
+      "message": "On this page",
+      "description": "The label used by the button on the collapsible TOC component"
+    },
+    "theme.blog.post.readMore": {
+      "message": "Read more",
+      "description": "The label used in blog post item excerpts to link to full blog posts"
+    },
+    "theme.blog.post.readMoreLabel": {
+      "message": "Read more about {title}",
+      "description": "The ARIA label for the link to full blog posts from excerpts"
+    },
+    "theme.blog.post.readingTime.plurals": {
+      "message": "One min read|{readingTime} min read",
+      "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+    },
+    "theme.CodeBlock.copy": {
+      "message": "Copy",
+      "description": "The copy button label on code blocks"
+    },
+    "theme.CodeBlock.copied": {
+      "message": "Copied",
+      "description": "The copied button label on code blocks"
+    },
+    "theme.CodeBlock.copyButtonAriaLabel": {
+      "message": "Copy code to clipboard",
+      "description": "The ARIA label for copy code blocks button"
+    },
+    "theme.CodeBlock.wordWrapToggle": {
+      "message": "Toggle word wrap",
+      "description": "The title attribute for toggle word wrapping button of code block lines"
+    },
+    "theme.docs.breadcrumbs.home": {
+      "message": "Home page",
+      "description": "The ARIA label for the home page in the breadcrumbs"
+    },
+    "theme.docs.sidebar.collapseButtonTitle": {
+      "message": "Collapse sidebar",
+      "description": "The title attribute for collapse button of doc sidebar"
+    },
+    "theme.docs.sidebar.collapseButtonAriaLabel": {
+      "message": "Collapse sidebar",
+      "description": "The title attribute for collapse button of doc sidebar"
+    },
+    "theme.docs.sidebar.navAriaLabel": {
+      "message": "Docs sidebar",
+      "description": "The ARIA label for the sidebar navigation"
+    },
+    "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
+      "message": "Close navigation bar",
+      "description": "The ARIA label for close button of mobile sidebar"
+    },
+    "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
+      "message": "← Back to main menu",
+      "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+    },
+    "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
+      "message": "Toggle navigation bar",
+      "description": "The ARIA label for hamburger menu button of mobile navigation"
+    },
+    "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {
+      "message": "Expand the dropdown",
+      "description": "The ARIA label of the button to expand the mobile dropdown navbar item"
+    },
+    "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel": {
+      "message": "Collapse the dropdown",
+      "description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
+    },
+    "theme.docs.sidebar.expandButtonTitle": {
+      "message": "Expand sidebar",
+      "description": "The ARIA label and title attribute for expand button of doc sidebar"
+    },
+    "theme.docs.sidebar.expandButtonAriaLabel": {
+      "message": "Expand sidebar",
+      "description": "The ARIA label and title attribute for expand button of doc sidebar"
+    },
+    "theme.SearchBar.seeAll": {
+      "message": "See all {count} results"
+    },
+    "theme.SearchPage.documentsFound.plurals": {
+      "message": "One document found|{count} documents found",
+      "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+    },
+    "theme.SearchPage.existingResultsTitle": {
+      "message": "Search results for \"{query}\"",
+      "description": "The search page title for non-empty query"
+    },
+    "theme.SearchPage.emptyResultsTitle": {
+      "message": "Search the documentation",
+      "description": "The search page title for empty query"
+    },
+    "theme.SearchPage.inputPlaceholder": {
+      "message": "Type your search here",
+      "description": "The placeholder for search page input"
+    },
+    "theme.SearchPage.inputLabel": {
+      "message": "Search",
+      "description": "The ARIA label for search page input"
+    },
+    "theme.SearchPage.algoliaLabel": {
+      "message": "Search by Algolia",
+      "description": "The ARIA label for Algolia mention"
+    },
+    "theme.SearchPage.noResultsText": {
+      "message": "No results were found",
+      "description": "The paragraph for empty search result"
+    },
+    "theme.SearchPage.fetchingNewResults": {
+      "message": "Fetching new results...",
+      "description": "The paragraph for fetching new search results"
+    },
+    "theme.SearchBar.label": {
+      "message": "Search",
+      "description": "The ARIA label and placeholder for search button"
+    },
+    "theme.SearchModal.searchBox.resetButtonTitle": {
+      "message": "Clear the query",
+      "description": "The label and ARIA label for search box reset button"
+    },
+    "theme.SearchModal.searchBox.cancelButtonText": {
+      "message": "Cancel",
+      "description": "The label and ARIA label for search box cancel button"
+    },
+    "theme.SearchModal.startScreen.recentSearchesTitle": {
+      "message": "Recent",
+      "description": "The title for recent searches"
+    },
+    "theme.SearchModal.startScreen.noRecentSearchesText": {
+      "message": "No recent searches",
+      "description": "The text when no recent searches"
+    },
+    "theme.SearchModal.startScreen.saveRecentSearchButtonTitle": {
+      "message": "Save this search",
+      "description": "The label for save recent search button"
+    },
+    "theme.SearchModal.startScreen.removeRecentSearchButtonTitle": {
+      "message": "Remove this search from history",
+      "description": "The label for remove recent search button"
+    },
+    "theme.SearchModal.startScreen.favoriteSearchesTitle": {
+      "message": "Favorite",
+      "description": "The title for favorite searches"
+    },
+    "theme.SearchModal.startScreen.removeFavoriteSearchButtonTitle": {
+      "message": "Remove this search from favorites",
+      "description": "The label for remove favorite search button"
+    },
+    "theme.SearchModal.errorScreen.titleText": {
+      "message": "Unable to fetch results",
+      "description": "The title for error screen of search modal"
+    },
+    "theme.SearchModal.errorScreen.helpText": {
+      "message": "You might want to check your network connection.",
+      "description": "The help text for error screen of search modal"
+    },
+    "theme.SearchModal.footer.selectText": {
+      "message": "to select",
+      "description": "The explanatory text of the action for the enter key"
+    },
+    "theme.SearchModal.footer.selectKeyAriaLabel": {
+      "message": "Enter key",
+      "description": "The ARIA label for the Enter key button that makes the selection"
+    },
+    "theme.SearchModal.footer.navigateText": {
+      "message": "to navigate",
+      "description": "The explanatory text of the action for the Arrow up and Arrow down key"
+    },
+    "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
+      "message": "Arrow up",
+      "description": "The ARIA label for the Arrow up key button that makes the navigation"
+    },
+    "theme.SearchModal.footer.navigateDownKeyAriaLabel": {
+      "message": "Arrow down",
+      "description": "The ARIA label for the Arrow down key button that makes the navigation"
+    },
+    "theme.SearchModal.footer.closeText": {
+      "message": "to close",
+      "description": "The explanatory text of the action for Escape key"
+    },
+    "theme.SearchModal.footer.closeKeyAriaLabel": {
+      "message": "Escape key",
+      "description": "The ARIA label for the Escape key button that close the modal"
+    },
+    "theme.SearchModal.footer.searchByText": {
+      "message": "Search by",
+      "description": "The text explain that the search is making by Algolia"
+    },
+    "theme.SearchModal.noResultsScreen.noResultsText": {
+      "message": "No results for",
+      "description": "The text explains that there are no results for the following search"
+    },
+    "theme.SearchModal.noResultsScreen.suggestedQueryText": {
+      "message": "Try searching for",
+      "description": "The text for the suggested query when no results are found for the following search"
+    },
+    "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
+      "message": "Believe this query should return results?",
+      "description": "The text for the question where the user thinks there are missing results"
+    },
+    "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
+      "message": "Let us know.",
+      "description": "The text for the link to report missing results"
+    },
+    "theme.SearchModal.placeholder": {
+      "message": "Search docs",
+      "description": "The placeholder of the input of the DocSearch pop-up modal"
+    },
+    "theme.blog.post.plurals": {
+      "message": "One post|{count} posts",
+      "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+    },
+    "theme.blog.tagTitle": {
+      "message": "{nPosts} tagged with \"{tagName}\"",
+      "description": "The title of the page for a blog tag"
+    },
+    "theme.blog.author.pageTitle": {
+      "message": "{authorName} - {nPosts}",
+      "description": "The title of the page for a blog author"
+    },
+    "theme.blog.authorsList.pageTitle": {
+      "message": "Authors",
+      "description": "The title of the authors page"
+    },
+    "theme.blog.authorsList.viewAll": {
+      "message": "View all authors",
+      "description": "The label of the link targeting the blog authors page"
+    },
+    "theme.blog.author.noPosts": {
+      "message": "This author has not written any posts yet.",
+      "description": "The text for authors with 0 blog post"
+    },
+    "theme.contentVisibility.unlistedBanner.title": {
+      "message": "Unlisted page",
+      "description": "The unlisted content banner title"
+    },
+    "theme.contentVisibility.unlistedBanner.message": {
+      "message": "This page is unlisted. Search engines will not index it, and only users having a direct link can access it.",
+      "description": "The unlisted content banner message"
+    },
+    "theme.contentVisibility.draftBanner.title": {
+      "message": "Draft page",
+      "description": "The draft content banner title"
+    },
+    "theme.contentVisibility.draftBanner.message": {
+      "message": "This page is a draft. It will only be visible in dev and be excluded from the production build.",
+      "description": "The draft content banner message"
+    },
+    "theme.ErrorPageContent.tryAgain": {
+      "message": "Try again",
+      "description": "The label of the button to try again rendering when the React error boundary captures an error"
+    },
+    "theme.common.skipToMainContent": {
+      "message": "Skip to main content",
+      "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+    },
+    "theme.tags.tagsPageTitle": {
+      "message": "Tags",
+      "description": "The title of the tag list page"
+    }
+  },
+  "target_i18n_subpath": "code.json",
+  "last_updated_timestamp": "2025-07-04T06:49:56.025205+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "9a38dc32d003dfc24ae830f3fcae5e593abb3fe6a5a66068bfa07f77be0ac921"
+  }
+}

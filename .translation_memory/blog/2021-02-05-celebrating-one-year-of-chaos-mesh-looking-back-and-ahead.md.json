@@ -1,0 +1,526 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2021-02-05-celebrating-one-year-of-chaos-mesh-looking-back-and-ahead.md",
+  "source_file_content_hash": "8124bea88bc74684057acd63adec98718568912be1e4b31c6340aeab6b6e4662",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /celebrating-one-year-of-chaos-mesh-looking-back-and-ahead\ntitle: 'Celebrating One Year of Chaos Mesh: Looking Back and Ahead'\nauthors: chaos-mesh\nimage: /img/blog/celebrating-one-year-of-chaos-mesh-looking-back-and-ahead.jpg\ntags: [Chaos Mesh, Chaos Engineering]\n---",
+      "source_content_hash": "5f7f6f295c6de6adf610f2c1c520d708d73e3e6dfae6a95c79017365344d8dfc",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Celebrating One Year of Chaos Mesh: Looking Back and Ahead](/img/blog/celebrating-one-year-of-chaos-mesh-looking-back-and-ahead.jpg)",
+      "source_content_hash": "76b93479644a63f0fcead462d5d9237bdf14025cfa73b809d301ffd55e77a840",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![慶祝 Chaos Mesh 一週年：回顧與展望](/img/blog/celebrating-one-year-of-chaos-mesh-looking-back-and-ahead.jpg)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "It’s been a year since Chaos Mesh was first open-sourced on GitHub. Chaos Mesh started out as a mere fault injection tool and is now heading towards the goal of building a chaos engineering ecology. Meanwhile, the Chaos Mesh community was also built from scratch and has helped [Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) join CNCF as a Sandbox project.",
+      "source_content_hash": "9b0fca09acfad7dc7ed963b38a131fa019f514e672f9430e8236e09233e72f85",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "距離 Chaos Mesh 首次在 GitHub 上開源已有一年時間。Chaos Mesh 從單純的故障注入工具起步，如今正朝著建立混沌工程生態的目標邁進。與此同時，Chaos Mesh 社群也從零開始建立，並協助 [Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) 以 Sandbox 專案身份加入 CNCF。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "In this article, we will share with you how Chaos Mesh has grown and changed in the past year, and also discuss its future goals and plans.",
+      "source_content_hash": "207e6c7528b1ee85e43ac7d0ba4fd437ce48272efe5cd082e3a3f50208624b05",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文將與您分享 Chaos Mesh 過去一年的成長與變化，並探討其未來的目標與規劃。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3daf1b88",
+      "source_content": "## The project: thrive with a clear goal in mind",
+      "source_content_hash": "16859551b3e4988e4b56247daa4929f6e73cfa2ec9b8991535f62d287951d894",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 專案：目標明確，蓬勃發展"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "In this past year, Chaos Mesh has grown at an impressive speed with the joint efforts of the community. From the very first version to the recently released [v1.1.0](https://github.com/chaos-mesh/chaos-mesh/releases/tag/v1.1.0), Chaos Mesh has been greatly improved in terms of functionality, ease of use, and security.",
+      "source_content_hash": "6c00e7f7424fe3671959c13e17dacf3712073af2b77a5458fa69f65b2f7b9ddf",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "過去一年在社群共同努力下，Chaos Mesh 以驚人速度成長。從最初版本到近期發布的 [v1.1.0](https://github.com/chaos-mesh/chaos-mesh/releases/tag/v1.1.0)，無論在功能、易用性還是安全性方面，Chaos Mesh 都獲得了顯著提升。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "418617bd",
+      "source_content": "### Functionality",
+      "source_content_hash": "0be56d7af676f987bd2f9de6ab03c4786a3e1db78c2b1808faad899b3c3459aa",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 功能"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "When first open-sourced, Chaos Mesh supported only three fault types: PodChaos, NetworkChaos, and IOChaos. Within only a year, Chaos Mesh can perform all around fault injections into the network, system clock, JVM applications, filesystems, operating systems, and so on.",
+      "source_content_hash": "d4bb8a38048b37a097ad543b296eacb839a984c578d64d8ee64779259e75629e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "開源初期，Chaos Mesh 僅支援三種故障類型：PodChaos、NetworkChaos 和 IOChaos。短短一年內，它已能對網路、系統時鐘、JVM 應用、檔案系統、作業系統等進行全方位故障注入。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c2bdd0",
+      "source_content": "![Chaos Tests](/img/blog/chaos-tests.png)",
+      "source_content_hash": "212cf593e2a7ada726f9efe363fa32b9f7647d8aae26e03b8ab39b4d2286b895",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![混沌測試](/img/blog/chaos-tests.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a76548f8",
+      "source_content": "After continuous optimization, Chaos Mesh now provides a flexible scheduling mechanism, which enables users to better design their own chaos experiments. This laid the foundation for chaos orchestration.",
+      "source_content_hash": "1fe1f5b842bdd937ffe6d5dabd9b3e10b7329ec08a73a0eabb15aa6fb3f66d74",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "經過持續優化，Chaos Mesh 現提供靈活的調度機制，讓使用者能更完善地設計混沌實驗，為混沌編排奠定基礎。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b1d2d7d",
+      "source_content": "In the meantime, we are happy to see that a number of users have started to [test Chaos Mesh on major cloud platforms](https://github.com/chaos-mesh/chaos-mesh/issues/1182), such as Amazon Web Services (AWS), Google Kubernetes Engine (GKE), Alibaba Cloud, and Tencent Cloud. We have continuously conducted compatibility testing and adaptations, in order to support [fault injection for specific cloud platforms](https://github.com/chaos-mesh/chaos-mesh/pull/1330).",
+      "source_content_hash": "ddd614922e879699e98bdd7d293b7222ab23edfd9d45dc9e66ef9880370fb331",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們欣喜看到許多使用者開始在[主要雲端平台測試 Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh/issues/1182)，如 Amazon Web Services (AWS)、Google Kubernetes Engine (GKE)、阿里雲和騰訊雲。我們持續進行相容性測試與適配，以支援[特定雲平台的故障注入](https://github.com/chaos-mesh/chaos-mesh/pull/1330)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfe931a2",
+      "source_content": "To better support Kubernetes native components and node-level failures, we developed [Chaosd](https://github.com/chaos-mesh/chaosd), which provides physical node-level fault injection. We're extensively testing and refining this feature for release within the next few months.",
+      "source_content_hash": "35fe95538f0d44ce7a0450a4d05a4460d6b2dd6f13a4ba69913f41517309ca05",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "為更好支援 Kubernetes 原生元件及節點層級故障，我們開發了 [Chaosd](https://github.com/chaos-mesh/chaosd)，提供實體節點層級的故障注入功能，目前正進行全面測試與精煉，預計未來數月內發布。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0037ff70",
+      "source_content": "### Ease of use",
+      "source_content_hash": "629c3d3ff1e420caf10ef3af1837b9c9de9350322c7d3ae01a993f9364c2f9e3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 易用性"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bdc231b1",
+      "source_content": "Ease of use has been one of the guiding principles of Chaos Mesh development since day one. You can deploy Chaos Mesh with a single command line. The V1.0 release brought the long-awaited Chaos Dashboard, a one-stop web interface for users to orchestrate chaos experiments. You can define the scope of the chaos experiment, specify the type of chaos injection, define scheduling rules, and observe the results of the chaos experiment—all in the same web interface with only a few clicks.",
+      "source_content_hash": "e2919ab82b2d485546c6eb9257a4d9d03960f4534fdc8108fdea0b9b346cb219",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "易用性始終是 Chaos Mesh 開發的核心原則。您只需一行指令即可部署 Chaos Mesh。v1.0 版本推出期盼已久的 Chaos Dashboard，提供一站式 Web 介面讓使用者編排混沌實驗。您可在同個介面中定義實驗範圍、指定故障注入類型、設定調度規則並觀察實驗結果，僅需點擊幾下即可完成。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "97ae4a01",
+      "source_content": "![Chaos Dashboard](/img/blog/chaos-dashboard1.png)",
+      "source_content_hash": "17445926e963b91f811bd53d991ad53530a908ea96da5b8dd72173f2b664425c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![混沌儀表板](/img/blog/chaos-dashboard1.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c3a738de",
+      "source_content": "Prior to V1.0, many users reported being blocked by various configuration problems when injecting IOChaos faults. After intense investigations and discussions, we gave up the original SideCar implementation. Instead, we used chaos-daemon to dynamically invade the target Pod, which significantly simplifies the logic. This optimization has made dynamic I/O fault injection possible with Chaos Mesh, and users can focus solely on their experiments without having to worry about additional configurations.",
+      "source_content_hash": "9b89767431da483b66e80fd360c7b1486b9373c8ec19b117a3ddac75f30b7001",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在 v1.0 之前，許多使用者回報注入 IOChaos 故障時遭遇各種配置問題。經深入調查與討論，我們放棄原有的 SideCar 實現方式，改用 chaos-daemon 動態侵入目標 Pod，大幅簡化邏輯。這項優化使 Chaos Mesh 實現動態 I/O 故障注入，使用者能專注實驗本身，無需擔憂額外配置。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9f9e64f5",
+      "source_content": "### Security",
+      "source_content_hash": "a4ff72c5e89e03f9187b50e87fcffc07b726bb60a85e0b2f434eac58bcfd7032",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 安全性"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1042b50d",
+      "source_content": "We have improved the security of Chaos Mesh. It now provides a comprehensive set of selectors to control the scope of the experiments, and supports setting specific namespaces to protect important applications. What’s more, the support of namespace permissions allows users to limit the “explosion radius” of a chaos experiment to a specific namespace.",
+      "source_content_hash": "816e3436f9b194fd4ca9d670f3c76a2965877fa6f3147b9155956e0d0336d963",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們已強化 Chaos Mesh 的安全性。它現在提供完整的選擇器套件來控制實驗範圍，並支援設定特定命名空間以保護關鍵應用程式。此外，命名空間權限支援讓使用者能將混沌實驗的「爆炸半徑」限制在特定命名空間內。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa1e7006",
+      "source_content": "In addition, Chaos Mesh directly reuses Kubernetes’ native permission mechanism and supports verification on the Chaos Dashboard. This protects you from other users’ errors, which can cause chaos experiments to fail or become uncontrollable.",
+      "source_content_hash": "6cc81e6d7264256b80bfb21e1204475ff0820478d6185e5742130039a1a53174",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "更重要的是，Chaos Mesh 直接重用 Kubernetes 原生權限機制，並在混沌儀表板上支援驗證功能。這能保護您免受其他使用者錯誤操作的影響，避免導致混沌實驗失敗或失控。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f44c1398",
+      "source_content": "## Cloud native ecosystem: integrations and cooperations",
+      "source_content_hash": "d416f6625676efeaee5039b6df37eb3679141c1508fce582f28f60789e13fd54",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 雲原生生態系統：整合與合作"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "29528c8d",
+      "source_content": "In July 2020, Chaos Mesh was successfully [accepted as a CNCF Sandbox project](https://chaos-mesh.org/blog/chaos-mesh-join-cncf-sandbox-project). This shows that Chaos Mesh has received initial recognition from the cloud native community. At the same time, it means that Chaos Mesh has a clear mission: to promote the application of chaos engineering in the cloud native field and to cooperate with other cloud native projects so we can grow together.",
+      "source_content_hash": "66ae9c81b71c13aadb11487a1ee78c47cff02a2c57f6d53ca28bc11bb82ed093",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2020年7月，Chaos Mesh成功[獲接納為CNCF沙盒專案](https://chaos-mesh.org/blog/chaos-mesh-join-cncf-sandbox-project)。這表明Chaos Mesh已獲得雲原生社群的初步認可，同時意味著Chaos Mesh肩負明確使命：推動混亂工程在雲原生領域的應用，並與其他雲原生專案協同發展，實現共同成長。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "11c76fcc",
+      "source_content": "### Grafana",
+      "source_content_hash": "0069fb181cb8dde818250707cc755e86738c465848d5c860b5bce263039d21a3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### Grafana"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "98d26038",
+      "source_content": "To further improve the observability of chaos experiments, we have included a separate [Grafana plug-in](https://github.com/chaos-mesh/chaos-mesh-datasource) for Chaos Mesh, which allows users to directly display real-time chaos experiment information on the application monitoring panel. This way, users can simultaneously observe the running status of the application and the current chaos experiment information.",
+      "source_content_hash": "0f65307bea5c00aa08daf1565e47be743747d1f4e9ee9611351d4f2cffb73e6b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "為進一步提升混亂實驗的可觀測性，我們為Chaos Mesh開發了專屬的[Grafana外掛](https://github.com/chaos-mesh/chaos-mesh-datasource)，讓使用者能直接在應用監控面板上顯示即時混亂實驗資訊。如此一來，使用者可同步觀察應用運行狀態與當前混亂實驗動態。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "af52d59d",
+      "source_content": "### GitHub Action",
+      "source_content_hash": "d3b6a872b1a203dade76801db9c5f450acb057f4409e2efbc34790d3a0d8162e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### GitHub Action"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4d52a261",
+      "source_content": "To enable users to run chaos experiments even during the development phase, we developed the [chaos-mesh-action](https://github.com/chaos-mesh/chaos-mesh-action) project, allowing Chaos Mesh to run in the workflow of GitHub Actions. This way, Chaos Mesh can easily be integrated into daily system development and testing.",
+      "source_content_hash": "4d72d9184a1b3b37ec79c131958a44bbd6a912af12f3fb748b940403677aaa77",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "為使開發階段即可執行混亂實驗，我們開發了[chaos-mesh-action](https://github.com/chaos-mesh/chaos-mesh-action)專案，使Chaos Mesh能在GitHub Actions工作流中運行。這讓Chaos Mesh能無縫整合至日常系統開發與測試流程。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7283cdac",
+      "source_content": "### TiPocket",
+      "source_content_hash": "786b48cb78e6d8f0c01918077f6dbf7a63949705276a19f2353906f2265497a9",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### TiPocket"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1131ef75",
+      "source_content": "[TiPocket](https://github.com/pingcap/tipocket) is an automated test platform that integrates Chaos Mesh and Argo, a workflow engine designed for Kubernetes. TiPocket is designed to be a fully automated chaos engineering testing loop for TiDB, a distributed database. There are a number of steps when we conduct chaos experiments, including deploying applications, running workloads, injecting exceptions, and business checks. To fully automate these steps, Argo was integrated into TiPocket. Chaos Mesh provides rich fault injection, while Argo provides flexible orchestration and scheduling.",
+      "source_content_hash": "3cd41dcd747bc8798def786dc826d09ba7a2706c8d2f577598ac0ec4959af095",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[TiPocket](https://github.com/pingcap/tipocket)是整合Chaos Mesh與Kubernetes工作流程引擎Argo的自動化測試平台，專為分散式資料庫TiDB設計的完整混亂工程測試迴圈。執行混亂實驗包含多步驟：部署應用、運行負載、注入異常及業務驗證。為實現全自動化，TiPocket整合Argo提供靈活編排調度，而Chaos Mesh則提供豐富的故障注入能力。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b2a52b1",
+      "source_content": "![TiPocket](/img/blog/tipocket.png)",
+      "source_content_hash": "8268b14b45288104f159302177634d6fa7c620a87fd1a9916419eedbd8dc9f56",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![TiPocket](/img/blog/tipocket.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "126950d7",
+      "source_content": "## The community: built from the ground up",
+      "source_content_hash": "7451ff17f094164330f0062349089d2818f68293b0be544d55dc33c2759edf9b",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 社群建設：從零起步"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0bb95128",
+      "source_content": "Chaos Mesh is a community-driven project, and cannot progress without an active, friendly, and open community. Since it was open-sourced, Chaos Mesh has quickly become one of the most eye-catching open-source projects in the chaos engineering world. Within a year, it has accumulated more than 3k stars on GitHub and 70+ contributors. Adopters include Tencent Cloud, XPeng Motors, Dailymotion, NetEase Fuxi Lab, JuiceFS, APISIX, and Meituan. Looking back on the past year, the Chaos Mesh community was built from scratch, and has laid the foundation for a transparent, open, friendly, and autonomous open source community.",
+      "source_content_hash": "393862850b21f37531533139ce17c3c45d00329bc89dd1c355166e7c5abd1fcb",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh是社群驅動專案，離不開活躍、友善且開放的社群環境。開源一年內，它已成為混亂工程領域最引人注目的開源專案之一，累積逾3k GitHub星標與70+貢獻者。採用者包含騰訊雲、小鵬汽車、Dailymotion、網易伏羲實驗室、JuiceFS、APISIX及美團等。回顧這一年，Chaos Mesh社群從零建構，為透明、開放、友善且自治的開源社群奠定基礎。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3ef18741",
+      "source_content": "### Becoming part of the CNCF family",
+      "source_content_hash": "e39fb7ea40eee79529ef145da9e32b66422c4ec302076f91ad976a593a6df6c3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 加入CNCF大家庭"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7772088",
+      "source_content": "Cloud native has been in the DNA of Chaos Mesh since the very beginning. Joining CNCF was a natural choice, which marks a critical step for Chaos Mesh to becoming a vendor-neutral, open and transparent open-source community. Aside from integration within the cloud native ecosystem, joining CNCF gives Chaos Mesh:",
+      "source_content_hash": "f5e7d0936d21217a817a17823f31bf1ab97d9e250c05d1f08b690ea947a5cc4e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "雲原生基因深植於Chaos Mesh的發展歷程，加入CNCF是必然選擇，這標誌著專案邁向供應商中立、開放透明的關鍵一步。除生態整合外，加入CNCF為Chaos Mesh帶來："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4e8535b2",
+      "source_content": "- More community and project exposure. Collaborations with other projects and various cloud native community activities such as Kubernetes Meetup and KubeCon have presented us great opportunities to communicate with the community. We are amazed how the high-quality content produced by the community has also played a positive and far-reaching role in promoting Chaos Mesh.",
+      "source_content_hash": "92950306b15798f1698ad73e69a002ff2cf6732bafe974bc053a7a6b41d633c5",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 更高社群與專案曝光度：透過與其他專案合作及參與Kubernetes Meetup、KubeCon等活動，我們獲得絕佳社群交流機會。社群產出的高品質內容對推廣Chaos Mesh產生深遠積極影響。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ae11e253",
+      "source_content": "- A more complete and open community framework. CNCF provides a rather mature framework for open-source community operations. Under CNCF’s guidance, we established our basic community framework, including a Code of Conduct, Contributing Guide, and Roadmap. We’ve also created our own channel, #project-chaos-mesh, under CNCF’s Slack.",
+      "source_content_hash": "2d0d0865cd968e0ea56831513192fe4739a83d46ddadfcbf41c8ac0c1ba05358",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 更完善開放的社群框架：CNCF提供成熟的開源社群運作框架。在其指導下，我們建立基礎社群架構，包含行為準則、貢獻指南及路線圖，並在CNCF Slack創建專屬頻道#project-chaos-mesh。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "93028a4e",
+      "source_content": "### A friendly and supportive community",
+      "source_content_hash": "ae1c4dfb7b7f3bb479264a0c09343d35c7fa3cccf5760067228bf15e90eb68b0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 友善支持的社群環境"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "084f365a",
+      "source_content": ":::note\n\n2022-10-24: Because of https://www.oreilly.com/online-learning/leveraging-katacoda-technology.html, and refer to [#356](https://github.com/chaos-mesh/website/pull/356), the interactive tutorial is temporarily unavailable.\n\n:::",
+      "source_content_hash": "309c9fa56a89085317288948daab67d47db5d9ef3cd9382c10b3a8e1c64972fe",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": ":::note\n\n2022-10-24: 由於https://www.oreilly.com/online-learning/leveraging-katacoda-technology.html，並參閱[#356](https://github.com/chaos-mesh/website/pull/356)，互動式教學暫時無法使用。\n\n:::",
+          "reason": "URL for a 'link' was changed from 'https://www.oreilly.com/online-learning/leveraging-katacoda-technology.html' to 'https://www.oreilly.com/online-learning/leveraging-katacoda-technology.html，並參閱[#356'.",
+          "timestamp": "2025-07-04T06:49:59.310098+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "fbc2db85",
+      "source_content": "The quality of the open source community determines whether our adopters and contributors are willing to stick around and get involved in the community for the long run. In this regard, we’ve been working hard on:",
+      "source_content_hash": "6d5485257623f3163587e803a101042df0494cc25d983a6ff2a8b7a91ccc5035",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "開源社群的品質決定了採用者和貢獻者是否願意長期參與社群發展。在這方面，我們持續努力的方向包括："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2c8c6fce",
+      "source_content": "- Continuously enriching documentation and optimizing its structure. So far, we have developed a complete set of documentation for different groups of audiences, including [a user guide](https://chaos-mesh-website-archived.netlify.app/docs/1.2.4/user_guides/installation) and [developer guide](https://chaos-mesh-website-archived.netlify.app/docs/1.2.4/development_guides/development_overview), [quick start guides](https://chaos-mesh-website-archived.netlify.app/docs/1.2.4/get_started/get_started_on_kind), [use cases](https://chaos-mesh-website-archived.netlify.app/docs/1.2.4/use_cases/multi_data_centers), and [a contributing guide](https://github.com/chaos-mesh/chaos-mesh/blob/master/CONTRIBUTING.md). All are constantly updated per each release.",
+      "source_content_hash": "dd3d6c114444c438cea0497147f61543e65849a1e95e7dd11231623ce02a6c2a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 持續豐富文件並優化結構。目前我們已針對不同用戶群體開發完整文件體系，涵蓋[使用指南](https://chaos-mesh-website-archived.netlify.app/docs/1.2.4/user_guides/installation)、[開發者指南](https://chaos-mesh-website-archived.netlify.app/docs/1.2.4/development_guides/development_overview)、[快速入門指引](https://chaos-mesh-website-archived.netlify.app/docs/1.2.4/get_started/get_started_on_kind)、[應用案例](https://chaos-mesh-website-archived.netlify.app/docs/1.2.4/use_cases/multi_data_centers)及[貢獻指南](https://github.com/chaos-mesh/chaos-mesh/blob/master/CONTRIBUTING.md)，所有內容均隨版本持續更新。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "83fc985d",
+      "source_content": "- Working with the community to publish blog posts, tutorials, use cases, and chaos engineering practices. So far, we’ve produced 26 Chaos Mesh related articles. Among them is `an interactive tutorial`, published on O’Reilly’s Katakoda site. These materials make a great complement to the documentation.",
+      "source_content_hash": "b8617258479450c0d7692a73976f80f631d518fe34787e1b75b678b88bb6d688",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- 與社群協作發布技術文章、教學指南、應用案例及混沌工程實踐。迄今已產出26篇Chaos Mesh相關文章，其中包含發布於O'Reilly Katakoda網站的`互動式教學`，這些素材構成文件體系的重要補充。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`an interactive tutorial`', Translation: '`互動式教學`'.",
+          "timestamp": "2025-07-04T06:49:59.310128+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "3cf55645",
+      "source_content": "- Repurposing and amplifying videos and tutorials generated in community meetings, webinars, and meetups. Valuing and responding to community feedback and queries.",
+      "source_content_hash": "08a85f8e7b5dbd079d21e4fef9d06f9fcc9b3b100f84e496fe2984e1f924e17f",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 將社群會議、線上研討會及技術交流活動產出的影片與教學資源重新整合運用，重視並回應社群反饋與疑問。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39db08de",
+      "source_content": "## Looking ahead",
+      "source_content_hash": "5de3a424e9b3a2054cdc8d7602f6c4663662e4a048f0d9190c2e98c5bb9ca758",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 未來展望"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "785750ac",
+      "source_content": "Google’s recent global outage reminded us of the importance of system reliability, and it highlighted the importance of chaos engineering. Liz Rice, CNCF TOC Chair, shared [The 5 technologies to watch in 2021](https://twitter.com/CloudNativeFdn/status/1329863326428499971), and chaos engineering is on top of the list. We boldly predict that chaos engineering is about to enter a new stage in the near future. Chaos Mesh 2.0 is now in active development, and it includes community requirements such as an embedded workflow engine to support the definition and management of more flexible chaos scenarios, application state checking mechanisms, and more detailed experiments reports. Follow along through the project [roadmap](https://github.com/chaos-mesh/chaos-mesh/blob/master/ROADMAP.md).",
+      "source_content_hash": "1f82638a47747c0e3fe42d40adb0ba36d5ed8506605ea36fb36c60be5b35060c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Google近期全球服務中斷事件再次警示系統可靠性的重要性，同時突顯混沌工程的關鍵價值。CNCF技術監督委員會主席Liz Rice提出[2021年五大值得關注技術](https://twitter.com/CloudNativeFdn/status/1329863326428499971)，混沌工程位居榜首。我們大膽預測混沌工程即將邁入新階段，目前Chaos Mesh 2.0正積極開發中，重點包含社群需求功能：嵌入式工作流引擎以支援更靈活的混沌場景定義與管理、應用狀態檢查機制，以及更詳盡的實驗報告。可透過專案[路線圖](https://github.com/chaos-mesh/chaos-mesh/blob/master/ROADMAP.md)持續關注進展。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b10963d7",
+      "source_content": "## Last but not least",
+      "source_content_hash": "8841b38ed55ca46ee62e740ea30935f139219bd9208f6617feaf8243f23388cc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 結語"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2822251a",
+      "source_content": "Chaos Mesh has grown so much in the past year, yet it is still young, and we have just set sail towards our goal. In the meantime, we call for all of you to participate and help build the Chaos Engineering system ecology together!",
+      "source_content_hash": "c766dfad6f14fbde3a72b3be5404bb15d15e05cbff9248f504705054c92270b8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh過去一年快速成長，但仍是年輕專案，航行目標才剛啟程。在此誠摯邀請您參與共建混沌工程生態體系！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "25212439",
+      "source_content": "If you are interested in Chaos Mesh and would like to help us improve it, you're welcome to join [our Slack channel](https://slack.cncf.io/) or submit your pull requests or issues to our [GitHub repository](https://github.com/chaos-mesh/chaos-mesh).",
+      "source_content_hash": "714e56c49b8b6eb85a7a57dd7857bfdbb4d077c57eda31bcf9b4233c0890c10f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若對Chaos Mesh感興趣並願意協助改進，歡迎加入[Slack頻道](https://slack.cncf.io/)或至[GitHub代碼庫](https://github.com/chaos-mesh/chaos-mesh)提交拉取請求與議題。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2021-02-05-celebrating-one-year-of-chaos-mesh-looking-back-and-ahead.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.310162+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "8124bea88bc74684057acd63adec98718568912be1e4b31c6340aeab6b6e4662"
+  }
+}

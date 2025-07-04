@@ -1,0 +1,339 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/run-serial-or-parallel-experiments.md",
+  "source_file_content_hash": "853e9c2a043a2ecac7baf322c31673190b33c64eab96c2938ef266ed73d8b671",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Serial and Parallel Experiments\n---",
+      "source_content_hash": "75d98316423f44510e6b7442f1af3ff236c741b227d8fe84281d6b508ce2d14d",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "Chaos Mesh Workflow offers two ways of scheduling experiments: serial and parallel. You can configure and schedule multiple experiments as needed.",
+      "source_content_hash": "ee4f5014e9f58bb1f5e7431a502341891862c2c34762553cacdd951847a28f5d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 工作流程提供兩種實驗排程方式：序列執行與平行執行。您可以根據需求配置並排程多個實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "237365ee",
+      "source_content": "- If you want to schedule multiple chaos experiments in sequence, use serial nodes.",
+      "source_content_hash": "839c0342c3f03ee0e285f3ff391c366eaac09c0f35e29ca2cddd3df973a61a35",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 若需依序執行多個混沌實驗，請使用序列節點。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2516e62c",
+      "source_content": "- If you want to perform multiple chaos experiments simultaneously, use parallel nodes.",
+      "source_content_hash": "fd931f2ac65e992dc10ce2f682b783b8c9e8f06fef5890209ed83196a6039e07",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 若需同時執行多個混沌實驗，請使用平行節點。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7e5c5a39",
+      "source_content": "Chaos Mesh uses [composite pattern](https://en.wikipedia.org/wiki/Composite_pattern) when designing serial and parallel nodes. It can contain multiple nodes of different types and run the composite nodes in a specific mode. This also means that you can nest the serial and parallel nodes to achieve complicated scheduling.",
+      "source_content_hash": "e1370757e002c6c2d9ac124b615efe6fc6399447cd90d80e5549fa9548db0859",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 在設計序列與平行節點時採用[組合模式](https://en.wikipedia.org/wiki/Composite_pattern)。此模式可包含多種不同類型的節點，並以特定模式執行組合節點。這也意味著您可以嵌套序列與平行節點，實現複雜的排程邏輯。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9fcbdce9",
+      "source_content": "## Serial experiments",
+      "source_content_hash": "ffef0a5b149b890b1688267c95ccf76aa7704b8478b0b1d51ebcf74734d71487",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 序列實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ad8fd492",
+      "source_content": "When you create `templates` in Workflow, use `templateType: Serial` to claim a serial node.",
+      "source_content_hash": "45f0a718739750ee02e675081fd266b378b9b5dce3a7df1244325bc0e0a457df",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在 Workflow 中建立 `templates` 時，使用 `templateType: Serial` 宣告序列節點。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "86b54d44",
+      "source_content": "Another required field in serial nodes is `children`. Its type is `[]string` and value is the name of other `template`. For example:",
+      "source_content_hash": "31d789b32141c07f4cb4db3c533d99c8167fb09932804a13df3e8506940edac0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "序列節點必須包含 `children` 欄位，其類型為 `[]string`，值為其他 `template` 的名稱。例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6e5ba8fb",
+      "source_content": "```yaml\napiVersion: chaos-mesh.org/v1alpha1\nkind: Workflow\nmetadata:\n  name: try-workflow-serial\nspec:\n  entry: serial-of-3-node\n  templates:\n    - name: serial-of-3-node\n      templateType: Serial\n      deadline: 240s\n      children:\n        - workflow-stress-chaos\n        - suspending\n        - workflow-network-chaos\n    - name: suspending\n      templateType: Suspend\n      deadline: 10s\n    - name: workflow-network-chaos\n      templateType: NetworkChaos\n      deadline: 20s\n      networkChaos:\n        direction: to\n        action: delay\n        mode: all\n        selector:\n          labelSelectors:\n            'app': 'hello-kubernetes'\n        delay:\n          latency: '90ms'\n          correlation: '25'\n          jitter: '90ms'\n    - name: workflow-stress-chaos\n      templateType: StressChaos\n      deadline: 20s\n      stressChaos:\n        mode: one\n        selector:\n          labelSelectors:\n            'app': 'hello-kubernetes'\n        stressors:\n          cpu:\n            workers: 1\n            load: 20\n            options: ['--cpu 1', '--timeout 600']\n```",
+      "source_content_hash": "68f4f1af4d8fa3d327149fa9fc70fe5634ca0725cba7f6f11802d3b255657ca9",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6e5ba8fb"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5dae11e3",
+      "source_content": "The above commands claims a serial node named `serial-of-3-node`. This means Chaos Mesh executes sequentially `workflow-stress-chaos`, `suspending`, and `workflow-network-chaos`. After all tasks are completed, serial nodes are marked as completed.",
+      "source_content_hash": "6767038f766d160ac63ba1be7c5bffffa2265b5a35477ce0ce111efa3ce3854d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以上指令宣告名為 `serial-of-3-node` 的序列節點，表示 Chaos Mesh 將依序執行 `workflow-stress-chaos`、`suspending` 和 `workflow-network-chaos`。所有任務完成後，序列節點標記為完成狀態。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0bb95128",
+      "source_content": "When Chaos Mesh executes the serial node, tasks claimed in `children` are run sequentially to ensure that only one task is running at the same time.",
+      "source_content_hash": "270a3fa51632d648896455c756cf3b31960ef80240904c35ef20ce932ad904d1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 執行序列節點時，`children` 宣告的任務將依序執行，確保同一時間僅有一個任務運行。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "657c2b20",
+      "source_content": "The `deadline` field in serial nodes is optional to limit the maximum duration of the entire serial process. Once this duration is running out, the sub-nodes are stopped and the nodes that are not executed yet will not be executed. If all sub-nodes finish their work before `deadline` time, serial nodes are immediately marked as completed and `deadline` is not affected.",
+      "source_content_hash": "a28d7ea0d3b192b0f6cc2f815e9b3f43169d446fa732a4a042c1a3a94b5af0a6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "序列節點中的 `deadline` 為可選欄位，用於限制整個序列流程的最長持續時間。若超過時限，正在運行的子節點將被終止，未執行的節點則不再執行。若所有子節點在 `deadline` 時限前完成工作，序列節點立即標記為完成且不受時限影響。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 3, translation has 2.",
+          "timestamp": "2025-07-04T06:49:59.295666+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "52388877",
+      "source_content": "## Parallel experiments",
+      "source_content_hash": "810405368949cc4a07d23aa7f5a4cde29b1784d14ede66c0c1876427b96ecdd3",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 平行實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "eab056be",
+      "source_content": "When you create `templates` in Workflow, use `templateType: Parallel` to claim a parallel node.",
+      "source_content_hash": "f8b04efe3f54f13e26588ecdc51392befeef36351a505ff7abebc8d9508db05c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在 Workflow 中建立 `templates` 時，使用 `templateType: Parallel` 宣告平行節點。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f01228d3",
+      "source_content": "Another required field in parallel nodes is `children`. Its type is `[]string` and values are the names of other `template`. For example:",
+      "source_content_hash": "444551fb5e87d4d3dd7362a7a945cbff563c101db601d780d4025ce22f52e1af",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "平行節點必須包含 `children` 欄位，其類型為 `[]string`，值為其他 `template` 的名稱。例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c808e01e",
+      "source_content": "```yaml\napiVersion: chaos-mesh.org/v1alpha1\nkind: Workflow\nmetadata:\n  name: try-workflow-parallel\nspec:\n  entry: parallel-of-2-chaos\n  templates:\n    - name: parallel-of-2-chaos\n      templateType: Parallel\n      deadline: 240s\n      children:\n        - workflow-stress-chaos\n        - workflow-network-chaos\n    - name: workflow-network-chaos\n      templateType: NetworkChaos\n      deadline: 20s\n      networkChaos:\n        direction: to\n        action: delay\n        mode: all\n        selector:\n          labelSelectors:\n            'app': 'hello-kubernetes'\n        delay:\n          latency: '90ms'\n          correlation: '25'\n          jitter: '90ms'\n    - name: workflow-stress-chaos\n      templateType: StressChaos\n      deadline: 20s\n      stressChaos:\n        mode: one\n        selector:\n          labelSelectors:\n            'app': 'hello-kubernetes'\n        stressors:\n          cpu:\n            workers: 1\n            load: 20\n            options: ['--cpu 1', '--timeout 600']\n```",
+      "source_content_hash": "04ef51d23dc46c551f53362e3e4c1c2725c8240f2a2b39f2852679a4eaecf466",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_c808e01e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "396efb28",
+      "source_content": "The above commands claimed a parallel node named `parallel-of-2-chaos`. This means Chaos Mesh executes simultaneously `workflow-stress-chaos` and `workflow-network-chaos`. After all tasks are completed, parallel nodes are marked as completed.",
+      "source_content_hash": "baeba3e900142310b482b16fb71a528527afd2770c32e46aa4d77860e494ccd5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以上指令宣告名為 `parallel-of-2-chaos` 的平行節點，表示 Chaos Mesh 將同時執行 `workflow-stress-chaos` 和 `workflow-network-chaos`。所有任務完成後，平行節點標記為完成狀態。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "558df877",
+      "source_content": "When Chaos Mesh executes parallel nodes, all tasks claimed in `children` are executed simultaneously.",
+      "source_content_hash": "43d72a85224a9e9bb6cb742988eed0de31490dc210539a73859cb46ef2020690",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 執行平行節點時，`children` 宣告的所有任務將同時執行。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f38d1cb0",
+      "source_content": "Similar to serial nodes, the optional field `deadline` is also available in parallel nodes to limit the maximum execution time of the entire parallel process. If this time is reached, the sub-nodes are stopped. If all sub-nodes finish their work before `deadline` time, parallel nodes are immediately marked as completed and `deadline` is not affected.",
+      "source_content_hash": "cc22e3e7895c91371c5051afd3702f2e4b16bc9761337da6e87720e778d727e7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "類似序列節點，平行節點也可透過可選欄位 `deadline` 限制整個平行流程的最長執行時間。若超過時限，子節點將被終止。若所有子節點在時限前完成工作，平行節點立即標記為完成且不受影響。",
+          "reason": "The number of special elements (links, code, variables) differs. Source has 3, translation has 1.",
+          "timestamp": "2025-07-04T06:49:59.295697+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "47516512",
+      "source_content": "## Create a workflow with serial or parallel nodes using Chaos Dashboard",
+      "source_content_hash": "1ffed278a6353a544bebcab5bf413b552357a36e7681f46e14d2a270add8acce",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 透過 Chaos Dashboard 建立含序列或平行節點的工作流程"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "36d6c3de",
+      "source_content": "### Create serial nodes",
+      "source_content_hash": "54222b26062d7b42a4cd4aea39b274580230260557f7658273317f93281f9b6d",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 建立序列節點"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c364340c",
+      "source_content": "Chaos Dashboard creates a predefined serial node called `entry`. Therefore, when creating a workflow with serial nodes using Chaos Dashboard, the workflow is created under `entry` by default.",
+      "source_content_hash": "ddbe58616a84c042f752830f251dc91f19489e0e0f7266b73eed34633f46949c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Dashboard 預設建立名為 `entry` 的序列節點。因此透過 Dashboard 建立含序列節點的工作流程時，預設會在 `entry` 下建立工作流程。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f45239ba",
+      "source_content": "![Create Serial Node On Dashboard](./img/create-serial-node-on-dashboard.png)",
+      "source_content_hash": "def27869ec23a507a7a9e6cd9253b82c47200ae4c217e91cec38212722484c2c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![在 Dashboard 建立序列節點](./img/create-serial-node-on-dashboard.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8f1c1cd6",
+      "source_content": "### Create parallel nodes",
+      "source_content_hash": "b5c55b3ed9d3ea0b9938ac849c581da6d73ff0491b1b714b277e2d4f275ccb7f",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 建立平行節點"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "383fbdd2",
+      "source_content": "You can create a parallel node `Parallel` and create sub-nodes under `Parallel`.",
+      "source_content_hash": "99d954f24df1c3c97b414ce09b8257e9c7c4e64782327c90fbc8d63e8e528ee4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可以建立平行節點 `Parallel`，並在 `Parallel` 下建立子節點。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "14bc6b75",
+      "source_content": "![Create Parallel Node on Dashboard](./img/create-parallel-node-on-dashboard.png)",
+      "source_content_hash": "0ffefa50fcd12087f79268391f603e60218b60a406e9f53883789f889a37bdfa",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![在 Dashboard 建立平行節點](./img/create-parallel-node-on-dashboard.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5dba1427",
+      "source_content": "### Nest serial and parallel nodes",
+      "source_content_hash": "5531f832b834f46e935bf9f47f706ac3e97f03ed4dbd5b6646ef51a33c7fa6a0",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 嵌套序列與平行節點"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "534ac82e",
+      "source_content": "You can create more complex processes by nesting serial and parallel nodes together.",
+      "source_content_hash": "8d1487e44eeb21bc2be61bcafa3347cb72a92500be1d8b2199f37251caaa62b1",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可以透過嵌套序列與平行節點，建立更複雜的流程結構。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a9c2a503",
+      "source_content": "![Nested Serial And Parallel Node](./img/nested-serial-and-parallel.png)",
+      "source_content_hash": "78072f03afd9ad1a04bf870803b8c2a08d68c75d1a88ab710228a22ee3f5b945",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![嵌套序列與平行節點](./img/nested-serial-and-parallel.png)"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/run-serial-or-parallel-experiments.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.295728+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "853e9c2a043a2ecac7baf322c31673190b33c64eab96c2938ef266ed73d8b671"
+  }
+}

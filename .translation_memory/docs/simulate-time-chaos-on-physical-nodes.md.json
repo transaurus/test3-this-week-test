@@ -1,0 +1,199 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/simulate-time-chaos-on-physical-nodes.md",
+  "source_file_content_hash": "c84e4304dc73377f45e28443af9af947b8afea948d6da257855e6a0b18a6f883",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate Time Faults\nsummary: This document describes how to use Chaosd to simulate a time offset scenario.\n---",
+      "source_content_hash": "e7a662a604b2ea0340147b426079b6873d5674d6cef818eb5c455ba09be76482",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bb42506b",
+      "source_content": "This document describes how to use Chaosd to simulate a time offset scenario. You can create experiments either in command-line mode or service mode.",
+      "source_content_hash": "ad719dcccd83ac309abaf5bcc27bc812b20752ecce822020c54483f88e56354c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文檔介紹如何使用 Chaosd 模擬時間偏移情境。您可以透過命令列模式或服務模式來建立實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cc3c868d",
+      "source_content": "## Create experiments using command-line mode",
+      "source_content_hash": "8e1e5b87717f5db35089135f2d5cb107f6430d2ead4b8d9f1699a1697b623ca8",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用命令列模式建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7e5c5a39",
+      "source_content": "This section describes how to create time fault experiments using commands.",
+      "source_content_hash": "72d454b2ee395bc2067cc2236252d893908a3b9616bbdeb6739e5fc18854df3a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本節描述如何使用命令來建立時間故障實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8d66f911",
+      "source_content": "Before creating an experiment, you can run the following command to check the options of time faults:",
+      "source_content_hash": "30100e778cfe1d9e9092c58a2d4d6065e116968daef1a13494cc0bb53b94cd68",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在建立實驗之前，您可以執行以下命令來檢查時間故障的選項："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5564d81d",
+      "source_content": "```\nchaosd attack clock -h\n```",
+      "source_content_hash": "d6f85e7fc4e3bb10e070a6fbe92f7d80d608f2b8c1d6dd0d86fc1761a97c351b",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_5564d81d"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39b3772c",
+      "source_content": "The result is as follows:",
+      "source_content_hash": "9611d7f264a9daa04dbfea741f945b12f30e14bb89d500ff23f913a42abf7415",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "166426c2",
+      "source_content": "```bash\n$ chaosd attack clock -h\n\nclock skew\n\nUsage:\n  chaosd attack clock attack [flags]\n\nFlags:\n  -c, --clock-ids-slice string   The identifier of the particular clock on which to act.More clock description in linux kernel can be found in man page of clock_getres, clock_gettime, clock_settime.Muti clock ids should be split with \",\" (default \"CLOCK_REALTIME\")\n  -h, --help                     help for clock\n  -p, --pid int                  Pid of target program.\n  -t, --time-offset string       Specifies the length of time offset.\n\nGlobal Flags:\n      --log-level string   the log level of chaosd, the value can be 'debug', 'info', 'warn' and 'error'\n      --uid string         the experiment ID\n\n```",
+      "source_content_hash": "9a7ee34ca13953dc69ca1f46e3f01ab2313626f4613c900751d7e5a61ecc4659",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_166426c2"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "782c902a",
+      "source_content": "### Quick Example",
+      "source_content_hash": "68633c6d6beb6cd24db094c47862b376b052d9012f9bf6cd77b74f94ae9d10c5",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 快速範例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "50746522",
+      "source_content": "Prepare test program:",
+      "source_content_hash": "01fdeed271f4574f9a82a72e28a8d0e7645aa0819fc1134f6b9f103cbdd4e199",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "準備測試程式："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "45022e4f",
+      "source_content": "```bash\ncat > time.c << EOF\n#include <stdio.h>\n#include <time.h>\n#include <unistd.h>\n#include <sys/types.h>\n\nint main() {\n    printf(\"PID : %ld\\n\", (long)getpid());\n    struct  timespec ts;\n    for(;;) {\n        clock_gettime(CLOCK_REALTIME, &ts);\n        printf(\"Time : %lld.%.9ld\\n\", (long long)ts.tv_sec, ts.tv_nsec);\n        sleep(10);\n    }\n}\nEOF\n\ngcc -o get_time ./time.c\n```",
+      "source_content_hash": "578f98fe6c76e88555fe6f4250ea001c1a714f1cefb385415553b910d0c1ce0d",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_45022e4f"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5dae11e3",
+      "source_content": "Then execute get_time and try to attack it. The following is an example:",
+      "source_content_hash": "f696cd4cf13afd865391de09b6ac727d09177aecd5136955efc30e8a39e7f4f4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "然後執行 get_time 並嘗試對其進行攻擊。以下是一個範例："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1d510af2",
+      "source_content": "```bash\nchaosd attack clock -p $PID -t 11s\n```",
+      "source_content_hash": "11dfc15d1f05a93ca08d0b999242303e73c78467ef7b5e3b8090053bc2c30bd2",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_1d510af2"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "52388877",
+      "source_content": "### Configurations of simulating time faults",
+      "source_content_hash": "48dc6d6b919dacbe292f31d2b50564fc48f164cf8725a07d1a57e2abe6170e92",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 模擬時間故障的配置"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "088cb147",
+      "source_content": "| Parameter | Type | Note | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| timeOffset | string | Specifies the length of time offset. | None | Yes | `-5m` |\n| clockIds | []string | Specifies the ID of clock that will be offset. See the [clock_gettime documentation](https://man7.org/linux/man-pages/man2/clock_gettime.2.html) for details. | `[\"CLOCK_REALTIME\"]` | No | `[\"CLOCK_REALTIME\", \"CLOCK_MONOTONIC\"]` |\n| pid | string | The identifier of the process. | None | Yes | `1` |",
+      "source_content_hash": "5d9033ee68e57028c01ffaee062895f885e86c3ad522eac0205b61729be35c8d",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_088cb147"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "58ed925f",
+      "source_content": "### Create experiments using service mode",
+      "source_content_hash": "958a9d63fd5153e057501cbe5d0a72053e703edc797f51306e5e5cb9a5fb8847",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用服務模式建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "463ed165",
+      "source_content": "(ongoing update)",
+      "source_content_hash": "cdd4e088d3b4f4f2b613a348017250cb0c11d23d8a7ae40403a1d6b36cf0c01a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "(持續更新中)"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/simulate-time-chaos-on-physical-nodes.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.108851+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "c84e4304dc73377f45e28443af9af947b8afea948d6da257855e6a0b18a6f883"
+  }
+}

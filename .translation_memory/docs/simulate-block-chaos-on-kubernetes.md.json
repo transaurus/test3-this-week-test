@@ -1,0 +1,269 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/simulate-block-chaos-on-kubernetes.md",
+  "source_file_content_hash": "78101516d667f43d1791977707643ba6acb4f4b73ccd7d21083a2349e09cc196",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate Block Device Incidents\n---",
+      "source_content_hash": "96948d2448b8402af49d241a8c9ec76e02d7ff520e4c4dbc9a1dd50df244babc",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f85bbfb4",
+      "source_content": "## BlockChaos Introduction",
+      "source_content_hash": "b4d9911ecc8cae2965ab82f9a9b8f1a1e72654cee651ca65da166662471dedcf",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## BlockChaos 簡介"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "Chaos Mesh provides the BlockChaos experiment type. You can use this experiment type to simulate a block device latency or freeze scenario. This document describes how to install the dependencies of a BlockChaos experiment, and create a BlockChaos.",
+      "source_content_hash": "50960e0bba50554f313b55e30285d0919ce5d7da10eef1945707f434a542be1d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 提供 BlockChaos 實驗類型，可用於模擬區塊裝置延遲或凍結情境。本文檔說明如何安裝 BlockChaos 實驗的依賴項並建立 BlockChaos 實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0d5e1c45",
+      "source_content": ":::note\n\nBlockChaos is in an early stage. The installation and configuration experience of it will continue to improve. If you find any issues, please open an issue in [chaos-mesh/chaos-mesh](https://github.com/chaos-mesh/chaos-mesh) to report.\n\n:::",
+      "source_content_hash": "8a4a93dd2146c621a8e3e337fbcdf1a26ffb7f369aea58988407e1e08146f31c",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\nBlockChaos 目前處於早期階段，其安裝與配置體驗將持續改進。若發現任何問題，請至 [chaos-mesh/chaos-mesh](https://github.com/chaos-mesh/chaos-mesh) 提交 issue 回報。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ac44a45c",
+      "source_content": ":::note\n\nBlockChaos `freeze` action will affect all processes using the block device, not only the target container.\n\n:::",
+      "source_content_hash": "428b1e2d78755d73e46ebbd65405dfd450833ae65911dd423f16c980adad2284",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\nBlockChaos 的 `freeze` 操作將影響所有使用該區塊裝置的進程，不僅限於目標容器。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "418617bd",
+      "source_content": "## Install kernel module",
+      "source_content_hash": "0b66e15c8d207f9affa1efa66376a49456b6b8d6b80533e4ce6efe1ff2c26110",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 安裝核心模組"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "BlockChaos `delay` action depends on the [chaos-driver](https://github.com/chaos-mesh/chaos-driver) kernel module. It can only be injected on a machine with this module installed. Currently, you have to compile and install the module manually.",
+      "source_content_hash": "0664c1de5ece713e432db0ef84f4648bdea30e89d42f21812ffff6b439bb9943",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "BlockChaos 的 `delay` 操作需依賴 [chaos-driver](https://github.com/chaos-mesh/chaos-driver) 核心模組，僅能在已安裝此模組的機器上注入。目前需手動編譯並安裝該模組。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ff75e5d8",
+      "source_content": "1. Download the source code of this module using the following command:\n\n   ```bash\n   curl -fsSL -o chaos-driver-v0.2.1.tar.gz https://github.com/chaos-mesh/chaos-driver/archive/refs/tags/v0.2.1.tar.gz\n   ```",
+      "source_content_hash": "aec862e5dfe66dd4e4d4168c759f819d8927ce916c83b0012d352e8799b3ff6d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 使用以下指令下載模組原始碼：\n\n   ```bash\n   curl -fsSL -o chaos-driver-v0.2.1.tar.gz https://github.com/chaos-mesh/chaos-driver/archive/refs/tags/v0.2.1.tar.gz\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "346d5f8d",
+      "source_content": "2. Uncompress the `chaos-driver-v0.2.1.tar.gz` file:\n\n   ```bash\n   tar xvf chaos-driver-v0.2.1.tar.gz\n   ```",
+      "source_content_hash": "6a223a3496f0c27e42ad6435143b6c67f2fefd4861f30ddbd806ee8151120efe",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 解壓縮 `chaos-driver-v0.2.1.tar.gz` 檔案：\n\n   ```bash\n   tar xvf chaos-driver-v0.2.1.tar.gz\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aa355dc5",
+      "source_content": "3. Prepare the headers of your current kernel. If you are using CentOS/Fedora, you can install the kernel headers with `yum`:\n\n   ```bash\n   yum install kernel-devel-$(uname -r)\n   ```\n\n   If you are using Ubuntu/Debian, you can install the kernel headers with `apt`:\n\n   ```bash\n   apt install linux-headers-$(uname -r)\n   ```",
+      "source_content_hash": "b03488c86a816021b2ba7f2ca42bc614ac71c875f766fcf608f6acd08e629a88",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 準備當前核心的標頭檔：\n   - CentOS/Fedora 系統使用 `yum` 安裝：\n   \n     ```bash\n     yum install kernel-devel-$(uname -r)\n     ```\n\n   - Ubuntu/Debian 系統使用 `apt` 安裝：\n\n     ```bash\n     apt install linux-headers-$(uname -r)\n     ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ba6feeca",
+      "source_content": "4. Compile the module:\n\n   ```bash\n   cd chaos-driver-v0.2.1\n   make driver/chaos_driver.ko\n   ```",
+      "source_content_hash": "908462c872104c6c012e3242369290799a951403f52b01d8ff63f54eb776ca10",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 編譯模組：\n\n   ```bash\n   cd chaos-driver-v0.2.1\n   make driver/chaos_driver.ko\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f14222dd",
+      "source_content": "5. Install the kernel module:\n\n   ```bash\n   insmod ./driver/chaos_driver.ko\n   ```",
+      "source_content_hash": "a7488015653df6c1db13ef7c1d9301aafa0cc9320c7ec1ad4195bd78519a80c1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "5. 安裝核心模組：\n\n   ```bash\n   insmod ./driver/chaos_driver.ko\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ea4c715",
+      "source_content": "The `chaos_driver` module has to be installed every time after rebooting. To load the module automatically, you can copy the module to a subdirectory in `/lib/modules/$(uname -r)/kernel/drivers`, run `depmod -a`, and then add `chaos_driver` to the `/etc/modules`.",
+      "source_content_hash": "3f42d587277fb69fef94a5173ac4b98696ce4295ceac102153abacbc6587ca01",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "`chaos_driver` 模組需在每次重啟後重新安裝。若要自動載入模組，可將模組複製到 `/lib/modules/$(uname -r)/kernel/drivers` 的子目錄中，執行 `depmod -a`，並在 `/etc/modules` 中加入 `chaos_driver`。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`chaos_driver`', Translation: '`/etc/modules`'.",
+          "timestamp": "2025-07-04T06:49:59.299091+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "79ad944d",
+      "source_content": "If you have upgraded the kernel, the module should be recompiled.",
+      "source_content_hash": "f3ea2e856e7457f509918bfea2a5761997e2aa426be2a3fd2d508127c3ae714c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若升級了核心，需重新編譯此模組。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e0724a69",
+      "source_content": ":::note\n\nIt is recommended to use DKMS or akmod for automatic kernel module compiling or loading. If you want to help us improve the installation experience, creating a DKMS or akmod package and submitting it to different distribution repositories is very welcome.\n\n:::",
+      "source_content_hash": "e60069bb7da9b4e5fa2d071c2a5c781b503f9539c3af9a0e4d5cc02e157c5931",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::note\n\n建議使用 DKMS 或 akmod 實現核心模組的自動編譯與載入。若您願意協助改善安裝體驗，歡迎建立 DKMS 或 akmod 套件並提交至各發行版的套件庫。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "047c2395",
+      "source_content": "## Create experiments using the YAML file",
+      "source_content_hash": "faa2dfd18ffbf305fc181947e20275b109e0d8b3b79c0d1ec685d272ffea7041",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 YAML 檔案建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "032a5911",
+      "source_content": "1. Write the experiment configuration to the YAML configuration file. The following uses the `block-latency.yaml` file as an example.\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: BlockChaos\n   metadata:\n     name: hostpath-example-delay\n   spec:\n     selector:\n       labelSelectors:\n         app: hostpath-example\n     mode: all\n     volumeName: hostpath-example\n     action: delay\n     delay:\n       latency: 1s\n   ```\n\n   :::note\n\n   Only hostpath or localvolume is supported.\n\n   :::",
+      "source_content_hash": "87f4d3c79046a64cb5f29ba10843c9cba7e637acc07ddf56cb2ed1cd384aa63d",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 將實驗配置寫入 YAML 檔案，以下以 `block-latency.yaml` 為例：\n\n   ```yaml\n   apiVersion: chaos-mesh.org/v1alpha1\n   kind: BlockChaos\n   metadata:\n     name: hostpath-example-delay\n   spec:\n     selector:\n       labelSelectors:\n         app: hostpath-example\n     mode: all\n     volumeName: hostpath-example\n     action: delay\n     delay:\n       latency: 1s\n   ```\n\n   :::note\n\n   僅支援 hostpath 或 localvolume 儲存類型。\n\n   :::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "506bd6d4",
+      "source_content": "2. Use `kubectl` to create an experiment:\n\n   ```bash\n   kubectl apply -f block-latency.yaml\n   ```",
+      "source_content_hash": "a6b02f5e296a6d2faba81f0702d087d0e3fa2a477f6e8878636d8f5b4e8c7ae4",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 使用 `kubectl` 建立實驗：\n\n   ```bash\n   kubectl apply -f block-latency.yaml\n   ```"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a2c0166e",
+      "source_content": "You can find the following magic happened:",
+      "source_content_hash": "89bb3ef780a5d248de2215659626c1f4c105256cff1888fbd5b6b296714c3999",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您將觀察到以下特殊現象："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b25fcdf7",
+      "source_content": "1. The elevator of the volume is changed to `ioem` or `ioem-mq`. You can check it through `cat /sys/block/<device>/queue/scheduler`.",
+      "source_content_hash": "c9892c95594446cb8944db866cfb0593535335f99e94da8072ae74ce5c827dc3",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 儲存卷的調度器變更為 `ioem` 或 `ioem-mq`，可透過 `cat /sys/block/<device>/queue/scheduler` 指令確認。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6f74a6d2",
+      "source_content": "2. The `ioem` or `ioem-mq` scheduler will receive the latency request and delay the request for the specified time.",
+      "source_content_hash": "c9d3849ef966660e2d41ca2c631fae09d403ba785d54e55b946ff1fd43f81db5",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. `ioem` 或 `ioem-mq` 排程器會接收延遲請求，並將請求延遲指定的時間。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0e80209e",
+      "source_content": "The fields in the YAML configuration file are described in the following table:",
+      "source_content_hash": "fa3892015f9668c8ee2dbae8e78ed9f9cebbd20143bb72a3e28f37e924ce1938",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "YAML 設定檔中的欄位說明如下表："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6206f46b",
+      "source_content": "| Parameter | Type | Note | Default value | Required | Example |\n| --- | --- | --- | --- | --- | --- |\n| `mode` | string | Specifies the mode of the experiment. The mode options include `one` (selecting a random Pod), `all` (selecting all eligible Pods), `fixed` (selecting a specified number of eligible Pods), `fixed-percent` (selecting a specified percentage of Pods from the eligible Pods), and `random-max-percent` (selecting the maximum percentage of Pods from the eligible Pods). | None | Yes | `one` |\n| `value` | string | Provides parameters for the `mode` configuration, depending on `mode`. For example, when `mode` is set to `fixed-percent`, `value` specifies the percentage of Pods. | None | No | `1` |\n| `selector` | struct | Specifies the target Pod. For details, refer to [Define the experiment scope](./define-chaos-experiment-scope.md). | None | Yes |  |\n| `volumeName` | string | Specifies the volume to inject in the target pods. There should be a corresponding entry in the pods' `.spec.volumes`. | None | Yes | `hostpath-example` |\n| `action` | string | Indicates the specific type of faults. The available fault types include `delay` and `freeze`. `delay` will simulate the latency of block devices, and `freeze` will simulate that the block device cannot handle any requests | None | Yes | `delay` |\n| `delay.latency` | string | Specifies the latency of the block device. | None | Yes (if `action` is `delay`) | `500ms` |",
+      "source_content_hash": "85841b55e26413ec55bd81715fd3d284fdcd66a4a80f6e9055a97c09633e021e",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_6206f46b"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/simulate-block-chaos-on-kubernetes.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.299152+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "78101516d667f43d1791977707643ba6acb4f4b73ccd7d21083a2349e09cc196"
+  }
+}

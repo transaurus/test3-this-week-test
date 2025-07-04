@@ -1,0 +1,68 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "i18n/en/docusaurus-plugin-content-blog/options.json",
+  "source_file_content_hash": "53d67d1cf99f459caa759066094719a13cd3af06a711a107e89ba2b30a969c8b",
+  "segments": [
+    {
+      "segment_id": "title",
+      "source_content": "Blog",
+      "source_content_hash": "8c6bc099534a0251b576f6b88bd2db124ae9497c64bd9242e92a6aec23e6a73a",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "部落格"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title for the blog used in SEO"
+      }
+    },
+    {
+      "segment_id": "description",
+      "source_content": "Blog",
+      "source_content_hash": "8c6bc099534a0251b576f6b88bd2db124ae9497c64bd9242e92a6aec23e6a73a",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "部落格"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The description for the blog used in SEO"
+      }
+    },
+    {
+      "segment_id": "sidebar.title",
+      "source_content": "Recent posts",
+      "source_content_hash": "eba7045ba54fd465b583d1704bd549cf38d46b83b447361354286875dc303d31",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "近期文章"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label for the left sidebar"
+      }
+    }
+  ],
+  "original_json_structure": {
+    "title": {
+      "message": "Blog",
+      "description": "The title for the blog used in SEO"
+    },
+    "description": {
+      "message": "Blog",
+      "description": "The description for the blog used in SEO"
+    },
+    "sidebar.title": {
+      "message": "Recent posts",
+      "description": "The label for the left sidebar"
+    }
+  },
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/options.json",
+  "last_updated_timestamp": "2025-07-04T06:49:56.097288+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "53d67d1cf99f459caa759066094719a13cd3af06a711a107e89ba2b30a969c8b"
+  }
+}

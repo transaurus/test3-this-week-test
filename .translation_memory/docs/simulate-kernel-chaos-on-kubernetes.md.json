@@ -1,0 +1,317 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "docs/simulate-kernel-chaos-on-kubernetes.md",
+  "source_file_content_hash": "aaee8cb3e6188a7532990213a18cca0706daf1bf944d76cd119003926a5f8059",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Simulate Linux Kernel Faults\n---",
+      "source_content_hash": "d305c95664206aebf37095098db7b9bbd7373034aa628dd03071158e84ff5a4a",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e7ec8f99",
+      "source_content": "This document describes how to use KernelChaos to simulate Linux kernel faults. This feature injects I/O-based or memory-based faults into the specified kernel paths using [BPF](https://lore.kernel.org/lkml/20171213180356.hsuhzoa7s4ngro2r@destiny/T/).",
+      "source_content_hash": "7d471ad2f630d1140161f1b8ae4d7beca827c3f736965c650c5fc6c50f63b232",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件說明如何使用 KernelChaos 模擬 Linux 核心錯誤。此功能透過 [BPF](https://lore.kernel.org/lkml/20171213180356.hsuhzoa7s4ngro2r@destiny/T/) 將基於 I/O 或記憶體的錯誤注入指定核心路徑。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ef78e84",
+      "source_content": "Although you can set the injection target of KernelChaos to one or several Pods, the performance of other Pods on the host will be affected, because all Pods share the same kernel.",
+      "source_content_hash": "cf1c4e54970ca3c529e74d5bc9aa8c921f540507104dc824692e5e595af3564c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "儘管您可以將 KernelChaos 的注入目標設定為單一或多個 Pod，但主機上其他 Pod 的效能仍會受到影響，因為所有 Pod 共享同一個核心。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0d5e1c45",
+      "source_content": ":::warning\n\nThe simulation of Linux kernel faults is disabled by default. Do not use this feature in a production environment.\n\n:::",
+      "source_content_hash": "ef667768f5785c30fea470bab2c7e7796d44e1f35dbf8e08067e1582b548a0b5",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::warning\n\nLinux 核心錯誤模擬功能預設為停用狀態。請勿在生產環境中使用此功能。\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e14c9928",
+      "source_content": "## Prerequisites",
+      "source_content_hash": "bbd3d4949a6f237efd8d4ff5c7c5f30d968e7a989ad12f3d7dcef69c98053912",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 先決條件"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0eb403ec",
+      "source_content": "- Linux kernel version >= 4.18.",
+      "source_content_hash": "01bb5fa3faeffcd5e93e9ea7bfe436a6167097a255a6a9f5860395bc7f59bead",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- Linux 核心版本 >= 4.18"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d9981ab1",
+      "source_content": "- The Linux kernel configuration [CONFIG_BPF_KPROBE_OVERRIDE](https://cateee.net/lkddb/web-lkddb/BPF_KPROBE_OVERRIDE.html) is enabled.",
+      "source_content_hash": "72f8051b3d5a8e7ffe4ecd3a6acd94d42305a4485583c50a419331ce884c4ff0",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 已啟用 Linux 核心配置 [CONFIG_BPF_KPROBE_OVERRIDE](https://cateee.net/lkddb/web-lkddb/BPF_KPROBE_OVERRIDE.html)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "632fee71",
+      "source_content": "- The `bpfki.create` configuration value in [values.yaml](https://github.com/chaos-mesh/chaos-mesh/blob/master/helm/chaos-mesh/values.yaml) is `true`.",
+      "source_content_hash": "d80326870e346d4bbed7ab0b7e793787b2cfe6093cb1a698c4cf91f2ad1998d7",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- [values.yaml](https://github.com/chaos-mesh/chaos-mesh/blob/master/helm/chaos-mesh/values.yaml) 中的 `bpfki.create` 配置值為 `true`",
+          "reason": "Type mismatch for special element #1: source is 'inlineCode', translation is 'link'.",
+          "timestamp": "2025-07-04T06:49:59.296547+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "418617bd",
+      "source_content": "## Configuration file",
+      "source_content_hash": "8afe930bd9993d93e7d1b97e245cdb25d5908dbd92161573dade148fe45c03eb",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 設定檔"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "A simple KernelChaos configuration file is as follows:",
+      "source_content_hash": "0ea9652c1b36cc2ae251116c679a47517bfcf3877c3d802c81e5ffe4c335e09d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "簡單的 KernelChaos 設定檔範例如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3569d545",
+      "source_content": "```yaml\napiVersion: chaos-mesh.org/v1alpha1\nkind: KernelChaos\nmetadata:\n  name: kernel-chaos-example\n  namespace: chaos-mesh\nspec:\n  mode: one\n  selector:\n    namespaces:\n      - chaos-mount\n  failKernRequest:\n    callchain:\n      - funcname: '__x64_sys_mount'\n    failtype: 0\n```",
+      "source_content_hash": "859ab072bdfe504c32c03c38f3a49259fbe7d4ec07441205a06bb52cf7cca33a",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3569d545"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "50746522",
+      "source_content": "For more configuration examples, refer to [examples](https://github.com/chaos-mesh/chaos-mesh/tree/master/examples). You can modify these configuration examples as needed.",
+      "source_content_hash": "40a2342e38b2f31831c5dc994fee6675d198ad8b7706622734f7f39a41da6a8e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "更多設定範例請參閱 [examples](https://github.com/chaos-mesh/chaos-mesh/tree/master/examples)，您可根據需求修改這些設定範例。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "95e9ba12",
+      "source_content": "Configuration description:",
+      "source_content_hash": "c1df15db6758c0c0d5124f846b8c664d8ef53090b03f24583f5d121821591857",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "設定說明："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "394e77a6",
+      "source_content": "- **mode** specifies how the experiment runs. The options are as follows:\n\n  - `one`: randomly selects an eligible Pod.\n  - `all`: selects all eligible Pods.\n  - `fixed`: selects a specified number of eligible Pods.\n  - `fixed-percent`: selects a specified percentage of eligible Pods.\n  - `random-max-percent`: selects the maximum percentage of eligible Pods.",
+      "source_content_hash": "9334275f107bb4a29879a363e9dce162ee4ff34df6b708df1b9db1fdd46d9b55",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **mode** 指定實驗執行方式，選項如下：\n\n  - `one`: 隨機選擇一個符合條件的 Pod\n  - `all`: 選擇所有符合條件的 Pod\n  - `fixed`: 選擇指定數量的符合條件 Pod\n  - `fixed-percent`: 選擇指定百分比的符合條件 Pod\n  - `random-max-percent`: 選擇最大百分比的符合條件 Pod"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0fcf7990",
+      "source_content": "- **selector** specifies the target Pod for fault injection.",
+      "source_content_hash": "b61ecfd80b532d252edd2d2559f0809c3dd615bd4879d9bd98331ea2e60a9b2e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- **selector** 指定要注入錯誤的目標 Pod"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f60f155a",
+      "source_content": "- **FailedkernRequest** specifies the fault mode (such as kmallo and bio). It also specifies a specific call chain path and the optional filtering conditions. The configuration items are as follows:\n\n  - **Failtype** specifies the fault type. The value options are as follows:\n\n    - '0': injects the slab allocation error should_failslab.\n    - '1': injects the memory page allocation error should_fail_alloc_page.\n    - '2': injects the bio error should_fail_bio.\n\n    For more information on these three fault types, refer to [fault-injection](https://www.kernel.org/doc/html/latest/fault-injection/fault-injection.html) and [inject_example](http://github.com/iovisor/bcc/blob/master/tools/inject_example.txt).\n\n  - **Callchain** specifies a specific call chain. For example:\n\n    ```c\n    ext4_mount\n    -> mount_subtree\n    -> ...\n        -> should_failslab\n    ```\n\n    You can also use the function parameters as filtering rules to inject more fine-grained faults. Refer to [call chain and predicate examples](https://github.com/chaos-mesh/bpfki/tree/develop/examples) for more information. If no call chain is specified, keep the `callchain` field empty, indicating that faults will be injected to any path on which slab alloc is called (for example, kmallo).\n\n    The call chain type is a frame array, consisting of the following three parts:\n\n    - **funcname**, which can be found from the kernel source code or from `/proc/kallsyms`, such as `ext4_mount`.\n    - **parameters**, which is used for filtering. If you want to inject a slab error on the `d_alloc_parallel(struct dentry *parent, const struct qstr *name)` with a special name `bananas` path, you need to set the `parameters` to `struct dentry *parent, const struct qstr *name`. Otherwise, omit this configuration.\n    - **predicate**, which is used to access the parameters of the frame array. Taking **parameters** as an example, you can set it to `STRNCMP(name->name, \"bananas\", 8)` to control the path of fault injection, or you can leave it empty for all call paths that execute `d_allo_parallel` receive the slab fault injection.\n\n  - **headers** specifies the kernel header file you need. For example, \"linux/mmzone.h\" and \"linux/blkdev.h\".\n  - **probability** specifies the probability of faults. If you want the probability of 1%, set to '1'.\n  - **times** specifies the maximum number of times a fault is triggered.",
+      "source_content_hash": "3ad4f5d9c0f03b858f00bd38c9989d99a335c440972789927cfca622782f1c00",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {},
+      "invalid_translations": {
+        "zh-hant": {
+          "translation": "- **FailedkernRequest** 指定故障模式（例如 kmallo 和 bio），同時定義特定呼叫鏈路徑及可選的過濾條件。配置項目如下：\n\n  - **Failtype** 指定故障類型，可選值如下：\n  \n    - '0'：注入 slab 分配錯誤 should_failslab。\n    - '1'：注入記憶體頁面分配錯誤 should_fail_alloc_page。\n    - '2'：注入 bio 錯誤 should_fail_bio。\n\n    有關這三種故障類型的詳細資訊，請參閱 [fault-injection](https://www.kernel.org/doc/html/latest/fault-injection/fault-injection.html) 和 [inject_example](http://github.com/iovisor/bcc/blob/master/tools/inject_example.txt)。\n\n  - **Callchain** 定義特定呼叫鏈路徑，例如：\n\n    ```c\n    ext4_mount\n    -> mount_subtree\n    -> ...\n        -> should_failslab\n    ```\n\n    您亦可使用函數參數作為過濾規則，實現更細粒度的故障注入。詳見 [call chain and predicate examples](https://github.com/chaos-mesh/bpfki/tree/develop/examples)。若未指定呼叫鏈路徑，請保持 `callchain` 欄位為空，表示故障將注入所有呼叫 slab 分配的路徑（例如 kmallo）。\n\n    呼叫鏈類型為框架陣列，包含以下三部分：\n    \n    - **funcname**：可從核心原始碼或 `/proc/kallsyms` 中查詢，例如 `ext4_mount`。\n    - **parameters**：用於過濾。若要在 `d_alloc_parallel(struct dentry *parent, const struct qstr *name)` 函數中針對特定名稱 `bananas` 注入 slab 錯誤，需將 `parameters` 設為 `struct dentry *parent, const struct qstr *name`；否則可省略此配置。\n    - **predicate**：用於存取框架陣列參數。延續 **parameters** 範例，可設定為 `STRNCMP(name->name, \"bananas\", 8)` 來控制故障注入路徑，或留空表示所有執行 `d_alloc_parallel` 的呼叫路徑皆接受 slab 故障注入。\n\n  - **headers** 指定所需的核心標頭檔，例如 \"linux/mmzone.h\" 和 \"linux/blkdev.h\"。\n  - **probability** 設定故障發生機率。若需 1% 機率，設定為 '1'。\n  - **times** 設定故障觸發次數上限。",
+          "reason": "Content of a non-translatable 'inlineCode' element was changed. Source: '`d_allo_parallel`', Translation: '`d_alloc_parallel`'.",
+          "timestamp": "2025-07-04T06:49:59.296584+00:00"
+        }
+      }
+    },
+    {
+      "segment_id": "1c598ecd",
+      "source_content": "## Create an experiment using kubectl",
+      "source_content_hash": "a21c7aa7156d639d86a0b5973f35335a83ab0cfc76a9032adddb347705e85650",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用 kubectl 建立實驗"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2547a6bb",
+      "source_content": "Use `kubectl` to create an experiment:",
+      "source_content_hash": "b12d6c08bb69bff07180fa960f6bde9d48e002245fe0573bb065c56116e1ae47",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "使用 `kubectl` 建立實驗："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7d898a0e",
+      "source_content": "```bash\nkubectl apply -f KernelChaos\n```",
+      "source_content_hash": "e2329532c7091e827466b459954fa2386fd369982c1b7ee873f2d17e3852852b",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7d898a0e"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6b77b644",
+      "source_content": "The KernelChaos feature is similar to [inject.py](https://github.com/iovisor/bcc/blob/master/tools/inject.py). For more information, refer to [input_example.txt](https://github.com/iovisor/bcc/blob/master/tools/inject_example.txt).",
+      "source_content_hash": "ef9a5c78b8f252a5d7b8e217efbed1edd585883934ed5723b02cbfa750eb4b6b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "KernelChaos 功能類似 [inject.py](https://github.com/iovisor/bcc/blob/master/tools/inject.py)，詳細資訊請參閱 [input_example.txt](https://github.com/iovisor/bcc/blob/master/tools/inject_example.txt)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a311e967",
+      "source_content": "A simple example is as follows:",
+      "source_content_hash": "e497d1de6900ee7e9d110e22631910b9e670f9b43081df28c38ee9e520fccdc8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "簡單範例如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7fa46732",
+      "source_content": "```c\n#include <sys/mount.h>\n#include <stdio.h>\n#include <string.h>\n#include <errno.h>\n#include <unistd.h>\n\nint main(void) {\n  int ret;\n  while (1) {\n    ret = mount(\"/dev/sdc\", \"/mnt\", \"ext4\",\n          MS_MGC_VAL | MS_RDONLY | MS_NOSUID, \"\");\n    if (ret < 0)\n      fprintf(stderr, \"%s\\n\", strerror(errno));\n    sleep(1);\n    ret = umount(\"/mnt\");\n    if (ret < 0)\n      fprintf(stderr, \"%s\\n\", strerror(errno));\n  }\n}\n```",
+      "source_content_hash": "bb439bfc5c745d8b27a6b9f22d865ade4534c5c6d49313aab82afb5caa89c1f6",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_7fa46732"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "396efb28",
+      "source_content": "During the fault injection, the output is as follows:",
+      "source_content_hash": "28f4050c5764c4bdcd6269b1758a8b56b25e687b1ed6d8c8ac2294c67cfad219",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "故障注入期間的輸出如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b27056c4",
+      "source_content": "```\n> Cannot allocate memory\n> Invalid argument\n> Cannot allocate memory\n> Invalid argument\n> Cannot allocate memory\n> Invalid argument\n> Cannot allocate memory\n> Invalid argument\n> Cannot allocate memory\n> Invalid argument\n```",
+      "source_content_hash": "0242f15f2ee76e6b1eb02d6ee7b75db17760eb25d7b8e90ae8da36b6993724ad",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b27056c4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d53c8ed4",
+      "source_content": "## Usage restriction",
+      "source_content_hash": "8ee28225abe83ba79fc313f652945b7d3778ed05166a8153006cd1a33a3f9196",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 使用限制"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ecf0882",
+      "source_content": "You can use container_id to limit the scope of the fault injection, but some paths trigger system-level behaviors. For example:",
+      "source_content_hash": "40927b8deed8e3b59dc9f7baea330344fc96b817f51460cda73ca760039b77fd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "您可透過 container_id 限制故障注入範圍，但部分路徑會觸發系統層級行為，例如："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e77cf7c6",
+      "source_content": "When `failtype` is `1`, it means that the physical page allocation fails. If this event is frequently triggered within a short period of time (for example, `while (1) {memset(malloc(1M), '1', 1M)}`), the oom-killer system call is triggered to recycle memory.",
+      "source_content_hash": "5e15a5ba23abb23813e9ae0e539ef354c6688570fd993ab1673c6b67942bbd22",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "當 `failtype` 為 `1` 時表示實體頁面分配失敗。若短時間內頻繁觸發此事件（例如 `while (1) {memset(malloc(1M), '1', 1M)}`），將觸發 oom-killer 系統呼叫進行記憶體回收。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/simulate-kernel-chaos-on-kubernetes.md",
+  "last_updated_timestamp": "2025-07-04T06:49:59.296616+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "aaee8cb3e6188a7532990213a18cca0706daf1bf944d76cd119003926a5f8059"
+  }
+}

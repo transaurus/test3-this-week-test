@@ -1,0 +1,540 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2021-08-26-securing-online-gaming-combine-chaos-engineering-with-devops-practices.md",
+  "source_file_content_hash": "bb3f0e8649708fd660395305068c9445056312069426a695b97cab785d59359d",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /Securing-Online-Gaming-Combine-Chaos-Engineering-with-DevOps-Practices\ntitle: 'Securing Online Gaming: Combine Chaos Engineering with DevOps Practices'\nauthors: zhaojunwu\nimage: /img/blog/chaos-mesh-tencent-ieg.jpeg\ntags: [Chaos Mesh, Chaos Engineering, Use Cases]\n---",
+      "source_content_hash": "2149a013bc8b0a2cee3c40b690811ff280706fb0b02918d6bd713c619637472a",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Securing Online Gaming: Combine Chaos Engineering with DevOps Practices](/img/blog/chaos-mesh-tencent-ieg.jpeg)",
+      "source_content_hash": "ab3daa453590cb8348dab18ef0d6642238d1e599dc934f63d09886ed09c10795",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![確保線上遊戲安全：結合混亂工程與 DevOps 實踐](/img/blog/chaos-mesh-tencent-ieg.jpeg)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "Interactive Entertainment Group (IEG) is a division of Tencent Holdings that focuses on the development of online video games and other digital content such as live broadcasts. It is well-known for being the publisher of some of the most popular video games.",
+      "source_content_hash": "820864661dbe624f18894d2cde43897f77b5573e260f99650b171f899c75506e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "互動娛樂事業群（IEG）是騰訊控股旗下專注於開發線上視頻遊戲及其他數位內容（如直播）的部門，以發行多款熱門遊戲而聞名。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "In this article, I will explain why and how we introduce chaos engineering into our DevOps process.",
+      "source_content_hash": "84a9bbc16b0769f190358d002702fd8badd049f66bc5aaaac7f9fbb622a67c21",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文將說明我們為何及如何將混亂工程引入 DevOps 流程。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "42ad8e83",
+      "source_content": "For each day, we handle over 10,000,000 total visits, and, during peak hours, we process over 1,000,000 queries per second (QPS). To guarantee players a fun and engaging experience, we launch various daily or seasonal game events. Sometimes, that means we must update the event code over 500 times per day. As our user base grows, the total amount of data quickly multiplies. Currently, the figure stands at 200 terabytes. We have to manage the massive user queries and rapid release iterations, and we managed it well.",
+      "source_content_hash": "9247e2b9be813c94744d686378a83efbd49a57eac635e9c0b651cd8e584cbe0c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們每日處理超過 1000 萬次總訪問量，尖峰時段每秒查詢量（QPS）超過 100 萬次。為確保玩家享有流暢體驗，我們推出各種日常或季節性遊戲活動，有時單日活動程式碼更新超過 500 次。隨著用戶基數增長，資料總量快速攀升至 200 TB。我們必須管理龐大用戶查詢與快速迭代發布，並成功實現此目標。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "A cloud-native DevOps solution frees our events operator from the growing number of online events. We developed a pipeline that takes care of everything they need, from writing code to launching events in production environments: once new event codes are detected, the operation platform automatically builds images from them and deploys the image to Tencent Kubernetes Engine (TKE). You might be wondering how long this entire automated process takes: only 5 minutes.",
+      "source_content_hash": "613712fd0d4a264b8b08565b5800364ee4f8642dca5d120f4e8b66102cb33db6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "雲原生 DevOps 方案使活動運營者擺脫日益增多的線上活動。我們開發的流水線涵蓋從編寫程式碼到生產環境部署的全流程：一旦偵測到新活動程式碼，運維平台會自動構建映像並部署至騰訊雲容器服務（TKE）。整個自動化流程僅需 5 分鐘。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "Currently, almost all IEG operation services run in TKE. Elastic scaling promises faster capacity expansion and reduction of cloud services thanks to cloud-native technology.",
+      "source_content_hash": "80d1c38bb41525ef759e4f6173ee08fb6d60c74fcb2c69b2e37c148d97453c83",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前 IEG 幾乎所有運維服務皆運行於 TKE。雲原生技術的彈性伸縮能力實現更快速的雲服務擴容與縮容。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "In addition, we expect the iterations to be easier. A best practice is to break down the large, hard-to-maintain service into many “smaller” services that we can maintain independently. “Small” services have less code and simpler logic, with lower handover and training costs. We as developers continue to practice this kind of microservices architecture as part of DevOps initiatives. Yet similar issues persist. As the number of services increases, so does the complexity of making calls between them. **Worse, if one “small” service fails, it could set off a chain reaction that brings all the services down—a microservice dependency hell.**",
+      "source_content_hash": "208ab73bd44200ddae314cad88edcb2d29a36979a1537a5b02f57d07bde140c7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此外，我們期望迭代更簡便。最佳實踐是將龐大難維護的服務拆解為多個可獨立維護的「小型」服務。小型服務程式碼量少、邏輯簡單，降低交接與培訓成本。我們開發者持續實踐此微服務架構作為 DevOps 倡議，但挑戰依然存在：服務數量增加時，服務間調用複雜度隨之提升。**更糟的是，若某個「小型」服務故障，可能引發連鎖反應導致全服務崩潰——形成微服務依賴地獄。**"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c2bdd0",
+      "source_content": "The thing is, fault tolerance varies by service. Some support downgrading, while others don’t. Not to mention that some services are unable to provide timely alerts or lack an effective debugging tool. As a result, debugging services has become a tricky and increasingly pressing issue in our day-to-day work.",
+      "source_content_hash": "e08dd29fd3987f82ec7710e95987b86119b5357e6230cfd6ee434f0761a0e7ec",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "問題在於各服務的容錯能力參差不齊：部分支援降級，部分則否；某些服務無法及時告警或缺乏有效除錯工具，導致服務除錯成為日常工作中日益棘手的難題。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a76548f8",
+      "source_content": "But we can’t just let it be. What if the unstable performance constantly chases our players away? What if there is a catastrophic failure?",
+      "source_content_hash": "8d5bddc6636a3a5831226e1ef94281b060a5ad15d9ac15b16e238b98acac5433",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "但我們不能放任不管。若系統不穩定持續流失玩家怎麼辦？若發生災難性故障怎麼辦？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2f30ae8",
+      "source_content": "## Let there be faults",
+      "source_content_hash": "182d55105603efff7734a0ceea99d197cf803c6b30cd8d1c30d89316e33b6607",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 引入故障測試"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfe931a2",
+      "source_content": "Netflix introduced the idea of chaos engineering. This approach tests the resilience of the system against all kinds of edgy cases by injecting faults in a non-production environment to achieve ideal system reliability. According to one Gartner article, by 2023, 40% of organizations will use chaos engineering to meet their top DevOps objectives, reducing unplanned downtime by 20%.",
+      "source_content_hash": "6805a9a5bc43807d80eb8f9802d64bef889793a26822ca90f1027404f7e84118",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Netflix 提出混亂工程概念：透過在非生產環境注入故障，測試系統對邊緣案例的韌性以達成理想可靠性。根據 Gartner 報告，預計 2023 年將有 40% 企業採用混亂工程實現 DevOps 目標，減少 20% 非計劃性停機時間。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4daf5cdd",
+      "source_content": "This is exactly how we avoid the worst-case scenario. Fault injection, in my opinion, is now a must-do in every technical team. In our early test cases, developers would bring down a node before launching a service to see if the primary node automatically switched to the secondary node and if disaster recovery worked.",
+      "source_content_hash": "fd7ff065e06df9729cdc707103acc2d58978b3d6ccced5aac9357398173b698d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "這正是我們規避最糟情境的方法。我認為故障注入現已成為技術團隊的必要實踐。早期測試中，開發者會在服務上線前關閉節點，驗證主節點是否自動切換至備援節點及災備機制是否生效。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bdc231b1",
+      "source_content": "**But chaos engineering is more than fault injection.** It is a field that constantly drives new techniques, professional testing tools, and solid theories. That’s why we continue to explore it.",
+      "source_content_hash": "9d5bcedfb0a59ffb11a65819e5e6e0750d45d08ab037777d200171412ebe34a6",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "**但混亂工程不僅是故障注入**，更是不斷推動新技術、專業測試工具與嚴謹理論的領域，因此我們持續探索。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "97ae4a01",
+      "source_content": "IEG officially launched its chaos engineering project over a year ago. We wanted to do this right the first time. The key is to select a chaos engineering tool that supports running experiments in the Kubernetes environment. **After a careful comparison, we believe [Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) is our best option** because:",
+      "source_content_hash": "3df7a1c38f877679c5de71a9be01271863ff734b3cdc0d220e65a5636ea47228",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "IEG 於一年多前正式啟動混亂工程專案。首次執行即追求完善，關鍵在於選擇支援 Kubernetes 環境實驗的混亂工程工具。**經審慎評估，我們認為 [Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) 是最佳選擇**，原因如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b49764d4",
+      "source_content": "- It is a Cloud Native Computing Foundation (CNCF) Sandbox project with a friendly and productive community.",
+      "source_content_hash": "11fb77520788b7e7ea5b13f8f60a8d1b050e551ff5d6063300ae3a21b77247a6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 作為雲原生計算基金會（CNCF）沙盒專案，擁有活躍且高效的社群。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4a0e7cce",
+      "source_content": "- It does not intrude on existing applications.",
+      "source_content_hash": "45aa07b0b16a056c7e2979b100012c8c0293c6d50ae2657e9ef395f97c527413",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 無需侵入現有應用程式。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c4706327",
+      "source_content": "- It provides a web UI and a variety of fault injection types, as shown in the image below.",
+      "source_content_hash": "d4162674b7f200bbd1bc8f2f6ae2ee9bb33eb816e0db67702f164c7654504b0a",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 它提供網頁介面及多種故障注入類型，如下圖所示。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1042b50d",
+      "source_content": "![A comparison of chaos engineering tools](/img/blog/comparison-of-chaos-engineering-tools.png)",
+      "source_content_hash": "d5fac5e81fa5b7139efd03c2b1b05814459b73ff5f7faf7468ecbe302ff1df32",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![混沌工程工具比較圖](/img/blog/comparison-of-chaos-engineering-tools.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2a3daf97",
+      "source_content": "> Note: This comparison is outdated and is intended simply to compare fault injection features supported by Chaos Mesh with other well-known chaos engineering platforms. It is not intended to favor or position one project over another. Any corrections are welcome.",
+      "source_content_hash": "9ffeb30f54dc75557d18158a8c42257d5cfc8b89e848de368c9d29a59d555aba",
+      "node_type": "blockquote",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "> 注意：此比較已過時，僅旨在對比 Chaos Mesh 與其他知名混沌工程平台支援的故障注入功能，並非為推崇或定位特定專案。歡迎指正任何內容。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f44c1398",
+      "source_content": "## Build a chaos testing platform",
+      "source_content_hash": "b1363e7f118d830fdd588b81c86eb13a6d44dbeab23dafbba1b1436d825a3802",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 建構混沌測試平台"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "29528c8d",
+      "source_content": "Our chaos engineering team embedded Chaos Mesh into our continuous integration and continuous delivery pipelines. As shown in the diagram below, Chaos Mesh now plays an important role in our operation platform. We use Chaos Mesh's dashboard API to create, run, and delete chaos experiments and monitor them on our own platform. We can simulate basic system-level faults in Pods, container, network, and IO.",
+      "source_content_hash": "671332854a57e5aad3219e53273f7c21336d593c927a043f8a5909e6ed93deb9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們的混沌工程團隊將 Chaos Mesh 嵌入持續整合與持續交付流程。如下圖所示，Chaos Mesh 在營運平台中扮演關鍵角色：透過其儀表板 API 建立、執行、刪除混沌實驗，並在自有平台監控。可模擬 Pod、容器、網路及 I/O 的基礎系統層級故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c504c207",
+      "source_content": "![Chaos Mesh embedded in IEG's operation platform](/img/blog/chaos-mesh-embedded-in-IEG's-operation-platform.png)",
+      "source_content_hash": "f82ced53fdb7ec899decee0e833461f6c924679202480c9685fc687c567852fe",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Mesh 嵌入 IEG 營運平台示意圖](/img/blog/chaos-mesh-embedded-in-IEG's-operation-platform.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "98d26038",
+      "source_content": "In IEG, **chaos engineering is generally summarized as a closed loop with several key phases**:",
+      "source_content_hash": "617daa3302dc0b84b05ee71b068797d8f81efbb3b1ff916d0d8b9782d24f6e22",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在 IEG，**混沌工程實踐可歸納為包含數個關鍵階段的閉環流程**："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f60f155a",
+      "source_content": "- Improve overall system resilience.\n\n  Build a chaos testing platform that we can modify as our needs change.",
+      "source_content_hash": "8803d4349d9777f1672441bb0dfc63aab5ca578ee00cbe00431c1e3e2890207e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 提升系統整體韌性\n\n  建構可隨需求調整的混沌測試平台。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2be69f97",
+      "source_content": "- Design a testing plan.\n\n  The testing plan must specify the target, scope, fault to be injected, monitoring metrics, etc. Make sure the testing is well-controlled.",
+      "source_content_hash": "a7b8a70c4b5cc53097e7625a207e3d19378f549e4c2bc7ccdce1ba52ef8bea97",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 設計測試計畫\n\n  需明確定義目標、範圍、注入故障類型、監控指標等，確保測試過程受控。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "21d3e688",
+      "source_content": "- Execute chaos experiments and review the results.\n\n  Compare the system’s performance before and after the chaos experiment.",
+      "source_content_hash": "c56af60c1d5975504118cc753bd06fcd084e71504bf50471b10793164e24bb0e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 執行混沌實驗並檢視結果\n\n  比對系統在混沌實驗前後的效能表現。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "795a1b7f",
+      "source_content": "- Resolve any issues that may arise.\n\n  Fix found issues and upgrade the system for the follow-up experiment.",
+      "source_content_hash": "dcc75817e19b2ac50356dd9c4eb8ac26ce6bcec0cdd8969182a7dc1d92fa1dc1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 解決潛在問題\n\n  修復發現的缺陷並升級系統，供後續實驗使用。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "429e7afa",
+      "source_content": "- Repeat chaos experiments and verify performance.\n\n  Repeat chaos experiments to see if the system’s performance meets expectations. If it does, design another testing plan.",
+      "source_content_hash": "22782dfe3afad876187bf7585d2003cd2a09a83614044d64a19be84dd48e9a73",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 重複驗證效能\n\n  反覆執行混沌實驗確認系統表現是否符合預期。達標後即可設計新測試計畫。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f01228d3",
+      "source_content": "![Five phases of chaos engineering in IEG](/img/blog/five-phases-of-chaos-engineering-in-IEG.png)",
+      "source_content_hash": "8cfadf9275db11e37b8c76598fcae7bfae8ec1af005c4ad417491c999c04406b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![IEG 混沌工程五階段流程圖](/img/blog/five-phases-of-chaos-engineering-in-IEG.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "afa378f7",
+      "source_content": "We frequently **test the performance of services under high CPU usage**, for example. We begin by orchestrating and scheduling experiments. Following that, we run experiments and monitor the performance of related services. Multiple monitoring metrics, such as QPS, latency, response success, are immediately visible through the operation platform. The platform then generates reports for us to review, so we can check whether these experiments met our expectations.",
+      "source_content_hash": "851be0680ec52fc232dbed306e9fc57eef1306ae194d773b1325edcf4c86197c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以**高 CPU 負載下的服務效能測試**為例：先編排調度實驗，執行後透過營運平台即時監控相關服務的多項指標（如每秒查詢次數(QPS)、延遲、回應成功率）。平台自動生成報告供檢視，確認實驗是否達成預期目標。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "58ed925f",
+      "source_content": "## Use cases",
+      "source_content_hash": "80073773d3db37eb4441c70ad481d9e48783ebbbd2082b75749bb5b90c980361",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 應用案例"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "463ed165",
+      "source_content": "The following are a few examples of how we use chaos engineering in our DevOps workflow.",
+      "source_content_hash": "aa0743344c55bb4bd37db88fe26d49b89ff6c4666498dd26b099b5c61e8650a3",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "以下列舉 DevOps 流程中應用混沌工程的實例。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "66819c78",
+      "source_content": "### Finer granularity of fault injection",
+      "source_content_hash": "4a27d5a275345240120d91e113a3ea5abe5c98d596c1e5e117a1a0c466b77b07",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 精細化故障注入"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fbc2db85",
+      "source_content": "There is no need to shut down the entire system to see if our games are still available to players. Sometimes we only want to inject faults, say, network latency, into a single game account, and observe how it responds. We are now able to achieve this finer granularity by hijacking traffic and running experiments at the gateway.",
+      "source_content_hash": "3407456c01f30e49bd9fd1778f73a81a9eb88a563d33637c75103b34bbbc893d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "無須癱瘓整個系統即可驗證遊戲可用性。例如僅對單一遊戲帳號注入網路延遲故障，觀察其反應。我們透過流量劫持技術在閘道層實現此精細化實驗。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "759d12dd",
+      "source_content": "### Red teaming",
+      "source_content_hash": "66d37a118edc9786d49631494088501d4969455718e5b1e45fe856807149d55c",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 紅隊演練"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "74dd7937",
+      "source_content": "Understandably, our team members grew bored of regular chaos experiments. After all, it’s something like telling your left hand to fight against your right hand. Here at IEG, **we integrate a testing practice called red teaming into chaos engineering to ensure that our system resiliency improves in an organic way.** Red teaming is similar to penetration testing, but more targeted. It requires a group of testers to emulate real-world attacks from an outsider’s perspective. If I were in charge of IT operations, I would simulate faults to specific services, and check to see whether my developer colleges were doing a good job. If I found any potential faults, well, be prepared for some “hard talk.” On the other hand, developers would actively perform chaos experiments and make sure no risk was left behind to avoid being blamed.",
+      "source_content_hash": "46490aaf30b429bb69cd48cc2122e85fb4c47d63ada370f8c646dd4b0f2c0647",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "例行混沌實驗易使團隊成員感到乏味——這好比要求左手打右手。**IEG 將紅隊演練整合至混沌工程，促使系統韌性有機成長**。紅隊演練類似滲透測試但更具針對性：模擬外部攻擊者視角進行突襲測試。若由維運團隊主導，會對特定服務製造故障，檢驗開發團隊的應對表現；發現潛在缺陷時將啟動「嚴肅談話」。反之，開發團隊會主動執行混沌實驗，預先排除風險避免究責。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5803caac",
+      "source_content": "![The red teaming process in IEG](/img/blog/red-teaming-process-in-IEG.png)",
+      "source_content_hash": "41593a70a85b981ae9237d6424355f82fb28d5d7680a81cf3b26f703d8582a6c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![IEG 紅隊演練流程圖](/img/blog/red-teaming-process-in-IEG.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39db08de",
+      "source_content": "### Dependency analysis",
+      "source_content_hash": "81bfd00da3ba59d3f26722858f763b41aa9a430a987e2d28dbfcb0c7504439a6",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 依賴分析"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "785750ac",
+      "source_content": "It’s important to manage dependencies for microservices. In our case, non-core services cannot be the bottleneck for core services. Fortunately, with chaos engineering, we can run dependency analysis simply by injecting faults into called services and observing how badly the main service is affected. Based on the results, we can optimize the service calling chain in a specific scenario.",
+      "source_content_hash": "455870721a748c040943478b68c3eb87afa8055154f6380197886f0c20ab157a",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "對於微服務而言，管理依賴關係至關重要。在我們的案例中，非核心服務絕不能成為核心服務的瓶頸。所幸透過混沌工程，我們只需在調用服務中注入故障並觀察主要服務受到的影響程度，即可輕鬆執行依賴分析。根據結果，我們能在特定情境下優化服務調用鏈。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b10963d7",
+      "source_content": "### Automated fault detection and diagnosis",
+      "source_content_hash": "0ca2ded8711c18acd6be95c39d424d7da33f37190aaacebf1dc9ef550f02ad49",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 自動化故障檢測與診斷"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2822251a",
+      "source_content": "We are also exploring AI bots to help us detect and diagnose faults. As services become more complex, the likelihood of failure increases. **Our goal is to train a fault detection model through large-scale chaos experiments in production or other controlled environments.**",
+      "source_content_hash": "2291f063960199fb1697cd7567e0b99d5662de9a86cea2478f0d0913f70be503",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們也正在探索利用AI機器人協助檢測和診斷故障。隨著服務日益複雜，發生故障的可能性也隨之增加。**我們的目標是透過在生產環境或其他受控環境中進行大規模混沌實驗，訓練出故障檢測模型。**"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "99d0dd9b",
+      "source_content": "## Chaos engineering empowers DevOps practices",
+      "source_content_hash": "d52e4b394868df24595b548bdd0040e642ff5189aaa970de16e02dde60ba6002",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 混沌工程賦能DevOps實踐"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d79a4831",
+      "source_content": "Currently, on average, more than 50 people run chaos experiments each week, running more than 150 tests, and detecting more than 100 problems in total.",
+      "source_content_hash": "c4990ad9581190342750e115573e5cbc820d6613003ad3204062554b900cf44e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前平均每週有超過50人執行混沌實驗，運行超過150次測試，總計發現逾100個問題。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2838eb68",
+      "source_content": "Gone are the days when performing fault injection requires a handwritten script, which can be a tough thing to do for those who are unfamiliar with it. **The benefits of combining chaos engineering with DevOps practices are obvious: within a few minutes, you can orchestrate various fault types by simply dragging and dropping, execute them with a single click, and monitor the results in real-time—all in one platform.**",
+      "source_content_hash": "9d83df9d90b2e16ec3d197d097d0f97bf4807269f529b0fd4d40d3bc839ab976",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "過去需要手寫腳本才能執行故障注入的日子已一去不復返，這對不熟悉的人來說曾是艱鉅任務。**將混沌工程與DevOps實踐相結合的優勢顯而易見：只需幾分鐘，透過簡單拖放即可編排各類故障類型，一鍵執行並在單一平台中即時監控結果。**"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4be28ed1",
+      "source_content": "![Chaos engineering with DevOps ensures efficient fault injection](/img/blog/chaos-engineering-with-devops.png)",
+      "source_content_hash": "c392631ebd1fb9ba75228c400e3114c408647c483b3220d9dfbf233a99f17e0c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos engineering with DevOps ensures efficient fault injection](/img/blog/chaos-engineering-with-devops.png)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0e80209e",
+      "source_content": "Thanks to full-featured chaos engineering tools and streamlined DevOps processes, we estimate that the efficiency of fault injection and chaos-based optimization at IEG has been improved at least by 10 times in the last six months. If you were unsure about implementing chaos engineering in your business, I hope our experience can be of some help.",
+      "source_content_hash": "050605be6ba5728ba58aec9f963f62a465c741f917d0fa5a5760278828f9eb7e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "得益於功能完備的混沌工程工具和精簡化的DevOps流程，我們估計過去半年間IEG的故障注入效率與基於混沌的優化至少提升了10倍。若您對業務中實施混沌工程仍有疑慮，希望我們的經驗能提供些許幫助。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2021-08-26-securing-online-gaming-combine-chaos-engineering-with-devops-practices.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.062998+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "bb3f0e8649708fd660395305068c9445056312069426a695b97cab785d59359d"
+  }
+}

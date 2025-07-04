@@ -1,0 +1,144 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/developer-guide-overview.md",
+  "source_file_content_hash": "1a25c9ee6f4e04b18b538d456378c4c6b9d15e32ceb4465ac95aa858106ece2a",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Developer Guide Overview\n---",
+      "source_content_hash": "0581a3e94183e79b603bd48d3d2d57538d96ba855f652b59edd010d1ba2fc4ff",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8218387e",
+      "source_content": ":::caution\n\nThe developer manual section may be out of date. If you find any problems or have any questions, please [create an issue](https://github.com/chaos-mesh/chaos-mesh/issues/new/choose) and let us know. Thank you for your contribution!\n\n:::",
+      "source_content_hash": "925262c953a62f107793944565732398d4b0c4f3d36aa15a8e6b774412402e35",
+      "node_type": "containerDirective",
+      "translatable": true,
+      "translations": {
+        "zh-hant": ":::caution\n\n開發者手冊章節可能已過時。如果您發現任何問題或有任何疑問，請[建立 issue](https://github.com/chaos-mesh/chaos-mesh/issues/new/choose)並告知我們。感謝您的貢獻！\n\n:::"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "This document describes how to develop Chaos Mesh. Before you start, it is recommended that you read the following documents first:",
+      "source_content_hash": "c625bbc04033fa7f648b28f6610b46c205ae1dd72a8c2b1b3917c0adba92875f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文件描述如何開發 Chaos Mesh。開始前，建議您先閱讀以下文件："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2b4a9900",
+      "source_content": "- [Chaos Mesh README](https://github.com/chaos-mesh/chaos-mesh/blob/master/README.md)",
+      "source_content_hash": "c702d48881812bc50ea131eab599ed8f49431b45bdae5272d9f12a8cf364d184",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [Chaos Mesh README](https://github.com/chaos-mesh/chaos-mesh/blob/master/README.md)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "9a03a62b",
+      "source_content": "- [Chaos Mesh Dashboard README](https://github.com/chaos-mesh/chaos-mesh/blob/master/ui/README.md)",
+      "source_content_hash": "d25f8653b642b25f7441b5bbcb758dd2b59e01cf4e65b974170c46ceb94435b5",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [Chaos Mesh 儀表板 README](https://github.com/chaos-mesh/chaos-mesh/blob/master/ui/README.md)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "86b54d44",
+      "source_content": "Before starting to develop Chaos Mesh, you need to prepare the development environment. Please refer to [Configure the development environment](configure-development-environment.md) for details.",
+      "source_content_hash": "5fc35549b5883c4bfe23cc3b254a552c6727183a4639fa62a45d7575ccb10d56",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "開始開發 Chaos Mesh 前，您需要準備開發環境。詳細說明請參閱[設定開發環境](configure-development-environment.md)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "39b3772c",
+      "source_content": "Then you can start to develop Chaos Mesh. The following documents will help you:",
+      "source_content_hash": "f1470c3f09ad64df0a7ded5c4804e438dce725ba71694f87360ad8047de0e5a2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "接著即可開始開發 Chaos Mesh。以下文件將提供協助："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2dc10b09",
+      "source_content": "- [Add a New Chaos Experiment Type](add-new-chaos-experiment-type.md)",
+      "source_content_hash": "52ee33ba6925bbeaef034313d72c4bf0f540e25f3627b96ed792a62bd3ef316e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [新增混沌實驗類型](add-new-chaos-experiment-type.md)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28563fec",
+      "source_content": "- [Extend Chaos Daemon Interface](extend-chaos-daemon-interface.md)",
+      "source_content_hash": "96aca049e8b898350ee49361451c6787b02ad192819ff848f9d2ada1ec5fcbf1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [擴充 Chaos Daemon 介面](extend-chaos-daemon-interface.md)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "For coding conventions, please refer to the following RFCs:",
+      "source_content_hash": "f1f9c012b3ba58ff4b0d564440498f3c60be3e2a32cb4be81960d14a6357f3bd",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "編碼規範請參照以下 RFC 文件："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ff75e5d8",
+      "source_content": "- [Error Handling](https://github.com/chaos-mesh/rfcs/blob/main/text/2021-09-27-refine-error-handling.md)",
+      "source_content_hash": "58e4be0555c526b1b4f3a41cbcb782aaf116ee9f65ed96ede4a82191382c7540",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [錯誤處理](https://github.com/chaos-mesh/rfcs/blob/main/text/2021-09-27-refine-error-handling.md)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cec935ef",
+      "source_content": "- [Logging](https://github.com/chaos-mesh/rfcs/blob/main/text/2021-12-09-logging.md)",
+      "source_content_hash": "d1337a4d9f46974d6dd7346019d39a21ae9a8e07cfd3ba54764b87156d514bf1",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [日誌記錄](https://github.com/chaos-mesh/rfcs/blob/main/text/2021-12-09-logging.md)"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/developer-guide-overview.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.121302+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "1a25c9ee6f4e04b18b538d456378c4c6b9d15e32ceb4465ac95aa858106ece2a"
+  }
+}

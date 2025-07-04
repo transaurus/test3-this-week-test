@@ -1,0 +1,738 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2020-04-20-simulating-clock-skew-in-k8s-without-affecting-other-containers-on-node.md",
+  "source_file_content_hash": "67b495f7584e52e1fa2eb4d79ca65d7ee8b0364ccd43472763583a5eb13699f1",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /simulating-clock-skew-in-k8s-without-affecting-other-containers-on-node\ntitle: Simulating Clock Skew in K8s Without Affecting Other Containers on the Node\nauthors: cwen\nimage: /img/blog/clock-sync-chaos-engineering-k8s.jpg\ntags: [Chaos Mesh, Chaos Engineering, Kubernetes, Distributed System]\n---",
+      "source_content_hash": "1e65ba31ac91d8ac3d7ae52d4335c0ca5ea401d8222a06fa788511658d372c88",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Clock synchronization in distributed system](/img/blog/clock-sync-chaos-engineering-k8s.jpg)",
+      "source_content_hash": "ef9e78aaefe64d7a4cf51a9c637661526a4da376de538fb01f7a10e1c983bd51",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![分散式系統中的時鐘同步](/img/blog/clock-sync-chaos-engineering-k8s.jpg)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh), an easy-to-use, open-source, cloud-native chaos engineering platform for Kubernetes (K8s), has a new feature, TimeChaos, which simulates the [clock skew](https://en.wikipedia.org/wiki/Clock_skew#On_a_network) phenomenon. Usually, when we modify clocks in a container, we want a [minimized blast radius](https://learning.oreilly.com/library/view/chaos-engineering/9781491988459/ch07.html), and we don't want the change to affect the other containers on the node. In reality, however, implementing this can be harder than you think. How does Chaos Mesh solve this problem?",
+      "source_content_hash": "92a214b739df680b48f9c08f7a5de3a8b95a81c93bea11ceeaf08d0d0eeba28f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) 是一個易於使用的開源雲原生混沌工程平台，專為 Kubernetes (K8s) 設計，其新功能 TimeChaos 可模擬[時鐘偏移](https://en.wikipedia.org/wiki/Clock_skew#On_a_network)現象。通常當我們修改容器內的時鐘時，希望將[影響範圍最小化](https://learning.oreilly.com/library/view/chaos-engineering/9781491988459/ch07.html)，避免影響節點上的其他容器。然而實際上，實現這個目標可能比想像中困難。Chaos Mesh 如何解決這個問題？"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3e6699f4",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3e6699f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cf898102",
+      "source_content": "In this post, I'll describe how we hacked through different approaches of clock skew and how TimeChaos in Chaos Mesh enables time to swing freely in containers.",
+      "source_content_hash": "d06e91bb2870dd7d55cdab0f0654269190e3aebbd77e77e76618ad999836a41d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "本文將闡述我們如何突破各種時鐘偏移模擬方法的限制，以及 Chaos Mesh 的 TimeChaos 如何實現容器內時間的自由波動。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3daf1b88",
+      "source_content": "## Simulating clock skew without affecting other containers on the node",
+      "source_content_hash": "1886d4059e1eda0d1806aa4495a336fb25155f9f181ac45968f471503c342c03",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 模擬時鐘偏移而不影響節點上的其他容器"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f6168993",
+      "source_content": "Clock skew refers to the time difference between clocks on nodes within a network. It might cause reliability problems in a distributed system, and it's a concern for designers and developers of complex distributed systems. For example, in a distributed SQL database, it's vital to maintain a synchronized local clock across nodes to achieve a consistent global snapshot and ensure the ACID properties for transactions.",
+      "source_content_hash": "6825a0062e248878b23b1681c6822910f2656efe2bcbf27c49c3d5e3044f7e81",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "時鐘偏移指網路中節點時鐘之間的時間差異，可能導致分散式系統的可靠性問題，是複雜分散式系統設計者和開發者的關注點。例如在分散式 SQL 資料庫中，跨節點維持同步的本地時鐘至關重要，以實現一致的全局快照並確保交易的 ACID 特性。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f5f6d2ce",
+      "source_content": "Currently, there are well-recognized [solutions to synchronize clocks](https://pingcap.com/blog/Time-in-Distributed-Systems/), but without proper testing, you can never be sure that your implementation is solid.",
+      "source_content_hash": "9ba484306ef1be3964ef6f1876d8fa1a9a8a6f5d4069771f41102f12c9b598e0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "目前已有公認的[時鐘同步解決方案](https://pingcap.com/blog/Time-in-Distributed-Systems/)，但未經適當測試，永遠無法確保實現的穩固性。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2fdadb08",
+      "source_content": "Then how can we test global snapshot consistency in a distributed system? The answer is obvious: we can simulate clock skew to test whether distributed systems can keep a consistent global snapshot under abnormal clock conditions. Some testing tools support simulating clock skew in containers, but they have an impact on physical nodes.",
+      "source_content_hash": "e372573cd5cbf4c8a1518ac31ee706e93bfd444341027e785b63b70ba497cb5d",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "那麼如何測試分散式系統的全局快照一致性？答案顯而易見：可透過模擬時鐘偏移來測試分散式系統能否在異常時鐘條件下維持一致的全局快照。部分測試工具支援在容器內模擬時鐘偏移，但會對物理節點產生影響。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f2c2bdd0",
+      "source_content": "[TimeChaos](https://github.com/chaos-mesh/chaos-mesh/wiki/Time-Chaos) is a tool that **simulates clock skew in containers to test how it impacts your application without affecting the whole node**. This way, we can precisely identify the potential consequences of clock skew and take measures accordingly.",
+      "source_content_hash": "647f401f6dc06553874741e42fc1c8ae0ece42ca6eb81733663981652cd6724c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "[TimeChaos](https://github.com/chaos-mesh/chaos-mesh/wiki/Time-Chaos) 是一款能**在容器內模擬時鐘偏移以測試應用程式影響，且不波及整個節點**的工具。如此可精準識別時鐘偏移的潛在後果並採取相應措施。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fa430ad4",
+      "source_content": "## Various approaches for simulating clock skew we've explored",
+      "source_content_hash": "6328ad4c3bfebe4cfde021a2c07bc797af67188a9117c926c938d69c76d63868",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 我們探索過的各種時鐘偏移模擬方法"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4b1d2d7d",
+      "source_content": "Reviewing the existing choices, we know clearly that they cannot be applied to Chaos Mesh, which runs on Kubernetes. Two common ways of simulating clock skew--changing the node clock directly and using the Jepsen framework--change the time for all processes on the node. These are not acceptable solutions for us. In a Kubernetes container, if we inject a clock skew error that affects the entire node, other containers on the same node will be disturbed. Such a clumsy approach is not tolerable.",
+      "source_content_hash": "d2baca3f90cf7fcf7474f1de0ded7b09a7be9ddfa23913d3c4f87e440329e187",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "檢視現有方案後，我們明確意識到它們無法應用於運行在 Kubernetes 上的 Chaos Mesh。兩種常見的時鐘偏移模擬方法——直接修改節點時鐘和使用 Jepsen 框架——都會改變節點上所有進程的時間。這些方案對我們而言皆不可接受。在 Kubernetes 容器中，若注入影響整個節點的時鐘偏移錯誤，同節點上的其他容器將受干擾，此種粗劣手法無法容忍。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dfe931a2",
+      "source_content": "Then how are we supposed to tackle this problem? Well, the first thing that comes into our mind is finding solutions in the kernel using [Berkeley Packet Filter](https://en.wikipedia.org/wiki/Berkeley_Packet_Filter) (BPF).",
+      "source_content_hash": "99e5e8630402c9c8fbb1f1755fef32db67e0d5bc4c5abff7e8fc8f1ae91490a9",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "那麼該如何解決此問題？首先想到的是在核心層使用[柏克萊封包過濾器](https://en.wikipedia.org/wiki/Berkeley_Packet_Filter) (BPF) 尋找解決方案。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0037ff70",
+      "source_content": "### `LD_PRELOAD`",
+      "source_content_hash": "27587c84591961f2ab4c390bb4d6e744709ad174fdbc2e6281cac28dce09ad4e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### `LD_PRELOAD`"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bdc231b1",
+      "source_content": "`LD_PRELOAD` is a Linux environment variable that lets you define which dynamic link library is loaded before the program execution.",
+      "source_content_hash": "e2a1bf0ff911b35f7e533f81a3a6faad042760d03db124cc0ba233218ba690c5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "`LD_PRELOAD` 是 Linux 環境變數，允許定義程式執行前預先載入的動態連結庫。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "97ae4a01",
+      "source_content": "This variable has two advantages:",
+      "source_content_hash": "97c47017d61a4948827aee6982f485995347b0ea8582dfbd3d2f9e0e2dc941ae",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此變數具備兩項優勢："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b49764d4",
+      "source_content": "- We can call our own functions without being aware of the source code.",
+      "source_content_hash": "ebe6fcc1f306dd4d9299c6279ca5e134578ca7f0eafc8f823481ddece17c9a04",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 無需關注原始碼即可調用自定義函數"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4a0e7cce",
+      "source_content": "- We can inject code into other programs to achieve specific purposes.",
+      "source_content_hash": "1b365c937a9f7a9ee82348fa32b3a1c827193f2f4250f5db5d97d3fb8cb1c426",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 可將程式碼注入其他程式以達成特定目的"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "50746522",
+      "source_content": "For some languages that use applications to call the time function in glibc, such as Rust and C, using `LD_PRELOAD` is enough to simulate clock skew. But things are trickier for Golang. Because languages such as Golang directly parse virtual Dynamic Shared Object ([vDSO](http://man7.org/linux/man-pages/man7/vdso.7.html)), a mechanism to speed up system calls. To obtain the time function address, we can't simply use `LD_PRELOAD` to intercept the glic interface. Therefore, `LD_PRELOAD` is not our solution.",
+      "source_content_hash": "1cd74d61f2d80ca075f76e5e0a00f298fd111ea96fa556d300f2036b8f355df5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "對於透過應用程式調用 glibc 時間函數的語言（如 Rust 和 C），使用 `LD_PRELOAD` 足以模擬時鐘偏移。但 Golang 更為棘手，因其直接解析虛擬動態共享物件 ([vDSO](http://man7.org/linux/man-pages/man7/vdso.7.html))——加速系統調用的機制。為獲取時間函數地址，無法單純透過 `LD_PRELOAD` 攔截 glibc 介面。因此 `LD_PRELOAD` 非解決方案。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "54268405",
+      "source_content": "### Use BPF to modify the return value of `clock_gettime` system call",
+      "source_content_hash": "9d6d678e8feb4086b7d9dfc3549e8376e2b5fee5e9e3ec85eb29316f9a4cc467",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 使用 BPF 修改 `clock_gettime` 系統呼叫的返回值"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8af76f3d",
+      "source_content": "We also tried to filter the task [process identification number](http://www.linfo.org/pid.html) (PID) with BPF. This way, we could simulate clock skew on a specified process and modify the return value of the `clock_gettime` system call.",
+      "source_content_hash": "c009e08632b71c23eda796ddf7fb2bded52463e9b9bef83963764d1a649d4adc",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "我們也嘗試使用 BPF 過濾任務的[行程識別碼](http://www.linfo.org/pid.html) (PID)，藉此在指定行程上模擬時鐘偏移，並修改 `clock_gettime` 系統呼叫的返回值。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a9d49f92",
+      "source_content": "This seemed like a good idea, but we also encountered a problem: in most cases, vDSO speeds up `clock_gettime`, but `clock_gettime` doesn't make a system call. This selection didn't work, either. Oops.",
+      "source_content_hash": "34c2cba44b68621a3624d66b1e53292970835b0e411707fc7d907a579ea1ca2e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "這似乎是個好主意，但我們遇到一個問題：在多數情況下，vDSO 會加速 `clock_gettime`，但 `clock_gettime` 本身不會觸發系統呼叫。這個方法同樣行不通。糟糕。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a44047a5",
+      "source_content": "Thankfully, we determined that if the system kernel version is 4.18 or later, and if we use the [HPET](https://www.kernel.org/doc/html/latest/timers/hpet.html) clock, `clock_gettime()` gets time by making normal system calls instead of vDSO. We implemented [a version of clock skew](https://github.com/chaos-mesh/bpfki) using this approach, and it works fine for Rust and C. As for Golang, the program can get the time right, but if we perform `sleep` during the clock skew injection, the sleep operation is very likely to be blocked. Even after the injection is canceled, the system cannot recover. Thus, we have to give up this approach, too.",
+      "source_content_hash": "3eef47e3620b7a4916b172d3d60c4505456e2493d294713c88c1ce8595a5b1e0",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "所幸我們發現，若系統核心版本為 4.18 或更高，且使用 [HPET](https://www.kernel.org/doc/html/latest/timers/hpet.html) 時鐘時，`clock_gettime()` 會透過標準系統呼叫（而非 vDSO）取得時間。我們據此實作了[時鐘偏移版本](https://github.com/chaos-mesh/bpfki)，在 Rust 和 C 語言環境運作良好。但對於 Golang，程式雖能正確取得時間，若在時鐘偏移注入期間執行 `sleep` 操作，該操作極可能被阻塞。即使取消注入，系統也無法恢復正常，因此我們最終放棄此方案。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "cb5b269c",
+      "source_content": "## TimeChaos, our final hack",
+      "source_content_hash": "f43fcf074235987af387350ab0476336829fae2b8c17b20601c7f171fb3a0e82",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## TimeChaos：我們的最終解法"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b36c6338",
+      "source_content": "From the previous section, we know that programs usually get the system time by calling `clock_gettime`. In our case, `clock_gettime` uses vDSO to speed up the calling process, so we cannot use `LD_PRELOAD` to hack the `clock_gettime` system calls.",
+      "source_content_hash": "60ef2a8d98558155c1ca6d5a0e2cb89c0902f472905325f1d21bd4b16dc01e9c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "從前文可知，程式通常透過呼叫 `clock_gettime` 取得系統時間。在我們的場景中，`clock_gettime` 利用 vDSO 加速呼叫過程，因此無法使用 `LD_PRELOAD` 來侵入 `clock_gettime` 系統呼叫。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b9aaa519",
+      "source_content": "We figured out the cause; then what's the solution? Start from vDSO. If we can redirect the address that stores the `clock_gettime` return value in vDSO to an address we define, we can solve the problem.",
+      "source_content_hash": "a0b9369e4c404ed7f1c51d3caf04ef9981a2c28a00823ee976824ce3ad5bc5ed",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "既然找出癥結點，解法為何？從 vDSO 著手。若能將 vDSO 中儲存 `clock_gettime` 返回值的位址重新導向至我們定義的位址，問題即可迎刃而解。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e536ea0d",
+      "source_content": "Easier said than done. To achieve this goal, we must tackle the following problems:",
+      "source_content_hash": "1c0c037162b14e5740c355c97f2e08df0038e7e22f1fc89e52917518c22fb652",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "說來容易做時難。為達成此目標，必須解決以下問題："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "36e1c593",
+      "source_content": "- Know the user-mode address used by vDSO",
+      "source_content_hash": "64cf401c2f99242e869e55d519206d7c35edef0a1955677340252f20203ebf21",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 獲知 vDSO 使用的使用者模式位址"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5257fefd",
+      "source_content": "- Know vDSO's kernel-mode address, if we want to modify the `clock_gettime` function in vDSO by any address in the kernel mode",
+      "source_content_hash": "18a87386c912ff6fdbb5b57c79c479bdcdaadedfa1a090e0fb668829806a56c9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 獲知 vDSO 的核心模式位址（若需透過核心模式位址修改 vDSO 中的 `clock_gettime` 函數）"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7e8033c1",
+      "source_content": "- Know how to modify vDSO data",
+      "source_content_hash": "bf502b10b0c57b93e0fdb93f792296ae1845c73f0555860aed4fc6c16d0bdebc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 掌握修改 vDSO 資料的方法"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "79ad944d",
+      "source_content": "First, we need to peek inside vDSO. We can see the vDSO memory address in `/proc/pid/maps`.",
+      "source_content_hash": "4c284c85fbcf60b7ea38598b254f35dacab6a8c2bdc99b0078e4317c5634babe",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "首先需要探查 vDSO 內部。透過 `/proc/pid/maps` 可檢視 vDSO 的記憶體位址。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "5d4925eb",
+      "source_content": "```\n$ cat /proc/pid/maps\n...\n7ffe53143000-7ffe53145000 r-xp 00000000 00:00 0                     [vdso]\n```",
+      "source_content_hash": "874a23799d47555edc4e4952dfda782b251621d28223d9bcae525ac2161c11b9",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_5d4925eb"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "147e8550",
+      "source_content": "The last line is vDSO information. The privilege of this memory space is `r-xp`: readable and executable, but not writable. That means the user mode cannot modify this memory. We can use [ptrace](http://man7.org/linux/man-pages/man2/ptrace.2.html) to avoid this restriction.",
+      "source_content_hash": "85b6452edfbd50434df6c3fed76f50773ca9f8450269e92470966bf3dd26b3ef",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "最後一行即 vDSO 資訊。此記憶體空間權限標示為 `r-xp`：可讀可執行，但不可寫入。這意味著使用者模式無法修改此記憶體。我們可運用 [ptrace](http://man7.org/linux/man-pages/man2/ptrace.2.html) 突破此限制。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "883231d4",
+      "source_content": "Next, we use `gdb dump memory` to export the vDSO and use `objdump` to see what's inside. Here is what we get:",
+      "source_content_hash": "a0d5ea448625a0b47159326168f7702ade0bf5cd2639bf05f2dfa88765c1c136",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "接著使用 `gdb dump memory` 導出 vDSO，並透過 `objdump` 檢視內容，結果如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "468b36ba",
+      "source_content": "```\n(gdb) dump memory vdso.so 0x00007ffe53143000 0x00007ffe53145000\n$ objdump -T vdso.so\nvdso.so:    file format elf64-x86-64\nDYNAMIC SYMBOL TABLE:\nffffffffff700600  w  DF .text   0000000000000545  LINUX_2.6  clock_gettime\n```",
+      "source_content_hash": "9b0542a9f5dcacd4102d11f4e7ef8215ad7b88d1e40e8d7dd382e684d9584edf",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_468b36ba"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a1fa5396",
+      "source_content": "We can see that the whole vDSO is like a `.so` file, so we can use an executable and linkable format (ELF) file to format it. With this information, a basic workflow for implementing TimeChaos starts to take shape:",
+      "source_content_hash": "8683c89d44146d3b30d4322b94b5c071a164b30b7a65fff96fc77444dbc5c02f",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "可見 vDSO 整體結構類似 `.so` 檔案，因此可用可執行與可連結格式 (ELF) 檔案進行解析。據此，TimeChaos 的基礎工作流程逐漸成形："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "ec619944",
+      "source_content": "![TimeChaos workflow](/img/blog/timechaos-workflow.jpg)",
+      "source_content_hash": "54f67ea4a3675e31692f6945847b71e51d4c91dd86a091057c41159fe9b06e43",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![TimeChaos 工作流程](/img/blog/timechaos-workflow.jpg)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "2547a6bb",
+      "source_content": "The chart above is the process of **TimeChaos**, an implementation of clock skew in Chaos Mesh.",
+      "source_content_hash": "da321368c22c08f3cec78bd4cf9d34b3a5985c691b4119c4a77232b004e9fcc7",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "上圖即 **TimeChaos** 的運作流程——Chaos Mesh 中實現時鐘偏移的核心機制。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4ce2fc15",
+      "source_content": "1. Use ptrace to attach the specified PID process to stop the current process.",
+      "source_content_hash": "e53395df92385b7e5c5ab2253e97be922ece7bd7cda14ca8d617426f6d4dfc19",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "1. 使用 ptrace 附加至指定 PID 行程，暫停當前行程。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3cf55645",
+      "source_content": "2. Use ptrace to create a new mapping in the virtual address space of the calling process and use [`process_vm_writev`](https://linux.die.net/man/2/process_vm_writev) to write the `fake_clock_gettime` function we defined into the memory space.",
+      "source_content_hash": "8a9dfa56b881db379294bcd68d7e921213afe4bf5130642df324f779576cb5d8",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "2. 透過 ptrace 在呼叫行程的虛擬位址空間建立新映射，並運用 [`process_vm_writev`](https://linux.die.net/man/2/process_vm_writev) 將自定義的 `fake_clock_gettime` 函數寫入記憶體空間。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "e5b79bcc",
+      "source_content": "3. Use `process_vm_writev` to write the specified parameters into `fake_clock_gettime`. These parameters are the time we would like to inject, such as two hours backward or two days forward.",
+      "source_content_hash": "49b302f13f4c5bd63dbae1eb9884c57a6d803dae8b99cdc547f7a602b698b67e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "3. 使用 `process_vm_writev` 將指定參數寫入 `fake_clock_gettime`。這些參數即欲注入的時間偏移量（例如倒退兩小時或前進兩天）。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dc60c76a",
+      "source_content": "4. Use ptrace to modify the `clock_gettime` function in vDSO and redirect to the `fake_clock_gettime` function.",
+      "source_content_hash": "adab2b9f8b3738843f2527a3cb22e6d8c89aee996c41ebccf44ba84157ef4fbc",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "4. 使用 ptrace 修改 vDSO 中的 `clock_gettime` 函數，並將其重定向至 `fake_clock_gettime` 函數。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "4405f913",
+      "source_content": "5. Use ptrace to detach the PID process.",
+      "source_content_hash": "d9858e96e1a19a2af5eb654dda5f99db711736887c77e51a9cedf180e216d3e6",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "5. 使用 ptrace 分離 PID 程序。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a311e967",
+      "source_content": "If you are interested in the details, see the [Chaos Mesh GitHub repository](https://github.com/chaos-mesh/chaos-mesh/blob/release-1.0/pkg/time/time_linux.go).",
+      "source_content_hash": "39ba3e1a83eccb0d682778ddfbd59b3850c02f59f14139450e7b8c8dc1ac0a12",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若您對細節感興趣，請參閱 [Chaos Mesh GitHub 儲存庫](https://github.com/chaos-mesh/chaos-mesh/blob/release-1.0/pkg/time/time_linux.go)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f8edb6d2",
+      "source_content": "## Simulating clock skew on a distributed SQL database",
+      "source_content_hash": "712e282642a55b5329616d00a044f84c47b67509e44e935c0a2f81d845d61a10",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 在分散式 SQL 資料庫上模擬時鐘偏移"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1862c5fe",
+      "source_content": "Statistics speak volumes. Here we're going to try TimeChaos on [TiDB](https://docs.pingcap.com/tidb/stable/overview/), an open source, [NewSQL](https://en.wikipedia.org/wiki/NewSQL), distributed SQL database that supports [Hybrid Transactional/Analytical Processing](https://en.wikipedia.org/wiki/Hybrid_transactional/analytical_processing) (HTAP) workloads, to see if the chaos testing can really work.",
+      "source_content_hash": "e4a4458966106707d9a2cebf7ae90678d232967ec5007f84f1678a93c122c11c",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "數據勝於雄辯。我們將在 [TiDB](https://docs.pingcap.com/tidb/stable/overview/) 上嘗試 TimeChaos，這是一個開源、[NewSQL](https://en.wikipedia.org/wiki/NewSQL)、分散式的 SQL 資料庫，支援[混合交易/分析處理](https://en.wikipedia.org/wiki/Hybrid_transactional/analytical_processing) (HTAP) 工作負載，以驗證混沌測試是否真的有效。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6ca4479f",
+      "source_content": "TiDB uses a centralized service Timestamp Oracle (TSO) to obtain the globally consistent version number, and to ensure that the transaction version number increases monotonically. The TSO service is managed by the Placement Driver (PD) component. Therefore, we choose a random PD node and inject TimeChaos regularly, each with a 10-millisecond-backward clock skew. Let's see if TiDB can meet the challenge.",
+      "source_content_hash": "33a935d8c2fc13b33b166c1f5248aef60f694334a94ff6672a9958738ea706e8",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "TiDB 使用集中式服務 Timestamp Oracle (TSO) 來獲取全域一致的版本號，並確保交易版本號單調遞增。TSO 服務由 Placement Driver (PD) 元件管理。因此，我們選擇一個隨機的 PD 節點，並定期注入 TimeChaos，每次注入 10 毫秒的時鐘回撥。讓我們看看 TiDB 能否應對這一挑戰。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "a2c0166e",
+      "source_content": "To better perform the testing, we use [bank](https://github.com/cwen0/bank) as the workload, which simulates the financial transfers in a banking system. It's often used to verify the correctness of database transactions.",
+      "source_content_hash": "2dd22bb6db4de6241888890fb7374805f5f1df36fd8670ad6be50f0ccb0f613b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "為更好地執行測試，我們使用 [bank](https://github.com/cwen0/bank) 作為工作負載，它模擬銀行系統中的金融轉帳，常用於驗證資料庫交易的正確性。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c1eaf30b",
+      "source_content": "This is our test configuration:",
+      "source_content_hash": "9d15b8ffd84f41e443eb809c98ae8deb63290fd6c2356d3e188d789fe07ac7b2",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "這是我們的測試配置："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c4c0fc07",
+      "source_content": "```\napiVersion: chaos-mesh.org/v1alpha1\nkind: TimeChaos\nmetadata:\n  name: time-skew-example\n  namespace: tidb-demo\nspec:\n  mode: one\n  selector:\n    labelSelectors:\n      \"app.kubernetes.io/component\": \"pd\"\n  timeOffset:\n    sec: -600\n  clockIds:\n    - CLOCK_REALTIME\n  duration: \"10s\"\n  scheduler:\n    cron: \"@every 1m\"\n```",
+      "source_content_hash": "5079b53d5fca10572de5c80ecf0b4a4aade47b53149d8ce0af15172cb6e97d7f",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_c4c0fc07"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "6fc234cf",
+      "source_content": "During this test, Chaos Mesh injects TimeChaos into a chosen PD Pod every 1 millisecond for 10 seconds. Within the duration, the time acquired by PD will have a 600 second offset from the actual time. For further details, see [Chaos Mesh Wiki](https://github.com/chaos-mesh/chaos-mesh/wiki/Time-Chaos).",
+      "source_content_hash": "ca61309c674fcdca2dd2c863c4bbcefb6d7c824b4a0044800d7f4d6b7aab660b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "在此測試期間，Chaos Mesh 每 1 毫秒向選定的 PD Pod 注入一次 TimeChaos，持續 10 秒。在此期間，PD 獲取的時間將與實際時間有 600 秒的偏移。更多詳細資訊，請參閱 [Chaos Mesh Wiki](https://github.com/chaos-mesh/chaos-mesh/wiki/Time-Chaos)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "c364340c",
+      "source_content": "Let's create a TimeChaos experiment using the `kubectl apply` command:",
+      "source_content_hash": "b23a61412e5414d2eda8ef12d538a06ca67e4cefcab417beddeb5d64e8b8a20b",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "讓我們使用 `kubectl apply` 指令建立一個 TimeChaos 實驗："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b474abd5",
+      "source_content": "```\nkubectl apply -f pd-time.yaml\n```",
+      "source_content_hash": "01720470a02e4a7e40ab365811d081bc73398c0f25d7e850a996cfdae131f38b",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_b474abd5"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "383fbdd2",
+      "source_content": "Now, we can retrieve the PD log by the following command:",
+      "source_content_hash": "940c1c320ad7fec8e4ce8e49331c84e1120cce2c14e0121ea918faf47e0394a5",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "現在，我們可以透過以下指令擷取 PD 日誌："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8d1b00fd",
+      "source_content": "```\nkubectl logs -n tidb-demo tidb-app-pd-0 | grep \"system time jump backward\"\n```",
+      "source_content_hash": "0094ba03c982d8542d265c5e68e64179ccc4e342462c47558d42852a6e8266fa",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_8d1b00fd"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "534ac82e",
+      "source_content": "Here's the log:",
+      "source_content_hash": "9cdbbdbb99de6d68d9b772c0639dabd4b179cca5f256e299f41358b4ff17f218",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "日誌如下："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "01a167f4",
+      "source_content": "```\n[2020/03/24 09:06:23.164 +00:00] [ERROR] [systime_mon.go:32] [\"system time jump backward\"] [last=1585041383060109693]\n[2020/03/24 09:16:32.260 +00:00] [ERROR] [systime_mon.go:32] [\"system time jump backward\"] [last=1585041992160476622]\n[2020/03/24 09:20:32.059 +00:00] [ERROR] [systime_mon.go:32] [\"system time jump backward\"] [last=1585042231960027622]\n[2020/03/24 09:23:32.059 +00:00] [ERROR] [systime_mon.go:32] [\"system time jump backward\"] [last=1585042411960079655]\n[2020/03/24 09:25:32.059 +00:00] [ERROR] [systime_mon.go:32] [\"system time jump backward\"] [last=1585042531963640321]\n[2020/03/24 09:28:32.060 +00:00] [ERROR] [systime_mon.go:32] [\"system time jump backward\"] [last=1585042711960148191]\n[2020/03/24 09:33:32.063 +00:00] [ERROR] [systime_mon.go:32] [\"system time jump backward\"] [last=1585043011960517655]\n[2020/03/24 09:34:32.060 +00:00] [ERROR] [systime_mon.go:32] [\"system time jump backward\"] [last=1585043071959942937]\n[2020/03/24 09:35:32.059 +00:00] [ERROR] [systime_mon.go:32] [\"system time jump backward\"] [last=1585043131978582964]\n[2020/03/24 09:36:32.059 +00:00] [ERROR] [systime_mon.go:32] [\"system time jump backward\"] [last=1585043191960687755]\n[2020/03/24 09:38:32.060 +00:00] [ERROR] [systime_mon.go:32] [\"system time jump backward\"] [last=1585043311959970737]\n[2020/03/24 09:41:32.060 +00:00] [ERROR] [systime_mon.go:32] [\"system time jump backward\"] [last=1585043491959970502]\n[2020/03/24 09:45:32.061 +00:00] [ERROR] [systime_mon.go:32] [\"system time jump backward\"] [last=1585043731961304629]\n...\n```",
+      "source_content_hash": "5bc3457dcd42e309d79b4e29d943e31f916a6f395dd2879537581d0bbd7b0297",
+      "node_type": "code",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_01a167f4"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "dce16ab4",
+      "source_content": "From the log above, we see that every now and then, PD detects that the system time rolls back. This means:",
+      "source_content_hash": "efdcef2b01fcf44d0c41b4d6dd1b58906e80c24e8ecf3cb8106986396a0de2be",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "從上方的日誌可見，PD 會定期檢測到系統時間回撥。這意味著："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "bac13f4e",
+      "source_content": "- TimeChaos successfully simulates clock skew.",
+      "source_content_hash": "120cb45a0cd957c79f5b04a1eabe97666ad2ac74eb86ce20572fdb8660c9dcba",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- TimeChaos 成功模擬了時鐘偏移"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b2b5f117",
+      "source_content": "- PD can deal with the clock skew situation.",
+      "source_content_hash": "9b48ae5bfd03ffc6acf84553d407e5f0c8deb39f20a1a0a4b25494e6fe1a5a18",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- PD 能夠處理時鐘偏移的情況"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "0ddaa835",
+      "source_content": "That's encouraging. But does TimeChaos affect services other than PD? We can check it out in the Chaos Dashboard:",
+      "source_content_hash": "eb00c083182c55316ef3e37cdc0df001f3d5d54cc3036ee6ef154069c8363c95",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "這令人鼓舞。但 TimeChaos 是否會影響 PD 以外的服務？我們可以在 Chaos Dashboard 中查看："
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "fd7ed056",
+      "source_content": "![Chaos Dashboard](/img/blog/chaos-dashboard.jpg)",
+      "source_content_hash": "7346ec275227b0754cf3307b9feedfb0e94815f6dc0dd189f0867374a7444402",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![Chaos Dashboard](/img/blog/chaos-dashboard.jpg)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b08ad0b4",
+      "source_content": "It's clear that in the monitor, TimeChaos was injected every 1 millisecond and the whole duration lasted 10 seconds. What's more, TiDB was not affected by that injection. The bank program ran normally, and performance was not affected.",
+      "source_content_hash": "0e0cea480a561aa6be668c67fe42946a42feebf9ac8b5b1fdacfa79c2d052286",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "監控畫面清晰顯示：TimeChaos 每 1 毫秒注入一次，整個持續時間為 10 秒。更重要的是，TiDB 並未受到注入影響——bank 程式正常運行，效能也未受影響。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "89b740fe",
+      "source_content": "## Try out Chaos Mesh",
+      "source_content_hash": "f1591c3198621f88835face0e4a274959ee4ab896f17046ccca6cdfaa86c8a02",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 試用 Chaos Mesh"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "99840f13",
+      "source_content": "As a cloud-native chaos engineering platform, Chaos Mesh features all-around [fault injection methods for complex systems on Kubernetes](https://pingcap.com/blog/chaos-mesh-your-chaos-engineering-solution-for-system-resiliency-on-kubernetes/), covering faults in Pods, the network, the file system, and even the kernel.",
+      "source_content_hash": "5863a70f9023174e03980eb1e79cca66006f12adc8a9577bdae38c94edad3fec",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "作為雲原生混沌工程平台，Chaos Mesh 具備全方位的 [Kubernetes 複雜系統故障注入方法](https://pingcap.com/blog/chaos-mesh-your-chaos-engineering-solution-for-system-resiliency-on-kubernetes/)，涵蓋 Pod、網路、檔案系統，甚至核心層級的故障。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "85ea22dd",
+      "source_content": "Wanna have some hands-on experience in chaos engineering? Welcome to [Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh). This [10-minute tutorial](https://pingcap.com/blog/run-first-chaos-experiment-in-ten-minutes/) will help you quickly get started with chaos engineering and run your first chaos experiment with Chaos Mesh.",
+      "source_content_hash": "6cbd716570eb13dd69b085fd7d66de77527f6a8db01ae01c2a0062ad2b550c79",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "想要獲得混沌工程的實戰經驗嗎？歡迎造訪 [Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh)。這個 [10 分鐘教學](https://pingcap.com/blog/run-first-chaos-experiment-in-ten-minutes/)將幫助您快速入門混沌工程，並使用 Chaos Mesh 運行您的第一個混沌實驗。"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2020-04-20-simulating-clock-skew-in-k8s-without-affecting-other-containers-on-node.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.063471+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "67b495f7584e52e1fa2eb4d79ca65d7ee8b0364ccd43472763583a5eb13699f1"
+  }
+}

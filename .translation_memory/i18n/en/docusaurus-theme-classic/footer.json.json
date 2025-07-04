@@ -1,0 +1,266 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "i18n/en/docusaurus-theme-classic/footer.json",
+  "source_file_content_hash": "f4d2d5a3080fc17d38408ecc611e7e3d8926530bc952a8d97c493832ea33752b",
+  "segments": [
+    {
+      "segment_id": "link.title.Documentation",
+      "source_content": "Documentation",
+      "source_content_hash": "c205924de0fe636ccdde4ed616fef66f75b78e98b03620637965c033fd161141",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "文件"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title of the footer links column with title=Documentation in the footer"
+      }
+    },
+    {
+      "segment_id": "link.title.Community",
+      "source_content": "Community",
+      "source_content_hash": "bb501d7877eb7ddbd40baf7990e8058212e8140a2e6ceaaf2d54a6412b770bfd",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "社群"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title of the footer links column with title=Community in the footer"
+      }
+    },
+    {
+      "segment_id": "link.title.Acknowledgements",
+      "source_content": "Acknowledgements",
+      "source_content_hash": "c9015d53b90846454375a2fdf2829c66fad7a2e52de1e89e73949ca59c905e49",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "致謝"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The title of the footer links column with title=Acknowledgements in the footer"
+      }
+    },
+    {
+      "segment_id": "link.item.label.Quick Start",
+      "source_content": "Quick Start",
+      "source_content_hash": "328908a83269e0db2035621d0110a68fba3dad6330d66d58a7371cb377e0d5e4",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "快速入門"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label of footer link with label=Quick Start linking to docs/quick-start"
+      }
+    },
+    {
+      "segment_id": "link.item.label.Run a Chaos Experiment",
+      "source_content": "Run a Chaos Experiment",
+      "source_content_hash": "65cb6dbbcd4390b27a845dbf8e4eb82847dbbe4e92a5d1d58282a9ac37a26fd2",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "執行混沌實驗"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label of footer link with label=Run a Chaos Experiment linking to docs/run-a-chaos-experiment"
+      }
+    },
+    {
+      "segment_id": "link.item.label.Developer Guide Overview",
+      "source_content": "Developer Guide Overview",
+      "source_content_hash": "789f6297ab9161bf44743615a87111cd5d277e8e2406036130948ae9ce0dbea7",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "開發者指南概覽"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label of footer link with label=Developer Guide Overview linking to docs/developer-guide-overview"
+      }
+    },
+    {
+      "segment_id": "link.item.label.FAQs",
+      "source_content": "FAQs",
+      "source_content_hash": "9856b7433f842da2093b956811286d51860e05ae3904dc40b36dc709ea298884",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "常見問題"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label of footer link with label=FAQs linking to docs/faqs"
+      }
+    },
+    {
+      "segment_id": "link.item.label.Blog",
+      "source_content": "Blog",
+      "source_content_hash": "8c6bc099534a0251b576f6b88bd2db124ae9497c64bd9242e92a6aec23e6a73a",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "部落格"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label of footer link with label=Blog linking to blog"
+      }
+    },
+    {
+      "segment_id": "link.item.label.CNCF Community Group",
+      "source_content": "CNCF Community Group",
+      "source_content_hash": "87c509e465df4d1fbe6c66398dde7e8f9021672f1add9b1fcd29d1da95bb9ccf",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "CNCF 社群群組"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label of footer link with label=CNCF Community Group linking to https://community.cncf.io/chaos-mesh-community/"
+      }
+    },
+    {
+      "segment_id": "link.item.label.GitHub",
+      "source_content": "GitHub",
+      "source_content_hash": "f911e414cf6bdfc595532ab166b5ba0f63d73c021452fcdacbda363dda6ad8fb",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "GitHub"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label of footer link with label=GitHub linking to https://github.com/chaos-mesh/chaos-mesh"
+      }
+    },
+    {
+      "segment_id": "link.item.label.Slack (#project-chaos-mesh)",
+      "source_content": "Slack (#project-chaos-mesh)",
+      "source_content_hash": "c66a7cf0c2f51c31bdf9c4377e5a0f587ddf6d8e50fe051a6db9021c29689a19",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Slack (#project-chaos-mesh)"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label of footer link with label=Slack (#project-chaos-mesh) linking to https://slack.cncf.io/"
+      }
+    },
+    {
+      "segment_id": "link.item.label.Twitter",
+      "source_content": "Twitter",
+      "source_content_hash": "bcd18ead5fa830127187d499e97e7a4dc8f641ec34d8c7e9f9f24deae2e39fdc",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Twitter"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label of footer link with label=Twitter linking to https://twitter.com/chaos_mesh"
+      }
+    },
+    {
+      "segment_id": "link.item.label.Thanks for the technology illustrations by Storyset",
+      "source_content": "Thanks for the technology illustrations by Storyset",
+      "source_content_hash": "4bd823f0b722f050776ea264f26546f377af301f6f89cb27a05700692619c33d",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "感謝 Storyset 提供的技術插圖"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The label of footer link with label=Thanks for the technology illustrations by Storyset linking to https://storyset.com/technology"
+      }
+    },
+    {
+      "segment_id": "copyright",
+      "source_content": "\n        <p style=\"font-weight: 500;\">Copyright © Chaos Mesh Authors 2025 | Documentation Distributed under CC-BY-4.0</p>\n        © 2025 The Linux Foundation. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href=\"https://www.linuxfoundation.org/trademark-usage/\"> Trademark Usage</a> page.\n      ",
+      "source_content_hash": "e09785c8efd14f44ca78ae65699284ebeb8b5ecedbe6b3393d17dd4b3c36c175",
+      "node_type": "json_message",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "<p style=\"font-weight: 500;\">版權所有 © Chaos Mesh 作者 2025 | 文件採用 CC-BY-4.0 授權分發</p>\n        © 2025 Linux 基金會。保留所有權利。Linux 基金會擁有註冊商標並使用商標。有關 Linux 基金會的商標列表，請參閱我們的 <a href=\"https://www.linuxfoundation.org/trademark-usage/\">商標使用</a>頁面。"
+      },
+      "invalid_translations": {},
+      "metadata": {
+        "json_description": "The footer copyright"
+      }
+    }
+  ],
+  "original_json_structure": {
+    "link.title.Documentation": {
+      "message": "Documentation",
+      "description": "The title of the footer links column with title=Documentation in the footer"
+    },
+    "link.title.Community": {
+      "message": "Community",
+      "description": "The title of the footer links column with title=Community in the footer"
+    },
+    "link.title.Acknowledgements": {
+      "message": "Acknowledgements",
+      "description": "The title of the footer links column with title=Acknowledgements in the footer"
+    },
+    "link.item.label.Quick Start": {
+      "message": "Quick Start",
+      "description": "The label of footer link with label=Quick Start linking to docs/quick-start"
+    },
+    "link.item.label.Run a Chaos Experiment": {
+      "message": "Run a Chaos Experiment",
+      "description": "The label of footer link with label=Run a Chaos Experiment linking to docs/run-a-chaos-experiment"
+    },
+    "link.item.label.Developer Guide Overview": {
+      "message": "Developer Guide Overview",
+      "description": "The label of footer link with label=Developer Guide Overview linking to docs/developer-guide-overview"
+    },
+    "link.item.label.FAQs": {
+      "message": "FAQs",
+      "description": "The label of footer link with label=FAQs linking to docs/faqs"
+    },
+    "link.item.label.Blog": {
+      "message": "Blog",
+      "description": "The label of footer link with label=Blog linking to blog"
+    },
+    "link.item.label.CNCF Community Group": {
+      "message": "CNCF Community Group",
+      "description": "The label of footer link with label=CNCF Community Group linking to https://community.cncf.io/chaos-mesh-community/"
+    },
+    "link.item.label.GitHub": {
+      "message": "GitHub",
+      "description": "The label of footer link with label=GitHub linking to https://github.com/chaos-mesh/chaos-mesh"
+    },
+    "link.item.label.Slack (#project-chaos-mesh)": {
+      "message": "Slack (#project-chaos-mesh)",
+      "description": "The label of footer link with label=Slack (#project-chaos-mesh) linking to https://slack.cncf.io/"
+    },
+    "link.item.label.Twitter": {
+      "message": "Twitter",
+      "description": "The label of footer link with label=Twitter linking to https://twitter.com/chaos_mesh"
+    },
+    "link.item.label.Thanks for the technology illustrations by Storyset": {
+      "message": "Thanks for the technology illustrations by Storyset",
+      "description": "The label of footer link with label=Thanks for the technology illustrations by Storyset linking to https://storyset.com/technology"
+    },
+    "copyright": {
+      "message": "\n        <p style=\"font-weight: 500;\">Copyright © Chaos Mesh Authors 2025 | Documentation Distributed under CC-BY-4.0</p>\n        © 2025 The Linux Foundation. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href=\"https://www.linuxfoundation.org/trademark-usage/\"> Trademark Usage</a> page.\n      ",
+      "description": "The footer copyright"
+    }
+  },
+  "target_i18n_subpath": "docusaurus-theme-classic/footer.json",
+  "last_updated_timestamp": "2025-07-04T06:49:56.080089+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "f4d2d5a3080fc17d38408ecc611e7e3d8926530bc952a8d97c493832ea33752b"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/release-2.5-tracking.md",
+  "source_file_content_hash": "6d4911cb628ee1601d10c733ab0532f30505682261a27d0b7e9eb1d1a3922737",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: Chaos Mesh v2.5.0 Tracking\n---",
+      "source_content_hash": "d2dc5d84e575fc572adb22c7a808c45d0c8760058a3c4b28b7592c1ebe3176d8",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f85bbfb4",
+      "source_content": "## Links",
+      "source_content_hash": "7621e916cb6e57b50af80e3a9a11646e43c81f3c516a44eb8b0a0f4c2557dd02",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 連結"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "237365ee",
+      "source_content": "- [Chaos Mesh release cycle](release-cycle.md)",
+      "source_content_hash": "9689fc907a14ee8736c606134d04648dc234b3b38d8a1bfdf01d906f64c6425c",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [Chaos Mesh 發佈週期](release-cycle.md)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d912d376",
+      "source_content": "## Tracking Docs",
+      "source_content_hash": "8fddb3e5edde07baff16d0e9dea9928bb8303915098f185aa064f1659a37bb94",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 追蹤文件"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "760d111a",
+      "source_content": "- [Release 2.5 Milestone](https://github.com/chaos-mesh/chaos-mesh/milestone/12)",
+      "source_content_hash": "97032c9652f0ddc78b8a9af8320eb417118a66eec62b17835e08677011bc9d0b",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [發佈 2.5 里程碑](https://github.com/chaos-mesh/chaos-mesh/milestone/12)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "1ee0c6cb",
+      "source_content": "- [Docs Milestone](https://github.com/chaos-mesh/website/milestone/4)",
+      "source_content_hash": "3b72f7de2d3a088b2fe440e00eefdfcd7ca61cdbec681943ed49415498c3b3be",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [文件里程碑](https://github.com/chaos-mesh/website/milestone/4)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "70153c6e",
+      "source_content": "## Release manager",
+      "source_content_hash": "2b5f347ac500a8155023f75c2886a4b41fe846d7bc1b016b6efc45fb0559fe75",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 發佈經理"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "740fbfd7",
+      "source_content": "- [STRRL](https://github.com/STRRL)",
+      "source_content_hash": "7ab15d32765ecbb446e18a11166b799c9a2e43e6cd2b0a674653e1aa336bdff9",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- [STRRL](https://github.com/STRRL)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "d350c018",
+      "source_content": "## Summary",
+      "source_content_hash": "30ac03ff33731529441be8fbe52a3bd0d4c5ec830e806d54692168ebb7f98ada",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 總結"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3dd19309",
+      "source_content": "| When | Week | As Developer | As Release Manager | Notes |\n| :-: | :-: | :-: | :-: | :-: |\n| Monday 26 Sept 2022 | Week 1 | Normal Dev | Normal Dev |  |\n| Monday 31 Oct 2022 | Week 6 | Code Freeze; Fix bugs | Code Freeze |  |\n| Monday 7 Nov 2022 | Week 7 | Code Freeze; Fix bugs | Cut new branch release 2.5 | Cleanup the CHANGELOG on master; Cherry pick bugfixes |\n| Monday 14 Nov 2022 | Week 8 | Fix bugs | Release Minor Version |  |",
+      "source_content_hash": "2032b70dde59eef4c79bae15c7ae70aa7398e214acc27729fc4e163b3c55b045",
+      "node_type": "table",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_3dd19309"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/release-2.5-tracking.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.118295+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "6d4911cb628ee1601d10c733ab0532f30505682261a27d0b7e9eb1d1a3922737"
+  }
+}

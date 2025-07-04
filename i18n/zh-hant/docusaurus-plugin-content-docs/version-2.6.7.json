@@ -1,0 +1,66 @@
+{
+  "version.label": {
+    "message": "2.6.7",
+    "description": "The label for version 2.6.7"
+  },
+  "sidebar.docs.category.About Chaos Mesh": {
+    "message": "關於 Chaos Mesh",
+    "description": "The label for category About Chaos Mesh in sidebar docs"
+  },
+  "sidebar.docs.category.Getting Started": {
+    "message": "開始使用",
+    "description": "The label for category Getting Started in sidebar docs"
+  },
+  "sidebar.docs.category.Installation and Deployment": {
+    "message": "安裝與部署",
+    "description": "The label for category Installation and Deployment in sidebar docs"
+  },
+  "sidebar.docs.category.Run a Single Chaos Experiment": {
+    "message": "執行單一混沌實驗",
+    "description": "The label for category Run a Single Chaos Experiment in sidebar docs"
+  },
+  "sidebar.docs.category.Orchestrate Multiple Chaos Experiments": {
+    "message": "協調多個混沌實驗",
+    "description": "The label for category Orchestrate Multiple Chaos Experiments in sidebar docs"
+  },
+  "sidebar.docs.category.Types of Chaos Experiments": {
+    "message": "混沌實驗類型",
+    "description": "The label for category Types of Chaos Experiments in sidebar docs"
+  },
+  "sidebar.docs.category.Kubernetes": {
+    "message": "Kubernetes",
+    "description": "The label for category Kubernetes in sidebar docs"
+  },
+  "sidebar.docs.category.Physical Nodes": {
+    "message": "實體節點",
+    "description": "The label for category Physical Nodes in sidebar docs"
+  },
+  "sidebar.docs.category.Authentication": {
+    "message": "驗證",
+    "description": "The label for category Authentication in sidebar docs"
+  },
+  "sidebar.docs.category.Tools Integration": {
+    "message": "工具整合",
+    "description": "The label for category Tools Integration in sidebar docs"
+  },
+  "sidebar.docs.category.Development Guides": {
+    "message": "開發指南",
+    "description": "The label for category Development Guides in sidebar docs"
+  },
+  "sidebar.docs.category.FAQs and Troubleshooting": {
+    "message": "常見問題與故障排除",
+    "description": "The label for category FAQs and Troubleshooting in sidebar docs"
+  },
+  "sidebar.docs.category.Release": {
+    "message": "版本發布",
+    "description": "The label for category Release in sidebar docs"
+  },
+  "sidebar.docs.category.Release Tracking": {
+    "message": "版本發布追蹤",
+    "description": "The label for category Release Tracking in sidebar docs"
+  },
+  "sidebar.docs.link.Supported Releases": {
+    "message": "支援的版本",
+    "description": "The label for link Supported Releases in sidebar docs, linking to /supported-releases"
+  }
+}

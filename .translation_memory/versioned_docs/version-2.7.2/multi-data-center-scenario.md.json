@@ -1,0 +1,34 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "versioned_docs/version-2.7.2/multi-data-center-scenario.md",
+  "source_file_content_hash": "2897f61779eac2f09baa4c83b192715d872d7d782fdc02989b3fd2b43f76487d",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\ntitle: 多数据中心场景\n---",
+      "source_content_hash": "2aefe908b26175fe631753ff39ac2b61f483a29822b356f6cd80a1ce69609b75",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f85bbfb4",
+      "source_content": "## TODO",
+      "source_content_hash": "f412d40cac05e357371f77218084d95faf8621b50642faf4353f0cb4bb1c78cc",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 待完成"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-docs/version-2.7.2/multi-data-center-scenario.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.110244+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "2897f61779eac2f09baa4c83b192715d872d7d782fdc02989b3fd2b43f76487d"
+  }
+}

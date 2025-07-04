@@ -1,0 +1,188 @@
+{
+  "source_file_path_relative_to_docusaurus_root": "blog/2021-12-27-chaos-mesh-story.md",
+  "source_file_content_hash": "57bc351b96da4572572a5ebf1bdffc5dd8358d7ca0af2215026cf6fb75404fa9",
+  "segments": [
+    {
+      "segment_id": "58cfcc64",
+      "source_content": "---\nslug: /share-your-chaos-mesh-story\ntitle: 'Share your #ChaosMeshStory!'\nauthors: chaos-mesh\nimage: /img/blog/chaos-mesh-story.jpeg\ntags: [Chaos Mesh, Community]\n---",
+      "source_content_hash": "dbeb6f509befe267bb566fc169888dd1f4db5d152c692900debf1415039fdf45",
+      "node_type": "yaml",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_58cfcc64"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "53eaf0e1",
+      "source_content": "![Share your #ChaosMeshStory!](/img/blog/chaos-mesh-story.jpeg)",
+      "source_content_hash": "9c8270a3319edcbd7a94ba2fdbe7ac28283c09fc442e727e84a396e372d7dd0e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "![分享你的 #ChaosMeshStory！](/img/blog/chaos-mesh-story.jpeg)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8ac585fb",
+      "source_content": "Hey community,",
+      "source_content_hash": "cf74f5220df4d8f4374bf4529e4657b62c8c4f4e8e4d5d55277de99e33e7bb22",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "社群的朋友們，"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "180bddb1",
+      "source_content": "🥳 Chaos Mesh will turn 2 on 2021.12.31! We're grateful for every contribution from you that helped this project grow. And we'd like to hear your Chaos Mesh story! How did you hear about the project? How did you get involved? Are you an adopter or a contributor? What do you think of it? It can be anything! Share your **[#ChaosMeshStory](https://twitter.com/intent/tweet?text=%23ChaosMeshStory)** over on Twitter and win a Chaos Mesh Tee!",
+      "source_content_hash": "28df576ba5245390c3e319b5ab426b0a5476bec660a8c4fd2097bde8485676f4",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "🥳 Chaos Mesh 將在 2021.12.31 滿兩歲了！我們衷心感謝每位協助專案成長的貢獻者。現在，我們想聆聽你的 Chaos Mesh 故事！你是如何發現這個專案的？如何參與其中？身為採用者或貢獻者，你對它有何看法？任何故事都歡迎！在 Twitter 分享你的 **[#ChaosMeshStory](https://twitter.com/intent/tweet?text=%23ChaosMeshStory)**，就有機會贏得 Chaos Mesh T 恤！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28a64196",
+      "source_content": "<!--truncate-->",
+      "source_content_hash": "f5cded2aa7e288e395fe4f67f9dabda2281904b2f5358d07302b3aa8be0acdfa",
+      "node_type": "comment",
+      "translatable": false,
+      "translations": {
+        "zh-hant": "@@untranslatable_placeholder_28a64196"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "3daf1b88",
+      "source_content": "## 🍼 #ChaosMeshStory Entry via Twitter",
+      "source_content_hash": "555d83201c4ab6eaf74c860243a54e43d4b3ef930949c5b2c0e8243a34a8451e",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "## 🍼 透過 Twitter 參與 #ChaosMeshStory"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "aee0e40d",
+      "source_content": "### Rules",
+      "source_content_hash": "99900403f8f47c0f185879f84eeba799d4c9ac820e7d608f4752b8a3398aefe4",
+      "node_type": "heading",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "### 活動規則"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "28563fec",
+      "source_content": "- Eligibility: anyone with a Twitter account",
+      "source_content_hash": "e53d9093847f4ceafcb5d0b1d4223466bf2bda8769a11c40121e6e0b0538ad80",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 參與資格：任何擁有 Twitter 帳號者"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "f998e7f9",
+      "source_content": "- Event Period: December 27, 2021, at 9:00 AM - December 31, 2021, at 11:59 PM (PT)",
+      "source_content_hash": "d0e0b07554d4be4b1b368059858ba437c0931c71a2992815ba89cfdb35fa1234",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 活動期間：2021 年 12 月 27 日 上午 9:00 - 2021 年 12 月 31 日 晚上 11:59 (太平洋時間)"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "8b31a2bd",
+      "source_content": "- How to participate:\n  1. Follow [@chaos_mesh](https://twitter.com/chaos_mesh).\n  2. Add the **[#ChaosMeshStory](https://twitter.com/intent/tweet?text=%23ChaosMeshStory)** hashtag.\n  3. Share your experience with Chaos Mesh!",
+      "source_content_hash": "ab585d4dbb32c2f8e319694167e553974f91bde9e31fe672b6391010873fbfe2",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 參與方式：\n  1. 追蹤 [@chaos_mesh](https://twitter.com/chaos_mesh)\n  2. 加入 **[#ChaosMeshStory](https://twitter.com/intent/tweet?text=%23ChaosMeshStory)** 主題標籤\n  3. 分享你與 Chaos Mesh 的經驗！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "b08b37ac",
+      "source_content": "- Judging Criteria: all qualified entries will be eligible to receive a Chaos Mesh Tee. The link to collect your contact information will be available on January 1st, 2022. Stay tuned with [@chaos_mesh](https://twitter.com/chaos_mesh) on Twitter!",
+      "source_content_hash": "815a692c16032d9fe01b4ceb66873568b725e3cd7901ba1e18ce123e75d4826e",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 評選標準：所有符合資格者皆可獲得 Chaos Mesh T 恤。聯絡資訊收集連結將於 2022 年 1 月 1 日開放，請持續關注 Twitter 上的 [@chaos_mesh](https://twitter.com/chaos_mesh)！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "882f8186",
+      "source_content": "- Rules: please comply with the [Code of Conduct](https://github.com/chaos-mesh/chaos-mesh/blob/master/CODE_OF_CONDUCT.md), otherwise you will be ineligible to participate.",
+      "source_content_hash": "35e5b2480717924bf96dd6bc007e51657508e31daf1b86ab2881ecfb4f9e6ec7",
+      "node_type": "listItem",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "- 注意事項：請遵守[行為準則](https://github.com/chaos-mesh/chaos-mesh/blob/master/CODE_OF_CONDUCT.md)，違規者將喪失參與資格。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "26524352",
+      "source_content": "If you have any questions regarding the event, please DM [@chaos_mesh](https://twitter.com/chaos_mesh).",
+      "source_content_hash": "fdb849b8f9b91a73754e36c71105fa455a2f4997598190f082849834d615cf01",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "若對活動有任何疑問，請私訊 [@chaos_mesh](https://twitter.com/chaos_mesh)。"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "73ab96a3",
+      "source_content": "Have fun!",
+      "source_content_hash": "5281545363aac5b04642669bef0f9f871406b660f6d3a1b2a16b162cf16faf31",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "祝玩得愉快！"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "7499a4e7",
+      "source_content": "Yours truly,",
+      "source_content_hash": "7aef21aa219163236e607df3f6c08fb6abd42fbd1b1564efba7764082bb5d745",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "此致"
+      },
+      "invalid_translations": {}
+    },
+    {
+      "segment_id": "517051a7",
+      "source_content": "Chaos Mesh community",
+      "source_content_hash": "1bb32704bce686dc3cf83150555a2e99cf9e332546a226a21741bfd365fcee8e",
+      "node_type": "paragraph",
+      "translatable": true,
+      "translations": {
+        "zh-hant": "Chaos Mesh 社群"
+      },
+      "invalid_translations": {}
+    }
+  ],
+  "target_i18n_subpath": "docusaurus-plugin-content-blog/2021-12-27-chaos-mesh-story.md",
+  "last_updated_timestamp": "2025-07-04T06:49:56.070523+00:00",
+  "schema_version": "1.0",
+  "translated_versions": {
+    "zh-hant": "57bc351b96da4572572a5ebf1bdffc5dd8358d7ca0af2215026cf6fb75404fa9"
+  }
+}
