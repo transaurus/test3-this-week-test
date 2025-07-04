@@ -31,7 +31,7 @@ const config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'zh'],
+    locales: ['en', 'zh', 'zh-hant'],
     localeConfigs: {
       en: {
         label: 'English',
@@ -39,6 +39,9 @@ const config = {
       zh: {
         label: '简体中文',
       },
+      zh-hant: {
+        label: '繁体中文',
+      },      
     },
   },
 
